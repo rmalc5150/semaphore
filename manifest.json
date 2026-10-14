@@ -17,11 +17,19 @@
   },
   {
     "path": "code-backup/README.md",
-    "sha256": "8393d8e7a0eb09e3e7557c497d11e8986adecf938847818b89f09122d4ee5617"
+    "sha256": "c7904a59360bb541d399d9b9c1886a3008630b1881be39bebf159731021253d2"
   },
   {
     "path": "code-backup/backup.py",
     "sha256": "128410863e0fbba80dd9c14f636de95dd3b1f31bbd343820ae6ad8b0fb7b32dc"
+  },
+  {
+    "path": "code-backup/ec2-code-backup.service",
+    "sha256": "4f372e3dc57be24b57b9d9584b9e817a4394ce0bb2c42d255c710157c8614511"
+  },
+  {
+    "path": "code-backup/ec2-code-backup.timer",
+    "sha256": "bb005f46446955e2fc3642b4300f8fed3dc2676b941b958658131c7fc31d83b0"
   },
   {
     "path": "data-collection-processing/COLLECTION_MONITORING.md",

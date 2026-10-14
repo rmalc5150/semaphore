@@ -14,10 +14,20 @@ Selection recursively covers nonhidden folders under `/home/ec2-user`, including
 
 The Git working copy and process lock live in `~/.local/state/code-backup/`. A SHA-256 manifest accompanies each snapshot. Concurrent runs are rejected. Credentials, collected data, and live machine configuration are not backed up, so recovery needs those provisioned separately. Code outside `/home/ec2-user` is not included.
 
-No automatic schedule is installed. To run hourly, add this line to the ec2-user crontab on a host with cron enabled:
+The systemd timer `ec2-code-backup.timer` runs daily at **03:00 Europe/Madrid**, including daylight saving changes. It starts automatically after reboot and catches up on a missed run when the timer starts. The service runs as `ec2-user`; errors and output go to the system journal.
 
-```cron
-17 * * * * /usr/bin/python3 /home/ec2-user/code-backup/backup.py >> /home/ec2-user/.local/state/code-backup/backup.log 2>&1
+```sh
+systemctl list-timers ec2-code-backup.timer
+sudo journalctl -u ec2-code-backup.service -n 50 --no-pager
+sudo systemctl start ec2-code-backup.service
+```
+
+The service and timer definitions are kept alongside this script. To reinstall them on a replacement instance after setting up Git and SSH access:
+
+```sh
+sudo install -m 0644 /home/ec2-user/code-backup/ec2-code-backup.service /home/ec2-user/code-backup/ec2-code-backup.timer /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now ec2-code-backup.timer
 ```
 
 To recover, clone the repository with `git clone --branch ec2-code-backup git@github.com:rmalc5150/semaphore.git` and restore files from `source/`. Previous versions are retained in Git history. Recreate environments from requirements files and supply credentials separately.

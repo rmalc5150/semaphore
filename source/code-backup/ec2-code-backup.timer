@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily EC2 source code backup
+
+[Timer]
+OnCalendar=*-*-* 03:00:00 Europe/Madrid
+Persistent=true
+Unit=ec2-code-backup.service
+
+[Install]
+WantedBy=timers.target

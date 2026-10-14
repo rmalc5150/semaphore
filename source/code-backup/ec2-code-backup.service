@@ -1,0 +1,17 @@
+[Unit]
+Description=Back up EC2 source code to GitHub
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+Group=ec2-user
+WorkingDirectory=/home/ec2-user
+Environment=HOME=/home/ec2-user
+Environment=GIT_TERMINAL_PROMPT=0
+ExecStart=/usr/bin/python3 /home/ec2-user/code-backup/backup.py
+TimeoutStartSec=15min
+Nice=10
+UMask=0077
+
