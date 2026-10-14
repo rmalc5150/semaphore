@@ -1,0 +1,11 @@
+[Unit]
+Description=All 68 source daily capture readiness and Athena status
+
+[Timer]
+OnCalendar=*-*-* 07:35:00 Europe/Madrid
+Persistent=true
+RandomizedDelaySec=120
+Unit=optima-source-schedule-daily.service
+
+[Install]
+WantedBy=timers.target

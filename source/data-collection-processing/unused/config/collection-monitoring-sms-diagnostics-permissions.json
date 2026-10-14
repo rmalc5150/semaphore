@@ -1,0 +1,53 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sns:ListOriginationNumbers",
+        "sns:CheckIfPhoneNumberIsOptedOut",
+        "sns:SetSMSAttributes"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sms-voice:DescribePhoneNumbers",
+        "sms-voice:DescribeOptedOutNumbers"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:CalledViaLast": "sns.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:GetRole",
+        "iam:PutRolePolicy"
+      ],
+      "Resource": "arn:aws:iam::059416028963:role/optima-collection-sms-delivery"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::059416028963:role/optima-collection-sms-delivery",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "sns.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:PutRetentionPolicy"
+      ],
+      "Resource": "arn:aws:logs:us-east-1:059416028963:log-group:sns/us-east-1/059416028963/*"
+    }
+  ]
+}

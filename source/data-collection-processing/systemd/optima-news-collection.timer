@@ -1,0 +1,10 @@
+[Unit]
+Description=Optima Bounded news catch-up, reconciliation and 2021 archive
+
+[Timer]
+OnCalendar=*-*-* *:05:00
+RandomizedDelaySec=60
+Persistent=true
+
+[Install]
+WantedBy=timers.target

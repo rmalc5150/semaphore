@@ -1,0 +1,15 @@
+[Unit]
+Description=Optima bounded USPTO daily patent catch-up
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/patent_operations.py daily
+SuccessExitStatus=2
+TimeoutStartSec=2h
+TimeoutStopSec=120
+KillSignal=SIGINT
+Nice=10

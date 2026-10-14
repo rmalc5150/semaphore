@@ -1,0 +1,16 @@
+{
+  "database": "optima_regulatory_pilot",
+  "workgroup": "optima-regulatory-pilot",
+  "region": "us-east-1",
+  "curated_prefix": "curated/regulatory_pilot/releases",
+  "query_results_prefix": "athena-results/regulatory-pilot",
+  "source_manifests": [
+    "manifests/collection_runs/source=clinicaltrials_gov/dataset=research_records/run_8e025a01-bc23-484f-8559-9a3f4004531f/final.json",
+    "manifests/collection_runs/source=fda_openfda/dataset=research_records/run_3886793f-e3ab-4bc0-998b-4db24f2a39cc/final.json",
+    "manifests/collection_runs/source=ema_ctis/dataset=research_records/run_47c68290-d781-4844-a156-3e7271f0a983/final.json",
+    "manifests/collection_runs/source=uk_mhra/dataset=research_records/run_07db9c7f-cf23-4a45-97a2-2d791b285192/final.json",
+    "manifests/collection_runs/source=japan_pmda/dataset=research_records/run_384b4cc5-c26b-4eff-9369-db1c73550fb9/final.json",
+    "manifests/collection_runs/source=chictr/dataset=research_records/run_f510d7f6-5ded-43dd-bbe0-fa96d0acaca8/final.json",
+    "manifests/collection_runs/source=nmpa_trials/dataset=research_records/run_4c12b3c6-8a3c-46f0-b071-629660a2086d/final.json"
+  ]
+}

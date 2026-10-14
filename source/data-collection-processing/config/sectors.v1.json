@@ -1,0 +1,109 @@
+{
+  "document_type": "sector_taxonomy",
+  "schema_version": "1.0",
+  "taxonomy_version": "1.0.0",
+  "sectors": [
+    {
+      "sector_id": "biotech",
+      "name": "Biotech",
+      "description": "Biological technologies, therapeutics, diagnostics, and enabling research tools.",
+      "subsectors": [
+        {
+          "subsector_id": "therapeutics",
+          "name": "Therapeutics"
+        },
+        {
+          "subsector_id": "diagnostics",
+          "name": "Diagnostics"
+        },
+        {
+          "subsector_id": "research_tools",
+          "name": "Research tools"
+        },
+        {
+          "subsector_id": "industrial_biotechnology",
+          "name": "Industrial biotechnology"
+        }
+      ]
+    },
+    {
+      "sector_id": "robotics",
+      "name": "Robotics",
+      "description": "Robots, autonomy, and systems that enable robotic operation.",
+      "subsectors": [
+        {
+          "subsector_id": "industrial_robotics",
+          "name": "Industrial robotics"
+        },
+        {
+          "subsector_id": "service_robotics",
+          "name": "Service robotics"
+        },
+        {
+          "subsector_id": "medical_robotics",
+          "name": "Medical robotics"
+        },
+        {
+          "subsector_id": "autonomy_and_components",
+          "name": "Autonomy and components"
+        }
+      ]
+    },
+    {
+      "sector_id": "semiconductors",
+      "name": "Semiconductors",
+      "description": "Chip design, manufacturing, packaging, materials, and equipment.",
+      "subsectors": [
+        {
+          "subsector_id": "chip_design",
+          "name": "Chip design"
+        },
+        {
+          "subsector_id": "chip_manufacturing",
+          "name": "Chip manufacturing"
+        },
+        {
+          "subsector_id": "semiconductor_equipment",
+          "name": "Semiconductor equipment"
+        },
+        {
+          "subsector_id": "materials_and_packaging",
+          "name": "Materials and packaging"
+        }
+      ]
+    },
+    {
+      "sector_id": "energy_storage",
+      "name": "Energy storage",
+      "description": "Storage technologies including batteries, supercapacitors, thermal, mechanical, and hydrogen-based storage. Generation-only businesses are outside this sector unless they have a storage activity.",
+      "subsectors": [
+        {
+          "subsector_id": "batteries",
+          "name": "Batteries"
+        },
+        {
+          "subsector_id": "supercapacitors",
+          "name": "Supercapacitors"
+        },
+        {
+          "subsector_id": "thermal_storage",
+          "name": "Thermal storage"
+        },
+        {
+          "subsector_id": "mechanical_storage",
+          "name": "Mechanical storage"
+        },
+        {
+          "subsector_id": "hydrogen_storage",
+          "name": "Hydrogen-based storage"
+        }
+      ]
+    }
+  ],
+  "legacy_sector_mapping": {
+    "biotech": "biotech",
+    "robotics": "robotics",
+    "semiconductor": "semiconductors",
+    "battery": "energy_storage"
+  }
+}

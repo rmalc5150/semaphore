@@ -1,0 +1,17 @@
+[Unit]
+Description=Bounded Reddit posts/comments and historical search with Athena verification
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+Slice=optima-data.slice
+MemoryHigh=201326592
+MemoryMax=268435456
+MemorySwapMax=0
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/reddit_collection.py
+TimeoutStartSec=15min
+UMask=0077
+Nice=15

@@ -1,0 +1,1249 @@
+{
+  "document_type": "company_universe",
+  "schema_version": "1.0",
+  "universe_version": "0.1.0",
+  "taxonomy_version": "1.0.0",
+  "created_at": "2026-09-17T11:56:23Z",
+  "purpose": "validation",
+  "scope": {
+    "geography": "global",
+    "include_private_companies": true,
+    "sector_ids": [
+      "biotech",
+      "robotics",
+      "semiconductors",
+      "energy_storage"
+    ]
+  },
+  "companies": [
+    {
+      "company_id": "cmp_c088e562-cf66-4021-8d55-2ca4630525ac",
+      "canonical_name": "Moderna",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "biotech",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_372861ed-214d-4fa7-912d-3376d572bf1a",
+      "canonical_name": "BioNTech",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "biotech",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_f21ec7e1-b45b-45d3-87ed-70f852ab84ae",
+      "canonical_name": "CRISPR Therapeutics",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "biotech",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_327881e9-6005-4032-9756-3890e6e01983",
+      "canonical_name": "Intellia Therapeutics",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "biotech",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_ac263133-7258-4a5b-af1c-4ac2f48b2f47",
+      "canonical_name": "Beam Therapeutics",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "biotech",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_647f72bb-a482-4968-b5df-f9bede86bb76",
+      "canonical_name": "Symbotic",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "robotics",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_fb66112f-1f8f-47dc-80bc-e76a12fdadf3",
+      "canonical_name": "Intuitive Surgical",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "robotics",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_7a54ae03-bb1a-43b9-8957-f6e529306d6c",
+      "canonical_name": "iRobot",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "robotics",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_dea9aff3-47c6-49f7-a4bd-7e47f8bd872e",
+      "canonical_name": "ABB Robotics",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "robotics",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_b1c3647d-7b08-4f3f-b104-3b9f39a662a9",
+      "canonical_name": "FANUC",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "robotics",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_7360aeee-5536-4bf6-91ea-5f11aaf96890",
+      "canonical_name": "NVIDIA",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "semiconductors",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_7d4ee117-9f2e-4904-89ed-38daf038a08b",
+      "canonical_name": "AMD",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "semiconductors",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_9db5ad87-8fdd-407e-916d-f294ef7b8d7c",
+      "canonical_name": "TSMC",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "semiconductors",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_f7fd53f5-0ef5-402d-8109-bdeb3f210055",
+      "canonical_name": "ASML",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "semiconductors",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_70db5b73-895f-442e-931b-dd3c4c9ddc8c",
+      "canonical_name": "Arm",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "semiconductors",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_e9a86e6b-4588-4078-8be3-27f6af52ea3d",
+      "canonical_name": "QuantumScape",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "energy_storage",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_2966acf5-2f02-4428-8426-dedaefe79093",
+      "canonical_name": "Solid Power",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "energy_storage",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_01ae4161-fa59-48a7-913a-e3fb86edc2b5",
+      "canonical_name": "SES AI",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "energy_storage",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_b162bef5-3d97-4b6e-a1fd-c20ec11fb83b",
+      "canonical_name": "Amprius Technologies",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "energy_storage",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_4dfdabb1-f259-4a81-bc06-d017e31fa7c7",
+      "canonical_name": "Form Energy",
+      "entity_type": "unresolved_organization",
+      "ownership_status": "unknown",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "energy_storage",
+          "subsector_ids": [],
+          "classification_basis": "legacy_pilot_unverified",
+          "valid_from": null,
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "pending",
+          "evidence": [
+            {
+              "source": "legacy_patent_pilot",
+              "reference": "patent_pilot_companies.json",
+              "note": "Imported sector label; historical applicability is not established."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        }
+      ]
+    }
+  ],
+  "company_aliases": [
+    {
+      "alias_id": "als_3616f1f6-3857-404d-8ec1-8487e7991e9a",
+      "company_id": "cmp_c088e562-cf66-4021-8d55-2ca4630525ac",
+      "alias": "Moderna, Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_b4f57da6-8420-4a41-a3a8-7712cf7bc8a0",
+      "company_id": "cmp_c088e562-cf66-4021-8d55-2ca4630525ac",
+      "alias": "ModernaTX, Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_19a8c4f8-c7f1-40b7-9c02-4eb2dd895a40",
+      "company_id": "cmp_372861ed-214d-4fa7-912d-3376d572bf1a",
+      "alias": "BioNTech SE",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_4a77f355-8331-42b0-b850-8b5c5535f2cb",
+      "company_id": "cmp_372861ed-214d-4fa7-912d-3376d572bf1a",
+      "alias": "BioNTech RNA Pharmaceuticals GmbH",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_d9de0817-9ea1-4112-8d09-6ba4f11d832b",
+      "company_id": "cmp_f21ec7e1-b45b-45d3-87ed-70f852ab84ae",
+      "alias": "CRISPR Therapeutics AG",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_91bdd6b2-da4a-4b61-948f-feea0691e0d4",
+      "company_id": "cmp_327881e9-6005-4032-9756-3890e6e01983",
+      "alias": "Intellia Therapeutics, Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_58c41448-4fea-46c4-83cf-379fef246823",
+      "company_id": "cmp_ac263133-7258-4a5b-af1c-4ac2f48b2f47",
+      "alias": "Beam Therapeutics Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_34b238da-ff76-4000-a50d-31c71c80f6c5",
+      "company_id": "cmp_647f72bb-a482-4968-b5df-f9bede86bb76",
+      "alias": "Symbotic LLC",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_272e4095-a8df-4a6d-839f-09d0c01d3e85",
+      "company_id": "cmp_647f72bb-a482-4968-b5df-f9bede86bb76",
+      "alias": "Symbotic Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_db35fdaa-f7ed-43dc-b084-633e266339ac",
+      "company_id": "cmp_fb66112f-1f8f-47dc-80bc-e76a12fdadf3",
+      "alias": "Intuitive Surgical Operations, Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_97acba1c-6e96-40e6-ba54-7c71cea15d62",
+      "company_id": "cmp_fb66112f-1f8f-47dc-80bc-e76a12fdadf3",
+      "alias": "Intuitive Surgical, Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_958ceee3-7284-4e92-af68-61e3835e5aac",
+      "company_id": "cmp_7a54ae03-bb1a-43b9-8957-f6e529306d6c",
+      "alias": "iRobot Corporation",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_f230c268-2dad-4550-904e-f6296c02d8a5",
+      "company_id": "cmp_dea9aff3-47c6-49f7-a4bd-7e47f8bd872e",
+      "alias": "ABB Schweiz AG",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_7ef82ba3-6828-424c-ab80-b1ecf26a635d",
+      "company_id": "cmp_dea9aff3-47c6-49f7-a4bd-7e47f8bd872e",
+      "alias": "ABB Robotics GmbH",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_24daa899-1546-49c4-bd24-cdffc047f08c",
+      "company_id": "cmp_b1c3647d-7b08-4f3f-b104-3b9f39a662a9",
+      "alias": "FANUC Corporation",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_a4cba374-1218-42f4-a143-114ccb3e6379",
+      "company_id": "cmp_b1c3647d-7b08-4f3f-b104-3b9f39a662a9",
+      "alias": "Fanuc Ltd",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_5b5401a8-e7cf-48df-9e1d-9ca649d9c7b9",
+      "company_id": "cmp_7360aeee-5536-4bf6-91ea-5f11aaf96890",
+      "alias": "NVIDIA Corporation",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_0420ece1-eb23-4e1c-8992-12d62e9c9d3d",
+      "company_id": "cmp_7d4ee117-9f2e-4904-89ed-38daf038a08b",
+      "alias": "Advanced Micro Devices, Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_a0f7df2d-ae69-4ba2-ad26-d02b1c5b3a0f",
+      "company_id": "cmp_9db5ad87-8fdd-407e-916d-f294ef7b8d7c",
+      "alias": "Taiwan Semiconductor Manufacturing Company, Ltd.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_628b9c0c-be89-426f-ba80-21fae4170f62",
+      "company_id": "cmp_f7fd53f5-0ef5-402d-8109-bdeb3f210055",
+      "alias": "ASML Netherlands B.V.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_49c500bf-0e21-42a2-9835-56b1e3541d54",
+      "company_id": "cmp_f7fd53f5-0ef5-402d-8109-bdeb3f210055",
+      "alias": "ASML Holding N.V.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_18af8824-400d-4adc-b477-c3c3f7bc172b",
+      "company_id": "cmp_70db5b73-895f-442e-931b-dd3c4c9ddc8c",
+      "alias": "Arm Limited",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_7357c959-beb6-44c4-bcae-ee3bde79cf4f",
+      "company_id": "cmp_70db5b73-895f-442e-931b-dd3c4c9ddc8c",
+      "alias": "ARM Ltd.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_b03e6eb9-fcc7-4f62-ac97-834ee87dc3e3",
+      "company_id": "cmp_e9a86e6b-4588-4078-8be3-27f6af52ea3d",
+      "alias": "QuantumScape Corporation",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_3c809d25-de06-4ad2-9da2-ee734370f7d1",
+      "company_id": "cmp_2966acf5-2f02-4428-8426-dedaefe79093",
+      "alias": "Solid Power, Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_7a2f9971-748b-4ab1-be6a-391e07823374",
+      "company_id": "cmp_01ae4161-fa59-48a7-913a-e3fb86edc2b5",
+      "alias": "SES AI Corporation",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_f625cb6c-95a1-4a79-80a0-0d0de59d4a69",
+      "company_id": "cmp_01ae4161-fa59-48a7-913a-e3fb86edc2b5",
+      "alias": "SolidEnergy Systems LLC",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_1352a6e8-28df-4c9a-95b9-5e03706f053c",
+      "company_id": "cmp_b162bef5-3d97-4b6e-a1fd-c20ec11fb83b",
+      "alias": "Amprius, Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    },
+    {
+      "alias_id": "als_1716d506-8f77-4c12-ad33-ae27fbb32aa3",
+      "company_id": "cmp_4dfdabb1-f259-4a81-bc06-d017e31fa7c7",
+      "alias": "Form Energy, Inc.",
+      "language": null,
+      "alias_type": "unclassified",
+      "valid_from": null,
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "pending",
+      "evidence": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Candidate search alias only; may identify a separate subsidiary. Do not automatically merge entities."
+        }
+      ]
+    }
+  ],
+  "external_identifiers": [],
+  "listings": [],
+  "products": [],
+  "people": [],
+  "relationships": []
+}

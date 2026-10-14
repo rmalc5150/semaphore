@@ -1,0 +1,14 @@
+{
+  "database": "optima_eodhd_research",
+  "workgroup": "optima-eodhd-research",
+  "region": "us-east-1",
+  "curated_prefix": "curated/eodhd/releases",
+  "query_results_prefix": "athena-results/eodhd",
+  "inventory_manifest": "manifests/collection_runs/source=eodhd/dataset=listing_inventory/run_4accc263-2cce-4a36-a647-e63d955517c5/final.json",
+  "profile_manifests": [
+    "manifests/collection_runs/source=eodhd/dataset=company_profiles/run_6f88e9e5-6907-413a-a07e-5206a60016f2/final.json",
+    "manifests/collection_runs/source=eodhd/dataset=company_profiles/run_ff5b171a-795d-47c7-aaa2-e9e9025e8ea5/final.json",
+    "manifests/collection_runs/source=eodhd/dataset=company_profiles/run_5648be23-d4af-41f3-8542-d44d50758ed8/final.json",
+    "manifests/collection_runs/source=eodhd/dataset=company_profiles/run_c3429923-60bd-41e4-a6d3-aa5059e9683c/final.json"
+  ]
+}

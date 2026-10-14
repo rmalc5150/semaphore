@@ -1,0 +1,5 @@
+# Separate Python 3.12 environment for curation; existing collectors are unaffected.
+boto3>=1.42.97,<2
+jsonschema>=4,<5
+pyarrow>=18,<24
+sqlglot==27.29.0

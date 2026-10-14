@@ -1,0 +1,7 @@
+{
+  "database": "optima_news_research",
+  "workgroup": "optima-news-research",
+  "region": "us-east-1",
+  "curated_prefix": "curated/news/releases",
+  "query_results_prefix": "athena-results/news"
+}

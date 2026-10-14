@@ -1,0 +1,18 @@
+[Unit]
+Description=Email the 15-business-day SMS registration follow-up
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=3600
+StartLimitBurst=3
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/check_collection_sms_followup.py
+TimeoutStartSec=3min
+Restart=on-failure
+RestartSec=5min
+MemoryMax=201326592
+NoNewPrivileges=true
+ProtectSystem=full

@@ -1,0 +1,12 @@
+[Unit]
+Description=Optima checkpointed NMPA registration inventory cohort
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/nmpa_baseline.py inventory 2026-09-22 --max-pages 110
+TimeoutStartSec=4h
+Nice=10

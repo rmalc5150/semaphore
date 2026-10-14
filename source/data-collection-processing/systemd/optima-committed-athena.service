@@ -1,0 +1,18 @@
+[Unit]
+Description=Verify Athena access to all committed collection batches
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+Slice=optima-data.slice
+MemoryMax=402653184
+MemorySwapMax=0
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/committed_data_athena.py
+TimeoutStartSec=2h
+TimeoutStopSec=30
+KillSignal=SIGINT
+UMask=0077
+Nice=15

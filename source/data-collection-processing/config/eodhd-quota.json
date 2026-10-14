@@ -1,0 +1,11 @@
+{
+ "daily_call_ceiling":98000,
+ "requests_per_minute":900,
+ "daily_group_caps":{"profiles":88000,"market":9000,"inventory":1000},
+ "profile_batch_size":8800,
+ "market_requests_per_run":300,
+ "market_windows_per_lane":80,
+ "provider_daily_limit":100000,
+ "provider_requests_per_minute":1000,
+ "scope":"All configured EODHD clients on this EC2 host; costs counted before every HTTP attempt. User endpoint costs zero daily calls but counts toward request rate."
+}

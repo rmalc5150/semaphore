@@ -1,0 +1,11 @@
+{
+  "database": "optima_sec_pilot",
+  "workgroup": "optima-sec-pilot",
+  "region": "us-east-1",
+  "curated_prefix": "curated/sec_pilot/releases",
+  "query_results_prefix": "athena-results/sec-pilot",
+  "source_manifests": [
+    "manifests/collection_runs/source=sec_edgar/dataset=filings/run_017c2a87-e157-4cef-be58-8342cb6d2418/final.json",
+    "manifests/collection_runs/source=sec_edgar/dataset=filings/run_7ee91d44-3360-467f-8dde-c2852adbe076/final.json"
+  ]
+}

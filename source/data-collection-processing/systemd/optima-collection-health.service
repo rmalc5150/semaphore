@@ -1,0 +1,18 @@
+[Unit]
+Description=Read collection health and persist S3 monitoring report
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/collection_health_exporter.py
+TimeoutStartSec=4min
+MemoryAccounting=true
+MemoryMax=201326592
+MemorySwapMax=0
+Nice=15
+NoNewPrivileges=true
+ProtectSystem=full
+

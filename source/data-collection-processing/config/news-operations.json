@@ -1,0 +1,9 @@
+{
+  "daily_config": "config/news-collection.json",
+  "historical_config": "config/news-history-marketaux.json",
+  "daily_origin": "2026-09-23",
+  "historical_start": "2021-01-01",
+  "max_pages": 3,
+  "reconcile_days": 3,
+  "requests_per_lane": {"daily": 24, "reconcile": 4, "historical": 8}
+}

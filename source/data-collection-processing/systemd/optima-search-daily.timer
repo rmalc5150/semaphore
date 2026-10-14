@@ -1,0 +1,11 @@
+[Unit]
+Description=Optima daily fixed-query search capture (existing scope and USD 1 per-run cap)
+
+[Timer]
+OnCalendar=*-*-* 11:00:00 Europe/Madrid
+RandomizedDelaySec=300
+Persistent=true
+Unit=optima-search-capture.service
+
+[Install]
+WantedBy=timers.target

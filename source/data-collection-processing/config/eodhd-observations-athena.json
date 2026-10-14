@@ -1,0 +1,13 @@
+{
+  "owner": "eodhd",
+  "database": "optima_eodhd_research",
+  "workgroup": "optima-eodhd-research",
+  "region": "us-east-1",
+  "curated_prefix": "curated/eodhd/observations/releases",
+  "query_results_prefix": "athena-results/eodhd",
+  "dataset": "company_profiles",
+  "allowed_sources": [
+    "eodhd"
+  ],
+  "coverage_note": "Current observed company-profile cohorts; not historical snapshots or verified company identities."
+}

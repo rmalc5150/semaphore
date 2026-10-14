@@ -1,0 +1,127 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sms-voice:DescribeAccountAttributes",
+        "sms-voice:DescribeVerifiedDestinationNumbers",
+        "sms-voice:DescribeSpendLimits",
+        "sms-voice:DescribePhoneNumbers",
+        "sms-voice:CreateVerifiedDestinationNumber",
+        "sms-voice:SendDestinationNumberVerificationCode",
+        "sms-voice:VerifyDestinationNumber",
+        "sms-voice:SendTextMessage"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:CalledViaLast": "sns.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:GetRole",
+        "iam:PutRolePolicy",
+        "iam:TagRole"
+      ],
+      "Resource": [
+        "arn:aws:iam::059416028963:role/optima-collection-watchdog",
+        "arn:aws:iam::059416028963:role/optima-collection-watchdog-scheduler"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::059416028963:role/optima-collection-watchdog",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "lambda.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::059416028963:role/optima-collection-watchdog-scheduler",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "scheduler.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sns:CreateTopic",
+        "sns:GetTopicAttributes",
+        "sns:SetTopicAttributes",
+        "sns:TagResource",
+        "sns:Subscribe",
+        "sns:ListSubscriptionsByTopic",
+        "sns:Publish"
+      ],
+      "Resource": [
+        "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+        "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-sms"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sns:GetSMSSandboxAccountStatus",
+        "sns:ListSMSSandboxPhoneNumbers",
+        "sns:CreateSMSSandboxPhoneNumber",
+        "sns:VerifySMSSandboxPhoneNumber",
+        "sns:GetSMSAttributes"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "scheduler:CreateSchedule",
+        "scheduler:GetSchedule",
+        "scheduler:UpdateSchedule"
+      ],
+      "Resource": "arn:aws:scheduler:us-east-1:059416028963:schedule/default/optima-collection-watchdog-30min"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lambda:CreateFunction",
+        "lambda:GetFunction",
+        "lambda:GetFunctionConfiguration",
+        "lambda:UpdateFunctionCode",
+        "lambda:UpdateFunctionConfiguration",
+        "lambda:PutFunctionConcurrency",
+        "lambda:PutFunctionEventInvokeConfig",
+        "lambda:InvokeFunction",
+        "lambda:TagResource"
+      ],
+      "Resource": "arn:aws:lambda:us-east-1:059416028963:function:optima-collection-watchdog"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:PutRetentionPolicy"
+      ],
+      "Resource": [
+        "arn:aws:logs:us-east-1:059416028963:log-group:/aws/lambda/optima-collection-watchdog",
+        "arn:aws:logs:us-east-1:059416028963:log-group:/aws/lambda/optima-collection-watchdog:*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudwatch:PutMetricAlarm",
+        "cloudwatch:DescribeAlarms"
+      ],
+      "Resource": "arn:aws:cloudwatch:us-east-1:059416028963:alarm:optima-collection-watchdog-*"
+    }
+  ]
+}

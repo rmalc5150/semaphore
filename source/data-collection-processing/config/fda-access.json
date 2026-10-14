@@ -1,0 +1,5 @@
+{
+  "region": "us-east-1",
+  "secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:FDA-0WM7up",
+  "secret_field": "key"
+}

@@ -1,0 +1,7 @@
+{
+  "database": "optima_conference_research",
+  "workgroup": "optima-conference-research",
+  "region": "us-east-1",
+  "curated_prefix": "curated/conferences/releases",
+  "query_results_prefix": "athena-results/conferences"
+}

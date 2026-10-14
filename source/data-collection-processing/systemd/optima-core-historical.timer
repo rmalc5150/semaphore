@@ -1,0 +1,11 @@
+[Unit]
+Description=Bounded resumable original SEC/regulatory/disclosure 2021 archive
+
+[Timer]
+OnCalendar=*-*-* 00,04,08,12,16,20:40:00 UTC
+Persistent=true
+RandomizedDelaySec=120
+Unit=optima-core-historical.service
+
+[Install]
+WantedBy=timers.target

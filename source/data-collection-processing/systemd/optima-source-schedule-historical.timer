@@ -1,0 +1,11 @@
+[Unit]
+Description=All 68 source historical capture readiness and Athena status
+
+[Timer]
+OnCalendar=*-*-* *:35:00 UTC
+Persistent=true
+RandomizedDelaySec=120
+Unit=optima-source-schedule-historical.service
+
+[Install]
+WantedBy=timers.target

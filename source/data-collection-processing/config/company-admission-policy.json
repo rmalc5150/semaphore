@@ -1,0 +1,19 @@
+{
+  "policy_version": "1.0",
+  "effective_from": "2026-09-25",
+  "markets": "all",
+  "sectors": ["biotech", "robotics", "semiconductors", "energy_storage"],
+  "historical_collection_floor": "2021-01-01",
+  "discovery": "A traceable source identifies a potentially relevant organization. Listings, official company material, filings, trials, patents, news and reviewed referrals can nominate it.",
+  "sector_eligibility": "At least one verified membership supported by dated source references to actual products, technology or business activities. Labels, keywords and social attention alone nominate candidates.",
+  "identity_gate": "Verified legal entity with a corroborated entity-level identifier or reviewed legal documentation. A ticker/ISIN identifies a listing, not a company. Subsidiaries and receipts remain separate unless supported links establish their roles.",
+  "detailed_tracking_gate": "Identity and sector gates pass, no unresolved identity/identifier collision or rejection, and an explicit activation record identifies policy version, decision time and reviewer.",
+  "financial_threshold": null,
+  "financial_threshold_note": "No size, revenue, profitability or valuation threshold has been agreed; do not invent one.",
+  "private_companies": "Eligible without a listing. Missing from an exchange inventory does not prove private ownership.",
+  "display_scope": "Display-panel manufacturing alone does not establish chip design, manufacturing, packaging, materials or equipment activity under taxonomy 1.0. Review any separately supported semiconductor business independently.",
+  "timestamps": "Keep earliest supported discovery observation, source publication/effective dates, sector review time and watchlist activation time distinct. Unknown historical dates stay null.",
+  "historical_membership": "Retrospective collection for today's list is not historical watchlist membership. Do not backdate activation or change the universe hash of an existing window.",
+  "legacy_collection": "Existing candidate collection can continue for discovery. collection_enabled is not proof of admission; preserve legacy activation time as unknown until supported.",
+  "reentry_and_changes": "Append admission, suspension and reactivation decisions with reason and provenance; retain prior records and identifiers. No silent merges or retroactive overwrites."
+}

@@ -1,0 +1,22 @@
+[
+  {"name":"Moderna","sector":"biotech","aliases":["Moderna, Inc.","ModernaTX, Inc."]},
+  {"name":"BioNTech","sector":"biotech","aliases":["BioNTech SE","BioNTech RNA Pharmaceuticals GmbH"]},
+  {"name":"CRISPR Therapeutics","sector":"biotech","aliases":["CRISPR Therapeutics AG"]},
+  {"name":"Intellia Therapeutics","sector":"biotech","aliases":["Intellia Therapeutics, Inc."]},
+  {"name":"Beam Therapeutics","sector":"biotech","aliases":["Beam Therapeutics Inc."]},
+  {"name":"Symbotic","sector":"robotics","aliases":["Symbotic LLC","Symbotic Inc."]},
+  {"name":"Intuitive Surgical","sector":"robotics","aliases":["Intuitive Surgical Operations, Inc.","Intuitive Surgical, Inc."]},
+  {"name":"iRobot","sector":"robotics","aliases":["iRobot Corporation"]},
+  {"name":"ABB Robotics","sector":"robotics","aliases":["ABB Schweiz AG","ABB Robotics GmbH"]},
+  {"name":"FANUC","sector":"robotics","aliases":["FANUC Corporation","Fanuc Ltd"]},
+  {"name":"NVIDIA","sector":"semiconductor","aliases":["NVIDIA Corporation"]},
+  {"name":"AMD","sector":"semiconductor","aliases":["Advanced Micro Devices, Inc."]},
+  {"name":"TSMC","sector":"semiconductor","aliases":["Taiwan Semiconductor Manufacturing Company, Ltd."]},
+  {"name":"ASML","sector":"semiconductor","aliases":["ASML Netherlands B.V.","ASML Holding N.V."]},
+  {"name":"Arm","sector":"semiconductor","aliases":["Arm Limited","ARM Ltd."]},
+  {"name":"QuantumScape","sector":"battery","aliases":["QuantumScape Corporation"]},
+  {"name":"Solid Power","sector":"battery","aliases":["Solid Power, Inc."]},
+  {"name":"SES AI","sector":"battery","aliases":["SES AI Corporation","SolidEnergy Systems LLC"]},
+  {"name":"Amprius Technologies","sector":"battery","aliases":["Amprius, Inc."]},
+  {"name":"Form Energy","sector":"battery","aliases":["Form Energy, Inc."]}
+]

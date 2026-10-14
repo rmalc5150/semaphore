@@ -1,0 +1,12 @@
+{
+  "backend": "s3",
+  "local_root": "collection-output",
+  "s3_bucket": "data-collection-059416028963-us-east-1-an",
+  "s3_prefix": "research-data",
+  "region": "us-east-1",
+  "encryption": "AES256",
+  "kms_key_id": null,
+  "expected_bucket_owner": null,
+  "max_records_per_batch": 1000,
+  "max_batch_bytes": 8388608
+}

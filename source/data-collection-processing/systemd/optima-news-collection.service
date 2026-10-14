@@ -1,0 +1,15 @@
+[Unit]
+Description=Optima Bounded news catch-up, reconciliation and 2021 archive
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/news_operations.py
+SuccessExitStatus=2
+TimeoutStartSec=45min
+TimeoutStopSec=120
+KillSignal=SIGINT
+Nice=15

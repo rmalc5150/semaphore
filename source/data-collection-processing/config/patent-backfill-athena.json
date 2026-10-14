@@ -1,0 +1,7 @@
+{
+  "database": "optima_patent_research",
+  "workgroup": "optima-patent-research",
+  "region": "us-east-1",
+  "curated_prefix": "curated/patent_backfill/releases",
+  "query_results_prefix": "athena-results/patents"
+}

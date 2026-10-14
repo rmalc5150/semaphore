@@ -1,0 +1,1006 @@
+{
+  "version": "1.0",
+  "historical_start": "2021-01-01",
+  "daily_checks": "daily; upstream annual/monthly data retained at native cadence",
+  "sources": [
+    {
+      "source_id": "S36",
+      "source": "nih_reporter",
+      "adapter": "nih",
+      "api": "https://api.reporter.nih.gov/v2/projects/search",
+      "enabled": true,
+      "historical": true,
+      "topics": [
+        "vaccine",
+        "gene therapy",
+        "immunotherapy"
+      ]
+    },
+    {
+      "source_id": "S42",
+      "source": "ted_notices",
+      "adapter": "ted",
+      "api": "https://api.ted.europa.eu/v3/notices/search",
+      "enabled": true,
+      "historical": true,
+      "cpv": [
+        "31712300",
+        "42997300",
+        "31440000",
+        "33100000"
+      ],
+      "fields": [
+        "publication-number",
+        "publication-date",
+        "notice-title",
+        "classification-cpv",
+        "buyer-name"
+      ]
+    },
+    {
+      "source_id": "S59",
+      "source": "bls_wages",
+      "adapter": "bls",
+      "api": "https://api.bls.gov/publicAPI/v2/timeseries/data/",
+      "enabled": true,
+      "historical": true,
+      "series": [
+        {
+          "id": "CES3000000003",
+          "unit": "USD/hour, manufacturing average hourly earnings, seasonally adjusted"
+        }
+      ]
+    },
+    {
+      "source_id": "S54",
+      "source": "un_comtrade",
+      "adapter": "comtrade",
+      "api": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
+      "enabled": true,
+      "historical": true,
+      "reporters": [
+        842,
+        156,
+        276,
+        392,
+        410
+      ],
+      "commodities": [
+        "850760",
+        "260400",
+        "282520",
+        "250410"
+      ]
+    },
+    {
+      "source_id": "S51",
+      "source": "federal_register",
+      "adapter": "federal_register",
+      "api": "https://www.federalregister.gov/api/v1/documents.json",
+      "enabled": true,
+      "historical": true,
+      "topics": [
+        "semiconductor",
+        "battery",
+        "robotics",
+        "clinical trial"
+      ]
+    },
+    {
+      "source_id": "S28",
+      "source": "europe_pmc",
+      "adapter": "epmc",
+      "api": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+      "enabled": true,
+      "historical": true,
+      "topics": [
+        "vaccine AND clinical trial",
+        "gene therapy AND clinical trial",
+        "immunotherapy AND clinical trial"
+      ]
+    },
+    {
+      "source_id": "S43",
+      "source": "usa_spending",
+      "adapter": "usaspending",
+      "api": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+      "enabled": true,
+      "historical": true,
+      "fields": [
+        "Award ID",
+        "Recipient Name",
+        "Award Amount",
+        "Awarding Agency",
+        "Awarding Sub Agency",
+        "Start Date",
+        "End Date",
+        "Description",
+        "generated_internal_id"
+      ]
+    },
+    {
+      "source_id": "S53",
+      "source": "usgs_minerals",
+      "adapter": "pdf",
+      "api": "https://pubs.usgs.gov/periodicals/mcs{year}/mcs{year}-{mineral}.pdf",
+      "enabled": true,
+      "historical": true,
+      "minerals": [
+        "lithium",
+        "cobalt",
+        "nickel",
+        "graphite"
+      ]
+    },
+    {
+      "source_id": "S52",
+      "source": "trade_screening",
+      "adapter": "csl",
+      "api": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.json",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "current consolidated US screening lists only; no historical sanctions status or legal interpretation"
+    },
+    {
+      "source_id": "S34",
+      "source": "cms_payments_catalog",
+      "adapter": "cms_catalog",
+      "api": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "dataset editions and download identities only; recipient/payment rows are a separate pending filtered query integration"
+    },
+    {
+      "source_id": "S46",
+      "source": "github_sdk",
+      "adapter": "github",
+      "api": "https://api.github.com",
+      "enabled": true,
+      "historical": false,
+      "repositories": [
+        "intel/llvm",
+        "NVIDIA/TensorRT",
+        "ros2/ros2",
+        "UniversalRobots/Universal_Robots_ROS2_Driver",
+        "ROBOTIS-GIT/DynamixelSDK"
+      ]
+    },
+    {
+      "source_id": "S68",
+      "source": "ror_institutions",
+      "adapter": "ror",
+      "api": "https://api.ror.org/v2/organizations",
+      "enabled": true,
+      "historical": false,
+      "institutions": [
+        "National Institutes of Health",
+        "Harvard University",
+        "University of Oxford",
+        "Stanford University"
+      ]
+    },
+    {
+      "source_id": "S57",
+      "source": "caiso_prices",
+      "adapter": "caiso",
+      "api": "https://oasis.caiso.com/oasisapi/SingleZip",
+      "enabled": true,
+      "historical": true,
+      "nodes": [
+        "TH_NP15_GEN-APND",
+        "TH_SP15_GEN-APND"
+      ]
+    },
+    {
+      "source_id": "S56",
+      "source": "eia_generator_index",
+      "adapter": "eia_index",
+      "api": "https://www.eia.gov/electricity/data/eia860m/",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "official archive discovery only; generator rows captured by workbook adapter"
+    },
+    {
+      "source_id": "S56",
+      "source": "eia_battery_generators",
+      "adapter": "eia_xlsx",
+      "api": "https://www.eia.gov/electricity/data/eia860m/",
+      "enabled": true,
+      "historical": true,
+      "archives": [
+        {
+          "period": "2016-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2016.xlsx"
+        },
+        {
+          "period": "2017-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2017.xlsx"
+        },
+        {
+          "period": "2018-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2018.xlsx"
+        },
+        {
+          "period": "2019-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2019.xlsx"
+        },
+        {
+          "period": "2020-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2020.xlsx"
+        },
+        {
+          "period": "2021-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2021.xlsx"
+        },
+        {
+          "period": "2022-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2022.xlsx"
+        },
+        {
+          "period": "2023-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2023.xlsx"
+        },
+        {
+          "period": "2024-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2024.xlsx"
+        },
+        {
+          "period": "2025-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2025.xlsx"
+        },
+        {
+          "period": "2026-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2026.xlsx"
+        },
+        {
+          "period": "2015-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2015.xlsx"
+        },
+        {
+          "period": "2016-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2016.xlsx"
+        },
+        {
+          "period": "2017-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2017.xlsx"
+        },
+        {
+          "period": "2018-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2018.xlsx"
+        },
+        {
+          "period": "2019-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2019.xlsx"
+        },
+        {
+          "period": "2020-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2020.xlsx"
+        },
+        {
+          "period": "2021-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2021.xlsx"
+        },
+        {
+          "period": "2022-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2022.xlsx"
+        },
+        {
+          "period": "2023-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2023.xlsx"
+        },
+        {
+          "period": "2024-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2024.xlsx"
+        },
+        {
+          "period": "2025-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2025.xlsx"
+        },
+        {
+          "period": "2015-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2015.xlsx"
+        },
+        {
+          "period": "2016-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2016.xlsx"
+        },
+        {
+          "period": "2017-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2017.xlsx"
+        },
+        {
+          "period": "2018-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2018.xlsx"
+        },
+        {
+          "period": "2019-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2019.xlsx"
+        },
+        {
+          "period": "2020-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2020.xlsx"
+        },
+        {
+          "period": "2021-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2021.xlsx"
+        },
+        {
+          "period": "2022-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2022.xlsx"
+        },
+        {
+          "period": "2023-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2023.xlsx"
+        },
+        {
+          "period": "2024-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2024.xlsx"
+        },
+        {
+          "period": "2025-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2025.xlsx"
+        },
+        {
+          "period": "2016-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2016.xlsx"
+        },
+        {
+          "period": "2017-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2017.xlsx"
+        },
+        {
+          "period": "2018-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2018.xlsx"
+        },
+        {
+          "period": "2019-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2019.xlsx"
+        },
+        {
+          "period": "2020-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2020.xlsx"
+        },
+        {
+          "period": "2021-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2021.xlsx"
+        },
+        {
+          "period": "2022-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2022.xlsx"
+        },
+        {
+          "period": "2023-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2023.xlsx"
+        },
+        {
+          "period": "2024-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2024.xlsx"
+        },
+        {
+          "period": "2025-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2025.xlsx"
+        },
+        {
+          "period": "2026-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2026.xlsx"
+        },
+        {
+          "period": "2016-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2016.xlsx"
+        },
+        {
+          "period": "2017-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2017.xlsx"
+        },
+        {
+          "period": "2018-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2018.xlsx"
+        },
+        {
+          "period": "2019-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2019.xlsx"
+        },
+        {
+          "period": "2020-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2020.xlsx"
+        },
+        {
+          "period": "2021-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2021.xlsx"
+        },
+        {
+          "period": "2022-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2022.xlsx"
+        },
+        {
+          "period": "2023-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2023.xlsx"
+        },
+        {
+          "period": "2024-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2024.xlsx"
+        },
+        {
+          "period": "2025-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2025.xlsx"
+        },
+        {
+          "period": "2026-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2026.xlsx"
+        },
+        {
+          "period": "2015-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2015.xlsx"
+        },
+        {
+          "period": "2016-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2016.xlsx"
+        },
+        {
+          "period": "2017-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2017.xlsx"
+        },
+        {
+          "period": "2018-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2018.xlsx"
+        },
+        {
+          "period": "2019-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2019.xlsx"
+        },
+        {
+          "period": "2020-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2020.xlsx"
+        },
+        {
+          "period": "2021-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2021.xlsx"
+        },
+        {
+          "period": "2022-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2022.xlsx"
+        },
+        {
+          "period": "2023-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2023.xlsx"
+        },
+        {
+          "period": "2024-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2024.xlsx"
+        },
+        {
+          "period": "2025-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2025.xlsx"
+        },
+        {
+          "period": "2026-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2026.xlsx"
+        },
+        {
+          "period": "2016-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2016.xlsx"
+        },
+        {
+          "period": "2017-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2017.xlsx"
+        },
+        {
+          "period": "2018-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2018.xlsx"
+        },
+        {
+          "period": "2019-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2019.xlsx"
+        },
+        {
+          "period": "2020-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2020.xlsx"
+        },
+        {
+          "period": "2021-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2021.xlsx"
+        },
+        {
+          "period": "2022-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2022.xlsx"
+        },
+        {
+          "period": "2023-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2023.xlsx"
+        },
+        {
+          "period": "2024-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2024.xlsx"
+        },
+        {
+          "period": "2025-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2025.xlsx"
+        },
+        {
+          "period": "2026-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2026.xlsx"
+        },
+        {
+          "period": "2016-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2016.xlsx"
+        },
+        {
+          "period": "2017-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2017.xlsx"
+        },
+        {
+          "period": "2018-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2018.xlsx"
+        },
+        {
+          "period": "2019-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2019.xlsx"
+        },
+        {
+          "period": "2020-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2020.xlsx"
+        },
+        {
+          "period": "2021-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2021.xlsx"
+        },
+        {
+          "period": "2022-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2022.xlsx"
+        },
+        {
+          "period": "2023-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2023.xlsx"
+        },
+        {
+          "period": "2024-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2024.xlsx"
+        },
+        {
+          "period": "2025-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2025.xlsx"
+        },
+        {
+          "period": "2026-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2026.xlsx"
+        },
+        {
+          "period": "2016-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2016.xlsx"
+        },
+        {
+          "period": "2017-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2017.xlsx"
+        },
+        {
+          "period": "2018-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2018.xlsx"
+        },
+        {
+          "period": "2019-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2019.xlsx"
+        },
+        {
+          "period": "2020-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2020.xlsx"
+        },
+        {
+          "period": "2021-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2021.xlsx"
+        },
+        {
+          "period": "2022-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2022.xlsx"
+        },
+        {
+          "period": "2023-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2023.xlsx"
+        },
+        {
+          "period": "2024-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2024.xlsx"
+        },
+        {
+          "period": "2025-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2025.xlsx"
+        },
+        {
+          "period": "2026-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2026.xlsx"
+        },
+        {
+          "period": "2015-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2015.xlsx"
+        },
+        {
+          "period": "2016-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2016.xlsx"
+        },
+        {
+          "period": "2017-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2017.xlsx"
+        },
+        {
+          "period": "2018-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2018.xlsx"
+        },
+        {
+          "period": "2019-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2019.xlsx"
+        },
+        {
+          "period": "2020-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2020.xlsx"
+        },
+        {
+          "period": "2021-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2021.xlsx"
+        },
+        {
+          "period": "2022-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2022.xlsx"
+        },
+        {
+          "period": "2023-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2023.xlsx"
+        },
+        {
+          "period": "2024-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2024.xlsx"
+        },
+        {
+          "period": "2025-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2025.xlsx"
+        },
+        {
+          "period": "2026-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2026.xlsx"
+        },
+        {
+          "period": "2015-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2015.xlsx"
+        },
+        {
+          "period": "2016-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2016.xlsx"
+        },
+        {
+          "period": "2017-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2017.xlsx"
+        },
+        {
+          "period": "2018-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2018.xlsx"
+        },
+        {
+          "period": "2019-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2019.xlsx"
+        },
+        {
+          "period": "2020-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2020.xlsx"
+        },
+        {
+          "period": "2021-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2021.xlsx"
+        },
+        {
+          "period": "2022-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2022.xlsx"
+        },
+        {
+          "period": "2023-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2023.xlsx"
+        },
+        {
+          "period": "2024-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2024.xlsx"
+        },
+        {
+          "period": "2025-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2025.xlsx"
+        },
+        {
+          "period": "2015-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2015.xlsx"
+        },
+        {
+          "period": "2016-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2016.xlsx"
+        },
+        {
+          "period": "2017-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2017.xlsx"
+        },
+        {
+          "period": "2018-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2018.xlsx"
+        },
+        {
+          "period": "2019-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2019.xlsx"
+        },
+        {
+          "period": "2020-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2020.xlsx"
+        },
+        {
+          "period": "2021-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2021.xlsx"
+        },
+        {
+          "period": "2022-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2022.xlsx"
+        },
+        {
+          "period": "2023-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2023.xlsx"
+        },
+        {
+          "period": "2024-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2024.xlsx"
+        },
+        {
+          "period": "2025-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2025.xlsx"
+        },
+        {
+          "period": "2026-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2026.xlsx"
+        },
+        {
+          "period": "2026-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/xls/august_generator2026.xlsx"
+        },
+        {
+          "period": "2026-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/xls/december_generator2026.xlsx"
+        },
+        {
+          "period": "2026-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/xls/october_generator2026.xlsx"
+        }
+      ]
+    },
+    {
+      "source_id": "S55",
+      "source": "doe_storage_program",
+      "adapter": "html",
+      "api": "https://www.energy.gov/oe/energy-storage",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "official program document discovery snapshots; cost/performance tables and grants need document-specific extraction"
+    },
+    {
+      "source_id": "S47",
+      "source": "nist_robotics_methods",
+      "adapter": "html",
+      "api": "https://www.nist.gov/el/robotics",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "official test-method discovery snapshots; device-specific benchmark measurements remain gaps"
+    },
+    {
+      "source_id": "S32",
+      "source": "cms_coverage",
+      "adapter": "cms_coverage",
+      "api": "https://api.coverage.cms.gov/v1/reports/",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S28",
+      "source": "europe_pmc_fulltext",
+      "adapter": "epmc_fulltext",
+      "enabled": false,
+      "historical": false,
+      "api": "parent document links",
+      "coverage_note": "parent-discovered versioned documents only"
+    },
+    {
+      "source_id": "S32",
+      "source": "cms_coverage_documents",
+      "adapter": "cms_document",
+      "enabled": false,
+      "historical": false,
+      "api": "parent document links",
+      "coverage_note": "parent-discovered versioned documents only"
+    },
+    {
+      "source_id": "S48",
+      "source": "mlperf_results",
+      "adapter": "mlperf",
+      "api": "https://github.com/mlcommons",
+      "enabled": true,
+      "historical": true,
+      "repositories": [
+        "mlcommons/inference_results_v1.0",
+        "mlcommons/inference_results_v1.1",
+        "mlcommons/inference_results_v2.0",
+        "mlcommons/inference_results_v2.1",
+        "mlcommons/inference_results_v3.0",
+        "mlcommons/inference_results_v3.1",
+        "mlcommons/inference_results_v4.0",
+        "mlcommons/inference_results_v4.1",
+        "mlcommons/inference_results_v5.0",
+        "mlcommons/inference_results_v5.1",
+        "mlcommons/inference_results_v6.0",
+        "mlcommons/inference_results_v6.1"
+      ]
+    },
+    {
+      "source_id": "S08",
+      "source": "sec_companyfacts",
+      "adapter": "sec_companyfacts",
+      "api": "https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S20",
+      "source": "drugsfda_applications",
+      "adapter": "drugsfda",
+      "api": "https://api.fda.gov/drug/drugsfda.json",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S21",
+      "source": "ema_medicines",
+      "adapter": "ema_json",
+      "api": "https://www.ema.europa.eu/en/documents/report/medicines-output-medicines_json-report_en.json",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S27",
+      "source": "pubmed_abstracts",
+      "adapter": "pubmed",
+      "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+      "topics": [
+        "vaccine AND clinical trial",
+        "gene therapy AND clinical trial",
+        "immunotherapy AND clinical trial"
+      ],
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S24",
+      "source": "canada_noc",
+      "adapter": "canada_noc",
+      "api": "https://health-products.canada.ca/api/notice-of-compliance/noticeofcompliancemain/",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S50",
+      "source": "cpsc_recalls",
+      "adapter": "cpsc",
+      "api": "https://www.saferproducts.gov/RestWebServices/Recall",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S01",
+      "source": "gleif_legal_entities",
+      "adapter": "gleif",
+      "api": "https://api.gleif.org/api/v1/lei-records/",
+      "historical": false,
+      "enabled": true
+    },
+    {
+      "source_id": "S40",
+      "source": "uspto_assignment_histories",
+      "adapter": "uspto_assignments",
+      "api": "https://api.uspto.gov/api/v1/patent/applications/",
+      "historical": true,
+      "applications": [
+        "18220162",
+        "18680477",
+        "18715784",
+        "18739089",
+        "18784595",
+        "18900035",
+        "18909005",
+        "18915271"
+      ],
+      "enabled": true
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_dd_inspections_classifications",
+      "adapter": "fda_dashboard",
+      "api": "https://api-datadashboard.fda.gov/v1/inspections_classifications",
+      "enabled": true,
+      "historical": true,
+      "date_field": "InspectionEndDate",
+      "coverage_note": "FDA public inspections_classifications by InspectionEndDate; all returned entities pending issuer/FEI mapping; current revisions, not historical vintages or original 483 documents",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_dd_inspections_citations",
+      "adapter": "fda_dashboard",
+      "api": "https://api-datadashboard.fda.gov/v1/inspections_citations",
+      "enabled": true,
+      "historical": true,
+      "date_field": "InspectionEndDate",
+      "coverage_note": "FDA public inspections_citations by InspectionEndDate; all returned entities pending issuer/FEI mapping; current revisions, not historical vintages or original 483 documents",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_dd_compliance_actions",
+      "adapter": "fda_dashboard",
+      "api": "https://api-datadashboard.fda.gov/v1/compliance_actions",
+      "enabled": true,
+      "historical": true,
+      "date_field": "ActionTakenDate",
+      "coverage_note": "FDA public compliance_actions by ActionTakenDate; all returned entities pending issuer/FEI mapping; current revisions, not historical vintages or original 483 documents",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_dd_import_refusals",
+      "adapter": "fda_dashboard",
+      "api": "https://api-datadashboard.fda.gov/v1/import_refusals",
+      "enabled": true,
+      "historical": true,
+      "date_field": "RefusalDate",
+      "coverage_note": "FDA public import_refusals by RefusalDate; all returned entities pending issuer/FEI mapping; current revisions, not historical vintages or original 483 documents",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_ires_recalls",
+      "adapter": "fda_enforcement",
+      "api": "https://www.accessdata.fda.gov/rest/iresapi/recalls/",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Public recall records selected by current event modification date; not complete recall-initiation history or historical vintages; reconcile openFDA overlap",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_product_codes",
+      "adapter": "fda_productcodes",
+      "api": "https://www.accessdata.fda.gov/rest/pcbapi/v1/industry/",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "Current industry-code reference only",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S10",
+      "source": "edinet_filings",
+      "adapter": "edinet",
+      "api": "https://api.edinet-fsa.go.jp/api/v2/documents.json",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Daily filing metadata; document download remains separate",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S56",
+      "source": "eia_retail_prices",
+      "adapter": "eia_api",
+      "api": "https://api.eia.gov/v2/electricity/retail-sales/data/",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "US all-sector monthly retail electricity price only, provider units retained; not wholesale dispatch prices or complete energy data",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S41",
+      "source": "sam_gov_opportunities",
+      "adapter": "sam_gov",
+      "api": "https://api.sam.gov/opportunities/v2/search",
+      "enabled": true,
+      "historical": true,
+      "execution_lane": "authenticated",
+      "coverage_note": "US federal published opportunity search, all categories; latest available notice versions retrieved now, not historical vintages. Posted-date windows exhausted only within API-visible scope; zero old results do not establish archive completeness. Original descriptions/attachments and reviewed company/product joins remain separate; solicitations are not awards."
+    }
+  ],
+  "backfill_end_exclusive": "2026-10-10"
+}

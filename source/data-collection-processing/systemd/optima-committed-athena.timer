@@ -1,0 +1,11 @@
+[Unit]
+Description=Expose and verify newly committed data in Athena every hour
+
+[Timer]
+OnCalendar=*-*-* *:35:00 UTC
+OnUnitInactiveSec=1h
+Persistent=true
+RandomizedDelaySec=60
+
+[Install]
+WantedBy=timers.target

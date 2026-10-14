@@ -1,0 +1,6 @@
+{
+  "region": "us-east-1",
+  "secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:EIA-vCjlZh",
+  "secret_field": "key",
+  "probe_endpoint": "https://api.eia.gov/v2/electricity/retail-sales/data/"
+}

@@ -1,0 +1,16 @@
+[Unit]
+Description=Optima resumable monthly global patent backfill from approved historical start
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/patent_backfill.py
+SuccessExitStatus=2
+TimeoutStartSec=3h
+TimeoutStopSec=120
+KillSignal=SIGINT
+Nice=15
+

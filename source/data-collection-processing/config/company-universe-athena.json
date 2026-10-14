@@ -1,0 +1,7 @@
+{
+  "database": "optima_eodhd_research",
+  "workgroup": "optima-eodhd-research",
+  "region": "us-east-1",
+  "curated_prefix": "curated/company_universe/releases",
+  "query_results_prefix": "athena-results/eodhd"
+}

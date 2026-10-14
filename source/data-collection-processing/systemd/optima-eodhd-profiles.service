@@ -1,0 +1,16 @@
+[Unit]
+Description=Optima quota-safe EODHD company profile cohort
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python /home/ec2-user/data-collection-processing/eodhd_daily_cohort.py --top-up
+SuccessExitStatus=2
+TimeoutStartSec=6h
+TimeoutStopSec=120
+KillSignal=SIGINT
+Nice=10
+

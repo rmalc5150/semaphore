@@ -1,0 +1,11 @@
+[Unit]
+Description=Check global patent source metadata daily
+
+[Timer]
+OnCalendar=*-*-* 07:15:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+Unit=optima-patents-global-monitor.service
+
+[Install]
+WantedBy=timers.target

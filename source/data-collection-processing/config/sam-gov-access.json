@@ -1,0 +1,8 @@
+{
+  "region": "us-east-1",
+  "secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:sam-gov-8ZlIls",
+  "secret_field": "key",
+  "endpoint": "https://api.sam.gov/opportunities/v2/search",
+  "daily_request_budget": 40,
+  "hourly_request_budget": 10
+}

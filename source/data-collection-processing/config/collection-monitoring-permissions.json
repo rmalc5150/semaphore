@@ -1,0 +1,286 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sms-voice:DescribeAccountAttributes",
+        "sms-voice:DescribeVerifiedDestinationNumbers",
+        "sms-voice:DescribeSpendLimits",
+        "sms-voice:DescribePhoneNumbers",
+        "sms-voice:DescribeOptedOutNumbers",
+        "sms-voice:CreateVerifiedDestinationNumber",
+        "sms-voice:SendDestinationNumberVerificationCode",
+        "sms-voice:VerifyDestinationNumber",
+        "sms-voice:SendTextMessage"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:CalledViaLast": "sns.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:GetRole",
+        "iam:PutRolePolicy",
+        "iam:TagRole"
+      ],
+      "Resource": [
+        "arn:aws:iam::059416028963:role/optima-collection-watchdog",
+        "arn:aws:iam::059416028963:role/optima-collection-watchdog-scheduler",
+        "arn:aws:iam::059416028963:role/optima-collection-sms-delivery"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::059416028963:role/optima-collection-watchdog",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "lambda.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::059416028963:role/optima-collection-watchdog-scheduler",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "scheduler.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::059416028963:role/optima-collection-sms-delivery",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "sns.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sns:CreateTopic",
+        "sns:GetTopicAttributes",
+        "sns:SetTopicAttributes",
+        "sns:TagResource",
+        "sns:Subscribe",
+        "sns:Unsubscribe",
+        "sns:ListSubscriptionsByTopic",
+        "sns:GetSubscriptionAttributes",
+        "sns:Publish"
+      ],
+      "Resource": [
+        "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+        "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-sms"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sns:GetSMSSandboxAccountStatus",
+        "sns:ListSMSSandboxPhoneNumbers",
+        "sns:CreateSMSSandboxPhoneNumber",
+        "sns:VerifySMSSandboxPhoneNumber",
+        "sns:GetSMSAttributes",
+        "sns:SetSMSAttributes",
+        "sns:ListOriginationNumbers",
+        "sns:CheckIfPhoneNumberIsOptedOut"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "scheduler:CreateSchedule",
+        "scheduler:GetSchedule",
+        "scheduler:UpdateSchedule"
+      ],
+      "Resource": "arn:aws:scheduler:us-east-1:059416028963:schedule/default/optima-collection-watchdog-30min"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lambda:CreateFunction",
+        "lambda:GetFunction",
+        "lambda:GetFunctionConfiguration",
+        "lambda:UpdateFunctionCode",
+        "lambda:UpdateFunctionConfiguration",
+        "lambda:PutFunctionConcurrency",
+        "lambda:PutFunctionEventInvokeConfig",
+        "lambda:InvokeFunction",
+        "lambda:TagResource"
+      ],
+      "Resource": "arn:aws:lambda:us-east-1:059416028963:function:optima-collection-watchdog"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:PutRetentionPolicy"
+      ],
+      "Resource": [
+        "arn:aws:logs:us-east-1:059416028963:log-group:/aws/lambda/optima-collection-watchdog",
+        "arn:aws:logs:us-east-1:059416028963:log-group:/aws/lambda/optima-collection-watchdog:*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:PutRetentionPolicy",
+        "logs:FilterLogEvents",
+        "logs:GetLogEvents",
+        "logs:DescribeLogStreams"
+      ],
+      "Resource": [
+        "arn:aws:logs:us-east-1:059416028963:log-group:/aws/lambda/optima-collection-watchdog",
+        "arn:aws:logs:us-east-1:059416028963:log-group:/aws/lambda/optima-collection-watchdog:*",
+        "arn:aws:logs:us-east-1:059416028963:log-group:sns/us-east-1/059416028963/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "logs:DescribeLogGroups",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudwatch:GetMetricStatistics",
+        "cloudwatch:GetMetricData",
+        "cloudwatch:ListMetrics"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudwatch:PutMetricAlarm",
+        "cloudwatch:DescribeAlarms"
+      ],
+      "Resource": "arn:aws:cloudwatch:us-east-1:059416028963:alarm:optima-collection-watchdog-*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetBucketVersioning",
+        "s3:GetLifecycleConfiguration",
+        "s3:PutLifecycleConfiguration"
+      ],
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "research-data/*"
+          ]
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/monitoring/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:DeleteObject",
+      "Resource": [
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/monitoring/alerts/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/monitoring/checks/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sms-voice:DescribeRegistration*",
+        "sms-voice:DescribePhoneNumbers",
+        "sms-voice:GetResourcePolicy"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "us-east-1"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sms-voice:CreateRegistration",
+        "sms-voice:CreateRegistrationAttachment",
+        "sms-voice:RequestPhoneNumber"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "us-east-1",
+          "aws:RequestTag/Project": "OptimaCollectionMonitoring"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": "sms-voice:RequestPhoneNumber",
+      "Resource": "arn:aws:sms-voice:us-east-1:059416028963:phone-number/*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "us-east-1"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sms-voice:TagResource"
+      ],
+      "Resource": [
+        "arn:aws:sms-voice:us-east-1:059416028963:registration/*",
+        "arn:aws:sms-voice:us-east-1:059416028963:registration-attachment/*",
+        "arn:aws:sms-voice:us-east-1:059416028963:phone-number/*"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestTag/Project": "OptimaCollectionMonitoring"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sms-voice:PutRegistrationFieldValue",
+        "sms-voice:CreateRegistrationAssociation",
+        "sms-voice:CreateRegistrationVersion",
+        "sms-voice:SubmitRegistrationVersion",
+        "sms-voice:PutResourcePolicy"
+      ],
+      "Resource": [
+        "arn:aws:sms-voice:us-east-1:059416028963:registration/*",
+        "arn:aws:sms-voice:us-east-1:059416028963:registration-attachment/*",
+        "arn:aws:sms-voice:us-east-1:059416028963:phone-number/*"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "aws:ResourceTag/Project": "OptimaCollectionMonitoring"
+        }
+      }
+    }
+  ]
+}

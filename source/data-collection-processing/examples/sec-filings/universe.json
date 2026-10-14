@@ -1,0 +1,235 @@
+{
+  "document_type": "company_universe",
+  "schema_version": "1.0",
+  "universe_version": "0.0.2",
+  "taxonomy_version": "1.0.0",
+  "created_at": "2026-09-17T11:56:23Z",
+  "purpose": "validation",
+  "scope": {
+    "geography": "global",
+    "include_private_companies": true,
+    "sector_ids": [
+      "biotech",
+      "robotics",
+      "semiconductors",
+      "energy_storage"
+    ]
+  },
+  "companies": [
+    {
+      "company_id": "cmp_5b85807d-50ba-4a26-ab2b-2b3353e0190c",
+      "canonical_name": "Example Biotech",
+      "entity_type": "legal_entity",
+      "ownership_status": "public",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "biotech",
+          "subsector_ids": [],
+          "classification_basis": "synthetic_fixture",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "verified",
+          "evidence": [
+            {
+              "source": "synthetic_example",
+              "reference": "synthetic://contract-example",
+              "note": "Fictional fixture; verified means internally asserted for this example only."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_1297fde3-62ef-4761-a0b1-25f4bfac7dcd",
+      "canonical_name": "Example Robotics",
+      "entity_type": "legal_entity",
+      "ownership_status": "public",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "robotics",
+          "subsector_ids": [],
+          "classification_basis": "synthetic_fixture",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "verified",
+          "evidence": [
+            {
+              "source": "synthetic_example",
+              "reference": "synthetic://contract-example",
+              "note": "Fictional fixture; verified means internally asserted for this example only."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_87372297-7b2c-4cb9-95c8-3ac127b7af84",
+      "canonical_name": "Example Chips",
+      "entity_type": "legal_entity",
+      "ownership_status": "public",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "semiconductors",
+          "subsector_ids": [],
+          "classification_basis": "synthetic_fixture",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "verified",
+          "evidence": [
+            {
+              "source": "synthetic_example",
+              "reference": "synthetic://contract-example",
+              "note": "Fictional fixture; verified means internally asserted for this example only."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_ef24e92e-fb91-4195-ae7b-37fe960e6bf7",
+      "canonical_name": "Example Storage",
+      "entity_type": "legal_entity",
+      "ownership_status": "public",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "energy_storage",
+          "subsector_ids": [],
+          "classification_basis": "synthetic_fixture",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "verified",
+          "evidence": [
+            {
+              "source": "synthetic_example",
+              "reference": "synthetic://contract-example",
+              "note": "Fictional fixture; verified means internally asserted for this example only."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    }
+  ],
+  "company_aliases": [],
+  "external_identifiers": [
+    {
+      "identifier_id": "xid_2c5d6477-993c-4052-98f1-342b227cdf63",
+      "entity_id": "cmp_5b85807d-50ba-4a26-ab2b-2b3353e0190c",
+      "system": "sec_cik",
+      "value": "0000001001",
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    },
+    {
+      "identifier_id": "xid_542a246e-60b7-4ca5-9750-0164dad1ea06",
+      "entity_id": "cmp_1297fde3-62ef-4761-a0b1-25f4bfac7dcd",
+      "system": "sec_cik",
+      "value": "0000001002",
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    },
+    {
+      "identifier_id": "xid_84747301-cb70-4dcb-b2be-27eb7d64058f",
+      "entity_id": "cmp_87372297-7b2c-4cb9-95c8-3ac127b7af84",
+      "system": "sec_cik",
+      "value": "0000001003",
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    },
+    {
+      "identifier_id": "xid_7e4161cf-97b9-423d-a72d-269b82944a42",
+      "entity_id": "cmp_ef24e92e-fb91-4195-ae7b-37fe960e6bf7",
+      "system": "sec_cik",
+      "value": "0000001004",
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    }
+  ],
+  "listings": [],
+  "products": [],
+  "people": [],
+  "relationships": []
+}

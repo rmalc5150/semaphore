@@ -1,0 +1,7 @@
+{
+  "region": "us-east-1",
+  "secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:FDA-Enforcement-xu3Kv7",
+  "user_field": "authorization_user",
+  "key_field": "authorization_key",
+  "probe_endpoint": "https://www.accessdata.fda.gov/rest/iresapi/recalls/"
+}

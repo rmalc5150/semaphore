@@ -1,0 +1,16 @@
+{
+  "version": "patent-review-1.0",
+  "reviewed_at": "2026-09-22",
+  "meaning": "Evidence-supported research classification and reported-party name links; not a legal title opinion or a calibrated model.",
+  "rules": [
+    {"sector_id":"biotech","category":"biotechnology","cpc_prefixes":["C12N","C12Q","A61K38/","A61K39/"],"source_urls":["https://www.uspto.gov/web/patents/classification/cpc/html/cpc-C12N.html","https://www.uspto.gov/web/patents/classification/cpc/html/cpc-C12Q.html","https://www.uspto.gov/web/patents/classification/cpc/html/cpc-A61K.html"]},
+    {"sector_id":"robotics","category":"robotics","cpc_prefixes":["B25J9/","A61B34/3"],"source_urls":["https://www.uspto.gov/web/patents/classification/cpc/html/cpc-B25J.html","https://www.uspto.gov/web/patents/classification/cpc/html/cpc-A61B.html"]},
+    {"sector_id":"semiconductors","category":"semiconductors","cpc_prefixes":["H10B","H10D","H10F","H10K","H10P","H10W","H01L"],"exclude_prefixes":["H01L41/","H01L43/"],"source_urls":["https://www.uspto.gov/web/patents/classification/cpc/pdf/cpc-scheme-H.pdf","https://www.uspto.gov/web/patents/classification/cpc/html/cpc-H01L.html"]},
+    {"sector_id":"energy_storage","category":"batteries","cpc_prefixes":["H01M10/","Y02E60/10"],"source_urls":["https://www.uspto.gov/web/patents/classification/cpc/html/cpc-H01M.html","https://www.uspto.gov/web/patents/classification/cpc/html/cpc-Y02E.html"]},
+    {"sector_id":"energy_storage","category":"supercapacitors","cpc_prefixes":["H01G11/"],"source_urls":["https://www.uspto.gov/web/patents/classification/cpc/html/cpc-H01G.html"]},
+    {"sector_id":"energy_storage","category":"thermal_storage","cpc_prefixes":["F28D20/","Y02E60/14"],"source_urls":["https://www.uspto.gov/web/patents/classification/cpc/html/cpc-F28D.html","https://www.uspto.gov/web/patents/classification/cpc/html/cpc-Y02E.html"]},
+    {"sector_id":"energy_storage","category":"mechanical_storage","cpc_prefixes":["Y02E60/16","F03B13/06"],"source_urls":["https://www.uspto.gov/web/patents/classification/cpc/html/cpc-Y02E.html","https://www.cooperativepatentclassification.org/cpc/definition/F/definition-F03B.pdf"]},
+    {"sector_id":"energy_storage","category":"hydrogen_storage","cpc_prefixes":["Y02E60/32","F17C11/005"],"source_urls":["https://www.uspto.gov/web/patents/classification/cpc/html/cpc-Y02E.html","https://www.uspto.gov/web/patents/classification/cpc/html/cpc-F17C.html"]}
+  ],
+  "limits":["A publication can support multiple technology sectors.","Broad discovery CPC codes and text-only hits remain pending until corroborated.","Company sector memberships describe reviewed current business activity, not necessarily this invention or the company at the historical publication date.","A strict legal-name match supports a reported-party link, not current ownership.","Applicants, publication assignees, assignment-event recipients, subsidiaries and listed parents are separate roles.","Absence of support is not evidence a patent is outside the sector."]
+}

@@ -1,0 +1,2449 @@
+{
+  "version": "1.0",
+  "sources": [
+    {
+      "source_id": "S01",
+      "name": "S01 Official company registries, exchange directories and reviewed company registry: legal entities, securities, aliases, ownership links",
+      "api_or_url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s01_capture_status",
+      "collector_sources": [
+        "gleif_legal_entities"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S01/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Historical legal identity/membership/ownership archive and reconciliation adapter missing; current registry cannot reconstruct 2021.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "gleif_legal_entities"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S02",
+      "name": "S02 EODHD exchange inventory, profiles and fundamentals",
+      "api_or_url": "https://eodhd.com/financial-apis/",
+      "athena_database": "optima_eodhd_research",
+      "capture_status_table": "s02_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S02/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-eodhd-profiles.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Current inventory/profile refresh is enabled; point-in-time financial/profile archive entitlement and vintage adapter not verified.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "eodhd"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S03",
+      "name": "S03 EODHD prices, volume, splits and dividends",
+      "api_or_url": "https://eodhd.com/financial-apis/",
+      "athena_database": "optima_market_research",
+      "capture_status_table": "s03_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S03/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-market-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-market-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "eodhd_market"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S04",
+      "name": "S04 HKEX cross-listed price source",
+      "api_or_url": "https://www.hkex.com.hk/Market-Data/Securities-Prices/Equities?sc_lang=en",
+      "athena_database": "optima_market_research",
+      "capture_status_table": "s04_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S04/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. HKEX source-specific licensed historical prices not integrated; existing EODHD HK candidates are only related coverage.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "hkex_prices"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S05",
+      "name": "S05 Benchmark/index/sector-ETF prices and FX",
+      "api_or_url": "https://eodhd.com/financial-apis/",
+      "athena_database": "optima_market_research",
+      "capture_status_table": "s05_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S05/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Benchmark/FX-specific symbol selection and licensed collector integration required; ordinary listing prices are related data only.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S06",
+      "name": "S06 ETF issuer holdings and constituent history",
+      "api_or_url": "https://www.ishares.com/us/products/etf-investments",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s06_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S06/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Select issuer/fund IDs and implement original dated holdings archive; no 2021 holdings feed configured.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S07",
+      "name": "S07 SEC EDGAR filings and exhibits",
+      "api_or_url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "athena_database": "optima_sec_pilot",
+      "capture_status_table": "s07_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S07/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-collection-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "sec_edgar"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S08",
+      "name": "S08 SEC XBRL/company facts and original financial-note tables",
+      "api_or_url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s08_capture_status",
+      "collector_sources": [
+        "sec_companyfacts"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S08/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "sec_companyfacts"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S09",
+      "name": "S09 HKEXnews announcements and documents",
+      "api_or_url": "https://www1.hkexnews.hk/search/titlesearch.xhtml?lang=en",
+      "athena_database": "optima_disclosures_pilot",
+      "capture_status_table": "s09_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S09/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-collection-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "hkex_news"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S10",
+      "name": "S10 CNINFO and EDINET; additional local filing authorities as scope requires",
+      "api_or_url": "https://www.cninfo.com.cn/; https://disclosure2.edinet-fsa.go.jp/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s10_capture_status",
+      "collector_sources": [
+        "edinet_filings"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S10/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-authenticated-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-authenticated-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. EDINET credentials verified; authenticated daily/historical filing-metadata inventory capture enabled. Original filing downloads, issuer matching and CNINFO integration remain outstanding; 2021 sample access is not complete history.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "edinet_filings"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S11",
+      "name": "S11 Company, customer, lender, utility and supplier original websites",
+      "api_or_url": "verified issuer/customer/lender/utility domains in the company universe and disclosure source configuration; original documents only",
+      "athena_database": "optima_disclosures_pilot",
+      "capture_status_table": "s11_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S11/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-collection-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Existing disclosures capture only; customer/lender/utility allowlists, original document scopes and historical archives missing.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "disclosure_candidates",
+          "disclosure_documents"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S12",
+      "name": "S12 Crunchbase/private-funding provider, optional enrichment",
+      "api_or_url": "https://data.crunchbase.com/docs",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s12_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S12/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Pending need and financial resources \u2014 optional acquisition deferred per user cost decision. Crunchbase API subscription/key and historical snapshot entitlement required.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S13",
+      "name": "S13 Finlight news",
+      "api_or_url": "https://finlight.me/",
+      "athena_database": "optima_news_research",
+      "capture_status_table": "s13_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S13/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-news-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-news-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Finlight Pro January 2021 sample access verified. Separate bounded 2021 backfill and verified-completion downgrade email configured; shared news collection/publication timers remain enabled. Do not downgrade until the verification notification.",
+      "priority": "HIGH",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "finlight"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S14",
+      "name": "S14 Marketaux news",
+      "api_or_url": "https://www.marketaux.com/documentation",
+      "athena_database": "optima_news_research",
+      "capture_status_table": "s14_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S14/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-news-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-news-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "marketaux"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S15",
+      "name": "S15 Publisher personnel/news RSS and derived personnel archive",
+      "api_or_url": "original employer/institution news RSS and personnel archives in config; approved feeds only",
+      "athena_database": "optima_people_research",
+      "capture_status_table": "s15_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S15/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-people-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-people-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "people_rss",
+          "personnel_archive"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S16",
+      "name": "S16 Licensed analyst estimates, coverage and revisions",
+      "api_or_url": "named licensed analyst provider required; no public API can supply proprietary historical analyst vintages",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s16_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S16/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Pending need and financial resources \u2014 optional acquisition deferred per user cost decision. Licensed analyst consensus and timestamped revision-vintage subscription/API key required.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S17",
+      "name": "S17 ClinicalTrials.gov registrations, results and attachments",
+      "api_or_url": "https://clinicaltrials.gov/data-api/api",
+      "athena_database": "optima_regulatory_pilot",
+      "capture_status_table": "s17_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S17/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-collection-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "clinicaltrials_gov"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S18",
+      "name": "S18 EMA CTIS",
+      "api_or_url": "https://euclinicaltrials.eu/",
+      "athena_database": "optima_regulatory_pilot",
+      "capture_status_table": "s18_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S18/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-collection-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. CTIS historical trial-document archive not integrated; current EMA-related events are not CTIS source completeness.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "ema_ctis"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S19",
+      "name": "S19 FDA/openFDA actions and public CRLs",
+      "api_or_url": "https://open.fda.gov/apis/; https://www.fda.gov/vaccines-blood-biologics",
+      "athena_database": "optima_regulatory_pilot",
+      "capture_status_table": "s19_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S19/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-collection-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. FDA Secrets Manager key configured in shared scheduled collector client; authenticated application, January 2021 submission and public CRL samples verified 2026-10-11. Full historical coverage remains incomplete; original review PDF collection/extraction remains outstanding. Evidence: reports/fda-access-check.json.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "fda_openfda"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S20",
+      "name": "S20 Drugs@FDA original reviews, labels and decision packages",
+      "api_or_url": "https://www.fda.gov/drugs/drug-approvals-and-databases/drugsfda-data-files",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s20_capture_status",
+      "collector_sources": [
+        "drugsfda_applications"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S20/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. FDA Secrets Manager key configured in shared scheduled collector client; authenticated application, January 2021 submission and public CRL samples verified 2026-10-11. Full historical coverage remains incomplete; original review PDF collection/extraction remains outstanding. Evidence: reports/fda-access-check.json.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "access_documentation_url": "https://open.fda.gov/apis/authentication/",
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "drugsfda_applications"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S21",
+      "name": "S21 EMA medicine/EPAR assessment reports and labels",
+      "api_or_url": "https://www.ema.europa.eu/en/medicines/download-medicine-data",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s21_capture_status",
+      "collector_sources": [
+        "ema_medicines"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S21/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Medicine metadata scheduled; original EPAR review PDF extraction and superseded document vintages remain missing.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "ema_medicines"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S22",
+      "name": "S22 MHRA ILAP/orphan lists and broader public decisions",
+      "api_or_url": "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency",
+      "athena_database": "optima_regulatory_pilot",
+      "capture_status_table": "s22_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S22/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-collection-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "uk_mhra"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S23",
+      "name": "S23 PMDA designation lists and broader reviews",
+      "api_or_url": "https://www.pmda.go.jp/english/",
+      "athena_database": "optima_regulatory_pilot",
+      "capture_status_table": "s23_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S23/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-collection-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "japan_pmda"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S24",
+      "name": "S24 Health Canada NOC/decision/label sources",
+      "api_or_url": "https://health-products.canada.ca/noc-ac/index-eng.jsp",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s24_capture_status",
+      "collector_sources": [
+        "canada_noc"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S24/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Official NOC decisions dated 2021 onward scheduled; original review dossiers and historical vintages remain separate.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "canada_noc"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S25",
+      "name": "S25 ChiCTR registrations and history",
+      "api_or_url": "https://www.chictr.org.cn/",
+      "athena_database": "optima_regulatory_pilot",
+      "capture_status_table": "s25_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S25/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-chictr-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Provider gateway/access verification required; existing reviewed trial cohort is partial.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "chictr"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S26",
+      "name": "S26 NMPA trial registry inventory and details",
+      "api_or_url": "https://www.chinadrugtrials.org.cn/",
+      "athena_database": "optima_regulatory_pilot",
+      "capture_status_table": "s26_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S26/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-nmpa-inventory.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Decodo paid-plan rendered NMPA retry succeeded October 11; checkpointed inventory resumed on enabled timer. Full archive availability and historical completion remain unverified.",
+      "priority": "HIGH",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "nmpa_trials"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S27",
+      "name": "S27 PubMed metadata",
+      "api_or_url": "https://www.ncbi.nlm.nih.gov/books/NBK25501/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s27_capture_status",
+      "collector_sources": [
+        "pubmed_abstracts"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S27/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "pubmed_abstracts"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S28",
+      "name": "S28 Europe PMC and permitted publisher full text/supplements",
+      "api_or_url": "https://europepmc.org/RestfulWebService",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s28_capture_status",
+      "collector_sources": [
+        "europe_pmc"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S28/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "europe_pmc"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S29",
+      "name": "S29 Crossref proceedings",
+      "api_or_url": "https://api.crossref.org/swagger-ui/index.html",
+      "athena_database": "optima_conference_research",
+      "capture_status_table": "s29_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S29/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-conference-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-conference-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "crossref_proceedings"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S30",
+      "name": "S30 Original conference/society programs, abstracts, posters and disclosures",
+      "api_or_url": "original meeting/program domains in conference configuration; organiser-specific archives, no universal API",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s30_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S30/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Conference selection/program allowlist and original program/abstract archive adapter required; DOI records are related metadata only.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S31",
+      "name": "S31 NICE guidance",
+      "api_or_url": "https://www.nice.org.uk/reusing-our-content",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s31_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S31/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "HIGH PRIORITY \u2014 NICE licensed/API access and permitted AI reuse need resolution before restricted content collection.",
+      "priority": "HIGH",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S32",
+      "name": "S32 CMS Medicare Coverage Database",
+      "api_or_url": "https://api.coverage.cms.gov/docs/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s32_capture_status",
+      "collector_sources": [
+        "cms_coverage"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S32/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "cms_coverage"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S33",
+      "name": "S33 Specialty-society guidelines and payer policies",
+      "api_or_url": "named society/payer guideline publisher and permitted original version archive required",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s33_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S33/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Select societies/payers and permitted guideline access; edition archive and daily document adapter missing.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S34",
+      "name": "S34 CMS Open Payments and original author/society disclosures",
+      "api_or_url": "https://openpaymentsdata.cms.gov/about/api",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s34_capture_status",
+      "collector_sources": [
+        "cms_payments_catalog"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S34/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Catalogue capture enabled; original payment rows and annual revisions require filtered datastore/download integration (previous requests timed out).",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "cms_payments_catalog"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S35",
+      "name": "S35 FDA inspection/compliance and enforcement documents",
+      "api_or_url": "https://datadashboard.fda.gov/oii/api/index.htm",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s35_capture_status",
+      "collector_sources": [
+        "fda_dd_inspections_classifications",
+        "fda_dd_inspections_citations",
+        "fda_dd_compliance_actions",
+        "fda_dd_import_refusals",
+        "fda_ires_recalls",
+        "fda_product_codes"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S35/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-authenticated-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-authenticated-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. FDA Dashboard inspections/citations/compliance/import refusals and iRES recalls now have bounded daily/historical adapters. PCB current industry-code reference has daily refresh only, no historical vintage route. Issuer/FEI joins, original 483/warning-letter documents, complete product-code hierarchy, historical reconciliation and verified Athena publication remain outstanding.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "access_documentation_url": "https://datadashboard.fda.gov/oii/api/index.htm",
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "fda_dd_compliance_actions",
+          "fda_dd_import_refusals",
+          "fda_dd_inspections_citations",
+          "fda_dd_inspections_classifications",
+          "fda_ires_recalls",
+          "fda_product_codes"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S36",
+      "name": "S36 NIH RePORTER and other named funder award records",
+      "api_or_url": "https://api.reporter.nih.gov/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s36_capture_status",
+      "collector_sources": [
+        "nih_reporter"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S36/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "nih_reporter"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S37",
+      "name": "S37 Hospital, university, laboratory and professional-society sites",
+      "api_or_url": "original institution sites resolved through ROR and publications; institution-specific archives",
+      "athena_database": "optima_people_research",
+      "capture_status_table": "s37_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S37/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-people-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-people-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Institution feed/ROR identity capture exists; original university/lab personnel and historical affiliation archive scope is incomplete.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S38",
+      "name": "S38 Google Patents public BigQuery dataset",
+      "api_or_url": "https://console.cloud.google.com/marketplace/product/google_patents_public_datasets/google-patents-public-data",
+      "athena_database": "optima_patent_research",
+      "capture_status_table": "s38_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S38/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-patents-backfill.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Google Patents historical backfill is scheduled to its pinned end; a metadata freshness monitor does not collect daily global changes. Incremental/revision feed integration remains missing.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "google_patents_bigquery"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S39",
+      "name": "S39 USPTO ODP application records",
+      "api_or_url": "https://data.uspto.gov/",
+      "athena_database": "optima_patent_research",
+      "capture_status_table": "s39_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S39/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-patents-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Daily USPTO feed enabled; separate 2021 bulk USPTO archive adapter missing (Google Patents archive is a different source).",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "uspto_odp"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S40",
+      "name": "S40 USPTO assignment/legal ownership evidence",
+      "api_or_url": "https://assignmentcenter.uspto.gov/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s40_capture_status",
+      "collector_sources": [
+        "uspto_assignment_histories"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S40/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Eight reviewed application assignment histories scheduled by recordation year and daily current-chain refresh; full-universe chain discovery and original assignment document extraction remain missing.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "uspto_assignment_histories"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S41",
+      "name": "S41 SAM.gov opportunities",
+      "api_or_url": "https://open.gsa.gov/api/get-opportunities-public-api/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s41_capture_status",
+      "collector_sources": [
+        "sam_gov_opportunities"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S41/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-authenticated-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-authenticated-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "October 13: 5,911 notices verified in shared Athena and specialist tables (5,873 recent; 38 January-February 2021). Daily seven-day posted-date overlap and monthly API-visible backfill scheduled. Latest versions only; original descriptions/attachments, old-notice refresh beyond overlap, historical-version archive and company/product joins remain gaps. All categories are collected; empty API windows do not certify archive completeness.",
+      "priority": "HIGH",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "database": "optima_collected_data",
+        "table": "observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "sam_gov_opportunities"
+        ],
+        "evidence": "reports/sam-gov-pipeline-2026-10-13/athena-verification.json"
+      }
+    },
+    {
+      "source_id": "S42",
+      "name": "S42 TED European procurement",
+      "api_or_url": "https://docs.ted.europa.eu/api/latest/search.html",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s42_capture_status",
+      "collector_sources": [
+        "ted_notices"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S42/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "ted_notices"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S43",
+      "name": "S43 USAspending federal awards",
+      "api_or_url": "https://api.usaspending.gov/docs/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s43_capture_status",
+      "collector_sources": [
+        "usa_spending"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S43/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "usa_spending"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S44",
+      "name": "S44 Greenhouse employer job boards",
+      "api_or_url": "https://developers.greenhouse.io/job-board.html",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s44_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S44/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Greenhouse employer board tokens/URLs needed; public jobs API needs no key, historical vacancy archive not configured.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S45",
+      "name": "S45 Lever employer postings",
+      "api_or_url": "https://github.com/lever/postings-api",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s45_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S45/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Lever employer site IDs/URLs needed; public postings API needs no key, historical vacancy archive not configured.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S46",
+      "name": "S46 GitHub releases and original vendor SDK/API/integration documentation",
+      "api_or_url": "https://docs.github.com/en/rest/releases/releases",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s46_capture_status",
+      "collector_sources": [
+        "github_sdk"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S46/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Public SDK release capture enabled; dated release/commit archive reconstruction is not yet configured.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "github_sdk"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S47",
+      "name": "S47 NIST robotics test methods and disclosed independent/customer tests",
+      "api_or_url": "https://www.nist.gov/el/robotics",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s47_capture_status",
+      "collector_sources": [
+        "nist_robotics_methods"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S47/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Official test-method discovery page only; versioned standards/tests and historical artifacts not captured.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "nist_robotics_methods"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S48",
+      "name": "S48 MLCommons/MLPerf benchmark results",
+      "api_or_url": "https://github.com/mlcommons",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s48_capture_status",
+      "collector_sources": [
+        "mlperf_results"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S48/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "mlperf_results"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S49",
+      "name": "S49 Vendor/lab/customer datasheets, test reports, warranty/service bulletins and deployment evidence",
+      "api_or_url": "verified vendor/laboratory original product and technical-document URLs; no universal endpoint",
+      "athena_database": "optima_disclosures_pilot",
+      "capture_status_table": "s49_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S49/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-collection-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Related disclosure documents exist; product/vendor/customer/lab allowlist and warranty/test artifact extraction missing.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S50",
+      "name": "S50 CPSC recalls and other product-specific safety authorities",
+      "api_or_url": "https://www.cpsc.gov/Recalls/CPSC-Recalls-Application-Program-Interface-API-Information",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s50_capture_status",
+      "collector_sources": [
+        "cpsc_recalls"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S50/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Official dated recall API now verified reachable; recalls do not cover all incidents or product reliability.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "cpsc_recalls"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S51",
+      "name": "S51 Federal Register and relevant local rulemaking authorities",
+      "api_or_url": "https://www.federalregister.gov/developers/documentation/api/v1",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s51_capture_status",
+      "collector_sources": [
+        "federal_register"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S51/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "federal_register"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S52",
+      "name": "S52 ITA Consolidated Screening List and relevant foreign trade-control lists",
+      "api_or_url": "https://www.trade.gov/consolidated-screening-list",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s52_capture_status",
+      "collector_sources": [
+        "trade_screening"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S52/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Current US screening list enabled; historical list vintages and foreign export-control archives missing.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "trade_screening"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S53",
+      "name": "S53 USGS mineral statistics",
+      "api_or_url": "https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s53_capture_status",
+      "collector_sources": [
+        "usgs_minerals"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S53/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "usgs_minerals"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S54",
+      "name": "S54 UN Comtrade",
+      "api_or_url": "https://uncomtrade.org/docs/un-comtrade-api/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s54_capture_status",
+      "collector_sources": [
+        "un_comtrade"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S54/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "un_comtrade"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S55",
+      "name": "S55 DOE storage cost/performance reports and models",
+      "api_or_url": "https://www.energy.gov/oe/energy-storage",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s55_capture_status",
+      "collector_sources": [
+        "doe_storage_program"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S55/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. DOE program discovery page only; structured cost/performance/project datasets and archives need integration.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "doe_storage_program"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S56",
+      "name": "S56 EIA generator inventories and electricity series",
+      "api_or_url": "https://www.eia.gov/electricity/data/eia860m/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s56_capture_status",
+      "collector_sources": [
+        "eia_generator_index",
+        "eia_battery_generators",
+        "eia_retail_prices"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S56/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-authenticated-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-authenticated-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. EIA API US all-sector monthly retail electricity prices added to authenticated daily/historical capture. EIA860M inventory archives remain on specialist timers. Other energy time series and geographic coverage remain incomplete.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "eia_battery_generators",
+          "eia_generator_index",
+          "eia_retail_prices"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S57",
+      "name": "S57 CAISO OASIS electricity prices",
+      "api_or_url": "https://www.caiso.com/notices/new-tool-now-available-on-caiso-oasis-website",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s57_capture_status",
+      "collector_sources": [
+        "caiso_prices"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S57/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. CAISO standard API covers its 39-month retention; January 2021 through pre-retention dates need Historical OASIS downloader integration.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "caiso_prices"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S58",
+      "name": "S58 Utility/system-operator queues, tariffs, permits and project/contract records",
+      "api_or_url": "https://www.caiso.com/generation-transmission/generation/generator-interconnection/interconnection-queue",
+      "athena_database": "optima_disclosures_pilot",
+      "capture_status_table": "s58_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S58/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-collection-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-core-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Related project disclosures exist; utility/queue/permit jurisdiction allowlists and dated original archives missing.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S59",
+      "name": "S59 BLS labor series",
+      "api_or_url": "https://www.bls.gov/developers/api_signature_v2.htm",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s59_capture_status",
+      "collector_sources": [
+        "bls_wages"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S59/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-specialist-historical.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "bls_wages"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    },
+    {
+      "source_id": "S60",
+      "name": "S60 SEMI industry reports/data",
+      "api_or_url": "https://www.semi.org/en/products-services/market-intelligence",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s60_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S60/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Pending need and financial resources \u2014 optional acquisition deferred per user cost decision. DEFERRED by user 2026-10-11: quoted report cost about USD 2000 and no API offered for the evaluated product. No SEMI purchase required for the current scope. Assess public issuer filings, earnings presentations, fab/project announcements, government disclosures and publicly released industry summaries. Record missing capacity/utilization fields explicitly; public proxies do not establish licensed historical coverage.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S61",
+      "name": "S61 IFR World Robotics statistics",
+      "api_or_url": "https://ifr.org/worldrobotics",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s61_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S61/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Pending need and financial resources \u2014 optional acquisition deferred per user cost decision. IFR licensed statistics/subscription and historical export access required.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S62",
+      "name": "S62 Licensed teardowns, commodity assessments and cost/utilization feeds",
+      "api_or_url": "https://www.techinsights.com/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s62_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S62/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Pending need and financial resources \u2014 optional acquisition deferred per user cost decision. DEFERRED by user 2026-10-11 due to cost. Optional paid teardowns and grade-specific material-price/utilization feeds are outside the current acquisition scope. Evaluate public technical disclosures and economic series by field; proprietary BOMs, process yields and grade-specific price history remain explicit gaps, not equivalent public measurements.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S63",
+      "name": "S63 Reddit posts/comments",
+      "api_or_url": "https://support.reddithelp.com/hc/en-us/articles/14945211791892-Reddit-API-Access",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s63_capture_status",
+      "collector_sources": [
+        "reddit_refreshable"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S63/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-reddit-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-reddit-collection.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "No user access task. Hourly private-use capture and bounded historical search samples are live; 651 records verified in optima_social_research.reddit_records on October 11. Issuer linkage and exhaustive history remain unresolved. Refreshable storage capped at 5,000 records / 16 MiB; paid archive deferred.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "data_table": "optima_social_research.reddit_records"
+    },
+    {
+      "source_id": "S64",
+      "name": "S64 Bluesky public search, optional additional discussion source",
+      "api_or_url": "https://docs.bsky.app/",
+      "athena_database": "optima_social_research",
+      "capture_status_table": "s64_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S64/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-social-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "382 Bluesky observations query-verified after API-host and timestamp repairs on October 12; some requests still return HTTP 403. Daily capture is partial; 2021 archive unavailable.",
+      "priority": "HIGH",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "bluesky_search"
+        ],
+        "verification_report": "reports/pipeline-repairs-2026-10-12/athena-after.json"
+      }
+    },
+    {
+      "source_id": "S65",
+      "name": "S65 DataForSEO keyword history, trends and organic search snapshots",
+      "api_or_url": "https://docs.dataforseo.com/v3/",
+      "athena_database": "optima_source_readiness",
+      "capture_status_table": "s65_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S65/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-search-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": "optima-search-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Fixed 12-query scope and USD 1/run cap enabled; historic live SERP rankings unavailable, keyword volumes/trends cover provider-returned dates only.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S66",
+      "name": "S66 Google Trends, optional complementary source",
+      "api_or_url": "https://trends.google.com/trends/",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s66_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S66/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Google Trends API application submitted October 11; await approval/credentials. No further application task; daily and historical collection remain blocked pending access.",
+      "priority": "HIGH",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S67",
+      "name": "S67 Private sponsor/CRO/site operational data, patient cohorts and customer telemetry, optional",
+      "api_or_url": "named sponsor/CRO/site/customer/fab/project data owner required; permitted aggregate export/API after agreement",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s67_capture_status",
+      "collector_sources": [],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S67/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "HIGH PRIORITY \u2014 Private-data access agreements, credentials and delivery routes needed; no endpoint provided.",
+      "priority": "HIGH",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false
+    },
+    {
+      "source_id": "S68",
+      "name": "S68 ROR research institution identities",
+      "api_or_url": "https://ror.readme.io/docs/rest-api",
+      "athena_database": "optima_specialist_inputs",
+      "capture_status_table": "s68_capture_status",
+      "collector_sources": [
+        "ror_institutions"
+      ],
+      "capture_status_s3_prefix": "operations/source-schedule/current/S68/",
+      "modes": {
+        "daily": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-daily.timer",
+          "capture_timer": "optima-specialist-daily.timer",
+          "status": "capture_scheduled_partial_scope",
+          "archive_start_target": null
+        },
+        "historical": {
+          "registered": true,
+          "control_timer": "optima-source-schedule-historical.timer",
+          "capture_timer": null,
+          "status": "blocked_no_capture_route",
+          "archive_start_target": "2021-01-01"
+        }
+      },
+      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Current institution identity only; ROR release archives/historical affiliations not configured.",
+      "priority": "normal",
+      "full_scope_complete": false,
+      "historical_vintages_certified": false,
+      "committed_data_access": {
+        "table": "optima_collected_data.observations",
+        "workgroup": "optima-collected-data",
+        "verified_sources": [
+          "ror_institutions"
+        ],
+        "verification_report": "reports/committed-athena-latest.json"
+      }
+    }
+  ]
+}

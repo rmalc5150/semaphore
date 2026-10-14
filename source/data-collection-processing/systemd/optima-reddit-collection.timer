@@ -1,0 +1,11 @@
+[Unit]
+Description=Hourly bounded Reddit collection and content refresh
+
+[Timer]
+OnCalendar=*-*-* *:15:00 UTC
+Persistent=true
+RandomizedDelaySec=120
+Unit=optima-reddit-collection.service
+
+[Install]
+WantedBy=timers.target

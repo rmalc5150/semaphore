@@ -1,0 +1,22 @@
+[Unit]
+Description=All 68 source historical capture readiness and Athena status
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+Slice=optima-data.slice
+MemoryAccounting=true
+MemoryHigh=402653184
+MemoryMax=536870912
+MemorySwapMax=0
+Environment=ARROW_NUM_THREADS=1
+Environment=MALLOC_ARENA_MAX=2
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/source_schedule_control.py --mode historical
+TimeoutStartSec=15min
+TimeoutStopSec=120
+KillSignal=SIGINT
+SuccessExitStatus=0
+Nice=15

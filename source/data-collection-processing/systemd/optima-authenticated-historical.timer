@@ -1,0 +1,11 @@
+[Unit]
+Description=Authenticated official historical source capture
+
+[Timer]
+OnCalendar=*-*-* *:50:00 UTC
+Persistent=true
+RandomizedDelaySec=120
+Unit=optima-authenticated-historical.service
+
+[Install]
+WantedBy=timers.target

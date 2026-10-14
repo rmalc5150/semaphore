@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume global patent backfill hourly with a daily query budget
+
+[Timer]
+OnCalendar=*-*-* *:10:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+Unit=optima-patents-backfill.service
+
+[Install]
+WantedBy=timers.target

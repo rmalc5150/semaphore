@@ -1,0 +1,11 @@
+[Unit]
+Description=Bounded daily Bluesky search/access checks
+
+[Timer]
+OnCalendar=*-*-* 06:45:00 UTC
+Persistent=true
+RandomizedDelaySec=120
+Unit=optima-social-daily.service
+
+[Install]
+WantedBy=timers.target

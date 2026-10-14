@@ -1,0 +1,1823 @@
+{
+  "created_at": "2026-09-26T12:22:46.767347+00:00",
+  "entries": [
+    {
+      "source": "IBKR_HKEX_NEWS.md",
+      "destination": "unused/IBKR_HKEX_NEWS.md",
+      "reason": "Retired IBKR documentation",
+      "bytes": 3542,
+      "sha256": "adf91993499a17bd5d0e62c9bba42f0a74581e8f993d5f4f748bf216888e0638"
+    },
+    {
+      "source": "__pycache__/build_collection_monitoring_config.cpython-312.pyc",
+      "destination": "unused/__pycache__/build_collection_monitoring_config.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7785,
+      "sha256": "e2c8dfd2d87286c2468a19f2a958702baf7c80dd79896fcfdc046c147ebf2ec4"
+    },
+    {
+      "source": "__pycache__/chictr_studies.cpython-312.pyc",
+      "destination": "unused/__pycache__/chictr_studies.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 23417,
+      "sha256": "f8a2f6d4621602db215b1064b9a6ecaaa9f25cb3b3ba345c80d782f39a1225e2"
+    },
+    {
+      "source": "__pycache__/chictr_studies.cpython-39.pyc",
+      "destination": "unused/__pycache__/chictr_studies.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 14563,
+      "sha256": "f88d44e9d1419d5601af837a933b8b8a69036eacd79f31f01ab4fe8d4ed9dfd5"
+    },
+    {
+      "source": "__pycache__/clinicaltrials_studies.cpython-312.pyc",
+      "destination": "unused/__pycache__/clinicaltrials_studies.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9891,
+      "sha256": "d2daceec26fe6e82b420fa419a22eedf04db62fa5a87696fc6ade30e965f4708"
+    },
+    {
+      "source": "__pycache__/clinicaltrials_studies.cpython-39.pyc",
+      "destination": "unused/__pycache__/clinicaltrials_studies.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 6113,
+      "sha256": "3148b275323864f1c4936fc782ae4ad8e8f7b5a5ea9cf1d01d8b8905ffbde515"
+    },
+    {
+      "source": "__pycache__/collect_daily.cpython-312.pyc",
+      "destination": "unused/__pycache__/collect_daily.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 362,
+      "sha256": "05226d3001632fb6928cae773824cc366abd758e10374d58abf5131bd87df566"
+    },
+    {
+      "source": "__pycache__/collect_daily.cpython-39.pyc",
+      "destination": "unused/__pycache__/collect_daily.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 1860,
+      "sha256": "3f18b75a4ca681c77470e182bfd3a82e6f0b7bc92665526f53329c40bcb78760"
+    },
+    {
+      "source": "__pycache__/collect_historical.cpython-312.pyc",
+      "destination": "unused/__pycache__/collect_historical.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 378,
+      "sha256": "08eec6c013694adfa1038c3074e1218af5843c938fa9ab2163ad59b4ccb54f25"
+    },
+    {
+      "source": "__pycache__/collect_historical.cpython-39.pyc",
+      "destination": "unused/__pycache__/collect_historical.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 1996,
+      "sha256": "346b4509a9685d4167b257dcdc27b1b4f3adcb2e760fc94213b10e5c54ceb088"
+    },
+    {
+      "source": "__pycache__/collection_alerts.cpython-312.pyc",
+      "destination": "unused/__pycache__/collection_alerts.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 21493,
+      "sha256": "77be8d5332b8dba2176713ce127b55f9a4b8a122b5a504498b80f6160191d279"
+    },
+    {
+      "source": "__pycache__/collection_health_exporter.cpython-312.pyc",
+      "destination": "unused/__pycache__/collection_health_exporter.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 23543,
+      "sha256": "ca64d1dc4df585c32342521dc4bbb70e4b69a32ebce2f6506d6d615419e215e7"
+    },
+    {
+      "source": "__pycache__/collection_operations.cpython-312.pyc",
+      "destination": "unused/__pycache__/collection_operations.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 30204,
+      "sha256": "3b5f678a47d0c9c556f3d85b7499b558a7aba4fe670e0fb80ef3e5a1517f2710"
+    },
+    {
+      "source": "__pycache__/collection_operations.cpython-39.pyc",
+      "destination": "unused/__pycache__/collection_operations.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 17076,
+      "sha256": "a8de010facd41cd946d8888730bdeec9d6e8eb903827aa8621dd017736cb21c3"
+    },
+    {
+      "source": "__pycache__/collection_storage.cpython-312.pyc",
+      "destination": "unused/__pycache__/collection_storage.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 34793,
+      "sha256": "7143667b8457a94f10a7baa2ba99549102c0983e6d7bc9b9cb8305c16686c852"
+    },
+    {
+      "source": "__pycache__/collection_storage.cpython-39.pyc",
+      "destination": "unused/__pycache__/collection_storage.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 20683,
+      "sha256": "51f2a20b34ba9e3f9eb863940a1189004961fa9776f952083ab0fdea0dfd25b6"
+    },
+    {
+      "source": "__pycache__/collection_storage_demo.cpython-312.pyc",
+      "destination": "unused/__pycache__/collection_storage_demo.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3572,
+      "sha256": "fc3ecc583ecade1d51a62556bfc762f7eef2e27181b79a644a086ebddf562311"
+    },
+    {
+      "source": "__pycache__/company_admission.cpython-312.pyc",
+      "destination": "unused/__pycache__/company_admission.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7915,
+      "sha256": "e6f6bc378f2868022604793e2ac7118a3e401f5d27d1bb0401a25dad174cca29"
+    },
+    {
+      "source": "__pycache__/company_press_releases.cpython-312.pyc",
+      "destination": "unused/__pycache__/company_press_releases.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 410,
+      "sha256": "fd2419a0833f20cabb0c486f83f7607daca635a085d60d4fafef8e570e840980"
+    },
+    {
+      "source": "__pycache__/company_press_releases.cpython-39.pyc",
+      "destination": "unused/__pycache__/company_press_releases.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 315,
+      "sha256": "99d4c5d2b5c2fa02e61b3a535d61385fc7f48de2290ba47e8c224daf43cca101"
+    },
+    {
+      "source": "__pycache__/company_registry_verify.cpython-312.pyc",
+      "destination": "unused/__pycache__/company_registry_verify.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9228,
+      "sha256": "c5f29a4d5ddf75de6cce6efbdea3e267c4204c5e2eab1f16520179687ac6d79e"
+    },
+    {
+      "source": "__pycache__/company_universe_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/company_universe_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 20521,
+      "sha256": "3e0c1561bdde55ab6ff2e491282258e841685c1c97a59717a9bece5e61e06a7b"
+    },
+    {
+      "source": "__pycache__/company_universe_athena.cpython-39.pyc",
+      "destination": "unused/__pycache__/company_universe_athena.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 12733,
+      "sha256": "d20047b2b37d76ab117b5a2177a430649b850f4afb8da5b52f230ec07dc80a48"
+    },
+    {
+      "source": "__pycache__/company_universe_pipeline.cpython-312.pyc",
+      "destination": "unused/__pycache__/company_universe_pipeline.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 33323,
+      "sha256": "c13696805a30c48cfeeea0ff69de16f35771e70bb4f0d5bbb6fe6a9ef36a3c4e"
+    },
+    {
+      "source": "__pycache__/conference_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/conference_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 10869,
+      "sha256": "3a905245cc5f18a8fe3b2acb4fd4a91640f58f6c11927a1b207477ef71358ef8"
+    },
+    {
+      "source": "__pycache__/conference_materials.cpython-312.pyc",
+      "destination": "unused/__pycache__/conference_materials.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 28875,
+      "sha256": "0a551b028167fd5ba44a69b80439f8f264870570fbf379212ae735446daa200f"
+    },
+    {
+      "source": "__pycache__/conference_materials.cpython-39.pyc",
+      "destination": "unused/__pycache__/conference_materials.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 18900,
+      "sha256": "40e6557df2c4ec2f08c71829c61f1a11d00e28d9eb0805d08bf618f09f123626"
+    },
+    {
+      "source": "__pycache__/corporate_disclosures.cpython-312.pyc",
+      "destination": "unused/__pycache__/corporate_disclosures.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 12737,
+      "sha256": "42b2ed322b784e0521ecab4165b5d59862fbe255bd37be3b811cbd40c8d869fb"
+    },
+    {
+      "source": "__pycache__/corporate_disclosures.cpython-39.pyc",
+      "destination": "unused/__pycache__/corporate_disclosures.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7752,
+      "sha256": "084774e48c1e6ba74989c9124a9987be4f51232df0c7e6ace2ff1418e403d89e"
+    },
+    {
+      "source": "__pycache__/coverage_live_snapshot.cpython-39.pyc",
+      "destination": "unused/__pycache__/coverage_live_snapshot.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9582,
+      "sha256": "99f365c883a429c0d35a9c98e3ed0389429c174c790297e4a7af8785fa8ba723"
+    },
+    {
+      "source": "__pycache__/decodo_scraping_api.cpython-312.pyc",
+      "destination": "unused/__pycache__/decodo_scraping_api.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8584,
+      "sha256": "ed7220ecded53d1526c4fb75020becb0352b7a117d8c677c4fbaf685f53a388e"
+    },
+    {
+      "source": "__pycache__/decodo_scraping_api.cpython-39.pyc",
+      "destination": "unused/__pycache__/decodo_scraping_api.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 5477,
+      "sha256": "9276f40f3de3ce6b2dbd7e137168bb8e9c7d237f247038f4672fd94c68489ac8"
+    },
+    {
+      "source": "__pycache__/deploy_collection_monitoring.cpython-312.pyc",
+      "destination": "unused/__pycache__/deploy_collection_monitoring.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 24507,
+      "sha256": "f4fb5afad89f254cc6bfa5d4cfc7aa4e68f6eb8cdb132a6cfcdc379c789585ed"
+    },
+    {
+      "source": "__pycache__/disclosure_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/disclosure_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 11443,
+      "sha256": "447f4fb0c1deacb86df58f7dfbbb85703db869ca249b3a2fc0839115c57083e7"
+    },
+    {
+      "source": "__pycache__/disclosure_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/disclosure_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 42682,
+      "sha256": "52a34b7ea30c4da5fae12d7d6e9e7f37c6cf400d338d4d85aaf16c56e4fa5fe8"
+    },
+    {
+      "source": "__pycache__/disclosure_collection.cpython-39.pyc",
+      "destination": "unused/__pycache__/disclosure_collection.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 24234,
+      "sha256": "3ee30cf87a6f8c1e3d5c057dafde0ed9fc3f38d4e88c7867b949ccc6541de700"
+    },
+    {
+      "source": "__pycache__/disclosure_event_collector.cpython-312.pyc",
+      "destination": "unused/__pycache__/disclosure_event_collector.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3100,
+      "sha256": "e9b97712e4841d0b9900134f4a8923e88ffbd9d9bcd68324bb89a1bb45a078d0"
+    },
+    {
+      "source": "__pycache__/disclosure_event_collector.cpython-39.pyc",
+      "destination": "unused/__pycache__/disclosure_event_collector.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 1513,
+      "sha256": "dee288570c898fa3193e7af1766318c5ea779a2957b07fb1decbb44cf58f741b"
+    },
+    {
+      "source": "__pycache__/ema_ctis_actions.cpython-312.pyc",
+      "destination": "unused/__pycache__/ema_ctis_actions.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 13763,
+      "sha256": "5de2bd2f07c97839529ef05fb4ea476b9d08502c96177aea2be03a12c800ce77"
+    },
+    {
+      "source": "__pycache__/ema_ctis_actions.cpython-39.pyc",
+      "destination": "unused/__pycache__/ema_ctis_actions.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8685,
+      "sha256": "3776f5d741b7a30a091e482822c795050ba17a2db75fc3f5fae6175838d67cc6"
+    },
+    {
+      "source": "__pycache__/enable_collection_sms_diagnostics.cpython-312.pyc",
+      "destination": "unused/__pycache__/enable_collection_sms_diagnostics.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3041,
+      "sha256": "051d1af4830d94a4b103ad07bde90e9162b49e6425e14e03410280856997fa01"
+    },
+    {
+      "source": "__pycache__/eodhd_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/eodhd_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 23542,
+      "sha256": "2b08d4cc5569102cb1da87213de7f4963c9729b97dd390682e9d0d10f9587c3d"
+    },
+    {
+      "source": "__pycache__/eodhd_batch.cpython-312.pyc",
+      "destination": "unused/__pycache__/eodhd_batch.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 14964,
+      "sha256": "1e68f0cea50daa2a688198ca61e97c6b7149b14a82bfc9bd51b517fcf543714d"
+    },
+    {
+      "source": "__pycache__/eodhd_coverage.cpython-312.pyc",
+      "destination": "unused/__pycache__/eodhd_coverage.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 11809,
+      "sha256": "0cc535226aa3e0fb81bd3cc2d405c1f419d38b877ec5fa2d5f93601c04f7f3ea"
+    },
+    {
+      "source": "__pycache__/eodhd_daily_cohort.cpython-312.pyc",
+      "destination": "unused/__pycache__/eodhd_daily_cohort.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9001,
+      "sha256": "19d0c935d65648f7893814de9c92b024dbf0a79d06f0cf01c02538ae4157cf54"
+    },
+    {
+      "source": "__pycache__/eodhd_quota.cpython-312.pyc",
+      "destination": "unused/__pycache__/eodhd_quota.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 6975,
+      "sha256": "a6cf6b23cafae32c45442cdda0d6ed8e52c61b3ef7e3354a24920f9063e6774c"
+    },
+    {
+      "source": "__pycache__/eodhd_review.cpython-312.pyc",
+      "destination": "unused/__pycache__/eodhd_review.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 17464,
+      "sha256": "03ba26aa1d414cd2bbe248066156c59c9643ad9741ac5f76a2334c40a0457e18"
+    },
+    {
+      "source": "__pycache__/eodhd_sector_review.cpython-312.pyc",
+      "destination": "unused/__pycache__/eodhd_sector_review.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 10477,
+      "sha256": "6fc4e034a4e2523442462e6005a0ef0d0dc8c79e05e3f5a61611da93ce18ab48"
+    },
+    {
+      "source": "__pycache__/eodhd_universe.cpython-312.pyc",
+      "destination": "unused/__pycache__/eodhd_universe.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 37140,
+      "sha256": "49b25a3305a05f90b439eac244f651abf3bb762f2f4c2766e2dac1b2a75654dc"
+    },
+    {
+      "source": "__pycache__/fda_drug_actions.cpython-312.pyc",
+      "destination": "unused/__pycache__/fda_drug_actions.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 13547,
+      "sha256": "5dcec1d824abf89ee6802afbb3fca5cdfa8d0dc328823a54fa89a4495dfea9bf"
+    },
+    {
+      "source": "__pycache__/fda_drug_actions.cpython-39.pyc",
+      "destination": "unused/__pycache__/fda_drug_actions.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8351,
+      "sha256": "dcd36d4b20a46ea2e0836fedf8ab61828623c63856fa7a76a0c9fe077a70ca18"
+    },
+    {
+      "source": "__pycache__/historical_policy.cpython-312.pyc",
+      "destination": "unused/__pycache__/historical_policy.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 2285,
+      "sha256": "0ebe4350823312964376fe12630b312bb05447a2e00b1cf97a6149141bb15491"
+    },
+    {
+      "source": "__pycache__/hkex_cross_listed_prices.cpython-312.pyc",
+      "destination": "unused/__pycache__/hkex_cross_listed_prices.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 12114,
+      "sha256": "7aa4be605c8be0c59f91b3c5c08f43185a5b787fd3fc41df56502ce90a4bc5a0"
+    },
+    {
+      "source": "__pycache__/hkex_cross_listed_prices.cpython-39.pyc",
+      "destination": "unused/__pycache__/hkex_cross_listed_prices.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7270,
+      "sha256": "96078e9c8bff4b2ecf3d580cb3d4a015b4245fd20661b6ceee5e97fa8b30f437"
+    },
+    {
+      "source": "__pycache__/hkex_csv_cleaner.cpython-312.pyc",
+      "destination": "unused/__pycache__/hkex_csv_cleaner.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 6039,
+      "sha256": "4fe97b69a8c181927d7eb22d76488800e2d25d125e52933ce12c056c829433fc"
+    },
+    {
+      "source": "__pycache__/hkex_csv_cleaner.cpython-39.pyc",
+      "destination": "unused/__pycache__/hkex_csv_cleaner.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3899,
+      "sha256": "90cd84109f3eee21e65f699504860dded64492c7dc567879950a4b1b76b6c69f"
+    },
+    {
+      "source": "__pycache__/hkex_daily_prices.cpython-312.pyc",
+      "destination": "unused/__pycache__/hkex_daily_prices.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 12964,
+      "sha256": "04a526138f71730263432b74cd1e3cec2080dd2846f67b35a9fb4464d8b80b7b"
+    },
+    {
+      "source": "__pycache__/hkex_daily_prices.cpython-39.pyc",
+      "destination": "unused/__pycache__/hkex_daily_prices.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8590,
+      "sha256": "cef29a535de66116c797d88cf35d7a71d3f7bfa552737984b09474e15a095469"
+    },
+    {
+      "source": "__pycache__/hkex_filings.cpython-312.pyc",
+      "destination": "unused/__pycache__/hkex_filings.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 2382,
+      "sha256": "13cf39ea040bff571fae90d10634510fb5b54ad45cd1a3ca0859b44c4702ede8"
+    },
+    {
+      "source": "__pycache__/hkex_filings.cpython-39.pyc",
+      "destination": "unused/__pycache__/hkex_filings.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 1149,
+      "sha256": "451065ca60e3e2ebfa1c690c354a2eec72d9570f3e93dc0cc5c679eedec083f4"
+    },
+    {
+      "source": "__pycache__/hkex_historical_prices.cpython-312.pyc",
+      "destination": "unused/__pycache__/hkex_historical_prices.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 11865,
+      "sha256": "e987f4fc6c522be3324b0097dd5a8efd1669b842049d622c344911fa72883a48"
+    },
+    {
+      "source": "__pycache__/hkex_historical_prices.cpython-39.pyc",
+      "destination": "unused/__pycache__/hkex_historical_prices.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7845,
+      "sha256": "601f4148a148585e442a5df3e0c9d855a7ba0eb277ff8107f85f0e52c0faf49b"
+    },
+    {
+      "source": "__pycache__/ibkr_hkex_news.cpython-312.pyc",
+      "destination": "unused/__pycache__/ibkr_hkex_news.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 13470,
+      "sha256": "13631f8e8147a425f3a62987f5365741b80e023dd6bf9d8a1b212904746f2af4"
+    },
+    {
+      "source": "__pycache__/ibkr_hkex_news.cpython-39.pyc",
+      "destination": "unused/__pycache__/ibkr_hkex_news.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8374,
+      "sha256": "819b51d62a3ae926dc3bdf79bd79d7ea6e08e0320a0ea0bdf67b6cfb9e8d8366"
+    },
+    {
+      "source": "__pycache__/japan_pmda_designations.cpython-312.pyc",
+      "destination": "unused/__pycache__/japan_pmda_designations.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7227,
+      "sha256": "b427c304153cb40af70c4f39be603d85db553304c35d86fa5c90aa3747e1613b"
+    },
+    {
+      "source": "__pycache__/japan_pmda_designations.cpython-39.pyc",
+      "destination": "unused/__pycache__/japan_pmda_designations.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 4347,
+      "sha256": "a2b478694a71bb8d518a1298a20c33629dc434e341853fc6a8f4be28d6b2afd2"
+    },
+    {
+      "source": "__pycache__/licensing_agreements.cpython-312.pyc",
+      "destination": "unused/__pycache__/licensing_agreements.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 409,
+      "sha256": "a8ae6e8c666036369c8b7e86efba65d54ddfb4db07cc7d3e78604f3a30a914a3"
+    },
+    {
+      "source": "__pycache__/licensing_agreements.cpython-39.pyc",
+      "destination": "unused/__pycache__/licensing_agreements.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 314,
+      "sha256": "6a4c56c0498539e34d9bf3b8abdd214aab11ca88a597efb5823cf3fb8e767c26"
+    },
+    {
+      "source": "__pycache__/ma_announcements.cpython-312.pyc",
+      "destination": "unused/__pycache__/ma_announcements.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 372,
+      "sha256": "abcfa7f5155fe293bd59c9d6dca1df4043fbb8591827fb097b969150310deb4d"
+    },
+    {
+      "source": "__pycache__/ma_announcements.cpython-39.pyc",
+      "destination": "unused/__pycache__/ma_announcements.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 290,
+      "sha256": "14ad6c91cc683a3b5c2f94108a011791aac532f9f47fcf55848bcb18564691d1"
+    },
+    {
+      "source": "__pycache__/market_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/market_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9105,
+      "sha256": "4594f83c6fb60116db0d7d9918d943ad21c1bd62ef7e1a2796ccd35d39a716e6"
+    },
+    {
+      "source": "__pycache__/market_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/market_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 20618,
+      "sha256": "d5a5bfbf247e1759dbaf4c1c134ec3392b5c6337b979fc57bea6a8fcd1d5c61c"
+    },
+    {
+      "source": "__pycache__/market_operations.cpython-312.pyc",
+      "destination": "unused/__pycache__/market_operations.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 15539,
+      "sha256": "ba89de4fc87d2419c90126b4e4fc6b5f318f61bd73ef81ebf9f68f2bc6c86e48"
+    },
+    {
+      "source": "__pycache__/marketaux_history_probe.cpython-312.pyc",
+      "destination": "unused/__pycache__/marketaux_history_probe.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8303,
+      "sha256": "8a1d00de2c30ccfea0f3bec69e330a3b0b9985b20f27e221eab49346b09aa65d"
+    },
+    {
+      "source": "__pycache__/news_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/news_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 13342,
+      "sha256": "a51f7d040668d0043599c7a680610c8825ac01dd82b322ead7dff0668bbfb491"
+    },
+    {
+      "source": "__pycache__/news_audit.cpython-312.pyc",
+      "destination": "unused/__pycache__/news_audit.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7707,
+      "sha256": "580dd5060994f7196cb4b618919d7afa186bf7a478c30fbc7cbcf1b9f6ba50a9"
+    },
+    {
+      "source": "__pycache__/news_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/news_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 32318,
+      "sha256": "ec6be9b6b5a6163d1cb7c146ac5fe22b991a4643c547a3e85f913f7f6303ff37"
+    },
+    {
+      "source": "__pycache__/news_operations.cpython-312.pyc",
+      "destination": "unused/__pycache__/news_operations.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 11766,
+      "sha256": "ee4680716c2df7c25637aec588cbd1ca796576ff7b5b8c44d06657b00ce11c17"
+    },
+    {
+      "source": "__pycache__/news_publication.cpython-312.pyc",
+      "destination": "unused/__pycache__/news_publication.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 1697,
+      "sha256": "546cb339caaa76080410883505e8a671773c1d35a9f4b757363274d4810642a8"
+    },
+    {
+      "source": "__pycache__/nmpa_baseline.cpython-312.pyc",
+      "destination": "unused/__pycache__/nmpa_baseline.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 17325,
+      "sha256": "f8572b33c2c2a9a1dc877cb5acf69feb62c0ded3f1e7cb9c4ba108b08dbaa75c"
+    },
+    {
+      "source": "__pycache__/nmpa_drug_trials.cpython-312.pyc",
+      "destination": "unused/__pycache__/nmpa_drug_trials.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 14506,
+      "sha256": "520ad70743fb42beb2c13f13bc203671e4f3162700ccc811717b8e3ae33ed76f"
+    },
+    {
+      "source": "__pycache__/nmpa_drug_trials.cpython-39.pyc",
+      "destination": "unused/__pycache__/nmpa_drug_trials.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9521,
+      "sha256": "65b8e2e6951679d11d9cb2e02949578cabd329642d190c40009f730ba1d1cd3f"
+    },
+    {
+      "source": "__pycache__/patent_adjudication.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_adjudication.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 16612,
+      "sha256": "4d1f4e0ab9ba1039c4759b4bc2780fb28b9ff79f0ad5ff24da3c4f335580631b"
+    },
+    {
+      "source": "__pycache__/patent_assignment_review.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_assignment_review.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9480,
+      "sha256": "a7050e4ca63be1dc511d4a1b41e730b29a3d247a1f73469113cadd62d2b1013f"
+    },
+    {
+      "source": "__pycache__/patent_assignments.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_assignments.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9991,
+      "sha256": "1f8ba247ff3b028380d6e25ff9f26e10be302d172b31bb216001e205d866ce95"
+    },
+    {
+      "source": "__pycache__/patent_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 41880,
+      "sha256": "80aa7a633092ec2973cc763de41b044d07c7c77aac1db43f2a3cb76ca2a0357c"
+    },
+    {
+      "source": "__pycache__/patent_backfill.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_backfill.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 25401,
+      "sha256": "17c8152a8457b14cfbd2c694cd2771800c33501e7ee20fae25a142b8530e1843"
+    },
+    {
+      "source": "__pycache__/patent_backfill_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_backfill_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 33042,
+      "sha256": "1c655d2a8d0b2229e1faacabdb29a551db945af79581df0d501e6ca662ba6a2f"
+    },
+    {
+      "source": "__pycache__/patent_backfill_plan.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_backfill_plan.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 6358,
+      "sha256": "56682ed70db6409f33981009f09c7e1b2acecb89bf1f2aae7f992ffe19ce99c3"
+    },
+    {
+      "source": "__pycache__/patent_backfill_publication.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_backfill_publication.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 14499,
+      "sha256": "d0c79ad73284f3032e04345bd46b2d765e9ff01aedfa755cbcbea657c3fb6db0"
+    },
+    {
+      "source": "__pycache__/patent_bigquery_access.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_bigquery_access.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7444,
+      "sha256": "5c454dab2dea0c4b692d9c2d83112aec5cabb2fc67991f4e5fe3f4791602972a"
+    },
+    {
+      "source": "__pycache__/patent_bigquery_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_bigquery_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 16038,
+      "sha256": "724d34f43585453abd853099ccf36103573da2ee4da375c0257e9d9dd86c79f3"
+    },
+    {
+      "source": "__pycache__/patent_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 29691,
+      "sha256": "d9461de4f70832357fc27e693ede711975330a2576e1b07b46a917e4308ffd0b"
+    },
+    {
+      "source": "__pycache__/patent_entity_review.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_entity_review.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 20791,
+      "sha256": "c76e53c9d9d47e7c534975caea7ddf811f5c9f69f6ded4499a249fe0a2f2d12d"
+    },
+    {
+      "source": "__pycache__/patent_events.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_events.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8991,
+      "sha256": "a9603e22ae3f27191adbb119e0d784882f77d36aa1df7e1b5fe3cf94e7608901"
+    },
+    {
+      "source": "__pycache__/patent_events.cpython-39.pyc",
+      "destination": "unused/__pycache__/patent_events.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 5336,
+      "sha256": "2092827767a3a0c77787dac896805cc06dd450dc408e3863ec202cc8dd1d7413"
+    },
+    {
+      "source": "__pycache__/patent_landscape.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_landscape.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8581,
+      "sha256": "8ade70f16b516b20a3beb0e6fb5d899d1ce345297323dc05f57fc317bc0a7e65"
+    },
+    {
+      "source": "__pycache__/patent_landscape.cpython-39.pyc",
+      "destination": "unused/__pycache__/patent_landscape.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 5590,
+      "sha256": "1919ef743a5b38fb2c94da88eb70c2c8f8e402572d40be3065cef64cbbe33aca"
+    },
+    {
+      "source": "__pycache__/patent_operations.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_operations.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 18154,
+      "sha256": "acd745b22f63ee46faa10bea3fa50baecb12ad19f92239ddce936f24d114aeed"
+    },
+    {
+      "source": "__pycache__/patent_query_plan.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_query_plan.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 5912,
+      "sha256": "c4850760917ba647fa0f9b010b998f27a1e718522281679f5c443c44c059b8be"
+    },
+    {
+      "source": "__pycache__/patent_review.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_review.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7637,
+      "sha256": "a716f1763979331426170391a534c0d90cc1750b3714eedd4eb50962f7b733cf"
+    },
+    {
+      "source": "__pycache__/patent_source_coverage.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_source_coverage.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 10090,
+      "sha256": "d2b99f15709d9583578ba543ced7602363191bbd4ec292bc14025de3f1c628c3"
+    },
+    {
+      "source": "__pycache__/patent_universe.cpython-312.pyc",
+      "destination": "unused/__pycache__/patent_universe.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 19771,
+      "sha256": "bcdd569c08c0e6ff312bcbfa04d2c8a57150d238b660c8930a83aae7137524d7"
+    },
+    {
+      "source": "__pycache__/people_movements.cpython-312.pyc",
+      "destination": "unused/__pycache__/people_movements.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 36849,
+      "sha256": "e8cd8ace0b430ddd8bb52873a20f825be2463652c6f7b4a7fd541bc074fb1dd7"
+    },
+    {
+      "source": "__pycache__/people_movements.cpython-39.pyc",
+      "destination": "unused/__pycache__/people_movements.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 22478,
+      "sha256": "ca61aa787a9ee669dc9cde67cfe3a1df0a2a553e00e1c441dd7b95735603cf47"
+    },
+    {
+      "source": "__pycache__/people_social_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/people_social_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 15053,
+      "sha256": "3495ed63b65f95cd1f98ef77ed11820e7ba5d605ceab76bbd8d2bffdeecbdd7a"
+    },
+    {
+      "source": "__pycache__/personnel_archive.cpython-312.pyc",
+      "destination": "unused/__pycache__/personnel_archive.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 15168,
+      "sha256": "ba213469290b43fd6315121d05895c348173153ead7842bb5f9ac714f5daa2d3"
+    },
+    {
+      "source": "__pycache__/personnel_archive.cpython-39.pyc",
+      "destination": "unused/__pycache__/personnel_archive.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9330,
+      "sha256": "10d2335d4a9ea2ff71921d3c7f30e4affc642f5dab0994b7d18e7bff592b435f"
+    },
+    {
+      "source": "__pycache__/publish_collection_sms_terms.cpython-312.pyc",
+      "destination": "unused/__pycache__/publish_collection_sms_terms.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 2549,
+      "sha256": "b7b6bfd994ce1aa6b4b8b6799e7e31905fb18efd3990e72b229bc2c0d399d89f"
+    },
+    {
+      "source": "__pycache__/publish_universe_v04.cpython-39.pyc",
+      "destination": "unused/__pycache__/publish_universe_v04.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 1404,
+      "sha256": "6267754a83b7ffc0a84d8638b9e97c00c48e051823e69765051400b7cb4f5992"
+    },
+    {
+      "source": "__pycache__/reconcile_coverage.cpython-312.pyc",
+      "destination": "unused/__pycache__/reconcile_coverage.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 17238,
+      "sha256": "bee6d79eb204e5366f831ff709de14e033c2961246496eda88a32bd960a5dae5"
+    },
+    {
+      "source": "__pycache__/reconcile_coverage.cpython-39.pyc",
+      "destination": "unused/__pycache__/reconcile_coverage.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 10540,
+      "sha256": "3d7bdd5ef0740f8aa73f5b845fcf6647a508c68ed050a8196332afaf3a8cdfc9"
+    },
+    {
+      "source": "__pycache__/register_collection_sms.cpython-312.pyc",
+      "destination": "unused/__pycache__/register_collection_sms.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8672,
+      "sha256": "7560531bab46590bfee3d588747deb9bd7280b52a2b90d917730766b2d03b319"
+    },
+    {
+      "source": "__pycache__/regulatory_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/regulatory_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 20206,
+      "sha256": "f61ad1f75d4db0d4248bd812fdf41c34772fc15acdfbcbef736fc272eb333fc0"
+    },
+    {
+      "source": "__pycache__/regulatory_athena.cpython-39.pyc",
+      "destination": "unused/__pycache__/regulatory_athena.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 11698,
+      "sha256": "591fec96763b035e04a7731a2b9e1df9483a3f1159f663997bd1d8fc60d43001"
+    },
+    {
+      "source": "__pycache__/regulatory_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/regulatory_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 27022,
+      "sha256": "77e15e6664e61576733221a35c01b8c605c99dbda03aeda221ed3c842eb65f5a"
+    },
+    {
+      "source": "__pycache__/regulatory_collection.cpython-39.pyc",
+      "destination": "unused/__pycache__/regulatory_collection.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 16192,
+      "sha256": "fa16b9f622761b2649e998e8ea9b0f2fdf30916062546ad5a38ce1f9d8844db3"
+    },
+    {
+      "source": "__pycache__/regulatory_sources.cpython-312.pyc",
+      "destination": "unused/__pycache__/regulatory_sources.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 38368,
+      "sha256": "0ede133b0c026048f4e0c4cc81724b15625e93d683bb97f193efb313ae03aba7"
+    },
+    {
+      "source": "__pycache__/regulatory_sources.cpython-39.pyc",
+      "destination": "unused/__pycache__/regulatory_sources.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 23427,
+      "sha256": "e46b0a19a27705b8ed75f01978ff8a717044080f614a687faf4f211bdfc753cd"
+    },
+    {
+      "source": "__pycache__/research_contract.cpython-312.pyc",
+      "destination": "unused/__pycache__/research_contract.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 18103,
+      "sha256": "dc3b9dd7d1702fd109e69b84f4a5c3214d49a9d0a18b135d3280e9942c03e9da"
+    },
+    {
+      "source": "__pycache__/research_contract.cpython-39.pyc",
+      "destination": "unused/__pycache__/research_contract.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 12006,
+      "sha256": "58fff81fb9f6f26ba73b0ae0a1415520a8565c810a5f9eed1c4e929c5a44b837"
+    },
+    {
+      "source": "__pycache__/research_publication.cpython-312.pyc",
+      "destination": "unused/__pycache__/research_publication.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7721,
+      "sha256": "32fd87e5ce618fae0de78ea5406df3ce092025d88e8348f85412a5772f62d787"
+    },
+    {
+      "source": "__pycache__/sec_athena_pilot.cpython-312.pyc",
+      "destination": "unused/__pycache__/sec_athena_pilot.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 36692,
+      "sha256": "82b0b1161125fcd192673b72f00c219020658728285104369c22c80ecf3de7f9"
+    },
+    {
+      "source": "__pycache__/sec_filings.cpython-312.pyc",
+      "destination": "unused/__pycache__/sec_filings.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 39387,
+      "sha256": "38dd867cb1a2f6f5d69d532494027f98411fa7468a03f1001b0aa212c4e92dee"
+    },
+    {
+      "source": "__pycache__/sec_filings.cpython-39.pyc",
+      "destination": "unused/__pycache__/sec_filings.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 22454,
+      "sha256": "b5c0f209998343484f75996e6f7fcf719981b99713ae3a9c03b81a886f40a6f6"
+    },
+    {
+      "source": "__pycache__/sec_filings_legacy.cpython-312.pyc",
+      "destination": "unused/__pycache__/sec_filings_legacy.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 2048,
+      "sha256": "6f78d27f90972c50504038cd52e51b6a78d4f1adce9c17261189a75e09192764"
+    },
+    {
+      "source": "__pycache__/social_media_mentions.cpython-312.pyc",
+      "destination": "unused/__pycache__/social_media_mentions.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 23302,
+      "sha256": "5f50a82a7e4786561eec7cfce0332261189770389f10004ee25fca18f11897e4"
+    },
+    {
+      "source": "__pycache__/social_media_mentions.cpython-39.pyc",
+      "destination": "unused/__pycache__/social_media_mentions.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 14171,
+      "sha256": "253e87c7b907edd3f406e5939825e995049401e174c3f53c95a9d679ff69d1c6"
+    },
+    {
+      "source": "__pycache__/source_coverage_register.cpython-39.pyc",
+      "destination": "unused/__pycache__/source_coverage_register.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 15044,
+      "sha256": "c0abc5ded9fa5b5f5e3bab8e11c345a7e16de4e6c67cb17487ccaffa9e8dda7d"
+    },
+    {
+      "source": "__pycache__/source_observation_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/source_observation_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9766,
+      "sha256": "f0701c5b22c542097e32d4dfb2e5e152835a098f4d4ad06160b8fb30fbe14781"
+    },
+    {
+      "source": "__pycache__/strategic_transactions.cpython-312.pyc",
+      "destination": "unused/__pycache__/strategic_transactions.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 22090,
+      "sha256": "05c8579cc83114a0134b5464678689ebdf3b5ca873c6b240e85ff9d3b8534248"
+    },
+    {
+      "source": "__pycache__/strategic_transactions.cpython-39.pyc",
+      "destination": "unused/__pycache__/strategic_transactions.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 13318,
+      "sha256": "81dbf9979c179493a869f23e9fb57962fbb47d9f1eaa771da8063387bb15fd0e"
+    },
+    {
+      "source": "__pycache__/streaming_release.cpython-312.pyc",
+      "destination": "unused/__pycache__/streaming_release.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 4236,
+      "sha256": "378c4f22274878586afa467e7a3a4447d8929d76518ff5c7e58c18f565dfa7d4"
+    },
+    {
+      "source": "__pycache__/test_collection_alerts.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_collection_alerts.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 23831,
+      "sha256": "054b23f31178619b217bcf332e3d8d4f4f5aeadabc66155e3124a8fee00f1b90"
+    },
+    {
+      "source": "__pycache__/test_collection_operations.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_collection_operations.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 16634,
+      "sha256": "db66754799e5d8e88b8cdd85a9eaf12d8ca93ea42eb2391c965b9ef5e46812f0"
+    },
+    {
+      "source": "__pycache__/test_collection_storage.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_collection_storage.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 37012,
+      "sha256": "b5eda7cd6579689590ae72c22ed8cda003bf07e7b1ed45564b91ee47904db078"
+    },
+    {
+      "source": "__pycache__/test_company_admission.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_company_admission.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 2856,
+      "sha256": "54fb3c2536b6498ddb614dc636a205738123b7a2d88fcaa20ca9438607f2b1d3"
+    },
+    {
+      "source": "__pycache__/test_decodo_scraping_api.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_decodo_scraping_api.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 6941,
+      "sha256": "5976c635c17739a9903773ce07a437f026579b20f41083e713450313a26b2f5c"
+    },
+    {
+      "source": "__pycache__/test_decodo_scraping_api.cpython-39.pyc",
+      "destination": "unused/__pycache__/test_decodo_scraping_api.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 2689,
+      "sha256": "c84d34352822334ca960626741294eb4dacc96d642949c8d3c3e470430321bf3"
+    },
+    {
+      "source": "__pycache__/test_disclosure_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_disclosure_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3474,
+      "sha256": "a52a0243e35ad14237bb5c1aaacec1cd120aa2cb5aa9cb9373c60e82bfba0e50"
+    },
+    {
+      "source": "__pycache__/test_disclosure_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_disclosure_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 19937,
+      "sha256": "92f8113541483eabbb8e8d8d403e869f87089683dc5438ed05bd0b573be51ad9"
+    },
+    {
+      "source": "__pycache__/test_disclosure_page_reviews.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_disclosure_page_reviews.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 4188,
+      "sha256": "e8440b533d53172a14d3068a9ad7149663dc60cdcb9944f5d8e0ebc2bee4db3f"
+    },
+    {
+      "source": "__pycache__/test_eodhd_daily_cohort.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_eodhd_daily_cohort.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 5322,
+      "sha256": "5b3a7cad5957102c4ec8f0b1e6419e0bf2a4808fade9723aa936881df074ab41"
+    },
+    {
+      "source": "__pycache__/test_eodhd_universe.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_eodhd_universe.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 26820,
+      "sha256": "a9a4b28545a1931f44fc4d26710ccd054fdc8a08cb580d7e53d50ee471c8115e"
+    },
+    {
+      "source": "__pycache__/test_ibkr_hkex_news.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_ibkr_hkex_news.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 1789,
+      "sha256": "973639b38a4a22035d9c3f180ddcd0e24462a7a657ea07265c538f2776b6f657"
+    },
+    {
+      "source": "__pycache__/test_ibkr_hkex_news.cpython-39.pyc",
+      "destination": "unused/__pycache__/test_ibkr_hkex_news.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 1248,
+      "sha256": "8a1802dd3c81fda94e75577e90bf27e7cb01c1d52234cd3afd300fc14846bc61"
+    },
+    {
+      "source": "__pycache__/test_market_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_market_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9617,
+      "sha256": "218a6acd6b02e556f66efbeb7e836f8585c22fec30df99b70d1f7c699368c602"
+    },
+    {
+      "source": "__pycache__/test_market_operations.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_market_operations.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7446,
+      "sha256": "ed5af58cacffa95d41a73a141a2b08c7154c7682ee5f2b7d0aac4291ea84c1a8"
+    },
+    {
+      "source": "__pycache__/test_memory_budget.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_memory_budget.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 5325,
+      "sha256": "ab1ad34ee6a752b44e1f08964815aa412fddf881a3ba61be17bd12f8fcec6ac2"
+    },
+    {
+      "source": "__pycache__/test_news_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_news_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 30822,
+      "sha256": "116a7e4273a9dcd17e950f7060a40692d10d9daf5e635ebde65f161f007131b2"
+    },
+    {
+      "source": "__pycache__/test_news_operations.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_news_operations.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8747,
+      "sha256": "8e1c80cbe758d3fe5f6258298eeb7f560e7fbea9cb61614acd9f53da9ffe414c"
+    },
+    {
+      "source": "__pycache__/test_nmpa_baseline.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_nmpa_baseline.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 6594,
+      "sha256": "29618cbe2cceab0c8ae4566b8d7c4226b609dc34a0fcdf20154cfdbf7505fd10"
+    },
+    {
+      "source": "__pycache__/test_patent_adjudication.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_adjudication.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8626,
+      "sha256": "725f8814357e70eb105f0d822925f5a93d28f68c3ea7ddc139a962868ed21ba7"
+    },
+    {
+      "source": "__pycache__/test_patent_assignment_review.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_assignment_review.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3957,
+      "sha256": "349357424dd31c6854222b3c4e888ba67ac43a6a2470745d07e646af1d72328d"
+    },
+    {
+      "source": "__pycache__/test_patent_assignments.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_assignments.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 5739,
+      "sha256": "217cfefa9d5e191d7cf22f09193e08dac34df163733d67cf8fc04e21b884747e"
+    },
+    {
+      "source": "__pycache__/test_patent_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 16081,
+      "sha256": "2e6d8c70b4e6943d8cc54818b05bc3f40accf74ed879eaebefea067d5654092e"
+    },
+    {
+      "source": "__pycache__/test_patent_backfill_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_backfill_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 19456,
+      "sha256": "26c34aad4dd02d4d1de2966e1483c750c90b4d38820f6b106c099035616352e5"
+    },
+    {
+      "source": "__pycache__/test_patent_backfill_publication.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_backfill_publication.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 16263,
+      "sha256": "6a9b4537b394efc6b59ed5bfdf26851c8403477c7ff3f3e3131a13819beab761"
+    },
+    {
+      "source": "__pycache__/test_patent_bigquery_access.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_bigquery_access.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 6421,
+      "sha256": "bde36c1289986d5bb4925bd194d8468c0e1623d68f3b18ecb17fd7ac8f54f97f"
+    },
+    {
+      "source": "__pycache__/test_patent_bigquery_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_bigquery_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 10746,
+      "sha256": "1f4a282583a027ee7b8453b81df8aad7257235b989124dbed4ce4de67942393e"
+    },
+    {
+      "source": "__pycache__/test_patent_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 24088,
+      "sha256": "05ca504d9f0e61676e659a97e4427386f1f3784637f53ffd5bfec684b7bcb7e7"
+    },
+    {
+      "source": "__pycache__/test_patent_entity_review.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_entity_review.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 10673,
+      "sha256": "53a02f85d59b2253f55ed1d7e0186f3829498f0ae98db05a366dc462bb79908a"
+    },
+    {
+      "source": "__pycache__/test_patent_events.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_events.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 4123,
+      "sha256": "89e6ca2a9cd01bca15d90045cbb56399583b0fe710733339274344a7109cb6ff"
+    },
+    {
+      "source": "__pycache__/test_patent_events.cpython-39.pyc",
+      "destination": "unused/__pycache__/test_patent_events.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 2963,
+      "sha256": "1c65a09ede2ee60f7ed815900823b491e6bdae94bb6d809f79bd713e4b455270"
+    },
+    {
+      "source": "__pycache__/test_patent_landscape.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_landscape.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3586,
+      "sha256": "6b8905e54ded5a6d94f4b1e48614ca46f988fc3fa4e32a35c6267ce4638a92bc"
+    },
+    {
+      "source": "__pycache__/test_patent_landscape.cpython-39.pyc",
+      "destination": "unused/__pycache__/test_patent_landscape.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 2554,
+      "sha256": "b0baa9c271cec5b16a3ac91bc22962f100bf24bb296707049e738868e5f55117"
+    },
+    {
+      "source": "__pycache__/test_patent_operations.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_operations.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 15376,
+      "sha256": "d3a3276d7aa5f7f55170f63a3555c18e08b098122de198ffaf7faff60c18dadb"
+    },
+    {
+      "source": "__pycache__/test_patent_universe.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_patent_universe.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 15946,
+      "sha256": "6b09e2df846bb39fbf5e57182b192174edb9b26bd34f66d0a01d9dd8ed80d51e"
+    },
+    {
+      "source": "__pycache__/test_people_movements.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_people_movements.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9144,
+      "sha256": "7384285526a96bfde7a745bc3c50132a30a0dd3eaa7690271178c491d1c9828c"
+    },
+    {
+      "source": "__pycache__/test_people_movements.cpython-39.pyc",
+      "destination": "unused/__pycache__/test_people_movements.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 6713,
+      "sha256": "efc57d22f68671fec08578f2526f1618126bc4261fd47fb6c6e4f874cf545ff5"
+    },
+    {
+      "source": "__pycache__/test_people_social_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_people_social_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7542,
+      "sha256": "431db4e785ebd57e43591bb915d203c4b23f99fbdd44f5c54baace8d052a8ce0"
+    },
+    {
+      "source": "__pycache__/test_personnel_archive.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_personnel_archive.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9636,
+      "sha256": "b89a6a2531f84bb481d375dff3dc463cd8a7730b4c6028500a33998b7d399fb2"
+    },
+    {
+      "source": "__pycache__/test_reconcile_coverage.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_reconcile_coverage.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 1505,
+      "sha256": "d12f185aff03449263fd99a82e317a4915b8208e88a1daa1a403b13569a69c4b"
+    },
+    {
+      "source": "__pycache__/test_regulatory_athena.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_regulatory_athena.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 8410,
+      "sha256": "bfa8f33f0872928ced5f564f8a278bdc320db51827b9b5b4a568329a370afcf5"
+    },
+    {
+      "source": "__pycache__/test_regulatory_collection.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_regulatory_collection.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 36039,
+      "sha256": "30f73abb1eb48dbb98f7f0edabdb8d7296a73e29f3ac4c07b80f66ab285d50f7"
+    },
+    {
+      "source": "__pycache__/test_research_contract.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_research_contract.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 16944,
+      "sha256": "7e59f5552f5865673e33d58b460113b3be009e11fa01ab3c7408b368991dce63"
+    },
+    {
+      "source": "__pycache__/test_research_publication.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_research_publication.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 4500,
+      "sha256": "d9d8d3bded8afa4fa925d9c048ea5ec1ab76f4e43138dde3177e90f4d63ca6db"
+    },
+    {
+      "source": "__pycache__/test_sec_athena_pilot.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_sec_athena_pilot.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 17086,
+      "sha256": "d3c8a70fcb5c3a7349a35c030418132f75c43c1ac59bf171107fc54559629b2a"
+    },
+    {
+      "source": "__pycache__/test_sec_filings.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_sec_filings.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 30925,
+      "sha256": "706ac6ac9032c92391f89f7f28baeba69c59d6cf111d475ed5f781bff69f7b0b"
+    },
+    {
+      "source": "__pycache__/test_social_media_mentions.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_social_media_mentions.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3535,
+      "sha256": "9f50c61c4695c7dd04756a438e99f15d27f245eb927a26629630f0e43047602d"
+    },
+    {
+      "source": "__pycache__/test_social_media_mentions.cpython-39.pyc",
+      "destination": "unused/__pycache__/test_social_media_mentions.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 2366,
+      "sha256": "48c2ef7582da032f880de9d7377f9de5457757f42b6c7d94301f25bdc8c2fba2"
+    },
+    {
+      "source": "__pycache__/test_strategic_transactions.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_strategic_transactions.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 4748,
+      "sha256": "053edab767bc22bdabbf2945b427c03f3b963473968374913cef50b6b289b257"
+    },
+    {
+      "source": "__pycache__/test_strategic_transactions.cpython-39.pyc",
+      "destination": "unused/__pycache__/test_strategic_transactions.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3736,
+      "sha256": "72df07ec5f835118058a761603fad21946888fbd15edc179d623f4d6d08480ad"
+    },
+    {
+      "source": "__pycache__/test_streaming_release.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_streaming_release.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3568,
+      "sha256": "1823a4414ddd4fdc0ab06ab5e41c50edd5644a7c7f0f3b16b242a88359772d4b"
+    },
+    {
+      "source": "__pycache__/test_ticker_news.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_ticker_news.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 7832,
+      "sha256": "e4a71d4abc888af8e2b683302dc8a4b620ccf23c8bd836ac0a697ae86e3acf9c"
+    },
+    {
+      "source": "__pycache__/test_ticker_news.cpython-39.pyc",
+      "destination": "unused/__pycache__/test_ticker_news.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 5203,
+      "sha256": "dac4a8a97c2505c9c388572db89a3f48472991c743aa49edf2862bf03070caad"
+    },
+    {
+      "source": "__pycache__/test_uspto_patents.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_uspto_patents.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3624,
+      "sha256": "a197387f9070b24ef04a955f05aadf4d0d674c535f61624868f642a3c8dd3188"
+    },
+    {
+      "source": "__pycache__/test_uspto_patents.cpython-39.pyc",
+      "destination": "unused/__pycache__/test_uspto_patents.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 2301,
+      "sha256": "a1736f67b31b621ca644aab24bbc1bbc7b546b1608a15685f28b7965d89d3e35"
+    },
+    {
+      "source": "__pycache__/test_window_publication.cpython-312.pyc",
+      "destination": "unused/__pycache__/test_window_publication.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 6546,
+      "sha256": "e2940bb96058d69ec9ccbf558ed0d61f357e9f7ff1550421429f8b1c71f3d4fb"
+    },
+    {
+      "source": "__pycache__/ticker_news.cpython-312.pyc",
+      "destination": "unused/__pycache__/ticker_news.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 15381,
+      "sha256": "23da5532cebf73b6989c4b40f13e40b7063c9c3083b174a1e459f758f22a5159"
+    },
+    {
+      "source": "__pycache__/ticker_news.cpython-39.pyc",
+      "destination": "unused/__pycache__/ticker_news.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 9350,
+      "sha256": "a8d08ab97658f398f47762ed758b524ede06fe3cf9355b884a2cab4656b315fe"
+    },
+    {
+      "source": "__pycache__/uk_mhra_designations.cpython-312.pyc",
+      "destination": "unused/__pycache__/uk_mhra_designations.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 16698,
+      "sha256": "04ca26d752bb1946b9f71a133c5fd01112f1633a25c19e94960b671cd469dcd0"
+    },
+    {
+      "source": "__pycache__/uk_mhra_designations.cpython-39.pyc",
+      "destination": "unused/__pycache__/uk_mhra_designations.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 10550,
+      "sha256": "ae0e34ee1b4bf78dde4d7be074de4dce7b31586eb9fa88020b42dd6352edbaae"
+    },
+    {
+      "source": "__pycache__/uspto_patents.cpython-312.pyc",
+      "destination": "unused/__pycache__/uspto_patents.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 5600,
+      "sha256": "e60f7608fdf97b69be89baebbec25f1fb3e9d12aa3045284d8e3965f1bcb7daf"
+    },
+    {
+      "source": "__pycache__/uspto_patents.cpython-39.pyc",
+      "destination": "unused/__pycache__/uspto_patents.cpython-39.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3547,
+      "sha256": "98bb2469f30c33a8271134c3b1157fc63b939f5d0163f7b31c559c5150fdde0a"
+    },
+    {
+      "source": "__pycache__/validate_research_data.cpython-312.pyc",
+      "destination": "unused/__pycache__/validate_research_data.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 3719,
+      "sha256": "9196fce52e620a678bd4663868d0d5f29951a7bfda3390c15b60add79f758254"
+    },
+    {
+      "source": "__pycache__/window_publication.cpython-312.pyc",
+      "destination": "unused/__pycache__/window_publication.cpython-312.pyc",
+      "reason": "Regenerable Python bytecode cache",
+      "bytes": 16474,
+      "sha256": "d42316f132fc2721fee777192e48a75d1dfd6871d7fd0ad3d31d008b8d827458"
+    },
+    {
+      "source": "config/collection-monitoring-deployment-permissions.json",
+      "destination": "unused/config/collection-monitoring-deployment-permissions.json",
+      "reason": "Superseded by consolidated monitoring policy",
+      "bytes": 3632,
+      "sha256": "2dae63c356a9c1a823e2c2d69263a91fc2fa165846ff8458713fdc873905e8d4"
+    },
+    {
+      "source": "config/collection-monitoring-sms-diagnostics-permissions.json",
+      "destination": "unused/config/collection-monitoring-sms-diagnostics-permissions.json",
+      "reason": "Superseded by consolidated monitoring policy",
+      "bytes": 1230,
+      "sha256": "3d6955d8a5d114448e18b4274d72dc71b0fcd5dc9e735b784d5b89e545ba39d8"
+    },
+    {
+      "source": "config/collection-monitoring-sms-permissions.json",
+      "destination": "unused/config/collection-monitoring-sms-permissions.json",
+      "reason": "Superseded by consolidated monitoring policy",
+      "bytes": 634,
+      "sha256": "11d98263ab741111f3d097ba11fe49d1ebd13893db5acefada31d6e1ec97cd64"
+    },
+    {
+      "source": "config/disclosure-page-reviews.json",
+      "destination": "unused/config/disclosure-page-reviews.json",
+      "reason": "Superseded by universal textless-page skip policy",
+      "bytes": 639,
+      "sha256": "1588bc87228d2d03dfc13b12a4c5821733d1f02d757377af2a1d3f4f91773dbf"
+    },
+    {
+      "source": "ibkr_hkex_news.py",
+      "destination": "unused/ibkr_hkex_news.py",
+      "reason": "IBKR excluded by user; inactive reference per COLLECTOR_MIGRATION.md",
+      "bytes": 8191,
+      "sha256": "916bf73f1b279b9ef16cdfdc01b391bec356cc7d411a5add5fef9324faa13552"
+    },
+    {
+      "source": "publish_universe_v04.py",
+      "destination": "unused/publish_universe_v04.py",
+      "reason": "Completed one-off v0.4 release script",
+      "bytes": 1344,
+      "sha256": "87373314a18dbe86147fc13f8ef0ec67d4d8304a9c38974839a0a3523169c43a"
+    },
+    {
+      "source": "publish_universe_v05.py",
+      "destination": "unused/publish_universe_v05.py",
+      "reason": "Completed one-off v0.5 release script",
+      "bytes": 1395,
+      "sha256": "421728f3b6c01c2c8d91721a91eced6ddfbc1e094a9bf8bd953ee9f7b62256e6"
+    },
+    {
+      "source": "reports/automation-health-2026-09-26.md",
+      "destination": "unused/reports/automation-health-2026-09-26.md",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 3944,
+      "sha256": "672c80204c67760485fb523d2ce039cf07f326e4f310b2433744ac89f39b84ef"
+    },
+    {
+      "source": "reports/automation-health-journal-2026-09-26.json",
+      "destination": "unused/reports/automation-health-journal-2026-09-26.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 9472,
+      "sha256": "161fc63e2a8a23243f1877478adbdac0c71bffebf67acc332a1f5741f49306e1"
+    },
+    {
+      "source": "reports/automation-health-storage-2026-09-26.json",
+      "destination": "unused/reports/automation-health-storage-2026-09-26.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 918,
+      "sha256": "527713042af3d2c025557591822c409746beab0f77c92fb38038884ca03f3647"
+    },
+    {
+      "source": "reports/automation-repair-live-verification-2026-09-26.json",
+      "destination": "unused/reports/automation-repair-live-verification-2026-09-26.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 2930,
+      "sha256": "4ffed99c1a9d6a4bb3b0746bc53bd7758b3f449907b7d914133a05b09f8920ab"
+    },
+    {
+      "source": "reports/automation-repair-memory-observation-2026-09-26.json",
+      "destination": "unused/reports/automation-repair-memory-observation-2026-09-26.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 25063,
+      "sha256": "10f12a7a23156cc03faedc0cdd7c7ab839c87c71febab03456e07582a6ecbfd8"
+    },
+    {
+      "source": "reports/automation-repair-service-status-2026-09-26.json",
+      "destination": "unused/reports/automation-repair-service-status-2026-09-26.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 8518,
+      "sha256": "ac25fcab7d6d1b3b22ca79a022d3eae99f865e4d404116270bf2c923e9e2688c"
+    },
+    {
+      "source": "reports/automation-repair-tests-2026-09-26.log",
+      "destination": "unused/reports/automation-repair-tests-2026-09-26.log",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 2543,
+      "sha256": "a3a472670b988cdff6f32af3dc55893dbaf8f5bce7bc05ed282dd8ea5eba4e5b"
+    },
+    {
+      "source": "reports/automation-repairs-2026-09-26.md",
+      "destination": "unused/reports/automation-repairs-2026-09-26.md",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 5099,
+      "sha256": "90fef46b95ab29c7aa151f9eceb1be151012d048149566fe723cdfbe73661bed"
+    },
+    {
+      "source": "reports/collection-continuation-2026-09-24.json",
+      "destination": "unused/reports/collection-continuation-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 1608,
+      "sha256": "a01980e63bc0dc5d1eb1eaaaafacbbbee54fe63994973f430dd83552d3f67122"
+    },
+    {
+      "source": "reports/collection-daily-status-2026-09-22.json",
+      "destination": "unused/reports/collection-daily-status-2026-09-22.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 4739,
+      "sha256": "f68d7e6b8b37adb399b0732f91f4602d10c03bfd44ee23b7e7d455905b243154"
+    },
+    {
+      "source": "reports/eodhd-broad-plan-2026-09-22-cohort-2.json",
+      "destination": "unused/reports/eodhd-broad-plan-2026-09-22-cohort-2.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 127945,
+      "sha256": "c486f668193bdbf18ac8dac0e76e9559b9999b6e60258705b4cbeb5aafbbf096"
+    },
+    {
+      "source": "reports/eodhd-broad-plan-2026-09-22.json",
+      "destination": "unused/reports/eodhd-broad-plan-2026-09-22.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 18258,
+      "sha256": "02f8afd9aa2149c83c78971233b4317769385cdd8691ec3e05815dc9126a54b2"
+    },
+    {
+      "source": "reports/eodhd-broad-result-2026-09-22-cohort-2.json",
+      "destination": "unused/reports/eodhd-broad-result-2026-09-22-cohort-2.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 179,
+      "sha256": "759a3dcb269e9918f378ea22a50c3480d3b05c5ba5a5225dd72d00174d244193"
+    },
+    {
+      "source": "reports/eodhd-broad-result-2026-09-22.json",
+      "destination": "unused/reports/eodhd-broad-result-2026-09-22.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 179,
+      "sha256": "40339e407d643e3f8e2f58a988ab2d74733e9394929dd3957aa6c6eff2a55e10"
+    },
+    {
+      "source": "reports/eodhd-inventory-2026-09-22.json",
+      "destination": "unused/reports/eodhd-inventory-2026-09-22.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 17320,
+      "sha256": "a81468946ce7f9600da4b34451e6ad55fc8d6c3a726a0abdd474755a65d82e1b"
+    },
+    {
+      "source": "reports/eodhd-profile-coverage-2026-09-22.json",
+      "destination": "unused/reports/eodhd-profile-coverage-2026-09-22.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 36044,
+      "sha256": "692014b4148fcae0587fddec5d7c4a83ab2d0be0e53237df13d47674bae2fca7"
+    },
+    {
+      "source": "reports/eodhd-sector-decisions-2026-09-22-cohort-2.json",
+      "destination": "unused/reports/eodhd-sector-decisions-2026-09-22-cohort-2.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 466943,
+      "sha256": "555a2e0db4501cb88c504e03c203daefe5991ffd6b1e2f7751bf2e4cc4da2c5a"
+    },
+    {
+      "source": "reports/eodhd-sector-decisions-2026-09-22.json",
+      "destination": "unused/reports/eodhd-sector-decisions-2026-09-22.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 78794,
+      "sha256": "b4b3e446dcf6a192ef75eef8dbac4e1a3902935f90b009b59125c932daf7c195"
+    },
+    {
+      "source": "reports/eodhd-sector-review-notes-2026-09-22.tsv",
+      "destination": "unused/reports/eodhd-sector-review-notes-2026-09-22.tsv",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 17167,
+      "sha256": "45fb02359ea8bbb2e07f38000087b40d683f23b8fd7e86c0009f849ab266ecdc"
+    },
+    {
+      "source": "reports/historical-start-verification-2026-09-24.json",
+      "destination": "unused/reports/historical-start-verification-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 3552,
+      "sha256": "46c028f9961aae661e3801eeb652839034feb30da2d622e2332bbbe9d90df2ce"
+    },
+    {
+      "source": "reports/market-hkex-pilot-2026-09-24.json",
+      "destination": "unused/reports/market-hkex-pilot-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 184,
+      "sha256": "524229def51797d698f324f7a70f85aa4b709cb9205910857c1e8dbccc4004e4"
+    },
+    {
+      "source": "reports/marketaux-historical-four-sectors-2021-01-01.json",
+      "destination": "unused/reports/marketaux-historical-four-sectors-2021-01-01.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 1266,
+      "sha256": "4ff30af8fb8c57110fa16e44a6b846c313669ac44f4d8bebdfe92bc61637606f"
+    },
+    {
+      "source": "reports/marketaux-history-years-2026-09-24.json",
+      "destination": "unused/reports/marketaux-history-years-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 16266,
+      "sha256": "30c9757f10bc0032f27fd19d3ec4e13f02eeda6d03400dd9c4b477d966251284"
+    },
+    {
+      "source": "reports/migration-athena-catalog-audit-2026-09-24.json",
+      "destination": "unused/reports/migration-athena-catalog-audit-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 34896,
+      "sha256": "e85f3af0624ff8fa4e6ef9d126e1735a2701aaa1484c9a462dac689517ee1adf"
+    },
+    {
+      "source": "reports/news-daily-audit-2026-09-24.json",
+      "destination": "unused/reports/news-daily-audit-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 5464,
+      "sha256": "f196970d3864930db676c19d6bf0ebeb7f1a1d7790929bcbf5a80db25c9ca522"
+    },
+    {
+      "source": "reports/news-daily-complete-2026-09-24.json",
+      "destination": "unused/reports/news-daily-complete-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 3472,
+      "sha256": "6302673b886e77b5b422f141db0c01cdad7c7e565e5ffbfe0a6e092d2056a1bf"
+    },
+    {
+      "source": "reports/news-daily-complete-audit-2026-09-24.json",
+      "destination": "unused/reports/news-daily-complete-audit-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 6491,
+      "sha256": "b4a6a763193b58ec9e6b03d13434c542746c9cf3bb6fe9bd48f6a42992a5138f"
+    },
+    {
+      "source": "reports/news-daily-pilot-2026-09-24.json",
+      "destination": "unused/reports/news-daily-pilot-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 3563,
+      "sha256": "02341668af7a33de093ce3c31a5917c5085b361ef2fabb235ae300270ec7d215"
+    },
+    {
+      "source": "reports/news-market-automation-verification-2026-09-24.json",
+      "destination": "unused/reports/news-market-automation-verification-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 2584,
+      "sha256": "98f7b1aedfa2fd4e821a02336573db9eaaa76a37964070843cd8068587cd7a30"
+    },
+    {
+      "source": "reports/news-release-status-2026-09-24.json",
+      "destination": "unused/reports/news-release-status-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 1267,
+      "sha256": "ed367ec3a817a01f038971482f322f26d5e904b0dcf73947109ead1deff4ce4c"
+    },
+    {
+      "source": "reports/optima-internal-sms-terms-draft.md",
+      "destination": "unused/reports/optima-internal-sms-terms-draft.md",
+      "reason": "Reviewed terms are published; superseded draft",
+      "bytes": 5223,
+      "sha256": "de365fd7b61f1986343deb2432ad63cd2fa4047a04a9102c832406f885c5a547"
+    },
+    {
+      "source": "reports/patent-assignment-cohort-2026-09-23.json",
+      "destination": "unused/reports/patent-assignment-cohort-2026-09-23.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 208,
+      "sha256": "37f070dba7d2bcfb8e81f59ee3927a2bf01f4139bc2154d4bd39b1f1e03b23ec"
+    },
+    {
+      "source": "reports/patent-assignment-review-2026-09-22.json",
+      "destination": "unused/reports/patent-assignment-review-2026-09-22.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 108321,
+      "sha256": "5271acd011d5bb1339c63f0c9f886812f0e7dce9bd12ba6d99b4657d51c539aa"
+    },
+    {
+      "source": "reports/patent-backfill-first-month-audit-2026-09-24.json",
+      "destination": "unused/reports/patent-backfill-first-month-audit-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 1789,
+      "sha256": "91b9b6adabe68d4482f71260981f144eddd9105a4c768b7a2c2c0ade80ceb271"
+    },
+    {
+      "source": "reports/patent-backfill-proposal-all-dated-source-history-2026-09-23.json",
+      "destination": "unused/reports/patent-backfill-proposal-all-dated-source-history-2026-09-23.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 322138,
+      "sha256": "77997eb4d60a15f7fed69601912120046156f483de8f1c20bcc243f865a51f72"
+    },
+    {
+      "source": "reports/patent-backfill-proposal-from-2000-2026-09-23.json",
+      "destination": "unused/reports/patent-backfill-proposal-from-2000-2026-09-23.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 37645,
+      "sha256": "015b49273232c03cce1f56365f86cc42380b3fd739484f28a82829fa0dda3a91"
+    },
+    {
+      "source": "reports/patent-backfill-proposal-from-2015-2026-09-23.json",
+      "destination": "unused/reports/patent-backfill-proposal-from-2015-2026-09-23.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 18024,
+      "sha256": "99a7409944f856c70f2951f038f307c12e1ca45da6f9b720015293f360652640"
+    },
+    {
+      "source": "reports/patent-backfill-selected-2015-2026-09-24.json",
+      "destination": "unused/reports/patent-backfill-selected-2015-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 18024,
+      "sha256": "99a7409944f856c70f2951f038f307c12e1ca45da6f9b720015293f360652640"
+    },
+    {
+      "source": "reports/patent-backfill-status-2026-09-24.json",
+      "destination": "unused/reports/patent-backfill-status-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 1257,
+      "sha256": "b3fc29541d70f896c9cfc713db3a265ab63b3e77f4f13620577385cf40945076"
+    },
+    {
+      "source": "reports/patent-bigquery-access-v0.3-2026-09-23.json",
+      "destination": "unused/reports/patent-bigquery-access-v0.3-2026-09-23.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 2024,
+      "sha256": "69908c6e722750e822e0d7934df74385a5cb03b0680bc15caa80c4861c86680d"
+    },
+    {
+      "source": "reports/patent-bigquery-plan-v0.3-2026-09-23.json",
+      "destination": "unused/reports/patent-bigquery-plan-v0.3-2026-09-23.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 64048,
+      "sha256": "6d5d5c18dfd5c4db0b48023fb8462377430e91da21e151761a5474595b05bdf8"
+    },
+    {
+      "source": "reports/patent-entity-review-2026-09-23.csv",
+      "destination": "unused/reports/patent-entity-review-2026-09-23.csv",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 2969,
+      "sha256": "c54a5468171f57809125834c3e2667b7ac7a152f1ffcdeed9d01a6d6334b37ae"
+    },
+    {
+      "source": "reports/patent-global-review-2026-09-22.json",
+      "destination": "unused/reports/patent-global-review-2026-09-22.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 100723541,
+      "sha256": "4430563a8d2c89847a39ad807bcde8688575fe1c0f19f9964e05a09a3c24fceb"
+    },
+    {
+      "source": "reports/patent-migration-review-2026-09-22.json",
+      "destination": "unused/reports/patent-migration-review-2026-09-22.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 2944239,
+      "sha256": "e4bd5ae6a70baacd4901e13c8388bd4fc9cc539acc962f048eea51fd2ee7c848"
+    },
+    {
+      "source": "reports/patent-scheduler-validation-2026-09-23.json",
+      "destination": "unused/reports/patent-scheduler-validation-2026-09-23.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 1963,
+      "sha256": "d9b847c1e1b566eaaf191b598df9100a916bed3bb3f4d2f8c903934a62e3ab78"
+    },
+    {
+      "source": "reports/patent-source-coverage-2026-09-23.csv",
+      "destination": "unused/reports/patent-source-coverage-2026-09-23.csv",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 5651,
+      "sha256": "696bea5c78a5d41420487a60c8fc4517215d00cd0d27f44792b7d9b27b2123ab"
+    },
+    {
+      "source": "reports/patent-source-coverage-2026-09-23.json",
+      "destination": "unused/reports/patent-source-coverage-2026-09-23.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 107254,
+      "sha256": "2170b8f94f1a20e50923fafc5692321d49b1c07b7ae97b452373255e577d3510"
+    },
+    {
+      "source": "reports/patent-source-coverage-estimate-2026-09-23.json",
+      "destination": "unused/reports/patent-source-coverage-estimate-2026-09-23.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 3290,
+      "sha256": "ffc47133107fccb87f6df9d6ceaca69b79cb385b2caaec664a282779f264ff01"
+    },
+    {
+      "source": "reports/ram-audit-2026-09-24.json",
+      "destination": "unused/reports/ram-audit-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 8109,
+      "sha256": "81654197836aadac37b17508415e848500c9cc76c560151a69ebf7a76031ae1e"
+    },
+    {
+      "source": "reports/sec-multiform-repair-validation-2026-09-26.json",
+      "destination": "unused/reports/sec-multiform-repair-validation-2026-09-26.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 378,
+      "sha256": "2cd4767ce16738aa3937037730317915828d3c31daa09f98fc2d7d4e2ad3ec62"
+    },
+    {
+      "source": "reports/universe-cutover-2026-09-24.json",
+      "destination": "unused/reports/universe-cutover-2026-09-24.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 1277,
+      "sha256": "ec722455dc60f30b8697da0ea73fd0fd882a9660f01e63a6655d53e5429a12f3"
+    },
+    {
+      "source": "reports/universe-cutover-2026-09-25.json",
+      "destination": "unused/reports/universe-cutover-2026-09-25.json",
+      "reason": "Historical dated report; no active code/config reference or recurring report glob",
+      "bytes": 693,
+      "sha256": "17edbfd60ec2c67a7c7d777f72dbe45b189cf9140297b459cc50ca4325d8b450"
+    },
+    {
+      "source": "test_ibkr_hkex_news.py",
+      "destination": "unused/test_ibkr_hkex_news.py",
+      "reason": "Tests for retired IBKR collector",
+      "bytes": 936,
+      "sha256": "8572c8c08cf6e383cc1fff614f6b51281d25117be3c69fe11cc912391f737d06"
+    }
+  ],
+  "skipped": [],
+  "scope": "Confirmed inactive scripts, superseded configuration, historical reports, and bytecode caches. Runtime modules, manual utilities, tests, build evidence, environments, locks and collection state retained.",
+  "documentation_updated": [
+    "EODHD_UNIVERSE.md",
+    "EODHD_ATHENA.md",
+    "COLLECTION_OPERATIONS.md",
+    "PATENT_COLLECTION.md",
+    "PATENT_REVIEW.md",
+    "PATENT_BACKFILL_PLAN.md",
+    "HISTORICAL_COLLECTION.md",
+    "PATENT_BACKFILL_OPERATIONS.md",
+    "NEWS_COLLECTION.md",
+    "MIGRATION_AUDIT_2026-09-24.md",
+    "NEWS_AUTOMATION.md",
+    "RAM_BUDGET.md",
+    "COMPANY_ADMISSION.md",
+    "reports/disclosure-page-review/README.md"
+  ],
+  "verified_hashes": 257
+}

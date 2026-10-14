@@ -1,0 +1,6 @@
+{
+  "policy": "config/company-admission-policy.json",
+  "universe": "config/company-universe.v0.5.json",
+  "ledger": "config/company-admission-ledger.v2.json",
+  "note": "Detailed tracking admission is recorded here; legacy discovery collection remains broader. Collectors preserve separately pinned universe versions."
+}

@@ -1,0 +1,10 @@
+[Unit]
+Description=Resume daily and historical proceedings collection every 30 minutes
+
+[Timer]
+OnCalendar=*-*-* *:12,42:00 UTC
+RandomizedDelaySec=30
+Persistent=true
+
+[Install]
+WantedBy=timers.target

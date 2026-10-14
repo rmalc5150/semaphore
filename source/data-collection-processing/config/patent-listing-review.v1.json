@@ -1,0 +1,67 @@
+{
+  "version": "patent-listing-review-1.0",
+  "universe_hash": "2e3b16372c4cfb82bf68ebd87938f263435374367fa8040815b1e31cd52945b1",
+  "observed_day": "2026-09-23",
+  "decisions": [
+    {
+      "listing_id": "lst_79e848bd-cda7-4a89-854c-3d4c41b39ddd",
+      "exchange_mic": "NEOE",
+      "ticker": "AMAT",
+      "registry_entity_id": "lei:41BNNE1AFPNAZELZ6K07",
+      "relationship_type": "depositary_receipt_on_underlying_issuer",
+      "security_type": "canadian_depositary_receipt",
+      "depositary_issuer_name": "Canadian Imperial Bank of Commerce",
+      "listed_from": "2025-02-04",
+      "trading_from": "2025-02-04",
+      "valid_to_exclusive": "2025-12-23",
+      "source_name": "tsx_amat",
+      "source_date": "2025-12-23",
+      "required_text": ["Cboe Canada", "February 4, 2025", "December 22, 2025", "Applied Materials", "Canadian Imperial Bank of Commerce"]
+    },
+    {
+      "listing_id": "lst_703a2b65-1260-44a2-8310-bd7f7114ca0f",
+      "exchange_mic": "XTSE",
+      "ticker": "AMAT",
+      "registry_entity_id": "lei:41BNNE1AFPNAZELZ6K07",
+      "relationship_type": "depositary_receipt_on_underlying_issuer",
+      "security_type": "canadian_depositary_receipt",
+      "depositary_issuer_name": "Canadian Imperial Bank of Commerce",
+      "listed_from": "2025-12-23",
+      "trading_from": "2025-12-23",
+      "valid_to_exclusive": null,
+      "source_name": "tsx_amat",
+      "source_date": "2025-12-23",
+      "required_text": ["Toronto Stock Exchange", "December 23, 2025", "Applied Materials", "Canadian Imperial Bank of Commerce"]
+    },
+    {
+      "listing_id": "lst_016849bf-ecb4-4d16-9336-98d1b038a093",
+      "exchange_mic": "XBKK",
+      "ticker": "AMAT01",
+      "registry_entity_id": "lei:41BNNE1AFPNAZELZ6K07",
+      "relationship_type": "depositary_receipt_on_underlying_issuer",
+      "security_type": "depositary_receipt",
+      "depositary_issuer_name": "Bualuang Securities Public Company Limited",
+      "listed_from": "2026-06-17",
+      "trading_from": "2026-06-18",
+      "valid_to_exclusive": null,
+      "source_name": "set_amat01",
+      "source_date": "2026-06-17",
+      "required_text": ["AMAT01", "APPLIED MATERIALS", "Depositary Receipt", "BUALUANG", "17-Jun-2026", "18-Jun-2026"]
+    },
+    {
+      "listing_id": "lst_fd9624db-34cf-4963-a047-1b0912f11c93",
+      "exchange_mic": "XBKK",
+      "ticker": "AMAT23",
+      "registry_entity_id": "lei:41BNNE1AFPNAZELZ6K07",
+      "relationship_type": "depositary_receipt_on_underlying_issuer",
+      "security_type": "depositary_receipt",
+      "depositary_issuer_name": "InnovestX Securities Co., Ltd.",
+      "listed_from": "2026-06-11",
+      "trading_from": "2026-06-12",
+      "valid_to_exclusive": null,
+      "source_name": "set_amat23",
+      "source_date": "2026-06-11",
+      "required_text": ["AMAT23", "APPLIED MATERIALS", "Depositary Receipt", "INNOVESTX", "11-Jun-2026", "12-Jun-2026"]
+    }
+  ]
+}

@@ -1,0 +1,1722 @@
+[
+  {
+    "path": "specialist_data_collection_plan.md",
+    "sha256": "f2bdf12a1000a6a78f3f1ecac73664bbe8c95d1cdfd7309f509e0b908c55a786"
+  },
+  {
+    "path": "specialist_data_sources_checklist.md",
+    "sha256": "98edf2bdbbdf452b5c5a5ab9e8369e606dd54248205aa9de84a744ad9e6a2dc5"
+  },
+  {
+    "path": "specialist_layers_outlines.md",
+    "sha256": "2e315064d336803f746b58d835c56de97dd9ec5ac3d294c444d07def8a9a4e75"
+  },
+  {
+    "path": "weeklyPlan.md",
+    "sha256": "20c223bf80a752e892e7407ac230ab2f3750b2eec509369ccd717fbb9648933f"
+  },
+  {
+    "path": "code-backup/README.md",
+    "sha256": "8393d8e7a0eb09e3e7557c497d11e8986adecf938847818b89f09122d4ee5617"
+  },
+  {
+    "path": "code-backup/backup.py",
+    "sha256": "128410863e0fbba80dd9c14f636de95dd3b1f31bbd343820ae6ad8b0fb7b32dc"
+  },
+  {
+    "path": "data-collection-processing/COLLECTION_MONITORING.md",
+    "sha256": "cf1ff6aa46698036c816593b95498fa547393fe371d03d6280c06971dae40f91"
+  },
+  {
+    "path": "data-collection-processing/COLLECTION_OPERATIONS.md",
+    "sha256": "b756b2782a9cd8ece26ec343c81f7103ca964ce854be19553490c60e69835b15"
+  },
+  {
+    "path": "data-collection-processing/COLLECTION_STORAGE.md",
+    "sha256": "88407f76b9cec44c77980ce1c0d0814a0c1010f53ba62248afab01e4b414b9f3"
+  },
+  {
+    "path": "data-collection-processing/COLLECTOR_MIGRATION.md",
+    "sha256": "192245bf288a69ad35b9bedc8429a56b03b6198e1cdb5e4685de4f7de69c5696"
+  },
+  {
+    "path": "data-collection-processing/COMPANY_ADMISSION.md",
+    "sha256": "69b232832b993db2f5cbba9e8fb79b864b5fcc8f724561e0bd141b6a7d04f065"
+  },
+  {
+    "path": "data-collection-processing/COMPANY_UNIVERSE.md",
+    "sha256": "5edf84a4650e685411ab64e055976ed7172e44e9927576432e5589314acd3813"
+  },
+  {
+    "path": "data-collection-processing/CONFERENCE_COLLECTION.md",
+    "sha256": "28aece170d5b47fcbd664b68ae80952a5d02532863b046fed8494d0a3120a7e4"
+  },
+  {
+    "path": "data-collection-processing/COVERAGE_RECONCILIATION.md",
+    "sha256": "d2a88f6facf650b78dea6275ba8d43d25dbdd93ef8675bc38a76f2bc3d7085a2"
+  },
+  {
+    "path": "data-collection-processing/DISCLOSURE_COLLECTION.md",
+    "sha256": "32f7bfea0ae66de3c45485a485aa093e8de22523dbf93e7872d9baf0c9737ac4"
+  },
+  {
+    "path": "data-collection-processing/ENTITY_DISCOVERY_ROLLOUT_PLAN.md",
+    "sha256": "ef0c0e73d8a5255e7af3e3fc44df667d8bea1fe61cfec89066cc48c0c231a378"
+  },
+  {
+    "path": "data-collection-processing/EODHD_ATHENA.md",
+    "sha256": "049301607c5484fa5b3786eadf48703f7612905dce47881a1c6ffbd7d78c09b2"
+  },
+  {
+    "path": "data-collection-processing/EODHD_QUOTA.md",
+    "sha256": "fc29b605b1ad5d6647222b0b65aec2da3a4b54d05a144da90aebd77bf9b82985"
+  },
+  {
+    "path": "data-collection-processing/EODHD_UNIVERSE.md",
+    "sha256": "1d397c6ee8d97a4fed985075c83da8ebca70a6ebb1e345180f0ca0e676f78bc2"
+  },
+  {
+    "path": "data-collection-processing/FINLIGHT_BACKFILL.md",
+    "sha256": "913a938b51103fcade3ded3e529a09e1d321149b7adc6a1d019391f8fb21f414"
+  },
+  {
+    "path": "data-collection-processing/GOOGLE_PATENTS_ACCESS.md",
+    "sha256": "30818c4d70de260bd300255f747b631367676bcd82e7fc076eec55c921baf139"
+  },
+  {
+    "path": "data-collection-processing/HISTORICAL_COLLECTION.md",
+    "sha256": "fe2e5e7ea04bd1c7d2237dd50fa49eebed109084956908145ce7f7ee2ebd9edf"
+  },
+  {
+    "path": "data-collection-processing/MARKET_COLLECTION.md",
+    "sha256": "0805e424274ce3eeb0ae892f0d00d2708e179d47c2c6ca7b3c1de66e5cbf9802"
+  },
+  {
+    "path": "data-collection-processing/MARKET_COVERAGE_EXCLUSIONS.md",
+    "sha256": "db0acdc4f522786a907227a81846b8bc453ce48b70a8d0e9c2ac6fa5b65e8ae7"
+  },
+  {
+    "path": "data-collection-processing/MIGRATION_AUDIT_2026-09-24.md",
+    "sha256": "7f971fb54fc43df2352a9d1fc44b2c2476e61df5b1f1f19e7361ee5d989f6e0e"
+  },
+  {
+    "path": "data-collection-processing/NEWS_AUTOMATION.md",
+    "sha256": "570164dff4cfebcc062911526ce144211988cb236658c210c46f92f1616c8572"
+  },
+  {
+    "path": "data-collection-processing/NEWS_COLLECTION.md",
+    "sha256": "2e95802f76c10918c6b4cd4ab8cd2ad32977541814c439793c2eae0f983bcac2"
+  },
+  {
+    "path": "data-collection-processing/PATENT_ATHENA.md",
+    "sha256": "c868100cf3077b1b3c93d2570d3783df98dfd50261695a33e870bc455c0d84d1"
+  },
+  {
+    "path": "data-collection-processing/PATENT_BACKFILL_ATHENA.md",
+    "sha256": "7757866bfa62a8bf5a6423e33f2101ea762d0e74052714e58b9108cbe3478083"
+  },
+  {
+    "path": "data-collection-processing/PATENT_BACKFILL_OPERATIONS.md",
+    "sha256": "dc7398690c8362947523eb85cbf0b29cfdcd39feb425fad3788c0d68c8176f23"
+  },
+  {
+    "path": "data-collection-processing/PATENT_BACKFILL_PLAN.md",
+    "sha256": "8d74442a8904eb1a2760fb34f9ea8e5e22fce4c4c5dbd9d917be61ff7d69b9de"
+  },
+  {
+    "path": "data-collection-processing/PATENT_COLLECTION.md",
+    "sha256": "184cc3598ebf7cfd94c1413f97cc124bfd59d3ba62f1ae05b559ed1332991d1f"
+  },
+  {
+    "path": "data-collection-processing/PATENT_OPERATIONS.md",
+    "sha256": "4b3cbc65386a6c1562e7daa529d80e8f326b2ef297e99ff9eb2695accb35783a"
+  },
+  {
+    "path": "data-collection-processing/PATENT_PILOT.md",
+    "sha256": "01654c943c946e061a92e40afaa547a1e03c866c87053f014e36ca880f6b3f5d"
+  },
+  {
+    "path": "data-collection-processing/PATENT_REVIEW.md",
+    "sha256": "7bc7ba27abeffae1da9b9fc13c201e4da849ec6fb1d625a23de625304eb5766d"
+  },
+  {
+    "path": "data-collection-processing/PEOPLE_COLLECTION.md",
+    "sha256": "6c76c5ac3909351006fbb9b8e377dfa38b649610c7c9c0b2df3cfb72bcdc2925"
+  },
+  {
+    "path": "data-collection-processing/PEOPLE_MOVEMENTS.md",
+    "sha256": "66e760b7b2ccd393c07234c8f2d3907860b41871f0d18deea9a281fb5aac41f6"
+  },
+  {
+    "path": "data-collection-processing/RAM_BUDGET.md",
+    "sha256": "6e2de0b2fce7c5073d2394f0c4eca581f067d53d9314d6924993887a4ed16d84"
+  },
+  {
+    "path": "data-collection-processing/RDS_TRACKING_SCHEMA.md",
+    "sha256": "74734406ebabe52a6afd219ff886d31330df3063aa207d4b4824b03ce5a4f892"
+  },
+  {
+    "path": "data-collection-processing/REGULATORY_COLLECTION.md",
+    "sha256": "33518ef56dc05fb02f3ab74b7c699f1197084e4fd8c4bc5a779027b30817b155"
+  },
+  {
+    "path": "data-collection-processing/RESEARCH_DATA_CONTRACT.md",
+    "sha256": "3f94b118f021e34bdc96c6cdf5e2abb11164500a8cdde7515df4ee6117cfe3cf"
+  },
+  {
+    "path": "data-collection-processing/RESEARCH_PUBLICATION.md",
+    "sha256": "80c874433ce4dc0a50440e926ccfc0f614a2394bd87494efaf86629aa1c55fdf"
+  },
+  {
+    "path": "data-collection-processing/SEC_ATHENA_PILOT.md",
+    "sha256": "46cf1f1c412605166a12c5ee6839735383484ea4a144dafe7714a35713e23a68"
+  },
+  {
+    "path": "data-collection-processing/SEC_COLLECTION.md",
+    "sha256": "3f0e05167b7fdf82a4ffe8d1fa5413d997227a65614c92a2e7475a2412ecda9b"
+  },
+  {
+    "path": "data-collection-processing/SOCIAL_MEDIA_MENTIONS.md",
+    "sha256": "bc378303e0021b8dc074f54d745410c5ab62c53becf7ff81e724a863a63704a1"
+  },
+  {
+    "path": "data-collection-processing/SOURCE_COVERAGE_REGISTER.md",
+    "sha256": "5ab94c9e468bd83a8740ece55f09f5074ee12e91e95234b4a55863546e1bc7bb"
+  },
+  {
+    "path": "data-collection-processing/SOURCE_END_TO_END_VERIFICATION.md",
+    "sha256": "499e144908bd2bed9b91760e12fb87465a1e391fc2eaf1e547ca536f42eb831d"
+  },
+  {
+    "path": "data-collection-processing/STRATEGIC_TRANSACTIONS.md",
+    "sha256": "505fc76ff8ed67f1e71a5c5949f0c58c200f886cc1546d439f69fe5ff7fa82f3"
+  },
+  {
+    "path": "data-collection-processing/archive_specialist_probes.py",
+    "sha256": "735b573e48f2c9045c8314036ccc2d27695b7cf87b7083cfa22865a92c455d7c"
+  },
+  {
+    "path": "data-collection-processing/biotech_specialists.py",
+    "sha256": "0114aa1ffc252dae482ca5a7f56e8e93dc4f25807be31afc72108e8b3d652524"
+  },
+  {
+    "path": "data-collection-processing/build_collection_monitoring_config.py",
+    "sha256": "b18efdb419125cd2db7db4eb7ff0a3b3bb4b859512181494903e3d9631a0f2d1"
+  },
+  {
+    "path": "data-collection-processing/build_specialist_expansion_report.py",
+    "sha256": "f7cbf0026c2676841cec0b32b71e012632729707b72c57f4145136350519edc6"
+  },
+  {
+    "path": "data-collection-processing/build_weekly_readiness_report.py",
+    "sha256": "dc3c10483b97816a307aed6bb9b4af9106e609d5c59cf78c3406c2a5cd87221c"
+  },
+  {
+    "path": "data-collection-processing/check_collection_sms_followup.py",
+    "sha256": "99cb2508652c50f753261487f14137c72fd2f6f47c83e9d95a013106e4765c2c"
+  },
+  {
+    "path": "data-collection-processing/chictr_studies.py",
+    "sha256": "68079567196b20a6c0f9a248c0233fea31e4b3acce7a43a0270f29637c401009"
+  },
+  {
+    "path": "data-collection-processing/china-verification-status.json",
+    "sha256": "c6f3aa7be86d1936a012485168811552173f2d9d16d5cac354917c400c5b586d"
+  },
+  {
+    "path": "data-collection-processing/clinicaltrials_studies.py",
+    "sha256": "cd99d853d12d16ff2cef3cdbaf5b979f3485cd61a199b41e6c361376f45d8b98"
+  },
+  {
+    "path": "data-collection-processing/collect_daily.py",
+    "sha256": "1f572be033285ba466709cb9393dd30f5d728e8264342ada9fbe126dc10fb2b7"
+  },
+  {
+    "path": "data-collection-processing/collect_historical.py",
+    "sha256": "df17aae6a197bab86bd4fd70d2f8ad6f87a36eb9622b1b3b70a5730c93cf9a63"
+  },
+  {
+    "path": "data-collection-processing/collection_alerts.py",
+    "sha256": "f97364bac038757ca86e2a039134ff3e508ac940592ed578240952f11691e19b"
+  },
+  {
+    "path": "data-collection-processing/collection_health_exporter.py",
+    "sha256": "cd3e1a950db225397becc17d77196513229b4baa0c08344747bac311584ab1f6"
+  },
+  {
+    "path": "data-collection-processing/collection_operations.py",
+    "sha256": "f5a5de7aabc6f0466163b487c4987b797be65cd68ebca45f03e1eb1f5178846d"
+  },
+  {
+    "path": "data-collection-processing/collection_storage.py",
+    "sha256": "2135b60f2659405aa8f8ee9f12c1acd49f33279ec16dba9553ef84a087f94b50"
+  },
+  {
+    "path": "data-collection-processing/collection_storage_demo.py",
+    "sha256": "5eda62759d83f3775a9975bc5e37d90395dcc3b44cd6bb807ca576a980c30920"
+  },
+  {
+    "path": "data-collection-processing/committed_data_athena.py",
+    "sha256": "f84f94a89c46c94e7a8487dba2c22962d38a66c88a5c2a0633834b31d73464e4"
+  },
+  {
+    "path": "data-collection-processing/company_admission.py",
+    "sha256": "fb4c6f844237e3317689845b8f6287e6224082ab5325c25a331234d05dc3690e"
+  },
+  {
+    "path": "data-collection-processing/company_press_releases.py",
+    "sha256": "4a4ef42e1e83f3a84fe1ea991140d7fa598f302e570f134b8c5f524885b0eb39"
+  },
+  {
+    "path": "data-collection-processing/company_registry_verify.py",
+    "sha256": "549ed1ec85da464761769f6a926dc257d2a82803ce062161c9e08d52fc69595c"
+  },
+  {
+    "path": "data-collection-processing/company_universe_athena.py",
+    "sha256": "51d896d0fb4022a6b8239a3f8d423aaafb062139cf55cb0f4dc491f3143b6310"
+  },
+  {
+    "path": "data-collection-processing/company_universe_pipeline.py",
+    "sha256": "79530d81266f8a4ff299bdd85542c590e5a76a57187e03c5142f26105d988c07"
+  },
+  {
+    "path": "data-collection-processing/conference_athena.py",
+    "sha256": "0b04adcec460ec7845709330f2989e8a19436c3cbe021ae971f88c126d8e9257"
+  },
+  {
+    "path": "data-collection-processing/conference_collection.py",
+    "sha256": "a3dcedfc875ce27e803352a63f7847e62d7e535e18b279426c0514343e5b97c7"
+  },
+  {
+    "path": "data-collection-processing/conference_materials.py",
+    "sha256": "9ffe121bdacec1cedb7eb7e3f8ffc91ee048caeec17be96dcb903ec0b0c5671a"
+  },
+  {
+    "path": "data-collection-processing/conference_memory_check.py",
+    "sha256": "c00aa6f2250c705d1bf2df85cc78bde576cfc71c924e22133e7edaa3b8b30a49"
+  },
+  {
+    "path": "data-collection-processing/corporate_disclosures.py",
+    "sha256": "24d7d4395b579b75eeccc1a7676b24cd17eb3bc5adbdd4ca591466a8e7fdd38d"
+  },
+  {
+    "path": "data-collection-processing/coverage_live_snapshot.py",
+    "sha256": "54ab5bd54cb88bdd751eeb176a4c437e302e983648840dd20f4a5120660f76e7"
+  },
+  {
+    "path": "data-collection-processing/decodo_scraping_api.py",
+    "sha256": "486bc16ad4e67592fa106f4738d36c3869e1d8e55c6cbff0b103949a58c123d3"
+  },
+  {
+    "path": "data-collection-processing/deploy_collection_monitoring.py",
+    "sha256": "97b9b0f1acee330891d3e8815081af958dee9cb30ec5ec4a5fee073ab3d2563b"
+  },
+  {
+    "path": "data-collection-processing/disclosure_athena.py",
+    "sha256": "c1f908da4705e78ee7f9eeb08e692770ef156c211cefde24f8fc074d66c8c88c"
+  },
+  {
+    "path": "data-collection-processing/disclosure_collection.py",
+    "sha256": "c17d97cb63e0032cf99bdfde2c65302dbaa8e3a4b29d1e92d6c25688e5fc8599"
+  },
+  {
+    "path": "data-collection-processing/disclosure_event_collector.py",
+    "sha256": "ff1f86c2f21257f0b3963761e8b8bb30b0ae5cf21dbe9f65f111c9c321b1cd50"
+  },
+  {
+    "path": "data-collection-processing/edinet_access_check.py",
+    "sha256": "43148515f97855e70e565cb0fd34c09e817f7007e01d18872574cfbd1761b388"
+  },
+  {
+    "path": "data-collection-processing/eia_access_check.py",
+    "sha256": "c3ad868182381d22aca62bdb360f77fc3028b7cc76441657e20e3af25a6266d4"
+  },
+  {
+    "path": "data-collection-processing/ema_ctis_actions.py",
+    "sha256": "dc47007d047e8284b11b0ceb5ff06cb754e1759ca210c85416fd7321efcf8ec6"
+  },
+  {
+    "path": "data-collection-processing/enable_collection_sms_diagnostics.py",
+    "sha256": "535bf7cb19bd06f5746dc2934b286d9e2bf45fbe84120f80da642a4e57047a5d"
+  },
+  {
+    "path": "data-collection-processing/eodhd_athena.py",
+    "sha256": "e9c2ebd01820977d74b2a74e6f2c4909268260e0620349d5aacb9a2793e6d931"
+  },
+  {
+    "path": "data-collection-processing/eodhd_batch.py",
+    "sha256": "4676b0304d84ce1905395cbbb8ba490fb5ccf33b7fcba7abea85919d34408751"
+  },
+  {
+    "path": "data-collection-processing/eodhd_coverage.py",
+    "sha256": "27fae2beb5b861669d1290d7f396396b30a9d1fa7d4e174b183997174f8377af"
+  },
+  {
+    "path": "data-collection-processing/eodhd_daily_cohort.py",
+    "sha256": "032f49d781ade44c79cf8434d39c115ae1f8ecf3baa2428017ab3895711dff53"
+  },
+  {
+    "path": "data-collection-processing/eodhd_quota.py",
+    "sha256": "2fc87d69f13322e5b5d687cab04287e97f6cf1cff4909cecb122fc577e155468"
+  },
+  {
+    "path": "data-collection-processing/eodhd_review.py",
+    "sha256": "812d1bd02dc60adcad0e9ec39cd506b0e4bd0336bddfae3de981ac8d996c40b3"
+  },
+  {
+    "path": "data-collection-processing/eodhd_sector_review.py",
+    "sha256": "440cf93d09f50d9065a6ed7b500c8a525743541b8457d62346d1687abea778db"
+  },
+  {
+    "path": "data-collection-processing/eodhd_universe.py",
+    "sha256": "8e48f2e83262e9fb42e5e45286dbb4365e2a1be08a2fc4891085da999ad85283"
+  },
+  {
+    "path": "data-collection-processing/event-pipeline.md",
+    "sha256": "e431c3d1b9b435c06d9ba5f479357ba1657c28cc8933d9d1017012a377384f61"
+  },
+  {
+    "path": "data-collection-processing/fda_access.py",
+    "sha256": "c27cfaad74a670cdaa05e0e3723ad6f6507c663d3cb95fa556a5b9070f442760"
+  },
+  {
+    "path": "data-collection-processing/fda_access_check.py",
+    "sha256": "759b86e516420ae08dabe059abd02bbf74863d45207b3bd67a46c91e4f9d0943"
+  },
+  {
+    "path": "data-collection-processing/fda_dashboard_access_check.py",
+    "sha256": "c9f5718e010ff57a112358a1fb2d7c4b342993ff9b12d5d4f569aec170094831"
+  },
+  {
+    "path": "data-collection-processing/fda_drug_actions.py",
+    "sha256": "6c32ca0d3ca8dab583b563aa84054457c463b8192f600c91ec867ad841d95aee"
+  },
+  {
+    "path": "data-collection-processing/fda_enforcement_access_check.py",
+    "sha256": "275a5c450971848b70a190211786749b8d86ac7779d6e955307d62a1482b376f"
+  },
+  {
+    "path": "data-collection-processing/fda_productcodes_access_check.py",
+    "sha256": "622840efdf3c8c172954f094376ec8b3f6e4943060813d400be1f9664995af57"
+  },
+  {
+    "path": "data-collection-processing/finlight_backfill.py",
+    "sha256": "2bb41559c5923669631a614410964c154ce9527566ce7572361738450eb3177d"
+  },
+  {
+    "path": "data-collection-processing/historical_policy.py",
+    "sha256": "5c87b81d092827ef59bfbbf23df478069436bf92addaf8dc0c078b7f0625a9b2"
+  },
+  {
+    "path": "data-collection-processing/hkex_cross_listed_prices.py",
+    "sha256": "c3ee0b307e0c672a92c85c35db3f33dd378b63e8fb252a1e912cfe9278255a59"
+  },
+  {
+    "path": "data-collection-processing/hkex_csv_cleaner.py",
+    "sha256": "be1711f8362abd1a49ab4b3e348a1dda2d7e73061ada080d50a16b57b9e67b3c"
+  },
+  {
+    "path": "data-collection-processing/hkex_daily_prices.py",
+    "sha256": "93057661f7da70a8b0aee8fa94154deb9ee931fbbcbf56afdf714acade42c95e"
+  },
+  {
+    "path": "data-collection-processing/hkex_filings.py",
+    "sha256": "c1af80563df527cad788034fea392d8add323a66e169ade4a994822f831b442b"
+  },
+  {
+    "path": "data-collection-processing/hkex_historical_prices.py",
+    "sha256": "78e27fcbde1fa901d1009c2e19b339aa45f6e638e559336cbb8268e3ad5dd66a"
+  },
+  {
+    "path": "data-collection-processing/japan_pmda_designations.py",
+    "sha256": "0915576e2874a475b909c84d438377dc5c1cea1422b21eda27ecedd36ebfbd53"
+  },
+  {
+    "path": "data-collection-processing/job_memory_audit.py",
+    "sha256": "3d540c129137c34a4b2c276aa5c5be197bf4aa2e8ef01940e36679fe93097e69"
+  },
+  {
+    "path": "data-collection-processing/licensing_agreements.py",
+    "sha256": "586af1dd6e9d66db2f31c877e0b161187097987ecfd074b860c68b99053a237f"
+  },
+  {
+    "path": "data-collection-processing/ma_announcements.py",
+    "sha256": "9f539ae26b5dcfab943feb7ba76cb279c18e5aacc5e2f71820c8d307070b4f0c"
+  },
+  {
+    "path": "data-collection-processing/market_athena.py",
+    "sha256": "21a3fa8145277d53c37fc4843ba1e77a4cadc123c9b2ca9197ba6f408c91109e"
+  },
+  {
+    "path": "data-collection-processing/market_collection.py",
+    "sha256": "ab958470a7c3abcd577357dd749b831e31fdbdc04a0409bf6d76bf5c79d019de"
+  },
+  {
+    "path": "data-collection-processing/market_coverage_exclusions.py",
+    "sha256": "6072ea744bf981d1cac69fd6b24654699a3a2ca05295fc192f12858f70d6c5e0"
+  },
+  {
+    "path": "data-collection-processing/market_operations.py",
+    "sha256": "4fe4ebfb9ce4f9c7dd29823423f8b2c02eb4450d17cb295a7e9fc668df9e9e94"
+  },
+  {
+    "path": "data-collection-processing/marketaux_history_probe.py",
+    "sha256": "f5bc6dbc90794d96270c148c3dcc9e96256edaf6a5686a6f9a86fcad9021f60a"
+  },
+  {
+    "path": "data-collection-processing/monitoring_extra_jobs.py",
+    "sha256": "7a3fff8f21a1eb3dcf296c8ad14e3794c21eae9e5d5d61b9f4a39e83a5d7ffc1"
+  },
+  {
+    "path": "data-collection-processing/monitoring_overview.py",
+    "sha256": "c540dd6487aa2de011a4c1015cd94c4beb9b27471f4c6f51e89d95506e198960"
+  },
+  {
+    "path": "data-collection-processing/news_athena.py",
+    "sha256": "8cf13a27c036c3d8bb3c1a4576283eed561e84346029b67d62105df2fba50fe1"
+  },
+  {
+    "path": "data-collection-processing/news_audit.py",
+    "sha256": "5a345ba00170be115c0f328d199de1635e619e0441bc1bfd8381a95fcdbf388c"
+  },
+  {
+    "path": "data-collection-processing/news_collection.py",
+    "sha256": "665abe6d7a100205f8083d51cedb5abf953d1014eaab3ad8c55286d617fea538"
+  },
+  {
+    "path": "data-collection-processing/news_operations.py",
+    "sha256": "e21a446678d41fceaa516f7344ea0dc88fddd12846be844e5c2b798ef97609a1"
+  },
+  {
+    "path": "data-collection-processing/news_publication.py",
+    "sha256": "8f09075b97bd85ad17a1a55108b8087d132706ce3b321373425cb768b4f9b3f4"
+  },
+  {
+    "path": "data-collection-processing/nmpa_baseline.py",
+    "sha256": "f1552c921b0825602978a55195e2125d9de586357bbcb302cd35ac3a9fb26d7c"
+  },
+  {
+    "path": "data-collection-processing/nmpa_drug_trials.py",
+    "sha256": "8fee2b1bba2ee5070d741852f7dc61d6e47ae84d1ed679e3acb69b619e80775b"
+  },
+  {
+    "path": "data-collection-processing/patent_adjudication.py",
+    "sha256": "ce28b53dc3b9dd7b2d5e8d1d8bf84a764334653da7ebdfe8396bd641130d4d9a"
+  },
+  {
+    "path": "data-collection-processing/patent_assignment_review.py",
+    "sha256": "09539bb6078cf9e5d9a8498201e2c244eff788952e038f901dba409d0f3fc5f5"
+  },
+  {
+    "path": "data-collection-processing/patent_assignments.py",
+    "sha256": "785b93697543f704b3ba41f1c482a6c7a64b76725c3b608e01ba2ec603a71b66"
+  },
+  {
+    "path": "data-collection-processing/patent_athena.py",
+    "sha256": "b1d5121b9194d0660d3294998deef4dbde30cb7b538cf54a7d1a3ce1c2e1118d"
+  },
+  {
+    "path": "data-collection-processing/patent_backfill.py",
+    "sha256": "625e7e83bc19087a4e617c82001e5b8e5cd9bf09269b88c5e967403847a66afb"
+  },
+  {
+    "path": "data-collection-processing/patent_backfill_athena.py",
+    "sha256": "d5594d43904d250a899b0210a6bd02a53d10d2cccfde7ab3b7d0586528426935"
+  },
+  {
+    "path": "data-collection-processing/patent_backfill_plan.py",
+    "sha256": "4cfe46104f6754d4ee2e0bd25b324cc45395558008612286dd967a80b07df4c9"
+  },
+  {
+    "path": "data-collection-processing/patent_backfill_publication.py",
+    "sha256": "b0bc9a199525889f92fb58efd87ceec687fd8be6841476fafcd127dbc61659ea"
+  },
+  {
+    "path": "data-collection-processing/patent_bigquery.sql",
+    "sha256": "5d1b8449fea05e5927c8e9216c16b61ff29d2f2694b98d70fed9dfdec213d9fe"
+  },
+  {
+    "path": "data-collection-processing/patent_bigquery_access.py",
+    "sha256": "0b4abe60b6168e7df465bb88412fe41c790bfba4fcf677632476c3c4038f8e29"
+  },
+  {
+    "path": "data-collection-processing/patent_bigquery_collection.py",
+    "sha256": "096649a7f84658c1016bd93320bba9e4af326c5e87f48acb5006b319ac299304"
+  },
+  {
+    "path": "data-collection-processing/patent_collection.py",
+    "sha256": "1bb204627d21f4f458a17969294b2e3bb9475a2c07c5eeade811ee6303b9aed2"
+  },
+  {
+    "path": "data-collection-processing/patent_discovery.sql",
+    "sha256": "8d26f0791cdd07d03edd673937126f88ee164dd622f55f1c6976c4ef70057749"
+  },
+  {
+    "path": "data-collection-processing/patent_entity_review.py",
+    "sha256": "a55fdfd5364ffbec9ff776c6c1d139de8e774dabe72c940a085f3f27b4c60934"
+  },
+  {
+    "path": "data-collection-processing/patent_events.py",
+    "sha256": "7b754a9049a7ae946558b2dbd1c0198b3afd464c3f865b32e8e0890126be836c"
+  },
+  {
+    "path": "data-collection-processing/patent_landscape.py",
+    "sha256": "44c5f308ae25e604383612a20df43d3b6de54b12122bceb84d9ada0303736f53"
+  },
+  {
+    "path": "data-collection-processing/patent_operations.py",
+    "sha256": "ec7e4d9b7da4b0d39643ce8d0043d1bccde94fba49a3c4d31f38a46e3e7d9a5b"
+  },
+  {
+    "path": "data-collection-processing/patent_pilot_companies.json",
+    "sha256": "3bfadf2ff206942bf61063dd524211f3467cc64f24dd1b49ede6455c1f8ded2e"
+  },
+  {
+    "path": "data-collection-processing/patent_query_plan.py",
+    "sha256": "b7aec386f0c6c9eaa00142d80a0f106a5037c30416681918e087dd0dabc76d32"
+  },
+  {
+    "path": "data-collection-processing/patent_review.py",
+    "sha256": "f634a06cf7fac9fb81a99740b4d48a07a8a270f5d1d26c0a5977abf4a7c85308"
+  },
+  {
+    "path": "data-collection-processing/patent_source_coverage.py",
+    "sha256": "95f507d631602a6e04c85a9417023f0135e51af9ddf18be137b9395a5db95443"
+  },
+  {
+    "path": "data-collection-processing/patent_source_coverage.sql",
+    "sha256": "a93df38ac9ebd8bb91455f9b6f797c9c47f16730d5e7b92e5ab029587bc81f8f"
+  },
+  {
+    "path": "data-collection-processing/patent_universe.py",
+    "sha256": "ecb73531e448a105cf112efe7f793236d4da19636178a92c6887158a0b226495"
+  },
+  {
+    "path": "data-collection-processing/people_collection_operations.py",
+    "sha256": "0d2f852f81748c9e26099d6093526e4b73d355ee53618ee47f4046d3fef8f7d3"
+  },
+  {
+    "path": "data-collection-processing/people_movements.py",
+    "sha256": "6a4ed1e9bb2d9f527bba8b44074153aa7f33638aad476a24c661f3275e20d4ba"
+  },
+  {
+    "path": "data-collection-processing/people_social_collection.py",
+    "sha256": "21a2fc2926647ab2367b9e8d31939e2bdc64ac4b8f29338678c46c16e0d4c9ce"
+  },
+  {
+    "path": "data-collection-processing/personnel_archive.py",
+    "sha256": "4fc32f42925ae9a45dbd3e8f108c7fa89a138679d0d18ef0b0ff1fb267c82d3d"
+  },
+  {
+    "path": "data-collection-processing/promote_registry_review.py",
+    "sha256": "415843eb24ca716e3cb1dc140d446355df18845f86dfdf4ba08078ba2801d24a"
+  },
+  {
+    "path": "data-collection-processing/promote_universe_review.py",
+    "sha256": "0dac62a4712132d0aa1b6a0f64579ca7600db2983ee9e90eb0ac4c5fbfea46d7"
+  },
+  {
+    "path": "data-collection-processing/provision_source_catalogs.py",
+    "sha256": "c32a05bdc2ff71de482f329483ff04ef75096ac442f33a984b5ba361b1f36544"
+  },
+  {
+    "path": "data-collection-processing/publish_collection_sms_terms.py",
+    "sha256": "6b6c7ef8c68a4c220514674bdd95b501f6c6a1266d297003200b8685d61ffed3"
+  },
+  {
+    "path": "data-collection-processing/readiness_publication.py",
+    "sha256": "7613492da7cdba16fdb65917255e21ec9a397591e4e9bab5834b419a992bfef1"
+  },
+  {
+    "path": "data-collection-processing/readiness_recurring.py",
+    "sha256": "87c5cd657a54d066390b30a66a698b9111066db49c164f3a7ccc6a72a6fe19da"
+  },
+  {
+    "path": "data-collection-processing/reconcile_coverage.py",
+    "sha256": "672f472531481ff57f82ff982aa912d1c988186db02ba2f230c3df4d644cb867"
+  },
+  {
+    "path": "data-collection-processing/reddit_access_check.py",
+    "sha256": "180b54b1598e90b8f1b417888037054b3f101c3c06b04ef698700053d51c07ae"
+  },
+  {
+    "path": "data-collection-processing/reddit_capability_check.py",
+    "sha256": "11e39efac9397a3a156736112d61369c9ddf84c9cec21800b1312227147e28a8"
+  },
+  {
+    "path": "data-collection-processing/reddit_collection.py",
+    "sha256": "1b8d8de98f8d9217f27d0b83758b23712326d1fd8f4d4c80e915d812e5a4c07e"
+  },
+  {
+    "path": "data-collection-processing/register_collection_sms.py",
+    "sha256": "8d5302ac8597fc872094fd1706f740f6a7871921b46e30ad0cdf9f11f404b496"
+  },
+  {
+    "path": "data-collection-processing/regulatory_athena.py",
+    "sha256": "f0262925f11ead671ff6d626e11e9ee9f4ba6a0a47e4a0b733694a7aee5b8e88"
+  },
+  {
+    "path": "data-collection-processing/regulatory_collection.py",
+    "sha256": "72b18cdabfe34d195f89aa6a71394c8515d1682ce4509b532589f7b8ce673b2f"
+  },
+  {
+    "path": "data-collection-processing/regulatory_sources.py",
+    "sha256": "88acb5ccd45822de814db9eeda594babefae33959b12302a742dffeddeb35839"
+  },
+  {
+    "path": "data-collection-processing/requirements-athena.txt",
+    "sha256": "a8f17911a0aba7da586428e90d0c965fb033d7d087e7e3e76b7947aa88268b99"
+  },
+  {
+    "path": "data-collection-processing/requirements-patents.txt",
+    "sha256": "75b220e2a96910b4f5f18fc756b7c375c48eb3050397bc1892d58b1531d09b9c"
+  },
+  {
+    "path": "data-collection-processing/requirements-research.txt",
+    "sha256": "4f613993d41ffee0afcc6b2a84988e498a951da659bf1c85827d7b4eafd65839"
+  },
+  {
+    "path": "data-collection-processing/requirements.txt",
+    "sha256": "c751166f3dab6b76853570283a3cdd531307608c46b8848c9015301d91e819f1"
+  },
+  {
+    "path": "data-collection-processing/research_contract.py",
+    "sha256": "462b231eed39cd423ca2ba56b0daa14053b96bb6375e5c8a8abe901b6401bfe3"
+  },
+  {
+    "path": "data-collection-processing/research_publication.py",
+    "sha256": "4eaa41aca09efd21d36677f34f7ee32b664023e4afd1b9689951e53149ed3183"
+  },
+  {
+    "path": "data-collection-processing/review_source_capture.py",
+    "sha256": "b431a4476f104228e757850e8cd8f1358205b6f5c6b21d616daa4204b8d783fe"
+  },
+  {
+    "path": "data-collection-processing/sam_gov_access_check.py",
+    "sha256": "b28747421afb10b8894783f3f9849d059a1497bcf11512f3a60056ad770c94a1"
+  },
+  {
+    "path": "data-collection-processing/sec_athena_pilot.py",
+    "sha256": "eed0a2ed75c3c6e57a627d66c181a4d16dc29a233fb352c8f0f3de2f567a7318"
+  },
+  {
+    "path": "data-collection-processing/sec_filings.py",
+    "sha256": "813b7653aeeb1a1e4ff527d53551013ac1cbdd2671fa0d2f27061b501bc70181"
+  },
+  {
+    "path": "data-collection-processing/sec_filings_legacy.py",
+    "sha256": "242b013de5f4e70e921d76b8b138be0829a605329ffe5c9ae08314c4af9cc25b"
+  },
+  {
+    "path": "data-collection-processing/social_media_mentions.py",
+    "sha256": "d05bee33cec2aa8de3bd93d7488cc759557d1b2ec0df34688240745f81f7b76f"
+  },
+  {
+    "path": "data-collection-processing/source_coverage_register.py",
+    "sha256": "a2f186a375a0a623f21f17be196e2b4b0a4075add0a853f12465335cd2f954c9"
+  },
+  {
+    "path": "data-collection-processing/source_observation_athena.py",
+    "sha256": "0394adb3a67ed933eef2741e70e005f0de8a5654607901b474f9f53cd9f9e855"
+  },
+  {
+    "path": "data-collection-processing/source_schedule_control.py",
+    "sha256": "076b8ebbda2a14b631281a4c78334fae61c63f5a3dd1081c9a8429708c180bee"
+  },
+  {
+    "path": "data-collection-processing/source_verification_matrix.py",
+    "sha256": "f5e2b4bcd58a06f712cf77ae3990dca4275528c4ce3e321998b356bde94873f7"
+  },
+  {
+    "path": "data-collection-processing/specialist_authenticated.py",
+    "sha256": "6fee9fe2d79a899ed8b4c2731c469d7742c2ff68266f460d5b0d35eaa1d66f43"
+  },
+  {
+    "path": "data-collection-processing/specialist_inputs.py",
+    "sha256": "ee6322fb3cfcb897061aebcea1debaf8bec5d7c51204b8453690b12cb6b05320"
+  },
+  {
+    "path": "data-collection-processing/specialist_plan.py",
+    "sha256": "0e9cc839fa62d3855df0c2b9a8a0849994ec5ba1febb9c3eb8920b9e33735a27"
+  },
+  {
+    "path": "data-collection-processing/specialist_public_apis.py",
+    "sha256": "d15ed533dc10b52c5220bb99930b7f9065bea1efb7582d7c7d1fc19dada3e7da"
+  },
+  {
+    "path": "data-collection-processing/specialist_publication.py",
+    "sha256": "c3280b92d0897f07c233a1f2848520dcbf4778d3a2e82c7e13b8d81ab6cf5204"
+  },
+  {
+    "path": "data-collection-processing/strategic_transactions.py",
+    "sha256": "bcebf9729b05666523c3d8019ee8864e096cb0208e8c353faba043ae378d15ff"
+  },
+  {
+    "path": "data-collection-processing/streaming_release.py",
+    "sha256": "b45c785f71519069df750268c5b7ed9f937b8a387aa78590cfec552d473c5534"
+  },
+  {
+    "path": "data-collection-processing/test_collection_alerts.py",
+    "sha256": "7abf069c7dd2a3bebc67b22c89ec2286529393a5515484b54d9be576aff2d420"
+  },
+  {
+    "path": "data-collection-processing/test_collection_digest.py",
+    "sha256": "325cce2dfd191c31b2084a828f0dae0677b729bbe83389194542cbf18616eda2"
+  },
+  {
+    "path": "data-collection-processing/test_collection_health_repairs.py",
+    "sha256": "c8db57cd04fa76d0e11f1ab479307fc1ad05a017900b0bc662fe40c2305cd95d"
+  },
+  {
+    "path": "data-collection-processing/test_collection_operations.py",
+    "sha256": "9c38e7b2b0bfa2d3bb696354caf3482e7b01b439022abbbcb2c6ce9b2232d9d2"
+  },
+  {
+    "path": "data-collection-processing/test_collection_storage.py",
+    "sha256": "aa97710e1b3190633c6d6a2fa22d624abbd20522f9d0f13c25ba22a388c232e0"
+  },
+  {
+    "path": "data-collection-processing/test_committed_data_athena.py",
+    "sha256": "9e36c40779ef3cbd9c26dbf3565f23b973b46d3830bcf5d13e26b2bc75d9c15d"
+  },
+  {
+    "path": "data-collection-processing/test_company_admission.py",
+    "sha256": "cb1e60f3d2fc185a7a330aa5457e0b4d6cbe19bb3ce8f3e918b26c5f3cd8d704"
+  },
+  {
+    "path": "data-collection-processing/test_conference_collection.py",
+    "sha256": "e98ef5a770034363e71469a35d892beb5880a85804876c3dc7eee92e2ccaee34"
+  },
+  {
+    "path": "data-collection-processing/test_decodo_scraping_api.py",
+    "sha256": "b0063eb17978544ffe69efad671d7cb1f362b62cd27ffaf08769c3478e2e9962"
+  },
+  {
+    "path": "data-collection-processing/test_disclosure_athena.py",
+    "sha256": "419e750a57f20c6e9b432813c11e69abae59d9ecfe9501d16e0091f4300395f3"
+  },
+  {
+    "path": "data-collection-processing/test_disclosure_collection.py",
+    "sha256": "a3c5d0bb7013eabc7edbff5fe97f491b3f9c83165e3e14eba4221460d356b912"
+  },
+  {
+    "path": "data-collection-processing/test_disclosure_page_reviews.py",
+    "sha256": "e3e04ad542067b38f1957b7a0b6e457e874a06b7aa84cf04e7e9e6512aebf2a7"
+  },
+  {
+    "path": "data-collection-processing/test_eodhd_daily_cohort.py",
+    "sha256": "9aed4ee561ad4dcb5a2b75cc4321940a7a939deab593b1f953726e77ba54d781"
+  },
+  {
+    "path": "data-collection-processing/test_eodhd_quota.py",
+    "sha256": "8499d22ff4e2b197d511de4434638e43937d1e98afff8f3de31c488677bc044c"
+  },
+  {
+    "path": "data-collection-processing/test_eodhd_universe.py",
+    "sha256": "30d6e7287f8f3cc8011d3bcbc2cf51131740230b60c51b8e6f8623594e83b167"
+  },
+  {
+    "path": "data-collection-processing/test_fda_access.py",
+    "sha256": "7098d5a0d3c8c3149d60f44ac6f9124b3ab841fc263a3cdc24073115f89071fc"
+  },
+  {
+    "path": "data-collection-processing/test_finlight_backfill.py",
+    "sha256": "d23e39300adfaae59cf013725de357b8957e884512e60d655334b24c80ec4697"
+  },
+  {
+    "path": "data-collection-processing/test_historical_policy.py",
+    "sha256": "d23216d7bc186bef8128ac23dbe283c888e1e8041908c3db1c31e1e5a6767d04"
+  },
+  {
+    "path": "data-collection-processing/test_market_collection.py",
+    "sha256": "470deb8b737263f6bef0633f5ceed68feea2571e4d522648dc35fcd682629447"
+  },
+  {
+    "path": "data-collection-processing/test_market_coverage_exclusions.py",
+    "sha256": "ec1f76f75399698b0b47d253f344e0ee78bd02d9d2565592a7bedfe80792bf1a"
+  },
+  {
+    "path": "data-collection-processing/test_market_operations.py",
+    "sha256": "4acd365e75b729162fa8619a81974d5fb73e1160909a3c7be43b5d644a6b8dc8"
+  },
+  {
+    "path": "data-collection-processing/test_memory_budget.py",
+    "sha256": "62573b9d62ca91647d7da022978f31c32b78aa5e646262eb7ef533533c9b9be3"
+  },
+  {
+    "path": "data-collection-processing/test_monitoring_extra_jobs.py",
+    "sha256": "598d7d7f5c17ebf2d9c071c72683c7251a846f16758fd4d33631e255633b046d"
+  },
+  {
+    "path": "data-collection-processing/test_monitoring_overview.py",
+    "sha256": "8d0fce8970042912f22ac6c2007bd85164134a405e95ab6a129822daa7a8401b"
+  },
+  {
+    "path": "data-collection-processing/test_news_collection.py",
+    "sha256": "5828001f6ece674c007e3505bc6aee1dea555c3b5378b2ff5d627ea206a70c39"
+  },
+  {
+    "path": "data-collection-processing/test_news_operations.py",
+    "sha256": "7f1da78b84357fda006bb810757c41c73994b99f6c7f82a7bf45241dfd7e3ee1"
+  },
+  {
+    "path": "data-collection-processing/test_nmpa_baseline.py",
+    "sha256": "6dbc9841af0da9e9c887f2d4b045f0bfa5dad732f5008421f76ff69df42cbc83"
+  },
+  {
+    "path": "data-collection-processing/test_patent_adjudication.py",
+    "sha256": "8ca482d50477d6b3d66c2b24e0593171d706e50d52f83dc67695f72da38d07fb"
+  },
+  {
+    "path": "data-collection-processing/test_patent_assignment_review.py",
+    "sha256": "7fa6d62f456e022e1fdf5d8a98b27c96881d7e5a426c4aa0650a962b52823a87"
+  },
+  {
+    "path": "data-collection-processing/test_patent_assignments.py",
+    "sha256": "be6901aca9ccb4c73bac00f323920f1e735ba114ccbdac215d0cbbb56fd312fb"
+  },
+  {
+    "path": "data-collection-processing/test_patent_athena.py",
+    "sha256": "49c0f0102aec0fed252ca5cb8e7ae40dad5f4a733db4656604b08df94457dc04"
+  },
+  {
+    "path": "data-collection-processing/test_patent_backfill.py",
+    "sha256": "096ad9ddd409b96b5a91b5dbe50c0fbec4f19dfc2e6e0e444f33b0ab6b6f94a8"
+  },
+  {
+    "path": "data-collection-processing/test_patent_backfill_athena.py",
+    "sha256": "306f1a265c7fd9c1f2b175d12aff54f18d3ec74c50d0519065f6278534dc7a39"
+  },
+  {
+    "path": "data-collection-processing/test_patent_backfill_plan.py",
+    "sha256": "878127a6c7963a22db309d69f830ae02bbf41642e2c26cd69fef0c6da58d3518"
+  },
+  {
+    "path": "data-collection-processing/test_patent_backfill_publication.py",
+    "sha256": "6c5fc197dedd7e324554a20283c4ad6676d3bb6caa71886fe55599c5312465ed"
+  },
+  {
+    "path": "data-collection-processing/test_patent_bigquery_access.py",
+    "sha256": "4dec0f7057c18a450219f81b8978faea6894111cee4966e79f88e647ef205852"
+  },
+  {
+    "path": "data-collection-processing/test_patent_bigquery_collection.py",
+    "sha256": "4366bd523fe5f99a42d1d257f2ebc1e96d651332b516c0fe983e879432ea14e6"
+  },
+  {
+    "path": "data-collection-processing/test_patent_collection.py",
+    "sha256": "70bfb827a0cb8b9f3a2f37bcda6110e8b9a09490304c4882d2151352ce0713c7"
+  },
+  {
+    "path": "data-collection-processing/test_patent_entity_review.py",
+    "sha256": "e68d9efea43e44a83336047cea9a1d639304d4aafb4c4543a5b6ff1daf547b83"
+  },
+  {
+    "path": "data-collection-processing/test_patent_events.py",
+    "sha256": "cdba40605c6d3f0c9079af98a7e2bb8d4f6d554d26ac8ccfb0d12d9354b54cd0"
+  },
+  {
+    "path": "data-collection-processing/test_patent_landscape.py",
+    "sha256": "cacef6e666bd40e2948e975f3c99511bd3cf14e0269cb7f07ccf9ed437907656"
+  },
+  {
+    "path": "data-collection-processing/test_patent_operations.py",
+    "sha256": "845d260e623f4695e0f8b01281f2aa8297c8bd1264773d10b1b9bb6e34f5ed8c"
+  },
+  {
+    "path": "data-collection-processing/test_patent_source_coverage.py",
+    "sha256": "995115d635d7ca0a51a4548f50a4986dcb3cbd6f35072c105c3983f59052bd0b"
+  },
+  {
+    "path": "data-collection-processing/test_patent_universe.py",
+    "sha256": "8d7b2a1b247d8e6c713aa64166ed5de60f0204a8b7e7e442e62580c45cb70425"
+  },
+  {
+    "path": "data-collection-processing/test_people_movements.py",
+    "sha256": "a66cf1ba78d6a13ade3fa41b9df19aa88f167f1f44c5bc618661385cf710b00e"
+  },
+  {
+    "path": "data-collection-processing/test_people_social_collection.py",
+    "sha256": "b5c6c69763c19954233ae8515f66a14e3498d67e9d2f02e6820890a8d351d138"
+  },
+  {
+    "path": "data-collection-processing/test_personnel_archive.py",
+    "sha256": "88f1f57f78e2bd6cb7346e023333454b4fcec47c0b8f64b93f01a83cec5f302c"
+  },
+  {
+    "path": "data-collection-processing/test_reconcile_coverage.py",
+    "sha256": "6220e4f4a101eed3ba3344aea9843c3f922744b2881d79a3fb39b1d15ce2362c"
+  },
+  {
+    "path": "data-collection-processing/test_reddit_collection.py",
+    "sha256": "8244b9d6b12b6e5980b5dd82697447993cd5e1e150ac99d1bb23440f3b07e146"
+  },
+  {
+    "path": "data-collection-processing/test_regulatory_athena.py",
+    "sha256": "8fe3366a3606a148e9a6ca0e2dc2576ec1ddf5a194931ada456d773db8ea3a0b"
+  },
+  {
+    "path": "data-collection-processing/test_regulatory_collection.py",
+    "sha256": "226cc19ad7fb60691b7db37d2a387b6793fa7d409e773d5df76263ad8683a6f2"
+  },
+  {
+    "path": "data-collection-processing/test_research_contract.py",
+    "sha256": "9d3016e00ed8c66cba7f52312370c0eedd07b8b41093a4638df04445693803dd"
+  },
+  {
+    "path": "data-collection-processing/test_research_publication.py",
+    "sha256": "70a084ed7d800eff4f1ea114a78a00be44458b72a0330f3fd25e9e64a0dc7b50"
+  },
+  {
+    "path": "data-collection-processing/test_sam_gov.py",
+    "sha256": "93b53fbbb9c1ea078572b4fd4d645d3d5b17117417925602a8c9d91edad67d65"
+  },
+  {
+    "path": "data-collection-processing/test_sec_athena_pilot.py",
+    "sha256": "aac6db04b344125aa37e9f5a00ca8111f9cbf665be861ab99b51e0e8b920a3a1"
+  },
+  {
+    "path": "data-collection-processing/test_sec_filings.py",
+    "sha256": "3ae6b03bc8c578a6a3705dabc4d8bf60c1dfd42ec86444ada66ffc9e7e58d03c"
+  },
+  {
+    "path": "data-collection-processing/test_social_media_mentions.py",
+    "sha256": "c156700e3482260b8aa118b0c2091f9208a89d9b103255aa743f2dbed7993c48"
+  },
+  {
+    "path": "data-collection-processing/test_source_schedule_control.py",
+    "sha256": "e50e8a693663265dd79feef1352d1ba6f82be09da82a7e226b9c4c0ce9b4840e"
+  },
+  {
+    "path": "data-collection-processing/test_specialist_authenticated.py",
+    "sha256": "53f3937ba9d3e1d957cd87569c4ae2e455fac8bc9bf2b2f1293e27ea2050553a"
+  },
+  {
+    "path": "data-collection-processing/test_specialist_inputs.py",
+    "sha256": "18fc000262e307665d919f310992726873b02055ae1c8a24b109f79d157cfe7e"
+  },
+  {
+    "path": "data-collection-processing/test_strategic_transactions.py",
+    "sha256": "788da059c656ee20fde39b9c357ac6a1106d0ce4daab5133ff92d238ade5e60d"
+  },
+  {
+    "path": "data-collection-processing/test_streaming_release.py",
+    "sha256": "e14d5752b2493a5ca8440b66484dd08fae6be9d64f69bd9c46a3f6478a5efd8e"
+  },
+  {
+    "path": "data-collection-processing/test_ticker_news.py",
+    "sha256": "9e50cc771d2438e8a66649c4603659b4459edb4111fcb9f35a67d411ad959191"
+  },
+  {
+    "path": "data-collection-processing/test_uspto_patents.py",
+    "sha256": "0c37e3eeab600e2478fc6493d87734e565bcb24b27bd3313d5fb9a1312adbe92"
+  },
+  {
+    "path": "data-collection-processing/test_weekly_readiness.py",
+    "sha256": "a7eac3a281bdc1325858adc0215e5c7a79cfbf7803c05250ca874c283ad8edd5"
+  },
+  {
+    "path": "data-collection-processing/test_window_publication.py",
+    "sha256": "4059c8c7a9145ff2c9109eacd3cf2f4f640da79502c7003f27aa78a39a85fdd9"
+  },
+  {
+    "path": "data-collection-processing/ticker_news.py",
+    "sha256": "31c7cb9e065140b5f8811384cb2da8e492f69a39c32d6d556fcf38b9ed87cd13"
+  },
+  {
+    "path": "data-collection-processing/to-do.md",
+    "sha256": "0cf28239760efcb042f76d4a3df72b2dc2c35125c3c79f297f2e5c4acd954092"
+  },
+  {
+    "path": "data-collection-processing/tracking_mysql_trial.py",
+    "sha256": "066823efa5bfe8730d23c0ce6123bbc18bcfc304ff04bd20ded4bafc38af5d00"
+  },
+  {
+    "path": "data-collection-processing/uk_mhra_designations.py",
+    "sha256": "e4819caabd9fac918a7dc24d5d46901798e2d863275c1b5a7af49f478b9afd86"
+  },
+  {
+    "path": "data-collection-processing/uspto_patents.py",
+    "sha256": "e53db8200ee0895057dd7146007c7a2076dcd60fcb781e71770ca513082560fa"
+  },
+  {
+    "path": "data-collection-processing/validate_research_data.py",
+    "sha256": "e92a0c2d4523ad3696f6ef50732fee50293e967ae5ca651e990b4fe4224a1ce6"
+  },
+  {
+    "path": "data-collection-processing/verify_pending_registry.py",
+    "sha256": "6b35fc11db59f04fb2ca3254411a38697029e3d4ae899ddc789db7f5bf30f62d"
+  },
+  {
+    "path": "data-collection-processing/verify_pilot_source_queries.py",
+    "sha256": "1be339e411d9e38c7a26bff81f37f646ab9b7f108beeb92dd2fe83b3b102c00f"
+  },
+  {
+    "path": "data-collection-processing/verify_source_athena.py",
+    "sha256": "a1643546f0a4f027b44a44bcb4f43d16ffba2f9b326b64a546bcd3c553904e31"
+  },
+  {
+    "path": "data-collection-processing/weekly_readiness.py",
+    "sha256": "3195d62961cb39cb6f0c8d30a572315257e5058951f396626e35492ab6098b23"
+  },
+  {
+    "path": "data-collection-processing/window_publication.py",
+    "sha256": "bc4b6a4f6dbe3f6d320b2f92aa6c452b59626cd06c71e8783b3b05080eabb678"
+  },
+  {
+    "path": "data-collection-processing/config/biotech-specialists.json",
+    "sha256": "9f215376fe34e381e3e2df58937926d0633532cda182a9583e056e6f81e5aa93"
+  },
+  {
+    "path": "data-collection-processing/config/collection-monitoring-permissions.json",
+    "sha256": "31725683173d2b2ecd40af148f9ac262295ac794f202abed60702991eeafdff0"
+  },
+  {
+    "path": "data-collection-processing/config/collection-monitoring.json",
+    "sha256": "867bf67eab0eb2278d32073e9581e26e586c50f3e989a9f1eb997f7e13d7901f"
+  },
+  {
+    "path": "data-collection-processing/config/collection-operations.json",
+    "sha256": "a6dab80967da04ff2118f8253a1b08ff38dd882902da9c9c3cea5e861ae3b9fe"
+  },
+  {
+    "path": "data-collection-processing/config/collection-operations.v0.3.json",
+    "sha256": "85e61f6c4b3318146a1d6e9f2fb9294a8dff5b3b3ab57ef123f1a19db09b5705"
+  },
+  {
+    "path": "data-collection-processing/config/collection-storage.example.json",
+    "sha256": "576baceee3bc3b2520864025c11135c4246d81ada06cc3ad158dd4e68adc9ba1"
+  },
+  {
+    "path": "data-collection-processing/config/collection-storage.s3.json",
+    "sha256": "7a0bbfb238f97bb90982c24eaa873ad5864dc2b685b1c10ab2985906e800b90d"
+  },
+  {
+    "path": "data-collection-processing/config/company-admission-ledger.v1.json",
+    "sha256": "a20048a08245defb6895ec472af676bcfa914eb78baff934298fe4908a081d04"
+  },
+  {
+    "path": "data-collection-processing/config/company-admission-ledger.v2.json",
+    "sha256": "6d0c4add74a4b9926594f60d467b4b181995102e9a007526b23097c5a51fe080"
+  },
+  {
+    "path": "data-collection-processing/config/company-admission-policy.json",
+    "sha256": "1ac27db81b558bdcf277194856e93e6220183280475b965d4ed061c57baa0af5"
+  },
+  {
+    "path": "data-collection-processing/config/company-admission-state.json",
+    "sha256": "9624245b05810fb2c37fcb41f81903bd09fd1d6101010cb1755ca9da7a6414a3"
+  },
+  {
+    "path": "data-collection-processing/config/company-id-registry.v0.4.json",
+    "sha256": "5eff1e60e1abc83e27dcb6a9b7badbcbbd1ccc545c0342971685a3e70285ba01"
+  },
+  {
+    "path": "data-collection-processing/config/company-id-registry.v1.json",
+    "sha256": "60ddedbe61de1031d221bdccf821922f15ca412311664fc600b034f819599c5c"
+  },
+  {
+    "path": "data-collection-processing/config/company-universe-athena.json",
+    "sha256": "8999f75b4e60139b0c432fd7cce7b1cb310607c486e912fd7ec4e1d17ddb5fb8"
+  },
+  {
+    "path": "data-collection-processing/config/company-universe.v0.1.json",
+    "sha256": "4c17e2f7838b2bf6840d7f43d6f66e0b367f3e531e858e1cf4b0b2c3fa48a5b5"
+  },
+  {
+    "path": "data-collection-processing/config/company-universe.v0.2.json",
+    "sha256": "77401224093ead251c7eac223e5ed1d045404eb09915abbe843b1d4228e9472f"
+  },
+  {
+    "path": "data-collection-processing/config/company-universe.v0.3.json",
+    "sha256": "c031dbbb8df12e2d4792feda3c3133c97c93cb08c6db92935c1b41e8ef7799ff"
+  },
+  {
+    "path": "data-collection-processing/config/company-universe.v0.4.json",
+    "sha256": "11246339db3db058dbf23d7c4b97055be6cf24b1ea86b6b226f049df5a0c826e"
+  },
+  {
+    "path": "data-collection-processing/config/company-universe.v0.5.json",
+    "sha256": "fc53f3cdc196e0fb55df2ad5c8f0d6386ad64ea6556b84cfaf9d6e3b742296cf"
+  },
+  {
+    "path": "data-collection-processing/config/conference-athena.json",
+    "sha256": "172fb6ef5cc0e5f14f3af4356bb1639bb5106b14db68dc60256470e0746c001e"
+  },
+  {
+    "path": "data-collection-processing/config/core-historical-schedule.json",
+    "sha256": "ab085d86e71eee1efc92477122abf5307f0b4a276912bf8e63488779f176126a"
+  },
+  {
+    "path": "data-collection-processing/config/disclosure-athena-pilot.json",
+    "sha256": "a2871dca72d5216e8d7d64936d409f3ff4ce7fafc90c4c78563c4ff6e39df916"
+  },
+  {
+    "path": "data-collection-processing/config/edinet-access.json",
+    "sha256": "475d150464d09a8366233aa04afce44028e896464c99e6fc8a14a08a7e758282"
+  },
+  {
+    "path": "data-collection-processing/config/eia-access.json",
+    "sha256": "71e3635e5245431105eed56430c4c94e42a45e9513f92124e4dd6cd7964bb47b"
+  },
+  {
+    "path": "data-collection-processing/config/eodhd-athena.json",
+    "sha256": "5f3cb01c7488115e60f7cccbec6148c2eb46930a605c02a97903e7b829475cda"
+  },
+  {
+    "path": "data-collection-processing/config/eodhd-observations-athena.json",
+    "sha256": "5633c188a9c5d73c8b348e8cfb502d667496fa2ead3d035522e25f8790e2e8e0"
+  },
+  {
+    "path": "data-collection-processing/config/eodhd-quota.json",
+    "sha256": "4ad5390f1f435e2013e04c43d1f728dd12547c0491f5c7b78093d9048fc5bf2b"
+  },
+  {
+    "path": "data-collection-processing/config/eodhd-universe.json",
+    "sha256": "a89f6331404a0bdcfb31f38f708079f1efb1a8df1f40db37bed54206f5bddcd0"
+  },
+  {
+    "path": "data-collection-processing/config/fda-access.json",
+    "sha256": "033482acd5f9339e58d0bce42269b24fd8724a65bd1942a385dde75b0532256f"
+  },
+  {
+    "path": "data-collection-processing/config/fda-dashboard-access.json",
+    "sha256": "786095ec2906761a5ebc1f7d3cfcc2fda2fb3d9acc3086a0e75ff2db3a3ec1e8"
+  },
+  {
+    "path": "data-collection-processing/config/fda-enforcement-access.json",
+    "sha256": "d112eae809930b9cec03d888d4b6419bf30e4aee37194533b5656d2a464a1a69"
+  },
+  {
+    "path": "data-collection-processing/config/fda-productcodes-access.json",
+    "sha256": "2c30f1c918d9db933b5931b57c8a2ad84a06959f50aeba8031f372541e9b9405"
+  },
+  {
+    "path": "data-collection-processing/config/finlight-backfill.json",
+    "sha256": "e11eaa4b031762f8679ac94636ac4f3b52069e4a790c363bdffa93e252a89870"
+  },
+  {
+    "path": "data-collection-processing/config/google-patents-aws.json",
+    "sha256": "7aa7a9bb71b9927d6954789a64a4340e98b6927e919a9c497dafad91e469fcf9"
+  },
+  {
+    "path": "data-collection-processing/config/historical-collection.json",
+    "sha256": "9b1d5b9f25763e24e22319b871865bb91f7d065e02c514bfa49dec8cfc91a885"
+  },
+  {
+    "path": "data-collection-processing/config/market-athena.json",
+    "sha256": "ec90744572dccaa18536bb37d7105fea93963cb41de7b0aa782415fd4c24f3d1"
+  },
+  {
+    "path": "data-collection-processing/config/market-operations.json",
+    "sha256": "0b19558f1f410edd20b64542bdcb455a594750471d35ecd49abd29b9ea6b54f2"
+  },
+  {
+    "path": "data-collection-processing/config/model-data-policy.json",
+    "sha256": "bc5725d5d9c07823f70e6b27e32414d7d3d60124393e4b525654e851758a0af7"
+  },
+  {
+    "path": "data-collection-processing/config/news-athena.json",
+    "sha256": "78330f243b657ac1fc13731d1e81d2c4778f52d106063e5642075f3ebaf0a8fe"
+  },
+  {
+    "path": "data-collection-processing/config/news-collection.json",
+    "sha256": "963af6aa3e3b5ddb19eea37efae2a245609183a186080b89f0fd85b96ef7d65d"
+  },
+  {
+    "path": "data-collection-processing/config/news-history-finlight.json",
+    "sha256": "7e833db982b0900fd48355216944ea18e35e83605f0b65c11d45793a3732c722"
+  },
+  {
+    "path": "data-collection-processing/config/news-history-marketaux.json",
+    "sha256": "296ed660709cf2763b14539e5bc9bd6abaed0796f52cb2f83b7d4b8b494f939c"
+  },
+  {
+    "path": "data-collection-processing/config/news-operations.json",
+    "sha256": "1e0a0cbc5195af071b77d92d6712b392d732f4d0fb7a92ed832bb15dab09efe4"
+  },
+  {
+    "path": "data-collection-processing/config/patent-athena.json",
+    "sha256": "5d5592845bf29c32026ba8d4b7927046f2c5f001d89cb4863136a1e10e8557c8"
+  },
+  {
+    "path": "data-collection-processing/config/patent-backfill-athena.json",
+    "sha256": "5eddb23388558e260efda80bcbb51bd9e9175d98e99ed25dab9490a3b4183291"
+  },
+  {
+    "path": "data-collection-processing/config/patent-backfill-publication.json",
+    "sha256": "9f1672edb232640151f7e6497f18ea9649480ff843f2e67f4ea5f0d79e2d4192"
+  },
+  {
+    "path": "data-collection-processing/config/patent-backfill.2015.json",
+    "sha256": "5e40f207611f07015368f4b0a84527e06519a3bbe8fd8fa351e4b3cf9a4016cd"
+  },
+  {
+    "path": "data-collection-processing/config/patent-backfill.json",
+    "sha256": "cedf6c00ec3b616170d15e4ff18d70f82837f66ac8cf3092a6707ea53717185c"
+  },
+  {
+    "path": "data-collection-processing/config/patent-classification.v1.json",
+    "sha256": "5768fb9e5bb7d7f62de5a75111bb6abd48da0510225fd5450b884b95f8296d75"
+  },
+  {
+    "path": "data-collection-processing/config/patent-export-inbox.json",
+    "sha256": "d15203ef37732b8f431120ab1e82cbbfe4596c2d54b40ee0845e2ee8bfdc2f56"
+  },
+  {
+    "path": "data-collection-processing/config/patent-listing-review.v1.json",
+    "sha256": "47d1cb2977b8eb8e07e4afa2821efc29c6401edfb2dc41025a5492bf422a068d"
+  },
+  {
+    "path": "data-collection-processing/config/patent-operations.json",
+    "sha256": "6b326fc18d1064dd1a6a868a6539b6adee3eb4e0dcefff647cefae91e379b064"
+  },
+  {
+    "path": "data-collection-processing/config/patent-review-policy.v1.json",
+    "sha256": "c12c817473ce3299f4c3a89da0e02cc130f17e85471acf923edc7c317f10624e"
+  },
+  {
+    "path": "data-collection-processing/config/people-observations-athena.json",
+    "sha256": "0c294b7cce0749cbbcb8d3cc66d0e5f0ff916aff92366b2f728eee5f8cf645d4"
+  },
+  {
+    "path": "data-collection-processing/config/ram-budget.json",
+    "sha256": "dc7f37768414e755fde882f69bc769b98ea85448ed4f783f6ef948c5b1c1780c"
+  },
+  {
+    "path": "data-collection-processing/config/ram-budget.proposed.json",
+    "sha256": "3986dc86af47bb2118087cb0da8e4147066cc4ddb162de01caf5ec47788c8771"
+  },
+  {
+    "path": "data-collection-processing/config/readiness-search-scope.json",
+    "sha256": "279f3e2d77cad9d7a3cc2e6bb045ac6714e122100791d24434220c6976b8185a"
+  },
+  {
+    "path": "data-collection-processing/config/reddit-access.json",
+    "sha256": "dbfe6d78f793b4a069c1df2e88318a4e99149af41059151180ba5af3b2b45f16"
+  },
+  {
+    "path": "data-collection-processing/config/regulatory-athena-pilot.json",
+    "sha256": "7433fe568087e326d742b2bf175ba761d2e6317cff86d4596c97650034b8244a"
+  },
+  {
+    "path": "data-collection-processing/config/sam-gov-access.json",
+    "sha256": "d3ece8bee2aaaa897b236a1266d21d8bba7d896631cb60e4fa1d5e6bb4ed9c71"
+  },
+  {
+    "path": "data-collection-processing/config/sec-athena-pilot-policy.json",
+    "sha256": "e81c5eed2cc4d4d2a4dbdd7d0aa13c09b9b7231a2d4d6050645d3b400321341e"
+  },
+  {
+    "path": "data-collection-processing/config/sec-athena-pilot.json",
+    "sha256": "f4ae190088662499d0b657cef5293538667d8444ca5513f80a61b36ffd5a248a"
+  },
+  {
+    "path": "data-collection-processing/config/sectors.v1.json",
+    "sha256": "af3cc3c9c3338dc6465a15008d6b8f6f96870e56bfbeaa3cc7ef4bfa8f63a89a"
+  },
+  {
+    "path": "data-collection-processing/config/setup-google-patents-access.sh",
+    "sha256": "9efcea10505e0bfc1a0501d0dafe94f1f349f2a8fee00c9baf8efe8250d75489"
+  },
+  {
+    "path": "data-collection-processing/config/social-observations-athena.json",
+    "sha256": "2feef00af1649059b9ddf7f0461ab07f4f8a4dc5f56ac09f24839d9b371e3364"
+  },
+  {
+    "path": "data-collection-processing/config/source-coverage-requirements.json",
+    "sha256": "0b0df4b160c23b161d97630158e6ef423f85f6d4e12c4a20f7fc2e2baf470edb"
+  },
+  {
+    "path": "data-collection-processing/config/source-schedule-inventory.json",
+    "sha256": "01b8592ae4d5535fdbf117711c9554dc96a785d687953670afe48633d7a39123"
+  },
+  {
+    "path": "data-collection-processing/config/specialist-inputs.json",
+    "sha256": "47d29bc27573f9413a203ac8e40ea1fa258cea96bcb3474e729f2a93b693539a"
+  },
+  {
+    "path": "data-collection-processing/config/systemd/optima-sms-followup.service",
+    "sha256": "42e6f06e986e174032361bb813888155c690f89758d2356efd843353bf65d694"
+  },
+  {
+    "path": "data-collection-processing/config/systemd/optima-sms-followup.timer",
+    "sha256": "451292a037b4fc6557bc194d8b2505c69fcc4a477b5c945d6f53df886a701b18"
+  },
+  {
+    "path": "data-collection-processing/examples/research-contract/universe.json",
+    "sha256": "d5be485c7fa7f69244e8d765f26b612d26dcb655bf2e9ec0994b27a3a54f2c0b"
+  },
+  {
+    "path": "data-collection-processing/examples/sec-filings/universe.json",
+    "sha256": "d7802b2ad7697e530f870d8a20ca836c55091a533705031ee063c573ba441a4b"
+  },
+  {
+    "path": "data-collection-processing/schemas/rds-tracking-mysql-roles.sql",
+    "sha256": "8b4a6efdb9ecc095eee29f647a29de58d8aacc7cba6243caa220dc4d3a5a6f99"
+  },
+  {
+    "path": "data-collection-processing/schemas/rds-tracking-mysql-smoke.sql",
+    "sha256": "473839db41cb9f57942e9c37e9f01083e0376c56f1dcb19c318ed58c933740af"
+  },
+  {
+    "path": "data-collection-processing/schemas/rds-tracking-mysql.sql",
+    "sha256": "aaaa93c6c56b9e9d1088422fe04045e4aa761b96b8419214cae230299489721d"
+  },
+  {
+    "path": "data-collection-processing/schemas/research-data.schema.json",
+    "sha256": "2a9503fd6f561e44ba93843e3d877afb2cd28e902b40844bb3a8135bff1aa4fc"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-authenticated-daily.service",
+    "sha256": "fdbfca92119da23b57ce96796f04dc7828bd609e8bfa997eb8f3c72ade6ae99d"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-authenticated-daily.timer",
+    "sha256": "2ec1f22a96ba375318794c428e2b7baea55d98f10603645799670705049ee673"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-authenticated-historical.service",
+    "sha256": "d87b13ff5873d39ff0a5fe4b9131dc10a5304c6942739d64ca69590343f115bf"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-authenticated-historical.timer",
+    "sha256": "f15136d2a225d60483f124f8ebe2270c1ddebdf4d6e3d618506a39fe9e2e5a88"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-chictr-daily.service",
+    "sha256": "fafca083b77efb46305efcbf9b85ac69320429ad97ee707e2ac01898643cc095"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-chictr-daily.timer",
+    "sha256": "dc2cbf211ad6e22d9c8f7fd696533c1befbab25af614ed1a6e76c02849938177"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-collection-daily.service",
+    "sha256": "03f46b348639d6ad249950fb9db773a1c93615eea3d9254fb3833234c4d39e55"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-collection-daily.timer",
+    "sha256": "735e65cf0b8ffd56179f854ed24807b1da659fff88169ce4869be8ab3a4ab545"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-collection-health.service",
+    "sha256": "a05aad7ee0c36b5302e2738646d77581af2c2e52c331e52037e6b35bf119ad8d"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-collection-health.timer",
+    "sha256": "fc33460a2605cc432c4728103b678b8d792093182e4cecdb2544ff098454c0ed"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-committed-athena.service",
+    "sha256": "993987eb07715c4579045b4db760a80cc3c41e58b8f23f88e3a668881104955c"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-committed-athena.timer",
+    "sha256": "0d6b2e0cfd782fff9e631eaf7872524a22d8a1bdcc2c5f596d45b66538b69057"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-conference-collection.service",
+    "sha256": "6e5c442cb2c1171693b99f007c0cba8e2e0ec4a04634d3fcfee964f8c8b8fe90"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-conference-collection.timer",
+    "sha256": "92b49fbb5568f193c98955687caaa34fa76d13a7cad86ddae3bd73960ba337df"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-conference-publication.service",
+    "sha256": "2e00b1f61c7ab545a656f2c60a3f11498fde90eb776069fe57693eb2f624ab60"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-conference-publication.timer",
+    "sha256": "67c15aa85c2fded2f5af8913354afee16fe0bb4676923ba0df3a31e9542a5119"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-core-historical.service",
+    "sha256": "1c285cbf65b7555adcd747f59768887fb6741402f7bbe19b79eae04c9e212d34"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-core-historical.timer",
+    "sha256": "989ec9c5247ee26594b51b3578ee6b4bc874cc6059a2636fb785cc0bfdf870d6"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-eodhd-profiles.service",
+    "sha256": "9566bf4a0a15049eb944cc154c9e8eea983c18304a703932dd9de2aa0b18f783"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-eodhd-profiles.timer",
+    "sha256": "bf16004b3d782822929f4f2d6db079aacc30ee499fda7588b082b0a5485aaa11"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-market-collection.service",
+    "sha256": "0a22cd6b8208c66d982bf572133935b0ecd91ab01fe31f34a9cc420d7eb63bb1"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-market-collection.timer",
+    "sha256": "36d47ef120998f04eab3d1d0565dc5d6e5604ee836c5e62234408e79eff932e7"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-market-publication.service",
+    "sha256": "6b816eb21a1449a96e954508d6008e9e3cf9cc9b7499d1f1f52266e3ed1843aa"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-market-publication.timer",
+    "sha256": "fa024bfe2725386a558aa068586f993166dd05fe38e8485917e2927f193fd26f"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-news-collection.service",
+    "sha256": "e9884540094bb6199e98901cfeb4f8bbff2220607b23dbdaa46a0f52380a34d2"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-news-collection.timer",
+    "sha256": "91502d5acc7277ed4073bd97c530ff8d146c565204d1295bacaf09ec69144202"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-news-publication.service",
+    "sha256": "8e26d2c3a0f22e4cf173c3d2b14c5f0a23efc92af1dd9d009fd9be299cb6d5bb"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-news-publication.timer",
+    "sha256": "d3ad41638fca574a542a1f265f6aca7ceff351144f9c489fe2dbd6a0199205ba"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-nmpa-inventory.service",
+    "sha256": "8437510f6fcad60bb95e013720c30babe88d71f9dad8133edd7b51037c65c10b"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-nmpa-inventory.timer",
+    "sha256": "f365be1a2d64234ae25a3fb7c0d633e2677f4c869a0513ae9aead614fa423849"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-backfill.service",
+    "sha256": "9d5850853ecaba64c5c951e8dad56f1644ef00a1577407096053905b3df3f165"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-backfill.timer",
+    "sha256": "5297773bfcb76ad3e1dd4bb4fd9846f2d855a33334ebad7f29487827ba2ec1ea"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-daily.service",
+    "sha256": "37cb1741d5ed0d65b513eb1e989b6ac78d01b44de5ccfdc7d0c25a8122382410"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-daily.timer",
+    "sha256": "a285501e41917d3a81eb9533927ff022e4535bcc2cf93cbe5e469f1830456b80"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-global-monitor.service",
+    "sha256": "b83ddc20469ef7b883484ba60052048c38bd2ca8e156cbb9e65fc85ae4352e02"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-global-monitor.timer",
+    "sha256": "0cd8c7ee6dd36f7cc3cfcea460c9e4a9e33ebffabe49e68aff17074356dd3a2d"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-publication.service",
+    "sha256": "e5f7730c75452f7587508ad4d3ab42111116eb42c08aea6878f8875e854e9942"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-publication.timer",
+    "sha256": "7b4fd83ae498aa7c3c5dd6986f57849e0196320b3b02e2668ed9b84ee26fd2b6"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-people-collection.service",
+    "sha256": "f6d6903c080bcb5656d70a71b299c4aeb682b83f953b7fe4af3e31f1547a1389"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-people-collection.timer",
+    "sha256": "115f6b03ff473635ff2cd34699bb99f79d1e3e1b90a70737b6147c23669fae74"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-reddit-access.service",
+    "sha256": "678dbdc2161a8216ab3e9afc342c243a5b4bf4e6fa678b34352daef683d8a23a"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-reddit-access.timer",
+    "sha256": "9c7ca8785f1c468efc9b3acb1dccea31b958331781a716822f3d14cf0d8a948e"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-reddit-collection.service",
+    "sha256": "3085969ba90f1158b4ed46a901eec4ae09932ca34fcbb1af22072b5c97e22b52"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-reddit-collection.timer",
+    "sha256": "a7876c4713d746dad1ba00b9e4166f2ef3096630219614f3e45e734ae4f4e496"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-research-publication.service",
+    "sha256": "ed580d2246a3eea0def82ba9d70a6931bf47aa1419033c985ced05dacca279e0"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-research-publication.timer",
+    "sha256": "a9c35ba3dba8e8fe52cda5d7638dc062853a1fcae92264433935337aed9c08c5"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-search-capture.service",
+    "sha256": "87b5cbca1cc3ebe82c9ead5a8c3e130cc2d2ad4426edec3fb20fb601922e8893"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-search-capture.timer",
+    "sha256": "e4d3a46a8a636475fe4413a3b0c1f64312b01b15d68e1d85041923fb27b37c90"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-search-daily.timer",
+    "sha256": "21efa2821c3d90bdf32b552d718a848cc0506cd3355103c0faf0d92d1d07117e"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-social-daily.service",
+    "sha256": "c69a295d672a9db2f60f641e28ea3e3427af5349f38909c5590890140f731101"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-social-daily.timer",
+    "sha256": "0cee8c8c0f3fc28167ac9d3d0b416c831c67ecf887abfb4051d66f74f8b46758"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-source-schedule-daily.service",
+    "sha256": "9724d7f9ed4fb1ae306e3861f3669e8b3b54d27299fef35af2aea248ccd2fc66"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-source-schedule-daily.timer",
+    "sha256": "d4ac610bdd5b9ee71b62735c06f4a5c4f178df3ec23a6e25ea33948ef9058d21"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-source-schedule-historical.service",
+    "sha256": "dea9aa06544fb205d4b5829e0dcfb30280b542177c898abee7125a27b6e3c6e3"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-source-schedule-historical.timer",
+    "sha256": "5f00f2212bf03ce70c00999e360aff16fb55f3e8f8722835647a1d213b36cabd"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-specialist-daily.service",
+    "sha256": "94b2b148cfdee9f8cd1da2cbcaff5af5dd38c54a4c7a5df6333c1447b6d39293"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-specialist-daily.timer",
+    "sha256": "555ad38c4f3703a0488467f9985e4d56e36cd8ce57ab58eb23d91ff3ab8de570"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-specialist-historical.service",
+    "sha256": "80fb82421399a0e02b314881616bc5400bd126bbef50aa4c114f4e7642d703ed"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-specialist-historical.timer",
+    "sha256": "27a68383116ba60de9c2ea78a58d2296de0b5aff8c3887e3f5fcf24f9dce84d9"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-specialist-publication.service",
+    "sha256": "e5c74eed69c0a97f807d5f38275ff8692be26e110510856800cf3bf4b9bdfcf3"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-specialist-publication.timer",
+    "sha256": "c1abf9deb1a15c299ed23238393839ee7af899cd5526430023e648dbe261da26"
+  },
+  {
+    "path": "data-collection-processing/unused/IBKR_HKEX_NEWS.md",
+    "sha256": "adf91993499a17bd5d0e62c9bba42f0a74581e8f993d5f4f748bf216888e0638"
+  },
+  {
+    "path": "data-collection-processing/unused/README.md",
+    "sha256": "1b00aa1add56236a2ab6cd35685d5c160d2caef55a79a36f0723557844680083"
+  },
+  {
+    "path": "data-collection-processing/unused/ibkr_hkex_news.py",
+    "sha256": "916bf73f1b279b9ef16cdfdc01b391bec356cc7d411a5add5fef9324faa13552"
+  },
+  {
+    "path": "data-collection-processing/unused/move-manifest-2026-09-26.json",
+    "sha256": "1fc2c9a38c2d3b5cdbe2693597917045ed8ed9a3be22bf67436028c33029a9e8"
+  },
+  {
+    "path": "data-collection-processing/unused/publish_universe_v04.py",
+    "sha256": "87373314a18dbe86147fc13f8ef0ec67d4d8304a9c38974839a0a3523169c43a"
+  },
+  {
+    "path": "data-collection-processing/unused/publish_universe_v05.py",
+    "sha256": "421728f3b6c01c2c8d91721a91eced6ddfbc1e094a9bf8bd953ee9f7b62256e6"
+  },
+  {
+    "path": "data-collection-processing/unused/test_ibkr_hkex_news.py",
+    "sha256": "8572c8c08cf6e383cc1fff614f6b51281d25117be3c69fe11cc912391f737d06"
+  },
+  {
+    "path": "data-collection-processing/unused/config/collection-monitoring-deployment-permissions.json",
+    "sha256": "2dae63c356a9c1a823e2c2d69263a91fc2fa165846ff8458713fdc873905e8d4"
+  },
+  {
+    "path": "data-collection-processing/unused/config/collection-monitoring-sms-diagnostics-permissions.json",
+    "sha256": "3d6955d8a5d114448e18b4274d72dc71b0fcd5dc9e735b784d5b89e545ba39d8"
+  },
+  {
+    "path": "data-collection-processing/unused/config/collection-monitoring-sms-permissions.json",
+    "sha256": "11d98263ab741111f3d097ba11fe49d1ebd13893db5acefada31d6e1ec97cd64"
+  },
+  {
+    "path": "data-collection-processing/unused/config/disclosure-page-reviews.json",
+    "sha256": "1588bc87228d2d03dfc13b12a4c5821733d1f02d757377af2a1d3f4f91773dbf"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/COLLECTION_OPERATIONS.md",
+    "sha256": "15a1aef07a9622d28deb2824287f52bb2297a1233d531f999e2e8d1b24562471"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/COMPANY_ADMISSION.md",
+    "sha256": "0d6f13785be9e67cb42d4a4db68de6716acc1447bb6eeb5ef5c2778a8bf7c165"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/EODHD_ATHENA.md",
+    "sha256": "0806e45af2483e3e8901edcffca7376dc06e8a3650239af076eb5feb9d545d03"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/EODHD_UNIVERSE.md",
+    "sha256": "5a69b08070b9dc36d677e1c96611c12f516a543091f92e21b603370d11ca8ac2"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/HISTORICAL_COLLECTION.md",
+    "sha256": "6025cbad2ed4d50658f12a5b20a2334b645df97917b089184159393d39680b7c"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/MIGRATION_AUDIT_2026-09-24.md",
+    "sha256": "b07d0369f2b540813fdee1387672b8983cb2f58e4f754ad6c4b6c44c4acf0f97"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/NEWS_AUTOMATION.md",
+    "sha256": "121a31c16152b590a9a4248649e25a8e78ff0298e3a5a351954ea26d39431989"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/NEWS_COLLECTION.md",
+    "sha256": "9e9dd37db6e6d0206d2ba1259eab63e4592052402305e7ff883a821b5c32cb0f"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/PATENT_BACKFILL_OPERATIONS.md",
+    "sha256": "35916fe38c41285a0c99295d2a35d05f2f6d5c54eb0d59c5d39c04cee6e35c5c"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/PATENT_BACKFILL_PLAN.md",
+    "sha256": "cff5c9235d9c1a0f76078c43a8543d45ad1d3cdb585eeb737e957fba5c1d2943"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/PATENT_COLLECTION.md",
+    "sha256": "0f8962a2b3b007dbe9649b5a6ddc7abaf6c094bd23a807072b562dd036516fa1"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/PATENT_REVIEW.md",
+    "sha256": "958c4036f0f61d1c08cd4d413a8e5fc7efb1bda8897d00dcafcb8795a4102f33"
+  },
+  {
+    "path": "data-collection-processing/unused/documentation-before-cleanup/RAM_BUDGET.md",
+    "sha256": "734182470e0d67817aefe2459e2ea67ca291bf6cfd6ab8f79bc8222a587c1713"
+  },
+  {
+    "path": "rds-interactions/db.py",
+    "sha256": "cbb0e5a6b8e66762c5882c6737a4a3d31f90cf06edf205dc0fdb0eb00929f060"
+  },
+  {
+    "path": "rds-interactions/test_connection.py",
+    "sha256": "db1b837f81272cd6e4555e09b72c66f91d5caa9b49d7ea1aafa4c07a8f65138b"
+  },
+  {
+    "path": "unused/specialist-outline-backups/specialist_layers_outlines.before-2026-09-26.md",
+    "sha256": "235e6c9daac3d4aebbd1015acc51aa44fd61ec0db750ebef69bbbbfcb1c492cb"
+  }
+]

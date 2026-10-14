@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily Reddit credential readiness check (no content collection)
+
+[Timer]
+OnCalendar=*-*-* 06:40:00 UTC
+Persistent=true
+RandomizedDelaySec=120
+Unit=optima-reddit-access.service
+
+[Install]
+WantedBy=timers.target

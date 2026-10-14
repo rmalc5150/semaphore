@@ -1,0 +1,50 @@
+{
+  "daily_origin": "2026-09-21",
+  "universe": "config/company-universe.v0.2.json",
+  "daily_universe_epochs": [
+    {
+      "effective_from": "2026-09-24",
+      "universe": "config/company-universe.v0.3.json"
+    },
+    {
+      "effective_from": "2026-09-25",
+      "universe": "config/company-universe.v0.5.json"
+    }
+  ],
+  "taxonomy": "config/sectors.v1.json",
+  "storage_config": "config/collection-storage.s3.json",
+  "sec_user_agent": "Optima Holdings support@optima-holdings.com",
+  "sources": [
+    "sec",
+    "clinicaltrials",
+    "fda",
+    "ema",
+    "uk",
+    "japan",
+    "hkex-filings",
+    "documents",
+    "press-releases",
+    "licensing-agreements",
+    "ma-announcements",
+    "strategic-transactions"
+  ],
+  "max_windows_per_source": 2,
+  "max_pages": 100,
+  "max_records": 5000,
+  "sec_max_records": 10000,
+  "document_selection": "universe",
+  "selection": "all",
+  "sectors": [],
+  "separate_jobs": {
+    "eodhd": "optima-eodhd-profiles.timer",
+    "nmpa": "optima-nmpa-inventory.timer"
+  },
+  "not_scheduled": {
+    "chictr": "Available with --only chictr; dedicated reconciliation schedule pending.",
+    "patents": "Nine patent Athena tables verified. Universe 0.3 adds four registry-backed legal entities and four receipt/underlying relationships; two display-sector decisions remain pending. Broader identity/ownership resolution, current global feed and patent scheduling pending. See PATENT_ATHENA.md and COMPANY_UNIVERSE.md.",
+    "news": "Shared historical/daily migration pending.",
+    "market-prices": "Shared historical/daily migration pending.",
+    "people-movements": "Shared historical/daily migration pending.",
+    "conferences": "Shared historical/daily migration pending."
+  }
+}

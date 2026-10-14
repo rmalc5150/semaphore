@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-09-18T15:15:23.635109Z",
+  "nmpa_manifest": "manifests/collection_runs/source=nmpa_trials/dataset=research_records/run_4c12b3c6-8a3c-46f0-b071-629660a2086d/final.json",
+  "nmpa_validation": {
+    "status": "verified",
+    "clinical_trials": 1,
+    "provider_id": "CTR20221481",
+    "event_date": "2022-06-28",
+    "company_names": [
+      "迈威（上海）生物科技股份有限公司"
+    ],
+    "evidence_checksums": "verified",
+    "athena_published": false
+  },
+  "sources": {
+    "nmpa_trials": {
+      "run_id": "run_4c12b3c6-8a3c-46f0-b071-629660a2086d",
+      "status": "complete",
+      "record_count": 1,
+      "cursor": null,
+      "exhausted": true,
+      "terminal_manifest": "manifests/collection_runs/source=nmpa_trials/dataset=research_records/run_4c12b3c6-8a3c-46f0-b071-629660a2086d/final.json"
+    },
+    "chictr": {
+      "run_id": "run_f7111533-2314-4329-910e-33f701474f4e",
+      "status": "running",
+      "record_count": 45,
+      "cursor": "{\"last_date\": \"2026-09-17\", \"page\": 17, \"page_hash\": \"beb88f816d59dceffa635fd7bdc63e4f3cfca211658ce17c1e97a25a722d2d5a\", \"registry_page_size\": 10, \"total_pages\": 1688, \"total_records\": 16876, \"year\": 2026}",
+      "exhausted": false,
+      "terminal_manifest": null
+    }
+  }
+}

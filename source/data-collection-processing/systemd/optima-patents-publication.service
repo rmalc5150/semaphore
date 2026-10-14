@@ -1,0 +1,16 @@
+[Unit]
+Description=Optima verified Athena publication of completed patent backfill months
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/patent_backfill_publication.py
+SuccessExitStatus=2
+TimeoutStartSec=3h
+TimeoutStopSec=120
+KillSignal=SIGINT
+Nice=15
+

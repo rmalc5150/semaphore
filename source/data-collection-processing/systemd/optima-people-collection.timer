@@ -1,0 +1,10 @@
+[Unit]
+Description=Capture personnel sources and advance archive retrieval every 30 minutes
+
+[Timer]
+OnCalendar=*-*-* *:19,49:00 UTC
+RandomizedDelaySec=15
+Persistent=true
+
+[Install]
+WantedBy=timers.target

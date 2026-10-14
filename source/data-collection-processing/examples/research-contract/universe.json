@@ -1,0 +1,265 @@
+{
+  "document_type": "company_universe",
+  "schema_version": "1.0",
+  "universe_version": "0.0.1",
+  "taxonomy_version": "1.0.0",
+  "created_at": "2026-09-17T11:56:23Z",
+  "purpose": "validation",
+  "scope": {
+    "geography": "global",
+    "include_private_companies": true,
+    "sector_ids": [
+      "biotech",
+      "robotics",
+      "semiconductors",
+      "energy_storage"
+    ]
+  },
+  "companies": [
+    {
+      "company_id": "cmp_afb26322-a869-4063-9da8-0a27f9f68db9",
+      "canonical_name": "Example Robotics and Storage",
+      "entity_type": "legal_entity",
+      "ownership_status": "public",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "robotics",
+          "subsector_ids": [
+            "industrial_robotics"
+          ],
+          "classification_basis": "synthetic_fixture",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "verified",
+          "evidence": [
+            {
+              "source": "synthetic_example",
+              "reference": "synthetic://contract-example",
+              "note": "Fictional fixture; verified means internally asserted for this example only."
+            }
+          ]
+        },
+        {
+          "sector_id": "energy_storage",
+          "subsector_ids": [
+            "thermal_storage",
+            "mechanical_storage"
+          ],
+          "classification_basis": "synthetic_fixture",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "verified",
+          "evidence": [
+            {
+              "source": "synthetic_example",
+              "reference": "synthetic://contract-example",
+              "note": "Fictional fixture; verified means internally asserted for this example only."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    },
+    {
+      "company_id": "cmp_302641b1-a080-41a4-9657-d457ee95c463",
+      "canonical_name": "Example Private Hydrogen Systems",
+      "entity_type": "legal_entity",
+      "ownership_status": "private",
+      "domicile_country": null,
+      "collection_enabled": true,
+      "sectors": [
+        {
+          "sector_id": "energy_storage",
+          "subsector_ids": [
+            "hydrogen_storage"
+          ],
+          "classification_basis": "synthetic_fixture",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "observed_at": "2026-09-17T11:56:23Z",
+          "review_status": "verified",
+          "evidence": [
+            {
+              "source": "synthetic_example",
+              "reference": "synthetic://contract-example",
+              "note": "Fictional fixture; verified means internally asserted for this example only."
+            }
+          ]
+        }
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    }
+  ],
+  "company_aliases": [
+    {
+      "alias_id": "als_f6e81d15-5b20-4e3c-a187-1604c3f935cd",
+      "company_id": "cmp_afb26322-a869-4063-9da8-0a27f9f68db9",
+      "alias": "Example Old Robotics Name",
+      "language": "en",
+      "alias_type": "former_name",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-01-01",
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    }
+  ],
+  "external_identifiers": [
+    {
+      "identifier_id": "xid_c0b08bb3-4482-4584-a8a5-2c918da0dd38",
+      "entity_id": "cmp_afb26322-a869-4063-9da8-0a27f9f68db9",
+      "system": "synthetic_registry",
+      "value": "EXAMPLE-001",
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    }
+  ],
+  "listings": [
+    {
+      "listing_id": "lst_dc479e51-b71c-43cf-9dd1-b771c8bcfe09",
+      "company_id": "cmp_afb26322-a869-4063-9da8-0a27f9f68db9",
+      "exchange_mic": "XNAS",
+      "ticker": "EXAMPLE",
+      "security_type": "ordinary_share",
+      "share_class": null,
+      "currency": "USD",
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "product_id": "prd_0f727831-042c-459a-82a6-448f51cf1242",
+      "canonical_name": "Example Storage Module",
+      "product_type": "development_program",
+      "aliases": [
+        "Example Module A"
+      ],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "person_id": "per_22a88301-1e6c-48a5-809e-7cf084f06b3d",
+      "canonical_name": "Example Researcher",
+      "aliases": [],
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationship_id": "rel_b3450a36-8f61-4bde-a9cd-a4ff591e0494",
+      "subject_id": "cmp_afb26322-a869-4063-9da8-0a27f9f68db9",
+      "object_id": "prd_0f727831-042c-459a-82a6-448f51cf1242",
+      "relationship_type": "develops",
+      "role": null,
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    },
+    {
+      "relationship_id": "rel_2751d0a6-2254-4d0d-8507-20585066c15b",
+      "subject_id": "per_22a88301-1e6c-48a5-809e-7cf084f06b3d",
+      "object_id": "cmp_afb26322-a869-4063-9da8-0a27f9f68db9",
+      "relationship_type": "employed_by",
+      "role": "Research director",
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    },
+    {
+      "relationship_id": "rel_460b9576-908c-4a13-b3d5-beb1db028cf0",
+      "subject_id": "cmp_302641b1-a080-41a4-9657-d457ee95c463",
+      "object_id": "cmp_afb26322-a869-4063-9da8-0a27f9f68db9",
+      "relationship_type": "subsidiary_of",
+      "role": null,
+      "valid_from": "2024-01-01",
+      "valid_to": null,
+      "observed_at": "2026-09-17T11:56:23Z",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "source": "synthetic_example",
+          "reference": "synthetic://contract-example",
+          "note": "Fictional fixture; verified means internally asserted for this example only."
+        }
+      ]
+    }
+  ]
+}

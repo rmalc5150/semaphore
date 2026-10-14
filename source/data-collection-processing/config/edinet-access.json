@@ -1,0 +1,6 @@
+{
+  "region": "us-east-1",
+  "secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:EDINET-kL3v4d",
+  "secret_field": "key",
+  "api_base": "https://api.edinet-fsa.go.jp/api/v2"
+}

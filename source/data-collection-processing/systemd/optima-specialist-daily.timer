@@ -1,0 +1,12 @@
+[Unit]
+Description=Optima daily additional specialist inputs and linked original documents
+
+[Timer]
+OnCalendar=*-*-* 07:20:00 Europe/Madrid
+OnUnitInactiveSec=1h
+RandomizedDelaySec=300
+Persistent=true
+Unit=optima-specialist-daily.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Optima Bounded market prices and corporate actions
+
+[Timer]
+OnCalendar=*-*-* *:00/15:00
+RandomizedDelaySec=60
+Persistent=true
+
+[Install]
+WantedBy=timers.target

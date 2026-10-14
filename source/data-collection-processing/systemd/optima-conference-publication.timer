@@ -1,0 +1,10 @@
+[Unit]
+Description=Publish completed proceedings windows every 15 minutes
+
+[Timer]
+OnCalendar=*-*-* *:09,24,39,54:00 UTC
+RandomizedDelaySec=30
+Persistent=true
+
+[Install]
+WantedBy=timers.target

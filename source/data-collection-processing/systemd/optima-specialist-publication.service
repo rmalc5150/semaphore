@@ -1,0 +1,19 @@
+[Unit]
+Description=Verified specialist Athena publication independent of capture queue
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+MemoryAccounting=true
+MemoryMax=402653184
+MemorySwapMax=0
+Environment=ARROW_NUM_THREADS=1
+Environment=MALLOC_ARENA_MAX=2
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/specialist_publication.py --max-windows 24
+TimeoutStartSec=30min
+TimeoutStopSec=120
+KillSignal=SIGINT
+Nice=15

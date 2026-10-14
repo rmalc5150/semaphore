@@ -1,0 +1,14 @@
+{
+  "database": "optima_patent_research",
+  "workgroup": "optima-patent-research",
+  "region": "us-east-1",
+  "curated_prefix": "curated/patents/releases",
+  "query_results_prefix": "athena-results/patents",
+  "patent_review_id": "f5f54302dccbf2a29cf1c70fe4a6df9169f06be93cda55a104b01d3b7d1cc133",
+  "entity_review_id": "19b5e77645eec2c15f7d3f4b5639c4d42c351cbd8c18fb382992998d0122b8b0",
+  "assignment_review_id": "82d08ced86df0c95952978d111e813ebc4dc77e4daaaf99c138cd847016cc735",
+  "assignment_manifests": [
+    "manifests/collection_runs/source=uspto_odp/dataset=patent_assignment_records/run_2a6246d1-6e9d-4797-9877-77d9a359647b/final.json",
+    "manifests/collection_runs/source=uspto_odp/dataset=patent_assignment_records/run_65d78ea3-aa1c-4702-86ae-a538e93f486e/final.json"
+  ]
+}

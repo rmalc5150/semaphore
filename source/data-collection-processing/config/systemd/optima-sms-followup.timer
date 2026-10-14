@@ -1,0 +1,11 @@
+[Unit]
+Description=One-time SMS follow-up on October 19, 2026
+
+[Timer]
+OnCalendar=2026-10-19 10:30:00 UTC
+Persistent=true
+AccuracySec=1min
+Unit=optima-sms-followup.service
+
+[Install]
+WantedBy=timers.target

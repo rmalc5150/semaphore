@@ -1,0 +1,357 @@
+{
+  "region": "us-east-1",
+  "bucket": "data-collection-059416028963-us-east-1-an",
+  "data_prefix": "research-data",
+  "prefix": "research-data/monitoring",
+  "retention_days": 30,
+  "heartbeat_max_age_seconds": 2700,
+  "reminder_seconds": 21600,
+  "schedule": "cron(5,35 * * * ? *)",
+  "email": "randall@optima-holdings.com",
+  "sms": "+13104033167",
+  "jobs": {
+    "optima-collection-daily.service": {
+      "memory_max_bytes": 1200000000,
+      "memory_high_bytes": 960000000,
+      "serialized": true,
+      "execution_timeout": "6h",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 21600,
+      "max_start_gap_seconds": 129600,
+      "stale_progress_seconds": 129600,
+      "progress_keys": [
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/sec/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/clinicaltrials/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/fda/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/ema/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/uk/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/japan/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/hkex-filings/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/documents/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/press-releases/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/licensing-agreements/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/ma-announcements/progress-2026-09-21.json",
+        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/strategic-transactions/progress-2026-09-21.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/sec/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/clinicaltrials/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/fda/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/ema/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/uk/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/japan/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/hkex-filings/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/documents/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/press-releases/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/licensing-agreements/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/ma-announcements/progress-2026-09-24.json",
+        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/strategic-transactions/progress-2026-09-24.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/sec/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/clinicaltrials/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/fda/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/ema/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/uk/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/japan/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/hkex-filings/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/documents/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/press-releases/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/licensing-agreements/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/ma-announcements/progress-2026-09-25.json",
+        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/strategic-transactions/progress-2026-09-25.json"
+      ]
+    },
+    "optima-conference-collection.service": {
+      "memory_max_bytes": 536870912,
+      "memory_high_bytes": 429496729,
+      "serialized": true,
+      "execution_timeout": "2h",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "progress_keys": [
+        "operations/conferences/progress/9b1ec523fc7379bd200a28a0341da811154f234cd9ba277a453f7b78705ebe7b.json",
+        "operations/conferences/progress/063154dbde3fcb5219b465f572a13c7de016ed318972296f50c56a38a200a303.json"
+      ]
+    },
+    "optima-conference-publication.service": {
+      "memory_max_bytes": 805306368,
+      "memory_high_bytes": 536870912,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 2700,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "publication_owners": [
+        "conferences"
+      ]
+    },
+    "optima-eodhd-profiles.service": {
+      "memory_max_bytes": 1200000000,
+      "memory_high_bytes": 960000000,
+      "serialized": true,
+      "execution_timeout": "6h",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 21600,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200
+    },
+    "optima-market-collection.service": {
+      "memory_max_bytes": 402653184,
+      "memory_high_bytes": 322122547,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 2700,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "progress_keys": [
+        "operations/market/automation/73d86afe67f4dc0c545538c8917092c07b4bedb8f92bc1cdb4334e66c029f886/daily.json",
+        "operations/market/automation/73d86afe67f4dc0c545538c8917092c07b4bedb8f92bc1cdb4334e66c029f886/historical.json"
+      ]
+    },
+    "optima-market-publication.service": {
+      "memory_max_bytes": 671088640,
+      "memory_high_bytes": 536870912,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 2700,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "publication_owners": [
+        "market"
+      ]
+    },
+    "optima-news-collection.service": {
+      "memory_max_bytes": 402653184,
+      "memory_high_bytes": 322122547,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 2700,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "progress_keys": [
+        "operations/news/automation/4c4eae3c5cc353c83c299b3080b1c54dd90b8dbc541e1929abca34a2a8870b63/finlight/daily.json",
+        "operations/news/automation/4c4eae3c5cc353c83c299b3080b1c54dd90b8dbc541e1929abca34a2a8870b63/finlight/reconcile.json",
+        "operations/news/automation/4c4eae3c5cc353c83c299b3080b1c54dd90b8dbc541e1929abca34a2a8870b63/marketaux/daily.json",
+        "operations/news/automation/4c4eae3c5cc353c83c299b3080b1c54dd90b8dbc541e1929abca34a2a8870b63/marketaux/historical.json",
+        "operations/news/automation/4c4eae3c5cc353c83c299b3080b1c54dd90b8dbc541e1929abca34a2a8870b63/marketaux/reconcile.json"
+      ]
+    },
+    "optima-news-publication.service": {
+      "memory_max_bytes": 805306368,
+      "memory_high_bytes": 644245094,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 2700,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "publication_owners": [
+        "news"
+      ]
+    },
+    "optima-nmpa-inventory.service": {
+      "memory_max_bytes": 536870912,
+      "memory_high_bytes": 429496729,
+      "serialized": true,
+      "execution_timeout": "4h",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 14400,
+      "max_start_gap_seconds": 129600,
+      "stale_progress_seconds": 129600
+    },
+    "optima-patents-backfill.service": {
+      "memory_max_bytes": 1000000000,
+      "memory_high_bytes": 800000000,
+      "serialized": true,
+      "execution_timeout": "3h",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 10800,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "progress_keys": [
+        "operations/patents/global-backfill/streams/f80276b540a3f85eecc0e748099faa1d2664766b4933827652aedbca4f9dd8af/progress.json"
+      ],
+      "end_exclusive": "2026-09-23"
+    },
+    "optima-patents-daily.service": {
+      "memory_max_bytes": 1200000000,
+      "memory_high_bytes": 960000000,
+      "serialized": true,
+      "execution_timeout": "2h",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "progress_keys": [
+        "operations/patents/streams/44665aa249c9c9b77ac9bc129346baee12b1e557fec48d470205e81fb9ea9099/daily/uspto/progress-2026-09-22.json"
+      ]
+    },
+    "optima-patents-global-monitor.service": {
+      "memory_max_bytes": 201326592,
+      "memory_high_bytes": 161061273,
+      "serialized": false,
+      "execution_timeout": "5min",
+      "queue_timeout_seconds": 0,
+      "execution_timeout_seconds": 300,
+      "max_start_gap_seconds": 129600,
+      "stale_progress_seconds": 129600,
+      "progress_keys": [
+        "operations/patents/global-source/latest-observation.json"
+      ]
+    },
+    "optima-patents-publication.service": {
+      "memory_max_bytes": 1400000000,
+      "memory_high_bytes": 1120000000,
+      "serialized": true,
+      "execution_timeout": "3h",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 10800,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "progress_keys": [
+        "operations/patents/global-backfill/streams/f80276b540a3f85eecc0e748099faa1d2664766b4933827652aedbca4f9dd8af/athena-publication/progress.json"
+      ],
+      "upstream_progress_key": "operations/patents/global-backfill/streams/f80276b540a3f85eecc0e748099faa1d2664766b4933827652aedbca4f9dd8af/progress.json"
+    },
+    "optima-research-publication.service": {
+      "memory_max_bytes": 1200000000,
+      "memory_high_bytes": 960000000,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 2700,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "publication_owners": [
+        "sec",
+        "regulatory",
+        "disclosures",
+        "eodhd",
+        "people"
+      ]
+    },
+    "optima-people-collection.service": {
+      "memory_max_bytes": 268435456,
+      "memory_high_bytes": 214748364,
+      "serialized": false,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 0,
+      "role": "single bounded RSS/archive worker; sequential lanes; parallel only within reserved aggregate headroom",
+      "execution_timeout_seconds": 2700,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200
+    },
+    "optima-committed-athena.service": {
+      "memory_max_bytes": 402653184,
+      "memory_high_bytes": 322122547,
+      "serialized": false,
+      "execution_timeout": "2h",
+      "queue_timeout_seconds": 0,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 10800,
+      "stale_progress_seconds": 10800,
+      "progress_keys": [
+        "athena-committed/latest-report.json"
+      ]
+    },
+    "optima-authenticated-daily.service": {
+      "serialized": false,
+      "queue_timeout_seconds": 0,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "checkpoint_progress": true
+    },
+    "optima-authenticated-historical.service": {
+      "serialized": false,
+      "queue_timeout_seconds": 0,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "checkpoint_progress": true
+    },
+    "optima-specialist-daily.service": {
+      "serialized": true,
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 129600,
+      "stale_progress_seconds": 129600,
+      "checkpoint_progress": true
+    },
+    "optima-specialist-historical.service": {
+      "serialized": true,
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "checkpoint_progress": true
+    },
+    "optima-specialist-publication.service": {
+      "serialized": false,
+      "queue_timeout_seconds": 0,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 7200,
+      "stale_progress_seconds": 43200,
+      "publication_owners": [
+        "specialists"
+      ]
+    },
+    "optima-reddit-collection.service": {
+      "serialized": false,
+      "queue_timeout_seconds": 0,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200
+    },
+    "optima-search-capture.service": {
+      "serialized": true,
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 129600,
+      "stale_progress_seconds": 129600,
+      "timer": "optima-search-daily.timer"
+    },
+    "optima-social-daily.service": {
+      "serialized": true,
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 129600,
+      "stale_progress_seconds": 129600,
+      "checkpoint_progress": true
+    },
+    "optima-chictr-daily.service": {
+      "serialized": true,
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 129600,
+      "stale_progress_seconds": 129600,
+      "checkpoint_progress": true
+    },
+    "optima-core-historical.service": {
+      "serialized": true,
+      "queue_timeout_seconds": 21600,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "checkpoint_progress": true
+    }
+  },
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "sms_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-sms",
+  "sms_recipients": [
+    "+13104033167"
+  ],
+  "sms_countries": [
+    "US"
+  ],
+  "email_digest_seconds": 86400,
+  "digest_alarm_names": [
+    "optima-collection-watchdog-failed",
+    "optima-collection-watchdog-missing",
+    "optima-collection-watchdog-delivery",
+    "optima-collection-watchdog-sms-us-delivery"
+  ]
+}

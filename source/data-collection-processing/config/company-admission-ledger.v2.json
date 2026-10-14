@@ -1,0 +1,2085 @@
+{
+  "version": "1.1",
+  "created_at": "2026-09-25T06:14:58.463076Z",
+  "policy_hash": "942e4a3d0f7d42b41b713160344da566e3728d650d26784e0aeb48d9894387d4",
+  "decisions": [
+    {
+      "company_id": "cmp_f2bac9cd-264c-4b14-b4fd-7db79eea6802",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/2138006X34YDQ6OBYE79",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_f4bd4aa9-c4a9-4379-b8dc-7fc4701acdf9",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300YS3T1KVQ2SNI84",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_72360ce2-979e-48f9-8ecb-f03d8340c49c",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900EDYRQ6K25JEC80",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_006e8abf-0c25-4df8-83cb-f37d6c92601c",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300H8TYEUVTW14A54",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_4f4cd727-b047-4c4d-aab3-3ca5bad6d0c8",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/254900B2AH0G13K9G204",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_a3715118-45ea-4d37-88eb-89793f33e345",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300EZ2NYFK7H0US48",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_308f788c-527d-49ba-9a22-cfbfd840e8dc",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/8945001XW4FS15S8Z778",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_26e3f25c-0696-40c7-bd0b-2556a8716476",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/254900BKG9FQLCKFVK72",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_887d4190-083c-4b9d-87d1-4f9a3268d0b8",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5493004CXYDPCZ5RQK28",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_8994a086-c347-4a81-a75f-ed060cb256ab",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300IFBVI51FN3NJ32",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_e391d99e-8238-484e-9a7c-0b02b38b80fb",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300E9PC51EN656011",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_cfb82007-fe61-43c2-9d1e-2d33da4e0c7f",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300OC7SSPSNNGHE64",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_44c97761-58e9-4b0f-846a-951329b55d60",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/PY6ZZQWO2IZFZC3IOL08",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_e30ba052-1b1a-446e-9d25-f877d166ebc1",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/254900ZZTSW7NL773X71",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_e4d86baa-ce90-41c4-a9b6-bfc49dccbeb0",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/25490023IKJN5F1FKH37",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_45f646a2-342a-4696-9694-d47926fad9fe",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/3912005AWHKLQ1CPLV11",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_7416f49e-7a9a-4fb6-9041-324f451b69b0",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300WV6GIDOZJTV909",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_bc51c5a5-2f22-41fa-8eec-b49ab652f37b",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300SFOL75WIYF2O80",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_ca62d19b-97a9-4e24-b070-127e79ba2dc8",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/213800BVS8I9VMC1AP84",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_fbcd6f30-ce6f-436e-a20b-258214b65ba9",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900GC2NUJ6F0TSK26",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_0cdb6047-c8a1-4e38-8f6f-418db27d2eed",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/FR5LCKFTG8054YNNRU85",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_5c5b9a77-3452-4aeb-871c-61ce04a257d3",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/254900M8C3E5VC8BR186",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_1421a511-970f-4210-9cba-2694eb19a55b",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5493004JF0SDFLM8GD76",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_3d6fd1b0-d5e6-4230-b32d-2c6a693e789e",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "sec_edgar",
+          "reference": "https://www.sec.gov/files/company_tickers_exchange.json",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_3483f1be-9397-4355-bb64-affe3d396ea3",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/969500QB0M6HE4RU3071",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_653d842c-a895-4277-bf35-24d1cdfb1fa4",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900GLI93PGU71F690",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_f6e13093-8313-462a-9552-b390a69d271f",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "sec_edgar",
+          "reference": "https://www.sec.gov/files/company_tickers_exchange.json",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_cf6b4e71-6e3d-412c-8cfc-6aa97d2dcc94",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "sec_edgar",
+          "reference": "https://www.sec.gov/files/company_tickers_exchange.json",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_4b16c383-a4e3-43a7-a8a7-1d9d0af4cae6",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "sec_edgar",
+          "reference": "https://www.sec.gov/files/company_tickers_exchange.json",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_2a284247-6b9b-43e1-8fb8-bd6ee1620a50",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/959800JR15QMEQ5AW950",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_57f8753c-1ce5-4037-b095-98c2a993f7ad",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5493000LKVGOO9PELI61",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_6339ddaa-8b9d-4231-9dcd-853db987bbef",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "sec_edgar",
+          "reference": "https://www.sec.gov/files/company_tickers_exchange.json",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_ff0207e8-f854-4396-a129-19b94e7793c0",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "sec_edgar",
+          "reference": "https://www.sec.gov/files/company_tickers_exchange.json",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_7e393b30-d399-4277-88f7-98119ac1fbba",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/HQD377W2YR662HK5JX27",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_b0692159-9cc2-4626-a61a-7dd5aaf531bf",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5493005YV22OTMUHZ183",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_2b5a9606-9ce8-4eef-a2e0-4b24b5947b86",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5493002YR9VCJJPWYN08",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_54ce8aff-5cfb-4f57-b7d0-7b04419617e5",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5493006CYHP8X8WKJO28",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_b6635f98-fe2f-4258-9436-70d9d8e383df",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300PTSH3X6GMBFS32",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_2faefef0-9bc1-4b76-87f7-9153a2f4dc06",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/213800SLDKXWKT6E3381",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_9497de30-0570-486b-97ab-77e50adbf842",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300OJ44CLMRU8YE43",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_a2343220-fa2b-4c68-9f8a-6713a647ff1c",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300QZ5U2IDRHPWL60",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_ca7261ee-1748-4cc6-b326-396e7e14dd07",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300C17TZXE1IEOA66",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_9e515412-5abe-4d38-9831-80bb3890e2a6",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/89450068Y9KVP2MQGH86",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_8b982469-59e3-4fda-bdce-a3b53d5c87e7",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/378900C70488B55BA114",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_05f3ff06-1220-4b1e-a674-a474ff3006d5",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900BJUYJKNV5H2P27",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_c9742c85-6847-4e60-95ae-00ce72fc07dc",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300QAZ8A74DEDXO80",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_a0bc23ce-dff0-44af-884f-fcfcebb21601",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/95980020140005635004",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_71e4c34b-3566-4d40-bd38-9b8ecf24e324",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/213800HJQ519AT4VCK42",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_9f62876c-af44-46d5-908d-0099bfe269cc",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900SGCREUZCZ7P020",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_36f29af5-9378-4ffe-bdf9-37bbcf57a7dc",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/95980020140005007996",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_b642fa37-ecd5-4fa1-bda2-9c8ab48ab57c",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300K3IMVT20EK2S13",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_c13369bf-d23f-477b-b11d-df66cb5b0f8c",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5493001EJLEBXFY6I446",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_5d96f25c-0cd0-45e9-82cc-7d9397e40972",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5493006MN6OH67U2YI74",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_11e30235-2172-4f33-be93-cb642aec9d9c",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5493000JP703HGPJEX27",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_33e0cf5c-6171-47ad-83d1-ad1617082962",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/259400E3RDWMIUQHME95",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_87d8664b-ee8e-4476-9875-8bb26e012abf",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/259400NXH0FT0MF6PV21",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_97d700fe-e29d-41a3-9530-5cc4d48b4f48",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300C0DH9EESDQUA52",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_0ea48fd1-3e09-46bc-9ad2-6198ed6fce2a",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/7245009C5FZE6G9ODQ71",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_111a587c-4674-4563-af42-09b827bca9e6",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300PP1GKOHKYQ6K97",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_46bdb13f-0b3e-4d23-a3f8-750e10b07064",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/7245001I22ND6ZFHX623",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_9d727709-420f-4094-a378-37a35e513241",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/213800T8PC8Q4FYJZR07",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_877aff1b-e4a4-40f0-87f3-9839444c8dc4",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/259400CBBLICU7Q86X02",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_213d4659-cee3-4354-b65f-02caf70c96bb",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/959800HHEE9W4TZA8627",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_63e9a5c5-b32e-4344-ae1a-23363ee3509c",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900EVOKN4LCCD9321",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_2d5456a5-cc54-4f2f-9cf6-a8aaf7eae7d7",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5967007LIEEXZXGR7K47",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_9302a96e-bfd1-45ec-9ba3-30df3b42b2fc",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/506700S81111XI7TG884",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_7f4984ca-616c-4b85-bc99-74b918f8c9c2",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900PM64WH8AF1E917",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_19f821ef-5683-4c33-bd3a-9f869a0206aa",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/2138006JCDVYIN6INP51",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_3c83671b-dc30-4893-a290-f7cbf164d6b4",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300J4U55H3WP1XT59",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_783073de-979f-40b4-860d-95ce357f4a8c",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300J4HOJL5KG8HY54",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_7b897eae-0a2e-4e42-b941-e83e61c1da75",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/7245007A1YFLI2GNYX06",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_d5eba4f5-33bc-4f2d-926c-aa3e1ed623d2",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/959800Y961RVVBV73R85",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_94ee093e-e19c-415c-8dc3-94faaadf8b0e",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/259400I5R1L3OPCGII81",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_8090197e-8347-4651-b702-2add6886b842",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300HFIIMTOP1DFR76",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_79f8f7a6-969e-4f0f-94dd-10ab35a75996",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/391200TTZP8EIPSJ5J20",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_7bd90f52-9ec6-443a-96ea-00a29e67542c",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300D3GNWVMWZD7E21",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_30bbda26-96da-4c4f-9b70-9468f664c918",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/506700PGOL747J76WC96",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_7659053b-9460-47eb-a74b-36fa9f06c7a1",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300ORR0M8XF56OI64",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_b0385ce2-c5f4-483a-9083-32a060ef28f6",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/52990096G2IJ89SWI669",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_3ee9396d-619b-4187-ad57-7adee6598694",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300HUUUNHO6FJUS42",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_494403dd-fcdf-4c98-b143-db3041eaa330",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/959800KW9HMZ3YKNC540",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_a78e54d3-f18c-4f46-8382-a0fd013f9c03",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300LHK07F2CHV4X31",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_d9a853f7-b719-4a9c-bace-8a3111d0e37a",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5493006GUPIIWUHPXP78",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_bed9d975-d1b2-4b92-875c-f99b29123fe4",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900AUNJ8C37482692",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_8b25636e-2736-460a-8fa4-ca499ce09ae6",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/506700OM0D38V36KOE26",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_d4f286b8-69e4-4866-b9ea-1585c259f997",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900MTJPDPE4MHJ122",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_098e08dc-537a-400c-967e-94d7764c11d0",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/959800M1FVPL5BMW3R13",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_711c9625-2ded-4de3-9016-9a3647fd08c3",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/959800HSSNXWRKBK4N60",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_2dfe85f4-0bb0-45a4-9a5d-7a8806752ff5",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/95980020140005811350",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_941186c7-c0c0-4c75-8a41-41be65d86af2",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/KNX4USFCNGPY45LOCE31",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_4d77ef02-e327-454a-ba5c-8ca08eee3eef",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "sec_edgar",
+          "reference": "https://www.sec.gov/files/company_tickers_exchange.json",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_2e6e8384-b008-42b0-8c6a-2c1cd81eef9f",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900GN3B1EN80XF405",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_8d8a9688-5d40-49d4-adef-ae9df5d6ae7e",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300J3MG9F9B5FY646",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_32153cee-3fda-4e2d-a43e-62397c941799",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300QRPSGOJRPUFO80",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_4d0ec359-6153-4a72-8dcb-3b16e45dac1c",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "sec_edgar",
+          "reference": "https://www.sec.gov/files/company_tickers_exchange.json",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_79d3d7bb-9683-461f-b77c-62d66ce26fca",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300VWY8KVDFKLDM59",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_601bfc42-c646-4118-9492-bacab8f2c42f",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/315700YHFON9RJOPCK19",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_3e0368e7-f020-4490-8db0-6e572e3c8aa7",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900OVSOBJNXZACW81",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_f3a2a166-221a-40dd-81c0-545eea1b60ed",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "sec_edgar",
+          "reference": "https://www.sec.gov/files/company_tickers_exchange.json",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_9c0af4c1-4f90-40e7-81da-b675b9c42e7f",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900DS2PAVS3K9RV51",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_e29938a3-ee7d-49a7-9f22-73414f5dcc93",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/5299006UDSEJCTTEJS30",
+          "note": "Issuing registry corroborates the identifier and legal name."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_748e0d14-b440-460f-80f8-e857c94025e3",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/988400QX6P286XA6ZS85",
+          "note": "Current legal identity corroborated; response sha256:40cfc4248d5ed2275be3450c1dfa0e42121132ed55ab794b0a206a48a8b026eb"
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_310fd881-0d46-4f29-b78a-2818bbc8082b",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:14:58.463076Z",
+      "activation_at": "2026-09-25T06:14:58.463076Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized company review",
+      "basis_universe_version": "0.3.0",
+      "basis_universe_hash": "f95bb0a1440ecd3d802bc4f8e08a7fb7b0463aecadb1df12fd353ae9900b2d04",
+      "source_references": [
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/41BNNE1AFPNAZELZ6K07",
+          "note": "Current legal identity corroborated; response sha256:31ac90bfab631d74566907fbd4698013a9cfe2282bcc3da235741a7f2e62fc3c"
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "New explicit policy activation; does not backdate prior legacy discovery collection."
+    },
+    {
+      "company_id": "cmp_fb52c87f-bf63-4b03-82aa-4db28ffc83c6",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:19:39.936573Z",
+      "activation_at": "2026-09-25T06:19:39.936573Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized registry review",
+      "basis_universe_version": "0.5.0",
+      "basis_universe_hash": "f4c7ae2b11bea39032454f05461576fddd1fd3364cd88a3d91f5ff55ba4d1ee4",
+      "source_references": [
+        {
+          "source": "eodhd",
+          "reference": "https://eodhd.com/api/fundamentals/01H.F?fmt=json&filter=General",
+          "note": "Current provider profile; legal identity remains subject to registry corroboration."
+        },
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/529900OOTWPYSNW0EC84",
+          "note": "Reviewed current registry legal identity and known company name/alternative-language name; source sha256:370969820a6b0507260ff8c31c8c9f7955a1f18741a8b6101b99ae9fb50cb1b5. LEI registration status LAPSED is distinct from entity status ACTIVE."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "Registry-corroborated legal identity; activation is current, not retrospective."
+    },
+    {
+      "company_id": "cmp_c088e562-cf66-4021-8d55-2ca4630525ac",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:19:39.936573Z",
+      "activation_at": "2026-09-25T06:19:39.936573Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized registry review",
+      "basis_universe_version": "0.5.0",
+      "basis_universe_hash": "f4c7ae2b11bea39032454f05461576fddd1fd3364cd88a3d91f5ff55ba4d1ee4",
+      "source_references": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        },
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300EI6OKH5K5Q2G38",
+          "note": "Reviewed current registry legal identity and known company name/alternative-language name; source sha256:d5338a8571e8ced551f65b2fd7f099a868a43db62ff2bcb32e8bfbca0d1efba5. LEI registration status ISSUED is distinct from entity status ACTIVE."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "Registry-corroborated legal identity; activation is current, not retrospective."
+    },
+    {
+      "company_id": "cmp_372861ed-214d-4fa7-912d-3376d572bf1a",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:19:39.936573Z",
+      "activation_at": "2026-09-25T06:19:39.936573Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized registry review",
+      "basis_universe_version": "0.5.0",
+      "basis_universe_hash": "f4c7ae2b11bea39032454f05461576fddd1fd3364cd88a3d91f5ff55ba4d1ee4",
+      "source_references": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        },
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/894500UZJ5LG1F8J1U58",
+          "note": "Reviewed current registry legal identity and known company name/alternative-language name; source sha256:c828eefcb86046b8188c295d10ca61ce9c6b4b98e04288f2bbd840e30ecbbc81. LEI registration status ISSUED is distinct from entity status ACTIVE."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "Registry-corroborated legal identity; activation is current, not retrospective."
+    },
+    {
+      "company_id": "cmp_f7fd53f5-0ef5-402d-8109-bdeb3f210055",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:19:39.936573Z",
+      "activation_at": "2026-09-25T06:19:39.936573Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized registry review",
+      "basis_universe_version": "0.5.0",
+      "basis_universe_hash": "f4c7ae2b11bea39032454f05461576fddd1fd3364cd88a3d91f5ff55ba4d1ee4",
+      "source_references": [
+        {
+          "source": "legacy_patent_pilot",
+          "reference": "patent_pilot_companies.json",
+          "note": "Discovery seed only. Legal entity boundaries, ownership, and current names have not been verified."
+        },
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/724500Y6DUVHQD6OXN27",
+          "note": "Reviewed current registry legal identity and known company name/alternative-language name; source sha256:8d9293048d5fba91e11e149bc8136c608773117974138a4b7ac48ec27fd433cb. LEI registration status ISSUED is distinct from entity status ACTIVE."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "Registry-corroborated legal identity; activation is current, not retrospective."
+    },
+    {
+      "company_id": "cmp_f02324f8-5ba6-4fd4-8137-9069ae03965b",
+      "decision": "activate_detailed_tracking",
+      "decision_at": "2026-09-25T06:19:39.936573Z",
+      "activation_at": "2026-09-25T06:19:39.936573Z",
+      "policy_version": "1.0",
+      "reviewer": "Codex under user-authorized registry review",
+      "basis_universe_version": "0.5.0",
+      "basis_universe_hash": "f4c7ae2b11bea39032454f05461576fddd1fd3364cd88a3d91f5ff55ba4d1ee4",
+      "source_references": [
+        {
+          "source": "eodhd",
+          "reference": "https://eodhd.com/api/fundamentals/LKFT.AS?fmt=json&filter=General",
+          "note": "Current provider profile; legal identity remains subject to registry corroboration."
+        },
+        {
+          "source": "gleif",
+          "reference": "https://api.gleif.org/api/v1/lei-records/549300QKJ78IY0IOV655",
+          "note": "Reviewed current registry legal identity and known company name/alternative-language name; source sha256:38bf1d81c90035edee3d6a701e1a964839a352f0b82e64ee4edf86f2fc166947. LEI registration status ISSUED is distinct from entity status ACTIVE."
+        }
+      ],
+      "historical_activation_at": null,
+      "note": "Registry-corroborated legal identity; activation is current, not retrospective."
+    }
+  ],
+  "updated_at": "2026-09-25T06:19:39.936573Z"
+}

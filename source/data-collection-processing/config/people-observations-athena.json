@@ -1,0 +1,14 @@
+{
+  "owner": "people",
+  "database": "optima_people_research",
+  "workgroup": "optima-people-research",
+  "region": "us-east-1",
+  "curated_prefix": "curated/people/observations/releases",
+  "query_results_prefix": "athena-results/people",
+  "dataset": "people_source_records",
+  "allowed_sources": [
+    "people_rss",
+    "personnel_archive"
+  ],
+  "coverage_note": "Publisher RSS snapshots and personnel-source candidates from stored news and filing documents. Not verified movements or complete workforce history. Original source records, dates and unresolved entity links are retained."
+}

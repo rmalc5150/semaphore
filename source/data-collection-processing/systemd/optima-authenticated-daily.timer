@@ -1,0 +1,12 @@
+[Unit]
+Description=Authenticated official daily source capture
+
+[Timer]
+OnCalendar=*-*-* 07:10:00 Europe/Madrid
+OnUnitInactiveSec=1h
+Persistent=true
+RandomizedDelaySec=120
+Unit=optima-authenticated-daily.service
+
+[Install]
+WantedBy=timers.target

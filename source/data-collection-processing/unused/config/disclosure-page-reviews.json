@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "documents": {
+    "ca28aaa7637a067b31c7471271ed0fb7f4259f94762c7393ec43ef9ae7a7a9cb": {
+      "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0925/2026092500345.pdf",
+      "page_count": 218,
+      "reviewed_at": "2026-09-26",
+      "review_method": "visual_page_review",
+      "pages": {
+        "218": {
+          "text": "FIBOCOM 广和通",
+          "classification": "graphic_back_cover",
+          "note": "Rendered page inspected visually: company logo on decorative background; no financial statements or other body text. Logo text transcribed."
+        }
+      }
+    }
+  }
+}

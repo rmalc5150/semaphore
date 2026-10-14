@@ -1,0 +1,33 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PilotGlueCatalog",
+      "Effect": "Allow",
+      "Action": ["glue:GetDatabase", "glue:CreateDatabase", "glue:GetTable", "glue:GetTables", "glue:CreateTable", "glue:GetPartitions"],
+      "Resource": [
+        "arn:aws:glue:us-east-1:059416028963:catalog",
+        "arn:aws:glue:us-east-1:059416028963:database/optima_sec_pilot",
+        "arn:aws:glue:us-east-1:059416028963:table/optima_sec_pilot/*"
+      ]
+    },
+    {
+      "Sid": "PilotAthenaWorkgroup",
+      "Effect": "Allow",
+      "Action": ["athena:CreateWorkGroup", "athena:GetWorkGroup", "athena:StartQueryExecution", "athena:GetQueryExecution", "athena:GetQueryResults", "athena:StopQueryExecution", "athena:ListQueryExecutions"],
+      "Resource": "arn:aws:athena:us-east-1:059416028963:workgroup/optima-sec-pilot"
+    },
+    {
+      "Sid": "AthenaConsoleCatalog",
+      "Effect": "Allow",
+      "Action": ["athena:GetDataCatalog", "athena:GetDatabase", "athena:ListDatabases", "athena:GetTableMetadata", "athena:ListTableMetadata"],
+      "Resource": "arn:aws:athena:us-east-1:059416028963:datacatalog/AwsDataCatalog"
+    },
+    {
+      "Sid": "AthenaConsoleDiscovery",
+      "Effect": "Allow",
+      "Action": ["athena:ListWorkGroups", "athena:ListDataCatalogs"],
+      "Resource": "*"
+    }
+  ]
+}

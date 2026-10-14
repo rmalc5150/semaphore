@@ -1,0 +1,13 @@
+{
+  "owner": "social",
+  "database": "optima_social_research",
+  "workgroup": "optima-social-research",
+  "region": "us-east-1",
+  "curated_prefix": "curated/social/observations/releases",
+  "query_results_prefix": "athena-results/social",
+  "dataset": "social_records",
+  "allowed_sources": [
+    "bluesky_search"
+  ],
+  "coverage_note": "Provider search view only; pagination may not expose every match. No claim of complete platform or historical coverage."
+}

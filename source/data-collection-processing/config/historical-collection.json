@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "approved_on": "2026-09-24",
+  "start_date": "2021-01-01",
+  "start_inclusive": true,
+  "end_exclusive": true,
+  "scope": "All historical data capture, across all agreed sectors and geographies",
+  "explicit_window_policy": "Explicit date windows remain available for bounded cohorts, retries and existing checkpoints.",
+  "source_groups": {
+    "sec": "Shared historical CLI default implemented; filing-date windows.",
+    "clinical_regulatory": "Shared historical CLI default implemented for ClinicalTrials.gov, FDA, EMA, UK, Japan, ChiCTR and NMPA date-window cohorts. Source coverage limitations still apply.",
+    "disclosures": "Shared historical CLI default implemented for HKEX, documents, press releases, licensing, M&A and strategic transactions.",
+    "patents": "Shared historical CLIs, global query/backfill planning and scheduled global backfill start 2021-01-01.",
+    "market_prices": "2021 target applies; legacy exact-date HKEX capture remains available, shared bulk migration pending.",
+    "news": "Shared historical CLI starts 2021-01-01; Marketaux sampled archive begins in 2021, Finlight recent-only access cannot supply the full history.",
+    "people_conferences_social": "2021 target applies; legacy explicit date-window scripts remain available, shared bulk migration pending.",
+    "company_listings_products_relationships": "2021 target applies to dated history; current EODHD profiles, registry evidence and entity snapshots are observed now, not backdated.",
+    "nmpa_inventory": "Current inventory is a baseline, not a 2021 snapshot; dated detail records use the historical target.",
+    "patent_assignments": "Retain complete source history as relationship evidence; the 2021 research target must not erase older ownership-chain evidence. Current observations are not backdated."
+  },
+  "coverage_policy": "Unavailable periods and undated records must remain explicit gaps; a configured start date is not proof of coverage.",
+  "execution_policy": "Use bounded windows and existing quota/checkpoint controls; this policy does not reset daily origins or launch full backfills."
+}

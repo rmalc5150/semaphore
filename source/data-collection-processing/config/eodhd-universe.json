@@ -1,0 +1,28 @@
+{
+  "secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:EODHD-Zg9HZF",
+  "region": "us-east-1",
+  "instrument_type": "common_stock",
+  "supplemental_exchanges": [
+    {
+      "Name": "Hong Kong Stock Exchange",
+      "Code": "HK",
+      "OperatingMIC": "XHKG",
+      "Country": "Hong Kong",
+      "Currency": "HKD",
+      "CountryISO2": "HK",
+      "CountryISO3": "HKG",
+      "basis": "Validated against exchange-symbol-list/HK on 2026-09-18; absent from the provider exchanges-list response."
+    }
+  ],
+  "fundamentals_general_api_calls": 10,
+  "daily_api_call_reserve": 2000,
+  "default_profile_batch_size": 10000,
+  "sector_rules_version": "1.0",
+  "sector_patterns": {
+    "biotech": "\\b(biotechnolog\\w*|biopharma\\w*|gene therap\\w*|cell therap\\w*|genomic\\w*|therapeutic\\w*|antibod\\w*|vaccine\\w*)\\b",
+    "robotics": "\\b(robot\\w*|cobot\\w*|autonomous mobile|autonomous vehicle\\w*|machine vision)\\b",
+    "semiconductors": "\\b(semiconductor\\w*|integrated circuit\\w*|chip design|wafer\\w*|photolithograph\\w*|microprocessor\\w*)\\b",
+    "energy_storage": "\\b(batter(?:y|ies)|supercapacitor\\w*|ultracapacitor\\w*|energy storage|thermal storage|heat storage|molten salt storage|pumped hydro\\w*|flywheel\\w*|compressed air energy|hydrogen storage|hydrogen tank\\w*)\\b"
+  },
+  "coverage_note": "Provider profiles and textual rules nominate sector candidates. They are not verified legal identities or historical classifications. A listed-security provider does not establish coverage of private companies. Broad industry buckets alone must not determine robotics or energy-storage membership."
+}

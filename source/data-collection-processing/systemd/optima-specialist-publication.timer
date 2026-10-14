@@ -1,0 +1,9 @@
+[Unit]
+Description=Publish committed specialist windows every fifteen minutes
+[Timer]
+OnCalendar=*-*-* *:05,20,35,50:00
+RandomizedDelaySec=60
+Persistent=true
+Unit=optima-specialist-publication.service
+[Install]
+WantedBy=timers.target

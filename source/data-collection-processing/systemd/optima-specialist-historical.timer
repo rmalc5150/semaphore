@@ -1,0 +1,11 @@
+[Unit]
+Description=Optima resumable 2021 specialist archives and verified publication
+
+[Timer]
+OnCalendar=*-*-* *:20:00 UTC
+RandomizedDelaySec=300
+Persistent=true
+Unit=optima-specialist-historical.service
+
+[Install]
+WantedBy=timers.target

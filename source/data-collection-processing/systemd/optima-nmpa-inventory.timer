@@ -1,0 +1,12 @@
+[Unit]
+Description=Resume the Optima NMPA registration inventory daily
+
+[Timer]
+OnCalendar=*-*-* 04:00:00 UTC
+Persistent=true
+RandomizedDelaySec=900
+Unit=optima-nmpa-inventory.service
+
+[Install]
+WantedBy=timers.target
+

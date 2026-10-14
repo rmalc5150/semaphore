@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "collection_config": "config/news-history-finlight.json",
+  "start": "2021-01-01",
+  "end_exclusive": "2026-10-11",
+  "max_days_per_invocation": 4,
+  "max_requests_per_invocation": 100,
+  "max_requests_per_day": 1000,
+  "notify_when_verified": true,
+  "downgrade_to": "Pro Light",
+  "notification_requested_at": "2026-10-11",
+  "scope_note": "Four configured sector searches in English and Chinese; completion is exhausted scoped searches, not all worldwide news. Daily/reconciliation cursors remain in their existing stream."
+}

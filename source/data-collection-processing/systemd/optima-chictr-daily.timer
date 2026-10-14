@@ -1,0 +1,11 @@
+[Unit]
+Description=Bounded ChiCTR daily catch-up and access verification
+
+[Timer]
+OnCalendar=*-*-* 08:35:00 UTC
+Persistent=true
+RandomizedDelaySec=120
+Unit=optima-chictr-daily.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,24 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sms-voice:DescribeAccountAttributes",
+        "sms-voice:DescribeVerifiedDestinationNumbers",
+        "sms-voice:DescribeSpendLimits",
+        "sms-voice:DescribePhoneNumbers",
+        "sms-voice:CreateVerifiedDestinationNumber",
+        "sms-voice:SendDestinationNumberVerificationCode",
+        "sms-voice:VerifyDestinationNumber",
+        "sms-voice:SendTextMessage"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:CalledViaLast": "sns.amazonaws.com"
+        }
+      }
+    }
+  ]
+}

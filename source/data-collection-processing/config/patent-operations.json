@@ -1,0 +1,19 @@
+{
+  "universe": "config/company-universe.v0.3.json",
+  "taxonomy": "config/sectors.v1.json",
+  "storage_config": "config/collection-storage.s3.json",
+  "credentials": "config/google-patents-aws.json",
+  "daily_origin": "2026-09-22",
+  "page_size": 50,
+  "max_pages": 2000,
+  "source_change_restart_hours": 6,
+  "max_windows": 1,
+  "reconcile_days": 2,
+  "not_scheduled": [
+    "incremental reviewed Athena publication"
+  ],
+  "separate_jobs": {
+    "global_patent_backfill": "optima-patents-backfill.timer; starts 2021-01-01; see config/patent-backfill.json"
+  },
+  "daily_partition_strategy": "hourly-v1"
+}

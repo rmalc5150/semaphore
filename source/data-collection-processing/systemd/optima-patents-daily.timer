@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume bounded patent catch-up hourly while EC2 is running
+
+[Timer]
+OnCalendar=*-*-* *:30:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+Unit=optima-patents-daily.service
+
+[Install]
+WantedBy=timers.target

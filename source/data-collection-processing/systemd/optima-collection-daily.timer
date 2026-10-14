@@ -1,0 +1,11 @@
+[Unit]
+Description=Run migrated source collectors daily
+
+[Timer]
+OnCalendar=*-*-* 08:00:00 UTC
+Persistent=true
+RandomizedDelaySec=900
+Unit=optima-collection-daily.service
+
+[Install]
+WantedBy=timers.target

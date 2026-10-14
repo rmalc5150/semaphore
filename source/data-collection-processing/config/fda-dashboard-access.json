@@ -1,0 +1,7 @@
+{
+  "region": "us-east-1",
+  "secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:FDA-Data-vYfqjf",
+  "user_field": "authorization_user",
+  "key_field": "authorization_key",
+  "base_url": "https://api-datadashboard.fda.gov/v1"
+}

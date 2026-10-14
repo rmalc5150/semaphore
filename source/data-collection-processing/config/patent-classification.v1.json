@@ -1,0 +1,15 @@
+{
+  "version": "patent-technology-1.0",
+  "status": "heuristic_candidates_require_review",
+  "rules": [
+    {"sector_id":"biotech","category":"biotechnology","cpc_prefixes":["C12N","C12Q","A61K38","A61K39","A61P35"],"terms":["antibody","biologic","crispr","gene editing","nucleic acid","rna","vaccine"]},
+    {"sector_id":"robotics","category":"robotics","cpc_prefixes":["B25J","G05D1"],"terms":["robot","robotic","robotics","manipulator","autonomous mobile","end effector"]},
+    {"sector_id":"semiconductors","category":"semiconductors","cpc_prefixes":["H10","H01L","G03F7","C23C16"],"terms":["semiconductor","integrated circuit","wafer","lithography","transistor","chiplet"]},
+    {"sector_id":"energy_storage","category":"batteries","cpc_prefixes":["H01M10","H01M4","H02J7"],"terms":["battery","batteries","electrolyte","lithium","solid state cell","energy storage"]},
+    {"sector_id":"energy_storage","category":"supercapacitors","cpc_prefixes":["H01G11"],"terms":["supercapacitor","supercapacitors","ultracapacitor"]},
+    {"sector_id":"energy_storage","category":"thermal_storage","cpc_prefixes":["F28D20"],"terms":["thermal storage","thermal energy storage","heat storage","phase change storage","molten salt storage"]},
+    {"sector_id":"energy_storage","category":"mechanical_storage","cpc_prefixes":[],"terms":["flywheel","compressed air energy storage","pumped hydro","pumped storage","gravity storage","gravitational energy storage"]},
+    {"sector_id":"energy_storage","category":"hydrogen_storage","cpc_prefixes":[],"terms":["hydrogen storage","hydrogen storing","hydrogen tank","hydrogen carrier","metal hydride storage"]}
+  ],
+  "coverage_gaps":["Rules are a review aid, not an exhaustive patent taxonomy.","Mechanical and hydrogen storage currently rely on text terms.","English title/abstract terms do not cover all source languages.","Company names and aliases nominate candidates, not verified patent ownership."]
+}

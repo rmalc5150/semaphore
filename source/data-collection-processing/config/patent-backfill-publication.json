@@ -1,0 +1,6 @@
+{
+  "backfill_config": "config/patent-backfill.json",
+  "athena_config": "config/patent-backfill-athena.json",
+  "output_root": "patent-backfill-athena-build",
+  "max_months": 1
+}

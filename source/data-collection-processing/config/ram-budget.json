@@ -1,0 +1,130 @@
+{
+  "status": "installed_verified",
+  "target_host_capacity_bytes": 4000000000,
+  "slice": "optima-data.slice",
+  "jobs_aggregate_max_bytes": 2000000000,
+  "jobs_aggregate_high_bytes": 1700000000,
+  "host_and_development_budget_bytes": 1400000000,
+  "headroom_budget_bytes": 600000000,
+  "host_limit_enforced": false,
+  "heavy_concurrency": 1,
+  "jobs": {
+    "optima-collection-daily.service": {
+      "memory_max_bytes": 1200000000,
+      "memory_high_bytes": 960000000,
+      "serialized": true,
+      "execution_timeout": "6h",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-conference-collection.service": {
+      "memory_max_bytes": 536870912,
+      "memory_high_bytes": 429496729,
+      "serialized": true,
+      "execution_timeout": "2h",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-conference-publication.service": {
+      "memory_max_bytes": 805306368,
+      "memory_high_bytes": 536870912,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-eodhd-profiles.service": {
+      "memory_max_bytes": 1200000000,
+      "memory_high_bytes": 960000000,
+      "serialized": true,
+      "execution_timeout": "6h",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-market-collection.service": {
+      "memory_max_bytes": 402653184,
+      "memory_high_bytes": 322122547,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-market-publication.service": {
+      "memory_max_bytes": 671088640,
+      "memory_high_bytes": 536870912,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-news-collection.service": {
+      "memory_max_bytes": 402653184,
+      "memory_high_bytes": 322122547,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-news-publication.service": {
+      "memory_max_bytes": 805306368,
+      "memory_high_bytes": 644245094,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-nmpa-inventory.service": {
+      "memory_max_bytes": 536870912,
+      "memory_high_bytes": 429496729,
+      "serialized": true,
+      "execution_timeout": "4h",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-patents-backfill.service": {
+      "memory_max_bytes": 1000000000,
+      "memory_high_bytes": 800000000,
+      "serialized": true,
+      "execution_timeout": "3h",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-patents-daily.service": {
+      "memory_max_bytes": 1200000000,
+      "memory_high_bytes": 960000000,
+      "serialized": true,
+      "execution_timeout": "2h",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-patents-global-monitor.service": {
+      "memory_max_bytes": 201326592,
+      "memory_high_bytes": 161061273,
+      "serialized": false,
+      "execution_timeout": "5min",
+      "queue_timeout_seconds": null
+    },
+    "optima-patents-publication.service": {
+      "memory_max_bytes": 1400000000,
+      "memory_high_bytes": 1120000000,
+      "serialized": true,
+      "execution_timeout": "3h",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-research-publication.service": {
+      "memory_max_bytes": 1200000000,
+      "memory_high_bytes": 960000000,
+      "serialized": true,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": 21600
+    },
+    "optima-people-collection.service": {
+      "memory_max_bytes": 268435456,
+      "memory_high_bytes": 214748364,
+      "serialized": false,
+      "execution_timeout": "45min",
+      "queue_timeout_seconds": null,
+      "role": "single bounded RSS/archive worker; sequential lanes; parallel only within reserved aggregate headroom"
+    }
+  },
+  "timer_overrides": {
+    "market-publication": "*-*-* *:04/10:00 UTC",
+    "news-publication": "*-*-* *:08/10:00 UTC",
+    "patents-publication": "*-*-* *:06/10:00 UTC",
+    "eodhd-profiles": "*-*-* *:35:00 UTC",
+    "patents-daily": "*-*-* *:25:00 UTC",
+    "patents-backfill": "*-*-* *:15:00 UTC"
+  },
+  "conference_publication": "resumed_by_user",
+  "deployment_report": "reports/memory-budget-deployment.json",
+  "validation": "Systemd configuration verified; shared lock contention tested; one live heavy payload with other units queued observed. Full daily peak and throughput monitoring ongoing."
+}

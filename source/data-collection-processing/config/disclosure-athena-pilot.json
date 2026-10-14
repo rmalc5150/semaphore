@@ -1,0 +1,15 @@
+{
+  "database": "optima_disclosures_pilot",
+  "workgroup": "optima-disclosures-pilot",
+  "region": "us-east-1",
+  "curated_prefix": "curated/disclosures_pilot/releases",
+  "query_results_prefix": "athena-results/disclosures-pilot",
+  "source_manifests": [
+    "manifests/collection_runs/source=hkex_news/dataset=filings/run_7f7755a7-ecd7-4a6a-8332-8ee73a1c1217/final.json",
+    "manifests/collection_runs/source=disclosure_documents/dataset=documents/run_4ba91c88-f397-4ce0-97db-fbe3b1b1c6e6/final.json",
+    "manifests/collection_runs/source=disclosure_candidates/dataset=press_releases/run_21a4b47a-51d9-4a49-8e8b-c2539c1773f0/final.json",
+    "manifests/collection_runs/source=disclosure_candidates/dataset=licensing_agreements/run_15bcf25c-0f33-4086-b0c0-2cc793110404/final.json",
+    "manifests/collection_runs/source=disclosure_candidates/dataset=ma_announcements/run_04a3e822-3b6f-4215-85fb-7c0c0c4c7682/final.json",
+    "manifests/collection_runs/source=disclosure_candidates/dataset=strategic_transactions/run_37cd6a32-9836-49ef-9776-49556c97fa69/final.json"
+  ]
+}

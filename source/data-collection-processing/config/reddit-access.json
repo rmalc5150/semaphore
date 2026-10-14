@@ -1,0 +1,21 @@
+{
+  "region": "us-east-1",
+  "secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:Reddit-fDatko",
+  "client_id_field": "client_id",
+  "client_secret_field": "client_secret",
+  "token_endpoint": "https://www.reddit.com/api/v1/access_token",
+  "user_agent": "server:optima-access-check:1.0 (contact: support@optima-holdings.com)",
+  "collection_enabled": true,
+  "bucket": "data-collection-059416028963-us-east-1-an",
+  "prefix": "research-data/social/reddit-refreshable",
+  "max_requests_per_run": 96,
+  "max_records": 5000,
+  "max_bytes": 16777216,
+  "queries": {
+    "biotech": "BeiGene OR biotech",
+    "robotics": "robotics",
+    "semiconductors": "NVIDIA OR semiconductor",
+    "energy_storage": "battery OR \"energy storage\""
+  },
+  "use_scope": "private individual research, clarified by user 2026-10-11"
+}

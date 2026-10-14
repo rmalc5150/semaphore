@@ -1,0 +1,11 @@
+[Unit]
+Description=Run the Optima EODHD profile cohorts with hourly quota-safe top-ups
+
+[Timer]
+OnCalendar=*-*-* *:30:00 UTC
+Persistent=true
+RandomizedDelaySec=60
+Unit=optima-eodhd-profiles.service
+
+[Install]
+WantedBy=timers.target

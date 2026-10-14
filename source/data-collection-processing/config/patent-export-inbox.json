@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "bucket": "data-collection-059416028963-us-east-1-an",
+  "prefix": "research-data/incoming/patents/google-bigquery/",
+  "region": "us-east-1",
+  "format": "newline-delimited JSON, one publication per row",
+  "naming": "<export-date>/<job-id>/part-00000.jsonl",
+  "metadata_file": "<export-date>/<job-id>/export-metadata.json",
+  "recommended_metadata": ["google_cloud_project", "job_id", "exported_at", "source_table", "source_table_last_modified_at", "query_sql", "query_parameters", "universe_hash", "classification_hash", "total_bytes_processed", "total_bytes_billed", "file_sha256", "row_count"],
+  "required_row_identity": "publication_number",
+  "required_window_field": "publication_date (new exports); filing_date only for explicitly labeled legacy imports",
+  "google_cloud_project": "patent-research-508613",
+  "google_cloud_project_number": "24037405713",
+  "authentication": "AWS Workload Identity Federation through the EC2 role",
+  "status": "federation_and_query_access_verified; bounded historical collection available; recurring export not scheduled",
+  "notes": [
+    "This S3 prefix stores exports. It does not create a Google Cloud project or run BigQuery queries.",
+    "Inbox files are not curated Athena tables. patent_bigquery_collection.py writes both exports and shared research records; patent_collection.py imports existing standalone files.",
+    "Completion of a file import means the file was processed, not that worldwide patent coverage is complete.",
+    "Global source freshness and query cost must be checked before enabling recurring exports.",
+    "Live coverage check on 2026-09-23: newest CN publication 2026-09-08, newest US publication 2026-09-17. Maxima do not establish complete coverage. See PATENT_BACKFILL_PLAN.md."
+  ]
+}
