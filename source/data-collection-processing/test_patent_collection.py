@@ -356,7 +356,7 @@ class PatentCollectionTests(unittest.TestCase):
         def opener(request, timeout):
             calls.append(request)
             return Response(b'{"count":0,"patentFileWrapperDataBag":[]}')
-        client = pc.ODPClient(self.store, key_loader=lambda: "test-secret", opener=opener, sleeper=lambda _: None)
+        client = pc.ODPClient(self.store, key_loader=lambda: "test-secret", opener=opener, sleeper=lambda _: None, gate=lambda: None)
         client.search({"q": "test"})
         self.assertEqual(calls[0].get_header("X-api-key"), "test-secret")
         self.assertNotIn("test-secret", str(client.evidence))

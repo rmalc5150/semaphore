@@ -111,3 +111,7 @@ metadata/count reconciliation, extraction dry-run and S3 result-reuse check.
 
 References: [BigQuery pricing](https://cloud.google.com/bigquery/pricing) and
 [temporary cached results](https://docs.cloud.google.com/bigquery/docs/cached-results).
+
+## Additional US examination and petition history
+
+The current shared historical configuration starts January 1, 2021 and supersedes the older January 2015 selection described above. Office Actions and final Petition Decisions require separate historical tasks and coverage receipts; completed publication/application windows cannot stand in for their history. Partition by documented action/decision date, including in-range documents for older applications where supported. Preserve unknown availability and source coverage gaps. See [USPTO examination and petition rollout](USPTO_PROSECUTION_ROLLOUT_PLAN.md) for the backfill, incremental overlap and acceptance gates. The source adapters and hourly bounded scheduler are now implemented; see [execution status](PATENT_PROSECUTION_OPERATIONS.md). Existing global backfill checkpoints are retained.

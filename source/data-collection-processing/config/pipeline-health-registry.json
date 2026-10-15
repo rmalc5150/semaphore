@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "stages": {
+    "event_pipelines": {"label": "Event pipelines", "unit_patterns": ["optima-event-*.service", "optima-events-*.service"], "receipt_keys": []},
+    "specialist_models": {"label": "Specialist layer models", "unit_patterns": ["optima-specialist-model*.service", "optima-specialist-layer*.service"], "receipt_keys": []},
+    "hmm": {"label": "HMM", "unit_patterns": ["optima-hmm*.service"], "receipt_keys": []},
+    "tft_training": {"label": "TFT training", "unit_patterns": ["optima-tft-train*.service"], "receipt_keys": []},
+    "tft_testing": {"label": "TFT testing", "unit_patterns": ["optima-tft-test*.service", "optima-tft-eval*.service"], "receipt_keys": []}
+  }
+}

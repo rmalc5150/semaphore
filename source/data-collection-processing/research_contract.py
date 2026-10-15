@@ -239,6 +239,19 @@ def validate_record(record: dict, universe: dict) -> list[str]:
     errors = schema_errors(record, "record")
     if errors:
         return errors
+    if record['dataset'] in {'patent_office_actions', 'patent_petition_decisions'}:
+        schema = load_json(ROOT / 'schemas/patent-prosecution-payload.schema.json')
+        errors.extend('prosecution payload: ' + e.message for e in
+            Draft7Validator(schema, format_checker=FormatChecker()).iter_errors(record['payload']))
+        data = record['payload'].get('data', {})
+        if record['source'] != 'uspto_odp' or data.get('source_document_id') != record['source_record_id']:
+            errors.append('prosecution source/document identity mismatch')
+        if record['event_at'] is None or record['event_at'].get('value') != data.get('action_date'):
+            errors.append('prosecution action date does not match event_at')
+        evidence = {(e.get('key'), e.get('sha256'), e.get('bytes')) for e in record['payload'].get('source_evidence', [])}
+        for document in data.get('documents', []):
+            if (document.get('key'), document.get('sha256'), document.get('bytes')) not in evidence:
+                errors.append('prosecution PDF is not covered by source evidence')
     errors.extend(temporal_errors(record))
     if record["universe_version"] != universe["universe_version"]:
         errors.append("record universe_version does not match the supplied universe")

@@ -207,6 +207,7 @@ def deploy(config, account):
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as package:
         package.write(ROOT/'collection_alerts.py', 'collection_alerts.py')
         package.write(ROOT/'monitoring_overview.py', 'monitoring_overview.py')
+        package.write(ROOT/'monitoring_runbooks.py', 'monitoring_runbooks.py')
         package.writestr('collection-monitoring.json', json.dumps(config))
     runtime = {'Runtime': 'python3.12', 'Role': execution, 'Handler': 'collection_alerts.handler',
                'Timeout': 120, 'MemorySize': 128, 'Description': '30-minute collection watchdog; S3-only state and 30-day alert history'}

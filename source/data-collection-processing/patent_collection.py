@@ -200,12 +200,14 @@ def import_export(store, settings, universe, taxonomy, path, start, end, mode="h
 
 
 class ODPClient(EvidenceClient):
-    def __init__(self, store, key_loader=None, opener=urlopen, sleeper=time.sleep):
+    def __init__(self, store, key_loader=None, opener=urlopen, sleeper=time.sleep, gate=None):
         super().__init__(store, "uspto_odp", opener, sleeper)
         if key_loader is None:
             from uspto_patents import load_api_key
             key_loader = load_api_key
         self.key_loader, self.key = key_loader, None
+        from uspto_rate_limit import pace
+        self.gate = gate or pace
 
     def search(self, query):
         return self._request(SEARCH_URL, query)
@@ -219,6 +221,7 @@ class ODPClient(EvidenceClient):
             self.key = self.key_loader()
         headers = {"X-API-KEY": self.key, "Content-Type": "application/json", "Accept": "application/json"}
         for attempt in range(4):
+            self.gate()
             self.sleep(max(0, 1 - (time.monotonic() - self.last_request)))
             self.last_request = time.monotonic()
             try:
@@ -440,7 +443,7 @@ def collect_uspto_partitioned(store, settings, universe, taxonomy, start, end,
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("source", choices=["import", "uspto"])
+    parser.add_argument("source", choices=["import", "uspto", "office-actions", "petition-decisions"])
     parser.add_argument("--input", type=Path)
     parser.add_argument("--mode", choices=["historical", "daily"], required=True)
     parser.add_argument("--start", type=date.fromisoformat, help="defaults to the shared start in historical mode; required for daily")
@@ -470,8 +473,12 @@ def main(argv=None):
     try:
         if args.source == "import":
             result = import_export(*common, args.input, args.start, args.end, args.mode, date_basis=args.date_basis, **kw)
-        else:
+        elif args.source == "uspto":
             result = collect_uspto(*common, args.start, args.end, args.mode, **kw)
+        else:
+            from patent_prosecution import collect, DATASETS
+            result = collect(*common, DATASETS[0 if args.source == "office-actions" else 1],
+                args.start, args.end, args.mode, **{**kw, "page_size": min(args.page_size, 20)})
     except Exception as exc:
         print(json.dumps({"status": "failed", "error_type": type(exc).__name__}))
         return 1

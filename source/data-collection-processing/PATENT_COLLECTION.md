@@ -188,3 +188,29 @@ in [PATENT_OPERATIONS.md](PATENT_OPERATIONS.md).
 5. Derive dated patent events only from source-supported dates, with observed
    changes separate from legal events. Validate point-in-time eligibility before
    using patent features in HMM/TFT training.
+
+## Examination and petition extension
+
+Implemented October 14, 2026. `patent_collection.py office-actions` and
+`patent_collection.py petition-decisions` delegate to `patent_prosecution.py`.
+They write separate `uspto_odp` datasets `patent_office_actions` and
+`patent_petition_decisions`, governed by
+`schemas/patent-prosecution-payload.schema.json` and the shared envelope contract.
+Search JSON, document metadata and original PDFs are retained with checksums.
+Failed downloads leave durable document-task receipts and keep their source page
+partial; retries reuse successful downloads. Provider text and structured fields
+are preserved; model-extracted claims remain empty until an extractor is implemented.
+
+The live pilot began at January 1, 2021, using source submission/decision dates,
+including in-range documents for older applications. Final petitions are filtered
+with `finalPetitionDecisionIndicator:true`. Office Action text results can include
+allowance notices and other document codes; the dataset name is not itself proof
+of a rejection. Current patent snapshots remain intact and are enriched through
+application and official-document joins rather than replaced.
+
+See [prosecution operations](PATENT_PROSECUTION_OPERATIONS.md) for the enabled
+historical/incremental collector, limits, reconciliation and independent coverage.
+All USPTO application and prosecution requests now use a shared host request gate,
+with at least two seconds between reserved API request starts. Typed observation
+publication is integrated into `research_publication.py`; partial windows are not
+published. Both proposed discovery routes consume these observations as evidence.

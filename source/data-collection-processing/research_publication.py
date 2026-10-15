@@ -14,6 +14,7 @@ import sec_athena_pilot
 import regulatory_athena
 import disclosure_athena
 import source_observation_athena
+import patent_prosecution_athena
 
 GROUPS = {
     'sec': ('sec-athena-pilot.json', sec_athena_pilot),
@@ -22,11 +23,18 @@ GROUPS = {
     'eodhd': ('eodhd-observations-athena.json', source_observation_athena),
     'people': ('people-observations-athena.json', source_observation_athena),
     'social': ('social-observations-athena.json', source_observation_athena),
+    'patent_office_actions': ('patent-office-actions-athena.json', patent_prosecution_athena),
+    'patent_petition_decisions': ('patent-petition-decisions-athena.json', patent_prosecution_athena),
 }
 
 
 def owner_for(task):
     source, dataset = task.get('source'), task.get('dataset')
+    if source == 'uspto_odp' and dataset in {'patent_office_actions', 'patent_petition_decisions'}:
+        # These are versioned observations, not distinct patent events. A
+        # reconciliation task owns its own observation window; consumers join
+        # document identities and choose a captured version at their cutoff.
+        return dataset
     other = {('eodhd', 'company_profiles'): 'eodhd',
              ('people_rss', 'people_source_records'): 'people',
              ('personnel_archive', 'people_source_records'): 'people',
@@ -44,14 +52,14 @@ def owner_for(task):
     return None
 
 
-def discover(store, settings):
+def discover(store, settings, owners=None):
     """Use committed heads; partial refreshes cannot replace successful releases."""
     counts = dict.fromkeys(GROUPS, 0)
     def inspect(key):
         head, _ = load_stored(store, key)
         task = head.get('task', {})
         owner = owner_for(task)
-        if not owner or head.get('status') != 'complete':
+        if not owner or (owners and owner not in owners) or head.get('status') != 'complete':
             return None
         manifest_key = head.get('terminal_manifest')
         if not manifest_key or manifest_key not in head.get('terminal_history', []):
@@ -68,8 +76,21 @@ def discover(store, settings):
             return None
         return owner, queue_key, {'window_id': window_id, 'manifests': [manifest_key],
             'queued_at': now(), 'source': task['source'], 'dataset': task['dataset']}, token
-    keys = [key for key in list_keys(store, settings, 'checkpoints/' if hasattr(store, 'root') else 'checkpoints/task_')
-            if key.startswith('checkpoints/task_') and key.endswith('/head.json')]
+    if owners and set(owners).issubset({'patent_office_actions', 'patent_petition_decisions'}):
+        # A bounded prosecution publication should not read every unrelated
+        # historical collector checkpoint just to find its few new windows.
+        keys = set()
+        for owner in owners:
+            prefix = f'manifests/collection_runs/source=uspto_odp/dataset={owner}/'
+            for key in list_keys(store, settings, prefix):
+                if key.endswith('/final.json'):
+                    manifest, _ = load_stored(store, key)
+                    if manifest.get('status') == 'complete':
+                        keys.add('checkpoints/task_' + digest(manifest['task']) + '/head.json')
+        keys = sorted(keys)
+    else:
+        keys = [key for key in list_keys(store, settings, 'checkpoints/' if hasattr(store, 'root') else 'checkpoints/task_')
+                if key.startswith('checkpoints/task_') and key.endswith('/head.json')]
     # Only reads overlap. Queue mutations retain conditional-write ownership.
     with ThreadPoolExecutor(max_workers=4) as pool:
         for candidate in pool.map(inspect, keys):
@@ -100,7 +121,7 @@ def main():
             return 2
         settings = StorageSettings.load(ROOT / 'config/collection-storage.s3.json')
         store = settings.store()
-        print(json.dumps({'discovered': discover(store, settings)}), flush=True)
+        print(json.dumps({'discovered': discover(store, settings, args.owners)}), flush=True)
         results = {}
         for owner, (filename, module) in GROUPS.items():
             if args.owners and owner not in args.owners:

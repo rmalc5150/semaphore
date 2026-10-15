@@ -13,7 +13,7 @@
   },
   {
     "path": "weeklyPlan.md",
-    "sha256": "20c223bf80a752e892e7407ac230ab2f3750b2eec509369ccd717fbb9648933f"
+    "sha256": "5d64fae0d9b82ec0490524c676a65dc2977cf312075496dc7b31f32762440a67"
   },
   {
     "path": "code-backup/README.md",
@@ -41,7 +41,7 @@
   },
   {
     "path": "data-collection-processing/COLLECTION_STORAGE.md",
-    "sha256": "88407f76b9cec44c77980ce1c0d0814a0c1010f53ba62248afab01e4b414b9f3"
+    "sha256": "5a012d19d3ace72d6092a632a09869953421202263f48f79cc958b6307a5d5fc"
   },
   {
     "path": "data-collection-processing/COLLECTOR_MIGRATION.md",
@@ -64,12 +64,16 @@
     "sha256": "d2a88f6facf650b78dea6275ba8d43d25dbdd93ef8675bc38a76f2bc3d7085a2"
   },
   {
+    "path": "data-collection-processing/DAILY_HEALTH_OPERATIONS.txt",
+    "sha256": "e2a8b28adbed9397c8081a9d3f5fb64c479eb3a05e70990b7cd4187261ad0029"
+  },
+  {
     "path": "data-collection-processing/DISCLOSURE_COLLECTION.md",
     "sha256": "32f7bfea0ae66de3c45485a485aa093e8de22523dbf93e7872d9baf0c9737ac4"
   },
   {
     "path": "data-collection-processing/ENTITY_DISCOVERY_ROLLOUT_PLAN.md",
-    "sha256": "ef0c0e73d8a5255e7af3e3fc44df667d8bea1fe61cfec89066cc48c0c231a378"
+    "sha256": "1af4e36675c5706f05b12a7c10867b83a89f0f0ddd91dbc732fe80bbe9f79102"
   },
   {
     "path": "data-collection-processing/EODHD_ATHENA.md",
@@ -129,11 +133,11 @@
   },
   {
     "path": "data-collection-processing/PATENT_BACKFILL_PLAN.md",
-    "sha256": "8d74442a8904eb1a2760fb34f9ea8e5e22fce4c4c5dbd9d917be61ff7d69b9de"
+    "sha256": "927355d7789981d12e1be1ea54e8a46b0a48b45f2c2c79a457717f9ad18d995e"
   },
   {
     "path": "data-collection-processing/PATENT_COLLECTION.md",
-    "sha256": "184cc3598ebf7cfd94c1413f97cc124bfd59d3ba62f1ae05b559ed1332991d1f"
+    "sha256": "204e224ebcfe5d8d419a87659d67d744cf07d2a498052df5d147bb19d79797fe"
   },
   {
     "path": "data-collection-processing/PATENT_OPERATIONS.md",
@@ -142,6 +146,10 @@
   {
     "path": "data-collection-processing/PATENT_PILOT.md",
     "sha256": "01654c943c946e061a92e40afaa547a1e03c866c87053f014e36ca880f6b3f5d"
+  },
+  {
+    "path": "data-collection-processing/PATENT_PROSECUTION_OPERATIONS.md",
+    "sha256": "57ae0c1b97e7c617dccf44ee196225277c77e0e1142d30e39e3bc583fbc9b002"
   },
   {
     "path": "data-collection-processing/PATENT_REVIEW.md",
@@ -169,7 +177,7 @@
   },
   {
     "path": "data-collection-processing/RESEARCH_DATA_CONTRACT.md",
-    "sha256": "3f94b118f021e34bdc96c6cdf5e2abb11164500a8cdde7515df4ee6117cfe3cf"
+    "sha256": "cca35348b84312fe0f9fb545b036db0417d226e562763afb097e4977f52239ab"
   },
   {
     "path": "data-collection-processing/RESEARCH_PUBLICATION.md",
@@ -198,6 +206,10 @@
   {
     "path": "data-collection-processing/STRATEGIC_TRANSACTIONS.md",
     "sha256": "505fc76ff8ed67f1e71a5c5949f0c58c200f886cc1546d439f69fe5ff7fa82f3"
+  },
+  {
+    "path": "data-collection-processing/USPTO_PROSECUTION_ROLLOUT_PLAN.md",
+    "sha256": "9d52c91e058e61788359cfeb4d61a1fc751d0d9afaa65e894f2820886214a7bf"
   },
   {
     "path": "data-collection-processing/archive_specialist_probes.py",
@@ -245,11 +257,11 @@
   },
   {
     "path": "data-collection-processing/collection_alerts.py",
-    "sha256": "f97364bac038757ca86e2a039134ff3e508ac940592ed578240952f11691e19b"
+    "sha256": "c3c7d9bc25866d6eea9b8418b48a69353a6c4a586d3992142f3d79f4296905c0"
   },
   {
     "path": "data-collection-processing/collection_health_exporter.py",
-    "sha256": "cd3e1a950db225397becc17d77196513229b4baa0c08344747bac311584ab1f6"
+    "sha256": "0b4531ddbe8ad440acb6bf0d6d2339872c62930e409284d5af677882e35df8bc"
   },
   {
     "path": "data-collection-processing/collection_operations.py",
@@ -312,12 +324,16 @@
     "sha256": "54ab5bd54cb88bdd751eeb176a4c437e302e983648840dd20f4a5120660f76e7"
   },
   {
+    "path": "data-collection-processing/daily_health_audit.py",
+    "sha256": "5d68af8655697eabf53b75611214063e9771243722d0ea9c609e95a56dfca98e"
+  },
+  {
     "path": "data-collection-processing/decodo_scraping_api.py",
     "sha256": "486bc16ad4e67592fa106f4738d36c3869e1d8e55c6cbff0b103949a58c123d3"
   },
   {
     "path": "data-collection-processing/deploy_collection_monitoring.py",
-    "sha256": "97b9b0f1acee330891d3e8815081af958dee9cb30ec5ec4a5fee073ab3d2563b"
+    "sha256": "09c50ffc6e73172663503af86dcb0c0891446c0b159539311ab6eafec9257fd6"
   },
   {
     "path": "data-collection-processing/disclosure_athena.py",
@@ -381,7 +397,7 @@
   },
   {
     "path": "data-collection-processing/event-pipeline.md",
-    "sha256": "e431c3d1b9b435c06d9ba5f479357ba1657c28cc8933d9d1017012a377384f61"
+    "sha256": "e53803574fd4e3057cfa7dde0efc7f7eca761d5b3e92027d967949d75201dd18"
   },
   {
     "path": "data-collection-processing/fda_access.py",
@@ -473,11 +489,15 @@
   },
   {
     "path": "data-collection-processing/monitoring_extra_jobs.py",
-    "sha256": "7a3fff8f21a1eb3dcf296c8ad14e3794c21eae9e5d5d61b9f4a39e83a5d7ffc1"
+    "sha256": "748c2c88c5be62c996cffd2c8d3fbde825af48b717d09f3374f3845f25172fd6"
   },
   {
     "path": "data-collection-processing/monitoring_overview.py",
-    "sha256": "c540dd6487aa2de011a4c1015cd94c4beb9b27471f4c6f51e89d95506e198960"
+    "sha256": "908951f2a1e6c8e150f1cea41b6b2d18d1ea5029f8a4915edcb7cd0dc96415a1"
+  },
+  {
+    "path": "data-collection-processing/monitoring_runbooks.py",
+    "sha256": "db9d5030381120ea384215555b4112aa3b0b726729327f6ecff47b989afbc937"
   },
   {
     "path": "data-collection-processing/news_athena.py",
@@ -553,7 +573,7 @@
   },
   {
     "path": "data-collection-processing/patent_collection.py",
-    "sha256": "1bb204627d21f4f458a17969294b2e3bb9475a2c07c5eeade811ee6303b9aed2"
+    "sha256": "33ec3a97625e37f3067ca2462f8c2e8672f5989bb39f5394dc32d94af4a1123d"
   },
   {
     "path": "data-collection-processing/patent_discovery.sql",
@@ -578,6 +598,18 @@
   {
     "path": "data-collection-processing/patent_pilot_companies.json",
     "sha256": "3bfadf2ff206942bf61063dd524211f3467cc64f24dd1b49ede6455c1f8ded2e"
+  },
+  {
+    "path": "data-collection-processing/patent_prosecution.py",
+    "sha256": "7decd7f865ff68494d0d6033512b080f0b5c112243820067c3dc69bcb7ce1705"
+  },
+  {
+    "path": "data-collection-processing/patent_prosecution_athena.py",
+    "sha256": "6d34fc7323576928adce74adcc629a66e5550e3d2671f545b033902eb5869bbb"
+  },
+  {
+    "path": "data-collection-processing/patent_prosecution_operations.py",
+    "sha256": "3c18dc3541182faee650fe54f9584601ac752feed1baada48b1988bf786c8968"
   },
   {
     "path": "data-collection-processing/patent_query_plan.py",
@@ -614,6 +646,10 @@
   {
     "path": "data-collection-processing/personnel_archive.py",
     "sha256": "4fc32f42925ae9a45dbd3e8f108c7fa89a138679d0d18ef0b0ff1fb267c82d3d"
+  },
+  {
+    "path": "data-collection-processing/pipeline_health.py",
+    "sha256": "1633e6b24440a4aa1bc1f824932c18c0754415ee30efb88413fa0a3377a751a4"
   },
   {
     "path": "data-collection-processing/promote_registry_review.py",
@@ -689,11 +725,11 @@
   },
   {
     "path": "data-collection-processing/research_contract.py",
-    "sha256": "462b231eed39cd423ca2ba56b0daa14053b96bb6375e5c8a8abe901b6401bfe3"
+    "sha256": "179631a5bf4af9e042d5831fa374e28e7d18c796770be2dd7a09fff5945356b5"
   },
   {
     "path": "data-collection-processing/research_publication.py",
-    "sha256": "4eaa41aca09efd21d36677f34f7ee32b664023e4afd1b9689951e53149ed3183"
+    "sha256": "b4147372bc84d0db60e7aca39521c31b5c75fa825664348a1afbdf4c9ecacf57"
   },
   {
     "path": "data-collection-processing/review_source_capture.py",
@@ -725,7 +761,7 @@
   },
   {
     "path": "data-collection-processing/source_observation_athena.py",
-    "sha256": "0394adb3a67ed933eef2741e70e005f0de8a5654607901b474f9f53cd9f9e855"
+    "sha256": "dd1fe4290c004aac803f991312849166f075885df60230c115935db5be09b9a6"
   },
   {
     "path": "data-collection-processing/source_schedule_control.py",
@@ -769,7 +805,7 @@
   },
   {
     "path": "data-collection-processing/test_collection_digest.py",
-    "sha256": "325cce2dfd191c31b2084a828f0dae0677b729bbe83389194542cbf18616eda2"
+    "sha256": "d6b980a2c88a5e6698ff995b0914363b2b3e21afaabaf89f1d96293a68611904"
   },
   {
     "path": "data-collection-processing/test_collection_health_repairs.py",
@@ -857,7 +893,7 @@
   },
   {
     "path": "data-collection-processing/test_monitoring_overview.py",
-    "sha256": "8d0fce8970042912f22ac6c2007bd85164134a405e95ab6a129822daa7a8401b"
+    "sha256": "0497f4f3d8cb40aa3a5a02f215fe292c2834ee61467c24397d633c230a60bb29"
   },
   {
     "path": "data-collection-processing/test_news_collection.py",
@@ -913,7 +949,7 @@
   },
   {
     "path": "data-collection-processing/test_patent_collection.py",
-    "sha256": "70bfb827a0cb8b9f3a2f37bcda6110e8b9a09490304c4882d2151352ce0713c7"
+    "sha256": "b9feb0fd30251dfc10e652d3060b786f85675e082844dc27d6d6bb2fff5bafdf"
   },
   {
     "path": "data-collection-processing/test_patent_entity_review.py",
@@ -930,6 +966,10 @@
   {
     "path": "data-collection-processing/test_patent_operations.py",
     "sha256": "845d260e623f4695e0f8b01281f2aa8297c8bd1264773d10b1b9bb6e34f5ed8c"
+  },
+  {
+    "path": "data-collection-processing/test_patent_prosecution.py",
+    "sha256": "56c33dcd4c75f644cfa10e8895db1657ae870287beebc2e6c9e97231564b3844"
   },
   {
     "path": "data-collection-processing/test_patent_source_coverage.py",
@@ -950,6 +990,10 @@
   {
     "path": "data-collection-processing/test_personnel_archive.py",
     "sha256": "88f1f57f78e2bd6cb7346e023333454b4fcec47c0b8f64b93f01a83cec5f302c"
+  },
+  {
+    "path": "data-collection-processing/test_pipeline_health.py",
+    "sha256": "afa1c7773d3bbd0ce993c6267570b8946213835bc288af7df68e696fe604ef48"
   },
   {
     "path": "data-collection-processing/test_reconcile_coverage.py",
@@ -1048,6 +1092,10 @@
     "sha256": "e53db8200ee0895057dd7146007c7a2076dcd60fcb781e71770ca513082560fa"
   },
   {
+    "path": "data-collection-processing/uspto_rate_limit.py",
+    "sha256": "6eda390a74f54846c3441b24d489eb872cb6e42b3d8a7649d947ed9646025909"
+  },
+  {
     "path": "data-collection-processing/validate_research_data.py",
     "sha256": "e92a0c2d4523ad3696f6ef50732fee50293e967ae5ca651e990b4fe4224a1ce6"
   },
@@ -1081,7 +1129,7 @@
   },
   {
     "path": "data-collection-processing/config/collection-monitoring.json",
-    "sha256": "867bf67eab0eb2278d32073e9581e26e586c50f3e989a9f1eb997f7e13d7901f"
+    "sha256": "30cd956742eed1d46aa80c217a32a7b331a2e9145a5777188cb46d85db5dc24b"
   },
   {
     "path": "data-collection-processing/config/collection-operations.json",
@@ -1276,8 +1324,20 @@
     "sha256": "47d1cb2977b8eb8e07e4afa2821efc29c6401edfb2dc41025a5492bf422a068d"
   },
   {
+    "path": "data-collection-processing/config/patent-office-actions-athena.json",
+    "sha256": "78844eddeeed770047c89ca8b0ef6a83512d953981b6a6d40fb93a9c21036420"
+  },
+  {
     "path": "data-collection-processing/config/patent-operations.json",
     "sha256": "6b326fc18d1064dd1a6a868a6539b6adee3eb4e0dcefff647cefae91e379b064"
+  },
+  {
+    "path": "data-collection-processing/config/patent-petition-decisions-athena.json",
+    "sha256": "f5d08aea8dc203bb8e8a8e6252a7063f4f411f7ef6d62aed7787fec08ee3a092"
+  },
+  {
+    "path": "data-collection-processing/config/patent-prosecution-operations.json",
+    "sha256": "3204b4150b6ba47bcf80fffe9647ce8ab4acdde7eb2cfbc49899204c74ab2111"
   },
   {
     "path": "data-collection-processing/config/patent-review-policy.v1.json",
@@ -1286,6 +1346,10 @@
   {
     "path": "data-collection-processing/config/people-observations-athena.json",
     "sha256": "0c294b7cce0749cbbcb8d3cc66d0e5f0ff916aff92366b2f728eee5f8cf645d4"
+  },
+  {
+    "path": "data-collection-processing/config/pipeline-health-registry.json",
+    "sha256": "b89ecef189c0f1d823a7c97d93febb6c8a4bc72ee5d9d18f62e1945251fc414b"
   },
   {
     "path": "data-collection-processing/config/ram-budget.json",
@@ -1358,6 +1422,10 @@
   {
     "path": "data-collection-processing/examples/sec-filings/universe.json",
     "sha256": "d7802b2ad7697e530f870d8a20ca836c55091a533705031ee063c573ba441a4b"
+  },
+  {
+    "path": "data-collection-processing/schemas/patent-prosecution-payload.schema.json",
+    "sha256": "86b63424c7ea8b6ab36ef560e7d2616d6eefe9be7d7f4aae8a76c6c3fdde0ec5"
   },
   {
     "path": "data-collection-processing/schemas/rds-tracking-mysql-roles.sql",
@@ -1448,6 +1516,14 @@
     "sha256": "989ec9c5247ee26594b51b3578ee6b4bc874cc6059a2636fb785cc0bfdf870d6"
   },
   {
+    "path": "data-collection-processing/systemd/optima-daily-health-audit.service",
+    "sha256": "3b65431c5fe22096bddb19d120628b4f5593a203ee3f173bce947335391a172b"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-daily-health-audit.timer",
+    "sha256": "0d7f0e13e2db5a9223289d44bad374c6e05d1d13f4de8a52a37b4e1e4d9904a6"
+  },
+  {
     "path": "data-collection-processing/systemd/optima-eodhd-profiles.service",
     "sha256": "9566bf4a0a15049eb944cc154c9e8eea983c18304a703932dd9de2aa0b18f783"
   },
@@ -1518,6 +1594,22 @@
   {
     "path": "data-collection-processing/systemd/optima-patents-global-monitor.timer",
     "sha256": "0cd8c7ee6dd36f7cc3cfcea460c9e4a9e33ebffabe49e68aff17074356dd3a2d"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-prosecution-publication.service",
+    "sha256": "e9b0c63e945edaded8a40caa1c2d503842edb60ee46521c7791e7fbbd5533526"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-prosecution-publication.timer",
+    "sha256": "c5bc082a6508f92f8cec8636a1beedff8d811eda5f439fe69ce7d92d0b49565c"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-prosecution.service",
+    "sha256": "28c796348d032fbe0a5f996441cb64e3b1429747fdac2f9ce5549ac44e5ad839"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-patents-prosecution.timer",
+    "sha256": "ff00e485d2316048a5716f01ccdd037693d01f6f52fb1f51da00fb9d3dedbdb7"
   },
   {
     "path": "data-collection-processing/systemd/optima-patents-publication.service",

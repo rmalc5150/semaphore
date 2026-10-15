@@ -1,0 +1,10 @@
+[Unit]
+Description=Publish completed USPTO prosecution windows every 15 minutes
+
+[Timer]
+OnCalendar=*-*-* *:00,15,30,45:00 UTC
+RandomizedDelaySec=60
+Persistent=true
+
+[Install]
+WantedBy=timers.target

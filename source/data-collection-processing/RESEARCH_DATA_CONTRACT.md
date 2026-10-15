@@ -227,3 +227,28 @@ The shared storage layer and SEC pilot are implemented; review
 `SEC_COLLECTION.md` before step 4's remaining collector migrations. New company discovery, source fact
 verification, and broader historical entity curation remain work beyond this
 seed import.
+
+## USPTO prosecution document datasets
+
+`uspto_odp/patent_office_actions` and `uspto_odp/patent_petition_decisions`
+use the shared collected-record envelope plus
+[the prosecution payload schema](schemas/patent-prosecution-payload.schema.json).
+`research_contract.validate_record` enforces this schema during page commits and
+curation. Source record identity is the provider action/decision identity;
+application number is a join key, not a unique document key. Official-document
+identities remain separate for cross-feed evidence correlation.
+
+API responses, document metadata and PDFs use content-addressed
+`source_documents/uspto_odp/<sha256>` keys. Download state lives under
+`checkpoints/uspto-prosecution-documents/`; stable first observations are under
+`checkpoints/uspto-prosecution-first-observed/`. Each successful PDF carries its
+original official URL, document identity, hash and byte count. Credentials and
+signed redirect URLs are not written to evidence. Partial document retrieval
+cannot advance the source page or produce a completed-window release.
+
+Historical, update and reconciliation tasks retain distinct scope/checkpoints.
+Reconciliation publishes additional observations, not additional occurrences;
+consumers deduplicate by application/official-document identity and select
+versions using their evidence cutoff. Public availability remains unknown and
+published observations are not automatically eligible for historical models.
+See [prosecution operations](PATENT_PROSECUTION_OPERATIONS.md).

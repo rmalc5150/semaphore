@@ -14,8 +14,9 @@ SCHEMAS = {
 }
 
 
-def prepare(store, settings, config, output_root):
+def prepare(store, settings, config, output_root, extra_columns=(), enrich_row=None):
     keys = config['source_manifests']
+    schemas = {**SCHEMAS, 'source_observations': SCHEMAS['source_observations'] + list(extra_columns)}
     release.validate_config(config)
     import tempfile
     import shutil
@@ -23,7 +24,7 @@ def prepare(store, settings, config, output_root):
     output_root.mkdir(parents=True, exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix='.stream-', dir=output_root))
     observation_path = stage / 'observations.parquet'
-    schema = pa.schema([(n, release.ARROW_TYPES[t]) for n, t in SCHEMAS['source_observations']])
+    schema = pa.schema([(n, release.ARROW_TYPES[t]) for n, t in schemas['source_observations']])
     writer = pq.ParquetWriter(observation_path, schema, compression='snappy', version='1.0', use_dictionary=False)
     buffer = []
     buffer_bytes = 0
@@ -47,6 +48,8 @@ def prepare(store, settings, config, output_root):
             'record_json': release.json_text(record), 'source_manifests': sorted(entry['manifests']),
             'source_document_keys': sorted({e['key'] for e in record['payload']['source_evidence']}),
             'point_in_time_eligible': False}
+        if enrich_row is not None:
+            row.update(enrich_row(record))
         encoded = canonical_json(row) + b'\n'
         expected_hash.update(encoded)
         buffer.append(row); buffer_bytes += len(encoded); observation_count += 1
@@ -76,7 +79,7 @@ def prepare(store, settings, config, output_root):
             'mode': task['mode'], 'window_start': task['window']['start'], 'window_end_exclusive': task['window']['end'],
             'scope_json': release.json_text(task['scope']), 'coverage_note': config['coverage_note'], 'records': manifest['record_count']})
     identity = digest({'version': 'source-observations-streaming-2.0', 'arrow': pa.__version__, 'inputs': inputs,
-        'schema': SCHEMAS, 'config': config, 'bucket': settings.s3_bucket, 'prefix': settings.s3_prefix})
+        'schema': schemas, 'config': config, 'bucket': settings.s3_bucket, 'prefix': settings.s3_prefix})
     root = Path(output_root) / identity; root.mkdir(parents=True, exist_ok=True)
     prefix = config['curated_prefix'] + '/' + identity
     files, ddl = {}, []
@@ -87,7 +90,7 @@ def prepare(store, settings, config, output_root):
             observation_path.replace(path)
             row_count = observation_count
         else:
-            table = pa.Table.from_pylist(rows, schema=pa.schema([(n, release.ARROW_TYPES[t]) for n, t in SCHEMAS[name]]))
+            table = pa.Table.from_pylist(rows, schema=pa.schema([(n, release.ARROW_TYPES[t]) for n, t in schemas[name]]))
             pq.write_table(table, path, compression='snappy', version='1.0')
             release.require(pq.ParquetFile(path).read().equals(table), 'Parquet round-trip mismatch')
             row_count = len(rows)
@@ -95,8 +98,8 @@ def prepare(store, settings, config, output_root):
         checksum, size = file_digest(path)
         location = f's3://{settings.s3_bucket}/{settings.s3_prefix}/{prefix}/tables/{name}/'
         files[name] = {'path': relative, 'sha256': checksum, 'bytes': size,
-                       'rows': row_count, 'location': location, 'columns': SCHEMAS[name]}
-        columns = ', '.join(f'{n} {t}' for n, t in SCHEMAS[name])
+                       'rows': row_count, 'location': location, 'columns': schemas[name]}
+        columns = ', '.join(f'{n} {t}' for n, t in schemas[name])
         ddl.append(f"CREATE EXTERNAL TABLE {config['database']}.{name} ({columns}) STORED AS PARQUET LOCATION '{location}';")
     query = ' UNION ALL '.join(f"SELECT '{n}' AS table_name, count(*) AS records FROM {config['database']}.{n}" for n in sorted(tables)) + ' ORDER BY table_name'
     report = {'streaming_upload': True, 'schema_version': '1.0', 'catalog_owner': config['owner'], 'release_id': identity,

@@ -396,12 +396,43 @@ def export(config, s3):
     previous = watchdog.get('health/latest.json') or {}
     since = max(epoch(previous.get('checked_at')), now-3600)
     evidence = Evidence(s3, config['bucket'], config['data_prefix'])
-    result = {'schema_version': 1, 'checked_at': stamp(now), 'jobs': {}, 'errors': []}
+    result = {'schema_version': 1, 'checked_at': stamp(now), 'bucket':config['bucket'], 'jobs': {}, 'errors': []}
     for unit, policy in config['jobs'].items():
         try:
             result['jobs'][unit] = inspect_job(unit, policy, evidence, since, now)
         except Exception as exc:
             result['jobs'][unit] = {'inspection_error': str(exc)[:500]}
+    result['daily_audit'] = watchdog.get('daily-health/latest.json')
+    from pipeline_health import inspect_stages
+    def inspect_future(unit):
+        try:
+            return inspect_job(unit, {'serialized':False, 'queue_timeout_seconds':0,
+                'execution_timeout_seconds':7200, 'max_start_gap_seconds':129600,
+                'stale_progress_seconds':129600}, evidence, since, now)
+        except Exception as exc:
+            return {'inspection_error':str(exc)[:500]}
+    def verify_artifact(artifact):
+        key=artifact['key']
+        if not key.startswith(('curated/','models/','training/','testing/','events/')):
+            raise ValueError('Artifact must use a registered research-data output prefix')
+        response=s3.get_object(Bucket=config['bucket'], Key=config['data_prefix'].rstrip('/')+'/'+key)
+        if response['ContentLength'] > 1024**3:
+            response['Body'].close()
+            raise ValueError('Artifact exceeds 1 GiB monitoring checksum bound; supply a bounded validation artifact')
+        checksum=hashlib.sha256(); size=0
+        try:
+            for chunk in response['Body'].iter_chunks(chunk_size=1024**2):
+                checksum.update(chunk); size+=len(chunk)
+        finally:response['Body'].close()
+        if checksum.hexdigest()!=artifact['sha256'] or size!=artifact['bytes']:
+            raise ValueError('Artifact checksum/size mismatch: '+key)
+    try:
+        registry=json.loads((ROOT/'config/pipeline-health-registry.json').read_text())
+        units=[line.split()[0] for line in command(['systemctl','list-unit-files','optima-*','--no-legend','--no-pager']).splitlines() if line.split()]
+        result['pipeline_stages']=inspect_stages(registry,units,inspect_future,
+            lambda key:evidence.read(key)[0],verify_artifact)
+    except Exception as exc:
+        result['errors'].append('Pipeline stage inspection: '+str(exc)[:500])
     watchdog.put('health/latest.json', result)
     return result
 

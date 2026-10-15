@@ -14,7 +14,7 @@ Use the existing four sectors: biotech, robotics, semiconductors and energy stor
 
 | Route | Trigger | Flow | Intended result |
 |---|---|---|---|
-| Bottom-up: patents | New patent publications/families or newly resolved company matches | Patent → applicant/assignee → company → supporting web evidence → product/program | Find identifiable assets, including early development programs. |
+| Bottom-up: patents | New patent publications/families, examination/petition evidence or newly resolved company matches | Patent and prosecution evidence → applicant/assignee → company → supporting web evidence → product/program | Find identifiable assets, including early development programs. |
 | Bottom-up: companies | Newly observed listing, IPO notice/prospectus or other company discovery event | Listing → legal issuer → company evidence inventory → products/programs | Discover companies and establish their initial product inventory. Start with HKEX. |
 | Top-down: established companies | Scheduled review or material new evidence | Tracked company → catalogs/pipelines, patents, PR, filings, publications and conferences → inventory comparison | Identify additions, renames, new generations, transfers, lifecycle changes and removals requiring review. |
 
@@ -67,11 +67,22 @@ Start with saved source observations, then collect missing primary material thro
 | Prospectuses and issuer filings | Legal issuer, business scope, named programs, disclosed risks and transactions. |
 | Official catalogs and pipeline pages | Named products/programs, current positioning and inventory presence. |
 | Patents and assignment records | Technical disclosures, reported parties and separately reviewed ownership evidence. |
+| USPTO Office Actions and final Petition Decisions | Examination reasoning, cited references and procedural outcomes; nominate technical research and product/program links without inferring ownership or commercial success. |
 | Academic articles and conference proceedings | Research assets, experiments and dated affiliations; distinguish peer-reviewed work, preprints, abstracts and talks. |
 | PR and partner announcements | Announced launches, partnerships, licenses and milestones; corroborate material relationships. |
 | Regulatory records and technical documents | Product identifiers, applicable authorizations, specifications and explicit patent-marking links. |
 
 Aim for broad discovery, with recorded coverage. Do not claim to have found every available article or patent. Record sources checked, query parameters, date ranges, pagination completion, excluded material, access failures and retrieval limits. A failed or empty search is a coverage outcome rather than evidence that the product does not exist.
+
+### US examination and petition evidence for both bottom-up routes
+
+Use the [USPTO examination and petition collectors](USPTO_PROSECUTION_ROLLOUT_PLAN.md), implemented with historical collection from January 1, 2021 now in progress and subsequent additions/corrections. The downstream discovery adapters described here remain proposed. Consume committed source releases and original-document references. Existing patent backfill alone does not supply this evidence.
+
+For patent-led discovery, link Office Actions and decisions by normalized US application identity to publications and reviewed family references. Use examiner text and citations to prioritize technical research and nominate product/program connections. Cited parties and references have explicit roles; they do not establish applicant identity or ownership. Changed prosecution evidence can enqueue research for an existing candidate without creating another product.
+
+For company-led discovery, enrich the issuer's initial evidence inventory with retained prosecution records for resolved legal names, aliases and linked applications. Reuse this evidence during established-company review. Keep applicant/assignee, subsidiary, cited organization and representative roles separate; broad text matches nominate review only.
+
+Historical replay uses durable source-document/version trigger identities, historical action/decision dates and today's observation time. Deduplicate overlapping feeds and both discovery routes. Rejections, petitions and unanswered source searches cannot automatically establish product failure, discontinuation or a company relationship. Record dataset-specific coverage and missing-document outcomes in `source_checks`; unresolved application/product links remain reviewable.
 
 ### 5. Extract product candidates and proposed changes
 
@@ -148,8 +159,8 @@ Advance by acceptance gates rather than fixed calendar dates. Begin with manuall
 |---|---|---|
 | 0: contracts and migrations | Confirm current source coverage and release pointers; implement schema additions, source identities, review states and importer mappings; define application login/grants. | Migration, audit and permission checks pass in isolation; no production source or collector behavior changes. |
 | 1: company foundation | Dry-run existing-universe import, adjudicate collisions, load reviewed records and publish reconciliation report. | Every input company/listing accounted for as imported, staged conflict or intentionally retained historical record; IDs and admission states preserved; rerun produces no unintended changes. |
-| 2: patent pilot | Select eight companies, two per sector where usable evidence exists; review up to ten family/technology items per company. Save researched candidates and patent-link evidence. | All proposed activations and patent links reviewed; duplicate/misattribution issues resolved; retrieval gaps and effort reported. Lack of a product is an acceptable unresolved result. |
-| 3: company-discovery pilot | Bootstrap HKEX listing inventory; replay up to five dated listing/IPO events, distinguishing historical replay from live discovery. Research in-scope issuers. | Correct treatment of existing issuers, additional listings and identity conflicts; end-to-end new-company → reviewed-product path demonstrated where evidence supports it. Out-of-scope issuers are retained as discovery outcomes. |
+| 2: patent pilot | Select eight companies, two per sector where usable evidence exists; review up to ten family/technology items per company. Save researched candidates and patent-link evidence, including bounded historical Office Action/Petition Decision releases and explicit coverage gaps. | All proposed activations and patent links reviewed; duplicate/misattribution issues resolved; retrieval gaps and effort reported. Lack of a product is an acceptable unresolved result. |
+| 3: company-discovery pilot | Bootstrap HKEX listing inventory; replay up to five dated listing/IPO events, distinguishing historical replay from live discovery. Research in-scope issuers, including retained USPTO examination/petition evidence for their resolved applications. | Correct treatment of existing issuers, additional listings and identity conflicts; end-to-end new-company → reviewed-product path demonstrated where evidence supports it. Out-of-scope issuers are retained as discovery outcomes. |
 | 4: top-down pilot | Establish baselines for the pilot's established companies and compare two captures. Replay known changes or clearly labeled synthetic fixtures if no natural event occurs. | Addition, rename, generation, transfer, absence and explicit discontinuation behaviors verified; absence never auto-retires a product. |
 | 5: controlled scheduling | Enable proposed cadences below with bounded queues, checkpoints, quotas, dashboards and alerts. | Retry/resume and duplicate-trigger checks pass; reviewers can keep up with intake; job failures cannot silently change tracking state. |
 | 6: expansion | Add more companies, exchanges and sources; broaden cohort in measured batches. | Stable matching/review quality, acceptable coverage and measured cost/workload support each expansion. |

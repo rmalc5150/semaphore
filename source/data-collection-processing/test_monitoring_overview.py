@@ -19,3 +19,13 @@ class OverviewTests(unittest.TestCase):
  def test_idle_sms_alarm_not_delivery_success(self):
   self.assertFalse(sms_delivery_confirmed({'StateValue':'OK','StateReasonData':'{"evaluatedDatapoints":[]}'}))
   self.assertTrue(sms_delivery_confirmed({'StateValue':'OK','StateReasonData':json.dumps({'evaluatedDatapoints':[{'value':1,'sampleCount':1}]})}))
+ def test_live_report_steps_backlog_and_stale_audit(self):
+  now=1800000000
+  active={'x':{'unit':'optima-specialist-daily.service','code':'eia_html_instead_of_xlsx','severity':'low','first_seen':stamp(now)}}
+  snapshot={'checked_at':stamp(now),'jobs':{'publisher':{'activity':'queued','publication_backlog':{'market':304}}},'daily_audit':{'checked_at':stamp(now-27*3600),'observations':12664762,'partitions':68,'shared_readbacks_passed':68},'pipeline_stages':{'tft':{'label':'TFT training','status':'awaiting_setup','jobs':{},'receipts':[]}}}
+  body=overview(active,now,stamp(now),snapshot)[1]
+  self.assertIn('1. Find the EIA',body)
+  self.assertIn('68/68 passed',body)
+  self.assertIn('STALE',body)
+  self.assertIn('market: 304',body)
+  self.assertIn('TFT training: awaiting_setup',body)

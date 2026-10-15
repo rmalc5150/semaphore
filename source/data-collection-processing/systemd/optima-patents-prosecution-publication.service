@@ -1,0 +1,19 @@
+[Unit]
+Description=Optima verified USPTO prosecution observation publication
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/research_publication.py --owners patent_office_actions patent_petition_decisions --max-windows 12
+SuccessExitStatus=2
+TimeoutStartSec=15min
+TimeoutStopSec=120
+KillSignal=SIGINT
+Nice=15
+Slice=optima-data.slice
+MemoryMax=134217728
+MemorySwapMax=0
+

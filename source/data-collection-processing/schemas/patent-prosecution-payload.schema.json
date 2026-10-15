@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "USPTO prosecution document payload 1.0",
+  "type": "object",
+  "required": ["record_type", "contract_version", "data", "source_evidence", "date_basis", "review_required", "coverage_note"],
+  "properties": {
+    "record_type": {"const": "patent_prosecution_document"},
+    "contract_version": {"const": "1.0"},
+    "review_required": {"const": true},
+    "source_evidence": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["key", "sha256", "bytes", "url"]}},
+    "data": {
+      "type": "object",
+      "required": ["source_document_id", "application_number", "original_application_number", "official_document_id", "document_type", "action_date", "action_date_precision", "provider_updated_at", "first_observed_at", "capture_at", "public_availability", "availability_evidence", "documents", "document_retrieval_status", "structured_source_fields", "extracted_claims", "extraction_version", "supporting_passages", "reported_parties"],
+      "properties": {
+        "source_document_id": {"type": "string", "minLength": 1},
+        "application_number": {"type": "string", "pattern": "^[0-9]{8}$"},
+        "original_application_number": {"type": "string", "minLength": 1},
+        "action_date": {"type": "string", "format": "date"},
+        "action_date_precision": {"const": "day"},
+        "document_retrieval_status": {"const": "downloaded"},
+        "public_availability": {"type": "null"},
+        "availability_evidence": {"type": "array", "maxItems": 0},
+        "first_observed_at": {"type": "string", "format": "date-time"},
+        "capture_at": {"type": "string", "format": "date-time"},
+        "structured_source_fields": {"type": "object"},
+        "extracted_claims": {"type": "array", "maxItems": 0},
+        "extraction_version": {"type": "null"},
+        "reported_parties": {"type": "array"},
+        "supporting_passages": {"type": "array"},
+        "documents": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "required": ["document_id", "url", "key", "sha256", "bytes"],
+            "properties": {
+              "document_id": {"type": "string", "minLength": 1},
+              "key": {"type": "string", "pattern": "^source_documents/uspto_odp/[0-9a-f]{64}$"},
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "bytes": {"type": "integer", "minimum": 1},
+              "url": {"type": "string", "pattern": "^https://api\\.uspto\\.gov/api/v1/download/applications/"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

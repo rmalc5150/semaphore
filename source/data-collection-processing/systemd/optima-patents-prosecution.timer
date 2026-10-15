@@ -1,0 +1,10 @@
+[Unit]
+Description=Resume USPTO prosecution backfill and collect updates hourly
+
+[Timer]
+OnCalendar=*-*-* *:45:00 UTC
+RandomizedDelaySec=120
+Persistent=true
+
+[Install]
+WantedBy=timers.target

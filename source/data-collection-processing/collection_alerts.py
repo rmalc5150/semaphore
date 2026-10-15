@@ -88,6 +88,17 @@ def evaluate(snapshot, prior, config, now):
         return incidents, observations
     for error in snapshot.get('errors', []):
         add('monitor', 'inspection_failed', 'high', str(error)[:500])
+    if config.get('daily_health_required'):
+        audit=snapshot.get('daily_audit')
+        if not audit or now-epoch(audit.get('checked_at'))>26*3600:
+            add('optima-daily-health-audit.service','daily_audit_missing_or_stale','low','Fresh daily S3/Athena audit is missing or older than 26 hours.')
+        else:
+            failures=[r for r in audit.get('query_failures',[]) if r['name'] not in audit.get('expected_unpublished_routes',[])]
+            if failures or audit.get('s3_failures') or audit.get('receipt_query_failures'):
+                add('optima-daily-health-audit.service','daily_audit_verification_failed','low',f'{len(failures)} readback failures; {len(audit.get("s3_failures",[]))} S3 failures; {len(audit.get("receipt_query_failures",[]))} receipt query failures.',audit['checked_at'])
+    for name,stage in snapshot.get('pipeline_stages',{}).items():
+        if stage.get('status')=='verification_failed':
+            add('pipeline:'+name,'pipeline_output_verification_failed','low',str(stage)[:500])
     for unit, policy in config['jobs'].items():
         job = snapshot.get('jobs', {}).get(unit)
         if not job or job.get('inspection_error'):
@@ -133,7 +144,8 @@ def evaluate(snapshot, prior, config, now):
                 continue
             if incident['code'] in EXPECTED:
                 continue
-            structural = incident['code'] in {'timer_disabled', 'queue_timeout', 'execution_timeout', 'missed_run', 'inspection_failed'}
+            structural = incident['code'] in {'timer_disabled', 'queue_timeout', 'execution_timeout', 'missed_run', 'inspection_failed',
+                'daily_audit_missing_or_stale','daily_audit_verification_failed'}
             recovered = epoch(progress.get('last_verified_at')) > epoch(incident.get('evidence_at'))
             if (unit == 'optima-market-collection.service' and incident['code'] in
                     {'market_empty_price_window_unverified', 'unresolved_market_coverage'}):
@@ -200,15 +212,13 @@ class Watchdog:
         errors = []
         if now - epoch(digest['period_started_at']) < interval:
             return digest, errors
-        if not entries:
-            return {'period_started_at': stamp(now), 'incidents': {}}, errors
         topic = self.config.get('email_topic_arn')
         if not notifications or not topic:
             return digest, errors
         from monitoring_overview import overview
         subject, body = overview(active, now, digest['period_started_at'], self.get('health/latest.json'))
         history = 'alerts/'+stamp(now)[:10]+'/'+stamp(now).replace(':', '')+'-digest-'+uuid4().hex+'.json'
-        notice = {'at': stamp(now), 'channel': 'email', 'transition': 'digest',
+        notice = {'at': stamp(now), 'channel': 'email', 'transition': 'digest', 'subject': subject, 'body': body,
                   'period_started_at': digest['period_started_at'], 'incidents': entries, 'delivery': 'pending'}
         self.put(history, notice)
         if len(body.encode('utf-8')) > 200000:

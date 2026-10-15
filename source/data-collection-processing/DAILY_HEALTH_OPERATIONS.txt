@@ -1,0 +1,83 @@
+Daily health reporting
+
+Recipient: existing confirmed email subscription, randall@optima-holdings.com.
+Email: every 24 hours through optima-collection-watchdog. Healthy periods also
+send a report. Failed SNS submission preserves the digest for retry. SNS acceptance
+is not proof that an inbox received the email. Existing immediate critical SMS
+handling is unchanged.
+
+Live audit: optima-daily-health-audit.timer, 07:00 Europe/Madrid plus up to five
+minutes jitter, persistent after downtime. The audit inspects installed services,
+timers, recent bounded journals, the shared publisher, every current shared
+source/dataset partition, specialist tables, Reddit freshness, search and USPTO
+routes. It verifies recent S3 manifests and referenced object existence.
+Queries are SELECTs with result reuse disabled. Result counts are observations,
+not unique entities or coverage certification. Query scans incur normal Athena
+costs. Archive-wide checksums are not repeated by the daily S3 existence audit.
+
+Local evidence: reports/daily-health/YYYY-MM-DD/.
+S3 evidence: research-data/monitoring/daily-health/YYYY-MM-DD/ and latest.json.
+The existing 30-minute exporter incorporates the daily audit, per-job backlogs
+and future-stage coverage in health/latest.json. Its next health refresh also
+runs after each successful daily audit. Audits older than 26 hours are flagged.
+Email bodies and delivery receipts are retained in the existing digest history.
+The scheduled watchdog runs at :05 and :35; email sends on the first successful
+check after the 24-hour interval. This is an operational schedule, not an exact
+inbox delivery guarantee.
+
+Repair guides: monitoring_runbooks.py supplies numbered steps directly in the
+email, including ClinicalTrials.gov HTTP 400, EIA HTML/workbook errors, NMPA
+gateway failures, Bluesky access failures, market gaps, historical date evidence,
+upstream prerequisites and curated publication queues. Guides preserve original
+evidence and require scope-specific S3/Athena verification before recovery.
+Do not run a direct collector concurrently with its scheduled worker. The report
+provides guidance; it does not automatically repair production collectors.
+
+Adding event/model/HMM/TFT coverage as implementations arrive
+
+1. Use the patterns in config/pipeline-health-registry.json, or add the actual
+   service pattern to its stage. The exporter discovers matching installed jobs
+   on each health refresh and includes their execution/source issues in email.
+   Event pipelines, specialist layer models, HMM, TFT training and TFT testing
+   each have a reserved stage. Unbuilt stages display awaiting_setup.
+2. Publish an S3 receipt using a research-data-relative key. Register that key in
+   the stage's receipt_keys array. Example receipt:
+   {"status":"verified", "verified_at":"2026-10-14T19:00:00Z",
+    "artifacts":[{"key":"testing/tft/release/evaluation.json",
+                  "sha256":"<64-character SHA-256>","bytes":1234}],
+    "metrics":{"held_out_loss":0.2},
+    "validation":{"split_id":"<immutable train/test split ID>",
+                  "leakage_check":"passed","evaluation_status":"passed"}}
+   Replace all example values with actual verified run evidence. Preserve run
+   identity, source release, feature version, model version and split lineage in
+   the artifact/receipt. A training output alone cannot establish testing success.
+3. Artifact keys use curated/, events/, models/, training/ or testing/. The
+   exporter streams actual bytes to verify SHA-256 and size; each artifact is
+   bounded at 1 GiB. For larger models register the bounded validation manifest
+   produced by a worker that verifies the full model separately, and describe
+   that validation's scope. These checks establish artifact integrity; quality
+   thresholds and leakage conclusions must be supplied by the stage validator.
+4. Keep training and testing receipts distinct. Include actual validation
+   metrics, time-based split boundaries and data/model lineage. Establish
+   stage-specific acceptance thresholds as those models are implemented; this
+   rollout does not invent thresholds or claim nonexistent models are healthy.
+5. Refresh health and inspect the stage in the email preview. Missing or corrupt
+   registered outputs become verification_failed; a worker without registered
+   outputs displays awaiting_artifact_registration. outputs_verified means
+   registered artifact bytes passed integrity checks, not model acceptance.
+6. Add the new stage's specific repair codes to monitoring_runbooks.py. Add
+   production schedule/progress policies through monitoring_extra_jobs.py when
+   that stage's frequency and expected progress are established. Redeploy the
+   watchdog package when those email/policy modules change; registry changes are
+   read by the host exporter on the next health refresh.
+
+Operational commands
+
+systemctl status optima-daily-health-audit.timer optima-daily-health-audit.service
+journalctl -u optima-daily-health-audit.service --since "24 hours ago" --no-pager
+.venv-athena/bin/python -B collection_health_exporter.py
+.venv-athena/bin/python -m unittest test_monitoring_overview test_collection_digest test_collection_alerts test_collection_health_repairs test_monitoring_extra_jobs test_pipeline_health
+
+After the current worker finishes, sudo systemctl start optima-daily-health-audit.service
+can request an additional live audit. It reads provider production evidence;
+it does not call the external collection providers or spend their collection quota.

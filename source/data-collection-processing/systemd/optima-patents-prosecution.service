@@ -1,0 +1,19 @@
+[Unit]
+Description=Optima historical and incremental USPTO prosecution evidence
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/patent_prosecution_operations.py tick
+SuccessExitStatus=2
+TimeoutStartSec=45min
+TimeoutStopSec=120
+KillSignal=SIGINT
+Nice=15
+Slice=optima-data.slice
+MemoryMax=134217728
+MemorySwapMax=0
+

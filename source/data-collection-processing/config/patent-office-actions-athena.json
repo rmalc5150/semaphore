@@ -1,0 +1,11 @@
+{
+  "owner": "patent_office_actions",
+  "database": "optima_patent_office_actions",
+  "workgroup": "optima-patent-office-actions",
+  "region": "us-east-1",
+  "curated_prefix": "curated/patent_office_actions/observations/releases",
+  "query_results_prefix": "athena-results/patent_office_actions",
+  "dataset": "patent_office_actions",
+  "allowed_sources": ["uspto_odp"],
+  "coverage_note": "USPTO public Office Action text index with verified original PDFs; multiple document types including allowance notices. Provider submission/update windows, source lag and mutable pagination limit coverage. Availability and product links remain unverified."
+}

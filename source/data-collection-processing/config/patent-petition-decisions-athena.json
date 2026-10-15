@@ -1,0 +1,11 @@
+{
+  "owner": "patent_petition_decisions",
+  "database": "optima_patent_petitions",
+  "workgroup": "optima-patent-petitions",
+  "region": "us-east-1",
+  "curated_prefix": "curated/patent_petition_decisions/observations/releases",
+  "query_results_prefix": "athena-results/patent_petition_decisions",
+  "dataset": "patent_petition_decisions",
+  "allowed_sources": ["uspto_odp"],
+  "coverage_note": "USPTO finalPetitionDecisionIndicator=true records with verified original PDFs. Incremental public source coverage only; decision/update dates are not public availability. Procedural decisions do not establish product outcomes."
+}

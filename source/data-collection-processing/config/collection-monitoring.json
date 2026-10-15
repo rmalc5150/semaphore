@@ -337,6 +337,32 @@
       "max_start_gap_seconds": 43200,
       "stale_progress_seconds": 43200,
       "checkpoint_progress": true
+    },
+    "optima-patents-prosecution.service": {
+      "serialized": false,
+      "queue_timeout_seconds": 0,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 10800,
+      "stale_progress_seconds": 43200,
+      "checkpoint_progress": true
+    },
+    "optima-patents-prosecution-publication.service": {
+      "serialized": false,
+      "queue_timeout_seconds": 0,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 7200,
+      "stale_progress_seconds": 43200,
+      "publication_owners": [
+        "patent_office_actions",
+        "patent_petition_decisions"
+      ]
+    },
+    "optima-daily-health-audit.service": {
+      "serialized": false,
+      "queue_timeout_seconds": 0,
+      "execution_timeout_seconds": 7200,
+      "max_start_gap_seconds": 129600,
+      "stale_progress_seconds": 129600
     }
   },
   "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
@@ -353,5 +379,6 @@
     "optima-collection-watchdog-missing",
     "optima-collection-watchdog-delivery",
     "optima-collection-watchdog-sms-us-delivery"
-  ]
+  ],
+  "daily_health_required": true
 }

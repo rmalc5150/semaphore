@@ -1,0 +1,19 @@
+[Unit]
+Description=Daily live collection, S3 and Athena readback audit
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/daily_health_audit.py
+ExecStartPost=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/collection_health_exporter.py
+TimeoutStartSec=30min
+MemoryAccounting=true
+MemoryMax=268435456
+MemorySwapMax=0
+Nice=15
+NoNewPrivileges=true
+ProtectSystem=full
+
