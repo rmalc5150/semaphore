@@ -1,0 +1,25 @@
+[Unit]
+Description=S11 daily full disclosure content capture and passage processing
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+Slice=optima-data.slice
+MemoryAccounting=true
+MemoryHigh=536870912
+MemoryMax=536870912
+MemorySwapMax=0
+CPUQuota=40%
+Environment=MALLOC_ARENA_MAX=2
+ExecStart=/usr/bin/timeout --signal=INT --kill-after=60s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/disclosure_content_backfill.py --mode daily
+TimeoutStartSec=22min
+TimeoutStopSec=90
+KillSignal=SIGINT
+SuccessExitStatus=0 2 124
+Nice=15
+NoNewPrivileges=true
+ProtectSystem=full
+

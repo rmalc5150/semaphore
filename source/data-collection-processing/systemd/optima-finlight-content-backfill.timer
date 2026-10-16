@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume Finlight full-article backfill without duplicate archive discovery
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=10min
+RandomizedDelaySec=30
+Unit=optima-finlight-content-backfill.service
+
+[Install]
+WantedBy=timers.target

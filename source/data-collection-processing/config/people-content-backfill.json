@@ -1,0 +1,18 @@
+{
+  "start": "2021-01-01",
+  "end_exclusive": "2026-10-16",
+  "storage_config": "config/collection-storage.s3.json",
+  "max_articles_per_invocation": 10,
+  "max_batches_per_invocation": 100,
+  "max_provider_requests_per_day": 40,
+  "max_attempts": 3,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "S15 full articles linked from saved people_rss feed snapshots ingested from January 2021 through 2026-10-15T13:08:03.021625Z. Includes undated articles; no inferred publication dates. Save publisher HTML, extracted text, checksums and chunks; retain RSS summaries separately. Backfill covers saved RSS inventory, not a reconstructed 2021 publisher archive. Existing personnel_archive filtering is rerun on enriched RSS observations, preserving nested bodies and evidence; it remains unreviewed personnel source material. Other news and filing histories are handled by their existing upstream backfills. Restricted/unavailable articles are explicit gaps after bounded retries. Email waits for every indexed in-scope RSS article to be processed, archive projection catch-up and a verified committed catalog.",
+  "provider": "people_rss",
+  "dataset": "people_source_records",
+  "email_label": "S15 RSS articles and personnel archive",
+  "date_basis": "snapshot_ingestion",
+  "snapshot_start": "2021-01-01T00:00:00Z",
+  "snapshot_cutoff": "2026-10-15T13:08:03.021625Z"
+}

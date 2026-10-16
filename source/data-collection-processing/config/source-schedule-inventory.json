@@ -336,19 +336,19 @@
         "daily": {
           "registered": true,
           "control_timer": "optima-source-schedule-daily.timer",
-          "capture_timer": "optima-authenticated-daily.timer",
+          "capture_timer": "optima-edinet-documents-daily.timer",
           "status": "capture_scheduled_partial_scope",
           "archive_start_target": null
         },
         "historical": {
           "registered": true,
           "control_timer": "optima-source-schedule-historical.timer",
-          "capture_timer": "optima-authenticated-historical.timer",
+          "capture_timer": "optima-edinet-document-backfill.timer",
           "status": "capture_scheduled_partial_scope",
           "archive_start_target": "2021-01-01"
         }
       },
-      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. EDINET credentials verified; authenticated daily/historical filing-metadata inventory capture enabled. Original filing downloads, issuer matching and CNINFO integration remain outstanding; 2021 sample access is not complete history.",
+      "remaining_requirement": "EDINET full-report daily collection and 2021-01-01 through 2026-10-14 backfill are enabled. All advertised original formats, Japanese text/XBRL/CSV extraction and filer matching are implemented and sample-verified. Backfill completion, per-window publication, reviewed EDINET/JCN universe mappings, source-unavailable reports, textless-page handling beyond extraction, and CNINFO integration remain outstanding. Historical API vintages are not certified.",
       "priority": "normal",
       "full_scope_complete": false,
       "historical_vintages_certified": false,
@@ -380,12 +380,12 @@
         "historical": {
           "registered": true,
           "control_timer": "optima-source-schedule-historical.timer",
-          "capture_timer": "optima-core-historical.timer",
+          "capture_timer": "optima-s11-content-backfill.timer",
           "status": "capture_scheduled_partial_scope",
           "archive_start_target": "2021-01-01"
         }
       },
-      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Existing disclosures capture only; customer/lender/utility allowlists, original document scopes and historical archives missing.",
+      "remaining_requirement": "Existing S11 document text and original reports verified from the SQL export and S3. Original daily collector owns ongoing capture; the redundant S11 daily timer is disabled. A single historical S11 backfill owns gap filling and enrichment, reusing saved originals where indexed. Complete historical coverage, processing gaps, entity review, Chinese HKEX coverage and issuer-site discovery remain to verify.",
       "priority": "normal",
       "full_scope_complete": false,
       "historical_vintages_certified": false,
@@ -452,7 +452,7 @@
           "archive_start_target": "2021-01-01"
         }
       },
-      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. Finlight Pro January 2021 sample access verified. Separate bounded 2021 backfill and verified-completion downgrade email configured; shared news collection/publication timers remain enabled. Do not downgrade until the verification notification.",
+      "remaining_requirement": "Current collection now captures publisher/provider full article bodies, original response bytes, hashes and retrieval chunks while preserving summaries separately. Existing archive discovery remains the single discovery job. optima-finlight-content-backfill.timer deduplicates and enriches saved article URLs and owns the consolidated completion email; summary-only completion notifications are disabled. The supplied PR Newswire example yielded 8,055 body characters versus its 290-character summary. Complete scoped archive coverage, body availability, catalog publication and source/text gaps remain to verify.",
       "priority": "HIGH",
       "full_scope_complete": false,
       "historical_vintages_certified": false,
@@ -489,7 +489,7 @@
           "archive_start_target": "2021-01-01"
         }
       },
-      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "remaining_requirement": "Current news collection now fetches and saves publisher HTML and extracted full text, hashes and chunks. optima-marketaux-content-backfill.timer enriches saved January 2021\u2013October 14, 2026 observations, using existing Marketaux historical discovery rather than duplicate API searches. Completion email to randall@optima-holdings.com waits for discovery catch-up, verified catalog and all articles processed; inaccessible articles remain explicit gaps.",
       "priority": "normal",
       "full_scope_complete": false,
       "historical_vintages_certified": false,
@@ -526,7 +526,7 @@
           "archive_start_target": "2021-01-01"
         }
       },
-      "remaining_requirement": "Saved observations are queryable in optima_collected_data.observations. ",
+      "remaining_requirement": "RSS current capture now saves publisher HTML, extracted full text, hashes and chunks while preserving feed summaries. optima-people-content-backfill.timer enriches saved RSS snapshots through the configured cutoff and keeps retrying new snapshots; propagates enriched RSS records into the existing personnel archive. Completion email to randall@optima-holdings.com waits for scoped RSS processing, archive propagation and verified catalog, with inaccessible articles reported as gaps. Personnel archive already retains full filing content when available; other upstream news/filing backfills remain active. No RSS historical publisher inventory is inferred.",
       "priority": "normal",
       "full_scope_complete": false,
       "historical_vintages_certified": false,

@@ -18,12 +18,13 @@ from collection_storage import (AlreadyComplete, CollectionRun, Conflict, Storag
     advance_watermark, now, read_watermark, task_spec, write_json)
 from regulatory_collection import CompanyMatcher, EvidenceClient, SourceIssue, require
 from research_contract import ROOT, digest, load_json, parse_instant, seal_record, validate_record
+from disclosure_content import VERSION as CONTENT_VERSION
 
-VERSION = "disclosures-1.0"
+VERSION = "disclosures-1.1"
 HKEX_API = "https://www1.hkexnews.hk/search/titleSearchServlet.do"
 SECTORS = ("biotech", "robotics", "semiconductors", "energy_storage")
 CATEGORIES = ("press-releases", "licensing-agreements", "ma-announcements", "strategic-transactions")
-SEC_DOCUMENT_FORMS = ("8-K", "8-K/A", "6-K", "6-K/A", "10-K", "10-K/A", "10-Q", "10-Q/A", "S-4", "S-4/A", "425", "DEFM14A")
+SEC_DOCUMENT_FORMS = ("8-K", "8-K/A", "6-K", "6-K/A", "10-K", "10-K/A", "10-Q", "10-Q/A", "S-4", "S-4/A", "425", "DEFM14A", "SC 13D", "SC 13D/A")
 ZONES = {"sec_edgar": "America/New_York", "hkex_news": "Asia/Hong_Kong"}
 
 
@@ -188,9 +189,10 @@ def hkex_page(client, day, state, page_size, stock_id=""):
 
 
 def collect_hkex(store, settings, universe, taxonomy, start, end, mode, selection="all", sectors=(),
-                 stock_id="", page_size=100, max_pages=None, refresh=False, client=None):
+                 stock_id="", page_size=100, max_pages=None, refresh=False, client=None, capture_documents=True):
     scope = {"selection": selection, "sectors": sorted(set(sectors)), "stock_id": stock_id,
-             "market": "SEHK", "language": "EN", "page_size": page_size, "date_basis": "hkex_release_date"}
+             "market": "SEHK", "language": "EN", "page_size": page_size, "date_basis": "hkex_release_date",
+             "document_capture": "original_bytes_v1" if capture_documents else "metadata_only"}
     spec = task_spec("hkex_news", "filings", mode, midnight(start, "Asia/Hong_Kong"), midnight(end, "Asia/Hong_Kong"), scope, VERSION, universe, taxonomy)
     try:
         run = CollectionRun.start(store, spec, universe, taxonomy, settings, resume=not refresh, refresh=refresh)
@@ -206,15 +208,37 @@ def collect_hkex(store, settings, universe, taxonomy, start, end, mode, selectio
             day = date.fromisoformat(state["day"])
             client.evidence = []
             rows, following, done = hkex_page(client, day, state, page_size, stock_id)
+            search_evidence = list(client.evidence)
             records = []
             for row in rows:
                 payload = {"record_type": "disclosure", "title": row["TITLE"], "data": row, "date_basis": "hkex_release_date",
                     "release_time": datetime.strptime(row["DATE_TIME"], "%d/%m/%Y %H:%M").replace(tzinfo=ZoneInfo("Asia/Hong_Kong")).isoformat(),
                     "coverage_note": "English HKEX SEHK search metadata within the configured date, stock and universe scope; current observations, not reconstructed historical versions."}
                 record = make_record(run, str(row["NEWS_ID"]), payload, str(day), urljoin(HKEX_API, row["FILE_LINK"]),
-                                     names=[row["STOCK_NAME"]], evidence=client.evidence, timezone_name="Asia/Hong_Kong")
+                                     names=[row["STOCK_NAME"]], evidence=search_evidence, timezone_name="Asia/Hong_Kong")
                 if keep(record, selection, sectors, universe):
+                    if capture_documents:
+                        client.evidence = []
+                        from disclosure_document_cache import lookup, remember
+                        saved = lookup(store, record['source_url']) if mode == 'historical' else None
+                        if saved:
+                            raw, ref = saved
+                            client.evidence = [ref]
+                        else:
+                            raw = client.get(record["source_url"])
+                        if row.get("FILE_TYPE", "").upper() == "PDF":
+                            require(raw.startswith(b"%PDF-"), "hkex_non_pdf_response")
+                        else:
+                            document_text(raw, record)
+                        require(bool(client.evidence), "hkex_document_evidence_missing")
+                        remember(store, client.evidence[0])
+                        payload["document_capture"] = {"status": "captured", "bytes": len(raw),
+                            "source_evidence": list(client.evidence)}
+                        payload["coverage_note"] = "English HKEX SEHK search metadata and original linked documents within the configured scope; text extraction is a separate stage; current observations, not reconstructed historical versions."
+                        record = make_record(run, str(row["NEWS_ID"]), payload, str(day), record["source_url"],
+                            names=[row["STOCK_NAME"]], evidence=search_evidence + list(client.evidence), timezone_name="Asia/Hong_Kong")
                     records.append(record)
+            client.evidence = search_evidence
             next_day = day + timedelta(days=1)
             exhausted = done and next_day == end
             following = {"day": str(next_day)} if done else {"day": str(day), **following}
@@ -252,44 +276,9 @@ def visible_text(text):
 
 
 def document_text(raw, parent):
-    if raw.startswith(b"%PDF-"):
-        from pypdf import PdfReader
-        reader = PdfReader(io.BytesIO(raw))
-        require(not reader.is_encrypted, "encrypted_document_requires_review")
-        pages = [page.extract_text() or "" for page in reader.pages]
-        require(pages, "empty_or_unparseable_document")
-        skipped = [index + 1 for index, text in enumerate(pages) if not text.strip()]
-        info = {"format": "pdf", "pages": len(pages),
-                "skipped_pages": skipped, "skipped_page_reason": "no_extractable_text",
-                "text_pages": len(pages) - len(skipped)}
-        # User policy: preserve the source, omit textless pages, and continue.
-        # This can include scanned/image-only pages; no OCR is attempted.
-        return "\n".join(text for text in pages if text.strip()), info
-    try:
-        text = raw.decode("utf-8-sig")
-    except UnicodeDecodeError:
-        text = raw.decode("cp1252")
-    if parent["source"] == "sec_edgar":
-        accession = re.search(r"ACCESSION NUMBER:\s*([0-9-]+)", text)
-        require(accession is not None and accession.group(1) == parent["source_record_id"], "sec_document_identity_mismatch")
-        blocks = re.findall(r"<DOCUMENT>(.*?)</DOCUMENT>", text, re.S | re.I)
-        require(blocks, "sec_submission_documents_missing")
-        selected = []
-        for block in blocks:
-            kind = re.search(r"<TYPE>([^\r\n<]+)", block, re.I)
-            body = re.search(r"<TEXT>(.*?)</TEXT>", block, re.S | re.I)
-            require(kind is not None and body is not None, "sec_submission_block_incomplete")
-            kind = kind.group(1).strip().upper()
-            if kind in [f.upper() for f in parent['payload'].get('index_forms', [parent['payload']['form']])] or (kind.startswith("EX-") and not kind.startswith(("EX-101", "EX-104"))):
-                require(not re.search(r"(?m)^begin \d{3} ", body.group(1)), "sec_binary_exhibit_requires_review")
-                selected.append(visible_text(body.group(1)))
-        text = "\n".join(selected)
-        info = {"format": "sec_submission", "text_documents": len(selected)}
-    else:
-        text, info = visible_text(text), {"format": "html_or_text"}
-    require(len(text.strip()) >= 40, "empty_or_unparseable_document")
-    require(not any(value in text.lower() for value in ("your request originates from an undeclared automated tool", "request rate threshold exceeded", "access denied")), "document_access_blocked")
-    return text, info
+    from disclosure_content import extract
+    content = extract(raw, parent)
+    return content['text'], content['extraction']
 
 
 def candidate(category, parent):
@@ -306,14 +295,17 @@ def candidate(category, parent):
         patterns += [(word, re.escape(word)) for word in chinese[category]]
     matches = []
     for term, pattern in patterns:
-        match = re.search(pattern, text, re.I)
-        if match:
-            matches.append({"term": term, "excerpt": text[max(0, match.start()-100):match.end()+150]})
-    forms = parent['payload'].get('index_forms', [parent['payload'].get('form', '')])
-    if category != "strategic-transactions":
-        for form in forms:
-            if form in EVENT_RULES[category]["sec_forms"]:
-                matches.append({"term": "form:" + form, "excerpt": None})
+        for match in re.finditer(pattern, text, re.I):
+            start, end = max(0, match.start()-200), min(len(text), match.end()+300)
+            span = next((s for s in parent['payload']['data'].get('document_spans', [])
+                         if s['start'] <= match.start() < s['end']), None)
+            if span:
+                start, end = max(start, span['start']), min(end, span['end'])
+            excerpt = text[start:end]
+            from disclosure_content import signals
+            matches.append({"term": term, "excerpt": excerpt, 'start': start, 'end': end,
+                'match_start': match.start(), 'match_end': match.end(), 'document': span,
+                'context_signals': signals(excerpt)})
     return matches
 
 
@@ -331,10 +323,11 @@ def collect_derived(store, settings, universe, taxonomy, start, end, mode, stage
     source, dataset = ("disclosure_documents", "documents") if stage == "documents" else ("disclosure_candidates", stage.replace("-", "_"))
     scope = {"inputs": inputs, "required_sources": sorted(set(required_sources)), "selection": selection,
              "sectors": sorted(set(sectors)), "date_basis": "parent_source_calendar_date",
-             "coverage": "Only the explicit completed prerequisite scopes; candidate extraction is not a complete inventory of corporate events."}
+             "coverage": "Only the explicit completed prerequisite scopes; full source content preserved; passage-supported candidates are unreviewed, not confirmed corporate events.",
+             'content_pipeline_version': CONTENT_VERSION}
     if stage == "documents":
         scope["sec_forms"] = sorted(set(sec_forms))
-    spec = task_spec(source, dataset, mode, midnight(start), midnight(end), scope, VERSION, universe, taxonomy)
+    spec = task_spec(source, dataset, mode, midnight(start), midnight(end), scope, VERSION + '-' + CONTENT_VERSION, universe, taxonomy)
     try:
         run = CollectionRun.start(store, spec, universe, taxonomy, settings, resume=not refresh, refresh=refresh)
     except AlreadyComplete as exc:
@@ -367,12 +360,54 @@ def collect_derived(store, settings, universe, taxonomy, start, end, mode, stage
                 url = parent["source_url"]
                 host = "www.sec.gov" if parent["source"] == "sec_edgar" else "www1.hkexnews.hk"
                 require(urlsplit(url).scheme == "https" and urlsplit(url).hostname == host, "unapproved_document_host")
-                text, info = document_text(client.get(url), parent)
-                payload.update(record_type="disclosure_document", data={"text": text, "extraction": info})
+                captured = parent["payload"].get("document_capture")
+                if captured and captured.get("status") == "captured":
+                    refs = captured["source_evidence"]
+                    require(len(refs) == 1 and refs[0]["source_url"] == url, "document_capture_reference_invalid")
+                    raw = get_bytes(store, refs[0]["key"], refs[0]["sha256"])
+                    require(len(raw) == captured["bytes"], "document_capture_size_mismatch")
+                    client.evidence = list(refs)
+                else:
+                    from disclosure_document_cache import lookup
+                    saved = lookup(store, url) if mode == 'historical' else None
+                    if saved:
+                        raw, ref = saved
+                        client.evidence = [ref]
+                    else:
+                        raw = client.get(url)
+                from disclosure_document_cache import remember
+                for ref in client.evidence:
+                    if ref['source_url'] == url:
+                        remember(store, ref)
+                from disclosure_content import extract, persist
+                content = extract(raw, parent)
+                reference = persist(store, content, url)
+                client.evidence.append(reference)
+                payload.update(record_type="disclosure_document", content_reference=reference,
+                    content_pipeline_version=CONTENT_VERSION, data={"text": content['text'] if len(content['text'].encode()) <= 1024 * 1024 else None,
+                    'text_storage': 'full_content_reference', 'full_content_reference': reference, "extraction": content['extraction'],
+                    'document_spans': content['document_spans'], 'text_sha256': content['text_sha256'],
+                    'chunk_count': len(content['chunks']), 'textless_pdf_pages': content['textless_pdf_pages']})
             elif accepted:
-                matches = candidate(stage, parent)
+                reference = parent['payload'].get('content_reference')
+                require(reference is not None and reference.get('content_version') == CONTENT_VERSION,
+                        'full_content_prerequisite_required')
+                content = json.loads(get_bytes(store, reference['key'], reference['sha256']))
+                inline = parent['payload']['data']['text']
+                require(inline is None or content['text'] == inline, 'full_content_text_mismatch')
+                parent_for_matching = {**parent, 'payload': {**parent['payload'], 'data': {
+                    **parent['payload']['data'], 'text': content['text']}}}
+                matches = candidate(stage, parent_for_matching)
+                for match in matches:
+                    span = match['document']
+                    match['chunk_ids'] = [c['chunk_id'] for c in content['chunks'] if span and
+                        c['document_id'] == span['document_id'] and
+                        c['start'] < match['end'] - span['start'] and c['end'] > match['start'] - span['start']]
+                payload.update(content_reference=reference, content_pipeline_version=CONTENT_VERSION)
                 payload.update(record_type="event_candidate", data={"category": stage, "review_status": "unreviewed",
-                    "classification_basis": "document_terms_or_filing_form", "matches": matches,
+                    "classification_basis": "source_text_passages", "matches": matches,
+                    'full_content_reference': reference, 'form_hint': parent['payload'].get('form'),
+                    'event_status': 'requires_review', 'entity_link_status': parent['entity_match_status'],
                     "note": "May describe proposed, historical, negated or unrelated events; terms, completion and economics are not confirmed."})
             records = []
             if accepted and (stage == "documents" or matches):

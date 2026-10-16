@@ -1,0 +1,12 @@
+{
+  "start": "2021-01-01",
+  "end_exclusive": "2026-10-15",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "storage_config": "config/collection-storage.s3.json",
+  "max_days_per_invocation": 7,
+  "documents_per_invocation": 40,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "All EDINET daily inventory entries in the configured range, all advertised main-report, PDF, attachment, English and CSV downloads, Japanese decoding and text/XBRL/CSV extraction. Source-unavailable documents and textless PDF pages remain explicit gaps; no OCR is performed. Matching is attempted for every filer, but candidates and unresolved entities require reviewed universe mappings. Observations are collected now, not historical API vintages. Verified days are queued for Athena publication; completion of this backfill does not certify publication or specialist analysis."
+}

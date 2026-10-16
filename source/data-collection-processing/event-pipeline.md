@@ -4,6 +4,8 @@ Proposed October 14, 2026. This document proposes a new event and model-feature 
 
 The concrete recording and operations plan is in [Implementation plan: recording, scripts, schedules, S3 and Athena](#implementation-plan-recording-scripts-schedules-s3-and-athena).
 
+Testing version started October 15, 2026: see [pilot implementation and commands](EVENT_PILOT.md) and [the first real-source results](reports/event-pilot/README.md). Production scripts, event storage and schedules below remain proposed.
+
 ## Purpose
 
 Convert patents, press releases, academic conferences and publications, leadership changes, news, and other material developments into an evidence-backed timeline. An event defines **what happened, the sources supporting it, the entities involved, its sector and subsector classifications, and the specialist layers to which it is relevant**. Multiple sources can describe one event; one source can describe several events.

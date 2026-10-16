@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume S11 daily content capture
+
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=10min
+RandomizedDelaySec=30
+Unit=optima-s11-content-daily.service
+
+[Install]
+WantedBy=timers.target

@@ -55,7 +55,7 @@ class NewsTests(unittest.TestCase):
             return Response(value)
         self.opener = opener
         self.client = news.NewsClient(self.store, "marketaux", "SECRET_TOKEN_12345", 40,
-                                     max_requests=12, opener=opener, sleeper=lambda _: None)
+                                     max_requests=12, opener=opener, sleeper=lambda _: None, capture_full_text=False)
 
     def collect(self, **kwargs):
         return news.collect(self.store, self.settings, self.universe, self.taxonomy,
@@ -202,7 +202,7 @@ class NewsTests(unittest.TestCase):
         self.pages = {1: {"status": "ok", "page": 1, "pageSize": 1,
             "articles": [{"link": "https://example.org/zh", "publishDate": "2026-09-23T12:00:00Z", "title": "储能"}]},
             2: {"status": "ok", "page": 2, "pageSize": 0, "articles": []}}
-        client = news.NewsClient(self.store, "finlight", "SECRET_TOKEN_12345", 40, opener=self.opener, sleeper=lambda _: None)
+        client = news.NewsClient(self.store, "finlight", "SECRET_TOKEN_12345", 40, opener=self.opener, sleeper=lambda _: None, capture_full_text=False)
         result = self.collect(provider="finlight", language="zh", client=client)
         self.assertEqual(result["status"], "complete")
         self.assertEqual(len(self.rows(result)), 1)
@@ -210,7 +210,7 @@ class NewsTests(unittest.TestCase):
         self.assertEqual(json.loads(self.calls[0].data)["orderBy"], "publishDate")
 
     def test_finlight_pro_light_old_history_is_explicitly_unavailable(self):
-        client = news.NewsClient(self.store, "finlight", "SECRET_TOKEN_12345", 40, opener=self.opener, sleeper=lambda _: None)
+        client = news.NewsClient(self.store, "finlight", "SECRET_TOKEN_12345", 40, opener=self.opener, sleeper=lambda _: None, capture_full_text=False)
         result = self.collect(provider="finlight", language="en", client=client,
             mode="historical", start=date(2015, 1, 1), end=date(2015, 2, 1), probe_history=True)
         self.assertEqual(result["status"], "partial")

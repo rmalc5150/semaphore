@@ -95,10 +95,16 @@ def scopes(source, start, end, mode):
         yield start, end, {'url': source['api']}, 'Current FDA industry code reference only; no historical code vintages'
         return
     if kind == 'edinet':
+        from edinet_pipeline import VERSION as EDINET_VERSION, COVERAGE
+        # The planner's daily end is tomorrow. Capture yesterday's completed
+        # inventory once, rather than pinning an incomplete intraday listing.
+        if mode == 'daily':
+            end = end - timedelta(days=1)
+            start = end - timedelta(days=1)
         cursor = start
         while cursor < end:
             stop = cursor + timedelta(days=1)
-            yield cursor, stop, {'url': source['api'], 'date': str(cursor)}, 'EDINET daily filing metadata inventory; all issuers, unresolved company links; original filings require separate document download'
+            yield cursor, stop, {'url': source['api'], 'date': str(cursor), 'pipeline_version': EDINET_VERSION}, COVERAGE
             cursor = stop
         return
     from specialist_plan import months

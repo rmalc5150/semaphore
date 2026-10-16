@@ -52,6 +52,7 @@ class DisclosureTests(unittest.TestCase):
         self.start, self.end = date(2024,6,2), date(2024,6,3)
 
     def collect(self, responses, **kwargs):
+        kwargs.setdefault("capture_documents", False)
         return d.collect_hkex(self.store, self.settings, self.universe, self.taxonomy, self.start, self.end,
             "historical", client=Client(self.store, responses), **kwargs)
 
@@ -145,6 +146,39 @@ class DisclosureTests(unittest.TestCase):
         self.assertEqual(result['status'],'failed')
         with self.assertRaisesRegex(SourceIssue,'not_complete'):
             self.derive('ma-announcements',[result['manifest']])
+
+    def test_hkex_captures_original_and_processing_reuses_it(self):
+        source = row()
+        url = d.urljoin(d.HKEX_API, source['FILE_LINK'])
+        raw = b'<html><body>Example Robotics signs an exclusive license agreement for robot technology.</body></html>'
+        client = Client(self.store, [page([source])], {url: raw})
+        result = d.collect_hkex(self.store, self.settings, self.universe, self.taxonomy,
+            self.start, self.end, 'historical', client=client)
+        self.assertEqual(result['status'], 'complete')
+        payload = self.read(result)[0]['record']['payload']
+        captured = payload['document_capture']
+        self.assertEqual(captured['bytes'], len(raw))
+        self.assertEqual(self.store.get(captured['source_evidence'][0]['key']).body, raw)
+        self.assertEqual(len(payload['source_evidence']), 2)
+        offline = Client(self.store)
+        derived = self.derive('documents', [result['manifest']], offline)
+        self.assertEqual(derived['status'], 'complete')
+        self.assertEqual(offline.calls, [])
+        self.assertIn('exclusive license', self.read(derived)[0]['record']['payload']['data']['text'])
+
+    def test_hkex_download_failure_resumes_without_metadata_only_success(self):
+        source = {**row(), 'FILE_TYPE': 'PDF'}
+        url = d.urljoin(d.HKEX_API, source['FILE_LINK'])
+        for value in (SourceIssue('source_http_503'), b'<html>Access denied</html>'):
+            client = Client(self.store, [page([source])], {url: value})
+            result = d.collect_hkex(self.store, self.settings, self.universe, self.taxonomy,
+                self.start, self.end, 'historical', client=client)
+            self.assertEqual(result['status'], 'failed')
+        raw = b'%PDF-1.7\noriginal report bytes'
+        result = d.collect_hkex(self.store, self.settings, self.universe, self.taxonomy,
+            self.start, self.end, 'historical', client=Client(self.store, [page([source])], {url: raw}))
+        self.assertEqual(result['status'], 'complete')
+        self.assertEqual(len(self.read(result)), 1)
 
     def test_source_evidence_corruption_rejected(self):
         result=self.collect([page([row()])]);record=self.read(result)[0]['record']

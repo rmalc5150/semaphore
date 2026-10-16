@@ -1,0 +1,25 @@
+[Unit]
+Description=Marketaux full publisher article capture and saved-observation enrichment
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+Slice=optima-data.slice
+MemoryAccounting=true
+MemoryHigh=402653184
+MemoryMax=536870912
+MemorySwapMax=0
+CPUQuota=40%
+Environment=MALLOC_ARENA_MAX=2
+ExecStart=/usr/bin/timeout --signal=INT --kill-after=30s 4m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/finlight_content_backfill.py --config config/marketaux-content-backfill.json
+TimeoutStartSec=6min
+TimeoutStopSec=90
+KillSignal=SIGINT
+SuccessExitStatus=0 2 124
+Nice=15
+NoNewPrivileges=true
+ProtectSystem=full
+

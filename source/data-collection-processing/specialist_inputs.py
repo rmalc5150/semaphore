@@ -399,6 +399,9 @@ def discover_children(store, manifest_key, parent):
 
 
 def collect(job, store, settings, universe, taxonomy, page_budget):
+    if job['adapter'] == 'edinet':
+        from edinet_pipeline import collect as collect_edinet
+        return collect_edinet(job, store, settings, universe, taxonomy, page_budget)
     spec = task_spec(job['source'], 'specialist_inputs', job['mode'], job['start'] + 'T00:00:00Z',
         job['end'] + 'T00:00:00Z', {k: job[k] for k in ('adapter', 'parameters', 'source_id', 'coverage_note')},
         VERSION + ('-usaspending-single-recipient-1' if job['adapter'] == 'usaspending' else ''), universe, taxonomy)

@@ -13,11 +13,6 @@
     "uk",
     "japan",
     "hkex-filings",
-    "documents",
-    "press-releases",
-    "licensing-agreements",
-    "ma-announcements",
-    "strategic-transactions",
     "chictr"
   ],
   "max_windows_per_source": 2,
@@ -29,7 +24,8 @@
   "sectors": [],
   "separate_jobs": {
     "eodhd": "optima-eodhd-profiles.timer",
-    "nmpa": "optima-nmpa-inventory.timer"
+    "nmpa": "optima-nmpa-inventory.timer",
+    "s11-content": "optima-s11-content-backfill.timer"
   },
   "not_scheduled": {
     "patents": "Nine patent Athena tables verified. Universe 0.3 adds four registry-backed legal entities and four receipt/underlying relationships; two display-sector decisions remain pending. Broader identity/ownership resolution, current global feed and patent scheduling pending. See PATENT_ATHENA.md and COMPANY_UNIVERSE.md.",

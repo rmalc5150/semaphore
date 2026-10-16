@@ -1,0 +1,13 @@
+{
+  "start": "2021-01-01",
+  "end_exclusive": "2026-10-15",
+  "storage_config": "config/collection-storage.s3.json",
+  "max_articles_per_invocation": 10,
+  "max_batches_per_invocation": 100,
+  "max_provider_requests_per_day": 40,
+  "max_attempts": 3,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Marketaux articles found by existing four-sector English/Chinese searches, January 1, 2021 through October 14, 2026. Original publisher HTML, extracted full text, checksums and retrieval chunks are saved. Descriptions and snippets are never substituted for full text. Restricted, unavailable or unextractable articles are reported as explicit gaps after three attempts. Completion waits for existing historical discovery and daily catch-up, verified committed catalog and processing of every indexed in-scope article. This is scoped provider search coverage, not a complete global news archive or historical article vintages.",
+  "provider": "marketaux"
+}

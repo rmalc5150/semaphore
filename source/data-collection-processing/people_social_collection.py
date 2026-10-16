@@ -57,32 +57,62 @@ def record(run, identity, url, data, event, evidence, note):
         'payload': {'data': data, 'coverage_note': note, 'source_evidence': list(evidence)}})
 
 
-def collect_feed(store, settings, universe, taxonomy, name, url, day, client=None):
+def collect_feed(store, settings, universe, taxonomy, name, url, day, client=None, capture_full_text=True):
     require(day == datetime.now(timezone.utc).date(), 'rss_snapshot_cannot_be_backdated')
     spec = task_spec('people_rss', 'people_source_records', 'daily', instant(day), instant(day + timedelta(days=1)),
-        {'feed_name': name, 'feed_url': url, 'coverage': 'current_feed_snapshot'}, VERSION, universe, taxonomy)
+        {'feed_name': name, 'feed_url': url, 'coverage': 'current_feed_snapshot', **({'full_text_pipeline_version': 'people-rss-fulltext-1.0'} if capture_full_text else {})}, VERSION, universe, taxonomy)
     try:
         run = CollectionRun.start(store, spec, universe, taxonomy, settings, resume=True)
     except AlreadyComplete as exc:
         return {'status': 'complete', 'manifest': str(exc), 'already_complete': True}
     client = client or EvidenceClient(store, 'people_rss')
+    content_lock = None
     try:
         if not run.exhausted:
             raw = client.get(url)
             require(ET.fromstring(raw).tag.rsplit('}', 1)[-1] in {'rss', 'feed', 'RDF'}, 'rss_invalid_document')
             entries = parse_feed(raw, name)
             records, seen = [], set()
+            listing_evidence = list(client.evidence)
+            from people_rss_content import Capture, VERSION as CONTENT_VERSION, apply
+            capture = Capture(store, None, max_publisher_requests=10)
+            # All publisher captures share a durable daily budget. If news is
+            # using it, retain discovery and let the content worker retry.
+            content_lock = (ROOT / '.news-collection.lock').open('a')
+            self_budget_lock = False
+            if capture_full_text:
+                try:
+                    fcntl.flock(content_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                    self_budget_lock = True
+                except BlockingIOError:
+                    pass
             for entry in entries:
                 require(entry['url'].startswith(('https://', 'http://')), 'rss_missing_public_url')
                 identity = digest({'publisher': name, 'url': entry['url']})
                 require(identity not in seen, 'rss_duplicate_item_requires_review')
                 seen.add(identity)
-                records.append(record(run, identity, entry['url'], entry, event_timestamp(entry['publishedAt']), client.evidence, RSS_NOTE))
+                output = record(run, identity, entry['url'], entry, event_timestamp(entry['publishedAt']), listing_evidence, RSS_NOTE)
+                if capture_full_text:
+                    try:
+                        if not self_budget_lock:
+                            raise SourceIssue('fulltext_runner_busy', True)
+                        body = capture.get(entry, historical=False)
+                    except SourceIssue as exc:
+                        if not exc.partial:
+                            raise
+                        body = {'version': CONTENT_VERSION, 'status': 'pending', 'article_url': entry['url'],
+                            'captured_at': now(), 'source_evidence': [], 'text_characters': 0, 'reason': exc.code}
+                    output = apply(output, body, store)
+                records.append(output)
+            content_lock.close()
             run.commit_page(records, next_cursor=None, exhausted=True)
         return {'status': 'complete', 'records': run.state['record_count'],
                 'manifest': run.finish('complete', expected_records=run.state['record_count'])}
     except (Exception, KeyboardInterrupt) as exc:
         return finish_error(run, exc, client.evidence)
+    finally:
+        if content_lock is not None:
+            content_lock.close()
 
 
 def collect_social(store, settings, universe, taxonomy, sector, query, day, client=None, max_pages=10):

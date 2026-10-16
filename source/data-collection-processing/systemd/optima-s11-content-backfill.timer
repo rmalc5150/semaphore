@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume S11 full-content backfill after each bounded run
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=optima-s11-content-backfill.service
+
+[Install]
+WantedBy=timers.target

@@ -60,6 +60,13 @@ class AuthenticatedTests(unittest.TestCase):
     def test_no_pcb_historical_vintages(self):
         self.assertEqual([], list(scopes({'adapter': 'fda_productcodes'}, date(2021, 1, 1), date(2021, 2, 1), 'historical')))
 
+    def test_edinet_daily_captures_only_the_completed_previous_day(self):
+        rows = list(scopes({'adapter': 'edinet', 'api': 'https://api.edinet-fsa.go.jp/api/v2/documents.json'},
+            date(2026, 10, 8), date(2026, 10, 16), 'daily'))
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0][2]['date'], '2026-10-14')
+        self.assertIn('pipeline_version', rows[0][2])
+
     @patch('specialist_authenticated.request')
     def test_ires_total_is_not_returned_count(self, request):
         request.return_value = {'STATUSCODE': 400, 'RESULTCOUNT': 291, 'RESULT': [{'productid': 42}]}

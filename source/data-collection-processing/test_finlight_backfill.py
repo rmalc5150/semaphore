@@ -20,7 +20,7 @@ class ArchiveTests(unittest.TestCase):
         self.store = self.settings.store()
         self.runner = NewsOperations(self.store, self.settings, load_json(ROOT/'config/news-operations.json'))
         control, self.config, self.prefix = archive.setup()
-        self.control = {**control, 'start': '2021-01-01', 'end_exclusive': '2021-01-02'}
+        self.control = {**control, 'start': '2021-01-01', 'end_exclusive': '2021-01-02', 'notify_when_verified': True}
         self.patch = patch.object(archive, 'setup', return_value=(self.control, self.config, self.prefix))
         self.patch.start(); self.addCleanup(self.patch.stop)
         self.sns = Mock(); self.sns.publish.return_value = {'MessageId': 'sent'}

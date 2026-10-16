@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume EDINET original reports and extraction backfill
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=optima-edinet-document-backfill.service
+
+[Install]
+WantedBy=timers.target

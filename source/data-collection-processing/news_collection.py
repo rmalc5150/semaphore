@@ -46,10 +46,12 @@ def parameters(provider, query, language, start, end, page, size):
 
 
 class NewsClient(EvidenceClient):
-    def __init__(self, store, source, key, cap, max_requests=12, opener=urlopen, sleeper=time.sleep):
+    def __init__(self, store, source, key, cap, max_requests=12, opener=urlopen, sleeper=time.sleep, capture_full_text=True):
         super().__init__(store, source, opener, sleeper)
         require(type(cap) is int and cap > 0 and type(max_requests) is int and max_requests > 0, "invalid_request_budget")
         self.key, self.cap, self.remaining = key, cap, max_requests
+        self.capture_full_text = source in ('finlight', 'marketaux') and capture_full_text
+        self.fulltext_api_reserve = 2
 
     def reserve(self):
         if self.remaining <= 0:
@@ -184,7 +186,14 @@ def collect(store, settings, universe, taxonomy, config, provider, target, langu
         "page_size": pc["page_size"], "history_start": pc["history_start"],
         "history_evidence": pc["history_evidence"], "configuration_hash": digest(config),
         "completion_basis": "exhausted_provider_search_not_global_news_census"}
-    spec = task_spec(provider, "news_articles", mode, instant(start), instant(end), scope, VERSION, universe, taxonomy)
+    fulltext = provider in ('finlight', 'marketaux') and getattr(client, 'capture_full_text', False)
+    if fulltext:
+        from importlib import import_module
+        content_module = import_module(provider + '_content')
+        TEXT_VERSION = content_module.VERSION
+        scope['full_text_pipeline_version'] = TEXT_VERSION
+    spec = task_spec(provider, "news_articles", mode, instant(start), instant(end), scope,
+        VERSION + ('-' + TEXT_VERSION if fulltext else ''), universe, taxonomy)
     write_json(store, f"manifests/configurations/news/{digest(config)}.json", config)
     try:
         run = CollectionRun.start(store, spec, universe, taxonomy, settings, resume=not refresh, refresh=refresh)
@@ -232,7 +241,27 @@ def collect(store, settings, universe, taxonomy, config, provider, target, langu
             lower = datetime.combine(start, datetime.min.time(), timezone.utc)
             upper = datetime.combine(end, datetime.min.time(), timezone.utc)
             require(all(lower - timedelta(seconds=1) <= stamp <= upper for stamp in stamps), "news_date_filter_ignored")
-            records = [record(row, run, matcher, client.evidence, target) for row, stamp in zip(rows, stamps) if lower <= stamp < upper]
+            records = []
+            listing_evidence = list(client.evidence)
+            for row, stamp in zip(rows, stamps):
+                if lower <= stamp < upper:
+                    result = record(row, run, matcher, listing_evidence, target)
+                    if fulltext:
+                        Capture, apply = content_module.Capture, content_module.apply
+                        if not hasattr(client, 'fulltext_capture'):
+                            client.fulltext_capture = Capture(store, client)
+                        try:
+                            capture = client.fulltext_capture.get(row, historical=mode == 'historical')
+                        except SourceIssue as exc:
+                            if not exc.partial:
+                                raise
+                            # Discovery must not lose an article because body
+                            # retrieval used its budget. The content backfill
+                            # will pick up this committed pending observation.
+                            capture = {'version': TEXT_VERSION, 'status': 'pending', 'article_url': row['link'] if provider == 'finlight' else row['url'],
+                                'captured_at': now(), 'source_evidence': [], 'text_characters': 0, 'reason': exc.code}
+                        result = apply(result, capture, store)
+                    records.append(result)
             # Persist even empty response evidence with the run for coverage audits.
             write_json(store, run.state["manifest_prefix"] + f"/responses/{len(run.state['pages']):08d}.json",
                 {"parameters": parameters(provider, scope["query"], language, start, end, state["page"], pc["page_size"]),

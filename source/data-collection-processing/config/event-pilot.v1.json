@@ -1,0 +1,488 @@
+{
+  "version": "event-pilot-0.1",
+  "sample_per_dataset": 3,
+  "max_batches_per_dataset": 3,
+  "max_batch_bytes": 8388608,
+  "max_metadata_bytes": 16777216,
+  "max_download_bytes": 134217728,
+  "storage_config": "config/collection-storage.s3.json",
+  "index": "committed-athena-index.sqlite3",
+  "inventory": "config/source-schedule-inventory.json",
+  "taxonomy": "config/sectors.v1.json",
+  "source_map": {
+    "gleif_legal_entities": "S01",
+    "eodhd": "S02",
+    "eodhd_market": "S03",
+    "hkex_prices": "S04",
+    "sec_edgar": "S07",
+    "sec_companyfacts": "S08",
+    "hkex_news": "S09",
+    "edinet_filings": "S10",
+    "disclosure_candidates": "S11",
+    "disclosure_documents": "S11",
+    "finlight": "S13",
+    "marketaux": "S14",
+    "people_rss": "S15",
+    "personnel_archive": "S15",
+    "clinicaltrials_gov": "S17",
+    "ema_ctis": "S18",
+    "fda_openfda": "S19",
+    "drugsfda_applications": "S20",
+    "ema_medicines": "S21",
+    "uk_mhra": "S22",
+    "japan_pmda": "S23",
+    "canada_noc": "S24",
+    "chictr": "S25",
+    "nmpa_trials": "S26",
+    "pubmed_abstracts": "S27",
+    "europe_pmc": "S28",
+    "europe_pmc_fulltext": "S28",
+    "crossref_proceedings": "S29",
+    "cms_coverage": "S32",
+    "cms_coverage_documents": "S32",
+    "cms_payments_catalog": "S34",
+    "fda_dd_compliance_actions": "S35",
+    "fda_dd_import_refusals": "S35",
+    "fda_dd_inspections_citations": "S35",
+    "fda_dd_inspections_classifications": "S35",
+    "fda_ires_recalls": "S35",
+    "fda_product_codes": "S35",
+    "nih_reporter": "S36",
+    "google_patents_bigquery": "S38",
+    "uspto_odp": "S39",
+    "uspto_assignment_histories": "S40",
+    "ted_notices": "S42",
+    "usa_spending": "S43",
+    "github_sdk": "S46",
+    "nist_robotics_methods": "S47",
+    "mlperf_results": "S48",
+    "cpsc_recalls": "S50",
+    "federal_register": "S51",
+    "trade_screening": "S52",
+    "usgs_minerals": "S53",
+    "un_comtrade": "S54",
+    "doe_storage_program": "S55",
+    "eia_battery_generators": "S56",
+    "eia_generator_index": "S56",
+    "eia_retail_prices": "S56",
+    "caiso_prices": "S57",
+    "bls_wages": "S59",
+    "ror_institutions": "S68",
+    "sam_gov_opportunities": "S41",
+    "reddit_refreshable": "S63",
+    "dataforseo": "S65",
+    "bluesky_search": "S64"
+  },
+  "source_rules": {
+    "S01": {
+      "name": "Registry/exchange/legal identities",
+      "trigger": "`corporate.identity_change`, `security.listing`, or evidenced ownership change when an authoritative dated record establishes it; match registry/LEI/security ID plus action.",
+      "qualification": "First import is a baseline, not an IPO; LEI/name updates do not prove ownership. Reviewed internal edits are decisions, not independent external corroboration.",
+      "routing_intent": "Product/commercial, financial; identity support for all layers."
+    },
+    "S02": {
+      "name": "EODHD inventory/profiles/fundamentals",
+      "trigger": "Nominate `security.listing`, `corporate.identity_change` or `corporate.financial_disclosure` from a new security or material reported field; resolve security/company and source period.",
+      "qualification": "Snapshot differences require original dated evidence; provider omissions do not prove delisting and current profiles cannot establish historical changes.",
+      "routing_intent": "Financial/market, product/commercial."
+    },
+    "S03": {
+      "name": "EODHD prices/volume/actions",
+      "trigger": "Splits/dividends can establish `security.corporate_action` keyed by security, action ID/type and effective date. An optional causal threshold rule can create `market.anomaly` for a price/volume excursion.",
+      "qualification": "Daily bars remain features. An anomaly is an observed market movement, not an explanation; use a prior-data threshold and retain action-adjustment provenance.",
+      "routing_intent": "Financial/market; prices also feed HMM/TFT directly."
+    },
+    "S04": {
+      "name": "HKEX cross-listed prices",
+      "trigger": "Corroborate security/action events; optionally nominate `market.cross_listing_dislocation` from synchronized, currency-normalized prices under a versioned rule.",
+      "qualification": "Routine prices are features. Align sessions, FX, share ratios and security types; stale quotes do not establish arbitrage or a corporate development.",
+      "routing_intent": "Financial/market."
+    },
+    "S05": {
+      "name": "Benchmark/index/ETF prices and FX",
+      "trigger": "Optional `market.regime_observation` or `market.fx_shock` when a causal, predefined threshold is crossed, keyed by instrument and interval.",
+      "qualification": "Keep ordinary observations as features; do not call an HMM state change an external news event or infer its cause from returns.",
+      "routing_intent": "Financial/market, sector context."
+    },
+    "S06": {
+      "name": "ETF holdings/constituent history",
+      "trigger": "`market.constituent_change` or `market.holdings_disclosure` from a published rebalance/holdings edition; key fund/index, security and edition/action.",
+      "qualification": "Newly captured current holdings do not prove the trade date or historic membership; weights can change with prices without trading.",
+      "routing_intent": "Financial/market."
+    },
+    "S07": {
+      "name": "SEC EDGAR filings/exhibits",
+      "trigger": "Extract financing, results, leadership, transaction, risk or other typed developments; key accession plus claim locator, then correlate the underlying action across filings/PR.",
+      "qualification": "A filing is evidence, not automatically one event. Amendments revise evidence or establish a separately disclosed milestone; filing publication and transaction effective dates differ.",
+      "routing_intent": "Financial, leadership, product/commercial and applicable domain layers."
+    },
+    "S08": {
+      "name": "SEC XBRL/company facts/notes",
+      "trigger": "`corporate.financial_disclosure` or `corporate.restatement` from a filed period/metric package and accession; link original notes for context.",
+      "qualification": "Do not create an event per XBRL cell or treat later restated values as originally available. Companyfacts without notes cannot support note-specific claims.",
+      "routing_intent": "Financial/market."
+    },
+    "S09": {
+      "name": "HKEXnews announcements/documents",
+      "trigger": "Extract earnings, placements, connected transactions, leadership changes or listing milestones using issuer/document ID and action context.",
+      "qualification": "Consolidate language copies and derivative document captures; one announcement can contain several events. Retrieval date is not announcement date.",
+      "routing_intent": "Financial, leadership, product/commercial."
+    },
+    "S10": {
+      "name": "CNINFO/EDINET/local filings",
+      "trigger": "Extract typed financial, capital, governance or transaction disclosures; key authority/document/issuer and action.",
+      "qualification": "EDINET observations do not establish CNINFO coverage. Preserve local document types, language and publication times; cross-listed copies share provenance.",
+      "routing_intent": "Financial, leadership, product/commercial."
+    },
+    "S11": {
+      "name": "Original company/customer/lender/utility/supplier websites",
+      "trigger": "`product.launch`, `commercial.contract`, `operations.change` or financing/partnership milestone from explicit original announcements; key parties, asset and stage.",
+      "qualification": "Changed HTML, catalogs and undated marketing only nominate candidates. Partner/customer statements may corroborate one deal rather than create another.",
+      "routing_intent": "Product/commercial, operations, financial, relevant technology."
+    },
+    "S12": {
+      "name": "Optional private-funding provider",
+      "trigger": "Nominate `corporate.financing`, acquisition or leadership events using provider transaction identity and dated underlying reporting.",
+      "qualification": "Deferred optional acquisition is not an enabled route. Require licensed capture and evidence; provider enrichment is not independent corroboration of its cited announcement.",
+      "routing_intent": "Financial, leadership, product/commercial."
+    },
+    "S13": {
+      "name": "Finlight news",
+      "trigger": "Extract the reported development into its typed event; use `news.material_claim` for a new specific claim lacking another type. Correlate original article/provenance, parties and action.",
+      "qualification": "Feed arrival and repeated coverage are not new occurrences; retain reported/disputed status and whether full text or only snippets was captured.",
+      "routing_intent": "Route by claim to applicable specialists."
+    },
+    "S14": {
+      "name": "Marketaux news",
+      "trigger": "Same typed extraction as Finlight; identify original publisher/article and match the development across both aggregators.",
+      "qualification": "Two aggregators carrying one article are one reporting lineage; sentiment metadata alone does not establish a business event.",
+      "routing_intent": "Route by claim; financial/market for reported market context."
+    },
+    "S15": {
+      "name": "Personnel/news RSS and derived archive",
+      "trigger": "`personnel.appointment`, `personnel.departure`, `personnel.role_change` or evidenced workforce action; match person, organization, role and dated change.",
+      "qualification": "Personnel archive is a derivative view of parent sources, not another independent witness. Keywords, job openings and biographies do not prove movements.",
+      "routing_intent": "Leadership/workforce, operations where exposure is evidenced."
+    },
+    "S16": {
+      "name": "Licensed analyst estimates/coverage",
+      "trigger": "`market.analyst_revision` or `market.coverage_change` when a named analyst/broker changes a dated estimate, rating or coverage status; retain fiscal period/horizon.",
+      "qualification": "Requires licensed point-in-time vintages. Consensus changes from contributor composition differ from an analyst revision; latest estimates cannot be backdated.",
+      "routing_intent": "Financial/market."
+    },
+    "S17": {
+      "name": "ClinicalTrials.gov",
+      "trigger": "`clinical.registration`, `clinical.status_change`, `clinical.protocol_change`, `clinical.results` from trial IDs and versioned fields/results; link attachments.",
+      "qualification": "Registry posting is not necessarily trial start or first patient. Differentiate sponsor-reported dates from public version availability; changed recruitment is not automatic efficacy evidence.",
+      "routing_intent": "Scientific/clinical, regulatory, product/commercial."
+    },
+    "S18": {
+      "name": "EMA CTIS",
+      "trigger": "Trial authorization/decision, status or protocol disclosure from public trial/decision IDs and versioned evidence.",
+      "qualification": "Application, decision, start and publication are separate milestones. Public visibility or metadata changes alone do not establish approval or results.",
+      "routing_intent": "Scientific/clinical, regulatory."
+    },
+    "S19": {
+      "name": "FDA/openFDA actions/public CRLs",
+      "trigger": "`regulatory.decision`, `regulatory.safety_notice` or a typed action from identifiable official records; extract a CRL outcome only from retained public evidence.",
+      "qualification": "Map the actual endpoint/action; not every openFDA record is an approval. Private or absent CRLs cannot be inferred, nor can counts establish causation.",
+      "routing_intent": "Regulatory, scientific/clinical, product/commercial."
+    },
+    "S20": {
+      "name": "Drugs@FDA reviews/labels/packages",
+      "trigger": "Approval, supplemental indication, label revision or newly disclosed review findings; key application, submission, action and document version.",
+      "qualification": "A package supports several claims but is not several approvals. Later review-package publication can enrich an earlier decision only from its own availability time.",
+      "routing_intent": "Regulatory, scientific/clinical, product/commercial."
+    },
+    "S21": {
+      "name": "EMA medicines/EPAR/labels",
+      "trigger": "Authorization, variation, indication, withdrawal or published assessment findings keyed by medicine/procedure/decision.",
+      "qualification": "Separate committee opinion from final authorization; current medicine metadata is not a complete history. Parent metadata and downloaded EPAR share provenance.",
+      "routing_intent": "Regulatory, scientific/clinical."
+    },
+    "S22": {
+      "name": "MHRA designations/decisions",
+      "trigger": "`regulatory.designation` or explicit authorization/decision from named product, scheme, jurisdiction and official notice.",
+      "qualification": "ILAP/orphan designation is not marketing authorization. A changed current list nominates a change unless dated supporting evidence establishes it.",
+      "routing_intent": "Regulatory, scientific/clinical, product/commercial."
+    },
+    "S23": {
+      "name": "PMDA designations/reviews",
+      "trigger": "Designation, review/opinion or explicit decision from official product/procedure evidence.",
+      "qualification": "Keep PMDA review separate from an authorization issued by the relevant authority. List removal or translation differences alone do not establish withdrawal.",
+      "routing_intent": "Regulatory, scientific/clinical."
+    },
+    "S24": {
+      "name": "Health Canada NOC/decisions/labels",
+      "trigger": "Authorization, conditional authorization, indication or label change from submission/NOC/product identifiers.",
+      "qualification": "Preserve decision type and conditions; market authorization does not imply reimbursement or commercial launch.",
+      "routing_intent": "Regulatory, scientific/clinical, product/commercial."
+    },
+    "S25": {
+      "name": "ChiCTR",
+      "trigger": "Trial registration, recruitment/protocol change or disclosed results from trial identity and saved versions.",
+      "qualification": "Current records cannot reconstruct all prior revisions. Registration dates do not prove availability of later fields or trial success.",
+      "routing_intent": "Scientific/clinical, regulatory."
+    },
+    "S26": {
+      "name": "NMPA trial inventory/details",
+      "trigger": "Trial registration and explicit status/protocol/results disclosures keyed by registry trial ID and version.",
+      "qualification": "Inventory adds discovery candidates; initial inventory is a baseline, and disappearance is not cancellation. Clinical registration is not drug approval.",
+      "routing_intent": "Scientific/clinical, regulatory."
+    },
+    "S27": {
+      "name": "PubMed metadata",
+      "trigger": "`research.paper_published`, correction or retraction keyed by PMID/DOI and publication notice; nominate domain claims if captured abstract supports them.",
+      "qualification": "Indexing time differs from publication and availability. Metadata does not establish full-text results; reuse S28 linkage to avoid counting the same paper twice.",
+      "routing_intent": "Scientific/clinical, IP/technology, relevant domain specialists."
+    },
+    "S28": {
+      "name": "Europe PMC/full text/supplements",
+      "trigger": "Paper/preprint publication, correction/retraction or supported result disclosure keyed by DOI/PMCID/version and claim.",
+      "qualification": "Metadata, full text and supplements are evidence for the same contribution, not independent replication. Article retrieval today does not establish when every passage was public.",
+      "routing_intent": "Scientific/clinical, IP/technology."
+    },
+    "S29": {
+      "name": "Crossref proceedings",
+      "trigger": "`research.paper_published` or `research.abstract_published` when contribution metadata establishes its type and publication; key DOI.",
+      "qualification": "Proceedings metadata does not prove a talk occurred or an entire conference was newly announced. Deposit/update dates differ from publication; unknown availability stays unknown.",
+      "routing_intent": "Scientific/clinical, IP/technology, sector-specific technical layers."
+    },
+    "S30": {
+      "name": "Original conference/society material",
+      "trigger": "Conference announcement, abstract release, evidenced presentation, poster results or speaker disclosure; key meeting edition + contribution/session + milestone.",
+      "qualification": "Agenda listing proves a scheduled talk, not delivery/results. Link program, poster and paper without collapsing distinct release milestones or duplicating the scientific claim.",
+      "routing_intent": "Scientific/clinical, IP/technology; leadership/conflict context when relevant."
+    },
+    "S31": {
+      "name": "NICE guidance",
+      "trigger": "`policy.guidance_change` from consultation, draft, final recommendation or update keyed by guidance ID, version and stage.",
+      "qualification": "Do not treat draft recommendations as adopted guidance or guidance as a drug authorization; scope population, intervention and conditions.",
+      "routing_intent": "Regulatory, product/commercial, scientific/clinical."
+    },
+    "S32": {
+      "name": "CMS coverage database/documents",
+      "trigger": "`policy.coverage_change` from proposed/final national or local determinations and revisions; key policy ID, jurisdiction/version/stage.",
+      "qualification": "Discovery catalog and downloaded policy document support one development. Publication and effective dates differ; document acquisition must precede text-specific claims.",
+      "routing_intent": "Product/commercial, regulatory, scientific/clinical."
+    },
+    "S33": {
+      "name": "Society guidelines/payer policies",
+      "trigger": "Guideline recommendation, inclusion/removal or reimbursement restriction from identifiable policy edition and population/product scope.",
+      "qualification": "Requires retained original policy and revision evidence. Specialty recommendation and payer coverage are separate decisions, even when medically related.",
+      "routing_intent": "Scientific/clinical, product/commercial, regulatory."
+    },
+    "S34": {
+      "name": "CMS Open Payments/author disclosures",
+      "trigger": "`disclosure.payment_publication` or `disclosure.interest_change` only from actual payment/disclosure records; key recipient/payer/record/reporting edition.",
+      "qualification": "Catalog editions alone establish dataset release, not a payment or conflict. Payment is not proof of bias; retain corrections and reporting-period/publication distinction.",
+      "routing_intent": "Scientific evidence/conflict assessment, leadership; financial only where justified."
+    },
+    "S35": {
+      "name": "FDA inspections/compliance/enforcement",
+      "trigger": "`regulatory.inspection_finding`, `regulatory.enforcement`, `regulatory.import_refusal` or recall from facility/action/record and scope.",
+      "qualification": "Inspection classification, citation, compliance action and recall can be related but distinct. Product-code dictionaries are classification support; they cannot establish a new clearance or violation.",
+      "routing_intent": "Regulatory, operations/supply chain, scientific/clinical."
+    },
+    "S36": {
+      "name": "NIH/funder awards",
+      "trigger": "`research.funding_award`, amendment or termination from project/award ID, fiscal action, organization and announced amount.",
+      "qualification": "Separate award action from multiyear total, disbursement and project start. Topic matches/PI affiliations require entity review; a grant does not validate the science.",
+      "routing_intent": "Scientific/clinical, IP/technology, financial."
+    },
+    "S37": {
+      "name": "Hospitals/universities/labs/societies",
+      "trigger": "Research result, collaboration, leadership move, facility opening or trial-site milestone from explicit institutional announcements.",
+      "qualification": "Affiliation pages and directories support identities; they do not prove company ownership or a collaboration. Reposted university/company PR shares origin.",
+      "routing_intent": "Scientific/clinical, IP/technology, leadership, operations."
+    },
+    "S38": {
+      "name": "Google Patents BigQuery",
+      "trigger": "Publication/grant or explicitly supported legal milestone from authority/publication/kind identity; connect family and technical claims.",
+      "qualification": "An added database row is not necessarily a recent publication. Family members remain distinct documents; CPC/current assignee changes do not establish dated ownership transfers.",
+      "routing_intent": "IP/technology, regulatory/legal exposure, product/commercial."
+    },
+    "S39": {
+      "name": "USPTO ODP applications/prosecution",
+      "trigger": "Publication or explicit status milestone, `patent.office_action`, and `patent.petition_decision`; key application + official action/decision document ID and milestone.",
+      "qualification": "See prosecution detail below. Application identity alone is not a document key. Rejections and petition outcomes do not establish product failure, final abandonment or grant.",
+      "routing_intent": "IP/technology; regulatory/legal risk and product/commercial relevance where evidenced."
+    },
+    "S40": {
+      "name": "USPTO assignments/ownership evidence",
+      "trigger": "`patent.assignment` from recorded instrument identity, affected applications/patents, parties and execution/recordation dates.",
+      "qualification": "Multiple patent rows for one instrument can support one scoped transfer event. Applicant, reported assignee and current owner are different assertions; recordation does not prove an uninterrupted ownership chain.",
+      "routing_intent": "IP/technology, product/commercial, financial."
+    },
+    "S41": {
+      "name": "SAM.gov opportunities",
+      "trigger": "`procurement.opportunity`, amendment, cancellation or evidenced award notice keyed by notice/solicitation and version/stage.",
+      "qualification": "An opportunity is potential demand, not a won contract. Require bidder/awardee evidence before routing as a company win; amended deadlines are updates unless a separate action is material.",
+      "routing_intent": "Product/commercial, operations, financial."
+    },
+    "S42": {
+      "name": "TED procurement",
+      "trigger": "Opportunity, award, modification or cancellation from notice/procedure/lot/stage identifiers and original notice content.",
+      "qualification": "Avoid counting procedure and lot totals twice. Search metadata alone may not establish supplier/value; use original notice fields/documents before those claims.",
+      "routing_intent": "Product/commercial, operations, financial."
+    },
+    "S43": {
+      "name": "USAspending awards",
+      "trigger": "`procurement.award_action` or grant/funding action from award + transaction/action ID, amount and recipient.",
+      "qualification": "Obligation, outlay, ceiling and cumulative award total are different. Amendments can be positive or negative; repeating a cumulative total is not another award.",
+      "routing_intent": "Financial, product/commercial, operations."
+    },
+    "S44": {
+      "name": "Greenhouse jobs",
+      "trigger": "`workforce.posting_opened`, materially changed or explicitly closed posting from employer/job ID and captured versions.",
+      "qualification": "Job openings indicate recruiting intent, not a hire. First crawl is a baseline; disappearance requires completed comparable captures and a declared closure rule, otherwise unknown.",
+      "routing_intent": "Leadership/workforce, operations; specialist inference stays labeled."
+    },
+    "S45": {
+      "name": "Lever jobs",
+      "trigger": "Same posting lifecycle events keyed by employer/posting ID; link roles/locations and changes supported by retained text.",
+      "qualification": "Do not duplicate cross-posted Greenhouse/Lever vacancies or infer workforce reductions from a missing page. Posting counts remain observed recruiting features.",
+      "routing_intent": "Leadership/workforce, operations."
+    },
+    "S46": {
+      "name": "GitHub/vendor SDK/API docs",
+      "trigger": "`technology.release`, deprecation, compatibility or integration change from repository release/tag or documented vendor revision.",
+      "qualification": "Tag alone is not a commercial launch; mutable tags/docs need content hashes. Verify repo/product ownership and distinguish changelog announcement from installed adoption.",
+      "routing_intent": "IP/technology, product/commercial, operations."
+    },
+    "S47": {
+      "name": "NIST/test methods/independent tests",
+      "trigger": "`technology.test_method_release` or `technology.test_result` from dated method edition or retained test report and tested configuration.",
+      "qualification": "A discovery page is context until a document is captured. General methods do not establish device performance; customer/vendor tests are not automatically independent.",
+      "routing_intent": "IP/technology, operations, product/commercial."
+    },
+    "S48": {
+      "name": "MLCommons/MLPerf results",
+      "trigger": "`technology.benchmark_result` for a published submission/result release; key suite/version, division, workload, system/configuration and submission ID.",
+      "qualification": "Aggregate result rows as one scoped submission milestone where appropriate. Compare like workloads/rules; updated files are revisions, and benchmark rank is not customer adoption.",
+      "routing_intent": "IP/technology, product/commercial, operations."
+    },
+    "S49": {
+      "name": "Datasheets/tests/warranty/service/deployment evidence",
+      "trigger": "Product specification revision, test result, service notice, deployment or warranty change from asset/document/version and explicit action.",
+      "qualification": "Separate measured performance from vendor claims and warranty conditions. A revised PDF hash only nominates a material change; a specification is not proof of deployed performance.",
+      "routing_intent": "IP/technology, operations, product/commercial."
+    },
+    "S50": {
+      "name": "CPSC/product safety authorities",
+      "trigger": "`product.recall`, safety warning or remedy update from authority recall ID, product scope and action.",
+      "qualification": "S35/S50 or company notices can corroborate the same recall. Preserve hazard and affected units as reported; distinguish a recall from an adverse-event report.",
+      "routing_intent": "Regulatory/safety, operations, product/commercial."
+    },
+    "S51": {
+      "name": "Federal Register/local rulemaking",
+      "trigger": "`policy.rule_proposed`, `policy.rule_finalized`, consultation or effective-date change keyed by authority/document/docket and stage.",
+      "qualification": "A proposed rule is not in force; effective date and publication differ. Route by evidenced jurisdiction and product/sector scope, not all companies indiscriminately.",
+      "routing_intent": "Regulatory, product/commercial, operations, financial."
+    },
+    "S52": {
+      "name": "Trade-control/screening lists",
+      "trigger": "`policy.trade_restriction_change` from an authoritative listing/amendment/removal notice or a verified versioned list delta for a resolved entity.",
+      "qualification": "Current screening matches are context/candidates, not historical sanctions events. Preserve list authority, scope and identity uncertainty; the event pipeline does not supply legal interpretation.",
+      "routing_intent": "Regulatory, operations/supply chain, financial."
+    },
+    "S53": {
+      "name": "USGS minerals",
+      "trigger": "`macro.statistics_release` or report revision with new production/reserve/supply statistics; key series/report edition, commodity, geography and reference period.",
+      "qualification": "Statistics are measured estimates, not a company supply disruption. Extract units, vintages and revisions; unchanged archive discovery creates no event.",
+      "routing_intent": "Operations/supply chain, financial, energy-storage technology context."
+    },
+    "S54": {
+      "name": "UN Comtrade",
+      "trigger": "`macro.trade_release` or versioned revision for a declared reporter/partner/commodity/flow/period bundle. Optional causal anomaly rules create `macro.trade_anomaly`.",
+      "qualification": "Routine trade rows remain features; don't generate a business event per cell. Commodity classifications, currency/quantity and reporting lag matter; absent data is not zero trade.",
+      "routing_intent": "Operations/supply chain, financial."
+    },
+    "S55": {
+      "name": "DOE storage reports/models",
+      "trigger": "`research.report_published` or `technology.cost_assessment` from a dated report/model edition with newly disclosed cost/performance assumptions.",
+      "qualification": "Landing-page discovery alone is context. Modeled costs are scenario estimates, not observed vendor costs or a funding award; retain document version and assumptions.",
+      "routing_intent": "IP/technology, product/commercial, financial."
+    },
+    "S56": {
+      "name": "EIA generator inventories/electricity series",
+      "trigger": "`energy.capacity_disclosure` for a supported plant/generator status/capacity change; `macro.statistics_release` for a series edition. Key plant/generator or series/period/vintage.",
+      "qualification": "Archive index/workbook are one provenance chain. First inventory is baseline; planned, operating and retired status differ, and source release time is not commissioning time. Routine prices stay features.",
+      "routing_intent": "Operations, product/commercial, financial, energy-storage specialists."
+    },
+    "S57": {
+      "name": "CAISO OASIS prices",
+      "trigger": "Routine intervals feed market context. Optional `energy.price_anomaly` when a versioned causal rule detects a node/market/interval excursion.",
+      "qualification": "No event per price tick; preserve market, node, timezone and revisions. A high price does not itself prove an outage, shortage or storage revenue opportunity.",
+      "routing_intent": "Financial/market, operations, energy-storage specialists."
+    },
+    "S58": {
+      "name": "Utility/operator queues/tariffs/permits/projects",
+      "trigger": "`energy.project_milestone`, `policy.tariff_change`, permit decision, interconnection action or contract from project/queue/docket ID and stage.",
+      "qualification": "Queue entry is not construction or operation. Withdrawn/missing records need explicit evidence or a qualified observed-delta state; project ownership requires dated links.",
+      "routing_intent": "Operations, product/commercial, regulatory, financial."
+    },
+    "S59": {
+      "name": "BLS labor series",
+      "trigger": "`macro.statistics_release` and revisions for a defined series/period/vintage; optionally a causal labor-cost anomaly.",
+      "qualification": "Series observations are context, not proof of company wage changes or hiring. Retain seasonal adjustment, units, release vintage and publication lag.",
+      "routing_intent": "Leadership/workforce, operations, financial."
+    },
+    "S60": {
+      "name": "SEMI reports/data",
+      "trigger": "`industry.report_published` or a supported capacity/shipments/forecast disclosure from licensed report edition and metric/period scope.",
+      "qualification": "Planned/licensed scope is not captured evidence. Industry forecasts remain forecasts; do not attribute an aggregate change to a specific manufacturer without evidence.",
+      "routing_intent": "Semiconductor technology, operations, financial."
+    },
+    "S61": {
+      "name": "IFR robotics statistics",
+      "trigger": "`industry.report_published` with installation/adoption statistics by declared geography/sector/period and edition.",
+      "qualification": "Annual releases do not establish daily robot deployments; revisions retain vintages. Aggregate installations cannot establish a particular vendor's sales.",
+      "routing_intent": "Robotics product/commercial, operations, financial."
+    },
+    "S62": {
+      "name": "Licensed teardowns/commodity/cost feeds",
+      "trigger": "`technology.teardown_published`, component assessment or licensed cost/utilization report; key asset/report/edition, or an optional causal commodity anomaly.",
+      "qualification": "Respect acquired scope. Estimates differ from audited costs; routine assessments stay features, and teardown evidence does not prove IP infringement or sourcing for every unit.",
+      "routing_intent": "IP/technology, operations/supply chain, financial."
+    },
+    "S63": {
+      "name": "Reddit posts/comments",
+      "trigger": "`social.discussion_signal` for an explicit original report or a versioned, deduplicated activity threshold; underlying business allegations remain unverified candidates.",
+      "qualification": "Do not create accepted corporate events from rumor or infer causation from sentiment. Bots, reposts, edits and deleted content require provenance and coverage masks.",
+      "routing_intent": "Financial/market attention; domain specialists receive explicitly unverified claims."
+    },
+    "S64": {
+      "name": "Bluesky public search",
+      "trigger": "Same qualified discussion/original-report candidates as S63 using stable post/author identities and captured versions.",
+      "qualification": "Only consumed if captured access exists. Search failure is not silence; repeated links to news enrich provenance rather than count as independent reporting.",
+      "routing_intent": "Financial/market attention; applicable domain review."
+    },
+    "S65": {
+      "name": "DataForSEO history/trends/SERP",
+      "trigger": "`attention.search_change` only under a predefined causal threshold or evidenced search-position milestone keyed by query, locale, device, interval and capture/vintage.",
+      "qualification": "Most observations remain attention features. Query-panel changes and provider revisions are not demand events; keyword history is not historical live-SERP evidence.",
+      "routing_intent": "Product/commercial, financial/market."
+    },
+    "S66": {
+      "name": "Optional Google Trends",
+      "trigger": "Qualified `attention.search_change` from a fixed query/geography/window and versioned normalization/threshold policy.",
+      "qualification": "Relative, sampled scores vary by request window. Do not merge incompatible scales or infer absolute sales; optional integration must exist before dispatch.",
+      "routing_intent": "Product/commercial, financial/market."
+    },
+    "S67": {
+      "name": "Optional private operational/patient/customer data",
+      "trigger": "`operations.milestone`, trial-site activation/recruitment milestone or aggregate adoption change from authorized versioned records and declared thresholds.",
+      "qualification": "Only authorized scoped access; keep restricted data and identifiable patient/customer details out of public event releases. Publish permitted aggregate claims with access-controlled evidence, or retain a separate restricted event catalog.",
+      "routing_intent": "Scientific/clinical, operations, product/commercial; scoped by access entitlement."
+    },
+    "S68": {
+      "name": "ROR institution identities",
+      "trigger": "Identity/affiliation support; a dated authoritative rename/merge record can nominate `organization.identity_change` keyed by ROR ID and action.",
+      "qualification": "Current organization names/relationships cannot establish past affiliation, a research partnership, company ownership or a scientific milestone. Routine directory refreshes create no business event.",
+      "routing_intent": "Identity resolution for scientific/clinical and IP/technology."
+    }
+  },
+  "default_output": "reports/event-pilot",
+  "isolation": "Local files only. S3 GET-only sampling; no production writes, timers, provider calls or model scoring."
+}

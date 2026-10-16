@@ -121,6 +121,8 @@ def collect(store, settings, key):
                             'retrieval_context': retrieval_context(parent),
                             'parent_manifest': key, 'parent_record_id': parent['record_id'], 'parent_observation_id': oid,
                             'parent_batch_keys': entry['batches'], 'coverage_note': NOTE,
+                            **({'full_text': parent['payload']['full_text']} if 'full_text' in parent['payload'] else {}),
+                            **({'content_reference': parent['payload']['content_reference']} if 'content_reference' in parent['payload'] else {}),
                             'source_evidence': parent['payload']['source_evidence']}})
                     records.append(output); buffered_bytes += len(canonical_json(output))
                     if len(records) >= 32 or buffered_bytes >= 2 * 1024 * 1024:

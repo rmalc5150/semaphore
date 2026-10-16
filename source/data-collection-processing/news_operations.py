@@ -137,7 +137,7 @@ def main():
                 control, _, archive_prefix = setup()
                 if control['enabled']:
                     completed, _ = load_stored(store, archive_prefix + '/publication.json')
-                    if not completed or not completed.get('notification_message_id'):
+                    if not completed or not (completed.get('notification_message_id') or completed.get('full_text_notification_message_id')):
                         cap = control['max_requests_per_day']
             return NewsClient(store,provider,keys[pc['secret_field']],cap,config['requests_per_lane'][lane])
         report = runner.run(client)

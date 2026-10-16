@@ -978,7 +978,7 @@
       "api": "https://api.edinet-fsa.go.jp/api/v2/documents.json",
       "enabled": true,
       "historical": true,
-      "coverage_note": "Daily filing metadata; document download remains separate",
+      "coverage_note": "Daily filing inventory plus all advertised original reports, Japanese text and XBRL/CSV extraction, and reviewed-identifier or candidate entity matching; source gaps explicit",
       "execution_lane": "authenticated"
     },
     {

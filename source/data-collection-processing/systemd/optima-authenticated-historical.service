@@ -8,8 +8,8 @@ Type=oneshot
 User=ec2-user
 WorkingDirectory=/home/ec2-user/data-collection-processing
 Slice=optima-data.slice
-MemoryHigh=167772160
-MemoryMax=201326592
+MemoryHigh=402653184
+MemoryMax=536870912
 MemorySwapMax=0
 Environment=ARROW_NUM_THREADS=1
 Environment=MALLOC_ARENA_MAX=2

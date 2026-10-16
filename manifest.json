@@ -88,6 +88,10 @@
     "sha256": "1d397c6ee8d97a4fed985075c83da8ebca70a6ebb1e345180f0ca0e676f78bc2"
   },
   {
+    "path": "data-collection-processing/EVENT_PILOT.md",
+    "sha256": "89ac99093c35d47c6f31c28a7b6c469674a3654be1de9146c0839194b99bb2fb"
+  },
+  {
     "path": "data-collection-processing/FINLIGHT_BACKFILL.md",
     "sha256": "913a938b51103fcade3ded3e529a09e1d321149b7adc6a1d019391f8fb21f414"
   },
@@ -341,7 +345,19 @@
   },
   {
     "path": "data-collection-processing/disclosure_collection.py",
-    "sha256": "c17d97cb63e0032cf99bdfde2c65302dbaa8e3a4b29d1e92d6c25688e5fc8599"
+    "sha256": "f8e9e1df7113b3de810bd187772f4d312d31c289b9d4bac454e81f953417d6ef"
+  },
+  {
+    "path": "data-collection-processing/disclosure_content.py",
+    "sha256": "0c079eb73080517033d8dd460721bd60431adb37dcbbc59cb97544d9640f2ec2"
+  },
+  {
+    "path": "data-collection-processing/disclosure_content_backfill.py",
+    "sha256": "5cd4ab3b7af3e3f0234c60d2e580285bfc00c648980d448cd72ae1ce07cc5f99"
+  },
+  {
+    "path": "data-collection-processing/disclosure_document_cache.py",
+    "sha256": "43aa64b9b89f06c9c4fd1c78bdf2c4a622c2060de1476af487ac3140aea6eb5c"
   },
   {
     "path": "data-collection-processing/disclosure_event_collector.py",
@@ -350,6 +366,14 @@
   {
     "path": "data-collection-processing/edinet_access_check.py",
     "sha256": "43148515f97855e70e565cb0fd34c09e817f7007e01d18872574cfbd1761b388"
+  },
+  {
+    "path": "data-collection-processing/edinet_backfill.py",
+    "sha256": "744c72f82f7657d7b59a6965061735b6dfd59e6b28aff2bfaec833cc48590a27"
+  },
+  {
+    "path": "data-collection-processing/edinet_pipeline.py",
+    "sha256": "f07d4d8052a123502382341940ca9adeb65f3c12b64a37700907de1fb079cacb"
   },
   {
     "path": "data-collection-processing/eia_access_check.py",
@@ -397,7 +421,11 @@
   },
   {
     "path": "data-collection-processing/event-pipeline.md",
-    "sha256": "e53803574fd4e3057cfa7dde0efc7f7eca761d5b3e92027d967949d75201dd18"
+    "sha256": "da0ede65dc131a50f3b505779a30cd8528e0eb8d43197e492e968a269c4b77e9"
+  },
+  {
+    "path": "data-collection-processing/event_pilot.py",
+    "sha256": "db9fcc21b0d8e6f03b6fca3a58ca0c5cff2eae59125eb3d96a7df200b4005959"
   },
   {
     "path": "data-collection-processing/fda_access.py",
@@ -428,6 +456,14 @@
     "sha256": "2bb41559c5923669631a614410964c154ce9527566ce7572361738450eb3177d"
   },
   {
+    "path": "data-collection-processing/finlight_content.py",
+    "sha256": "0bdbcccf252bb20cd5be8e5760bf29d18d97fe36af3203fca4b2003146865023"
+  },
+  {
+    "path": "data-collection-processing/finlight_content_backfill.py",
+    "sha256": "75631cf743f8929b8b0321da1026fa76e2baae1c7deaa3fbc7542bb4c7f9ef9c"
+  },
+  {
     "path": "data-collection-processing/historical_policy.py",
     "sha256": "5c87b81d092827ef59bfbbf23df478069436bf92addaf8dc0c078b7f0625a9b2"
   },
@@ -442,6 +478,10 @@
   {
     "path": "data-collection-processing/hkex_daily_prices.py",
     "sha256": "93057661f7da70a8b0aee8fa94154deb9ee931fbbcbf56afdf714acade42c95e"
+  },
+  {
+    "path": "data-collection-processing/hkex_document_backfill.py",
+    "sha256": "b610d9e1ed7a93ff6908da9a8a692b629a88068cf60626bf97c739e1f9c9e369"
   },
   {
     "path": "data-collection-processing/hkex_filings.py",
@@ -484,6 +524,14 @@
     "sha256": "4fe4ebfb9ce4f9c7dd29823423f8b2c02eb4450d17cb295a7e9fc668df9e9e94"
   },
   {
+    "path": "data-collection-processing/marketaux_content.py",
+    "sha256": "8fc0fa863f098d39f689442d7b1d43cbbc4efef6a1cef9c1e28a310b0e35602c"
+  },
+  {
+    "path": "data-collection-processing/marketaux_content_backfill.py",
+    "sha256": "0a9c906baf043ae239234180315bf13925b9ca3a54bd88cda14f7c2b71dc5528"
+  },
+  {
     "path": "data-collection-processing/marketaux_history_probe.py",
     "sha256": "f5bc6dbc90794d96270c148c3dcc9e96256edaf6a5686a6f9a86fcad9021f60a"
   },
@@ -509,11 +557,11 @@
   },
   {
     "path": "data-collection-processing/news_collection.py",
-    "sha256": "665abe6d7a100205f8083d51cedb5abf953d1014eaab3ad8c55286d617fea538"
+    "sha256": "b74717a7d8a762d152ab8dc5e10be89c376a4668304b6edff98b670a92dbf011"
   },
   {
     "path": "data-collection-processing/news_operations.py",
-    "sha256": "e21a446678d41fceaa516f7344ea0dc88fddd12846be844e5c2b798ef97609a1"
+    "sha256": "dfc13cb30b48f4f0a90f34e6776cdb3a1c4a08cffc5705452cc7f420f3db85fb"
   },
   {
     "path": "data-collection-processing/news_publication.py",
@@ -636,16 +684,24 @@
     "sha256": "0d2f852f81748c9e26099d6093526e4b73d355ee53618ee47f4046d3fef8f7d3"
   },
   {
+    "path": "data-collection-processing/people_content_backfill.py",
+    "sha256": "0f0e35954a6c300496e4a71ec4c213c23a30fd8a88d6937798acd73cf80a6a9f"
+  },
+  {
     "path": "data-collection-processing/people_movements.py",
     "sha256": "6a4ed1e9bb2d9f527bba8b44074153aa7f33638aad476a24c661f3275e20d4ba"
   },
   {
+    "path": "data-collection-processing/people_rss_content.py",
+    "sha256": "4843197d1df4f29b080afb4a7686616e83d24b62587b2e58bee60af97ec2596f"
+  },
+  {
     "path": "data-collection-processing/people_social_collection.py",
-    "sha256": "21a2fc2926647ab2367b9e8d31939e2bdc64ac4b8f29338678c46c16e0d4c9ce"
+    "sha256": "ccf1aaaf505f7cbb5848697c8186c46cae233a5cb6ef9b6a9209d6c61d75fe19"
   },
   {
     "path": "data-collection-processing/personnel_archive.py",
-    "sha256": "4fc32f42925ae9a45dbd3e8f108c7fa89a138679d0d18ef0b0ff1fb267c82d3d"
+    "sha256": "b58363de03a25e5f7b20f13b06d250f5c07bbc4fa2d339bf929ca236611120a6"
   },
   {
     "path": "data-collection-processing/pipeline_health.py",
@@ -721,7 +777,7 @@
   },
   {
     "path": "data-collection-processing/requirements.txt",
-    "sha256": "c751166f3dab6b76853570283a3cdd531307608c46b8848c9015301d91e819f1"
+    "sha256": "60826824bf02003629ab2af3fcf990543e18de7f69e6a804b606787952043716"
   },
   {
     "path": "data-collection-processing/research_contract.py",
@@ -773,11 +829,11 @@
   },
   {
     "path": "data-collection-processing/specialist_authenticated.py",
-    "sha256": "6fee9fe2d79a899ed8b4c2731c469d7742c2ff68266f460d5b0d35eaa1d66f43"
+    "sha256": "fb09f276b660960052bd2c9176944e2bbb4f7a4046593b3dea90d70f96fab26f"
   },
   {
     "path": "data-collection-processing/specialist_inputs.py",
-    "sha256": "ee6322fb3cfcb897061aebcea1debaf8bec5d7c51204b8453690b12cb6b05320"
+    "sha256": "3fd7481df185b962c6ea284d5d187d18530be5e6deb5a032e3d47d3fde803ae6"
   },
   {
     "path": "data-collection-processing/specialist_plan.py",
@@ -841,11 +897,27 @@
   },
   {
     "path": "data-collection-processing/test_disclosure_collection.py",
-    "sha256": "a3c5d0bb7013eabc7edbff5fe97f491b3f9c83165e3e14eba4221460d356b912"
+    "sha256": "6a49f9db0045c4b8cfc1a9f2d3295e4f11c3f9172c6dc422d1dacc73976a04aa"
+  },
+  {
+    "path": "data-collection-processing/test_disclosure_content.py",
+    "sha256": "d9b3e064b6e5d4d753ccc1b33bb8b3ca526f21beb93c682dcea6a7008260368b"
+  },
+  {
+    "path": "data-collection-processing/test_disclosure_content_backfill.py",
+    "sha256": "e78dbf7dcf1d3cd12dbb8778cd0b8f598d5e4fb5b295405f94b1f1e1cc23bd37"
   },
   {
     "path": "data-collection-processing/test_disclosure_page_reviews.py",
     "sha256": "e3e04ad542067b38f1957b7a0b6e457e874a06b7aa84cf04e7e9e6512aebf2a7"
+  },
+  {
+    "path": "data-collection-processing/test_edinet_backfill.py",
+    "sha256": "c7f0d6b90ebf3aa4783f17070c1e4095f138e0d2eeb64f10738cdc30c3b432b5"
+  },
+  {
+    "path": "data-collection-processing/test_edinet_pipeline.py",
+    "sha256": "aee8f0ec8461aa8e1b6ee28d84286e2d2e889f199706542dac63998218000d75"
   },
   {
     "path": "data-collection-processing/test_eodhd_daily_cohort.py",
@@ -860,16 +932,32 @@
     "sha256": "30d6e7287f8f3cc8011d3bcbc2cf51131740230b60c51b8e6f8623594e83b167"
   },
   {
+    "path": "data-collection-processing/test_event_pilot.py",
+    "sha256": "caea5f0a09f698c566df18672e814c784772e1b03fad8a012d1a376952d15e30"
+  },
+  {
     "path": "data-collection-processing/test_fda_access.py",
     "sha256": "7098d5a0d3c8c3149d60f44ac6f9124b3ab841fc263a3cdc24073115f89071fc"
   },
   {
     "path": "data-collection-processing/test_finlight_backfill.py",
-    "sha256": "d23e39300adfaae59cf013725de357b8957e884512e60d655334b24c80ec4697"
+    "sha256": "d03f2f267c9446a825863211dd738737d09641fe85a775b95b40a2367190735b"
+  },
+  {
+    "path": "data-collection-processing/test_finlight_content.py",
+    "sha256": "25d4ee5356c32d9f96164327c5a5932ae13c0c97c1ffb7eadd23a65cf3f38df3"
+  },
+  {
+    "path": "data-collection-processing/test_finlight_content_backfill.py",
+    "sha256": "1b9959d18ace6a22d820f47bcf6b3653e2a0a56e081304d3d83c1331655c9e88"
   },
   {
     "path": "data-collection-processing/test_historical_policy.py",
     "sha256": "d23216d7bc186bef8128ac23dbe283c888e1e8041908c3db1c31e1e5a6767d04"
+  },
+  {
+    "path": "data-collection-processing/test_hkex_document_backfill.py",
+    "sha256": "169460a5b92b6165d634a008fc99e28ff734e90619fe328f0d40e867e1ef30c3"
   },
   {
     "path": "data-collection-processing/test_market_collection.py",
@@ -882,6 +970,10 @@
   {
     "path": "data-collection-processing/test_market_operations.py",
     "sha256": "4acd365e75b729162fa8619a81974d5fb73e1160909a3c7be43b5d644a6b8dc8"
+  },
+  {
+    "path": "data-collection-processing/test_marketaux_content.py",
+    "sha256": "88e8e0a6d575dbefeaa2faa07e874cffb4e63d29bf5f78735729cc5771dc02ad"
   },
   {
     "path": "data-collection-processing/test_memory_budget.py",
@@ -897,7 +989,7 @@
   },
   {
     "path": "data-collection-processing/test_news_collection.py",
-    "sha256": "5828001f6ece674c007e3505bc6aee1dea555c3b5378b2ff5d627ea206a70c39"
+    "sha256": "94a9e01d990cdc955e4dfb276f2af3ac9e0f542af72df9ba58f51d839182246a"
   },
   {
     "path": "data-collection-processing/test_news_operations.py",
@@ -980,12 +1072,16 @@
     "sha256": "8d7b2a1b247d8e6c713aa64166ed5de60f0204a8b7e7e442e62580c45cb70425"
   },
   {
+    "path": "data-collection-processing/test_people_content.py",
+    "sha256": "54d4bd9952b261566b92f1359368bc334914aca80786e10478f48973cc0a8feb"
+  },
+  {
     "path": "data-collection-processing/test_people_movements.py",
     "sha256": "a66cf1ba78d6a13ade3fa41b9df19aa88f167f1f44c5bc618661385cf710b00e"
   },
   {
     "path": "data-collection-processing/test_people_social_collection.py",
-    "sha256": "b5c6c69763c19954233ae8515f66a14e3498d67e9d2f02e6820890a8d351d138"
+    "sha256": "4668e3b768a5fb987642f3749a3b0489c394f1190f9ccb7e8f7b7b5d3c208d77"
   },
   {
     "path": "data-collection-processing/test_personnel_archive.py",
@@ -1041,7 +1137,7 @@
   },
   {
     "path": "data-collection-processing/test_specialist_authenticated.py",
-    "sha256": "53f3937ba9d3e1d957cd87569c4ae2e455fac8bc9bf2b2f1293e27ea2050553a"
+    "sha256": "3d20d7592d9c5414436d015f79c32fd462e9285a20f6ba6eaf5823c1e5adff42"
   },
   {
     "path": "data-collection-processing/test_specialist_inputs.py",
@@ -1201,7 +1297,7 @@
   },
   {
     "path": "data-collection-processing/config/core-historical-schedule.json",
-    "sha256": "ab085d86e71eee1efc92477122abf5307f0b4a276912bf8e63488779f176126a"
+    "sha256": "456f793c72034236fadf6cfb5a77de1d037504a6e767ae0568bb8da80253485f"
   },
   {
     "path": "data-collection-processing/config/disclosure-athena-pilot.json",
@@ -1210,6 +1306,10 @@
   {
     "path": "data-collection-processing/config/edinet-access.json",
     "sha256": "475d150464d09a8366233aa04afce44028e896464c99e6fc8a14a08a7e758282"
+  },
+  {
+    "path": "data-collection-processing/config/edinet-document-backfill.json",
+    "sha256": "f44ea6981be8b4324b2137b55ab0ecd4569749f26b7f32c9b9a1d46fb35bba02"
   },
   {
     "path": "data-collection-processing/config/eia-access.json",
@@ -1232,6 +1332,10 @@
     "sha256": "a89f6331404a0bdcfb31f38f708079f1efb1a8df1f40db37bed54206f5bddcd0"
   },
   {
+    "path": "data-collection-processing/config/event-pilot.v1.json",
+    "sha256": "b751594f9934be2045c4038851cbf79a0dce439a2061a0d14e04d4f9a96e5ceb"
+  },
+  {
     "path": "data-collection-processing/config/fda-access.json",
     "sha256": "033482acd5f9339e58d0bce42269b24fd8724a65bd1942a385dde75b0532256f"
   },
@@ -1249,7 +1353,11 @@
   },
   {
     "path": "data-collection-processing/config/finlight-backfill.json",
-    "sha256": "e11eaa4b031762f8679ac94636ac4f3b52069e4a790c363bdffa93e252a89870"
+    "sha256": "6f0f06aa8bb84004ce1ff4cb86467992846d42545c081d205683681383aac699"
+  },
+  {
+    "path": "data-collection-processing/config/finlight-content-backfill.json",
+    "sha256": "426f066a25fe3b0a033de655d4c035658baf4eab79f8d6a854cc40ede62ca4b9"
   },
   {
     "path": "data-collection-processing/config/google-patents-aws.json",
@@ -1260,12 +1368,20 @@
     "sha256": "9b1d5b9f25763e24e22319b871865bb91f7d065e02c514bfa49dec8cfc91a885"
   },
   {
+    "path": "data-collection-processing/config/hkex-document-backfill.json",
+    "sha256": "99dd083afdc490ce161de466202e3ee3be16db758028a2bacf01a3ed801eb594"
+  },
+  {
     "path": "data-collection-processing/config/market-athena.json",
     "sha256": "ec90744572dccaa18536bb37d7105fea93963cb41de7b0aa782415fd4c24f3d1"
   },
   {
     "path": "data-collection-processing/config/market-operations.json",
     "sha256": "0b19558f1f410edd20b64542bdcb455a594750471d35ecd49abd29b9ea6b54f2"
+  },
+  {
+    "path": "data-collection-processing/config/marketaux-content-backfill.json",
+    "sha256": "cd147a595737919cd1dc516f68e502f2cd969d880fc2e988fd6d50615b450ce4"
   },
   {
     "path": "data-collection-processing/config/model-data-policy.json",
@@ -1344,6 +1460,10 @@
     "sha256": "c12c817473ce3299f4c3a89da0e02cc130f17e85471acf923edc7c317f10624e"
   },
   {
+    "path": "data-collection-processing/config/people-content-backfill.json",
+    "sha256": "3d1c450b4382f73e98f10c3bcfdab6bb0cd1b5d096f32ab489bfb6b19083c84a"
+  },
+  {
     "path": "data-collection-processing/config/people-observations-athena.json",
     "sha256": "0c294b7cce0749cbbcb8d3cc66d0e5f0ff916aff92366b2f728eee5f8cf645d4"
   },
@@ -1370,6 +1490,10 @@
   {
     "path": "data-collection-processing/config/regulatory-athena-pilot.json",
     "sha256": "7433fe568087e326d742b2bf175ba761d2e6317cff86d4596c97650034b8244a"
+  },
+  {
+    "path": "data-collection-processing/config/s11-content-backfill.json",
+    "sha256": "2662a4ae3703d60015da76e25c3bd45f3678b2dce5023ad159102072892a9c0f"
   },
   {
     "path": "data-collection-processing/config/sam-gov-access.json",
@@ -1401,11 +1525,11 @@
   },
   {
     "path": "data-collection-processing/config/source-schedule-inventory.json",
-    "sha256": "01b8592ae4d5535fdbf117711c9554dc96a785d687953670afe48633d7a39123"
+    "sha256": "b74d6a4ee935c3438057a18d5c530ae117a70199d8e2104a3b69fc6b0b2db46c"
   },
   {
     "path": "data-collection-processing/config/specialist-inputs.json",
-    "sha256": "47d29bc27573f9413a203ac8e40ea1fa258cea96bcb3474e729f2a93b693539a"
+    "sha256": "9162cd70d4893eaaa233846e661a58d878677d5c2b58f6084fff2bcaba7c27b4"
   },
   {
     "path": "data-collection-processing/config/systemd/optima-sms-followup.service",
@@ -1422,6 +1546,10 @@
   {
     "path": "data-collection-processing/examples/sec-filings/universe.json",
     "sha256": "d7802b2ad7697e530f870d8a20ca836c55091a533705031ee063c573ba441a4b"
+  },
+  {
+    "path": "data-collection-processing/schemas/event-pilot.schema.json",
+    "sha256": "8e68231e60bfb08fe72104ec579c5544540032664e58193c5c17ea5252e49ec9"
   },
   {
     "path": "data-collection-processing/schemas/patent-prosecution-payload.schema.json",
@@ -1445,7 +1573,7 @@
   },
   {
     "path": "data-collection-processing/systemd/optima-authenticated-daily.service",
-    "sha256": "fdbfca92119da23b57ce96796f04dc7828bd609e8bfa997eb8f3c72ade6ae99d"
+    "sha256": "7c85165d011befb8b8171e82f82103d76f960e60a1f95cf4fc261164cd9fab20"
   },
   {
     "path": "data-collection-processing/systemd/optima-authenticated-daily.timer",
@@ -1453,7 +1581,7 @@
   },
   {
     "path": "data-collection-processing/systemd/optima-authenticated-historical.service",
-    "sha256": "d87b13ff5873d39ff0a5fe4b9131dc10a5304c6942739d64ca69590343f115bf"
+    "sha256": "fde864c833c491b29b9313e4a34233e0aecd43a3bf3a500c9af59f6a574c00e1"
   },
   {
     "path": "data-collection-processing/systemd/optima-authenticated-historical.timer",
@@ -1524,12 +1652,44 @@
     "sha256": "0d7f0e13e2db5a9223289d44bad374c6e05d1d13f4de8a52a37b4e1e4d9904a6"
   },
   {
+    "path": "data-collection-processing/systemd/optima-edinet-document-backfill.service",
+    "sha256": "4a30b46e0023da921c9002fa8e0310e5c298c18de40e28563879d719b8369057"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-edinet-document-backfill.timer",
+    "sha256": "abe7c6dc51a13d98897cf5f29d7198e32c66149042622aa5ff2fe7e2796ed22d"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-edinet-documents-daily.service",
+    "sha256": "a3ea883c68e26ccee69d58e6ec9145807587c14a5111ed576f2a43fc56c8ad21"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-edinet-documents-daily.timer",
+    "sha256": "489022865a6f4705b48f464adc1b427524b7dcc3b9635ae46a5889996d424c25"
+  },
+  {
     "path": "data-collection-processing/systemd/optima-eodhd-profiles.service",
     "sha256": "9566bf4a0a15049eb944cc154c9e8eea983c18304a703932dd9de2aa0b18f783"
   },
   {
     "path": "data-collection-processing/systemd/optima-eodhd-profiles.timer",
     "sha256": "bf16004b3d782822929f4f2d6db079aacc30ee499fda7588b082b0a5485aaa11"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-finlight-content-backfill.service",
+    "sha256": "c2ed518a145fbb1dc789746cc3c14f025974af6d6ad44951ae051289b6e151cc"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-finlight-content-backfill.timer",
+    "sha256": "63f9668b8ec2c40cd43414e092f908a897fcec2ff6afa39bae17664a0e229ead"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-hkex-document-backfill.service",
+    "sha256": "ec7f7d610b14ca7e2e4f2320f839ef1503451ca94da70b66b26c2e106833d3cd"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-hkex-document-backfill.timer",
+    "sha256": "2b21012dc82f67528fd2ef61bbd88bb00ee57b2f438ebbf5d14efcbfa4051fb2"
   },
   {
     "path": "data-collection-processing/systemd/optima-market-collection.service",
@@ -1546,6 +1706,14 @@
   {
     "path": "data-collection-processing/systemd/optima-market-publication.timer",
     "sha256": "fa024bfe2725386a558aa068586f993166dd05fe38e8485917e2927f193fd26f"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-marketaux-content-backfill.service",
+    "sha256": "058ebc6bbbebc070b7941ea449467ac64f9015228b8b520a4d2b09b829cb26e2"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-marketaux-content-backfill.timer",
+    "sha256": "fabb8bdc9c75921000b5f7315bc63a5332888c9b6380bd45ac01d42c41c6c995"
   },
   {
     "path": "data-collection-processing/systemd/optima-news-collection.service",
@@ -1628,6 +1796,14 @@
     "sha256": "115f6b03ff473635ff2cd34699bb99f79d1e3e1b90a70737b6147c23669fae74"
   },
   {
+    "path": "data-collection-processing/systemd/optima-people-content-backfill.service",
+    "sha256": "868ef5ad5ebd7179297d7ffc52a2892a6eaff8cf14be6fe076d953833c8a063e"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-people-content-backfill.timer",
+    "sha256": "4b57afeaab3d401f83a7fd4f7118e3bfdf84c4cf0ecfb50fcf6377a914c0969c"
+  },
+  {
     "path": "data-collection-processing/systemd/optima-reddit-access.service",
     "sha256": "678dbdc2161a8216ab3e9afc342c243a5b4bf4e6fa678b34352daef683d8a23a"
   },
@@ -1650,6 +1826,22 @@
   {
     "path": "data-collection-processing/systemd/optima-research-publication.timer",
     "sha256": "a9c35ba3dba8e8fe52cda5d7638dc062853a1fcae92264433935337aed9c08c5"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-s11-content-backfill.service",
+    "sha256": "b55a6b82c3e4d5d5591b8248f8a369fc2be6187e578e0e0a09ac0bfe31372448"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-s11-content-backfill.timer",
+    "sha256": "7a8036606c45a49f186c7706b9139f57e00df9b92be33a938faf59a51736af15"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-s11-content-daily.service",
+    "sha256": "506fda967cd1344cf22716feb5d8c226f57afe3466665d537c99bddb0587aa31"
+  },
+  {
+    "path": "data-collection-processing/systemd/optima-s11-content-daily.timer",
+    "sha256": "7619ef6aa40e673c5e0c1bef0940adafc1e0f56f552160948cc67b0dce9be2f6"
   },
   {
     "path": "data-collection-processing/systemd/optima-search-capture.service",

@@ -1,0 +1,16 @@
+{
+  "start": "2021-01-01",
+  "end_exclusive": "2026-10-15",
+  "daily_start": "2026-10-15",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "storage_config": "config/collection-storage.s3.json",
+  "sec_user_agent": "Optima Holdings support@optima-holdings.com",
+  "sec_forms": ["8-K", "8-K/A", "6-K", "6-K/A", "10-K", "10-K/A", "10-Q", "10-Q/A", "S-4", "S-4/A", "425", "DEFM14A", "SC 13D", "SC 13D/A"],
+  "records_per_stage": 100,
+  "hkex_pages_per_invocation": 2,
+  "max_days_per_invocation": 7,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Configured company universe, selected SEC corporate filing forms and existing English SEHK search scope; full originals, file/page content artifacts and retrieval chunks retained. Candidates require quoted source passages; amounts, parties and event-status signals remain unreviewed. Textless pages and unsupported embedded files are explicit gaps; no OCR is performed. This job does not claim all worldwide issuer websites, Chinese-language HKEX coverage, complete entity resolution, historical vintages, certified specialist facts or completed Athena publication."
+}

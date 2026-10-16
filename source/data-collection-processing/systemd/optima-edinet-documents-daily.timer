@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume EDINET full-report daily capture
+
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=10min
+RandomizedDelaySec=30
+Unit=optima-edinet-documents-daily.service
+
+[Install]
+WantedBy=timers.target

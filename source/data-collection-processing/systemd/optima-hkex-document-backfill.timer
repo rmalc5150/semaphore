@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume HKEX original report backfill every five minutes after each bounded run
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=optima-hkex-document-backfill.service
+
+[Install]
+WantedBy=timers.target

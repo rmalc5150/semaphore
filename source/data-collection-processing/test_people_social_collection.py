@@ -30,7 +30,7 @@ class SourceTests(unittest.TestCase):
         def get(url):
             return client.save(raw, url)
         with patch.object(client, 'get', side_effect=get):
-            return collect_feed(self.store, self.settings, self.u, self.t, 'test', 'https://example.com/feed', day or self.day, client)
+            return collect_feed(self.store, self.settings, self.u, self.t, 'test', 'https://example.com/feed', day or self.day, client, capture_full_text=False)
 
     def test_feed_raw_verified_and_curated(self):
         result = self.feed(b'<rss><channel><item><title>Appointment</title><link>https://example.com/news</link><pubDate>Thu, 24 Sep 2026 12:00:00 GMT</pubDate></item></channel></rss>')
