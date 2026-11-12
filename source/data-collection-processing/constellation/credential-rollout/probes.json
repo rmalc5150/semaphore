@@ -1,0 +1,36 @@
+[
+  {
+    "source": "ember",
+    "status": 200,
+    "bytes": 524,
+    "type": "application/json"
+  },
+  {
+    "source": "wto",
+    "status": 200,
+    "bytes": 40529,
+    "type": "application/json; charset=utf-8"
+  },
+  {
+    "source": "usda",
+    "status": 500,
+    "bytes": 36,
+    "type": "application/json; charset=utf-8"
+  },
+  {
+    "source": "usda_data",
+    "status": 500,
+    "bytes": 36,
+    "type": "application/json; charset=utf-8"
+  },
+  {
+    "source": "census",
+    "error": "ReadTimeout"
+  },
+  {
+    "source": "cds",
+    "status": 200,
+    "bytes": 192,
+    "type": "application/json"
+  }
+]

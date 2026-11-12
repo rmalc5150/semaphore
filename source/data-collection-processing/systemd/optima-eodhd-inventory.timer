@@ -1,0 +1,9 @@
+[Unit]
+Description=Refresh the EODHD symbol inventory before daily profile cohorts
+[Timer]
+OnCalendar=*-*-* 00:20:00 UTC
+Persistent=true
+RandomizedDelaySec=15
+Unit=optima-eodhd-inventory.service
+[Install]
+WantedBy=timers.target

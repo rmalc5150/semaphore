@@ -1,0 +1,36 @@
+{
+  "registered_at": "2026-10-26T07:35:15.911617+00:00",
+  "raw_partitions_by_source": {
+    "usgs_earthquakes": 3951,
+    "nsf_awards": 3951,
+    "arxiv": 3951
+  },
+  "raw_partitions_total": 11853,
+  "legacy_routes": [
+    {
+      "unit": "constellation-core-clinicaltrials-historical.service",
+      "status": "queued_on_c7i",
+      "job_id": "b6290c093160901116284fa2c2386e27690f556e1598a4221a9d5e1a7da0a64e",
+      "collection_enabled": false
+    },
+    {
+      "unit": "constellation-core-sec-historical.service",
+      "status": "queued_on_c7i",
+      "job_id": "e0afafb1ed6517be97bd17910b0ba50cab4e5d597c94399ace490d345d903c3c",
+      "collection_enabled": false
+    },
+    {
+      "unit": "constellation-core-fda-historical.service",
+      "status": "queued_on_c7i",
+      "job_id": "a58c1032bbd2f7352dd26aaab0df17bb2799578c91037c90890ceedd8bf7d1e7",
+      "collection_enabled": false
+    },
+    {
+      "unit": "constellation-core-ema-historical.service",
+      "status": "queued_on_c7i",
+      "job_id": "7ea33a5d82bb8d9bec937844160f86f490b9afdae245f6787cecb1c80eb5145a",
+      "collection_enabled": false
+    }
+  ],
+  "collection_enabled": false
+}

@@ -1,0 +1,20 @@
+{
+  "Sid": "AuxiliaryPublicationObjects",
+  "Effect": "Allow",
+  "Action": ["s3:GetObject", "s3:PutObject"],
+  "Resource": [
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/conferences/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/market/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/specialist-publication-queue/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/curated/specialists/releases/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/curated/conferences/releases/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/curated/market/releases/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/curated/news/releases/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/athena-results/specialists/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/athena-results/conferences/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/athena-results/market/*",
+    "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/athena-results/news/*"
+  ]
+}

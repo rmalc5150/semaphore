@@ -1,0 +1,5 @@
+{"Version":"2012-10-17","Statement":[
+ {"Effect":"Allow","Action":["s3:GetObject","s3:PutObject"],"Resource":"arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/athena-committed/*"},
+ {"Effect":"Allow","Action":"s3:ListBucket","Resource":"arn:aws:s3:::data-collection-059416028963-us-east-1-an","Condition":{"StringLike":{"s3:prefix":"research-data/athena-committed/*"}}},
+ {"Effect":"Allow","Action":["glue:UpdateTable","glue:GetPartitions","glue:BatchGetPartition"],"Resource":["arn:aws:glue:us-east-1:059416028963:catalog","arn:aws:glue:us-east-1:059416028963:database/optima_collected_data","arn:aws:glue:us-east-1:059416028963:table/optima_collected_data/*"]}
+]}

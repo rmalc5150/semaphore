@@ -1,0 +1,145 @@
+{
+  "schema_version": "0.2-draft",
+  "identity": {
+    "event_id": "test_evt_5086ecd5014d822fa5a8fa874752141baa047a0bafd1df8d90a1764ecf8b2fcf",
+    "event_sequence": 1,
+    "environment": "test",
+    "state": "candidate",
+    "supersedes_version_id": null,
+    "change_reason": null,
+    "matching_keys": [
+      {
+        "namespace": "patent-publication",
+        "value": "KR-103012306-B1",
+        "basis": "Exact jurisdiction-qualified publication number including kind code, retained from the supplied pilot example."
+      }
+    ],
+    "event_version_id": "evv_f2f24675df9876917df207914439e64ab5e37e2720f0db720d5c372a12d35666"
+  },
+  "what_happened": {
+    "type": "patent.publication",
+    "title": "Patent publication KR-103012306-B1",
+    "summary": "Patent publication KR-103012306-B1 describes a cup-holding apparatus and a serving robot incorporating it.",
+    "claims": [
+      {
+        "claim_id": "claim_1",
+        "text": "The retained patent metadata reports publication KR-103012306-B1 on August 31, 2026, titled “Cup holding apparatus and serving robot apparatus including the same”.",
+        "status": "reported",
+        "evidence_ids": [
+          "evidence_1"
+        ]
+      }
+    ]
+  },
+  "timing": {
+    "occurred_at": {
+      "value": "2026-08-31",
+      "precision": "day",
+      "source_timezone": null
+    },
+    "effective_at": null,
+    "first_observed_at": "2026-10-12T08:43:32.728878Z",
+    "version_created_at": "2026-10-20T13:46:37.026842+00:00"
+  },
+  "entities": [],
+  "classifications": [
+    {
+      "sector_id": "robotics",
+      "subsector_id": null,
+      "taxonomy_version": "1.0.0",
+      "review_status": "pending",
+      "basis": "Technology classification retained in the supplied pilot example; not independently reviewed.",
+      "confidence": null,
+      "evidence_ids": [
+        "evidence_1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "evidence_id": "evidence_1",
+      "source_name": "Google Patents public BigQuery data",
+      "provider_key": "google_patents_bigquery",
+      "dataset": "patent_records",
+      "source_record_id": "KR-103012306-B1",
+      "record_id": "rec_bb2f6aa44a1ee3195d14b84ec0f97d18622005432fa41438eec3fe98187edbf4",
+      "observation_id": "obs_7bf92c90cbfdb6b43f584087f5c4f68bd8f0d13c8d81989f55c5a700f9b00a24",
+      "url": "https://patents.google.com/patent/KR-103012306-B1",
+      "origin_type": "aggregator",
+      "origin_group_id": null,
+      "stance": "supports",
+      "available_at": null,
+      "availability_basis": "unknown",
+      "availability_evidence": [],
+      "ingested_at": "2026-10-12T08:43:32.728878Z",
+      "supporting_fields": [
+        {
+          "locator": "$.payload.data.publication_number",
+          "value": "KR-103012306-B1"
+        },
+        {
+          "locator": "$.payload.data.publication_date",
+          "value": "2026-08-31"
+        },
+        {
+          "locator": "$.payload.data.title",
+          "value": "Cup holding apparatus and serving robot apparatus including the same"
+        }
+      ],
+      "artifact_refs": [
+        {
+          "uri": "s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=google_patents_bigquery/dataset=patent_records/ingestion_date=2026-10-12/run_id=run_fe6679e8-7b4f-4c62-8303-0363e72b40fb/page-00000130-part-00000-06ba84cfbcba36c769690b515b20b32a2ac08fd9decea1e1fbcf870cdf85d958.jsonl",
+          "sha256": "06ba84cfbcba36c769690b515b20b32a2ac08fd9decea1e1fbcf870cdf85d958"
+        }
+      ]
+    }
+  ],
+  "specialist_routes": [
+    {
+      "specialist_id": null,
+      "domain": "Intellectual property and technology",
+      "status": "proposed",
+      "reason": "The event reports a technical patent publication; actual sector-specific specialist assignment needs review.",
+      "evidence_ids": [
+        "evidence_1"
+      ],
+      "entity_ids": [],
+      "routing_policy_version": null,
+      "relevance_weight": null
+    }
+  ],
+  "related_events": [],
+  "review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "reason": null,
+    "issues": [
+      "Resolve company, product and inventor roles.",
+      "Review the sector and subsector.",
+      "Select actual specialist layer IDs.",
+      "Verify source-version public availability.",
+      "This example was adapted from the user-supplied pilot line; source bytes have not been reverified."
+    ]
+  },
+  "eligibility": {
+    "operational_replay": {
+      "status": "ineligible",
+      "eligible_at": null,
+      "reason": "Unreviewed candidate; source-version availability and entity/model inputs are not established."
+    },
+    "historical_reconstruction": {
+      "status": "ineligible",
+      "eligible_at": null,
+      "reason": "Unreviewed candidate; source-version availability and entity/model inputs are not established."
+    }
+  },
+  "lineage": {
+    "extractor_version": "manual-schema-example-0.2",
+    "registry_snapshot_ref": null,
+    "input_manifest_refs": [],
+    "legacy_version_refs": [
+      "test_ver_593a1bde2e486b9086e850f92c9b2325dd7cfaf888ab8c7eac95864a956d8298"
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "checked_at": "2026-10-26T07:54:22.812772+00:00",
+  "collection_enabled": true,
+  "worker_pool_active_services": 8,
+  "configured_cpu_capacity": 16,
+  "aggregate_memory_max_gib": 28,
+  "jobs": [
+    {
+      "source_key": "arxiv",
+      "status": "succeeded",
+      "jobs": 24
+    },
+    {
+      "source_key": "nsf_awards",
+      "status": "succeeded",
+      "jobs": 77
+    },
+    {
+      "source_key": "usgs_earthquakes",
+      "status": "succeeded",
+      "jobs": 314
+    },
+    {
+      "source_key": "nsf_awards",
+      "status": "retryable_failed",
+      "jobs": 18
+    },
+    {
+      "source_key": "legacy:constellation-core-migration-probe.service",
+      "status": "blocked",
+      "jobs": 1
+    },
+    {
+      "source_key": "arxiv",
+      "status": "retryable_failed",
+      "jobs": 2
+    },
+    {
+      "source_key": "arxiv",
+      "status": "running",
+      "jobs": 1
+    },
+    {
+      "source_key": "arxiv",
+      "status": "pending",
+      "jobs": 3924
+    },
+    {
+      "source_key": "nsf_awards",
+      "status": "running",
+      "jobs": 2
+    },
+    {
+      "source_key": "nsf_awards",
+      "status": "pending",
+      "jobs": 3854
+    },
+    {
+      "source_key": "usgs_earthquakes",
+      "status": "running",
+      "jobs": 1
+    },
+    {
+      "source_key": "usgs_earthquakes",
+      "status": "pending",
+      "jobs": 3636
+    },
+    {
+      "source_key": "legacy:constellation-core-fda-historical.service",
+      "status": "succeeded",
+      "jobs": 5
+    },
+    {
+      "source_key": "legacy:constellation-core-fda-historical.service",
+      "status": "pending",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-core-migration-probe.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-core-sec-historical.service",
+      "status": "succeeded",
+      "jobs": 5
+    },
+    {
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "running",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-core-clinicaltrials-historical.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "__lease_check__",
+      "status": "blocked",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-core-clinicaltrials-historical.service",
+      "status": "running",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-core-sec-historical.service",
+      "status": "running",
+      "jobs": 1
+    }
+  ],
+  "verified_raw_manifest": {
+    "source": "usgs_earthquakes",
+    "job_id": "09ac279ccdd857929e461fe2c0e7d01773ce3e9211a29f970e46be584144de09",
+    "records": 555,
+    "manifest_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/jobs/09ac279ccdd857929e461fe2c0e7d01773ce3e9211a29f970e46be584144de09/attempts/07b794e8012943c5a8306abba2929e36/manifest.json",
+    "coverage_status": "verified_complete",
+    "manifest_sha256": "958d64acd43112f487982744f9d47626f052b727fe28c096de9ee5d4896e89f0",
+    "historical_vintage_verified": false,
+    "raw_readback_verified": true
+  },
+  "clinicaltrials_january_2016": {
+    "source": "clinicaltrials_gov",
+    "manifest_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/manifests/collection_runs/source=clinicaltrials_gov/dataset=research_records/run_d9868dee-9b5c-4c30-a22c-38ad91da1309/final.json",
+    "records": 1793,
+    "scope": {
+      "end": "2016-02-01T00:00:00Z",
+      "start": "2016-01-01T00:00:00Z"
+    },
+    "query_exhausted": true,
+    "vintage_completeness_claimed": false
+  },
+  "legacy_completed_query_windows": 17,
+  "legacy_failed_or_partial_windows": 11,
+  "recent_raw_deadlock_results": 0,
+  "checkup_lambda_update": "Successful"
+}

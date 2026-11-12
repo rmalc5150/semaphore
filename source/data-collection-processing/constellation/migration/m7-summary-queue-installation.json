@@ -1,0 +1,16 @@
+{
+  "installed_date":"2026-11-11",
+  "queue":"s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/summary-queue/jobs.json",
+  "worker":"optima-m7-summary-worker.service",
+  "worker_root":"/opt/constellation/summary-worker",
+  "worker_limits":{"cpu_percent_of_one_core":50,"memory_max_gib":1,"memory_high_mib":768,"timeout_seconds":3600},
+  "controller_schedules":{"gap_requests":"Existing constellation-gap-audit.timer now enqueues on m7","database_requests":"Every six hours","dispatch_and_result_collection":"Every five minutes"},
+  "resumption":"Database scans checkpoint every 500 rows and yield after eight minutes; each report is a live scan, not a transactional database snapshot.",
+  "lifecycle":"Pending/running queue requests prevent shutdown. Dispatch starts m7 and waits for SSM. Completed reports are promoted to canonical monitoring keys by t3.",
+  "results_prefix":"research-data/constellation-backfill/summary-reports/",
+  "canonical_gap_report":"research-data/monitoring/health/constellation-gaps.json",
+  "canonical_database_report":"research-data/monitoring/health/database-summary.json",
+  "verified_progress":{"database_rows_scanned":27000,"gap_report":"queued; completion not yet verified"},
+  "tests":"25 queue, reviewed-gap and historical-autostop tests passed",
+  "iam":"Uses existing worker scoped S3 and worker database credentials; no controller secret deployed."
+}

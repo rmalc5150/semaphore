@@ -1,0 +1,6 @@
+from research_helpers import *
+a=ev('https://www.taylordevices.com/products/shock-absorbers/','Issuer expressly identifies D-Series linear hydraulic dampers for robotic applications. Generic shock absorbers not automatically counted as robot-specific components.')
+b=ev('https://www.taylordevices.com/industries/industrial/','Current issuer industrial catalogue confirms D-Series robotic use and liquid spring product category.')
+products=[p('Taylor D-Series linear dampers','Single- or double-acting hydraulic motion damping components explicitly offered for robotic applications; direction and force options grouped.',a,'commercial',roles=['developer','manufacturer'],typ='product',sector='robotics',sub='autonomy_and_components',evidence=[a,b])]
+co=dict(company_id='cmp_04e5d818-8faa-4a55-bcf1-6122eab75bb7',products=products,evidence=[a,b],status='partial',coverage_note='Explicit robotics component family recorded. Partial: model identifiers and further robotics-specific products remain. Generic seismic damping and short-cycle die springs not classified as grid energy storage solely from energy-management terminology; requires sector-specific application evidence.')
+(out/'batch-0211.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

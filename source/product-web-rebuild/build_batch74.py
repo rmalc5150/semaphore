@@ -1,0 +1,11 @@
+from research_helpers import *
+R=ev('https://investor.analog.com/static-files/f782efac-2a79-44e0-b2a0-98d0b6fc8990','ADI confirms completed acquisition of LinearTechnology March10 2017. Successor catalogue verifies current product status; not all ADI brands attributed to Linear.')
+items=[('LTC6811-1','12-cell battery monitor with daisy-chain interface.','production',{'cells':12,'maximum_measurement_error_mv':1.2}),('LTC6811-2','12-cell battery monitor with addressable interface.','production',{'cells':12,'maximum_measurement_error_mv':1.2}),('LTC6804-1','12-cell battery monitor with daisy-chain interface.','not_recommended_for_new_designs',{'cells':12,'maximum_measurement_error_mv':1.2}),('LTC6804-2','12-cell battery monitor with addressable interface.','not_recommended_for_new_designs',{'cells':12,'maximum_measurement_error_mv':1.2}),('LTC3300-1','Bidirectional active multicell battery-balancing controller.','recommended_for_new_designs',{'cells':6,'maximum_balancing_current_a':10,'maximum_balancing_current_condition':'set by external components'}),('LTC3350','Supercapacitor backup controller and system monitor.','recommended_for_new_designs',{}),('LTC6820','isoSPI isolated communications interface.','production',{}),('LTC2944','60V battery gas gauge with current, voltage and temperature measurement.','production',{'maximum_voltage_v':60})]
+ps=[]
+for name,desc,status,attrs in items:
+ E=ev('https://www.analog.com/en/products/'+name.lower()+'.html','Successor official product identity, specification summary and lifecycle banner reviewed. NRND does not mean discontinued.')
+ x=p(name,desc,E,'commercial',typ='product',sector='semiconductors',sub='chip_design',evidence=[E,R],attributes={'manufacturer_status_as_listed':status,**attrs})
+ if name=='LTC6811-1':x['product_id']='prd_cab58378-1c15-4b61-a2e8-0e5c15da22cd'
+ ps.append(x)
+cs=[company('Linear Technology Corp',ps,[R],'Eight legacy Linear battery/interface IC identities reviewed against current ADI product pages; existingLTC6811-1 identity reused rather than duplicate. NRND retained without treating as obsolete. Package/reel variants not separate chips. Full legacy power/analog/mixedsignal catalogue, newerLTC lineage, software and evaluation boards remain.')]
+(out/'batch-0074.json').write_text(json.dumps({'companies':cs},indent=2));print(len(ps))

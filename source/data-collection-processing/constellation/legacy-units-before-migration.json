@@ -1,0 +1,294 @@
+[
+  {
+    "unit": "optima-authenticated-daily.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=120s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/specialist_inputs.py --lane authenticated --mode daily --max-jobs 4 --pages 2 --publish 0"
+  },
+  {
+    "unit": "optima-authenticated-historical.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=120s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/specialist_inputs.py --lane authenticated --mode historical --max-jobs 4 --pages 2 --publish 0"
+  },
+  {
+    "unit": "optima-bls-enrichment-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/bls_enrichment_backfill.py --config config/bls-enrichment-backfill.json"
+  },
+  {
+    "unit": "optima-bluesky-companies.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/bluesky_company_daily.py"
+  },
+  {
+    "unit": "optima-caiso-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/caiso_pipeline.py --mode backfill"
+  },
+  {
+    "unit": "optima-caiso-daily.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/caiso_pipeline.py --mode daily"
+  },
+  {
+    "unit": "optima-chictr-daily.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 35m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/collect_daily.py --only chictr --max-windows 1 --max-pages 2 --max-records 1000"
+  },
+  {
+    "unit": "optima-cms-financial-collection.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/cms_financial_collection.py --config config/cms-financial-collection.json"
+  },
+  {
+    "unit": "optima-collection-daily.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 6h /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/collect_daily.py --max-windows 1 --max-pages 1 --reconcile-days 3"
+  },
+  {
+    "unit": "optima-collection-health.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/collection_health_exporter.py"
+  },
+  {
+    "unit": "optima-committed-athena.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/committed_data_athena.py"
+  },
+  {
+    "unit": "optima-company-auto-review.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/review_company_catalogue.py --max-seconds 1800 --workers 16"
+  },
+  {
+    "unit": "optima-company-catalogue-bootstrap.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/company_catalogue_pipeline.py --native-s3 --bootstrap-only --max-symbols 10000 --max-seconds 600 --max-eodhd 0 --max-websites 10 --max-searches 2 --max-registries 0"
+  },
+  {
+    "unit": "optima-company-catalogue.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=120s 30m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/company_catalogue_pipeline.py --max-symbols 10000 --max-seconds 900 --max-eodhd 100 --max-websites 50 --max-searches 250"
+  },
+  {
+    "unit": "optima-company-identity-enrichment.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/enrich_company_identities.py --limit 500 --workers 12 --max-seconds 480"
+  },
+  {
+    "unit": "optima-company-web-enrichment.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/company_catalogue_pipeline.py --native-s3 --after-bootstrap --max-symbols 10000 --max-seconds 900 --max-eodhd 0 --max-websites 100 --max-searches 250"
+  },
+  {
+    "unit": "optima-conference-collection.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 2h /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/conference_collection.py"
+  },
+  {
+    "unit": "optima-conference-publication.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/conference_athena.py"
+  },
+  {
+    "unit": "optima-core-historical.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 35m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/collect_historical.py 2016-01-01 2026-10-09 --config /home/ec2-user/data-collection-processing/config/core-historical-schedule.json --max-windows 1 --max-pages 2 --max-records 1000"
+  },
+  {
+    "unit": "optima-daily-health-audit.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/daily_health_audit.py"
+  },
+  {
+    "unit": "optima-doe-storage-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/doe_storage_pipeline.py --mode backfill"
+  },
+  {
+    "unit": "optima-doe-storage-daily.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/doe_storage_pipeline.py --mode daily"
+  },
+  {
+    "unit": "optima-edinet-document-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=60s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/edinet_backfill.py"
+  },
+  {
+    "unit": "optima-edinet-documents-daily.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=60s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/specialist_inputs.py --lane authenticated --mode daily --source edinet_filings --max-jobs 1 --pages 80 --publish 0"
+  },
+  {
+    "unit": "optima-eia-enrichment-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/eia_enrichment_backfill.py --config config/eia-enrichment-backfill.json"
+  },
+  {
+    "unit": "optima-eodhd-inventory.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/eodhd_inventory_daily.py"
+  },
+  {
+    "unit": "optima-eodhd-profiles.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 6h /home/ec2-user/data-collection-processing/.venv-athena/bin/python /home/ec2-user/data-collection-processing/eodhd_daily_cohort.py --top-up"
+  },
+  {
+    "unit": "optima-federal-register-daily-enrichment.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/federal_register_daily.py"
+  },
+  {
+    "unit": "optima-federal-register-enrichment-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/federal_register_enrichment_backfill.py --config config/federal-register-enrichment-backfill.json"
+  },
+  {
+    "unit": "optima-finlight-content-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 4m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/finlight_content_backfill.py"
+  },
+  {
+    "unit": "optima-github-company-mapping.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/github_company_mapping.py"
+  },
+  {
+    "unit": "optima-grant-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/grant_pipeline.py --mode backfill"
+  },
+  {
+    "unit": "optima-grant-daily.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/grant_pipeline.py --mode daily"
+  },
+  {
+    "unit": "optima-hkex-document-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=60s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/hkex_document_backfill.py"
+  },
+  {
+    "unit": "optima-market-collection.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/market_operations.py"
+  },
+  {
+    "unit": "optima-market-publication.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/market_athena.py"
+  },
+  {
+    "unit": "optima-marketaux-content-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 4m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/finlight_content_backfill.py --config config/marketaux-content-backfill.json"
+  },
+  {
+    "unit": "optima-mlperf-enrichment-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/mlperf_enrichment_backfill.py --config config/mlperf-enrichment-backfill.json"
+  },
+  {
+    "unit": "optima-news-collection.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/news_operations.py"
+  },
+  {
+    "unit": "optima-news-publication.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/news_publication.py"
+  },
+  {
+    "unit": "optima-nist-robotics-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/nist_robotics_pipeline.py --mode backfill"
+  },
+  {
+    "unit": "optima-nist-robotics-daily.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/nist_robotics_pipeline.py --mode daily"
+  },
+  {
+    "unit": "optima-nist-robotics-matching.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/nist_robotics_match.py"
+  },
+  {
+    "unit": "optima-nmpa-enrichment.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/nmpa_enrichment_worker.py"
+  },
+  {
+    "unit": "optima-nmpa-inventory.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 4h /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/nmpa_baseline.py inventory 2026-09-22 --max-pages 110 --follow-daily --daily-pages 10"
+  },
+  {
+    "unit": "optima-patents-backfill.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 3h /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/patent_backfill.py"
+  },
+  {
+    "unit": "optima-patents-daily.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 2h /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/patent_operations.py daily"
+  },
+  {
+    "unit": "optima-patents-global-monitor.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/patent_operations.py monitor-global"
+  },
+  {
+    "unit": "optima-patents-prosecution-publication.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/research_publication.py --owners patent_office_actions patent_petition_decisions --max-windows 12"
+  },
+  {
+    "unit": "optima-patents-prosecution.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/patent_prosecution_operations.py tick"
+  },
+  {
+    "unit": "optima-patents-publication.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 3h /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/patent_backfill_publication.py"
+  },
+  {
+    "unit": "optima-people-collection.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/people_collection_operations.py"
+  },
+  {
+    "unit": "optima-people-content-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 4m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/finlight_content_backfill.py --config config/people-content-backfill.json"
+  },
+  {
+    "unit": "optima-product-search-daily.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=60s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/product_search_daily.py"
+  },
+  {
+    "unit": "optima-pubmed-enrichment-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/pubmed_enrichment_backfill.py --config config/pubmed-enrichment-backfill.json"
+  },
+  {
+    "unit": "optima-reddit-access.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/reddit_access_check.py"
+  },
+  {
+    "unit": "optima-reddit-collection.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/reddit_collection.py"
+  },
+  {
+    "unit": "optima-regulatory-enrichment-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/regulatory_enrichment_backfill.py --config config/regulatory-enrichment-backfill.json"
+  },
+  {
+    "unit": "optima-research-publication.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/research_publication.py --max-windows 2"
+  },
+  {
+    "unit": "optima-s11-content-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=60s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/disclosure_content_backfill.py --mode historical"
+  },
+  {
+    "unit": "optima-s11-content-daily.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=60s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/disclosure_content_backfill.py --mode daily"
+  },
+  {
+    "unit": "optima-s3-runtime-init.service",
+    "command": "/usr/bin/mkdir -p /dev/shm/optima-s3/locks"
+  },
+  {
+    "unit": "optima-search-capture.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/readiness_recurring.py"
+  },
+  {
+    "unit": "optima-sms-followup.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/check_collection_sms_followup.py"
+  },
+  {
+    "unit": "optima-social-daily.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 35m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/people_social_collection.py --social-only"
+  },
+  {
+    "unit": "optima-source-schedule-daily.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/source_schedule_control.py --mode daily"
+  },
+  {
+    "unit": "optima-source-schedule-historical.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/source_schedule_control.py --mode historical"
+  },
+  {
+    "unit": "optima-specialist-daily.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/specialist_inputs.py --mode daily --max-jobs 4 --pages 2 --publish 0"
+  },
+  {
+    "unit": "optima-specialist-historical.service",
+    "command": "/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/specialist_inputs.py --mode historical --max-jobs 4 --pages 2 --publish 0"
+  },
+  {
+    "unit": "optima-specialist-publication.service",
+    "command": "/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/specialist_publication.py --max-windows 8"
+  },
+  {
+    "unit": "optima-ted-enrichment-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/ted_enrichment_backfill.py --config config/ted-enrichment-backfill.json"
+  },
+  {
+    "unit": "optima-trade-screening-enrichment.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/trade_screening_daily.py"
+  },
+  {
+    "unit": "optima-usgs-minerals-backfill.service",
+    "command": "/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/usgs_minerals_backfill.py --config config/usgs-minerals-backfill.json"
+  }
+]

@@ -1,0 +1,33 @@
+from research_helpers import *
+def src(slug,note):return ev('https://www.asteralabs.com/products/'+slug+'/',note)
+R=src('pcie-cxl-smart-dsp-retimers','Official evaluation-card production statuses reviewed. Retimer IC table publishes wildcard ordering ranges PTxxx*, not exact suffix identities; those ranges remain for reconciliation.')
+D=src('aries-smart-redrivers','Official order table names PD7080L and PD7162L as sampling; evaluation cards explicitly pre-production.')
+G=src('aries-pcie-smart-gearboxes','Official table lists exact PG60161LR and PG60321LR parts in production, 24 and 48 total lanes respectively.')
+S=src('scorpio-smart-fabric-switch','Exact six P-series part numbers and lane/package table; X-Series platform-specific customer parts have no disclosed exact codes.')
+L=src('leo-smart-memory-controllers','A1000 and A2000 named add-in cards; A2000 DDR4/DDR5 configurations not silently split into invented order codes. Memory controller IC suffix patterns remain unresolved.')
+T=src('taurus-smart-signal-conditioners','Exact ET7161L/ED7161L 3.2T and ET6161L/ED6161L 1.6T retimer/redriver models.')
+E=src('taurus-ethernet-smart-cable-modules','Exact EM400-EPS/EM800-QDX/EM200-QDX module codes. EM800-EPS appears twice with conflicting QSFP-DD400G versus OSFP800G descriptions; one identity retained, conflict flagged.')
+O=src('aries-smart-optical-drivers','PL7090L: 9-channel unidirectional, 128 Gbps PAM4 optical driver.')
+I=src('aries-smart-optical-tias','PA7051L: 5-channel unidirectional, 128 Gbps PAM4 optical TIA.')
+N=ev('https://www.asteralabs.com/news/astera-labs-announces-aries-7-industrys-first-pcie-7-signal-conditioning-portfolio-across-copper-and-optical-interconnects/','October 8 2026 announced upcoming Q4 sampling; new PCIe7 products not falsely marked mass production.')
+C=src('cosmos','Unified connectivity management software suite. Developer kit/tool components not multiplied into duplicate suite records.')
+OR=src('orion-rack-scale-reference-architecture','Named reference architecture, not represented as a sold server SKU.')
+ps=[]
+def add(n,d,e,life='unknown',a=None,typ='product'):
+ ps.append(p(n,d,e,life,typ=typ,sector='semiconductors',sub='connectivity',attributes=a or {}))
+for n,lanes in [('PG60161LR',24),('PG60321LR',48)]:add(n,'Aries PCIe smart gearbox integrated circuit.',G,'commercial',{'total_lanes':lanes})
+for n,gen,lanes,package in [('PF50641L',5,64,'29x29'),('PF60321L',6,32,'21x21'),('PF60481L',6,48,'21x21'),('PF60641L',6,64,'29x29'),('PF61601L',6,160,'45x45'),('PF63201L',6,320,'62.5x62.5')]:add(n,'Scorpio P-Series PCIe fabric switch integrated circuit.',S,a={'pcie_generation':gen,'lanes':lanes,'package_mm':package,'brand':'Scorpio P-Series'})
+add('Scorpio X-Series','Platform-specific AI scale-up fabric switch product line.',S,a={'identity_granularity':'Publicly named product line; exact platform-specific order codes not disclosed.'})
+for n,conf in [('PD7080L','8-channel unidirectional'),('PD7162L','16-lane bidirectional')]:add(n,'Aries PCIe 7 smart redriver integrated circuit.',D,'development',{'configuration':conf,'availability':'sampling'})
+for n,d,chs in [('PL7090L','Aries optical driver integrated circuit.',9),('PA7051L','Aries optical transimpedance amplifier integrated circuit.',5)]:
+ add(n,d,O if chs==9 else I,'development',{'channels':chs,'line_rate_gbps':128,'modulation':'PAM4'});ps[-1]['evidence'].append(N)
+for n,d,rate in [('ET7161L','Taurus smart retimer integrated circuit.',3200),('ED7161L','Taurus smart redriver integrated circuit.',3200),('ET6161L','Taurus smart retimer integrated circuit.',1600),('ED6161L','Taurus smart redriver integrated circuit.',1600)]:add(n,d,T,a={'aggregate_data_rate_gbps':rate,'package_mm':'22x22'})
+for n,d,rate,conn in [('EM400-EPS','Taurus Ethernet smart cable module.',400,'OSFP'),('EM800-QDX','Taurus Ethernet smart cable module.',800,'QSFP-DD'),('EM200-QDX','Taurus Ethernet smart cable module.',200,'QSFP-DD')]:add(n,d,E,'commercial',{'aggregate_data_rate_gbps':rate,'connector':conn})
+add('EM800-EPS','Taurus Ethernet smart cable module.',E,'unknown',{'source_conflict':'Same code listed as 400G QSFP-DD and 800G OSFP. No definitive connector/rate assigned pending correction.'})
+for n,d,life,e in [('EQUINOX7-REVA','Aries 7 retimer CEM add-in evaluation card.','development',R),('Equinox 6','Aries 6 CEM-CEM riser evaluation card.','development',R),('Solstice 6','Aries 6 CEM-MCIO riser evaluation card.','development',R),('Equinox 5','Aries 5 CEM-CEM riser evaluation card.','commercial',R),('COMET-REVA','USB-to-I2C communication module.','commercial',R),('ECLIPSE7-REVA','Aries 7 smart redriver MCIO evaluation board.','development',D),('EQUINOX7-REVB','Aries 7 smart redriver CEM evaluation card.','development',D)]:add(n,d,e,life)
+add('A1000','Leo CXL memory expansion add-in card.',L,a={'cxl_version':'2.0','ddr5_rdimm_slots':4,'maximum_memory_speed_mt_s':5600})
+add('A2000','Leo CXL memory expansion add-in card.',L,a={'cxl_version':'3.2','published_configurations':['8 DDR5 slots at 6400 MT/s','12 DDR4 slots at 3200 MT/s']})
+add('COSMOS','Connectivity system management and optimization software suite.',C,'commercial',typ='product')
+add('Orion Rack-Scale Reference Architecture','Compute-agnostic reference architecture for AI infrastructure.',OR,typ='technology')
+companies=[company('Astera Labs, Inc.',ps,[R,D,G,S,L,T,E,O,I,N,C,OR],'Exact published device/card codes and explicitly named product lines reviewed. Wildcard retimer/memory-controller/cable-module suffix ranges, system validation boards, software component identities and acquired aiXscale portfolio require follow-up. Conflicting EM800-EPS code kept as one unresolved identity. Pre-production/sampling not marked commercial production.')]
+(out/'batch-0024.json').write_text(json.dumps({'companies':companies},indent=2));print(len(ps))

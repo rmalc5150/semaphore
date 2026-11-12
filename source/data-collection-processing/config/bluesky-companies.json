@@ -1,0 +1,8 @@
+{
+  "api_base": "https://public.api.bsky.app",
+  "initial_lookback_days": 7,
+  "overlap_days": 2,
+  "companies_per_invocation": 20,
+  "pages_per_invocation": 8,
+  "max_pages_per_account": 100
+}

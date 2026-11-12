@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue CMS financial file collection with daily release discovery
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=300
+Persistent=true
+Unit=optima-cms-financial-resumed.service
+[Install]
+WantedBy=timers.target

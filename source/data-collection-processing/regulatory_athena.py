@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Curate committed clinical/regulatory records into an immutable Athena pilot."""
 from collections import defaultdict
-from datetime import date
+from datetime import date, datetime
 import argparse
 import hashlib
 import json
@@ -31,6 +31,13 @@ SCHEMAS = {"research_records": COMMON + [("version_count", "bigint")], "record_v
     **{name: release.SCHEMAS[name] for name in ("companies", "company_sectors")}}
 for name in ("clinical_trials", "regulatory_events", "regulatory_snapshots"):
     SCHEMAS[name] = SCHEMAS["research_records"]
+
+
+def calendar_date(value):
+    """Project validated date/timestamp values to their reported calendar date."""
+    if len(value) == 10:
+        return date.fromisoformat(value)
+    return datetime.fromisoformat(value.replace("Z", "+00:00")).date()
 
 
 def read_inputs(store, keys, allowed=None, dataset="research_records", consume=None):
@@ -121,9 +128,9 @@ def curate(entries, universe):
             payload = record["payload"]
             row = {"record_id": record_id, "version_id": version, "source": record["source"],
                 "provider_id": record["source_record_id"], "record_type": payload["record_type"], "title": payload.get("title"),
-                "event_date": date.fromisoformat(record["event_at"]["value"]) if record["event_at"] else None,
+                "event_date": calendar_date(record["event_at"]["value"]) if record["event_at"] else None,
                 "date_basis": payload["date_basis"],
-                "source_updated_date": date.fromisoformat(record["source_updated_at"]["value"]) if record["source_updated_at"] else None,
+                "source_updated_date": calendar_date(record["source_updated_at"]["value"]) if record["source_updated_at"] else None,
                 "available_at": record["available_at"]["value"] if record["available_at"] else None,
                 "availability_basis": record["availability_basis"], "source_url": record["source_url"],
                 "data_json": release.json_text(payload["data"]), "company_names": payload["company_names"],

@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-10-26T15:49:27.549112+00:00",
+  "worker_instance_type": "m7i.xlarge",
+  "active_workers": 15,
+  "resources": {
+    "worker_cpu_cores": 1.3174793657710882,
+    "worker_cpu_percent_of_4": 32.936984144277204,
+    "worker_memory_gib": 2.375347137451172,
+    "cpu_max": "400000 100000",
+    "memory_max_gib": 13.0
+  },
+  "queue_progress_since_resume": [
+    {
+      "status": "pending",
+      "n": 7
+    },
+    {
+      "status": "running",
+      "n": 11
+    },
+    {
+      "status": "succeeded",
+      "n": 51
+    }
+  ],
+  "resumed_raw_manifest": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/jobs/4032a9a84ad99684799d2f1e277e573e9d148630902e67b901030b96c93e5099/attempts/1c3473101aa54d548e29431af840e68e/manifest.json",
+  "resumed_raw_records": 1069,
+  "manifest_sha256": "a4c47c70e50175c26edbe30091e6b6c8a94012d67313a099ab2e18bd64aa8389",
+  "daily_timers_active": 36,
+  "historical_enabled": true,
+  "daily_enabled": true
+}

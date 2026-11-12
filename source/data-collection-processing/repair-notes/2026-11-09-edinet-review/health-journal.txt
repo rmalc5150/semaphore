@@ -1,0 +1,8 @@
+Nov 09 15:00:35 ip-172-31-47-178.ec2.internal systemd[1]: optima-collection-health.service: Deactivated successfully.
+Nov 09 15:00:35 ip-172-31-47-178.ec2.internal systemd[1]: Finished optima-collection-health.service - Read collection health and persist S3 monitoring report.
+Nov 09 15:00:35 ip-172-31-47-178.ec2.internal systemd[1]: optima-collection-health.service: Consumed 13.781s CPU time.
+Nov 09 15:30:00 ip-172-31-47-178.ec2.internal systemd[1]: Starting optima-collection-health.service - Read collection health and persist S3 monitoring report...
+Nov 09 15:30:35 ip-172-31-47-178.ec2.internal python[890750]: {"checked_at": "2026-11-09T15:30:04.499391Z", "jobs": 29, "inspection_errors": {}}
+Nov 09 15:30:35 ip-172-31-47-178.ec2.internal systemd[1]: optima-collection-health.service: Deactivated successfully.
+Nov 09 15:30:35 ip-172-31-47-178.ec2.internal systemd[1]: Finished optima-collection-health.service - Read collection health and persist S3 monitoring report.
+Nov 09 15:30:35 ip-172-31-47-178.ec2.internal systemd[1]: optima-collection-health.service: Consumed 13.811s CPU time.

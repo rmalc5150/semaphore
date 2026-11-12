@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue optima-fda-product-codes-capture
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=300
+Persistent=true
+Unit=optima-fda-product-codes-capture.service
+[Install]
+WantedBy=timers.target

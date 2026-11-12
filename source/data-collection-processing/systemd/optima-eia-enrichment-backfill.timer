@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume S56 EIA index and retail enrichment until committed data is verified and emailed
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=optima-eia-enrichment-backfill.service
+
+[Install]
+WantedBy=timers.target

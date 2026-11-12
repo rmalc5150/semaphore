@@ -1,5 +1,10 @@
 """Repair guidance included directly in the daily email."""
 GUIDES={
+ 'historical_gap_over_five_days': [
+  'Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.',
+  'Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.',
+  'Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.',
+  'Verify committed output and publication where applicable before closing the scope.'],
  'source_http_400': [
   'Open the named service journal: journalctl -u <service> --since "24 hours ago" --no-pager. Identify source, date window, reason and manifest; inspect the saved request/response evidence without exposing credentials.',
   'For ClinicalTrials.gov history, inspect ClinicalTrials.page in regulatory_sources.py and config/core-historical-schedule.json. Compare the failed February 2021 query.term, LastUpdatePostDate sort, date bounds and pageToken with the saved response. Correct the rejected parameter; keep the original manifest and checkpoint. Run .venv-athena/bin/python -m unittest test_regulatory_collection after the change.',

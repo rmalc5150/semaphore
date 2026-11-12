@@ -1,0 +1,9 @@
+{
+  "openai_secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:openAI-hJ3Zin",
+  "openai_model": "gpt-6-luna",
+  "openai_max_requests_per_day": 5000,
+  "openai_failure_limit": 20,
+  "openai_scope": "new_companies_only",
+  "openai_baseline_key": "research-data/operations/company-catalogue/openai-baseline/current.json",
+  "policy": "Fill empty source-supported fields only. Candidate companies and classifications remain pending; review and collection controls are preserved. Unknown fields stay null or unknown."
+}

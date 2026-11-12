@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "approved_on": "2026-09-24",
-  "model_start_date": "2021-01-01",
+  "approved_on": "2026-10-26",
+  "model_start_date": "2016-01-01",
   "start_inclusive": true,
   "scope": "HMM and TFT model datasets; intended prediction-date floor, not proof of training readiness",
   "coverage_required": "Verify source and feature coverage for every selected training period; unavailable history remains an explicit gap.",

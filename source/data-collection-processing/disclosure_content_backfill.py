@@ -97,7 +97,7 @@ def verify_day(store, stages, universe, taxonomy, day):
         'verified_at': now(), **counts}
 
 
-def run(store, settings, config, universe, taxonomy, sns, mode='historical', stage_runner=run_stage, verifier=verify_day):
+def run(store, settings, config, universe, taxonomy, sns, mode='historical', stage_runner=run_stage, verifier=verify_day, max_days=None):
     start = date.fromisoformat(config['start'] if mode == 'historical' else config['daily_start'])
     end = date.fromisoformat(config['end_exclusive']) if mode == 'historical' else min(date.today(),
         datetime.now(sec.NY).date())
@@ -109,7 +109,7 @@ def run(store, settings, config, universe, taxonomy, sns, mode='historical', sta
         return state
     day, cache = date.fromisoformat(state['next_date']), {}
     require(start <= day <= end, 's11_invalid_cursor')
-    for _ in range(config['max_days_per_invocation']):
+    for _ in range(config['max_days_per_invocation'] if max_days is None else max_days):
         if day >= end:
             break
         stages = state.setdefault('stages', {})

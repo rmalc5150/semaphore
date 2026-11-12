@@ -1,0 +1,12 @@
+[Unit]
+Description=S47 original-evidence backfill and verified completion email
+
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Persistent=true
+Unit=optima-nist-robotics-backfill.service
+
+[Install]
+WantedBy=timers.target

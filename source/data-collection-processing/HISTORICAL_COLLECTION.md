@@ -1,4 +1,30 @@
-# Historical scope: January 1, 2021
+# Historical scope: January 1, 2016
+
+**October 26, 2026 update:** The user expanded all historical collection targets
+to **2016-01-01, inclusive** and allowed explicitly documented gaps. The shared
+policy is [`config/historical-collection.json`](config/historical-collection.json);
+gap classification is in [`config/collection-gap-policy.json`](config/collection-gap-policy.json).
+See the [current worker rollout](constellation/README.md) for the RDS MySQL queue,
+isolated historical worker, source catalog and verified pilot evidence.
+
+Historical CLI defaults, market/news/patent/specialist planning, document-cohort
+selection, conference/personnel filters and the installed core historical origin
+now target 2016. Daily origins and the market/news daily stream identities are
+preserved. Existing checkpoints, publications and reviewed exclusions remain.
+New market years become separate unresolved gaps rather than resetting the
+forward scan. Known provider-access boundaries remain evidence; they are not
+rewritten to imply 2016 entitlement. Frozen enrichment inventories retain their
+original cohort dates and hashes.
+
+All 158 catalog rows target 2016; this does not claim working collectors or
+complete coverage for every row. Three new isolated adapters have one verified
+historical-day pilot each. Other integrations and legacy worker migration remain
+staged. Existing timers and bulk collection remain paused during rollout.
+
+The older notes below describe the September 24 decision and retained evidence,
+not the current target or timer state.
+
+## Retained September 24 notes
 
 The user selected **2021-01-01, inclusive**, for all historical data capture on
 September 24, 2026. The shared setting is

@@ -1,0 +1,45 @@
+NEXT                        LEFT          LAST                        PASSED             UNIT                                           ACTIVATES
+Mon 2026-11-09 17:04:18 UTC 14s left      Mon 2026-11-09 17:02:15 UTC 1min 48s ago       constellation-public-raw-daily.timer           constellation-public-raw-daily.service
+Mon 2026-11-09 17:04:25 UTC 21s left      Mon 2026-11-09 16:59:15 UTC 4min 48s ago       constellation-public-status.timer              constellation-public-status.service
+Mon 2026-11-09 17:04:30 UTC 26s left      Mon 2026-11-09 17:03:58 UTC 5s ago             constellation-public-daily.timer               constellation-public-daily.service
+Mon 2026-11-09 17:07:33 UTC 3min 29s left Mon 2026-11-09 13:35:55 UTC 3h 28min ago       optima-specialist-daily.timer                  optima-specialist-daily.service
+Mon 2026-11-09 17:30:00 UTC 25min left    Mon 2026-11-09 17:00:00 UTC 4min 4s ago        constellation-gap-audit.timer                  constellation-gap-audit.service
+Mon 2026-11-09 17:30:00 UTC 25min left    Mon 2026-11-09 17:00:00 UTC 4min 4s ago        optima-collection-health.timer                 optima-collection-health.service
+Mon 2026-11-09 17:56:34 UTC 52min left    Mon 2026-11-09 14:32:35 UTC 2h 31min ago       optima-authenticated-daily.timer               optima-authenticated-daily.service
+Tue 2026-11-10 00:20:08 UTC 7h left       Mon 2026-11-09 00:20:20 UTC 16h ago            optima-eodhd-inventory.timer                   optima-eodhd-inventory.service
+Tue 2026-11-10 06:00:41 UTC 12h left      Mon 2026-11-09 06:02:00 UTC 11h ago            optima-daily-health-audit.timer                optima-daily-health-audit.service
+Tue 2026-11-10 06:35:11 UTC 13h left      Mon 2026-11-09 06:36:45 UTC 10h ago            optima-source-schedule-daily.timer             optima-source-schedule-daily.service
+Tue 2026-11-10 07:19:33 UTC 14h left      Mon 2026-11-09 07:16:40 UTC 9h ago             optima-patents-global-monitor.timer            optima-patents-global-monitor.service
+Tue 2026-11-10 08:11:26 UTC 15h left      Mon 2026-11-09 08:13:22 UTC 8h ago             optima-collection-daily.timer                  optima-collection-daily.service
+Tue 2026-11-10 08:36:12 UTC 15h left      Mon 2026-11-09 08:36:28 UTC 8h ago             optima-chictr-daily.timer                      optima-chictr-daily.service
+Fri 2026-11-13 10:03:22 UTC 3 days left   Fri 2026-11-06 10:01:34 UTC 3 days ago         optima-search-capture.timer                    optima-search-capture.service
+-                           -             Fri 2026-10-30 11:05:25 UTC 1 week 3 days ago  constellation-historical-autostop.timer        constellation-historical-autostop.service
+-                           -             Mon 2026-11-09 17:04:00 UTC 3s ago             constellation-historical-dispatch.timer        constellation-historical-dispatch.service
+-                           -             Mon 2026-11-09 17:04:00 UTC 3s ago             constellation-public-api-daily.timer           constellation-public-api-daily.service
+-                           -             Mon 2026-10-26 03:28:39 UTC 2 weeks 0 days ago optima-caiso-daily.timer                       optima-caiso-daily.service
+-                           -             Mon 2026-11-09 16:46:13 UTC 17min ago          optima-committed-athena.timer                  optima-committed-athena.service
+-                           -             Mon 2026-11-09 15:11:49 UTC 1h 52min ago       optima-company-catalogue.timer                 optima-company-catalogue.service
+-                           -             Mon 2026-11-09 16:39:20 UTC 24min ago          optima-conference-collection.timer             optima-conference-collection.service
+-                           -             Mon 2026-11-09 16:47:12 UTC 16min ago          optima-conference-publication.timer            optima-conference-publication.service
+-                           -             Sun 2026-10-25 23:20:24 UTC 2 weeks 0 days ago optima-doe-storage-daily.timer                 optima-doe-storage-daily.service
+-                           -             Mon 2026-11-09 15:08:20 UTC 1h 55min ago       optima-edinet-documents-daily.timer            optima-edinet-documents-daily.service
+-                           -             Mon 2026-11-09 16:42:30 UTC 21min ago          optima-eodhd-profiles.timer                    optima-eodhd-profiles.service
+-                           -             Mon 2026-11-09 17:01:23 UTC 2min 40s ago       optima-federal-register-daily-enrichment.timer optima-federal-register-daily-enrichment.service
+-                           -             Sun 2026-10-25 23:33:26 UTC 2 weeks 0 days ago optima-grant-daily.timer                       optima-grant-daily.service
+-                           -             Mon 2026-11-09 16:54:31 UTC 9min ago           optima-market-collection.timer                 optima-market-collection.service
+-                           -             Mon 2026-11-09 16:50:20 UTC 13min ago          optima-market-publication.timer                optima-market-publication.service
+-                           -             Mon 2026-11-09 17:03:55 UTC 8s ago             optima-metadata-controller.timer               optima-metadata-controller.service
+-                           -             Mon 2026-11-09 16:39:08 UTC 24min ago          optima-news-collection.timer                   optima-news-collection.service
+-                           -             Mon 2026-11-09 16:51:22 UTC 12min ago          optima-news-publication.timer                  optima-news-publication.service
+-                           -             Mon 2026-10-26 00:19:29 UTC 2 weeks 0 days ago optima-nist-robotics-daily.timer               optima-nist-robotics-daily.service
+-                           -             Wed 2026-10-21 17:22:06 UTC 2 weeks 4 days ago optima-nist-robotics-matching.timer            optima-nist-robotics-matching.service
+-                           -             Mon 2026-11-09 16:39:15 UTC 24min ago          optima-patents-daily.timer                     optima-patents-daily.service
+-                           -             Mon 2026-11-09 16:38:33 UTC 25min ago          optima-patents-prosecution-publication.timer   optima-patents-prosecution-publication.service
+-                           -             Mon 2026-11-09 16:46:50 UTC 17min ago          optima-patents-prosecution.timer               optima-patents-prosecution.service
+-                           -             Mon 2026-11-09 16:37:14 UTC 26min ago          optima-people-collection.timer                 optima-people-collection.service
+-                           -             Mon 2026-11-09 15:44:30 UTC 1h 19min ago       optima-product-search-daily.timer              optima-product-search-daily.service
+-                           -             Mon 2026-11-09 15:33:07 UTC 1h 30min ago       optima-research-publication.timer              optima-research-publication.service
+-                           -             Mon 2026-11-09 16:54:25 UTC 9min ago           optima-specialist-publication.timer            optima-specialist-publication.service
+-                           -             Mon 2026-10-26 03:25:42 UTC 2 weeks 0 days ago optima-trade-screening-enrichment.timer        optima-trade-screening-enrichment.service
+
+42 timers listed.

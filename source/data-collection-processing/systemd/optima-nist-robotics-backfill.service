@@ -1,0 +1,20 @@
+[Unit]
+Description=S47 original-evidence backfill and verified completion email
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+Slice=optima-data.slice
+MemoryAccounting=true
+MemoryHigh=402653184
+MemoryMax=536870912
+CPUQuota=35%
+Environment=MALLOC_ARENA_MAX=2
+ExecStart=/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/nist_robotics_pipeline.py --mode backfill
+TimeoutStartSec=14min
+Nice=15
+NoNewPrivileges=true
+ProtectSystem=full

@@ -1,0 +1,8 @@
+{
+  "safe_to_stop": true,
+  "inactive_workers": 17,
+  "disabled_workers": 17,
+  "pending_checkpoints": [],
+  "uncommitted_workspace_files": [],
+  "remaining_collector_processes": []
+}

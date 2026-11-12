@@ -1,0 +1,9 @@
+[Unit]
+Description=Capture all Health Canada NOC report records daily
+[Timer]
+OnBootSec=180
+OnCalendar=*-*-* 07:55:00 Europe/Madrid
+Persistent=true
+Unit=optima-canada-noc-daily.service
+[Install]
+WantedBy=timers.target

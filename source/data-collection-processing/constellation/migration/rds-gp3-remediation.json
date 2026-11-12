@@ -1,0 +1,20 @@
+{
+  "request": {
+    "DBInstanceIdentifier": "semaphore",
+    "StorageType": "gp3",
+    "AllocatedStorage": 20,
+    "ApplyImmediately": true
+  },
+  "before": {
+    "StorageType": "gp2",
+    "AllocatedStorage": 20,
+    "DBInstanceClass": "db.t4g.micro",
+    "BackupRetentionPeriod": 7,
+    "StorageEncrypted": true,
+    "PendingModifiedValues": {}
+  },
+  "reason": "Disk burst balance is zero, read latency is 65-80 ms and disk queue depth is about 13-15, while database CPU is about 10 percent.",
+  "expected_storage_baseline": "At 20 GiB, MySQL gp3 includes 3000 IOPS and 125 MiB/s; no additional provisioned performance requested.",
+  "operational_notes": "Storage optimization can temporarily affect latency. Availability during conversion is not guaranteed. The request changes only storage type; compute class, capacity, encryption, schemas and source controls remain as configured.",
+  "documentation": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html"
+}

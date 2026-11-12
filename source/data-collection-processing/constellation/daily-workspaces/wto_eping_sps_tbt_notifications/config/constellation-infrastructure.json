@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "region": "us-east-1",
+  "account_id": "059416028963",
+  "controller_instance_id": "i-070bab0b09f794629",
+  "worker_instance_id": "i-06241bd1c4e91c2fc",
+  "bucket": "data-collection-059416028963-us-east-1-an",
+  "prefix": "research-data/constellation-backfill",
+  "concurrency": 15,
+  "collection_enabled": true,
+  "queue_backend": "rds_mysql",
+  "legacy_checkpoint_access": false,
+  "db_host": "semaphore.c3uguw62gg4j.us-east-1.rds.amazonaws.com",
+  "database": "constellation_operations",
+  "controller_secret_arn": "arn:aws:secretsmanager:us-east-1:059416028963:secret:constellation/backfill/controller-OKvhFm",
+  "worker_secret_arn": "arn:aws:secretsmanager:us-east-1:059416028963:secret:constellation/backfill/worker-ktYtxF",
+  "worker_scratch_volume_id": "vol-09d10968e4b04c7ff",
+  "worker_role_ready": true,
+  "legacy_runtime_enabled": true,
+  "legacy_seed_key": "research-data/constellation-backfill/migration/seeds/a9d8382025f6f93594505cbd9852b0456d6e7c66081e788d15d1cc9050be24dc.json",
+  "legacy_source_secret_arns": [
+    "arn:aws:secretsmanager:us-east-1:059416028963:secret:dataSourceAPIkeys-PSTzff",
+    "arn:aws:secretsmanager:us-east-1:059416028963:secret:FDA-0WM7up"
+  ],
+  "legacy_snapshot_read_keys": [
+    "research-data/operations/s3-runtime/snapshots/migration-seed/config/company-universe.v0.2.json",
+    "research-data/operations/s3-runtime/snapshots/migration-seed/config/company-universe.v0.3.json",
+    "research-data/operations/s3-runtime/snapshots/migration-seed/config/company-universe.v0.5.json"
+  ],
+  "legacy_access_mode": "owner_approved_native_artifacts",
+  "worker_pool": {
+    "raw_workers": 5,
+    "legacy_workers": 6,
+    "cpu_capacity": 2,
+    "memory_max_gib": 6,
+    "public_workers": 4,
+    "raw_memory_max_mib": 384,
+    "legacy_memory_max_mib": 1536,
+    "public_memory_max_mib": 512,
+    "total_workers": 15,
+    "memory_high_gib": 5,
+    "sum_individual_memory_max_mib": 13184,
+    "allow_shared_memory_oversubscription": true,
+    "admission_memory_high_gib": 4.5
+  },
+  "daily_collection_enabled": true,
+  "worker_instance_type": "m7i.large",
+  "worker_resize_plan": {
+    "worker_instance_type": "m7i.large",
+    "raw_workers": 5,
+    "legacy_workers": 6,
+    "public_workers": 4,
+    "total_workers": 15,
+    "cpu_capacity": 2,
+    "memory_max_gib": 6,
+    "memory_high_gib": 5,
+    "sum_individual_memory_max_mib": 13184,
+    "limits_installation_pending": false,
+    "allow_shared_memory_oversubscription": true,
+    "admission_memory_high_gib": 4.5
+  }
+}

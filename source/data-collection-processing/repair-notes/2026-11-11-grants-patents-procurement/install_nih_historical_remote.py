@@ -1,0 +1,5 @@
+import subprocess
+from pathlib import Path
+base='optima-nih-reviewed-historical';unit='[Unit]\nDescription=Continue current scoped NIH fiscal-year historical capture\nAfter=network-online.target\n[Service]\nType=oneshot\nUser=ec2-user\nWorkingDirectory=/opt/constellation/source\nExecStart=/opt/constellation/legacy-venv/bin/python -B grants_review_capture.py --sources nih_reporter --mode historical\nSlice=constellation-workers.slice\nMemoryMax=402653184\nMemorySwapMax=0\nCPUQuota=15%\nTimeoutStartSec=180\nEnvironment=CONSTELLATION_ROLE=worker\nEnvironment=CONSTELLATION_SHARED_HTTP_LIMITS=1\n';timer='[Unit]\nDescription=Continue NIH historical capture\n[Timer]\nOnBootSec=120\nOnUnitInactiveSec=600\nUnit='+base+'.service\n[Install]\nWantedBy=timers.target\n'
+for suffix,body in (('.service',unit),('.timer',timer)):Path('/etc/systemd/system/'+base+suffix).write_text(body)
+subprocess.run(['systemctl','daemon-reload'],check=True);subprocess.run(['systemctl','enable','--now',base+'.timer'],check=True);subprocess.run(['systemctl','start','--no-block',base+'.service'],check=True)

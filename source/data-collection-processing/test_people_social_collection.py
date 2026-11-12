@@ -51,7 +51,9 @@ class SourceTests(unittest.TestCase):
         client = EvidenceClient(self.store, 'bluesky_search'); calls = []
         def get(url, params):
             calls.append(params)
-            return client.save(canonical_json(pages.pop(0)), url)
+            value=pages.pop(0)
+            if isinstance(value,Exception):raise value
+            return client.save(canonical_json(value), url)
         with patch.object(client, 'get', side_effect=get):
             result = collect_social(self.store, self.settings, self.u, self.t, 'robotics', 'robotics',
                 self.day - timedelta(days=1), client, max_pages)
@@ -72,6 +74,20 @@ class SourceTests(unittest.TestCase):
     def test_social_duplicate_is_not_silently_counted(self):
         result, _ = self.social([{'posts': [self.post('a')], 'cursor': 'next'}, {'posts': [self.post('a')]}])
         self.assertEqual(result['status'], 'failed', result)
+
+    def test_denied_cursor_restarts_bounded_partitions_and_resumes(self):
+        from regulatory_collection import SourceIssue
+        self.social([{'posts':[self.post('old')],'cursor':'denied'}],max_pages=1)
+        result,calls=self.social([SourceIssue('source_http_403'),
+            {'posts':[self.post('truncated')],'cursor':'more'},
+            {'posts':[self.post('left')]}],max_pages=3)
+        self.assertEqual(result['status'],'partial',result)
+        self.assertIn('refreshed_from_manifest',result)
+        self.assertNotIn('cursor',calls[-1])
+        result,calls=self.social([{'posts':[self.post('right')]}],max_pages=1)
+        self.assertEqual(result['status'],'complete',result)
+        self.assertEqual(result['records'],2)
+        self.assertNotIn('cursor',calls[0])
 
 
 if __name__ == '__main__':

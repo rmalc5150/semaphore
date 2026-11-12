@@ -84,7 +84,7 @@ class NMPABaselineTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.store = LocalStore(self.temp.name)
         self.settings = StorageSettings(local_root=self.temp.name)
-        self.universe = load_json(ROOT / "config/company-universe.v0.2.json")
+        self.universe = load_json(ROOT / "examples/research-contract/universe.json")
         self.taxonomy = load_json(ROOT / "config/sectors.v1.json")
         self.day = __import__("datetime").date(2026, 9, 22)
 

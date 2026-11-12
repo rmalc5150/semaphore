@@ -1,5 +1,5 @@
 [Unit]
-Description=Bounded resumable original SEC/regulatory/disclosure 2021 archive
+Description=Bounded resumable original SEC/regulatory/disclosure 2016 archive
 After=network-online.target
 Wants=network-online.target
 
@@ -15,7 +15,7 @@ MemorySwapMax=0
 Environment=ARROW_NUM_THREADS=1
 Environment=MALLOC_ARENA_MAX=2
 Environment=OPTIMA_HEAVY_LOCK_HELD=1
-ExecStart=/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 35m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/collect_historical.py 2021-01-01 2026-10-09 --config /home/ec2-user/data-collection-processing/config/core-historical-schedule.json --max-windows 1 --max-pages 2 --max-records 1000
+ExecStart=/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 35m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/collect_historical.py 2016-01-01 2026-10-09 --config /home/ec2-user/data-collection-processing/config/core-historical-schedule.json --max-windows 1 --max-pages 2 --max-records 1000
 TimeoutStartSec=7h
 TimeoutStopSec=120
 KillSignal=SIGINT

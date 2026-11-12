@@ -12,14 +12,18 @@ import subprocess
 from datetime import datetime, timezone
 
 ROOT = Path('/home/ec2-user')
-STATE = ROOT / '.local/state/code-backup'
+STATE = Path(os.environ.get('CODE_BACKUP_STATE_DIR', '/dev/shm/optima-s3/work/tmp/code-backup'))
 REPO = STATE / 'repository'
 REMOTE = 'git@github.com:rmalc5150/semaphore.git'
 BRANCH = 'ec2-code-backup'
 EXTENSIONS = {'.py', '.sh', '.bash', '.sql', '.md', '.txt', '.json', '.yaml', '.yml', '.toml', '.ini', '.cfg', '.service', '.timer', '.socket', '.js', '.ts', '.tsx', '.jsx', '.html', '.css', '.scss', '.rs', '.go', '.java', '.c', '.h', '.cpp', '.ipynb', '.r', '.tf', '.hcl'}
 NAMES = {'Dockerfile', 'Makefile', 'Procfile', 'LICENSE', 'Pipfile', 'poetry.lock', 'uv.lock', 'package-lock.json', '.gitignore', '.dockerignore'}
-SKIP = {'node_modules', '__pycache__', 'venv', 'env', 'dist', 'build', 'target', 'reports', 'certs', 'site-packages'}
-SECRET = re.compile(r'-----BEGIN (?:RSA |OPENSSH |EC |DSA )?PRIVATE KEY-----|\b(?:AKIA|ASIA)[A-Z0-9]{16}\b|\bgh[pousr]_[A-Za-z0-9]{20,}|\bgithub_pat_[A-Za-z0-9_]{20,}|\bsk-[A-Za-z0-9_-]{24,}|(?i:(?:password|passwd|api[_-]?key|secret[_-]?key|access[_-]?token)\s*[=:]\s*[\"\x27])[^\"\x27\n]{12,}[\"\x27]')
+SKIP = {'node_modules', '__pycache__', 'venv', 'env', 'dist', 'build', 'target', 'reports', 'certs', 'site-packages', 'mlperf-evidence-cache', 'ted-package-cache'}
+# Generated operational inventory; the source that recreates it is backed up.
+GENERATED = {Path('data-collection-processing/constellation/expansion/public-status.json'),
+             Path('data-collection-processing/constellation/status/current-source-evidence.json')}
+GENERATED_DIRS = {Path('data-collection-processing/constellation/status')}
+SECRET = re.compile(r'-----BEGIN (?:RSA |OPENSSH |EC |DSA )?PRIVATE KEY-----|\b(?:AKIA|ASIA)[A-Z0-9]{16}\b|\bgh[pousr]_[A-Za-z0-9]{20,}|\bgithub_pat_[A-Za-z0-9_]{20,}|(?<![A-Za-z0-9_-])sk-[A-Za-z0-9_-]{24,}|(?i:(?:password|passwd|api[_-]?key|secret[_-]?key|access[_-]?token)\s*[=:]\s*[\"\x27])[^\"\x27\n]{12,}[\"\x27]')
 
 def run(*args, **kwargs):
     return subprocess.run(args, check=True, **kwargs)
@@ -27,9 +31,20 @@ def run(*args, **kwargs):
 def collect():
     files = []
     for directory, dirs, names in os.walk(ROOT, followlinks=False):
-        dirs[:] = sorted(d for d in dirs if not d.startswith('.') and d not in SKIP and not d.endswith('-build') and not (Path(directory) / d).is_symlink())
+        dirs[:] = sorted(d for d in dirs if not d.startswith('.') and d not in SKIP and not d.endswith('-build') and not (Path(directory) / d).is_symlink() and (Path(directory)/d).relative_to(ROOT) not in GENERATED_DIRS)
         for name in sorted(names):
             path = Path(directory) / name
+            relative=path.relative_to(ROOT)
+            # Repair captures are retained as evidence in S3. Source backup
+            # keeps repair scripts/docs, not copied provider responses.
+            if relative.parts[:2]==('data-collection-processing','repair-notes') and path.suffix.lower() in {'.json','.jsonl','.xml','.csv','.html'}:
+                continue
+            if relative.parts[0]=='product-web-rebuild' and path.suffix.lower() in {'.json','.jsonl','.txt','.xml','.csv','.html'} and name not in {'package.json','package-lock.json','tsconfig.json','requirements.txt','index.html'}:
+                continue
+            if path.relative_to(ROOT) in GENERATED:
+                continue
+            if name.startswith(('company-universe.v', 'company-id-registry.', 'company-admission-ledger.')) or name in {'bls-release-vintages.json', 'bls-release-bootstrap.json', 'source-schedule-inventory.json', 'patent_pilot_companies.json', 'china-verification-status.json'}:
+                continue
             if path.is_symlink() or (name.startswith('.') and name not in NAMES):
                 continue
             if name not in NAMES and path.suffix.lower() not in EXTENSIONS:

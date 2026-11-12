@@ -1,0 +1,201 @@
+{
+  "verified_date": "2026-11-12",
+  "display_timestamp": "12 November 2026 \u00b7 14:03 CET",
+  "display_timezone": "Europe/Madrid",
+  "aws_region": "us-east-1",
+  "scope": "Current Optima collection, processing, metadata, publication and monitoring deployment on the two identified EC2 hosts; model stages explicitly separated.",
+  "hosts": {
+    "t3": {
+      "instance_id": "i-070bab0b09f794629",
+      "instance_type": "t3.medium",
+      "vcpus": 2,
+      "nominal_memory_gib": 4
+    },
+    "m7": {
+      "instance_id": "i-06241bd1c4e91c2fc",
+      "instance_type": "m7i.large",
+      "vcpus": 2,
+      "nominal_memory_gib": 8,
+      "work_volume_gib": 20,
+      "shared_memory_high_bytes": 6526009344,
+      "shared_memory_max_bytes": 7260185395
+    }
+  },
+  "rds": {
+    "identifier": "semaphore",
+    "class": "db.t4g.micro",
+    "engine": "mysql",
+    "version": "8.4.9",
+    "storage_type": "gp3",
+    "storage_gib": 20,
+    "iops": 3000,
+    "throughput_mib_s": 125,
+    "schemas": [
+      "constellation_operations",
+      "metadata_engine"
+    ]
+  },
+  "historical_executor_services": {
+    "native": 5,
+    "legacy": 6,
+    "public": 4
+  },
+  "source_pauses": [
+    "reddit",
+    "bluesky_search",
+    "bluesky_company_accounts",
+    "bluesky_company_posts",
+    "bluesky_company_events",
+    "github_sdk",
+    "marketaux"
+  ],
+  "bounded_capture_pool": {
+    "workers": 10,
+    "simultaneous_payloads": 1,
+    "unit_memory_max_bytes": 2147483648,
+    "slice_cpu_quota_percent": 100,
+    "shared_pool_admission_bytes": 4831838208
+  },
+  "metadata_batch_limits": {
+    "lanes": 2,
+    "max_jobs_per_lane": 32,
+    "max_seconds_per_batch": 210
+  },
+  "model_stage_services_discovered": 0,
+  "retired": "tracking-dependent catalogue and matching jobs",
+  "placement": [
+    {
+      "component": "Controllers, schedules and m7 lifecycle",
+      "execution": "t3",
+      "details": "Metadata discovery/intake, historical registration, SSM dispatch, shared autostop; systemd timers."
+    },
+    {
+      "component": "Remaining local capture",
+      "execution": "t3",
+      "details": "Market/news API capture, people, SAM.gov, reviewed ODP identifiers, ChiCTR and small public API/schedule checks."
+    },
+    {
+      "component": "Health and daily readback audit",
+      "execution": "t3",
+      "details": "Local systemd and evidence inspection plus real m7 execution snapshots; health and history persisted in S3."
+    },
+    {
+      "component": "Native historical pool",
+      "execution": "m7",
+      "details": "constellation-backfill@1..5: five configured native historical executors."
+    },
+    {
+      "component": "Legacy historical pool",
+      "execution": "m7",
+      "details": "constellation-legacy-worker@1..6: six configured isolated legacy executors."
+    },
+    {
+      "component": "Public historical pool",
+      "execution": "m7",
+      "details": "constellation-public-worker@1..4: four configured public artifact executors."
+    },
+    {
+      "component": "Source-specific capture and document processing",
+      "execution": "m7",
+      "details": "CMS coverage/discovery/payments; Crossref; FDA/Drugs@FDA; grants and NIH; Europe PMC and PubMed; NMPA; MHRA; EMA; PMDA; Canada NOC; disclosures; RSS repair; reviewed metadata continuation."
+    },
+    {
+      "component": "Bounded migrated capture pool",
+      "execution": "m7",
+      "details": "EDINET documents; FDA inspection classifications; EIA retail; EODHD profiles; patents daily and prosecution; assignment daily and historical; Federal Register document enrichment; NIST daily. Serialized under a 2 GiB child-unit limit, one CPU quota and 4.5 GiB shared-pool admission threshold; durable state and shared provider pacing retained."
+    },
+    {
+      "component": "EODHD inventory and CMS financial",
+      "execution": "m7",
+      "details": "optima-m7-eodhd-inventory.service; optima-m7-cms-financial-resumed.service."
+    },
+    {
+      "component": "Bounded specialist daily capture",
+      "execution": "m7",
+      "details": "optima-m7-specialist-daily.service; source rotation with bounded discovery and durable cursors."
+    },
+    {
+      "component": "Daily catch-up batch",
+      "execution": "m7",
+      "details": "optima-m7-aux-collection-daily.service; t3 daily service is a dispatcher."
+    },
+    {
+      "component": "Metadata engine workers",
+      "execution": "m7",
+      "details": "optima-metadata-worker.service and optima-metadata-worker-extra.service, with timers; each batch accepts up to 32 jobs / 210 seconds. Service lanes do not equal concurrent database claims."
+    },
+    {
+      "component": "Research publication",
+      "execution": "m7",
+      "details": "optima-m7-research-publication.service. A bounded recovery unit and patent-petition publication unit also exist."
+    },
+    {
+      "component": "Auxiliary publication",
+      "execution": "m7",
+      "details": "Specialist; CMS catalogue/coverage; Crossref resumed plus an installed Crossref alias; FDA; grants; reviewed metadata; patent prosecution; market; news; metadata-engine publication."
+    },
+    {
+      "component": "Committed-Athena index and verification",
+      "execution": "m7",
+      "details": "optima-m7-committed-athena.service; t3 optima-committed-athena.service dispatches it."
+    },
+    {
+      "component": "Queued gap audits and database summaries",
+      "execution": "m7",
+      "details": "optima-m7-summary-worker.service. t3 enqueues/polls fixed-purpose S3 jobs and promotes completed reports."
+    },
+    {
+      "component": "Independent watchdog",
+      "execution": "AWS Lambda",
+      "details": "optima-collection-watchdog; enabled EventBridge Scheduler at :05 and :35 UTC (:05 and :35 CET); reserved alert state is in S3."
+    },
+    {
+      "component": "Durable transactional state",
+      "execution": "RDS MySQL",
+      "details": "semaphore, db.t4g.micro, MySQL 8.4.9, 20 GiB gp3 / 3,000 IOPS; constellation_operations and metadata_engine schemas."
+    },
+    {
+      "component": "Durable evidence and releases",
+      "execution": "S3",
+      "details": "data-collection-059416028963-us-east-1-an / research-data/. Logical stores in the schematic share this bucket."
+    },
+    {
+      "component": "Analytical catalogue and query",
+      "execution": "Glue / Athena",
+      "details": "Committed observation tables, metadata observations and owner-specific curated releases; verification receipts gate publication."
+    },
+    {
+      "component": "API quota coordination",
+      "execution": "RDS + S3",
+      "details": "Historical provider reservations, leases and cross-host USPTO/EDINET pacing use RDS. EODHD uses one conditional-write S3 counter across t3 and m7; daily ceiling 98,000, rolling rate 900/minute."
+    },
+    {
+      "component": "Credentials and authorization",
+      "execution": "IAM / Secrets Manager",
+      "details": "t3 role lambdaEc2ForEc2Instance; m7 role constellation-backfill-worker. API credentials and scoped database credentials are separate."
+    }
+  ],
+  "evidence": [
+    "Live EC2 and RDS describe calls",
+    "Live systemd unit and template-instance inventories through SSM",
+    "Live Lambda configuration and EventBridge Scheduler configuration",
+    "constellation/m7_lifecycle.py",
+    "constellation/m7_research_publication_dispatch.py",
+    "constellation/m7_health.py",
+    "constellation/m7_summary_queue.py",
+    "config/constellation-infrastructure.json",
+    "config/metadata-engine.json",
+    "config/source-pauses.json",
+    "config/pipeline-health-registry.json",
+    "eodhd_quota.py"
+  ],
+  "limitations": [
+    "Placement and design, not a certificate of complete data coverage or absence of source failures.",
+    "Small API capture and daily readback remain on t3; document processing, migrated capture, publishers and summaries run on m7.",
+    "Metadata-controller cycles currently dispatch the metadata publisher unconditionally, so they can wake m7 even with empty queues; the guard protects idle shutdown but this is not purely backlog-triggered startup.",
+    "No event/model-stage systemd services found on the inspected hosts; their monitoring registry entries do not prove deployment.",
+    "Historical source modules still contain older c7i labels; the live worker instance is m7i.large.",
+    "AWS acceptance of an SNS publish does not prove notification delivery.",
+    "Worker service counts are not job throughput or simultaneous database claim counts."
+  ]
+}

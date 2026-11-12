@@ -1,0 +1,22 @@
+{
+  "job_id": "bls-enrichment-backfill-2026-10-18-v2",
+  "window_start": "2021-01-01T00:00:00Z",
+  "snapshot_cutoff": "2026-10-18T11:34:32.446897Z",
+  "inventory_file": "reports/bls-enrichment-backfill-2026-10-18-v2/input-batches.json",
+  "inventory_sha256": "cf1a92eaa5d49819e1bf59d56ed4b8e9092c1f09932eb29064688f66ff933513",
+  "storage_config": "config/collection-storage.s3.json",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "max_batches_per_invocation": 200,
+  "max_versions_per_invocation": 20,
+  "max_attempts": 3,
+  "retry_minutes": 30,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Supersedes the initial wage-only S59 backfill. Enrich all 69 saved reference months January 2021\u2013September 2026 (168 saved observations), retaining original identity and values. Recover 68 separately evidenced first-release wage vintages and timestamps; record the official October 2025 no-release exception. Join quarterly manufacturing ECI/ECEC observations as current-vintage context; missing future quarters remain explicitly unavailable, not interpolated. Assess current RDS company/product manufacturing evidence, explicitly reporting empty-directory scope. Provider/parser failures remain pending. Email only after every pinned version has all three evidence-join assessments committed and exact Athena counts verified; include per-join coverage and limitations.",
+  "supersedes_job_id": "bls-enrichment-backfill-2026-10-18",
+  "evidence_input_sha256": {
+    "config/bls-release-bootstrap.json": "0b8a94e19831d1dc05eec9418f3ff4afffa867d3577d5e1f8a6e8a605e79de77",
+    "config/bls-release-vintages.json": "e08b127887189404d2f0743bb7e2ce24c42318a61ea242f78ef6b5094c7a19b6"
+  }
+}

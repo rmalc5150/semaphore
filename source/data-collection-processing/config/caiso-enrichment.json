@@ -1,0 +1,24 @@
+{
+  "job_id": "caiso-backfill-2026-10-18",
+  "inventory_file": "reports/caiso-backfill-2026-10-18/input-batches.json",
+  "inventory_digest": "514558ab0bdf00e0af91f8e2b13e0ab37d4cc55cd8dcde9896edbc93b7ed792e",
+  "history_start": "2016-01-01",
+  "standard_start": "2023-07-01",
+  "end_exclusive": "2026-10-18",
+  "hub_nodes": [
+    "TH_NP15_GEN-APND",
+    "TH_SP15_GEN-APND",
+    "TH_ZP26_GEN-APND"
+  ],
+  "project_mappings": [],
+  "catalogs_per_invocation": 2,
+  "archives_per_invocation": 6,
+  "max_archive_bytes": 67108864,
+  "max_expanded_bytes": 2147483648,
+  "max_attempts": 3,
+  "correction_lookback_days": 7,
+  "price_spike_threshold": "200",
+  "congestion_threshold": "50",
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com"
+}

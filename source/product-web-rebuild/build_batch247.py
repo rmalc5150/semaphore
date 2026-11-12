@@ -1,0 +1,4 @@
+from research_helpers import *
+a=ev('https://webmdignite.com/solutions-and-products','Reviewed current healthcare marketing, clinical education, engagement and content product index. Symptom checkers and digital clinical content are software/information offerings, not molecular diagnostics or biological products.')
+co=dict(company_id='cmp_15ef0505-c2ca-43b7-bea1-3d271e431309',products=[],evidence=[a],status='complete',coverage_note='Completed sector screen of public product index. No products evidenced in biotech, robotics, semiconductors or energy storage. Healthcare publishing, education, marketing, symptom-checker and patient-engagement software excluded under current sector scope. Company eligibility flags not changed. A zero-product sector screen does not mean the company has no commercial offerings.')
+(out/'batch-0247.json').write_text(json.dumps({'companies':[co]},indent=2));print(0)

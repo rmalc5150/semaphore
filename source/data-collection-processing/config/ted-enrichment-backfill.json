@@ -1,0 +1,17 @@
+{
+  "job_id": "ted-enrichment-backfill-2026-10-18",
+  "window_start": "2021-01-01T00:00:00Z",
+  "snapshot_cutoff": "2026-10-18T09:10:09.053566Z",
+  "inventory_file": "reports/ted-enrichment-backfill-2026-10-18/input-batches.json",
+  "inventory_sha256": "e703ca18060c28d7454aa57223d85d8d1e3680dd39e4c1dba9087a69b60cf782",
+  "storage_config": "config/collection-storage.s3.json",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "max_batches_per_invocation": 300,
+  "max_versions_per_invocation": 100,
+  "max_attempts": 5,
+  "retry_minutes": 360,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Fetch linked official XML for every distinct S42 notice in the pinned saved-observation inventory. Preserve metadata, raw XML, parsed tree, context paths, evidence and lineage. Explicit retrieval gaps and unresolved notice stages remain reviewable. No inferred supplier revenue, payments, entity resolution or historical availability. Email only after processing and Athena count verification, with explicit gap counts."
+}

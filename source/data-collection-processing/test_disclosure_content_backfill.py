@@ -62,6 +62,21 @@ class BackfillTests(DisclosureTests):
         self.assertNotIn('hkex', [call.args[0] for call in resume.call_args_list])
         self.assertEqual(sns.publish.call_count, 1)
 
+    def test_invocation_budget_preserves_configured_checkpoint_identity(self):
+        from datetime import timedelta
+        stages, sns, config = self.stages(), self.sns(), self.config()
+        config['end_exclusive'] = str(self.end + timedelta(days=3))
+        config['max_days_per_invocation'] = 7
+        prefix = b.prefix_for(config, self.universe, self.taxonomy, 'historical')
+        runner = Mock(side_effect=lambda stage, *args: stages[stage])
+        result = b.run(self.store, self.settings, config, self.universe, self.taxonomy, sns,
+                       stage_runner=runner, max_days=1)
+        self.assertEqual(result['next_date'], str(self.end))
+        self.assertEqual(result['status'], 'partial')
+        self.assertEqual(result['state_key'], prefix + '/state.json')
+        self.assertEqual(runner.call_count, len(b.STAGES))
+        sns.publish.assert_not_called()
+
     def test_corrupt_full_content_blocks_completion_notification(self):
         stages, sns = self.stages(), self.sns()
         record = self.read(stages['documents'])[0]['record']

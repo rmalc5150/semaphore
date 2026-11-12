@@ -1,0 +1,7 @@
+from research_helpers import *
+rows=json.loads((out/'yamaha-reviewed-scara.json').read_text())
+sources={r['url']:ev(r['url'],'Manually reviewed current Yamaha SCARA catalogue/model datasheet links. Exact model suffixes retained; ranges not expanded into invented codes; family umbrellas not additional robot records. Catalogue payload inconsistencies not copied.') for r in rows}
+products=[p('Yamaha '+r['model'],'SCARA industrial robot; model-specific options require its datasheet.',sources[r['url']],'commercial',typ='product',sector='robotics',sub='industrial_robotics',roles=['developer','manufacturer']) for r in rows]
+co=dict(company_id='cmp_176ba0f1-6386-443a-9355-b7fc1525f358',products=products,evidence=list(sources.values()),status='partial',coverage_note='Sixty-four distinct SCARA model codes from eleven current catalogue sections, including cleanroom, protected, inverted and orbit configurations; model suffixes distinguish separate configurations. Partial: non-SCARA robots, controllers, vision, grippers, linear conveyors, autonomous systems and discontinued catalogue remain. No motorcycle, boat or ordinary transport product included solely because Yamaha manufactures it; no family umbrella duplicates added.')
+co['coverage_note']=co['coverage_note'].replace('Sixty-four',str(len(products)))
+(out/'batch-0277.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

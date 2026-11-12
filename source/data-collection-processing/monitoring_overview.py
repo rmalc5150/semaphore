@@ -6,8 +6,10 @@ from monitoring_runbooks import steps
 RETRY = {'authenticated_source_request_failed', 'source_http_429', 'scrape_gateway_http_429',
          'source_http_500', 'source_http_502', 'source_http_503', 'source_http_504',
          'source_changed_refresh_required', 'news_source_changed_refresh_required', 'source_retries_exhausted'}
-COVERAGE = {'historical_designation_date_unavailable', 'market_empty_price_window_unverified', 'unresolved_market_coverage'}
+COVERAGE = {'historical_designation_date_unavailable', 'market_empty_price_window_unverified', 'unresolved_market_coverage', 'github_release_archive_cap'}
 ACTIONS = {
+ 'historical_gap_over_five_days': 'Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold.',
+ 'github_release_archive_cap': 'GitHub exposes only the first 1,000 releases through this route. Keep those records accessible; older release coverage needs a separately verified archive route. Retrying page 11 cannot complete it.',
  'historical_designation_date_unavailable': 'Find dated original designation evidence; otherwise record the historical date as unavailable with its scope and reason. Do not invent dates.',
  'market_empty_price_window_unverified': 'Reconcile empty symbol/date windows against listing and trading calendars; add only evidence-backed exclusions.',
  'unresolved_market_coverage': 'Resolve missing symbol mappings/provider coverage and verify affected date windows in Athena.',
@@ -24,6 +26,14 @@ ACTIONS = {
 }
 
 def overview(active, now, period_start, snapshot=None):
+    active=dict(active)
+    gap_report=(snapshot or {}).get('historical_gaps') or {}
+    for n,gap in enumerate(gap_report.get('gaps',[])):
+        if not gap.get('flag_for_checkup'):continue
+        active['historical-gap:'+str(n)]={'unit':'constellation-history/'+gap['scope'],
+            'code':'historical_gap_over_five_days','severity':'low',
+            'first_seen':gap_report['checked_at'],
+            'detail':gap['start']+' to '+gap['end']+'; '+str(gap['duration_days'])+' calendar days; '+', '.join(gap['reasons'])+'; evidence '+', '.join(gap['evidence'][:3])}
     groups = {}
     retry_groups = {}
     for key, item in sorted(active.items()):
@@ -33,7 +43,11 @@ def overview(active, now, period_start, snapshot=None):
             retry_groups.setdefault(unit, []).append(code)
             continue
         groups.setdefault(unit, []).append(item)
-    subject = f'Optima 24-hour overview: {len(groups)} services need attention' if groups else 'Optima 24-hour overview: no action items'
+    historical_scopes=sum(unit.startswith('constellation-history/') for unit in groups)
+    service_groups=len(groups)-historical_scopes
+    subject = f'Optima 24-hour overview: {service_groups} services need attention' if groups else 'Optima 24-hour overview: no action items'
+    if historical_scopes:
+        subject += f'; {historical_scopes} historical scopes need review'
     local = datetime.fromtimestamp(now,ZoneInfo('Europe/Madrid')).strftime('%Y-%m-%d %H:%M %Z')
     lines=[subject, 'As of: '+local, '', 'ACTION ITEMS' if groups else 'No unresolved action items in the monitored scope.']
     for unit, items in groups.items():
@@ -54,10 +68,24 @@ def overview(active, now, period_start, snapshot=None):
         job=(snapshot or {}).get('jobs',{}).get(unit,{})
         if job.get('progress',{}).get('last_verified_at'):
             lines.append('Latest service-level progress: '+job['progress']['last_verified_at']+' (not proof every failed scope is fixed).')
+    if gap_report:
+        lines += ['', 'HISTORICAL GAP REGISTER',str(gap_report.get('flagged_gaps',0))+' gaps longer than five days require investigation; '+str(gap_report.get('record_only_gaps',0))+' gaps of five days or less are recorded without flags.', 'Gap audit: '+gap_report['checked_at'],gap_report.get('note','')]
+    shutdown=(snapshot or {}).get('historical_autostop') or {}
+    if shutdown:
+        if shutdown.get('failure_count',0):
+            subject=subject.replace('no action items','capture services healthy')+'; '+str(shutdown['failure_count'])+' recorded historical capture failures (as of '+str(shutdown.get('checked_at','unknown'))+')'
+        lines += ['', 'HISTORICAL WORKER AND REPAIR LIST',
+                  'Worker shutdown check: '+str(shutdown.get('status','unknown')),
+                  str(shutdown.get('failure_count',0))+' unresolved capture failures are retained for repair; they do not keep the historical worker running after healthy work finishes.']
+        for failure in shutdown.get('failures',[])[:20]:
+            lines.append('Repair: '+str(failure.get('source') or failure.get('unit') or failure.get('scope','unknown'))+'; '+str(failure.get('start',''))+' to '+str(failure.get('end',''))+'; '+str(failure.get('reason','unknown'))+'; evidence '+str(failure.get('evidence_uri') or failure.get('manifest') or failure.get('job_id','')))
+        lines.append('Full failure handoff: '+shutdown.get('repair_list_uri','research-data/monitoring/health/historical-autostop.json'))
     lines += ['', 'AUTOMATIC RETRIES', f'{len(retry_groups)} services have recent retryable issues; no manual action yet. Persistent issues become action items after six hours.']
     for unit,codes in sorted(retry_groups.items()):lines.append(unit+': '+', '.join(sorted(set(codes))))
     if snapshot:
         jobs=snapshot.get('jobs',{})
+        paused=[u for u,j in jobs.items() if j.get('operator_paused')]
+        if paused:lines += ['', 'PAUSED BY OWNER', ', '.join(paused)+'; retained data is unchanged.']
         lines += ['', 'COLLECTION STATUS', f'{len(jobs)} services monitored; {sum(j.get("activity")=="running" for j in jobs.values())} running; {sum(j.get("activity")=="queued" for j in jobs.values())} queued.',
                   f'{sum(bool(j.get("progress",{}).get("pending")) for j in jobs.values())} services still have outstanding collection/publication work. Backfill is not itself a failure.']
         lines += ['Host inspection: '+str(snapshot.get('checked_at','missing'))]

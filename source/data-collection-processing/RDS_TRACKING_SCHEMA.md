@@ -305,6 +305,8 @@ This returns one row per relationship, so aggregate or select the relevant role 
 
 ## Initial population and rollout
 
+The living implementation plan is [Company and product discovery](ENTITY_DISCOVERY_ROLLOUT_PLAN.md), including the S32 CMS coverage extraction and product-linking process. Add new source-specific population requirements there.
+
 1. Create a staging import from the reviewed company universe, preserving IDs, aliases, external identifiers, listing roles and evidence. Map `source/reference/note` evidence directly; retain pending/rejected states and disabled collection flags. Validate collisions before loading; do not merge by name or ticker alone.
 2. Seed products from reviewed pipeline, catalog and regulatory evidence. Assign one stable `prd_…` ID per resolved asset; add aliases, contextual applications and reviewed company roles. Keep ambiguous matches pending and collection disabled until their identity is resolved.
 3. Start with the four existing sectors. Maintain company sector JSON arrays from reviewed taxonomy entries; this proposal stores current membership, while source evidence and registry snapshots retain historical classification. Add a normalized dated classification table if sector history becomes a direct query requirement.
@@ -338,3 +340,18 @@ The full migration passed first in `tracking_trial_20261014`, an isolated trial 
 All synthetic records and their audit entries were rolled back. **No company or product data has been imported yet.** The reviewed universe import and product discovery remain the next population steps.
 
 [rds-tracking-mysql-smoke.sql](schemas/rds-tracking-mysql-smoke.sql) contains the rollback-only checks. [tracking_mysql_trial.py](tracking_mysql_trial.py) resolves the supplied RDS-managed secret in memory and invokes the MySQL client with certificate verification. Use `--mode inspect` for connection/settings checks and `--mode verify` to rerun installed-schema checks. Installation modes deliberately refuse existing target databases. The public AWS CA bundle is stored in `config/rds-us-east-1-ca-bundle.pem`; it is not a credential.
+
+## People registry extension — October 16, 2026
+
+The additive [people migration](schemas/rds-tracking-people-mysql.sql) is installed on `semaphore.tracking`: `people`, `person_aliases`, `person_identifiers`, `person_companies` and `person_products`, with 15 audit triggers and editor grants. It uses the existing contract's `per_<UUIDv4>` IDs. The original base migration above remains the company/product installation; apply the extension afterward on a new deployment. [Verification](reports/people-registry-2026-10-16-verification.json) used rollback-only data. The tables are empty. See [the population proposal](ENTITY_DISCOVERY_ROLLOUT_PLAN.md#people-registry) for source extraction, identity resolution and dated career/product relationships; population is not yet deployed.
+
+## Product discovery scan state (October 20, 2026)
+
+The executable schema now includes `last_product_scan_at`,
+`last_product_scan_status`, `last_product_scan_error`, and
+`last_product_scan_evidence` on companies. Existing installations are upgraded by
+`product_catalogue_migration.py`, which also installs a supplemental scan audit
+trigger; the original company audit/version triggers remain in place. The time
+records the most recent completed attempt, including partial/failed attempts;
+NULL means never scanned. See [PRODUCT_CATALOGUE.md](PRODUCT_CATALOGUE.md) for
+verified-company eligibility, evidence validation, retries, and execution.

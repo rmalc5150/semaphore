@@ -108,7 +108,7 @@ def committed_ids(store, manifest):
 
 
 def inventory(store, settings, universe, taxonomy, snapshot_date, max_pages=None,
-              refresh=False, client=None):
+              refresh=False, client=None, seen_cache=None):
     scope = {"coverage": COVERAGE, "listing_page_size": 20,
              "snapshot_date": snapshot_date.isoformat()}
     spec = task_spec("nmpa_trials", "registry_inventory", "daily",
@@ -121,7 +121,7 @@ def inventory(store, settings, universe, taxonomy, snapshot_date, max_pages=None
         return {"status": "complete", "already_complete": True,
                 "manifest": str(exc)}
     client = client or EvidenceClient(store, "nmpa_trials")
-    seen = committed_ids(store, run.state)
+    seen = (seen_cache or committed_ids)(store, run.state)
     page_number = json.loads(run.cursor)["page"] if run.cursor else 1
     attempted = 0
     try:
@@ -254,6 +254,8 @@ def parse_args():
                          default=datetime.now(timezone.utc).date())
     collect.add_argument("--max-pages", type=int)
     collect.add_argument("--refresh", action="store_true")
+    collect.add_argument("--follow-daily", action="store_true", help="After baseline completion, discover IDs from current listing pages daily")
+    collect.add_argument("--daily-pages", type=int, default=10)
     plan = subparsers.add_parser("plan")
     plan.add_argument("--manifest-key", required=True)
     plan.add_argument("--cohort-size", type=int, default=200)
@@ -262,6 +264,8 @@ def parse_args():
 
 def main():
     args = parse_args()
+    if getattr(args, 'daily_pages', 1) < 1:
+        raise SystemExit('--daily-pages must be positive')
     if getattr(args, "max_pages", None) is not None and args.max_pages < 1:
         raise SystemExit("--max-pages must be positive")
     if getattr(args, "cohort_size", 1) < 1 or getattr(args, "cohort_size", 1) > 1000:
@@ -273,6 +277,11 @@ def main():
     if args.command == "inventory":
         result = inventory(store, settings, universe, taxonomy, args.date,
                            args.max_pages, args.refresh)
+        if args.follow_daily and result['status'] == 'complete' and args.date < datetime.now(timezone.utc).date():
+            baseline_manifest = result['manifest']
+            result = inventory(store, settings, universe, taxonomy, datetime.now(timezone.utc).date(), args.daily_pages)
+            result['baseline_manifest'] = baseline_manifest
+            result['daily_discovery_scope'] = 'Bounded current listing discovery; not complete daily registry coverage'
     else:
         key, plan = build_plan(store, args.manifest_key, universe, args.cohort_size)
         result = {"status": "planned", "plan_key": key,

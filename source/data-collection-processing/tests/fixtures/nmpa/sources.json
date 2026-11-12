@@ -1,0 +1,16 @@
+[
+  {
+    "filename": "saved-detail.html",
+    "registration": "CTR20221481",
+    "source_url": "https://www.chinadrugtrials.org.cn/clinicaltrials.searchlistdetail.dhtml?reg_no=CTR20221481",
+    "sha256": "c565528cc0cb27ad055f8a9877a0a1f1513edb5e031df88152f7c59733bb995d",
+    "provenance": "Existing saved original HTML"
+  },
+  {
+    "filename": "CTR20231998.html",
+    "registration": "CTR20231998",
+    "source_url": "https://www.chinadrugtrials.org.cn/clinicaltrials.searchlistdetail.dhtml?reg_no=CTR20231998",
+    "sha256": "f5e0a5d9df960c51700925a75f228da9336487ecef8c73926c3999e00459f79f",
+    "provenance": "Official detail page fetched and source-evidence saved on 2026-10-16"
+  }
+]

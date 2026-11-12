@@ -1,0 +1,19 @@
+{
+  "job_id": "99f2aa2ba0e09aab8f1d7d998d9829cef3d029a92009c3673a49ee9469820f3e",
+  "worker_id": "ip-172-31-44-35.ec2.internal:legacy:31722",
+  "checkpoint_verified": true,
+  "source": "clinicaltrials_gov",
+  "records": 100,
+  "raw_objects_verified": 1,
+  "source_status": "partial",
+  "source_gap_reason": "page_limit",
+  "requested_window": {
+    "end": "2016-02-01T00:00:00Z",
+    "start": "2016-01-01T00:00:00Z"
+  },
+  "pagination_exhausted": false,
+  "manifest_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/manifests/collection_runs/source=clinicaltrials_gov/dataset=research_records/run_8389586f-29e4-4a46-9a22-3fb2361c2355/final.json",
+  "manifest_sha256": "df6093db42fa118afaceed5e205a71618efe9df7313c45fe9d40f97c80b5232c",
+  "full_historical_coverage_claimed": false,
+  "collection_paused": true
+}

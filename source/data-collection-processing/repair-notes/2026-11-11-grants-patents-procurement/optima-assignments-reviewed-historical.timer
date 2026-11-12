@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue optima-assignments-reviewed-historical
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=300
+Persistent=true
+Unit=optima-assignments-reviewed-historical.service
+[Install]
+WantedBy=timers.target

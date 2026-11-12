@@ -1,0 +1,538 @@
+{
+  "checked_at": "2026-11-12T11:36:29.921940+00:00",
+  "monitor_checked_at": "2026-11-12T11:35:38.548739Z",
+  "original_alerts": 18,
+  "original_resolved": 14,
+  "original_remaining": 4,
+  "active_alerts": [
+    {
+      "code": "prerequisite_incomplete",
+      "detail": "prerequisite_incomplete",
+      "evidence_at": "2026-11-12T11:21:12.598067Z",
+      "first_seen": "2026-10-26T08:35:38.874580Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-collection-daily.service"
+    },
+    {
+      "code": "market_empty_price_window_unverified",
+      "detail": "Empty price windows remain unverified outside the 52 reviewed window exclusions.",
+      "evidence_at": "2026-10-21T22:05:04Z",
+      "first_seen": "2026-10-26T08:35:38.874580Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-market-collection.service"
+    },
+    {
+      "code": "unresolved_market_coverage",
+      "detail": "Unresolved coverage: daily: 175 symbols; historical: 202 symbols. 52 windows excluded with reviewed evidence.",
+      "evidence_at": "2026-11-12T11:09:57.150542Z",
+      "first_seen": "2026-10-26T08:35:38.874580Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-market-collection.service"
+    },
+    {
+      "code": "progress_stalled",
+      "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+      "evidence_at": "2026-11-12T10:35:38.762182Z",
+      "first_seen": "2026-11-11T03:05:38.918154Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-patents-daily.service"
+    },
+    {
+      "code": "source_changed_refresh_required",
+      "detail": "source_changed_refresh_required",
+      "evidence_at": "2026-11-12T10:56:48Z",
+      "first_seen": "2026-11-12T11:02:45.425943Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-patents-daily.service"
+    }
+  ],
+  "new_active_alerts": [
+    {
+      "code": "source_changed_refresh_required",
+      "detail": "source_changed_refresh_required",
+      "evidence_at": "2026-11-12T10:56:48Z",
+      "first_seen": "2026-11-12T11:02:45.425943Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-patents-daily.service"
+    }
+  ],
+  "high_alert_count": 0,
+  "original_alert_dispositions": [
+    {
+      "unit": "optima-collection-daily.service",
+      "code": "hkex_original_empty_or_oversize",
+      "severity": "low",
+      "detail": "hkex_original_empty_or_oversize",
+      "evidence_at": "2026-11-12T08:53:28.481170Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:21:11Z",
+        "pending": true,
+        "token": "b3c9eeca96c9f65356c999701e1c8ae1d25a4cb0a14e821ae282d95e9cfce990"
+      }
+    },
+    {
+      "unit": "optima-collection-daily.service",
+      "code": "prerequisite_incomplete",
+      "severity": "low",
+      "detail": "prerequisite_incomplete",
+      "evidence_at": "2026-11-12T08:53:28.481170Z",
+      "current_status": "open",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:21:11Z",
+        "pending": true,
+        "token": "b3c9eeca96c9f65356c999701e1c8ae1d25a4cb0a14e821ae282d95e9cfce990"
+      }
+    },
+    {
+      "unit": "optima-daily-health-audit.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-daily-health-audit.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-12T09:00:40.121205Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": null,
+        "pending": false,
+        "token": null
+      }
+    },
+    {
+      "unit": "optima-eodhd-profiles.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-eodhd-profiles.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-12T09:16:23.634331Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:03:25.821523Z",
+        "pending": false,
+        "token": "6c59b0fa1bdaa7fddf60ef0fa1a03987879807abb57cddeb3f6adb4ed4dd4d72"
+      }
+    },
+    {
+      "unit": "optima-market-collection.service",
+      "code": "market_empty_price_window_unverified",
+      "severity": "low",
+      "detail": "Empty price windows remain unverified outside the 52 reviewed window exclusions.",
+      "evidence_at": "2026-10-21T22:05:04Z",
+      "current_status": "open",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:09:35.042428Z",
+        "pending": true,
+        "token": "57ffed0ba05057f692ab3e7630b896442fba7f8e2cfa69c7fc66c99dd827587a"
+      }
+    },
+    {
+      "unit": "optima-market-collection.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-market-collection.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-12T09:16:23.638849Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:09:35.042428Z",
+        "pending": true,
+        "token": "57ffed0ba05057f692ab3e7630b896442fba7f8e2cfa69c7fc66c99dd827587a"
+      }
+    },
+    {
+      "unit": "optima-market-collection.service",
+      "code": "unresolved_market_coverage",
+      "severity": "low",
+      "detail": "Unresolved coverage: daily: 175 symbols; historical: 202 symbols. 52 windows excluded with reviewed evidence.",
+      "evidence_at": "2026-11-11T23:05:26.337377Z",
+      "current_status": "open",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:09:35.042428Z",
+        "pending": true,
+        "token": "57ffed0ba05057f692ab3e7630b896442fba7f8e2cfa69c7fc66c99dd827587a"
+      }
+    },
+    {
+      "unit": "optima-news-collection.service",
+      "code": "news_source_changed_refresh_required",
+      "severity": "low",
+      "detail": "news_source_changed_refresh_required",
+      "evidence_at": "2026-11-10T08:19:58Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:27:57Z",
+        "pending": true,
+        "token": "e10a3c38ad53eb4453fab723d4e9109dee46bea3b9b94a37b60129caa4cd03ea"
+      }
+    },
+    {
+      "unit": "optima-news-collection.service",
+      "code": "progress_stalled",
+      "severity": "low",
+      "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+      "evidence_at": "2026-11-12T09:18:52.898933Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:27:57Z",
+        "pending": true,
+        "token": "e10a3c38ad53eb4453fab723d4e9109dee46bea3b9b94a37b60129caa4cd03ea"
+      }
+    },
+    {
+      "unit": "optima-news-collection.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-news-collection.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-11T18:50:24.228755Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:27:57Z",
+        "pending": true,
+        "token": "e10a3c38ad53eb4453fab723d4e9109dee46bea3b9b94a37b60129caa4cd03ea"
+      }
+    },
+    {
+      "unit": "optima-patents-daily.service",
+      "code": "progress_stalled",
+      "severity": "low",
+      "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+      "evidence_at": "2026-11-12T09:18:52.898933Z",
+      "current_status": "open",
+      "current_evidence": {
+        "last_verified_at": "2026-11-11T22:51:31Z",
+        "pending": true,
+        "token": "1d4381df3b3d49bb6c05270056d4744ebd6b677ad6efb2930641adb6b56a0611"
+      }
+    },
+    {
+      "unit": "optima-patents-daily.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-patents-daily.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-11T18:50:24.275752Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-11T22:51:31Z",
+        "pending": true,
+        "token": "1d4381df3b3d49bb6c05270056d4744ebd6b677ad6efb2930641adb6b56a0611"
+      }
+    },
+    {
+      "unit": "optima-patents-prosecution-publication.service",
+      "code": "progress_stalled",
+      "severity": "low",
+      "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+      "evidence_at": "2026-11-12T09:18:52.898933Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:06:26.820700Z",
+        "pending": true,
+        "token": "305274a4069519a9b2e0c38a3e0edbb223e8e41c0dfe827db5d8fd1c9bccfa73"
+      }
+    },
+    {
+      "unit": "optima-patents-prosecution-publication.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-patents-prosecution-publication.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-11T18:50:24.269384Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:06:26.820700Z",
+        "pending": true,
+        "token": "305274a4069519a9b2e0c38a3e0edbb223e8e41c0dfe827db5d8fd1c9bccfa73"
+      }
+    },
+    {
+      "unit": "optima-patents-prosecution.service",
+      "code": "progress_stalled",
+      "severity": "low",
+      "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+      "evidence_at": "2026-11-12T09:18:52.898933Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T10:57:29Z",
+        "pending": true,
+        "token": "a2a98220a7aa4cd1308737b3e35633cfd3cfea074ef3a80fa5518895f235b418"
+      }
+    },
+    {
+      "unit": "optima-patents-prosecution.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-patents-prosecution.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-12T09:00:40.051049Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T10:57:29Z",
+        "pending": true,
+        "token": "a2a98220a7aa4cd1308737b3e35633cfd3cfea074ef3a80fa5518895f235b418"
+      }
+    },
+    {
+      "unit": "optima-people-collection.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-people-collection.service: Failed with result 'timeout'.",
+      "evidence_at": "2026-11-12T08:19:11.459875Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T10:53:13.348237Z",
+        "pending": false,
+        "token": "8e5fb7ec13a1453350255afb7d215c4ffd3f836bfa36f8cdb31b94735c50338c"
+      }
+    },
+    {
+      "unit": "optima-specialist-daily.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "systemd result: signal",
+      "evidence_at": "2026-11-11T19:35:38.922427Z",
+      "current_status": "resolved_by_verified_recovery",
+      "current_evidence": {
+        "last_verified_at": "2026-11-12T11:31:46Z",
+        "pending": false,
+        "token": "a9e7c0a8fa96d599474f3dec7d07706d2d48529bf7374f85d2bdb05121af0aa8"
+      }
+    }
+  ],
+  "implemented_repairs": [
+    {
+      "component": "HKEX originals",
+      "cause": "39,427,866-byte official PDF exceeded the validator 32 MiB limit although the downloader allows 64 MiB.",
+      "change": "Aligned the validator to the bounded 64 MiB download limit; skip HTML notice parsing for binary PDFs; retain PDF/archive validation and diagnostic details.",
+      "proof": "Recovered task task_a947456ea0a812a3b93647ef1e5d963d051dd3c146248b7c3ccd813990110cf3 progressed from 101 to 212 records, then a further verified page.",
+      "latest_manifest": "manifests/collection_runs/source=hkex_news/dataset=filings/run_a44ca051-986c-46fe-9a76-b20a2941ef70/final.json"
+    },
+    {
+      "component": "t3 capture starvation",
+      "cause": "270 orphaned Crossref/CMS publication staging directories consumed 1,486,574,129 bytes on RAM-backed /tmp.",
+      "change": "Removed only verified orphaned derived staging outputs, restored MemoryHigh to 1,700,000,000 bytes within the unchanged 2,000,000,000-byte hard limit. Moved specialist planning/capture to m7 with bounded discovery; removed hidden inline people publication. Added dedicated EBS temporary directories and cleanup for 15 m7 publishers.",
+      "proof_file": "t3-staging-cleanup-2026-11-12.json",
+      "observed_capture_slice_bytes_after_cleanup": 257056768
+    },
+    {
+      "component": "RDS diagnostic timeout",
+      "cause": "gp2 disk BurstBalance reached zero, with roughly 65\u201380 ms I/O latency and queue depth 13\u201315. A global aggregation over failure JSON amplified storage reads; a failed rollback obscured the original timeout.",
+      "change": "Converted the existing encrypted 20 GiB semaphore volume to gp3, 3,000 IOPS / 125 MiB/s. Replaced global JSON aggregation with covering-index counts and bounded resumable keyset reads on m7. Preserved original database exceptions.",
+      "verified_storage": {
+        "DBInstanceIdentifier": "semaphore",
+        "DBInstanceStatus": "available",
+        "StorageType": "gp3",
+        "AllocatedStorage": 20,
+        "Iops": 3000,
+        "StorageThroughput": 125,
+        "PendingModifiedValues": {},
+        "verified_at": "2026-11-12T11:32:40.857836+00:00"
+      },
+      "observed_post_change_read_latency_seconds": 0.00068,
+      "observed_post_change_disk_queue_depth": 0.2627
+    },
+    {
+      "component": "Historical disk-full failures",
+      "change": "Requeued only 556 unchanged failures matched to exact job IDs and Errno 28 log-opening errors. Verified more than 13 GB free and 16 million free inodes. Preserved old rows before each transaction and respected disabled/paused routes.",
+      "receipt_file": "disk-full-requeue-result-2026-11-12.json",
+      "post_recovery_counts": {
+        "checked_at": 1794482691.2040386,
+        "historical_sources": 123,
+        "historical_counts": {
+          "succeeded": 130804,
+          "pending": 534,
+          "running": 10,
+          "retryable_failed": 30,
+          "blocked": 8
+        },
+        "basis": "Live covering-index per-source counts after journal-proven disk-full requeue; concurrent writes may affect totals."
+      },
+      "remaining_blocked": {
+        "checked_at": 1794483191.2612956,
+        "jobs": [
+          {
+            "job_id": "cdeaccca40d98b163c5df810c524acfe2cd185ca77f8d7385ecb9e9a9dda6637",
+            "source": "legacy:constellation-core-ema-historical.service",
+            "reason": "attempt_budget_exhausted",
+            "error": null,
+            "exit_code": null,
+            "report_uri": null,
+            "updated_at": 1793183901
+          },
+          {
+            "job_id": "35e8665c54ea060ce3496983ab9fa88a46af999c9f0858aff9975d96b897334b",
+            "source": "legacy:constellation-core-ema-historical.service",
+            "reason": "attempt_budget_exhausted",
+            "error": null,
+            "exit_code": null,
+            "report_uri": null,
+            "updated_at": 1793251183
+          },
+          {
+            "job_id": "832774819c7c21c9026750cfcd3f78edbad028d7d31f3f421573c121a3f1e69d",
+            "source": "legacy:constellation-core-ema-historical.service",
+            "reason": "attempt_budget_exhausted",
+            "error": null,
+            "exit_code": null,
+            "report_uri": null,
+            "updated_at": 1793309656
+          },
+          {
+            "job_id": "1639fde4d24ff6b49bffa9fdba180b7db67f589d83ea75960f31678221b1ea89",
+            "source": "legacy:constellation-core-ema-historical.service",
+            "reason": "attempt_budget_exhausted",
+            "error": null,
+            "exit_code": null,
+            "report_uri": null,
+            "updated_at": 1793371396
+          },
+          {
+            "job_id": "4ab3231cbd5d35b59982aa8cc4245553b27961b9771efe428dbc54f6925d0cea",
+            "source": "legacy:constellation-core-ema-historical.service",
+            "reason": "attempt_budget_exhausted",
+            "error": null,
+            "exit_code": null,
+            "report_uri": null,
+            "updated_at": 1793395928
+          },
+          {
+            "job_id": "755770fd3e2e1c36e01fd6542aea14fac008f7e69906b36ee413e818c85070ae",
+            "source": "legacy:constellation-core-ema-historical.service",
+            "reason": "attempt_budget_exhausted",
+            "error": null,
+            "exit_code": null,
+            "report_uri": null,
+            "updated_at": 1793408520
+          },
+          {
+            "job_id": "019cb09a86b6c30591703120f7964666dbcb8782a74d220696f4cd9cace859ab",
+            "source": "legacy:constellation-core-migration-probe.service",
+            "reason": "superseded_executor_diagnostic",
+            "error": null,
+            "exit_code": null,
+            "report_uri": null,
+            "updated_at": 1792999294
+          },
+          {
+            "job_id": "2bd8da7d973f58eb8e257dcdbbfc66a1df61dedb5b191a36539462eed11100b1",
+            "source": "legacy:optima-news-collection-historical.service",
+            "reason": null,
+            "error": null,
+            "exit_code": 1,
+            "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/2bd8da7d973f58eb8e257dcdbbfc66a1df61dedb5b191a36539462eed11100b1/9024d70cd1f24ef4a4b2bb9d2342f843.log",
+            "updated_at": 1794241910
+          }
+        ]
+      }
+    },
+    {
+      "component": "MHRA register",
+      "cause": "Official publication renamed Expired Orphan Register to Non-active Orphan Register on 2026-11-10.",
+      "change": "Accept both exact titles while retaining separate non-active identities and statuses.",
+      "verified_manifest": "manifests/collection_runs/source=uk_mhra/dataset=research_records/run_8f78f178-6cd9-4da5-aa15-6382de6060fc/final.json",
+      "official_evidence": "https://www.gov.uk/government/publications/orphan-registered-medicinal-products"
+    },
+    {
+      "component": "SEC index coverage",
+      "cause": "2026-11-11 was an official EDGAR closure. The validator treated every weekday as a filing day.",
+      "change": "Recognize the explicitly verified 2026 EDGAR holiday calendar; unknown weekday gaps remain unverified.",
+      "verified_manifest": "manifests/collection_runs/source=sec_edgar/dataset=filings/run_1e3147dd-4c8c-4398-8dae-fc90405df199/final.json",
+      "official_evidence": "https://www.sec.gov/submit-filings/filer-support-resources/edgar-calendar"
+    },
+    {
+      "component": "Monitoring and readback",
+      "change": "Daily readback audit now runs independently of the capture workspace. Monitor uses current collector stream identities and closed universe-epoch boundaries, verifies partial-page evidence, and gives prosecution capture the same six-hour queue grace as other shared-workspace collectors. Stalled-progress and execution checks remain active. CMS/FDA overdue dispatchers restarted.",
+      "watchdog_deployment": {
+        "function": "optima-collection-watchdog",
+        "version": "1",
+        "code_sha256": "CEadBJpLBNSHKf1ZK1TMCC4cQlbUjmGlRd9fi9v6S78=",
+        "change": "Shared-workspace prosecution queue grace; current collector scopes and checkpoint-progress settings. Watchdog code and notification routing unchanged."
+      }
+    },
+    {
+      "component": "Collection catch-up scheduling",
+      "cause": "One bounded pass per day would drain the recovered HKEX backlog too slowly.",
+      "change": "Installed an hourly :15 UTC controller timer with up to 60 seconds jitter; dispatch still uses the shared m7 lifecycle guard. Worker remains bounded to one window/page per source and enforces existing provider limits.",
+      "configuration": "systemd/optima-collection-daily.timer.d/60-bounded-catchup.conf"
+    }
+  ],
+  "diagnostics": {
+    "database_report": "database-diagnostic-2026-11-12-complete.json",
+    "job_rows_counted": 372577,
+    "metadata_sources": 161,
+    "historical_sources": 123,
+    "inventory_tables": {
+      "metadata": 27,
+      "historical": 6
+    },
+    "consistency": "Live per-source operational audit, not a point-in-time snapshot. Full table inventory contains labelled row estimates; job counts use covering indexes.",
+    "daily_readback_report": "daily-health-2026-11-12-complete.json",
+    "daily_readback": {
+      "checked_at": "2026-11-12T11:05:05.223433+00:00",
+      "services": 91,
+      "monitored_jobs": 35,
+      "partitions": 101,
+      "observations": 50543445,
+      "publisher_finished_at": "2026-11-12T10:43:08.169082+00:00",
+      "queries": 108,
+      "query_failures": [],
+      "bytes_scanned": 175736587,
+      "shared_readbacks_passed": 101,
+      "s3_manifests": 16,
+      "s3_objects": 428,
+      "s3_failures": [],
+      "receipt_queries": 6485,
+      "receipt_query_failures": [],
+      "expected_unpublished_routes": [],
+      "evidence_prefix": "research-data/monitoring/daily-health/2026-11-12/"
+    }
+  },
+  "market_review": {
+    "owner_decision": "No other licensed provider; keep gaps open for listing/ticker verification.",
+    "classified_windows": {
+      "after_provider_history": 755,
+      "no_provider_history": 283,
+      "before_provider_history": 235
+    },
+    "daily_unresolved_symbols": 175,
+    "historical_unresolved_symbols": 202,
+    "approved_exclusions_preserved": 52,
+    "review_file": "market-coverage-review-2026-11-12.csv",
+    "basis": "Classification uses archived provider price-availability evidence; provider first/last dates alone do not prove listing/delisting or no-trade coverage."
+  },
+  "remaining_work": {
+    "hkex_dependencies": "Hourly bounded m7 passes now continue automatic catch-up. Documents and downstream events wait for complete filing windows; watermarks are not advanced manually.",
+    "patents": "USPTO count drift triggers persisted hourly/sub-hourly refresh. The existing t3 retry is now running; retain alerts until a fresh verified checkpoint.",
+    "metadata_failures": "Source-specific raw-artifact and validation failures remain itemized in the completed database report; acceptance gates and deliberate source pauses remain unchanged.",
+    "historical": "Six older EMA attempt-budget failures, one superseded executor probe, and one historical news failure remain separately identified."
+  },
+  "validation": {
+    "core_tests": "155 passed",
+    "specialist_and_regulatory_fixture_tests": "44 passed using isolated archived configuration",
+    "collection_operations_fixture_tests": "17 passed using isolated archived configuration",
+    "disk_full_recovery_tests": "2 passed",
+    "regulatory_enrichment_tests": "11 passed",
+    "watchdog_policy_tests": "30 passed",
+    "installed_unit_validation": "systemd-analyze verify succeeded on the changed m7 and t3 units"
+  },
+  "source_pauses_preserved": [
+    "reddit",
+    "bluesky_search",
+    "bluesky_company_accounts",
+    "bluesky_company_posts",
+    "bluesky_company_events",
+    "github_sdk",
+    "marketaux"
+  ],
+  "separate_findings": {
+    "code_backup": "A fake credential in a test fixture was corrected without weakening the scanner. A read-only backup selection check now stops at generated constellation/expansion/public-status.json exceeding the 10 MiB source-file cap. No Git or backup upload was invoked.",
+    "optional_patent_capture_m7_preflight": "No migration performed. The m7 role lacks Secrets Manager access to the USPTO secret; existing t3 capture remains configured and running. Moving these API clients also requires verified capture-prefix permissions and cross-host quota coordination."
+  },
+  "owner_action_today": "No IAM change or manual checkpoint reset is required for implemented repairs. Market gaps remain open per owner instruction."
+}

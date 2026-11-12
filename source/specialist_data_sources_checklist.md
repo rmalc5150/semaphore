@@ -9,7 +9,7 @@ Daily public-source checks and hourly resumable historical backfills are enabled
 Daily search supersedes the weekly trigger, retaining the accepted 12-query scope and USD1 per-run stop budget.
 Full historical, product/entity, private/licensed-field and training readiness remain incomplete.
 
-**October 9 update:** use the [current list of all 67 sources and how to check them](data-collection-processing/reports/weekly-readiness-2026-10-09/data-sources-and-checks.md),
+**October 9 update:** use the [current list of all 67 sources and how to check them](data-collection-processing/ENTITY_DISCOVERY_ROLLOUT_PLAN.md#source-acceptance),
 [filterable checklist](data-collection-processing/reports/weekly-readiness-2026-10-09/source-checklist.csv) and
 [readiness results](data-collection-processing/reports/weekly-readiness-2026-10-09/readiness-report.md).
 The October 5 tables below remain dated baseline evidence. The update includes live AWS queries,

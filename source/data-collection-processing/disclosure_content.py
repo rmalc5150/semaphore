@@ -23,11 +23,119 @@ def _pdf(raw, filename, kind):
             for i, page in enumerate(reader.pages)]
 
 
+def issuer_removed_notice(raw, parent):
+    from urllib.parse import urlsplit
+    from disclosure_collection import visible_text
+    url = urlsplit(parent.get('source_url', ''))
+    return (parent.get('source') == 'hkex_news' and url.scheme == 'https'
+            and url.hostname == 'www1.hkexnews.hk' and url.path == '/listedco/listconews/sehk/dod/en.html'
+            and 'The document that you are looking for has been removed by the listed issuer and is no longer available.'
+            in visible_text(raw.decode('utf-8', errors='replace')))
+
+
+def _word_documents(raw):
+    import zipfile
+    import xml.etree.ElementTree as ET
+    with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+        members = archive.infolist()
+        require(len(members) <= 10000 and sum(m.file_size for m in members) <= 64 * 1024 * 1024,
+                'disclosure_workbook_size_limit')
+        if 'word/document.xml' not in archive.namelist():
+            return None
+        require('[Content_Types].xml' in archive.namelist(), 'disclosure_unsupported_zip')
+        names = [n for n in archive.namelist() if re.fullmatch(r'word/(document|header[0-9]+|footer[0-9]+|footnotes|endnotes)\.xml', n)]
+        documents = []
+        ns = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
+        for name in sorted(names, key=lambda n: (n != 'word/document.xml', n)):
+            tree = ET.fromstring(archive.read(name))
+            paragraphs = []
+            for paragraph in tree.iter(ns+'p'):
+                fragments = []
+                for node in paragraph.iter():
+                    if node.tag == ns+'t':fragments.append(node.text or '')
+                    elif node.tag == ns+'tab':fragments.append('\t')
+                    elif node.tag in (ns+'br', ns+'cr'):fragments.append('\n')
+                paragraphs.append(''.join(fragments))
+            documents.append({'filename': name, 'document_type': 'word_processing', 'page': None,
+                              'text': '\n'.join(paragraphs), 'classification_eligible': True})
+        return documents
+
+
 def extract(raw, parent):
     from disclosure_collection import visible_text
     from edinet_pipeline import decode_text
-    documents, skipped = [], []
-    if raw.startswith(b'%PDF-'):
+    documents, skipped, presentation_adjustments = [], [], []
+    if issuer_removed_notice(raw, parent):
+        documents = [{'filename': 'issuer-removal-notice.html', 'document_type': 'publisher_removal_notice',
+                      'page': None, 'text': visible_text(raw.decode('utf-8')), 'classification_eligible': False}]
+        format_name = 'publisher_removed_document'
+    elif raw.startswith(b'PK\x03\x04') and parent['source'] == 'hkex_news' and (word_documents := _word_documents(raw)) is not None:
+        documents = word_documents
+        format_name = 'docx'
+    elif raw.startswith(b'PK\x03\x04') and parent['source'] == 'hkex_news':
+        # HKEX publishes spreadsheet filings as well as PDFs. Preserve cells,
+        # coordinates and sheet boundaries; never decode ZIP bytes as text.
+        import zipfile
+        from openpyxl import load_workbook
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            members = archive.infolist()
+            require(len(members) <= 10000 and sum(m.file_size for m in members) <= 64 * 1024 * 1024,
+                    'disclosure_workbook_size_limit')
+            require('[Content_Types].xml' in archive.namelist() and 'xl/workbook.xml' in archive.namelist(),
+                    'disclosure_unsupported_zip')
+        # Some HKEX generators emit a presentation-only extension rejected by
+        # openpyxl. Normalize a temporary copy; original evidence stays intact.
+        import xml.etree.ElementTree as ET
+        normalized = io.BytesIO()
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive, zipfile.ZipFile(normalized, 'w', zipfile.ZIP_DEFLATED) as output:
+            for member in archive.infolist():
+                body = archive.read(member)
+                if member.filename.startswith('xl/worksheets/') and member.filename.endswith('.xml'):
+                    tree = ET.fromstring(body)
+                    changed = False
+                    for element in tree.iter():
+                        if element.tag.rsplit('}', 1)[-1] == 'sheetFormatPr' and 'defaultColWidthPt' in element.attrib:
+                            del element.attrib['defaultColWidthPt']
+                            changed = True
+                            presentation_adjustments.append({'member': member.filename, 'attribute': 'defaultColWidthPt'})
+                    # Some generators declare A1 despite thousands of stored
+                    # cells. Read-only openpyxl would silently omit those cells.
+                    from openpyxl.utils.cell import coordinate_to_tuple, get_column_letter
+                    ns = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'
+                    coordinates = [coordinate_to_tuple(c.attrib['r']) for c in tree.iter(ns+'c') if 'r' in c.attrib]
+                    if coordinates:
+                        rows, cols = max(r for r,c in coordinates), max(c for r,c in coordinates)
+                        require(rows * cols <= 200000, 'disclosure_workbook_cell_limit')
+                        dimension = tree.find(ns+'dimension')
+                        ref = 'A1:' + get_column_letter(cols) + str(rows)
+                        if dimension is not None and dimension.get('ref') not in (ref, 'A1' if rows == cols == 1 else ref):
+                            dimension.set('ref', ref); changed = True
+                            presentation_adjustments.append({'member':member.filename,'attribute':'dimension.ref'})
+                    if changed:
+                        body = ET.tostring(tree, encoding='utf-8', xml_declaration=True)
+                output.writestr(member, body)
+        normalized.seek(0)
+        workbook = load_workbook(normalized, read_only=True, data_only=False, keep_links=False)
+        try:
+            count = 0
+            for sheet in workbook:
+                require((sheet.max_row or 0) * (sheet.max_column or 0) <= 200000,
+                        'disclosure_workbook_cell_limit')
+                lines = []
+                for row in sheet.iter_rows():
+                    count += len(row)
+                    require(count <= 200000, 'disclosure_workbook_cell_limit')
+                    cells = [cell.coordinate + '=' + str(cell.value) for cell in row if cell.value is not None]
+                    if cells:
+                        lines.append('\t'.join(cells))
+                documents.append({'filename':'report.xlsx', 'sheet_name':sheet.title,
+                    'document_type':'spreadsheet', 'page':None,
+                    'text':'Sheet: ' + sheet.title + '\n' + '\n'.join(lines),
+                    'classification_eligible':True})
+        finally:
+            workbook.close()
+        format_name = 'xlsx'
+    elif raw.startswith(b'%PDF-'):
         documents = _pdf(raw, 'report.pdf', parent.get('payload', {}).get('form'))
         format_name = 'pdf'
     else:
@@ -107,10 +215,12 @@ def extract(raw, parent):
     text = '\n'.join(parts)
     info = {'format': format_name, 'documents': len(documents), 'text_documents': sum(bool(d['text'].strip()) for d in documents),
         'skipped_files': skipped, 'ocr_performed': False, 'content_version': VERSION}
+    if presentation_adjustments:
+        info['ignored_presentation_attributes'] = presentation_adjustments
     if format_name == 'pdf':
         info.update(pages=len(documents), skipped_pages=[d['page'] for d in documents if not d['text'].strip()],
             text_pages=sum(bool(d['text'].strip()) for d in documents), skipped_page_reason='no_extractable_text')
-    if format_name != 'pdf':
+    if format_name not in ('pdf', 'publisher_removed_document'):
         require(len(text.strip()) >= 40, 'empty_or_unparseable_document')
     return {'version': VERSION, 'text': text, 'documents': documents, 'chunks': chunks, 'document_spans': spans,
         'extraction': info, 'text_sha256': hashlib.sha256(text.encode()).hexdigest(),

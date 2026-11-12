@@ -112,19 +112,16 @@ def main():
     with (OUT / 'source-checklist.csv').open('w', newline='') as handle:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
         writer.writeheader(); writer.writerows(rows)
-    lines = ['# Data sources to check and how', '',
-        'Updated October 9, 2026. This list retains all 67 sources and their provider-specific checks. The global enabled universe is provisional; samples cover three verified companies per sector. No source is certified complete for 2021-present history.', '',
-        '[Filterable CSV](source-checklist.csv) · [Acceptance records](source-acceptance-records.json) · [Original endpoint catalog](../../../specialist_data_collection_plan.md#api-and-site-access-catalog)', '',
-        'For each source: declare entity/query/date scope; verify original IDs, dates, fields and rights; save immutable raw evidence and hashes; reconcile required versus committed versus published windows; compare a bounded Athena query to manifest counts; test replay and revisions. Retain unsupported history, verified-empty responses and explained exclusions separately. The shared sample table is a pilot publication, not the provider’s production table.', '',
-        '| Source | Where and how to check | Current decision | First remaining task and acceptance |',
-        '|---|---|---|---|']
-    def cell(text):
-        return str(text).replace('|', '\\|').replace('\n', ' ')
-    for row in rows:
-        lines.append('| ' + ' | '.join(map(cell, [row['source_id_name_and_data'], row['planned_acquisition'] + ' Check: ' + row['verification_required'],
-            row['status'] + (f"; {row['new_sample_rows']} new query-verified sample rows" if row['new_sample_rows'] else '; see baseline and live evidence'),
-            NEXT[row['source_id']] + ' Review: ' + row['review_date']])) + ' |')
-    (OUT / 'data-sources-and-checks.md').write_text('\n'.join(lines) + '\n')
+    # Keep the maintained plan as the only narrative/checklist destination.
+    # Existing CSV and source-acceptance-records.json remain the generated data.
+    save('source-review-index.json', {
+        'generated_at': now(),
+        'plan': 'ENTITY_DISCOVERY_ROLLOUT_PLAN.md#source-quality-contracts',
+        'sql': 'ENTITY_DISCOVERY_ROLLOUT_PLAN.md#sql-checks',
+        'source_count': len(rows),
+        'acceptance_records': 'source-acceptance-records.json',
+        'checklist_csv': 'source-checklist.csv',
+    })
     progress = []
     for key, value in audit['progress'].items():
         if isinstance(value, dict) and value.get('next_date'):
@@ -141,7 +138,7 @@ October 9, 2026. The source inventory and bounded pilots are complete; broad sou
 
 ## Completed checks and captures
 
-- Reviewed all S01–S67 rows and recorded requirement decisions, provider-specific checks, evidence, owner, first remaining task and October 12–16 review date in [the source list](data-sources-and-checks.md) and [CSV](source-checklist.csv).
+- Reviewed all S01–S67 rows and recorded requirement decisions, provider-specific checks, evidence, owner, first remaining task and October 12–16 review date in [the unified source acceptance plan](../../ENTITY_DISCOVERY_ROLLOUT_PLAN.md#source-quality-contracts) and [CSV](source-checklist.csv).
 - Executed 18 successful bounded recent/earlier publication queries across Q1–Q9. Inspected fields in 16 recent/earlier windows and separately checked nonempty disclosure and personnel releases. Earlier receipts are not a January 2021 coverage audit. [Live audit](live-audit.json), [field samples](existing-field-samples.json), [nonempty checks](nonempty-field-samples.json).
 - Completed DataForSEO keyword history, trends and 12 desktop Google organic snapshots. Actual total provider cost: **USD 0.03864**. Repeated pilot execution used saved responses with no additional paid requests. [Cost](dataforseo-cost.json), [query scope](scope.json), [date coverage](sample-coverage.json).
 - Published **{publication['rows']} normalized rows** spanning {len(counts)} source IDs after raw S3 hash read-back and Parquet round-trip verification. Athena returned the expected count for every source/dataset group. Table: `{publication['database']}.{publication['table']}`; workgroup `{publication['workgroup']}`; filter `release_id='{publication['release_id']}'`. [Publication and query receipts](publication.json).

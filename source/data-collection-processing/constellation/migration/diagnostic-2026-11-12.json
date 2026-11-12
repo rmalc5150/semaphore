@@ -1,0 +1,302 @@
+{
+  "checked_at": "2026-11-12T09:18:52.898933Z",
+  "retirement": {
+    "retired_units": [
+      "optima-bluesky-companies.service",
+      "optima-caiso-daily.service",
+      "optima-company-auto-review.service",
+      "optima-company-catalogue-bootstrap.service",
+      "optima-company-catalogue.service",
+      "optima-company-identity-enrichment.service",
+      "optima-company-web-enrichment.service",
+      "optima-doe-storage-daily.service",
+      "optima-github-company-mapping.service",
+      "optima-grant-daily.service",
+      "optima-nist-robotics-matching.service",
+      "optima-trade-screening-enrichment.service"
+    ],
+    "removed_runtime_files": [
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/nasa_power_weather_and_solar_resource/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/nasa_power_weather_and_solar_resource/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/datacite_dissertations_datasets_software_and_usage/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/datacite_dissertations_datasets_software_and_usage/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/biorxiv_medrxiv_preprints/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/biorxiv_medrxiv_preprints/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/zenodo_research_artifacts_and_usage/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/zenodo_research_artifacts_and_usage/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/hugging_face_hub_models_and_datasets/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/hugging_face_hub_models_and_datasets/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/epo_ops_patent_legal_events/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/epo_ops_patent_legal_events/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/fred_alfred_series_and_vintages/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/fred_alfred_series_and_vintages/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/south_korea_fss_opendart/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/south_korea_fss_opendart/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/un_comtrade/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/un_comtrade/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/ember_electricity_demand_and_generation/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/ember_electricity_demand_and_generation/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/wto_timeseries_api/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/wto_timeseries_api/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/wto_quantitative_restrictions_api/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/wto_quantitative_restrictions_api/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/wto_eping_sps_tbt_notifications/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/wto_eping_sps_tbt_notifications/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/copernicus_era5_era5_land/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/copernicus_era5_era5_land/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/us_census_international_trade_api/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/us_census_international_trade_api/tracking_mysql_trial.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/usda_fas_production_supply_and_distribution/rds_company_directory.py",
+      "/home/ec2-user/data-collection-processing/constellation/daily-workspaces/usda_fas_production_supply_and_distribution/tracking_mysql_trial.py"
+    ],
+    "recovery_archive": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/retirements/tracking/t3-954977e5e1564b8920d088a9c6082d8bd07f7f51c4f541462662b55479b29ea5.tgz",
+    "raw_data_deleted": false,
+    "unit_archive": "research-data/constellation-backfill/retirements/tracking/t3-units-590d44910136c41e3e4399be7ad85abbdd758b30ef4c300fee1844cfd0c44ed5.tgz",
+    "product_search_preserved": true
+  },
+  "source_removal": {
+    "paths": [
+      "bluesky_company_daily.py",
+      "caiso_pipeline.py",
+      "company_auto_review.py",
+      "company_catalogue_pipeline.py",
+      "company_identity_evidence.py",
+      "constellation/provision_processing_login.py",
+      "doe_storage_pipeline.py",
+      "enrich_company_identities.py",
+      "freeze_company_enrichment_baseline.py",
+      "github_company_mapping.py",
+      "grant_pipeline.py",
+      "nist_robotics_match.py",
+      "product_catalogue_backfill.py",
+      "product_catalogue_migration.py",
+      "product_catalogue_pipeline.py",
+      "product_web_registry.py",
+      "rds_company_directory.py",
+      "review_company_catalogue.py",
+      "systemd/optima-bluesky-companies.service",
+      "systemd/optima-bluesky-companies.timer",
+      "systemd/optima-caiso-backfill.service",
+      "systemd/optima-caiso-backfill.timer",
+      "systemd/optima-caiso-daily.service",
+      "systemd/optima-caiso-daily.timer",
+      "systemd/optima-company-auto-review.service",
+      "systemd/optima-company-auto-review.timer",
+      "systemd/optima-company-catalogue-bootstrap.service",
+      "systemd/optima-company-catalogue-bootstrap.timer",
+      "systemd/optima-company-catalogue.service",
+      "systemd/optima-company-catalogue.timer",
+      "systemd/optima-company-identity-enrichment.service",
+      "systemd/optima-company-identity-enrichment.timer",
+      "systemd/optima-company-web-enrichment.service",
+      "systemd/optima-company-web-enrichment.timer",
+      "systemd/optima-doe-storage-backfill.service",
+      "systemd/optima-doe-storage-backfill.timer",
+      "systemd/optima-doe-storage-daily.service",
+      "systemd/optima-doe-storage-daily.timer",
+      "systemd/optima-github-company-mapping.service",
+      "systemd/optima-github-company-mapping.timer",
+      "systemd/optima-grant-backfill.service",
+      "systemd/optima-grant-backfill.timer",
+      "systemd/optima-grant-daily.service",
+      "systemd/optima-grant-daily.timer",
+      "systemd/optima-nist-robotics-matching.service",
+      "systemd/optima-nist-robotics-matching.timer",
+      "systemd/optima-product-catalogue-backfill.service",
+      "systemd/optima-trade-screening-enrichment.service",
+      "systemd/optima-trade-screening-enrichment.timer",
+      "test_bluesky_companies.py",
+      "test_caiso_enrichment.py",
+      "test_company_auto_review.py",
+      "test_company_catalogue.py",
+      "test_company_identity_evidence.py",
+      "test_doe_storage.py",
+      "test_github_company_mapping.py",
+      "test_grant_enrichment.py",
+      "test_product_catalogue.py",
+      "test_trade_screening_enrichment.py",
+      "tracking_mysql_trial.py",
+      "tracking_people_migration.py",
+      "tracking_registry_reset.py",
+      "trade_screening_daily.py",
+      "verify_product_catalogue.py"
+    ],
+    "local_archive": "/home/ec2-user/data-collection-processing/constellation/migration/retired-source-backups/tracking-e4adc5f9ace9bdcaf38cfc2da17a7cf1f64a5aa1450d11345cb336dcff50f1f6.tgz"
+  },
+  "committed_athena": {
+    "activity": "idle",
+    "activity_seconds": 0,
+    "evidence_keys": [
+      "athena-committed/latest-report.json"
+    ],
+    "execution_host": {
+      "instance_id": "i-06241bd1c4e91c2fc",
+      "unit": "optima-m7-committed-athena.service"
+    },
+    "exit_status": 0,
+    "failure_events": [],
+    "issues": [],
+    "last_start_age_seconds": 2679.4673535341863,
+    "progress": {
+      "last_verified_at": "2026-11-12T08:57:58Z",
+      "pending": false,
+      "token": "4e04d8e6a06b741552bf69065fda289e48725dc796c26e117ffac15be7c83827"
+    },
+    "result": "success",
+    "timer_enabled": "enabled",
+    "timer_state": "active"
+  },
+  "remaining_alerts": [
+    {
+      "unit": "optima-collection-daily.service",
+      "code": "hkex_original_empty_or_oversize",
+      "severity": "low",
+      "detail": "hkex_original_empty_or_oversize",
+      "evidence_at": "2026-11-12T08:53:28.481170Z"
+    },
+    {
+      "unit": "optima-collection-daily.service",
+      "code": "prerequisite_incomplete",
+      "severity": "low",
+      "detail": "prerequisite_incomplete",
+      "evidence_at": "2026-11-12T08:53:28.481170Z"
+    },
+    {
+      "unit": "optima-daily-health-audit.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-daily-health-audit.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-12T09:00:40.121205Z"
+    },
+    {
+      "unit": "optima-eodhd-profiles.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-eodhd-profiles.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-12T09:16:23.634331Z"
+    },
+    {
+      "unit": "optima-market-collection.service",
+      "code": "market_empty_price_window_unverified",
+      "severity": "low",
+      "detail": "Empty price windows remain unverified outside the 52 reviewed window exclusions.",
+      "evidence_at": "2026-10-21T22:05:04Z"
+    },
+    {
+      "unit": "optima-market-collection.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-market-collection.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-12T09:16:23.638849Z"
+    },
+    {
+      "unit": "optima-market-collection.service",
+      "code": "unresolved_market_coverage",
+      "severity": "low",
+      "detail": "Unresolved coverage: daily: 175 symbols; historical: 202 symbols. 52 windows excluded with reviewed evidence.",
+      "evidence_at": "2026-11-11T23:05:26.337377Z"
+    },
+    {
+      "unit": "optima-news-collection.service",
+      "code": "news_source_changed_refresh_required",
+      "severity": "low",
+      "detail": "news_source_changed_refresh_required",
+      "evidence_at": "2026-11-10T08:19:58Z"
+    },
+    {
+      "unit": "optima-news-collection.service",
+      "code": "progress_stalled",
+      "severity": "low",
+      "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+      "evidence_at": "2026-11-12T09:18:52.898933Z"
+    },
+    {
+      "unit": "optima-news-collection.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-news-collection.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-11T18:50:24.228755Z"
+    },
+    {
+      "unit": "optima-patents-daily.service",
+      "code": "progress_stalled",
+      "severity": "low",
+      "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+      "evidence_at": "2026-11-12T09:18:52.898933Z"
+    },
+    {
+      "unit": "optima-patents-daily.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-patents-daily.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-11T18:50:24.275752Z"
+    },
+    {
+      "unit": "optima-patents-prosecution-publication.service",
+      "code": "progress_stalled",
+      "severity": "low",
+      "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+      "evidence_at": "2026-11-12T09:18:52.898933Z"
+    },
+    {
+      "unit": "optima-patents-prosecution-publication.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-patents-prosecution-publication.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-11T18:50:24.269384Z"
+    },
+    {
+      "unit": "optima-patents-prosecution.service",
+      "code": "progress_stalled",
+      "severity": "low",
+      "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+      "evidence_at": "2026-11-12T09:18:52.898933Z"
+    },
+    {
+      "unit": "optima-patents-prosecution.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-patents-prosecution.service: Failed with result 'signal'.",
+      "evidence_at": "2026-11-12T09:00:40.051049Z"
+    },
+    {
+      "unit": "optima-people-collection.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "optima-people-collection.service: Failed with result 'timeout'.",
+      "evidence_at": "2026-11-12T08:19:11.459875Z"
+    },
+    {
+      "unit": "optima-specialist-daily.service",
+      "code": "service_failed",
+      "severity": "low",
+      "detail": "systemd result: signal",
+      "evidence_at": "2026-11-11T19:35:38.922427Z"
+    }
+  ],
+  "targeted_tests_passed": 117,
+  "worker_volume_gib": 20,
+  "shared_autostop_active": true,
+  "known_caveat": "Capture and coverage alerts listed here remain unresolved; no blanket historical-coverage completion is asserted.",
+  "iam_inline_characters": 10092,
+  "iam_original_grants_preserved": true,
+  "high_alert_count": 0,
+  "shared_eodhd_quota": {
+    "daily_ceiling": 98000,
+    "requests_per_minute": 900,
+    "backend": "S3 conditional writes"
+  },
+  "full_suite_limitation": "A broader research-contract test requires the evicted config/company-universe.v0.1.json fixture. The 117 targeted repair tests passed.",
+  "eodhd_inventory_recovery": {
+    "status": "complete",
+    "finished_at": "2026-11-12T09:19:50Z",
+    "records": 142049,
+    "exchanges": 66,
+    "manifest": "manifests/collection_runs/source=eodhd/dataset=listing_inventory/run_37ade9ce-93cd-49c8-9557-c4c2afec81f3/final.json"
+  },
+  "final_service_checks": {
+    "t3_failed_units": 0,
+    "m7_failed_units": 0
+  },
+  "database_diagnostic_limitation": "Latest completed summary was from 06:49 UTC; a fresh direct failure-cause aggregation timed out. No claim of a fresh full database audit is made."
+}

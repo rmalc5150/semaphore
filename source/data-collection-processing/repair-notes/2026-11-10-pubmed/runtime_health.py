@@ -1,0 +1,5 @@
+import boto3,json
+from pathlib import Path
+p=Path(__file__).parent;s=boto3.client('ssm',region_name='us-east-1')
+cmd="systemctl is-active constellation-backfill@1.service optima-metadata-worker.timer optima-disclosure-daily.timer optima-disclosure-historical.timer optima-rss-content-repair.timer; systemctl list-units 'constellation-backfill@*.service' 'constellation-legacy-worker@*.service' 'constellation-public-worker@*.service' --no-pager; systemctl --failed --no-pager; systemctl show optima-metadata-worker.service -p Result -p ExecMainStatus -p ActiveState; journalctl -u optima-metadata-worker.service -n 4 --no-pager; systemctl show optima-pubmed-daily.service -p ActiveState -p Result -p ExecMainStatus; systemctl list-timers optima-pubmed-daily.timer --no-pager; journalctl -u optima-pubmed-daily.service -n 10 --no-pager"
+r=s.send_command(InstanceIds=['i-06241bd1c4e91c2fc'],DocumentName='AWS-RunShellScript',Parameters={'commands':[cmd]},TimeoutSeconds=60);(p/'worker-check-command.json').write_text(json.dumps({'command_id':r['Command']['CommandId'],'instance':'i-06241bd1c4e91c2fc'},indent=2));print(r['Command']['CommandId'])

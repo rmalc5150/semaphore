@@ -1,0 +1,20 @@
+from research_helpers import *
+a=ev('https://lifesciences.tecan.com/products/liquid_handling_and_automation','Current manufacturer catalogue identifies dispensing products and Freedom EVO end-of-sale.')
+b=ev('https://lifesciences.tecan.com/fluent-laboratory-automation-workstation','Manufacturer details three Fluent sizes, software and optional modules.')
+c=ev('https://lifesciences.tecan.com/products/reader_and_washer/microplate_readers/reader_comparison?p=tab--2','Manufacturer comparison identifies named reader models; no availability or detection-mode claims inferred from blank table cells.')
+d=ev('https://lifesciences.tecan.com/software-overview','Manufacturer lists instrument software and analytics offerings. Legacy EVO software sales status unresolved.')
+e=ev('https://lifesciences.tecan.com/products/veya-effortless-automation','Manufacturer offers Veya and Veya Dx; proteomics application explicitly not yet available for sale. Third-party compatible kits not attributed to Tecan.')
+products=[]
+def add(n,desc,src,typ='instrument',life='commercial',**kw): products.append(p(n,desc,src,life=life,typ='product',sub='research_tools',**kw))
+for n,desc in [('Uno Single Cell Dispenser','Single-cell laboratory dispensing instrument.'),('Duo Digital Dispenser','Low-volume reagent and cell dispensing instrument.'),('D300e Digital Dispenser','Picoliter-to-microliter laboratory dispenser.')]:add(n,desc,a)
+add('Freedom EVO','Legacy laboratory automation family; manufacturer marks the portfolio end-of-sale. Installed systems may remain supported.',a,life='discontinued')
+for size in [480,780,1080]:add(f'Fluent {size}',f'Fluent {size} configurable laboratory liquid-handling workstation.',b,attributes={'product_family':'Fluent'})
+add('Veya','Laboratory liquid handling platform; application suites retained as configurations rather than duplicate instruments.',e,attributes={'configurations':['nucleic acid purification','NGS library preparation','cell biology'],'not_yet_available_application':'proteomics'})
+add('Veya Dx','Veya diagnostic workflow instrument configuration.',e)
+for n in ['Spark Cyto','Spark','Sunrise','Infinite F50','Infinite M Nano','Infinite Lumi','Infinite M Nano Plus','Infinite F Nano Plus','Infinite M Plex','Infinite F Plex']:
+ add(n,f'{n} laboratory microplate reader.',c)
+for n,desc in [('Tecan Introspect','Laboratory instrument utilization analytics.'),('FlowPilot','Robotic work-cell workflow scheduling.'),('vControl','Veya instrument control software.'),('FluentControl','Fluent workstation control software.'),('i-control','Infinite reader control software.'),('Tecan Magellan','Microplate reader data analysis software.')]:add(n,desc,d,typ='software')
+add('Fluent Gx Assurance Software','Optional Fluent software supporting regulated laboratory workflows.',b,typ='software')
+for n,desc in [('Freedom EVOware','Legacy Freedom EVO application software.'),('Freedom EVOware Sample Tracking','Legacy EVOware tracking module.'),('Freedom EVOware Normalization Wizard','Legacy nucleic-acid normalization setup module for research use.'),('Freedom EVOlution','Legacy sample and assay preparation software.')]:add(n,desc,d,typ='software',life='unknown')
+co=dict(company_id='cmp_336b7d9a-96df-43d1-af5d-a405ab2f3e6c',products=products,evidence=[a,b,c,d,e],status='partial',coverage_note='Core liquid handlers, 10 reader models and named software recorded. Partial: DreamPrep, Resolvex, washers, diagnostic and partnering portfolios, Cavro components, consumables, accessories, legacy instrument variants and NGS reagent phaseouts remain to review. Infinite 200 PRO umbrella not duplicated alongside named models. Fluent Gx retained as software option; application recipes and third-party compatible kits not duplicated as Tecan products. Historical EVO software commercial status unresolved. Veya proteomics not treated as launched.')
+(out/'batch-0415.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

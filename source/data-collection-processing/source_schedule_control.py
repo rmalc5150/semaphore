@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 
 from collection_storage import StorageSettings, write_json
 from research_contract import ROOT, load_json, digest
+from historical_policy import historical_start
 
 COLUMNS = [(n, 'string') for n in ('source_id', 'mode', 'checked_at', 'status',
     'capture_timer', 'timer_state', 'athena_database', 'api_or_url', 'priority',
@@ -81,7 +82,7 @@ def check(mode, inventory, settings, store, glue):
             'status': status, 'capture_timer': timer or '', 'timer_state': timer_state,
             'athena_database': db, 'api_or_url': source['api_or_url'], 'priority': source['priority'],
             'remaining_requirement': source['remaining_requirement'],
-            'historical_start_target': route['archive_start_target'] or '', 'full_scope_complete': False}
+            'historical_start_target': historical_start().isoformat() if mode == 'historical' else route['archive_start_target'] or '', 'full_scope_complete': False}
         # One JSON object per line for Athena; immutable receipts are elsewhere.
         body = (json.dumps(result, sort_keys=True) + '\n').encode()
         key = source['capture_status_s3_prefix'] + mode + '.json'

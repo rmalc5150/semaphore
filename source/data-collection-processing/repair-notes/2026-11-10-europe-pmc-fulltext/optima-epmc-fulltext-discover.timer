@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue Europe PMC full-text discover
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=120
+Persistent=true
+Unit=optima-epmc-fulltext-discover.service
+[Install]
+WantedBy=timers.target

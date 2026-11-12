@@ -1,0 +1,15 @@
+[Unit]
+Description=Bounded CMS catalog capture and metadata handoff
+After=network-online.target
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/opt/constellation/source
+ExecStart=/opt/constellation/legacy-venv/bin/python -B cms_payments_resumed.py --mode catalog
+Slice=constellation-workers.slice
+MemoryMax=536870912
+MemorySwapMax=0
+CPUQuota=25%
+TimeoutStartSec=360
+Environment=CONSTELLATION_SHARED_HTTP_LIMITS=1
+Environment=CONSTELLATION_ROLE=worker

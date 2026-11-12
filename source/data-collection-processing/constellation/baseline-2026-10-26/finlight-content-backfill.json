@@ -1,0 +1,12 @@
+{
+  "start": "2021-01-01",
+  "end_exclusive": "2026-10-15",
+  "storage_config": "config/collection-storage.s3.json",
+  "max_articles_per_invocation": 10,
+  "max_batches_per_invocation": 100,
+  "max_provider_requests_per_day": 1000,
+  "max_attempts": 3,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Finlight articles found by the existing four-sector English/Chinese searches, published January 1, 2021 through October 14, 2026. Original publisher HTML or provider article responses and extracted full-body text, hashes and retrieval chunks are saved; summaries are never substituted for full bodies. Inaccessible, restricted or truncated articles remain explicit gaps after bounded retries. Completion waits for the existing archive discovery, metadata publication, daily catch-up and committed catalog to catch up, and every indexed article to be processed. This is scoped search coverage, not all worldwide news, certified historical text vintages or verified specialist conclusions."
+}

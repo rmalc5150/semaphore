@@ -1,0 +1,170 @@
+{
+  "batch": "codex-product-initial-10/2026-10-20",
+  "products": [
+    {
+      "product_id": "prd_4aa65f2d-c353-4483-865d-eae5fc165135",
+      "canonical_name": "da Vinci 5",
+      "company_id": "cmp_4dc3ed4d-ddf8-4853-ab61-fec13686a6fb",
+      "sector_id": "robotics",
+      "lifecycle_status": "commercial",
+      "evidence": [
+        {
+          "source": "official_company_website",
+          "reference": "https://www.intuitive.com/en-us/products-and-services/da-vinci",
+          "retrieved_at": "2026-10-20T15:26:18.273332+00:00",
+          "snapshot": "s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/product_registry/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d.html",
+          "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d"
+        }
+      ]
+    },
+    {
+      "product_id": "prd_57f6c4b7-f492-4798-84b3-67a08e3c33b3",
+      "canonical_name": "da Vinci Xi",
+      "company_id": "cmp_4dc3ed4d-ddf8-4853-ab61-fec13686a6fb",
+      "sector_id": "robotics",
+      "lifecycle_status": "commercial",
+      "evidence": [
+        {
+          "source": "official_company_website",
+          "reference": "https://www.intuitive.com/en-us/products-and-services/da-vinci",
+          "retrieved_at": "2026-10-20T15:26:18.273332+00:00",
+          "snapshot": "s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/product_registry/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d.html",
+          "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d"
+        }
+      ]
+    },
+    {
+      "product_id": "prd_63489ee8-1a03-49f8-8fe0-6de41dd674ab",
+      "canonical_name": "da Vinci X",
+      "company_id": "cmp_4dc3ed4d-ddf8-4853-ab61-fec13686a6fb",
+      "sector_id": "robotics",
+      "lifecycle_status": "commercial",
+      "evidence": [
+        {
+          "source": "official_company_website",
+          "reference": "https://www.intuitive.com/en-us/products-and-services/da-vinci",
+          "retrieved_at": "2026-10-20T15:26:18.273332+00:00",
+          "snapshot": "s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/product_registry/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d.html",
+          "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d"
+        }
+      ]
+    },
+    {
+      "product_id": "prd_86c28607-7211-4607-a748-9d66e9856ea5",
+      "canonical_name": "da Vinci SP",
+      "company_id": "cmp_4dc3ed4d-ddf8-4853-ab61-fec13686a6fb",
+      "sector_id": "robotics",
+      "lifecycle_status": "commercial",
+      "evidence": [
+        {
+          "source": "official_company_website",
+          "reference": "https://www.intuitive.com/en-us/products-and-services/da-vinci",
+          "retrieved_at": "2026-10-20T15:26:18.273332+00:00",
+          "snapshot": "s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/product_registry/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d.html",
+          "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d"
+        }
+      ]
+    },
+    {
+      "product_id": "prd_f3491df0-0be8-4538-8c2e-f4d08a514447",
+      "canonical_name": "Ion endoluminal system",
+      "company_id": "cmp_4dc3ed4d-ddf8-4853-ab61-fec13686a6fb",
+      "sector_id": "robotics",
+      "lifecycle_status": "commercial",
+      "evidence": [
+        {
+          "source": "official_company_website",
+          "reference": "https://www.intuitive.com/en-us/products-and-services/ion",
+          "retrieved_at": "2026-10-20T15:26:18.273332+00:00",
+          "snapshot": "s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/product_registry/d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d.html",
+          "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d"
+        }
+      ]
+    },
+    {
+      "product_id": "prd_71573e6c-73d7-4ff3-8964-c4d564fea273",
+      "canonical_name": "Gridstack",
+      "company_id": "cmp_72f60a85-0e1d-4bdd-95f2-1fdcc9c53b5f",
+      "sector_id": "energy_storage",
+      "lifecycle_status": "commercial",
+      "evidence": [
+        {
+          "source": "official_company_website",
+          "reference": "https://fluenceenergy.com/gridstack-grid-energy-storage/",
+          "retrieved_at": "2026-10-20T15:26:18.273332+00:00",
+          "snapshot_status": "Raw snapshot unavailable: HTTPError; official page reviewed via web tool"
+        }
+      ]
+    },
+    {
+      "product_id": "prd_9aaf3974-b2fe-4fc5-ad9b-b1baebd9b07f",
+      "canonical_name": "Gridstack Pro",
+      "company_id": "cmp_72f60a85-0e1d-4bdd-95f2-1fdcc9c53b5f",
+      "sector_id": "energy_storage",
+      "lifecycle_status": "commercial",
+      "evidence": [
+        {
+          "source": "official_company_website",
+          "reference": "https://fluenceenergy.com/gridstack-pro-energy-storage/",
+          "retrieved_at": "2026-10-20T15:26:18.273332+00:00",
+          "snapshot_status": "Raw snapshot unavailable: HTTPError; official page reviewed via web tool"
+        }
+      ]
+    },
+    {
+      "product_id": "prd_c728152c-ce5f-40e9-a012-4d23f674695a",
+      "canonical_name": "Smartstack",
+      "company_id": "cmp_72f60a85-0e1d-4bdd-95f2-1fdcc9c53b5f",
+      "sector_id": "energy_storage",
+      "lifecycle_status": "commercial",
+      "evidence": [
+        {
+          "source": "official_company_website",
+          "reference": "https://fluenceenergy.com/smartstack-energy-storage/",
+          "retrieved_at": "2026-10-20T15:26:18.273332+00:00",
+          "snapshot_status": "Raw snapshot unavailable: HTTPError; official page reviewed via web tool"
+        }
+      ]
+    },
+    {
+      "product_id": "prd_76d431b1-e4ae-4544-aac7-37f7a830c656",
+      "canonical_name": "Ultrastack",
+      "company_id": "cmp_72f60a85-0e1d-4bdd-95f2-1fdcc9c53b5f",
+      "sector_id": "energy_storage",
+      "lifecycle_status": "unknown",
+      "evidence": [
+        {
+          "source": "official_company_website",
+          "reference": "https://ir.fluenceenergy.com/news-releases/news-release-details/fluence-launches-ultrastack-its-highest-performance-energy",
+          "retrieved_at": "2026-10-20T15:26:18.273332+00:00",
+          "snapshot_status": "Raw snapshot unavailable: HTTPError; official page reviewed via web tool",
+          "note": "Historical product evidence; current commercial/discontinued status not established."
+        }
+      ]
+    },
+    {
+      "product_id": "prd_0c3d3e00-e13e-4c59-ad4a-99c692745169",
+      "canonical_name": "Sunstack",
+      "company_id": "cmp_72f60a85-0e1d-4bdd-95f2-1fdcc9c53b5f",
+      "sector_id": "energy_storage",
+      "lifecycle_status": "unknown",
+      "evidence": [
+        {
+          "source": "official_company_website",
+          "reference": "https://info.fluenceenergy.com/fluence-on-the-future-of-solar-plus-energy-storage",
+          "retrieved_at": "2026-10-20T15:26:18.273332+00:00",
+          "snapshot": "s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/product_registry/17d0ca33f51f2164e4c2ffa065b83404609d18e2e13e39e8ae24d3964f72645d.html",
+          "sha256": "17d0ca33f51f2164e4c2ffa065b83404609d18e2e13e39e8ae24d3964f72645d",
+          "note": "Historical product evidence; current commercial/discontinued status not established."
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Company review states unchanged.",
+    "Company relationships denote commercial portfolio association, not legal ownership or manufacture.",
+    "Regulatory approvals and development stages not inferred.",
+    "Current lifecycle unknown for Ultrastack and Sunstack.",
+    "Family/predecessor hierarchy requires further reconciliation."
+  ]
+}

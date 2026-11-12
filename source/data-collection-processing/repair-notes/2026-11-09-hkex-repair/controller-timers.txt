@@ -1,0 +1,50 @@
+  UNIT                                           LOAD   ACTIVE SUB     DESCRIPTION
+  constellation-gap-audit.timer                  loaded active waiting Constellation gap-audit schedule
+  constellation-historical-autostop.timer        loaded active elapsed Check historical worker completion every five minutes
+  constellation-historical-dispatch.timer        loaded active waiting Constellation historical-dispatch schedule
+  constellation-public-api-daily.timer           loaded active running Independent public API daily captures on t3
+  constellation-public-daily.timer               loaded active waiting Daily public archive and document capture on t3
+  constellation-public-raw-daily.timer           loaded active waiting Daily USGS NSF and arXiv capture on t3
+  constellation-public-status.timer              loaded active waiting Refresh public-source collection status every five minutes
+  optima-authenticated-daily.timer               loaded active running Authenticated official daily source capture
+  optima-caiso-daily.timer                       loaded active elapsed Resume S57 daily collection, interval assembly and completion checks
+  optima-chictr-daily.timer                      loaded active waiting Bounded ChiCTR daily catch-up and access verification
+  optima-collection-daily.timer                  loaded active waiting Run migrated source collectors daily
+  optima-collection-health.timer                 loaded active waiting Check collection health every 30 minutes
+  optima-committed-athena.timer                  loaded active running Expose and verify newly committed data in Athena every hour
+  optima-company-catalogue.timer                 loaded active running Resume global company import and enrichment every thirty minutes
+  optima-conference-collection.timer             loaded active running Resume daily and historical proceedings collection every 30 minutes
+  optima-conference-publication.timer            loaded active running Publish completed proceedings windows every 15 minutes
+  optima-daily-health-audit.timer                loaded active waiting Daily live health audit at 07:00 Europe/Madrid
+  optima-doe-storage-daily.timer                 loaded active elapsed Resume S55 daily document discovery and extraction
+  optima-edinet-documents-daily.timer            loaded active running Resume EDINET full-report daily capture
+  optima-eodhd-inventory.timer                   loaded active waiting Refresh the EODHD symbol inventory before daily profile cohorts
+  optima-eodhd-profiles.timer                    loaded active running Run the Optima EODHD profile cohorts with hourly quota-safe top-ups
+  optima-federal-register-daily-enrichment.timer loaded active running Resume S51 parent-discovered full-notice evidence capture
+  optima-grant-daily.timer                       loaded active elapsed Resume S68 grant lifecycle daily
+  optima-market-collection.timer                 loaded active running Optima Bounded market prices and corporate actions
+  optima-market-publication.timer                loaded active running Optima Verified incremental market Athena publication
+  optima-metadata-controller.timer               loaded active waiting Discover new committed metadata inputs and deliver stop alerts
+  optima-news-collection.timer                   loaded active running Optima Bounded news catch-up, reconciliation and 2021 archive
+  optima-news-publication.timer                  loaded active running Optima Verified incremental news Athena publication
+  optima-nist-robotics-daily.timer               loaded active elapsed S47 daily linked evidence after landing capture
+  optima-nist-robotics-matching.timer            loaded active elapsed S47 daily RDS product matches and reviewable evidence events
+  optima-patents-daily.timer                     loaded active running Resume bounded patent catch-up hourly while EC2 is running
+  optima-patents-global-monitor.timer            loaded active waiting Check global patent source metadata daily
+  optima-patents-prosecution-publication.timer   loaded active running Publish completed USPTO prosecution windows every 15 minutes
+  optima-patents-prosecution.timer               loaded active running Resume USPTO prosecution backfill and collect updates hourly
+  optima-people-collection.timer                 loaded active running Capture personnel sources and advance archive retrieval every 30 minutes
+  optima-product-search-daily.timer              loaded active running Daily product search capture from current RDS products
+  optima-research-publication.timer              loaded active running Publish committed research collection windows every 15 minutes
+  optima-s11-content-daily.timer                 loaded active running Resume S11 daily content capture
+  optima-search-capture.timer                    loaded active waiting Optima weekly fixed-query search snapshots
+  optima-source-schedule-daily.timer             loaded active waiting All 68 source daily capture readiness and Athena status
+  optima-specialist-daily.timer                  loaded active running Optima daily additional specialist inputs and linked original documents
+  optima-specialist-publication.timer            loaded active running Publish committed specialist windows every fifteen minutes
+  optima-trade-screening-enrichment.timer        loaded active elapsed Resume S52 post-capture enrichment and daily RDS rechecking
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+43 loaded units listed.
+To show all installed unit files use 'systemctl list-unit-files'.

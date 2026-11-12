@@ -1,0 +1,57 @@
+# /etc/systemd/system/optima-nmpa-enrichment.service
+[Unit]
+Description=S26 NMPA detail enrichment, substantive changes and verified completion email
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+Slice=optima-data.slice
+MemoryAccounting=true
+MemoryHigh=402653184
+MemoryMax=536870912
+MemorySwapMax=0
+CPUQuota=40%
+Environment=MALLOC_ARENA_MAX=2
+ExecStart=/usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/nmpa_enrichment_worker.py
+TimeoutStartSec=14min
+TimeoutStopSec=90
+KillSignal=SIGINT
+SuccessExitStatus=0 2 124
+Nice=15
+NoNewPrivileges=true
+ProtectSystem=full
+
+
+# /etc/systemd/system/optima-nmpa-enrichment.service.d/99-s3-runtime.conf
+[Unit]
+Requires=optima-s3-runtime-init.service
+After=optima-s3-runtime-init.service
+[Service]
+ExecStart=
+ExecStart=/usr/bin/flock --exclusive --timeout 43200 --conflict-exit-code 75 /dev/shm/optima-s3/supervisor.lock /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/s3_runtime.py --unit optima-nmpa-enrichment.service -- /usr/bin/timeout --signal=INT --kill-after=30s 12m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/nmpa_enrichment_worker.py
+ProtectSystem=strict
+ReadOnlyPaths=/home/ec2-user /tmp /var/tmp /dev/shm
+ReadWritePaths=/dev/shm/optima-s3
+PrivateTmp=false
+Environment=PYTHONDONTWRITEBYTECODE=1
+MemoryHigh=1700000000
+MemoryMax=1900000000
+MemorySwapMax=0
+TimeoutStartSec=13h
+TimeoutStopSec=240
+KillMode=mixed
+KillSignal=SIGINT
+SuccessExitStatus=75
+
+# /etc/systemd/system/optima-nmpa-enrichment.service.d/zz-t3-large-memory.conf
+[Service]
+MemoryHigh=4G
+MemoryMax=5G
+MemorySwapMax=0
+
+# /etc/systemd/system/optima-nmpa-enrichment.service.d/zz-upgrade-maintenance.conf
+[Unit]
+ConditionPathExists=!/home/ec2-user/data-collection-processing/upgrade/t3-large/maintenance-active

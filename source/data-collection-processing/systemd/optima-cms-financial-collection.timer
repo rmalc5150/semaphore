@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume CMS financial backfills and discover new published editions daily
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=optima-cms-financial-collection.service
+
+[Install]
+WantedBy=timers.target

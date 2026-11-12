@@ -1,0 +1,13 @@
+{
+  "reason": "Paused at user request pending API and capture-scope review",
+  "sources": [
+    "reddit",
+    "bluesky_search",
+    "bluesky_company_accounts",
+    "bluesky_company_posts",
+    "bluesky_company_events",
+    "github_sdk",
+    "marketaux"
+  ],
+  "resume_requires_user_request": true
+}

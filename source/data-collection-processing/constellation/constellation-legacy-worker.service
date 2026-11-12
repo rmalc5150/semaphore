@@ -1,0 +1,34 @@
+[Unit]
+Description=Constellation isolated legacy historical executor
+After=network-online.target constellation-legacy-runtime-init.service
+Requires=constellation-legacy-runtime-init.service
+Wants=network-online.target
+RequiresMountsFor=/opt/constellation
+
+[Service]
+User=ec2-user
+WorkingDirectory=/opt/constellation
+ExecStart=/opt/constellation/.venv/bin/python -B -m constellation.legacy_worker
+Environment=CONSTELLATION_ROLE=worker
+Environment=AWS_DEFAULT_REGION=us-east-1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=ARROW_NUM_THREADS=1
+Restart=on-failure
+RestartSec=15
+KillSignal=SIGINT
+KillMode=mixed
+TimeoutStopSec=210
+MemoryHigh=10G
+MemoryMax=12G
+MemorySwapMax=0
+CPUQuota=1200%
+TasksMax=128
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/dev/shm/constellation-legacy /opt/constellation/tmp
+PrivateTmp=false
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

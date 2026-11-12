@@ -1,0 +1,390 @@
+{
+  "checked_at": "2026-10-27T09:02:00.603297+00:00",
+  "sources": [
+    {
+      "source": "un_comtrade",
+      "historical": {
+        "tasks": 226,
+        "records": 196,
+        "statuses": {
+          "complete": 226,
+          "partial": 0,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-27T09:01:56.833961Z",
+        "recent_reasons": [],
+        "sample_manifests": [
+          "manifests/collection_runs/source=un_comtrade/dataset=specialist_inputs/run_cb9f5e3f-37d7-488e-a5e5-26807af70c1f/final.json",
+          "manifests/collection_runs/source=un_comtrade/dataset=specialist_inputs/run_d58c71b3-5612-426b-852e-a13c64b07ce2/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 40,
+        "records": 1,
+        "statuses": {
+          "complete": 40,
+          "partial": 0,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-27T08:52:16.925933Z",
+        "recent_reasons": [],
+        "sample_manifests": [
+          "manifests/collection_runs/source=un_comtrade/dataset=specialist_inputs/run_51079c27-d682-48f9-82f8-b943b1fc717d/final.json",
+          "manifests/collection_runs/source=un_comtrade/dataset=specialist_inputs/run_996618ac-c412-4295-8aaa-205201ce93f1/final.json"
+        ]
+      }
+    },
+    {
+      "source": "ember_electricity_demand_and_generation",
+      "historical": {
+        "tasks": 25,
+        "records": 9006,
+        "statuses": {
+          "complete": 24,
+          "partial": 0,
+          "failed": 1
+        },
+        "last_attempt": "2026-10-27T08:58:58.952719Z",
+        "recent_reasons": [
+          "additional_request_failed"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=ember_electricity_demand_and_generation/dataset=specialist_inputs/run_d14c6a90-f9b1-461b-aad7-56fcfe65cfe2/final.json",
+          "manifests/collection_runs/source=ember_electricity_demand_and_generation/dataset=specialist_inputs/run_3b3d2fbe-db79-47b1-9fc2-1407c509e971/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 2,
+        "records": 2539,
+        "statuses": {
+          "complete": 2,
+          "partial": 0,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-27T08:51:26.940965Z",
+        "recent_reasons": [],
+        "sample_manifests": [
+          "manifests/collection_runs/source=ember_electricity_demand_and_generation/dataset=specialist_inputs/run_5fbb2af1-93af-43d8-abbf-910abeb16111/final.json",
+          "manifests/collection_runs/source=ember_electricity_demand_and_generation/dataset=specialist_inputs/run_38a3c2c1-40df-4cbc-a109-ebc37333a450/final.json"
+        ]
+      }
+    },
+    {
+      "source": "wto_timeseries_api",
+      "historical": {
+        "tasks": 16,
+        "records": 9549,
+        "statuses": {
+          "complete": 12,
+          "partial": 2,
+          "failed": 2
+        },
+        "last_attempt": "2026-10-27T09:00:11.016529Z",
+        "recent_reasons": [],
+        "sample_manifests": [
+          "manifests/collection_runs/source=wto_timeseries_api/dataset=specialist_inputs/run_22343c04-e05e-49ba-82f2-8ebdb2618472/final.json",
+          "manifests/collection_runs/source=wto_timeseries_api/dataset=specialist_inputs/run_0a2fa59d-e0c7-409d-b605-8d24146ab1d9/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 2,
+        "records": 1256,
+        "statuses": {
+          "complete": 1,
+          "partial": 1,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-27T08:57:26.019638Z",
+        "recent_reasons": [
+          "page_budget"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=wto_timeseries_api/dataset=specialist_inputs/run_06590b03-6d7b-4eb1-9dae-2b7b5e686959/final.json",
+          "manifests/collection_runs/source=wto_timeseries_api/dataset=specialist_inputs/run_78db3e47-ae3f-478c-b71c-12f059c8f36b/final.json"
+        ]
+      }
+    },
+    {
+      "source": "wto_quantitative_restrictions_api",
+      "historical": {
+        "tasks": 16,
+        "records": 1355,
+        "statuses": {
+          "complete": 15,
+          "partial": 1,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-27T08:59:31.716548Z",
+        "recent_reasons": [],
+        "sample_manifests": [
+          "manifests/collection_runs/source=wto_quantitative_restrictions_api/dataset=specialist_inputs/run_51d5876b-078b-4fb4-af49-9be8354de29e/final.json",
+          "manifests/collection_runs/source=wto_quantitative_restrictions_api/dataset=specialist_inputs/run_a509ecdc-a79d-48fd-a92f-c95a3ae06857/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 2,
+        "records": 143,
+        "statuses": {
+          "complete": 1,
+          "partial": 1,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-27T08:56:30.689989Z",
+        "recent_reasons": [
+          "page_budget"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=wto_quantitative_restrictions_api/dataset=specialist_inputs/run_8dd73bc1-d7cc-4418-a4a8-04209931fefc/final.json",
+          "manifests/collection_runs/source=wto_quantitative_restrictions_api/dataset=specialist_inputs/run_00f67170-6690-4d38-ae90-7baa6676a39d/final.json"
+        ]
+      }
+    },
+    {
+      "source": "wto_eping_sps_tbt_notifications",
+      "historical": {
+        "tasks": 24,
+        "records": 7828,
+        "statuses": {
+          "complete": 24,
+          "partial": 0,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-27T09:01:19.323510Z",
+        "recent_reasons": [],
+        "sample_manifests": [
+          "manifests/collection_runs/source=wto_eping_sps_tbt_notifications/dataset=specialist_inputs/run_437969bc-1204-446b-99a7-ed0cfa0a41b3/final.json",
+          "manifests/collection_runs/source=wto_eping_sps_tbt_notifications/dataset=specialist_inputs/run_11138474-8050-47e2-b8cd-df581849d10f/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 1,
+        "records": 200,
+        "statuses": {
+          "complete": 0,
+          "partial": 1,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-27T08:55:34.488865Z",
+        "recent_reasons": [
+          "page_budget"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=wto_eping_sps_tbt_notifications/dataset=specialist_inputs/run_1cb0784d-d46f-4333-b072-55785035afd1/final.json"
+        ]
+      }
+    },
+    {
+      "source": "copernicus_era5_era5_land",
+      "historical": {
+        "tasks": 1,
+        "records": 0,
+        "statuses": {
+          "complete": 0,
+          "partial": 0,
+          "failed": 1
+        },
+        "last_attempt": "2026-10-27T08:55:44.275355Z",
+        "recent_reasons": [
+          "source_http_403"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=copernicus_era5_era5_land/dataset=specialist_inputs/run_d215a4b3-0e23-4420-81fc-bc5aacc4fea7/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 1,
+        "records": 0,
+        "statuses": {
+          "complete": 0,
+          "partial": 0,
+          "failed": 1
+        },
+        "last_attempt": "2026-10-27T08:50:26.067580Z",
+        "recent_reasons": [
+          "source_http_403"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=copernicus_era5_era5_land/dataset=specialist_inputs/run_2e123e28-49e8-4dc8-a94e-d9d271afca9b/final.json"
+        ]
+      }
+    },
+    {
+      "source": "us_census_international_trade_api",
+      "historical": {
+        "tasks": 1,
+        "records": 0,
+        "statuses": {
+          "complete": 0,
+          "partial": 0,
+          "failed": 1
+        },
+        "last_attempt": "2026-10-27T08:56:23.661307Z",
+        "recent_reasons": [
+          "additional_request_failed"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=us_census_international_trade_api/dataset=specialist_inputs/run_c216b288-8372-474c-84ae-b1b219ee3572/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 2,
+        "records": 0,
+        "statuses": {
+          "complete": 0,
+          "partial": 0,
+          "failed": 2
+        },
+        "last_attempt": "2026-10-27T08:53:50.334448Z",
+        "recent_reasons": [
+          "additional_request_failed",
+          "source_http_302"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=us_census_international_trade_api/dataset=specialist_inputs/run_5b8417bb-7e75-4fbe-9ecc-0c52c6f8df46/final.json",
+          "manifests/collection_runs/source=us_census_international_trade_api/dataset=specialist_inputs/run_96796336-5b72-4d61-8060-b5b1dae87ca4/final.json"
+        ]
+      }
+    },
+    {
+      "source": "usda_fas_production_supply_and_distribution",
+      "historical": {
+        "tasks": 1,
+        "records": 0,
+        "statuses": {
+          "complete": 0,
+          "partial": 0,
+          "failed": 1
+        },
+        "last_attempt": "2026-10-27T08:56:46.058303Z",
+        "recent_reasons": [
+          "source_http_500"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=usda_fas_production_supply_and_distribution/dataset=specialist_inputs/run_fcae6113-41b5-4be4-b0f0-0440c936c66a/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 1,
+        "records": 0,
+        "statuses": {
+          "complete": 0,
+          "partial": 0,
+          "failed": 1
+        },
+        "last_attempt": "2026-10-27T08:54:39.477922Z",
+        "recent_reasons": [
+          "source_http_500"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=usda_fas_production_supply_and_distribution/dataset=specialist_inputs/run_2633589f-2376-4e3d-afe0-ff2ac735cc16/final.json"
+        ]
+      }
+    },
+    {
+      "source": "fred_alfred_series_and_vintages",
+      "historical": {
+        "tasks": 40,
+        "records": 7652,
+        "statuses": {
+          "complete": 35,
+          "partial": 0,
+          "failed": 5
+        },
+        "last_attempt": "2026-10-27T08:57:05.741940Z",
+        "recent_reasons": [],
+        "sample_manifests": [
+          "manifests/collection_runs/source=fred_alfred_series_and_vintages/dataset=specialist_inputs/run_59ca0c7e-5ed4-47f7-9cea-ae230e6a7dd3/final.json",
+          "manifests/collection_runs/source=fred_alfred_series_and_vintages/dataset=specialist_inputs/run_14daa21e-14d8-436d-a8a6-88b63b2bdc03/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 4,
+        "records": 1,
+        "statuses": {
+          "complete": 4,
+          "partial": 0,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-27T08:59:22.387971Z",
+        "recent_reasons": [],
+        "sample_manifests": [
+          "manifests/collection_runs/source=fred_alfred_series_and_vintages/dataset=specialist_inputs/run_52daa103-cee6-4406-a5d0-2ed10dc45c34/final.json",
+          "manifests/collection_runs/source=fred_alfred_series_and_vintages/dataset=specialist_inputs/run_299f9ad6-a99f-4a26-8046-5ecce7fe0881/final.json"
+        ]
+      }
+    },
+    {
+      "source": "south_korea_fss_opendart",
+      "historical": {
+        "tasks": 33,
+        "records": 19800,
+        "statuses": {
+          "complete": 0,
+          "partial": 33,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-27T09:01:50.036982Z",
+        "recent_reasons": [
+          "page_budget"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=south_korea_fss_opendart/dataset=specialist_inputs/run_bb36bbc5-5ca5-48c1-82d3-48595193aff6/final.json",
+          "manifests/collection_runs/source=south_korea_fss_opendart/dataset=specialist_inputs/run_c091330b-43c0-459b-917f-19f1060883b5/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 1,
+        "records": 200,
+        "statuses": {
+          "complete": 0,
+          "partial": 0,
+          "failed": 1
+        },
+        "last_attempt": "2026-10-27T09:00:06.814896Z",
+        "recent_reasons": [
+          "source_changed_refresh_required"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=south_korea_fss_opendart/dataset=specialist_inputs/run_ec2764f8-4e8e-41dd-ae34-48a6050435f8/final.json"
+        ]
+      }
+    },
+    {
+      "source": "epo_ops_patent_legal_events",
+      "historical": {
+        "tasks": 1212,
+        "records": 13437,
+        "statuses": {
+          "complete": 910,
+          "partial": 301,
+          "failed": 1
+        },
+        "last_attempt": "2026-10-27T08:02:47.683807Z",
+        "recent_reasons": [
+          "epo_daily_request_budget"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=epo_ops_patent_legal_events/dataset=specialist_inputs/run_d8d2833e-a6e3-4759-9ef1-181940f4ac8e/final.json",
+          "manifests/collection_runs/source=epo_ops_patent_legal_events/dataset=specialist_inputs/run_53009c4f-e6b1-43bd-9c5a-a180217ab45c/final.json"
+        ]
+      },
+      "daily": {
+        "tasks": 292,
+        "records": 117,
+        "statuses": {
+          "complete": 257,
+          "partial": 34,
+          "failed": 1
+        },
+        "last_attempt": "2026-10-27T08:03:01.500479Z",
+        "recent_reasons": [
+          "epo_daily_request_budget"
+        ],
+        "sample_manifests": [
+          "manifests/collection_runs/source=epo_ops_patent_legal_events/dataset=specialist_inputs/run_c95850cd-2e35-41bc-93fc-6e8c3ddd2c3a/final.json",
+          "manifests/collection_runs/source=epo_ops_patent_legal_events/dataset=specialist_inputs/run_bc3f9aa5-3f85-4616-a457-b27b61515792/final.json"
+        ]
+      }
+    }
+  ]
+}

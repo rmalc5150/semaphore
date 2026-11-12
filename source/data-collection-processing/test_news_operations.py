@@ -9,7 +9,17 @@ from news_operations import NewsOperations
 from window_publication import list_keys
 
 class OperationsTests(unittest.TestCase):
+    def test_daily_only_does_not_call_historical_windows(self):
+        calls=[]
+        def collect(*args):
+            calls.append(args[10]);return {'status':'complete','manifest':'daily'}
+        with patch('news_operations.collect',side_effect=collect):
+            self.runner.run(lambda *a:None,date(2026,9,24),lanes=('daily','reconcile'))
+        self.assertTrue(calls)
+        self.assertEqual(set(calls),{'daily'})
     def setUp(self):
+        pause = patch('source_pauses.is_paused', return_value=False)
+        pause.start(); self.addCleanup(pause.stop)  # Exercise both mock providers regardless of operator pauses.
         self.temp=tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
         self.settings=StorageSettings(local_root=self.temp.name)
         self.store=self.settings.store()

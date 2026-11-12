@@ -1,0 +1,18 @@
+[Unit]
+Description=Stop historical m7i after healthy capture finishes; report unresolved failures
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B -m constellation.autostop.check --execute
+Environment=CONSTELLATION_ROLE=controller
+Environment=PYTHONDONTWRITEBYTECODE=1
+TimeoutStartSec=10min
+MemoryMax=512M
+CPUQuota=25%
+Nice=15
+NoNewPrivileges=true
+ProtectSystem=full

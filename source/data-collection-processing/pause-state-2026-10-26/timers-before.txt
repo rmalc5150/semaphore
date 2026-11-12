@@ -1,0 +1,64 @@
+  optima-authenticated-daily.timer                  loaded active running Authenticated official daily source capture
+  optima-authenticated-historical.timer             loaded active running Authenticated official historical source capture
+  optima-bls-enrichment-backfill.timer              loaded active running Resume S59 BLS labor enrichment until committed data is verified and emailed
+  optima-caiso-backfill.timer                       loaded active running Resume S57 backfill collection, interval assembly and completion checks
+  optima-caiso-daily.timer                          loaded active running Resume S57 daily collection, interval assembly and completion checks
+  optima-chictr-daily.timer                         loaded active waiting Bounded ChiCTR daily catch-up and access verification
+  optima-cms-financial-collection.timer             loaded active running Resume CMS financial backfills and discover new published editions daily
+  optima-collection-daily.timer                     loaded active waiting Run migrated source collectors daily
+  optima-collection-health.timer                    loaded active waiting Check collection health every 30 minutes
+  optima-committed-athena.timer                     loaded active running Expose and verify newly committed data in Athena every hour
+  optima-company-auto-review.timer                  loaded active waiting Resume the company automatic-review backfill after interruptions
+  optima-company-catalogue-bootstrap.timer          loaded active waiting Continue the initial S3-to-RDS company import every ten minutes
+  optima-company-catalogue.timer                    loaded active running Resume global company import and enrichment every thirty minutes
+  optima-company-identity-enrichment.timer          loaded active waiting Continue the pending company identity evidence queue
+  optima-company-web-enrichment.timer               loaded active running Resume independent S3-backed web enrichment every thirty minutes
+  optima-conference-collection.timer                loaded active running Resume daily and historical proceedings collection every 30 minutes
+  optima-conference-publication.timer               loaded active running Publish completed proceedings windows every 15 minutes
+  optima-core-historical.timer                      loaded active running Bounded resumable original SEC/regulatory/disclosure 2021 archive
+  optima-daily-health-audit.timer                   loaded active waiting Daily live health audit at 07:00 Europe/Madrid
+  optima-doe-storage-backfill.timer                 loaded active running Resume S55 backfill document discovery and extraction
+  optima-doe-storage-daily.timer                    loaded active running Resume S55 daily document discovery and extraction
+  optima-edinet-document-backfill.timer             loaded active running Resume EDINET original reports and extraction backfill
+  optima-edinet-documents-daily.timer               loaded active running Resume EDINET full-report daily capture
+  optima-eia-enrichment-backfill.timer              loaded active running Resume S56 EIA index and retail enrichment until committed data is verified and emailed
+  optima-eodhd-inventory.timer                      loaded active running Refresh the EODHD symbol inventory before daily profile cohorts
+  optima-eodhd-profiles.timer                       loaded active running Run the Optima EODHD profile cohorts with hourly quota-safe top-ups
+  optima-federal-register-daily-enrichment.timer    loaded active running Resume S51 parent-discovered full-notice evidence capture
+  optima-federal-register-enrichment-backfill.timer loaded active running Resume S51 Federal Register enrichment until committed data is verified and emailed
+  optima-finlight-content-backfill.timer            loaded active running Resume Finlight full-article backfill without duplicate archive discovery
+  optima-grant-backfill.timer                       loaded active running Resume S68 grant lifecycle backfill
+  optima-grant-daily.timer                          loaded active running Resume S68 grant lifecycle daily
+  optima-hkex-document-backfill.timer               loaded active running Resume HKEX original report backfill every five minutes after each bounded run
+  optima-market-collection.timer                    loaded active running Optima Bounded market prices and corporate actions
+  optima-market-publication.timer                   loaded active running Optima Verified incremental market Athena publication
+  optima-mlperf-enrichment-backfill.timer           loaded active running Resume S48 MLPerf enrichment until committed data is verified and emailed
+  optima-news-collection.timer                      loaded active running Optima Bounded news catch-up, reconciliation and 2021 archive
+  optima-news-publication.timer                     loaded active running Optima Verified incremental news Athena publication
+  optima-nist-robotics-backfill.timer               loaded active running S47 original-evidence backfill and verified completion email
+  optima-nist-robotics-daily.timer                  loaded active running S47 daily linked evidence after landing capture
+  optima-nist-robotics-matching.timer               loaded active elapsed S47 daily RDS product matches and reviewable evidence events
+  optima-nmpa-enrichment.timer                      loaded active running Resume S26 detail backfill and reconcile known trials
+  optima-nmpa-inventory.timer                       loaded active running Resume the Optima NMPA registration inventory daily
+  optima-patents-backfill.timer                     loaded active running Resume global patent backfill hourly with a daily query budget
+  optima-patents-daily.timer                        loaded active running Resume bounded patent catch-up hourly while EC2 is running
+  optima-patents-global-monitor.timer               loaded active waiting Check global patent source metadata daily
+  optima-patents-prosecution-publication.timer      loaded active running Publish completed USPTO prosecution windows every 15 minutes
+  optima-patents-prosecution.timer                  loaded active running Resume USPTO prosecution backfill and collect updates hourly
+  optima-patents-publication.timer                  loaded active running Publish completed patent months to Athena every ten minutes
+  optima-people-collection.timer                    loaded active running Capture personnel sources and advance archive retrieval every 30 minutes
+  optima-people-content-backfill.timer              loaded active running Resume S15 RSS and personnel archive full-article backfill without duplicate archive discovery
+  optima-pubmed-enrichment-backfill.timer           loaded active running Resume S27 PubMed enrichment until committed data is verified and emailed
+  optima-regulatory-enrichment-backfill.timer       loaded active running Resume S22/S23 enrichment until committed data is verified and emailed
+  optima-research-publication.timer                 loaded active running Publish committed research collection windows every 15 minutes
+  optima-s11-content-backfill.timer                 loaded active running Resume S11 full-content backfill after each bounded run
+  optima-search-daily.timer                         loaded active waiting Optima daily fixed-query search capture (existing scope and USD 1 per-run cap)
+  optima-sms-followup.timer                         loaded active elapsed One-time SMS follow-up on October 19, 2026
+  optima-source-schedule-daily.timer                loaded active waiting All 68 source daily capture readiness and Athena status
+  optima-source-schedule-historical.timer           loaded active running All 68 source historical capture readiness and Athena status
+  optima-specialist-daily.timer                     loaded active running Optima daily additional specialist inputs and linked original documents
+  optima-specialist-historical.timer                loaded active running Optima resumable 2021 specialist archives and verified publication
+  optima-specialist-publication.timer               loaded active running Publish committed specialist windows every fifteen minutes
+  optima-ted-enrichment-backfill.timer              loaded active running Resume S42 TED enrichment until committed data is verified and emailed
+  optima-trade-screening-enrichment.timer           loaded active running Resume S52 post-capture enrichment and daily RDS rechecking
+  optima-usgs-minerals-backfill.timer               loaded active running Resume S53 USGS minerals enrichment until committed data is verified and emailed

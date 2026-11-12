@@ -1,0 +1,15 @@
+Id=optima-collection-daily.timer
+ActiveState=active
+UnitFileState=enabled
+
+Id=optima-research-publication.timer
+ActiveState=active
+UnitFileState=enabled
+
+Id=constellation-historical-dispatch.timer
+ActiveState=active
+UnitFileState=enabled
+
+Id=optima-metadata-controller.timer
+ActiveState=active
+UnitFileState=enabled

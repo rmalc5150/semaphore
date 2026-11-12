@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-10-26T14:38:56.107799+00:00",
+  "public_archive_routes": 73,
+  "all_archive_sources_attempted_daily_and_historical": true,
+  "sources_with_saved_artifacts": 61,
+  "sources_with_non_html_files": 27,
+  "native_public_api_collectors": 5,
+  "daily_and_status_timers": {
+    "constellation-public-daily.timer": {
+      "enabled": "enabled",
+      "active": "active"
+    },
+    "constellation-public-api-daily.timer": {
+      "enabled": "enabled",
+      "active": "active"
+    },
+    "constellation-public-raw-daily.timer": {
+      "enabled": "enabled",
+      "active": "active"
+    },
+    "constellation-public-status.timer": {
+      "enabled": "enabled",
+      "active": "active"
+    }
+  },
+  "worker_pool": {
+    "command_id": "52e9a788-fc1a-4fe3-a1eb-0ca467c025fd",
+    "sha256": "4d9deb52c7fcf9323b51dbae133e0842dd336e58740acbbdaffee4192ebc1962",
+    "raw_workers": 5,
+    "raw_memory_max_mib": 384,
+    "legacy_workers": 8,
+    "legacy_memory_max_mib": 1536,
+    "public_workers": 4,
+    "public_memory_max_mib": 512,
+    "total_workers": 17,
+    "sum_individual_memory_max_mib": 16256,
+    "aggregate_memory_max_mib": 16384,
+    "aggregate_cpu_limit": 16
+  },
+  "worker_pool_verification": "active\nactive\nactive\nactive\nactive\nactive\nactive\nactive\nactive\nactive\nactive\nactive\nactive\nactive\nactive\nactive\nactive\nMemoryCurrent=1883942912\nCPUQuotaPerSecUSec=16s\nMemoryMax=17179869184\n",
+  "athena_inventory_select": "SUCCEEDED",
+  "tests_passed": 70,
+  "historical_execution_host": "c7i",
+  "daily_and_control_host": "t3"
+}

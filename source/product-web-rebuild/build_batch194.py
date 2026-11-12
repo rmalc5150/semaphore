@@ -1,0 +1,13 @@
+from research_helpers import *
+a=ev('https://www.nippn.co.jp/news/detail/__icsFiles/afieldfile/2026/03/10/no63_Agripalette_2.pdf','NIPPN confirms FASMAC group relationship and dual MYSV/CCYV diagnostic kit development and March 2026 launch.')
+b=ev('https://fasmac.co.jp/product/agripalette','Current manufacturer catalogue lists nine distinct plant-pathogen test kit product codes and ten-test packages.')
+c=ev('https://fasmac.co.jp/gene_craft/artificial_service','Current group catalogue names own cloning/expression vectors offered with gene synthesis; supplied CellFree Sciences vectors distinguished from FASMAC original products.')
+d=ev('https://fasmac.co.jp/nucleic_acid_synthesis','Group catalogue offers GenomeCraft guide RNA synthesis for CRISPR/Cas9 research; custom sequences not invented as thousands of individual SKUs.')
+products=[]
+for code,target in [('AP001-1K','TYLCV'),('AP002-1K','Acidovorax avenae subsp. citrulli'),('AP003-1K','MYSV'),('AP004-1K','PRSV'),('AP005-1K','CCYV'),('AP006-1K','CMV'),('AP007-1K','ToMV'),('AP008-1K','WMV'),('AP101-1K','MYSV and CCYV')]:
+ products.append(p('Agripalette '+target+' '+code,'Ten-test immunochromatographic plant-pathogen detection kit for '+target+'.',b,'commercial',typ='product',sub='diagnostics',aliases=[code],roles=['commercial_partner'],evidence=[a,b]))
+for code,desc in [('pUCFa','Ampicillin-resistant cloning vector offered with synthetic genes.'),('pUCFk','Kanamycin-resistant cloning vector offered with synthetic genes.'),('pEFa','Ampicillin-resistant bacterial protein expression vector.'),('pEFk','Kanamycin-resistant bacterial protein expression vector.'),('pEMF','Mammalian cell protein expression vector.')]:
+ products.append(p('FASMAC '+code,desc,c,'commercial',typ='product',sub='research_tools',roles=['commercial_partner'],evidence=[a,c]))
+products.append(p('FASMAC GenomeCraft guide RNA','Custom CRISPR/Cas9 guide RNA research product family; sequence-specific orders grouped.',d,'commercial',typ='product',sub='research_tools',roles=['commercial_partner'],evidence=[a,d]))
+co=company('NIPPN CORP.',products,[a,b,c,d],'Reviewed subsidiary relationship and current nine-code Agripalette catalogue plus original FASMAC vectors and guide RNA family. Food and cosmetic ingredient claims not treated as therapeutic approval. Partial: remaining own and distributed molecular/food-allergen reagents, standard vectors, nucleic-acid formats, instrument catalogue and historical products require review. Third-party products need supplier roles, not parent developer ownership.',status='partial')
+(out/'batch-0194.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

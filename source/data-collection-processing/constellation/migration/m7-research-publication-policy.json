@@ -1,0 +1,57 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ResearchPublicationObjects",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject"],
+      "Resource": [
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/*/publication-queue/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/*/publication-receipts/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/*/publication-retries/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/*/publication-failures/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/research-publication/failures/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/curated/*/releases/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/athena-results/*"
+      ]
+    },
+    {
+      "Sid": "ListResearchPublicationObjects",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an",
+      "Condition": {"StringLike": {"s3:prefix": [
+        "research-data/checkpoints/task_*/*",
+        "research-data/manifests/collection_runs/*",
+        "research-data/operations/*/publication-*/*",
+        "research-data/curated/*/releases/*",
+        "research-data/athena-results/*"
+      ]}}
+    },
+    {
+      "Sid": "ResearchPublicationGlueCatalog",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetDatabase", "glue:CreateDatabase", "glue:GetTable", "glue:CreateTable",
+        "glue:GetPartition", "glue:CreatePartition", "glue:UpdatePartition", "glue:DeletePartition"
+      ],
+      "Resource": [
+        "arn:aws:glue:us-east-1:059416028963:catalog",
+        "arn:aws:glue:us-east-1:059416028963:database/optima_*",
+        "arn:aws:glue:us-east-1:059416028963:table/optima_*/*"
+      ]
+    },
+    {
+      "Sid": "ResearchPublicationAthenaWorkgroups",
+      "Effect": "Allow",
+      "Action": ["athena:GetWorkGroup", "athena:CreateWorkGroup", "athena:StartQueryExecution"],
+      "Resource": "arn:aws:athena:us-east-1:059416028963:workgroup/optima-*"
+    },
+    {
+      "Sid": "ResearchPublicationAthenaQueryStatus",
+      "Effect": "Allow",
+      "Action": ["athena:GetQueryExecution", "athena:GetQueryResults", "athena:StopQueryExecution"],
+      "Resource": "*"
+    }
+  ]
+}

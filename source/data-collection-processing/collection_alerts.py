@@ -18,6 +18,7 @@ EXPECTED = {
     'eodhd_shared_quota_reached', 'eodhd_quota_refresh_required',
     'daily_query_budget_reached', 'daily_bytes_budget_reached',
     'runner_already_active', 'publisher_already_active',
+    'source_change_cooldown','worker_pool_memory_busy',
     'max_pages_reached', 'max_records_reached', 'page_budget_reached', 'page_limit',
 }
 CRITICAL = ('hash mismatch', 'hash_mismatch', 'checksum', 'integrity',
@@ -50,7 +51,11 @@ def outcome_issues(value):
         reason = str(value.get('reason') or value.get('reason_code') or value.get('capture_error') or value.get('error_type') or value.get('error') or '')
         message = str(value.get('message') or '')
         status = value.get('status')
-        if reason and reason not in EXPECTED | NON_ALERTING and status in {'failed', 'partial', 'blocked'}:
+        # These collectors commit their cursor before ending a bounded run.
+        # Outstanding work is monitored separately by progress_stalled; a local
+        # batch allowance is not an upstream result cap or collection failure.
+        bounded_partial = status == 'partial' and reason in {'record_limit', 'page_budget'}
+        if reason and not bounded_partial and reason not in EXPECTED | NON_ALERTING and status in {'failed', 'partial', 'blocked'}:
             found.add((reason, 'high' if any(x in (reason+' '+message).lower() for x in CRITICAL) else 'low'))
         if value.get('exit_code', 0) not in (0, 2):
             found.add(('subprocess_exit_' + str(value['exit_code']), 'low'))
@@ -101,6 +106,8 @@ def evaluate(snapshot, prior, config, now):
             add('pipeline:'+name,'pipeline_output_verification_failed','low',str(stage)[:500])
     for unit, policy in config['jobs'].items():
         job = snapshot.get('jobs', {}).get(unit)
+        if job and job.get('operator_paused'):
+            continue  # Explicit owner pause resolves operational alerts, not data coverage.
         if not job or job.get('inspection_error'):
             detail = (job or {}).get('inspection_error', 'Job absent from report')
             add(unit, 'inspection_failed', 'high' if any(x in detail.lower() for x in CRITICAL) else 'low', detail)
@@ -153,8 +160,25 @@ def evaluate(snapshot, prior, config, now):
                 recovered |= (resolution.get('basis') == 'reviewed_scoped_exclusions' and
                               bool(resolution.get('registry_keys')) and
                               epoch(resolution.get('at')) > epoch(incident.get('evidence_at')))
+            if incident['code'] == 'progress_stalled' and not progress.get('pending', True):
+                resolution = job.get('progress_scope_complete', {})
+                recovered |= (bool(resolution.get('manifest')) and bool(resolution.get('checkpoint'))
+                              and epoch(resolution.get('checked_at')) > epoch(incident.get('evidence_at')))
+                drained = job.get('publication_queue_drained', {})
+                owners = policy.get('publication_owners', [])
+                recovered |= (bool(owners) and drained.get('owners') == owners
+                              and len(drained.get('verified_receipts', [])) == len(owners)
+                              and epoch(drained.get('checked_at')) > epoch(incident.get('evidence_at')))
             if incident['code'] == 'service_failed':
                 recovered |= epoch(job.get('successful_execution_at')) > epoch(incident.get('evidence_at'))
+                if unit == 'optima-daily-health-audit.service':
+                    audit = snapshot.get('daily_audit') or {}
+                    recovered |= (job.get('result') == 'success' and job.get('exit_status') == 0
+                                  and audit.get('queries', 0) > 0
+                                  and not audit.get('query_failures') and not audit.get('s3_failures')
+                                  and not audit.get('receipt_query_failures')
+                                  and epoch(audit.get('checked_at')) > epoch(incident.get('evidence_at'))
+                                  and now - epoch(audit.get('checked_at')) <= 26 * 3600)
             if not structural and not recovered:
                 incidents[key] = incident
     return incidents, observations
@@ -216,7 +240,13 @@ class Watchdog:
         if not notifications or not topic:
             return digest, errors
         from monitoring_overview import overview
-        subject, body = overview(active, now, digest['period_started_at'], self.get('health/latest.json'))
+        snapshot=self.get('health/latest.json') or {}
+        snapshot['historical_gaps']=self.get('health/constellation-gaps.json')
+        snapshot['historical_autostop']=self.get('health/historical-autostop.json')
+        subject, body = overview(active, now, digest['period_started_at'], snapshot)
+        # SNS subjects must be shorter than 100 characters and contain no controls.
+        # Keep the full overview title in the durable receipt and message body.
+        delivery_subject = ''.join(c for c in subject if ord(c) >= 32 and ord(c) != 127)[:99]
         history = 'alerts/'+stamp(now)[:10]+'/'+stamp(now).replace(':', '')+'-digest-'+uuid4().hex+'.json'
         notice = {'at': stamp(now), 'channel': 'email', 'transition': 'digest', 'subject': subject, 'body': body,
                   'period_started_at': digest['period_started_at'], 'incidents': entries, 'delivery': 'pending'}
@@ -225,7 +255,7 @@ class Watchdog:
             body = body.encode('utf-8')[:200000].decode('utf-8', errors='ignore')+'\nSummary truncated; full details in S3.'
         body += '\nFull report: s3://'+self.bucket+'/'+self.prefix+history
         try:
-            response = self.sns.publish(TopicArn=topic, Subject=subject, Message=body)
+            response = self.sns.publish(TopicArn=topic, Subject=delivery_subject, Message=body)
             notice.update(delivery='accepted_by_sns', message_id=response['MessageId'])
             digest = {'period_started_at': stamp(now), 'last_sent_at': stamp(now), 'incidents': {}}
         except Exception as exc:
@@ -250,6 +280,12 @@ class Watchdog:
                     from monitoring_overview import sms_delivery_confirmed
                     alarm_key = 'aws:' + alarm['AlarmName']
                     previous = prior.get('active', {}).get(alarm_key) or prior.get('email_digest', {}).get('incidents', {}).get(alarm_key, {}).get('incident')
+                    confirmation = self.get('operator-confirmations/sms-delivery.json') or {}
+                    owner_confirmed = (alarm['AlarmName'] in confirmation.get('alarm_names', [])
+                        and confirmation.get('basis') == 'owner_received_sms'
+                        and epoch(confirmation.get('confirmed_at')) >= (alarm['StateUpdatedTimestamp'].timestamp() if isinstance(alarm.get('StateUpdatedTimestamp'), datetime) else epoch(alarm.get('StateUpdatedTimestamp'))))
+                    if owner_confirmed:
+                        continue  # A later alarm state transition remains actionable.
                     unverified_sms = ('-sms-' in alarm['AlarmName'] and previous and not sms_delivery_confirmed(alarm))
                     if alarm['StateValue'] == 'ALARM' or unverified_sms:
                         key = 'aws:' + alarm['AlarmName']
@@ -276,6 +312,9 @@ class Watchdog:
             if entry['key'] not in current:
                 pending.append((entry['key'], entry['incident'], 'email', 'recovered'))
         from monitoring_overview import overview
+        snapshot=dict(snapshot or {})
+        snapshot['historical_gaps']=self.get('health/constellation-gaps.json')
+        snapshot['historical_autostop']=self.get('health/historical-autostop.json')
         overview_subject, overview_body = overview(active, now, stamp(now), snapshot)
         self.put('overview/latest.json', {'checked_at': stamp(now), 'subject': overview_subject, 'body': overview_body})
         errors, recoveries = [], []

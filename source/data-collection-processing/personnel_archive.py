@@ -6,6 +6,7 @@ It preserves the complete parent record, source-document references and dates.
 """
 import argparse
 from collections import defaultdict, deque
+from historical_policy import historical_start
 from datetime import datetime, timedelta, timezone
 import fcntl
 import hashlib
@@ -84,7 +85,7 @@ def collect(store, settings, key):
             if not event:
                 stats['undated_skipped'] += 1
                 return
-            if event['value'][:10] < '2021-01-01':
+            if event['value'][:10] < historical_start().isoformat():
                 stats['before_floor_skipped'] += 1
                 return
             terms = match_terms(parent)
@@ -94,7 +95,7 @@ def collect(store, settings, key):
                                           dataset=parent_task['dataset'], consume=consume)
         taxonomy = json.loads(store.get('manifests/configurations/taxonomy/' + parent_task['taxonomy_hash'] + '.json').body)
         scope = {'parent_manifest': key, 'parent_manifest_sha256': hashlib.sha256(raw.body).hexdigest(),
-                 'retrieval_version': VERSION, 'coverage': NOTE, 'historical_floor': '2021-01-01',
+                 'retrieval_version': VERSION, 'coverage': NOTE, 'historical_floor': historical_start().isoformat(),
                  'input_records': inputs[0]['records'], **stats}
         spec = task_spec('personnel_archive', 'people_source_records', parent_task['mode'],
             parent_task['window']['start'], parent_task['window']['end'], scope, VERSION, universe, taxonomy)
@@ -135,9 +136,41 @@ def collect(store, settings, key):
             return finish_error(run, exc)
 
 
+def discover_batch(store, settings, mode, limit=200):
+    """Persist unprocessed manifests before advancing a bounded inventory scan."""
+    key = 'operations/personnel-archive/discovery/' + mode + '.json'
+    state, token = load_stored(store, key)
+    state = state or {'after': '', 'pending': []}
+    if state['pending']:
+        return key, state, token
+    if hasattr(store, 'root'):
+        remaining = [k for k in list_keys(store, settings, 'checkpoints/') if k > state['after']]
+        keys = remaining[:limit]; more = len(remaining) > limit
+    else:
+        base = settings.s3_prefix.rstrip('/')+'/' if settings.s3_prefix else ''
+        args = {'Bucket': settings.s3_bucket, 'Prefix': base+'checkpoints/task_', 'MaxKeys': limit}
+        if state['after']: args['StartAfter'] = base+state['after']
+        page = store.client.list_objects_v2(**args)
+        keys = [r['Key'][len(base):] for r in page.get('Contents', [])]
+        more = page.get('IsTruncated', False)
+    pending = []
+    for head_key in keys:
+        if not head_key.endswith('/head.json'): continue
+        head, _ = load_stored(store, head_key); task = (head or {}).get('task', {})
+        if mode != 'all' and task.get('mode') != mode: continue
+        if head.get('status') == 'complete' and (task.get('source'), task.get('dataset')) in INPUTS:
+            if task['window']['end'] > historical_start().isoformat()+'T00:00:00Z':
+                pending.append([task['window']['start'], task['source'], head['terminal_manifest']])
+    state = {'after': keys[-1] if more and keys else '', 'pending': pending, 'updated_at': now()}
+    token = write_json(store, key, state, token)
+    print(json.dumps({'stage':'archive_discovery_batch','heads_scanned':len(keys),'pending':len(pending),'more':more}),flush=True)
+    return key, state, token
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--max-windows', type=int, default=4)
+    parser.add_argument('--mode',choices=['daily','historical','all'],default='all')
     args = parser.parse_args()
     if not 1 <= args.max_windows <= 24:
         parser.error('max-windows must be 1..24')
@@ -147,14 +180,13 @@ def main():
         except BlockingIOError:
             return 2
         settings = StorageSettings.load(ROOT / 'config/collection-storage.s3.json'); store = settings.store()
-        candidates = []
-        for key in list_keys(store, settings, 'checkpoints/' if hasattr(store, 'root') else 'checkpoints/task_'):
-            if not key.startswith('checkpoints/task_') or not key.endswith('/head.json'):
-                continue
-            head, _ = load_stored(store, key); task = head.get('task', {})
-            if head.get('status') == 'complete' and (task.get('source'), task.get('dataset')) in INPUTS:
-                if task['window']['end'] > '2021-01-01T00:00:00Z':
-                    candidates.append((task['window']['start'], task['source'], head['terminal_manifest']))
+        discovery_key, discovery, discovery_token = discover_batch(store, settings, args.mode)
+        candidates = discovery['pending']
+        def consumed(manifest):
+            nonlocal discovery_token
+            discovery['pending'] = [r for r in discovery['pending'] if r[2] != manifest]
+            discovery['updated_at'] = now()
+            discovery_token = write_json(store, discovery_key, discovery, discovery_token)
         lanes = defaultdict(deque)
         for start, source, key in sorted(candidates):
             lanes[source].append(key)
@@ -168,10 +200,12 @@ def main():
             receipt_key = 'operations/personnel-archive/processed/' + digest([VERSION, key]) + '.json'
             receipt, token = load_stored(store, receipt_key)
             if receipt:
+                consumed(key)
                 continue
             retry_key = 'operations/personnel-archive/retries/' + digest([VERSION, key]) + '.json'
             retry, retry_token = load_stored(store, retry_key)
             if retry and retry['retry_after'] > now():
+                consumed(key)
                 continue
             try:
                 result = collect(store, settings, key)
@@ -182,6 +216,7 @@ def main():
             if result['status'] != 'complete':
                 write_json(store, retry_key, {**result,
                     'retry_after': (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat().replace('+00:00', 'Z')}, retry_token)
+            consumed(key)
             outcomes.append(result); print(json.dumps(result), flush=True)
             if len(outcomes) >= args.max_windows:
                 break

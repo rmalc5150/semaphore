@@ -18,6 +18,10 @@ CREATE TABLE companies (
   entity_status varchar(100) NOT NULL DEFAULT 'unknown'
     CHECK (entity_status IN ('active', 'inactive', 'dissolved', 'unknown')),
   sector_ids json NOT NULL DEFAULT (JSON_ARRAY()) CHECK (JSON_TYPE(sector_ids) = 'ARRAY'),
+  last_product_scan_at datetime(6),
+  last_product_scan_status enum('complete','partial','failed'),
+  last_product_scan_error text,
+  last_product_scan_evidence json,
   collection_enabled boolean NOT NULL DEFAULT false,
   review_status enum('pending', 'verified', 'rejected') NOT NULL DEFAULT 'pending',
   evidence json NOT NULL CHECK (JSON_TYPE(evidence) = 'ARRAY' AND JSON_LENGTH(evidence) > 0),
@@ -209,7 +213,7 @@ BEGIN
     (table_name, row_key, operation, before_row, after_row, changed_by, change_reason)
   VALUES ('companies', CAST(NEW.company_id AS CHAR), 'INSERT',
     NULL,
-    JSON_OBJECT('company_id', NEW.company_id, 'canonical_name', NEW.canonical_name, 'display_name', NEW.display_name, 'entity_type', NEW.entity_type, 'description', NEW.description, 'website_url', NEW.website_url, 'domicile_country', NEW.domicile_country, 'ownership_status', NEW.ownership_status, 'entity_status', NEW.entity_status, 'sector_ids', NEW.sector_ids, 'collection_enabled', NEW.collection_enabled, 'review_status', NEW.review_status, 'evidence', NEW.evidence, 'observed_at', NEW.observed_at, 'archived_at', NEW.archived_at, 'created_at', NEW.created_at, 'updated_at', NEW.updated_at, 'row_version', NEW.row_version), @app_actor, @app_change_reason);
+    JSON_OBJECT('company_id', NEW.company_id, 'canonical_name', NEW.canonical_name, 'display_name', NEW.display_name, 'entity_type', NEW.entity_type, 'description', NEW.description, 'website_url', NEW.website_url, 'domicile_country', NEW.domicile_country, 'ownership_status', NEW.ownership_status, 'entity_status', NEW.entity_status, 'sector_ids', NEW.sector_ids, 'last_product_scan_at', NEW.last_product_scan_at, 'last_product_scan_status', NEW.last_product_scan_status, 'last_product_scan_error', NEW.last_product_scan_error, 'last_product_scan_evidence', NEW.last_product_scan_evidence, 'collection_enabled', NEW.collection_enabled, 'review_status', NEW.review_status, 'evidence', NEW.evidence, 'observed_at', NEW.observed_at, 'archived_at', NEW.archived_at, 'created_at', NEW.created_at, 'updated_at', NEW.updated_at, 'row_version', NEW.row_version), @app_actor, @app_change_reason);
 END$$
 
 CREATE TRIGGER companies_audit_update BEFORE UPDATE ON companies
@@ -232,8 +236,8 @@ BEGIN
   INSERT INTO tracking.entity_changes
     (table_name, row_key, operation, before_row, after_row, changed_by, change_reason)
   VALUES ('companies', CAST(NEW.company_id AS CHAR), 'UPDATE',
-    JSON_OBJECT('company_id', OLD.company_id, 'canonical_name', OLD.canonical_name, 'display_name', OLD.display_name, 'entity_type', OLD.entity_type, 'description', OLD.description, 'website_url', OLD.website_url, 'domicile_country', OLD.domicile_country, 'ownership_status', OLD.ownership_status, 'entity_status', OLD.entity_status, 'sector_ids', OLD.sector_ids, 'collection_enabled', OLD.collection_enabled, 'review_status', OLD.review_status, 'evidence', OLD.evidence, 'observed_at', OLD.observed_at, 'archived_at', OLD.archived_at, 'created_at', OLD.created_at, 'updated_at', OLD.updated_at, 'row_version', OLD.row_version),
-    JSON_OBJECT('company_id', NEW.company_id, 'canonical_name', NEW.canonical_name, 'display_name', NEW.display_name, 'entity_type', NEW.entity_type, 'description', NEW.description, 'website_url', NEW.website_url, 'domicile_country', NEW.domicile_country, 'ownership_status', NEW.ownership_status, 'entity_status', NEW.entity_status, 'sector_ids', NEW.sector_ids, 'collection_enabled', NEW.collection_enabled, 'review_status', NEW.review_status, 'evidence', NEW.evidence, 'observed_at', NEW.observed_at, 'archived_at', NEW.archived_at, 'created_at', NEW.created_at, 'updated_at', NEW.updated_at, 'row_version', NEW.row_version), @app_actor, @app_change_reason);
+    JSON_OBJECT('company_id', OLD.company_id, 'canonical_name', OLD.canonical_name, 'display_name', OLD.display_name, 'entity_type', OLD.entity_type, 'description', OLD.description, 'website_url', OLD.website_url, 'domicile_country', OLD.domicile_country, 'ownership_status', OLD.ownership_status, 'entity_status', OLD.entity_status, 'sector_ids', OLD.sector_ids, 'last_product_scan_at', OLD.last_product_scan_at, 'last_product_scan_status', OLD.last_product_scan_status, 'last_product_scan_error', OLD.last_product_scan_error, 'last_product_scan_evidence', OLD.last_product_scan_evidence, 'collection_enabled', OLD.collection_enabled, 'review_status', OLD.review_status, 'evidence', OLD.evidence, 'observed_at', OLD.observed_at, 'archived_at', OLD.archived_at, 'created_at', OLD.created_at, 'updated_at', OLD.updated_at, 'row_version', OLD.row_version),
+    JSON_OBJECT('company_id', NEW.company_id, 'canonical_name', NEW.canonical_name, 'display_name', NEW.display_name, 'entity_type', NEW.entity_type, 'description', NEW.description, 'website_url', NEW.website_url, 'domicile_country', NEW.domicile_country, 'ownership_status', NEW.ownership_status, 'entity_status', NEW.entity_status, 'sector_ids', NEW.sector_ids, 'last_product_scan_at', NEW.last_product_scan_at, 'last_product_scan_status', NEW.last_product_scan_status, 'last_product_scan_error', NEW.last_product_scan_error, 'last_product_scan_evidence', NEW.last_product_scan_evidence, 'collection_enabled', NEW.collection_enabled, 'review_status', NEW.review_status, 'evidence', NEW.evidence, 'observed_at', NEW.observed_at, 'archived_at', NEW.archived_at, 'created_at', NEW.created_at, 'updated_at', NEW.updated_at, 'row_version', NEW.row_version), @app_actor, @app_change_reason);
 END$$
 
 CREATE TRIGGER companies_audit_delete BEFORE DELETE ON companies
@@ -248,7 +252,7 @@ BEGIN
   INSERT INTO tracking.entity_changes
     (table_name, row_key, operation, before_row, after_row, changed_by, change_reason)
   VALUES ('companies', CAST(OLD.company_id AS CHAR), 'DELETE',
-    JSON_OBJECT('company_id', OLD.company_id, 'canonical_name', OLD.canonical_name, 'display_name', OLD.display_name, 'entity_type', OLD.entity_type, 'description', OLD.description, 'website_url', OLD.website_url, 'domicile_country', OLD.domicile_country, 'ownership_status', OLD.ownership_status, 'entity_status', OLD.entity_status, 'sector_ids', OLD.sector_ids, 'collection_enabled', OLD.collection_enabled, 'review_status', OLD.review_status, 'evidence', OLD.evidence, 'observed_at', OLD.observed_at, 'archived_at', OLD.archived_at, 'created_at', OLD.created_at, 'updated_at', OLD.updated_at, 'row_version', OLD.row_version),
+    JSON_OBJECT('company_id', OLD.company_id, 'canonical_name', OLD.canonical_name, 'display_name', OLD.display_name, 'entity_type', OLD.entity_type, 'description', OLD.description, 'website_url', OLD.website_url, 'domicile_country', OLD.domicile_country, 'ownership_status', OLD.ownership_status, 'entity_status', OLD.entity_status, 'sector_ids', OLD.sector_ids, 'last_product_scan_at', OLD.last_product_scan_at, 'last_product_scan_status', OLD.last_product_scan_status, 'last_product_scan_error', OLD.last_product_scan_error, 'last_product_scan_evidence', OLD.last_product_scan_evidence, 'collection_enabled', OLD.collection_enabled, 'review_status', OLD.review_status, 'evidence', OLD.evidence, 'observed_at', OLD.observed_at, 'archived_at', OLD.archived_at, 'created_at', OLD.created_at, 'updated_at', OLD.updated_at, 'row_version', OLD.row_version),
     NULL, @app_actor, @app_change_reason);
 END$$
 

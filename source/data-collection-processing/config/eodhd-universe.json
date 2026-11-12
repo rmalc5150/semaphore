@@ -24,5 +24,6 @@
     "semiconductors": "\\b(semiconductor\\w*|integrated circuit\\w*|chip design|wafer\\w*|photolithograph\\w*|microprocessor\\w*)\\b",
     "energy_storage": "\\b(batter(?:y|ies)|supercapacitor\\w*|ultracapacitor\\w*|energy storage|thermal storage|heat storage|molten salt storage|pumped hydro\\w*|flywheel\\w*|compressed air energy|hydrogen storage|hydrogen tank\\w*)\\b"
   },
-  "coverage_note": "Provider profiles and textual rules nominate sector candidates. They are not verified legal identities or historical classifications. A listed-security provider does not establish coverage of private companies. Broad industry buckets alone must not determine robotics or energy-storage membership."
+  "coverage_note": "Provider profiles and textual rules nominate sector candidates. They are not verified legal identities or historical classifications. A listed-security provider does not establish coverage of private companies. Broad industry buckets alone must not determine robotics or energy-storage membership.",
+  "planning_use_committed_rosters": true
 }

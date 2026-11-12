@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume S53 USGS minerals enrichment until committed data is verified and emailed
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=optima-usgs-minerals-backfill.service
+
+[Install]
+WantedBy=timers.target

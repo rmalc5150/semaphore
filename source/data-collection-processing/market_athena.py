@@ -4,6 +4,7 @@ import argparse
 import fcntl
 import hashlib
 import json
+import io
 from pathlib import Path
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -43,8 +44,9 @@ def prepare(store,settings,config,keys,output_root):
     for name,rows in tables.items():
         table=pa.Table.from_pylist(rows,schema=pa.schema([(n,release.ARROW_TYPES[t]) for n,t in SCHEMAS[name]]))
         relative='tables/'+name+'/part-00000.parquet';path=root/relative;path.parent.mkdir(parents=True,exist_ok=True)
-        pq.write_table(table,path,compression='snappy');release.require(pq.ParquetFile(path).read().equals(table),'Market Parquet roundtrip mismatch')
-        body=path.read_bytes();location=f's3://{settings.s3_bucket}/{settings.s3_prefix}/{prefix}/tables/{name}/'
+        buffer=io.BytesIO();pq.write_table(table,buffer,compression='snappy')
+        body=buffer.getvalue();release.require(pq.read_table(io.BytesIO(body)).equals(table),'Market Parquet roundtrip mismatch')
+        path.write_bytes(body);location=f's3://{settings.s3_bucket}/{settings.s3_prefix}/{prefix}/tables/{name}/'
         files[name]={'path':relative,'sha256':hashlib.sha256(body).hexdigest(),'bytes':len(body),'rows':len(rows),'location':location,'columns':SCHEMAS[name]}
         ddl.append(f"CREATE EXTERNAL TABLE {config['database']}.{name} ("+', '.join(f'{n} {t}' for n,t in SCHEMAS[name])+f") STORED AS PARQUET LOCATION '{location}';")
     report={'curator_version':'market-athena-1.0','catalog_owner':'market','workgroup_description':'Optima market pilot',

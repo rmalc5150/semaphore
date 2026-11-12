@@ -1,0 +1,13 @@
+[Unit]
+Description=Bounded patent odp-historical capture using existing controller access
+After=network-online.target
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B patent_review_continuation.py --lane odp-historical
+Slice=optima-financial.slice
+MemoryMax=268435456
+MemorySwapMax=0
+CPUQuota=15%
+TimeoutStartSec=190

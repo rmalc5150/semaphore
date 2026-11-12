@@ -1,0 +1,15 @@
+[Unit]
+Description=Bounded NMPA inventory capture from saved checkpoints
+After=network-online.target
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/opt/constellation/source
+ExecStart=/opt/constellation/legacy-venv/bin/python -B nmpa_resumed_capture.py inventory
+Slice=constellation-workers.slice
+MemoryMax=536870912
+MemorySwapMax=0
+CPUQuota=20%
+TimeoutStartSec=300
+Environment=CONSTELLATION_ROLE=worker
+Environment=CONSTELLATION_SHARED_HTTP_LIMITS=1

@@ -1,0 +1,6 @@
+from research_helpers import *
+a=ev('https://cardaxpharma.com/programs/','Two historical pharmaceutical candidates named, distinguished from synthetic astaxanthin dietary supplement.')
+b=ev('https://cardaxpharma.com/commercialization/','Company says attempts to fund continued pharmaceutical development unsuccessful and may license/sell assets. Current website preclinical graphic not treated as proof of ongoing active development.')
+products=[p('CDX-101','Historical astaxanthin pharmaceutical candidate for cardiovascular inflammation and dyslipidemia.',a,evidence=[a,b]),p('CDX-301','Historical zeaxanthin pharmaceutical candidate for macular degeneration.',a,evidence=[a,b])]
+co=dict(company_id='cmp_2d4036cd-c50f-4f80-9a8a-bc5c47719b1b',products=products,evidence=[a,b],status='partial',coverage_note='Two pharmaceutical candidate identities, lifecycle unknown given unfunded continuation and possible monetization. ZanthoSyn synthetic dietary supplement reviewed but not included automatically as biotechnology. Partial: legacy programme codes, current asset disposition and any qualifying manufacturing technologies remain.')
+(out/'batch-0360.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

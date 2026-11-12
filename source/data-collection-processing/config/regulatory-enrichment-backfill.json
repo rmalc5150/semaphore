@@ -1,0 +1,17 @@
+{
+  "job_id": "regulatory-enrichment-backfill-2026-10-16",
+  "window_start": "2021-01-01T00:00:00Z",
+  "snapshot_cutoff": "2026-10-16T10:41:06.173853Z",
+  "inventory_file": "reports/regulatory-enrichment-backfill-2026-10-16/input-batches.json",
+  "inventory_sha256": "acdada32e74690729a2068f682fdcedd1e33738c987a0565f940f459df0483b5",
+  "storage_config": "config/collection-storage.s3.json",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "max_batches_per_invocation": 300,
+  "max_versions_per_invocation": 25,
+  "max_attempts": 3,
+  "retry_minutes": 30,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Enrich every distinct saved S22/S23 source-data version in the pinned committed-catalog inventory. Repeated retrieval observations of identical source data are represented once with lineage and observation counts. Original observations and event dates are preserved. PMDA is re-parsed from saved original PDFs; UK holder information comes from retrieved product documents and does not reconstruct historical ownership. Completion waits for all versions to be processed, including explicit gaps, and exact Athena query counts."
+}

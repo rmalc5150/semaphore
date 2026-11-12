@@ -347,7 +347,7 @@ def collect_uspto(store, settings, universe, taxonomy, start, end, mode, page_si
 
 
 def collect_uspto_partitioned(store, settings, universe, taxonomy, start, end,
-                              page_size=50, max_pages=10, refresh=False, client=None, rules=None):
+                              page_size=50, max_pages=10, refresh=False, client=None, rules=None, eager_split=False):
     """Commit independent hourly scans before advancing the completed-day cursor.
 
     A changing hour restarts alone. Completed hours remain immutable observations,
@@ -404,6 +404,9 @@ def collect_uspto_partitioned(store, settings, universe, taxonomy, start, end,
                 client=client, rules=rules, query_bounds=bounds, partition_parent=generation)
             write_json(store, key, child, saved.token if saved else None)
             remaining -= child['pages_requested']
+            if (eager_split and child.get('reason') == 'source_changed_refresh_required'
+                    and remaining > 0 and upper - lower > timedelta(minutes=5)):
+                return scan(bounds, label)
             return {**child, 'manifests': [child['manifest']]}
 
         while not run.exhausted and hour < 24:

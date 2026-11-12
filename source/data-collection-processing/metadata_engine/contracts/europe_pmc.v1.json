@@ -1,0 +1,10 @@
+{
+  "source_key": "europe_pmc",
+  "contract_version": "1.0.0",
+  "adapter": "publications",
+  "adapter_version": "1.0.0",
+  "record_kind": "publication",
+  "source_record_id_basis": "provider",
+  "license_policy_id": "public-europe-pmc-v1",
+  "raw_requirements": {"version": "1.0.0", "minimum_completeness": "complete", "required_artifact_kinds": ["provider_record"], "forbidden_shortcuts": ["abstract_only", "index_only", "title_date_only", "third_party_metadata_only"]}
+}

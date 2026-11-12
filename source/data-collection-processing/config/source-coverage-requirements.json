@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "historical_start": "2021-01-01",
+  "historical_start": "2016-01-01",
   "daily_freshness_target_hours": 48,
   "freshness_target_status": "proposed operational target, not a provider guarantee",
   "universe": "config/company-universe.v0.5.json",

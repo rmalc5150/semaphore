@@ -1,0 +1,7 @@
+from research_helpers import *
+a=ev('https://www.deciphera.com/news/deciphera-pharmaceuticals-presents-data-altiratinib-dcc-2701-advanced-multi-targeted-kinase','Historical issuer identification of altiratinib/DCC-2701 and rebastinib; modern continuation not assumed.')
+b=ev('https://www.deciphera.com/news/deciphera-pharmaceuticals-appoints-michael-d-taylor-phd-president-and-chief-executive-officer','Historical LY3009120/DP-4978 collaboration with Eli Lilly; no current rights assertion.')
+c=ev('https://www.deciphera.com/conference/aacr-nci-eortc','Primary scientific archive identifies rebastinib as DCC-2036.')
+products=[p('Altiratinib','Historical multi-targeted kinase inhibitor; latest status uncertain.',a,aliases=['DCC-2701']),p('Rebastinib','Historical kinase inhibitor; latest status uncertain.',c,aliases=['DCC-2036']),p('LY3009120','Historical pan-RAF programme developed with Eli Lilly; latest status uncertain.',b,roles=['commercial_partner'],aliases=['DP-4978'])]
+co=dict(company_id='cmp_27e04958-f7c8-4bfc-b56d-ae00125f96ce',products=products,evidence=[a,b,c],status='partial',coverage_note='Three additional historical molecules; earlier current-pipeline review retained in product evidence. Partial: definitive termination or transfer dates and regional rights remain unresolved. Archival descriptions not treated as current clinical-stage evidence. Current marketed and Ono-collaborative products already saved separately.')
+(out/'batch-0300.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

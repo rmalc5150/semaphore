@@ -1,0 +1,12 @@
+{
+  "DBInstanceIdentifier": "semaphore",
+  "DBInstanceStatus": "available",
+  "StorageType": "gp2",
+  "AllocatedStorage": 20,
+  "PendingModifiedValues": {
+    "AllocatedStorage": 20,
+    "Iops": 3000,
+    "StorageThroughput": 125,
+    "StorageType": "gp3"
+  }
+}

@@ -1,6 +1,7 @@
 """Read-only operational audit; Athena SELECTs save their normal result objects."""
 import concurrent.futures as cf
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -12,7 +13,7 @@ import boto3
 from botocore.config import Config
 from collection_health_exporter import properties, json_reports
 
-OUT = ROOT/'reports/daily-health'/datetime.now(timezone.utc).strftime('%Y-%m-%d')
+OUT = Path(os.environ.get('OPTIMA_DAILY_HEALTH_ROOT',str(ROOT/'reports/daily-health')))/datetime.now(timezone.utc).strftime('%Y-%m-%d')
 OUT.mkdir(parents=True, exist_ok=True)
 cfg = json.loads((ROOT/'config/collection-monitoring.json').read_text())
 BUCKET = cfg['bucket']

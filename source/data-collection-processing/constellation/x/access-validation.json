@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-10-27T09:47:04.431469+00:00",
+  "fields": {
+    "X-access": true,
+    "X-secret": true,
+    "X-api-key": false,
+    "X-api-secret": false,
+    "X-bearer-token": false,
+    "X-bearer": true
+  },
+  "values_logged": false,
+  "collection_enabled": false,
+  "probes": [
+    {
+      "probe": "public_user_lookup",
+      "http_status": 402,
+      "title": "Payment Required",
+      "detail": "credits depleted",
+      "type": "https://api.x.com/2/problems/credits-depleted"
+    },
+    {
+      "probe": "ads_repository_export_query",
+      "http_status": 403,
+      "errors": [
+        {
+          "message": "You currently have access to a subset of X API V2 endpoints and limited v1.1 endpoints (e.g. media post, oauth) only. If you need access to this endpoint, you may need a different access level. You can learn more here: https://developer.x.com/en/portal/product",
+          "code": 453
+        }
+      ]
+    }
+  ],
+  "access_looks_like_oauth1_user_token": true,
+  "access_looks_like_bearer": false,
+  "ads_repository_response_has_data": false
+}

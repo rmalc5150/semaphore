@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-26T05:51:46.769697+00:00",
+  "status": "verified",
+  "bulk_collection_enabled": false,
+  "results": [
+    {
+      "source_key": "usgs_earthquakes",
+      "records": 340,
+      "pages": 1,
+      "manifest_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/jobs/4aee589555824681990ce68e7721c85e88b1323be769a39fbbc0b42d6644d3a4/attempts/dd650703000144369829ff3297294185/manifest.json",
+      "historical_vintage_verified": false
+    },
+    {
+      "source_key": "nsf_awards",
+      "records": 18,
+      "pages": 1,
+      "manifest_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/jobs/b7335fd1a5edf3d0772c0fcf9cffae5af250587d99afdbd5da1ca566dcee0343/attempts/5b3acf715acf4e2cb7d97b58c5c48bf4/manifest.json",
+      "historical_vintage_verified": false
+    },
+    {
+      "source_key": "arxiv",
+      "records": 344,
+      "pages": 4,
+      "manifest_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/jobs/c7f7306e703a113ebd4ceb883d70e53d0d9c0ce76e7525e05bd816811ad446fc/attempts/0457a19f9d9240f4af4ecc1cc7321392/manifest.json",
+      "historical_vintage_verified": false
+    }
+  ],
+  "total_records": 702
+}

@@ -1,11 +1,20 @@
 {
- "daily_call_ceiling":98000,
- "requests_per_minute":900,
- "daily_group_caps":{"profiles":88000,"market":9000,"inventory":1000},
- "profile_batch_size":8800,
- "market_requests_per_run":300,
- "market_windows_per_lane":80,
- "provider_daily_limit":100000,
- "provider_requests_per_minute":1000,
- "scope":"All configured EODHD clients on this EC2 host; costs counted before every HTTP attempt. User endpoint costs zero daily calls but counts toward request rate."
+  "daily_call_ceiling": 98000,
+  "requests_per_minute": 900,
+  "daily_group_caps": {
+    "profiles": 88000,
+    "market": 9000,
+    "inventory": 1000
+  },
+  "profile_batch_size": 8800,
+  "market_requests_per_run": 300,
+  "market_windows_per_lane": 80,
+  "provider_daily_limit": 100000,
+  "provider_requests_per_minute": 1000,
+  "scope": "All configured controller and m7 clients; one weighted daily budget and rolling request rate, reserved using conditional S3 writes before each HTTP attempt.",
+  "shared_s3": {
+    "region": "us-east-1",
+    "bucket": "data-collection-059416028963-us-east-1-an",
+    "key": "research-data/operations/eodhd/shared-quota.json"
+  }
 }

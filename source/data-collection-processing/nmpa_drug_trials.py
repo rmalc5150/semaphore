@@ -90,37 +90,7 @@ def parse_search_page(document: str) -> list[dict[str, Any]]:
     return trials
 
 
-def parse_detail_page(document: str) -> list[dict[str, Any]]:
-    """Preserve all labeled fields and links from an NMPA trial record."""
-    parser = TableParser()
-    parser.feed(document)
-    fields: list[dict[str, Any]] = []
-    for row in parser.rows:
-        if len(row) < 2:
-            continue
-        # Basic-information rows contain two independent th/td pairs.
-        # Preserve the disclosure date and status under their own labels.
-        if len(row) >= 4 and len(row) % 2 == 0 and all(
-                row[i].get("tag") == "th" and row[i + 1].get("tag") == "td" for i in range(0, len(row), 2)):
-            for i in range(0, len(row), 2):
-                label, value = row[i]["text"].strip(" ：:"), row[i + 1]["text"]
-                if label and value:
-                    field = {"label": label, "value": value}
-                    links = [urljoin(BASE_URL, link["href"]) for link in row[i + 1]["links"] if link.get("href")]
-                    if links:
-                        field["links"] = links
-                    fields.append(field)
-            continue
-        label = row[0]["text"].strip(" ：:")
-        value = " | ".join(cell["text"] for cell in row[1:] if cell["text"])
-        if not label or not value or label == value:
-            continue
-        field: dict[str, Any] = {"label": label, "value": value}
-        links = [urljoin(BASE_URL, link["href"]) for cell in row[1:] for link in cell["links"]]
-        if links:
-            field["links"] = links
-        fields.append(field)
-    return fields
+from metadata_engine.nmpa_tables import parse_detail_page
 
 
 class NMPABrowser:

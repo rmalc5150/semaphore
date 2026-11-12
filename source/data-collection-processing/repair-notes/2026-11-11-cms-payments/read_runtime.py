@@ -1,0 +1,4 @@
+import boto3,json
+from pathlib import Path
+p=Path(__file__).parent;s=boto3.client('s3',region_name='us-east-1');key='research-data/constellation-backfill/legacy-runtime/optima-cms-financial-collection.service/current.json';body=s.get_object(Bucket='data-collection-059416028963-us-east-1-an',Key=key)['Body'].read();data=json.loads(body);print('CHECKPOINT',list(data),str(data)[:1700]);(p/'checkpoint-structure.json').write_text(json.dumps({k:(list(v)[:8]if isinstance(v,dict)else str(v)[:800])for k,v in data.items()},indent=2));
+ssm=boto3.client('ssm',region_name='us-east-1');ref=json.loads((p/'runtime-command.json').read_text());o=ssm.get_command_invocation(CommandId=ref['command_id'],InstanceId=ref['instance']);(p/'runtime-result.json').write_text(json.dumps(o,indent=2,default=str));print(o['Status'],o['StandardOutputContent'],o['StandardErrorContent'])

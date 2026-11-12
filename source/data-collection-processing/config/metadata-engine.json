@@ -1,0 +1,4921 @@
+{
+  "version": "2.0.0",
+  "region": "us-east-1",
+  "bucket": "data-collection-059416028963-us-east-1-an",
+  "prefix": "research-data/constellation-backfill/metadata-engine/runtime-v2",
+  "db_secret": "metadata-engine/worker",
+  "athena_database": "optima_metadata_engine",
+  "athena_workgroup": "optima-collected-data",
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scan_page_size": 10,
+  "verified_source_failure_handling": {
+    "gleif_legal_entities": "queue_by_source_date",
+    "eodhd": "queue_by_source_date",
+    "eodhd_market": "queue_by_source_date",
+    "hkex_prices": "queue_by_source_date",
+    "sec_edgar": "queue_by_source_date",
+    "sec_companyfacts": "queue_by_source_date",
+    "edinet_filings": "queue_by_source_date",
+    "finlight": "queue_by_source_date",
+    "people_rss": "queue_by_source_date",
+    "personnel_archive": "queue_by_source_date",
+    "clinicaltrials_gov": "queue_by_source_date",
+    "ema_ctis": "queue_by_source_date",
+    "fda_openfda": "queue_by_source_date",
+    "drugsfda_applications": "queue_by_source_date",
+    "ema_medicines": "queue_by_source_date",
+    "uk_mhra": "queue_by_source_date",
+    "japan_pmda": "queue_by_source_date",
+    "canada_noc": "queue_by_source_date",
+    "chictr": "queue_by_source_date",
+    "nmpa_trials": "queue_by_source_date",
+    "pubmed_abstracts": "queue_by_source_date",
+    "europe_pmc_fulltext": "queue_by_source_date",
+    "crossref_proceedings": "queue_by_source_date",
+    "cms_coverage": "queue_by_source_date",
+    "cms_coverage_documents": "queue_by_source_date",
+    "cms_payments_catalog": "queue_by_source_date",
+    "fda_dd_compliance_actions": "queue_by_source_date",
+    "fda_dd_import_refusals": "queue_by_source_date",
+    "fda_dd_inspections_citations": "queue_by_source_date",
+    "fda_ires_recalls": "queue_by_source_date",
+    "fda_product_codes": "queue_by_source_date",
+    "nih_reporter": "queue_by_source_date",
+    "nist_robotics_methods": "queue_by_source_date",
+    "nist_robotics_documents": "queue_by_source_date",
+    "usa_spending": "queue_by_source_date",
+    "ted_notices": "queue_by_source_date",
+    "uspto_assignment_histories": "queue_by_source_date",
+    "uspto_odp": "queue_by_source_date",
+    "google_patents_bigquery": "queue_by_source_date"
+  },
+  "contracts": {
+    "gleif_legal_entities": {
+      "source_key": "gleif_legal_entities",
+      "catalog_entries": [
+        1
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.gleif.org",
+        "gleif.org",
+        "www.gleif.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "eodhd": {
+      "source_key": "eodhd",
+      "catalog_entries": [
+        2
+      ],
+      "datasets": [
+        "company_profiles",
+        "listing_inventory"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "eodhd_provider_data",
+      "adapter_version": "2.0.3",
+      "record_kind": "company_reference",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "eodhd.com"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "provider_data"
+        ],
+        "forbidden_shortcuts": [
+          "unverified_provider_response",
+          "identity_mismatch",
+          "corrupt_provider_response"
+        ]
+      },
+      "provider_role": "third_party_data_vendor",
+      "data_purpose": "company_reference",
+      "completeness_scope": "declared_provider_dataset",
+      "dataset_contracts": {
+        "company_profiles": {
+          "scope": "General",
+          "required_identity_fields": [
+            "Code",
+            "Name"
+          ],
+          "retain_all_returned_fields": true,
+          "full_fundamentals_required": false
+        },
+        "listing_inventory": {
+          "scope": "exchange_and_active_or_delisted_status",
+          "required_identity_fields": [
+            "Code",
+            "Name"
+          ],
+          "retain_all_returned_fields": true
+        }
+      }
+    },
+    "eodhd_market": {
+      "source_key": "eodhd_market",
+      "catalog_entries": [
+        3
+      ],
+      "datasets": [
+        "market_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "eodhd_provider_data",
+      "adapter_version": "2.0.3",
+      "record_kind": "market_observation",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "eodhd.com"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "provider_data"
+        ],
+        "forbidden_shortcuts": [
+          "unverified_provider_response",
+          "identity_mismatch",
+          "corrupt_provider_response"
+        ]
+      },
+      "provider_role": "third_party_data_vendor",
+      "data_purpose": "market_data",
+      "completeness_scope": "declared_provider_dataset",
+      "dataset_contracts": {
+        "market_records": {
+          "kinds": [
+            "prices",
+            "dividends",
+            "splits"
+          ],
+          "symbol_identity": "exchange_qualified",
+          "price_fields": [
+            "date",
+            "open",
+            "high",
+            "low",
+            "close",
+            "adjusted_close",
+            "volume"
+          ],
+          "dividend_fields": [
+            "date",
+            "value"
+          ],
+          "split_fields": [
+            "date",
+            "split"
+          ],
+          "adjusted_prices": "current_provider_vintage_not_point_in_time"
+        }
+      }
+    },
+    "hkex_prices": {
+      "source_key": "hkex_prices",
+      "catalog_entries": [
+        4
+      ],
+      "datasets": [
+        "market_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "hkex.com.hk",
+        "www.hkex.com.hk"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "sec_edgar": {
+      "source_key": "sec_edgar",
+      "catalog_entries": [
+        5
+      ],
+      "datasets": [
+        "filings"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "filings_xbrl",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.sec.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "primary_document"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "sec_companyfacts": {
+      "source_key": "sec_companyfacts",
+      "catalog_entries": [
+        6
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "data.sec.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "hkex_news": {
+      "source_key": "hkex_news",
+      "catalog_entries": [
+        7
+      ],
+      "datasets": [
+        "filings"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "filings_xbrl",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.www1.hkexnews.hk",
+        "www1.hkexnews.hk"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "primary_document"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "edinet_filings": {
+      "source_key": "edinet_filings",
+      "catalog_entries": [
+        8
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "filings_xbrl",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.edinet-fsa.go.jp"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "primary_document"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "disclosure_candidates": {
+      "source_key": "disclosure_candidates",
+      "catalog_entries": [
+        9
+      ],
+      "datasets": [
+        "licensing_agreements",
+        "ma_announcements",
+        "press_releases",
+        "strategic_transactions"
+      ],
+      "state": "access_layer",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "disclosure_documents": {
+      "source_key": "disclosure_documents",
+      "catalog_entries": [
+        10
+      ],
+      "datasets": [
+        "documents"
+      ],
+      "state": "access_layer",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "finlight": {
+      "source_key": "finlight",
+      "catalog_entries": [
+        11
+      ],
+      "datasets": [
+        "news_articles"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.finlight.me"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unverified_provider_response",
+          "identity_mismatch",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "provider_article_record; publisher_fulltext_is_separate"
+    },
+    "marketaux": {
+      "source_key": "marketaux",
+      "catalog_entries": [
+        12
+      ],
+      "datasets": [
+        "news_articles"
+      ],
+      "state": "owner_paused",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "people_rss": {
+      "source_key": "people_rss",
+      "catalog_entries": [
+        13
+      ],
+      "datasets": [
+        "people_source_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "rss_summary_only",
+          "article_url_only",
+          "access_block_page"
+        ]
+      },
+      "completeness_scope": "publisher_article_body; unavailable articles remain explicit gaps"
+    },
+    "personnel_archive": {
+      "source_key": "personnel_archive",
+      "catalog_entries": [
+        14
+      ],
+      "datasets": [
+        "people_source_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "parent_record",
+          "source_content"
+        ],
+        "forbidden_shortcuts": [
+          "unverified_parent_identity",
+          "uncommitted_parent",
+          "source_url_only"
+        ]
+      },
+      "completeness_scope": "committed upstream source candidate and original content; not a verified personnel event"
+    },
+    "clinicaltrials_gov": {
+      "source_key": "clinicaltrials_gov",
+      "catalog_entries": [
+        15
+      ],
+      "datasets": [
+        "research_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "clinicaltrials.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "field_projection",
+          "missing_protocol",
+          "identity_mismatch",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "complete provider study record; current registry version, not historical vintages"
+    },
+    "ema_ctis": {
+      "source_key": "ema_ctis",
+      "catalog_entries": [
+        16
+      ],
+      "datasets": [
+        "research_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "euclinicaltrials.eu"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "discovery_page",
+          "search_summary_only",
+          "unmatched_trial_or_event",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "current public CTIS trial detail and matched application/decision events; not document archive or historical vintages"
+    },
+    "fda_openfda": {
+      "source_key": "fda_openfda",
+      "catalog_entries": [
+        17
+      ],
+      "datasets": [
+        "research_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.fda.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "field_projection",
+          "aggregate_only",
+          "unmatched_application_or_submission",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "complete current openFDA application or CRL and matched approval event; not all linked documents or historical vintages"
+    },
+    "drugsfda_applications": {
+      "source_key": "drugsfda_applications",
+      "catalog_entries": [
+        18
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.fda.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "field_projection",
+          "aggregate_only",
+          "unmatched_application",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "entire current provider application and all returned products/submissions; all-provider inventory plus date-scoped refresh, not all worldwide drugs or historical vintages"
+    },
+    "ema_medicines": {
+      "source_key": "ema_medicines",
+      "catalog_entries": [
+        19
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.ema.europa.eu"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_medicine",
+          "field_projection",
+          "index_only",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "entire current EMA bulk medicine row, all categories/statuses; linked EPAR documents and historical vintages separate"
+    },
+    "uk_mhra": {
+      "source_key": "uk_mhra",
+      "catalog_entries": [
+        20
+      ],
+      "datasets": [
+        "research_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "assets.publishing.service.gov.uk",
+        "mhraproducts4853.search.windows.net",
+        "mhraproducts4853.blob.core.windows.net"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_register_row",
+          "discovery_page",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "official designation rows and public medicine documents with original catalogue/PDF linkage; no all-licence or historical-vintage inference"
+    },
+    "japan_pmda": {
+      "source_key": "japan_pmda",
+      "catalog_entries": [
+        21
+      ],
+      "datasets": [
+        "research_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.pmda.go.jp"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_designation",
+          "role_inference_from_flattened_text",
+          "index_only",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "original SAKIGAKE designation PDF and matched table rows; all-drug package-insert coverage remains separate"
+    },
+    "canada_noc": {
+      "source_key": "canada_noc",
+      "catalog_entries": [
+        22
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "health-products.canada.ca"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_noc",
+          "field_projection",
+          "index_only",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "entire current official NOC record, all provider drugs and dates; not all marketed drugs or historical vintages"
+    },
+    "chictr": {
+      "source_key": "chictr",
+      "catalog_entries": [
+        23
+      ],
+      "datasets": [
+        "research_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.chictr.org.cn",
+        "chictr.org.cn"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "search_listing_only",
+          "unmatched_trial",
+          "partial_field_list",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "original public ChiCTR trial detail HTML and complete matching parsed fields; historical vintages and protocol attachments separate"
+    },
+    "nmpa_trials": {
+      "source_key": "nmpa_trials",
+      "catalog_entries": [
+        24
+      ],
+      "datasets": [
+        "registry_inventory",
+        "research_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.chinadrugtrials.org.cn",
+        "chinadrugtrials.org.cn"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "inventory_as_trial_detail",
+          "unmatched_registration",
+          "partial_detail_fields",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "inventory rows matched to original listing; research records require original full detail; inventory is not full trial coverage"
+    },
+    "pubmed_abstracts": {
+      "source_key": "pubmed_abstracts",
+      "catalog_entries": [
+        25
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "publication_abstract_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "eutils.ncbi.nlm.nih.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "search_ids_only",
+          "title_only",
+          "partial_citation_xml",
+          "unmatched_primary_pmid",
+          "abstract_as_article_full_text"
+        ]
+      },
+      "completeness_scope": "complete original PubMed citation XML and abstract when provided; not article full text, all PubMed or historical vintages"
+    },
+    "europe_pmc": {
+      "source_key": "europe_pmc",
+      "catalog_entries": [
+        26
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "publications",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.ebi.ac.uk"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "europe_pmc_fulltext": {
+      "source_key": "europe_pmc_fulltext",
+      "catalog_entries": [
+        27
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "publications",
+      "adapter_version": "2.0.3",
+      "record_kind": "publication_fulltext",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.ebi.ac.uk",
+        "eutils.ncbi.nlm.nih.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "unmatched_pmcid",
+          "partial_article_xml",
+          "discovery_page_as_fulltext"
+        ]
+      },
+      "completeness_scope": "entire original matched JATS article; external supplements and historical vintages separate"
+    },
+    "crossref_proceedings": {
+      "source_key": "crossref_proceedings",
+      "catalog_entries": [
+        28
+      ],
+      "datasets": [
+        "conference_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "conference_metadata",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.crossref.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "field_projection",
+          "unmatched_doi",
+          "index_only",
+          "metadata_as_full_paper",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "complete current Crossref proceedings-article metadata and deposited abstract when supplied; publisher full text and historical vintages separate"
+    },
+    "cms_coverage": {
+      "source_key": "cms_coverage",
+      "catalog_entries": [
+        29
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "coverage_inventory",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.coverage.cms.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_document_version",
+          "field_projection",
+          "inventory_as_policy_body",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "complete national coverage inventory rows; policy body is collected separately"
+    },
+    "cms_coverage_documents": {
+      "source_key": "cms_coverage_documents",
+      "catalog_entries": [
+        30
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "coverage_document",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.coverage.cms.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_document_version",
+          "field_projection",
+          "inventory_as_policy_body",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "complete returned NCD version with coverage criteria; not local policies, all payers or historical API vintages"
+    },
+    "cms_payments_catalog": {
+      "source_key": "cms_payments_catalog",
+      "catalog_entries": [
+        31
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "financial_dataset_catalog",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "openpaymentsdata.cms.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_dataset",
+          "partial_descriptor",
+          "catalog_as_payment_rows",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "complete original Open Payments dataset descriptor; underlying payment/spending records are in dedicated financial tables"
+    },
+    "fda_dd_compliance_actions": {
+      "source_key": "fda_dd_compliance_actions",
+      "catalog_entries": [
+        32
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "regulatory_dashboard_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api-datadashboard.fda.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_provider_row",
+          "dropped_returned_fields",
+          "industry_reference_as_full_product_taxonomy",
+          "projected_recall_as_full_detail",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "entire returned dashboard row and citation/compliance/refusal fields; original documents and historical vintages separate"
+    },
+    "fda_dd_import_refusals": {
+      "source_key": "fda_dd_import_refusals",
+      "catalog_entries": [
+        33
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "regulatory_dashboard_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api-datadashboard.fda.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_provider_row",
+          "dropped_returned_fields",
+          "industry_reference_as_full_product_taxonomy",
+          "projected_recall_as_full_detail",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "entire returned dashboard row and citation/compliance/refusal fields; original documents and historical vintages separate"
+    },
+    "fda_dd_inspections_citations": {
+      "source_key": "fda_dd_inspections_citations",
+      "catalog_entries": [
+        34
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "regulatory_dashboard_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api-datadashboard.fda.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_provider_row",
+          "dropped_returned_fields",
+          "industry_reference_as_full_product_taxonomy",
+          "projected_recall_as_full_detail",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "entire returned dashboard row and citation/compliance/refusal fields; original documents and historical vintages separate"
+    },
+    "fda_dd_inspections_classifications": {
+      "source_key": "fda_dd_inspections_classifications",
+      "catalog_entries": [
+        35
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api-datadashboard.fda.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "fda_ires_recalls": {
+      "source_key": "fda_ires_recalls",
+      "catalog_entries": [
+        36
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "recall_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.accessdata.fda.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_provider_row",
+          "dropped_returned_fields",
+          "industry_reference_as_full_product_taxonomy",
+          "projected_recall_as_full_detail",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "entire returned recall row; legacy selected columns flagged; selected by event modification date, not recall-initiation history or historical vintages"
+    },
+    "fda_product_codes": {
+      "source_key": "fda_product_codes",
+      "catalog_entries": [
+        37
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "industry_reference",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.accessdata.fda.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_provider_row",
+          "dropped_returned_fields",
+          "industry_reference_as_full_product_taxonomy",
+          "projected_recall_as_full_detail",
+          "request_receipt_only"
+        ]
+      },
+      "completeness_scope": "current industry-code reference, not complete product-code hierarchy or historical vintages"
+    },
+    "nih_reporter": {
+      "source_key": "nih_reporter",
+      "catalog_entries": [
+        38
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.reporter.nih.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_original",
+          "unverified_mapping",
+          "bibliography_as_patent_text",
+          "discovery_as_measurements",
+          "content_chunks_as_additional_awards"
+        ]
+      },
+      "completeness_scope": "declared source dataset with original identity/content validation; dataset-specific document requirements apply; not exhaustive coverage or historical vintages"
+    },
+    "google_patents_bigquery": {
+      "source_key": "google_patents_bigquery",
+      "catalog_entries": [
+        39
+      ],
+      "datasets": [
+        "patent_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "patent_bibliography",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "bigquery.googleapis.com"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_original",
+          "unverified_mapping",
+          "bibliography_as_patent_text",
+          "discovery_as_measurements",
+          "content_chunks_as_additional_awards"
+        ]
+      },
+      "completeness_scope": "declared source dataset with original identity/content validation; dataset-specific document requirements apply; not exhaustive coverage or historical vintages"
+    },
+    "uspto_odp": {
+      "source_key": "uspto_odp",
+      "catalog_entries": [
+        40,
+        63,
+        64
+      ],
+      "datasets": [
+        "patent_assignment_records",
+        "patent_office_actions",
+        "patent_petition_decisions",
+        "patent_records"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.uspto.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_original",
+          "unverified_mapping",
+          "bibliography_as_patent_text",
+          "discovery_as_measurements",
+          "content_chunks_as_additional_awards"
+        ]
+      },
+      "completeness_scope": "declared source dataset with original identity/content validation; dataset-specific document requirements apply; not exhaustive coverage or historical vintages",
+      "dataset_contracts": {
+        "patent_records": {
+          "scope": "mapped application bibliography; full original API record archived"
+        },
+        "patent_assignment_records": {
+          "scope": "mapped application and returned assignment chain; not established current title"
+        },
+        "patent_office_actions": {
+          "required_artifact_kinds": [
+            "provider_record",
+            "primary_document"
+          ]
+        },
+        "patent_petition_decisions": {
+          "required_artifact_kinds": [
+            "provider_record",
+            "primary_document"
+          ]
+        }
+      }
+    },
+    "uspto_assignment_histories": {
+      "source_key": "uspto_assignment_histories",
+      "catalog_entries": [
+        41
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.uspto.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_original",
+          "unverified_mapping",
+          "bibliography_as_patent_text",
+          "discovery_as_measurements",
+          "content_chunks_as_additional_awards"
+        ]
+      },
+      "completeness_scope": "declared source dataset with original identity/content validation; dataset-specific document requirements apply; not exhaustive coverage or historical vintages"
+    },
+    "ted_notices": {
+      "source_key": "ted_notices",
+      "catalog_entries": [
+        42
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.ted.europa.eu",
+        "ted.europa.eu"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_original",
+          "unverified_mapping",
+          "bibliography_as_patent_text",
+          "discovery_as_measurements",
+          "content_chunks_as_additional_awards"
+        ]
+      },
+      "completeness_scope": "declared source dataset with original identity/content validation; dataset-specific document requirements apply; not exhaustive coverage or historical vintages"
+    },
+    "usa_spending": {
+      "source_key": "usa_spending",
+      "catalog_entries": [
+        43
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.usaspending.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_original",
+          "unverified_mapping",
+          "bibliography_as_patent_text",
+          "discovery_as_measurements",
+          "content_chunks_as_additional_awards"
+        ]
+      },
+      "completeness_scope": "declared source dataset with original identity/content validation; dataset-specific document requirements apply; not exhaustive coverage or historical vintages"
+    },
+    "github_sdk": {
+      "source_key": "github_sdk",
+      "catalog_entries": [
+        44
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "owner_paused",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.github.com"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "nist_robotics_methods": {
+      "source_key": "nist_robotics_methods",
+      "catalog_entries": [
+        45
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.nist.gov",
+        "nist.gov",
+        "nvlpubs.nist.gov",
+        "data.nist.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_original",
+          "unverified_mapping",
+          "bibliography_as_patent_text",
+          "discovery_as_measurements",
+          "content_chunks_as_additional_awards"
+        ]
+      },
+      "completeness_scope": "declared source dataset with original identity/content validation; dataset-specific document requirements apply; not exhaustive coverage or historical vintages"
+    },
+    "mlperf_results": {
+      "source_key": "mlperf_results",
+      "catalog_entries": [
+        46
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "github.com"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "cpsc_recalls": {
+      "source_key": "cpsc_recalls",
+      "catalog_entries": [
+        47
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.saferproducts.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "federal_register": {
+      "source_key": "federal_register",
+      "catalog_entries": [
+        48
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.federalregister.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "trade_screening": {
+      "source_key": "trade_screening",
+      "catalog_entries": [
+        49
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "data.trade.gov",
+        "trade.gov",
+        "www.trade.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "usgs_minerals": {
+      "source_key": "usgs_minerals",
+      "catalog_entries": [
+        50
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "pubs.usgs.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "un_comtrade": {
+      "source_key": "un_comtrade",
+      "catalog_entries": [
+        51
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "comtradeapi.un.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "doe_storage_program": {
+      "source_key": "doe_storage_program",
+      "catalog_entries": [
+        52
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "energy.gov",
+        "www.energy.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "eia_battery_generators": {
+      "source_key": "eia_battery_generators",
+      "catalog_entries": [
+        53
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.eia.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "eia_generator_index": {
+      "source_key": "eia_generator_index",
+      "catalog_entries": [
+        54
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "eia.gov",
+        "www.eia.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "eia_retail_prices": {
+      "source_key": "eia_retail_prices",
+      "catalog_entries": [
+        55
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.eia.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "caiso_prices": {
+      "source_key": "caiso_prices",
+      "catalog_entries": [
+        56
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "oasis.caiso.com"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "bls_wages": {
+      "source_key": "bls_wages",
+      "catalog_entries": [
+        57
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.bls.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "ror_institutions": {
+      "source_key": "ror_institutions",
+      "catalog_entries": [
+        58
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.ror.org",
+        "www.api.ror.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "reddit": {
+      "source_key": "reddit",
+      "catalog_entries": [
+        59
+      ],
+      "datasets": [
+        "optima_social_research.reddit_records"
+      ],
+      "state": "owner_paused",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "S65": {
+      "source_key": "S65",
+      "catalog_entries": [
+        60
+      ],
+      "datasets": [
+        "optima_source_readiness.source_samples_windows"
+      ],
+      "state": "access_layer",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "bluesky_search": {
+      "source_key": "bluesky_search",
+      "catalog_entries": [
+        61
+      ],
+      "datasets": [
+        "social_records"
+      ],
+      "state": "owner_paused",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "sam_gov_opportunities": {
+      "source_key": "sam_gov_opportunities",
+      "catalog_entries": [
+        62
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.sam.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "bis_sdmx_api": {
+      "source_key": "bis_sdmx_api",
+      "catalog_entries": [
+        65
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "stats.bis.org",
+        "www.stats.bis.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "fred_alfred_series_and_vintages": {
+      "source_key": "fred_alfred_series_and_vintages",
+      "catalog_entries": [
+        66
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.stlouisfed.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "unido_iip_and_indstat": {
+      "source_key": "unido_iip_and_indstat",
+      "catalog_entries": [
+        67
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "stat.unido.org",
+        "www.stat.unido.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "ilostat_labor_statistics": {
+      "source_key": "ilostat_labor_statistics",
+      "catalog_entries": [
+        68
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "rplumber.ilo.org",
+        "www.rplumber.ilo.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "imf_portwatch_shipping_activity": {
+      "source_key": "imf_portwatch_shipping_activity",
+      "catalog_entries": [
+        69
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "portwatch.imf.org",
+        "www.portwatch.imf.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "ember_electricity_demand_and_generation": {
+      "source_key": "ember_electricity_demand_and_generation",
+      "catalog_entries": [
+        70
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.ember-energy.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "wto_timeseries_api": {
+      "source_key": "wto_timeseries_api",
+      "catalog_entries": [
+        71
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.wto.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "wto_quantitative_restrictions_api": {
+      "source_key": "wto_quantitative_restrictions_api",
+      "catalog_entries": [
+        72
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.wto.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "wto_eping_sps_tbt_notifications": {
+      "source_key": "wto_eping_sps_tbt_notifications",
+      "catalog_entries": [
+        73
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.wto.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "epo_ops_patent_legal_events": {
+      "source_key": "epo_ops_patent_legal_events",
+      "catalog_entries": [
+        74
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "ops.epo.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "copernicus_era5_era5_land": {
+      "source_key": "copernicus_era5_era5_land",
+      "catalog_entries": [
+        75
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "cds.climate.copernicus.eu"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "nasa_power_weather_and_solar_resource": {
+      "source_key": "nasa_power_weather_and_solar_resource",
+      "catalog_entries": [
+        76
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "power.larc.nasa.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "usgs_earthquakes": {
+      "source_key": "usgs_earthquakes",
+      "catalog_entries": [
+        77
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "earthquake.usgs.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "ucdp_organized_violence": {
+      "source_key": "ucdp_organized_violence",
+      "catalog_entries": [
+        78
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "arxiv": {
+      "source_key": "arxiv",
+      "catalog_entries": [
+        79
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "publications",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "export.arxiv.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "england_nhsbsa_prescribing_data": {
+      "source_key": "england_nhsbsa_prescribing_data",
+      "catalog_entries": [
+        80
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "opendata.nhsbsa.net",
+        "www.opendata.nhsbsa.net"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "decodo_shared_web_retrieval_access_layer": {
+      "source_key": "decodo_shared_web_retrieval_access_layer",
+      "catalog_entries": [
+        81
+      ],
+      "datasets": [],
+      "state": "access_layer",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "sia_wsts_public_semiconductor_sales": {
+      "source_key": "sia_wsts_public_semiconductor_sales",
+      "catalog_entries": [
+        82
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "wsts.org",
+        "www.wsts.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "semi_worldwide_equipment_billings": {
+      "source_key": "semi_worldwide_equipment_billings",
+      "catalog_entries": [
+        83
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "semi.org",
+        "www.semi.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "international_federation_of_robotics_world_robotics": {
+      "source_key": "international_federation_of_robotics_world_robotics",
+      "catalog_entries": [
+        84
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "ifr.org",
+        "www.ifr.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "iea_pvps_solar_deployment_reports": {
+      "source_key": "iea_pvps_solar_deployment_reports",
+      "catalog_entries": [
+        85
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "iea-pvps.org",
+        "www.iea-pvps.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "germany_g_ba_drug_benefit_assessments": {
+      "source_key": "germany_g_ba_drug_benefit_assessments",
+      "catalog_entries": [
+        86
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "g-ba.de",
+        "www.g-ba.de"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "france_has_medicine_assessment_opinions": {
+      "source_key": "france_has_medicine_assessment_opinions",
+      "catalog_entries": [
+        87
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "has-sante.fr",
+        "www.has-sante.fr"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "nice_technology_appraisals": {
+      "source_key": "nice_technology_appraisals",
+      "catalog_entries": [
+        88
+      ],
+      "datasets": [],
+      "state": "owner_paused",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "nice.org.uk",
+        "www.nice.org.uk"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "canada_cda_amc_cadth_reimbursement_reviews": {
+      "source_key": "canada_cda_amc_cadth_reimbursement_reviews",
+      "catalog_entries": [
+        89
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "cda-amc.ca",
+        "www.cda-amc.ca"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "france_assurance_maladie_open_medic": {
+      "source_key": "france_assurance_maladie_open_medic",
+      "catalog_entries": [
+        90
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "data.gouv.fr",
+        "files.data.gouv.fr",
+        "www.data.gouv.fr"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "japan_mhlw_ndb_open_data": {
+      "source_key": "japan_mhlw_ndb_open_data",
+      "catalog_entries": [
+        91
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "mhlw.go.jp",
+        "www.mhlw.go.jp"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "cninfo_mainland_china_company_disclosures": {
+      "source_key": "cninfo_mainland_china_company_disclosures",
+      "catalog_entries": [
+        92
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "filings_xbrl",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "cninfo.com.cn",
+        "www.cninfo.com.cn"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "primary_document"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "china_nbs_industrial_production": {
+      "source_key": "china_nbs_industrial_production",
+      "catalog_entries": [
+        93
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "data.stats.gov.cn",
+        "stats.gov.cn",
+        "www.data.stats.gov.cn",
+        "www.stats.gov.cn"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "china_miit_electronics_and_battery_statistics": {
+      "source_key": "china_miit_electronics_and_battery_statistics",
+      "catalog_entries": [
+        94
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "miit.gov.cn",
+        "www.miit.gov.cn"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "china_nea_power_statistics": {
+      "source_key": "china_nea_power_statistics",
+      "catalog_entries": [
+        95
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "nea.gov.cn",
+        "www.nea.gov.cn"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "china_nhsa_reimbursement_and_procurement": {
+      "source_key": "china_nhsa_reimbursement_and_procurement",
+      "catalog_entries": [
+        96
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "nhsa.gov.cn",
+        "www.nhsa.gov.cn"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "china_mofcom_export_controls": {
+      "source_key": "china_mofcom_export_controls",
+      "catalog_entries": [
+        97
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "mofcom.gov.cn",
+        "www.mofcom.gov.cn"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "south_korea_fss_opendart": {
+      "source_key": "south_korea_fss_opendart",
+      "catalog_entries": [
+        98
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "filings_xbrl",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "opendart.fss.or.kr"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "primary_document"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "south_korea_kosis_statistical_openapi": {
+      "source_key": "south_korea_kosis_statistical_openapi",
+      "catalog_entries": [
+        99
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "taiwan_twse_mops_issuer_and_revenue_archives": {
+      "source_key": "taiwan_twse_mops_issuer_and_revenue_archives",
+      "catalog_entries": [
+        100
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "filings_xbrl",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "openapi.twse.com.tw",
+        "www.openapi.twse.com.tw"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "primary_document"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "taiwan_customs_trade_statistics": {
+      "source_key": "taiwan_customs_trade_statistics",
+      "catalog_entries": [
+        101
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "sw.nat.gov.tw",
+        "www.sw.nat.gov.tw"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "india_ibm_mineral_production": {
+      "source_key": "india_ibm_mineral_production",
+      "catalog_entries": [
+        102
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "ibm.gov.in",
+        "www.ibm.gov.in"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "indonesia_esdm_and_geological_agency_mineral_statistics": {
+      "source_key": "indonesia_esdm_and_geological_agency_mineral_statistics",
+      "catalog_entries": [
+        103
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "esdm.go.id",
+        "www.esdm.go.id"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "brazil_anm_mineral_yearbook": {
+      "source_key": "brazil_anm_mineral_yearbook",
+      "catalog_entries": [
+        104
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "gov.br",
+        "www.gov.br"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "brazil_anm_cfem_mining_royalties": {
+      "source_key": "brazil_anm_cfem_mining_royalties",
+      "catalog_entries": [
+        105
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "gov.br",
+        "www.gov.br"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "brazil_mdic_comex_stat_api": {
+      "source_key": "brazil_mdic_comex_stat_api",
+      "catalog_entries": [
+        106
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api-comexstat.mdic.gov.br",
+        "www.api-comexstat.mdic.gov.br"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "chile_cochilco_production_and_mining_economics": {
+      "source_key": "chile_cochilco_production_and_mining_economics",
+      "catalog_entries": [
+        107
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "cochilco.cl",
+        "www.cochilco.cl"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "chile_sernageomin_mining_yearbooks": {
+      "source_key": "chile_sernageomin_mining_yearbooks",
+      "catalog_entries": [
+        108
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "sernageomin.cl",
+        "www.sernageomin.cl"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "chile_sma_snifa_environmental_compliance": {
+      "source_key": "chile_sma_snifa_environmental_compliance",
+      "catalog_entries": [
+        109
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "snifa.sma.gob.cl",
+        "www.snifa.sma.gob.cl"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "peru_minem_mining_bulletins_and_yearbooks": {
+      "source_key": "peru_minem_mining_bulletins_and_yearbooks",
+      "catalog_entries": [
+        110
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "gob.pe",
+        "www.gob.pe"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "argentina_siacam_mining_indicators": {
+      "source_key": "argentina_siacam_mining_indicators",
+      "catalog_entries": [
+        111
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "argentina.gob.ar",
+        "www.argentina.gob.ar"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "brazil_anm_sigmine_and_cadastro_mineiro": {
+      "source_key": "brazil_anm_sigmine_and_cadastro_mineiro",
+      "catalog_entries": [
+        112
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "geo.anm.gov.br",
+        "www.geo.anm.gov.br"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "peru_ingemmet_geocatmin": {
+      "source_key": "peru_ingemmet_geocatmin",
+      "catalog_entries": [
+        113
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "geocatmin.ingemmet.gob.pe",
+        "www.geocatmin.ingemmet.gob.pe"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "importyeti_shipment_and_supplier_relationships": {
+      "source_key": "importyeti_shipment_and_supplier_relationships",
+      "catalog_entries": [
+        114
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "importgenius_international_shipments": {
+      "source_key": "importgenius_international_shipments",
+      "catalog_entries": [
+        115
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "marinetraffic_historical_vessel_tracks_and_port_calls": {
+      "source_key": "marinetraffic_historical_vessel_tracks_and_port_calls",
+      "catalog_entries": [
+        116
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "kpler_commodity_cargo_flows": {
+      "source_key": "kpler_commodity_cargo_flows",
+      "catalog_entries": [
+        117
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "us_census_international_trade_api": {
+      "source_key": "us_census_international_trade_api",
+      "catalog_entries": [
+        118
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.census.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "eurostat_comext_goods_trade": {
+      "source_key": "eurostat_comext_goods_trade",
+      "catalog_entries": [
+        119
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "time_series",
+      "adapter_version": "2.0.2",
+      "record_kind": "measurement",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "ec.europa.eu",
+        "www.ec.europa.eu"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "climate_trace_industrial_assets_and_activity": {
+      "source_key": "climate_trace_industrial_assets_and_activity",
+      "catalog_entries": [
+        120
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "climatetrace.org",
+        "www.climatetrace.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "open_supply_hub_production_locations": {
+      "source_key": "open_supply_hub_production_locations",
+      "catalog_entries": [
+        121
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "openstreetmap_overpass_industrial_facilities": {
+      "source_key": "openstreetmap_overpass_industrial_facilities",
+      "catalog_entries": [
+        122
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "overpass-api.de",
+        "www.overpass-api.de"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "global_energy_monitor_asset_and_ownership_api": {
+      "source_key": "global_energy_monitor_asset_and_ownership_api",
+      "catalog_entries": [
+        123
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.globalenergymonitor.org",
+        "www.api.globalenergymonitor.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "european_environment_agency_industrial_facilities": {
+      "source_key": "european_environment_agency_industrial_facilities",
+      "catalog_entries": [
+        124
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "eea.europa.eu",
+        "www.eea.europa.eu"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "usda_fas_production_supply_and_distribution": {
+      "source_key": "usda_fas_production_supply_and_distribution",
+      "catalog_entries": [
+        125
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "apps.fas.usda.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "brazil_abve_electric_vehicle_registrations": {
+      "source_key": "brazil_abve_electric_vehicle_registrations",
+      "catalog_entries": [
+        126
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "abve.org.br",
+        "www.abve.org.br"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "brazil_senatran_vehicle_fleet": {
+      "source_key": "brazil_senatran_vehicle_fleet",
+      "catalog_entries": [
+        127
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "gov.br",
+        "www.gov.br"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "iea_global_ev_data_explorer_and_outlook": {
+      "source_key": "iea_global_ev_data_explorer_and_outlook",
+      "catalog_entries": [
+        128
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "iea.org",
+        "www.iea.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "faostat_food_balances": {
+      "source_key": "faostat_food_balances",
+      "catalog_entries": [
+        129
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "bulks-faostat.fao.org",
+        "www.bulks-faostat.fao.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "euromonitor_passport_statistics_api_paid_candidate": {
+      "source_key": "euromonitor_passport_statistics_api_paid_candidate",
+      "catalog_entries": [
+        130
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "meta_ad_library_api": {
+      "source_key": "meta_ad_library_api",
+      "catalog_entries": [
+        131
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "tiktok_commercial_content_api": {
+      "source_key": "tiktok_commercial_content_api",
+      "catalog_entries": [
+        132
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "linkedin_ad_library_external_api": {
+      "source_key": "linkedin_ad_library_external_api",
+      "catalog_entries": [
+        133
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "x_ads_repository_dsa_api": {
+      "source_key": "x_ads_repository_dsa_api",
+      "catalog_entries": [
+        134
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "sensor_tower_pathmatics_advertising_intelligence_paid_candidate": {
+      "source_key": "sensor_tower_pathmatics_advertising_intelligence_paid_candidate",
+      "catalog_entries": [
+        135
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "y_combinator_company_directory_and_cohorts": {
+      "source_key": "y_combinator_company_directory_and_cohorts",
+      "catalog_entries": [
+        136
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.ycombinator.com",
+        "ycombinator.com"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "techstars_portfolio_and_cohorts": {
+      "source_key": "techstars_portfolio_and_cohorts",
+      "catalog_entries": [
+        137
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "techstars.com",
+        "www.techstars.com"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "500_global_portfolio_and_cohorts": {
+      "source_key": "500_global_portfolio_and_cohorts",
+      "catalog_entries": [
+        138
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "500.co",
+        "www.500.co"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "antler_early_stage_portfolio": {
+      "source_key": "antler_early_stage_portfolio",
+      "catalog_entries": [
+        139
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "antler.co",
+        "www.antler.co"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "dealroom_startup_and_funding_api_commercial": {
+      "source_key": "dealroom_startup_and_funding_api_commercial",
+      "catalog_entries": [
+        140
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "wefunder_and_republic_crowdfunding_campaigns": {
+      "source_key": "wefunder_and_republic_crowdfunding_campaigns",
+      "catalog_entries": [
+        141
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "wefunder.com",
+        "www.wefunder.com"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "openalex_scholarly_graph": {
+      "source_key": "openalex_scholarly_graph",
+      "catalog_entries": [
+        142
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "publications",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "datacite_dissertations_datasets_software_and_usage": {
+      "source_key": "datacite_dissertations_datasets_software_and_usage",
+      "catalog_entries": [
+        143
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "publications",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.datacite.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "openaire_graph_projects_and_research_products": {
+      "source_key": "openaire_graph_projects_and_research_products",
+      "catalog_entries": [
+        144
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "publications",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.openaire.eu",
+        "www.api.openaire.eu"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "biorxiv_medrxiv_preprints": {
+      "source_key": "biorxiv_medrxiv_preprints",
+      "catalog_entries": [
+        145
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "publications",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.biorxiv.org",
+        "www.biorxiv.org",
+        "www.medrxiv.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "open_science_framework_projects_and_preregistrations": {
+      "source_key": "open_science_framework_projects_and_preregistrations",
+      "catalog_entries": [
+        146
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.osf.io",
+        "www.api.osf.io"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "zenodo_research_artifacts_and_usage": {
+      "source_key": "zenodo_research_artifacts_and_usage",
+      "catalog_entries": [
+        147
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "zenodo.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "semantic_scholar_citation_context": {
+      "source_key": "semantic_scholar_citation_context",
+      "catalog_entries": [
+        148
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "publications",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.semanticscholar.org",
+        "www.api.semanticscholar.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "france_theses_fr_doctoral_theses": {
+      "source_key": "france_theses_fr_doctoral_theses",
+      "catalog_entries": [
+        149
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "publications",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "theses.fr",
+        "www.theses.fr"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "brazil_capes_theses_and_dissertations": {
+      "source_key": "brazil_capes_theses_and_dissertations",
+      "catalog_entries": [
+        150
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "publications",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "dadosabertos.capes.gov.br",
+        "www.dadosabertos.capes.gov.br"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record",
+          "full_text"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "nsf_awards": {
+      "source_key": "nsf_awards",
+      "catalog_entries": [
+        151
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "api.nsf.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "european_commission_cordis": {
+      "source_key": "european_commission_cordis",
+      "catalog_entries": [
+        152
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "cordis.europa.eu",
+        "www.cordis.europa.eu"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "japan_kaken_funded_research": {
+      "source_key": "japan_kaken_funded_research",
+      "catalog_entries": [
+        153
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "brazil_fapesp_pipe_and_grants": {
+      "source_key": "brazil_fapesp_pipe_and_grants",
+      "catalog_entries": [
+        154
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "bv.fapesp.br",
+        "www.bv.fapesp.br"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "ukri_gateway_to_research": {
+      "source_key": "ukri_gateway_to_research",
+      "catalog_entries": [
+        155
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "gtr.ukri.org",
+        "www.gtr.ukri.org"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "hugging_face_hub_models_and_datasets": {
+      "source_key": "hugging_face_hub_models_and_datasets",
+      "catalog_entries": [
+        156
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "huggingface.co"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "altmetric_scholarly_attention_commercial": {
+      "source_key": "altmetric_scholarly_attention_commercial",
+      "catalog_entries": [
+        157
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "university_technology_transfer_catalogs_and_reports": {
+      "source_key": "university_technology_transfer_catalogs_and_reports",
+      "catalog_entries": [
+        158
+      ],
+      "datasets": [],
+      "state": "enabled",
+      "contract_version": "2.0.2",
+      "adapter": "api_records",
+      "adapter_version": "2.0.2",
+      "record_kind": "source_record",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "otl.stanford.edu",
+        "tlo.mit.edu",
+        "www.otl.stanford.edu",
+        "www.tlo.mit.edu"
+      ],
+      "raw_requirements": {
+        "version": "2.0.2",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "abstract_only",
+          "index_only",
+          "title_date_only",
+          "third_party_metadata_only"
+        ]
+      }
+    },
+    "nist_robotics_documents": {
+      "source_key": "nist_robotics_documents",
+      "catalog_entries": [
+        45
+      ],
+      "datasets": [
+        "specialist_inputs"
+      ],
+      "state": "enabled",
+      "contract_version": "2.0.3",
+      "adapter": "api_records",
+      "adapter_version": "2.0.3",
+      "record_kind": "nist_original_document",
+      "license_policy_id": "source-rights-review-required",
+      "allowed_hosts": [
+        "www.nist.gov",
+        "nist.gov",
+        "nvlpubs.nist.gov",
+        "data.nist.gov"
+      ],
+      "raw_requirements": {
+        "version": "2.0.3",
+        "minimum_completeness": "complete",
+        "required_artifact_kinds": [
+          "provider_record"
+        ],
+        "forbidden_shortcuts": [
+          "unmatched_original",
+          "unverified_mapping",
+          "bibliography_as_patent_text",
+          "discovery_as_measurements",
+          "content_chunks_as_additional_awards"
+        ]
+      },
+      "completeness_scope": "declared source dataset with original identity/content validation; dataset-specific document requirements apply; not exhaustive coverage or historical vintages"
+    }
+  },
+  "collection_host": "semaphore.c3uguw62gg4j.us-east-1.rds.amazonaws.com",
+  "collection_worker_secret": "arn:aws:secretsmanager:us-east-1:059416028963:secret:constellation/backfill/worker-ktYtxF",
+  "collection_controller_secret": "arn:aws:secretsmanager:us-east-1:059416028963:secret:constellation/backfill/controller-OKvhFm",
+  "build_sha256": "4ae6a8bb7e5cf457ee285df4dd3651e2f83dd248745e187dff05605e9ae080ea"
+}

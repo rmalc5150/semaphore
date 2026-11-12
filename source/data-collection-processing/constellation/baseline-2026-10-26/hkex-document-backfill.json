@@ -1,0 +1,14 @@
+{
+  "start": "2021-01-01",
+  "end_exclusive": "2026-10-15",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "storage_config": "config/collection-storage.s3.json",
+  "selection": "all",
+  "page_size": 100,
+  "max_pages_per_day_per_invocation": 2,
+  "max_days_per_invocation": 7,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "English HKEX SEHK search announcements and their original linked reports, all stock IDs; current observations of the historical archive, not historical website vintages. Completion certifies stored report bytes, not text extraction, OCR, specialist analysis or Athena publication."
+}

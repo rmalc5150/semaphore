@@ -1,0 +1,15 @@
+from research_helpers import *
+a=ev('https://www.cognex.com/en/products/2d-machine-vision-systems','Current manufacturer catalogue lists nine named 2D systems including distinct area/line-scan configurations and In-Sight 6900 controller.')
+b=ev('https://www.cognex.com/en/products/machine-vision-software','Current manufacturer catalogue identifies five software offerings.')
+c=ev('https://www.cognex.com/en/products/fixed-mount-barcode-scanners','Current fixed-mount barcode scanner catalogue lists seven series.')
+d=ev('https://www.cognex.com/en/products/vision-sensors','Current manufacturer page presents In-Sight SnAPP vision sensor.')
+products=[]
+def add(n,desc,src):products.append(p(n,desc,src,life='commercial',typ='product',sector='robotics',sub='autonomy_and_components'))
+for model in ['2800','3900','8900','3800','7000','8000','9000']:add('In-Sight '+model,f'Cognex In-Sight {model} industrial machine vision system series.',a)
+add('In-Sight 6900','Modular industrial AI vision controller.',a)
+add('In-Sight 3800 Line Scan','Line-scan inspection camera configuration.',a)
+for n,desc in [('Cognex VisionPro','PC-based machine vision software.'),('Cognex OneVision','Collaborative AI inspection development environment.'),('VisionPro Deep Learning','AI-based industrial image inspection software.'),('In-Sight Vision Suite','Development and configuration software for In-Sight devices.'),('DataMan Setup Tool','Configuration and monitoring software for industrial barcode readers.')]:add(n,desc,b)
+for model in ['260','290','390','80','370','380','580']:add('DataMan '+model,f'Cognex DataMan {model} fixed-mount industrial barcode scanner series.',c)
+add('In-Sight SnAPP','AI vision sensor for industrial inspection and process automation.',d)
+co=dict(company_id='cmp_34074128-03d0-4ece-b24d-fb0cae9ab9b0',products=products,evidence=[a,b,c,d],status='partial',coverage_note='22 current named product series/software offerings recorded. Partial: 3D sensors, handheld scanners/verifiers, OEM image engines, Moritex optics, accessories, model suffixes and legacy product lines remain. Software versions not duplicated. Sensor/controller offerings classified as robotics autonomy/components; OEM partner chip platforms not attributed to Cognex. Catalogue series are not exhaustive individual orderable SKUs.')
+(out/'batch-0420.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

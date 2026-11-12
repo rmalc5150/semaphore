@@ -1,0 +1,64 @@
+# /etc/systemd/system/optima-market-collection.service
+[Unit]
+Description=Optima Bounded market prices and corporate actions
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/market_operations.py
+SuccessExitStatus=2
+TimeoutStartSec=45min
+TimeoutStopSec=120
+KillSignal=SIGINT
+Nice=15
+
+# /etc/systemd/system/optima-market-collection.service.d/50-memory-budget.conf
+[Service]
+Slice=optima-data.slice
+MemoryAccounting=true
+MemoryHigh=322122547
+MemoryMax=402653184
+MemorySwapMax=0
+OOMPolicy=stop
+Environment=ARROW_NUM_THREADS=1
+Environment=MALLOC_ARENA_MAX=2
+ExecStart=
+ExecStart=/usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/market_operations.py
+TimeoutStartSec=13h
+TimeoutStopSec=120
+KillSignal=SIGINT
+SuccessExitStatus=75
+
+# /etc/systemd/system/optima-market-collection.service.d/99-s3-runtime.conf
+[Unit]
+Requires=optima-s3-runtime-init.service
+After=optima-s3-runtime-init.service
+[Service]
+ExecStart=
+ExecStart=/usr/bin/flock --exclusive --timeout 43200 --conflict-exit-code 75 /dev/shm/optima-s3/supervisor.lock /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/s3_runtime.py --unit optima-market-collection.service -- /usr/bin/flock --exclusive --timeout 21600 --conflict-exit-code 75 /home/ec2-user/data-collection-processing/.heavy-job.lock /usr/bin/timeout --signal=INT --kill-after=120s 45m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/market_operations.py
+ProtectSystem=strict
+ReadOnlyPaths=/home/ec2-user /tmp /var/tmp /dev/shm
+ReadWritePaths=/dev/shm/optima-s3
+PrivateTmp=false
+Environment=PYTHONDONTWRITEBYTECODE=1
+MemoryHigh=1700000000
+MemoryMax=1900000000
+MemorySwapMax=0
+TimeoutStartSec=13h
+TimeoutStopSec=240
+KillMode=mixed
+KillSignal=SIGINT
+SuccessExitStatus=75
+
+# /etc/systemd/system/optima-market-collection.service.d/zz-t3-large-memory.conf
+[Service]
+MemoryHigh=4G
+MemoryMax=5G
+MemorySwapMax=0
+
+# /etc/systemd/system/optima-market-collection.service.d/zz-upgrade-maintenance.conf
+[Unit]
+ConditionPathExists=!/home/ec2-user/data-collection-processing/upgrade/t3-large/maintenance-active

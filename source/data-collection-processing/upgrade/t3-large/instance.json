@@ -1,0 +1,7 @@
+{
+  "instanceId": "i-070bab0b09f794629",
+  "instanceType": "t3.medium",
+  "region": "us-east-1",
+  "availabilityZone": "us-east-1d",
+  "architecture": "x86_64"
+}

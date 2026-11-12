@@ -336,6 +336,25 @@ class CollectionStorageTests(unittest.TestCase):
 
 
 class S3StorageTests(unittest.TestCase):
+    def test_scoped_missing_key_requires_authorized_exact_absence(self):
+        args={'Bucket':'example-research-bucket','Key':'research/missing.json'}
+        self.stub.add_client_error('get_object','AccessDenied',http_status_code=403,expected_params=args)
+        self.stub.add_response('list_objects_v2',{'Contents':[]},{'Bucket':args['Bucket'],'Prefix':args['Key'],'MaxKeys':1})
+        with patch.dict('os.environ',{'CONSTELLATION_VERIFY_MISSING_S3_KEYS':'1'}):
+            self.assertIsNone(self.store.get('missing.json'))
+
+    def test_scoped_denied_existing_object_is_never_empty(self):
+        self.stub.add_client_error('get_object','AccessDenied',http_status_code=403)
+        self.stub.add_response('list_objects_v2',{'Contents':[{'Key':'research/object.json'}]})
+        with patch.dict('os.environ',{'CONSTELLATION_VERIFY_MISSING_S3_KEYS':'1'}),self.assertRaises(ClientError):
+            self.store.get('object.json')
+
+    def test_scoped_denied_listing_is_never_empty(self):
+        self.stub.add_client_error('get_object','AccessDenied',http_status_code=403)
+        self.stub.add_client_error('list_objects_v2','AccessDenied',http_status_code=403)
+        with patch.dict('os.environ',{'CONSTELLATION_VERIFY_MISSING_S3_KEYS':'1'}),self.assertRaises(ClientError):
+            self.store.get('object.json')
+
     def setUp(self):
         self.client = boto3.client("s3", region_name="us-east-1", aws_access_key_id="test-only",
                                    aws_secret_access_key="test-only")

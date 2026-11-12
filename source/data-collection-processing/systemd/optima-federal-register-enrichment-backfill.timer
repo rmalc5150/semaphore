@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume S51 Federal Register enrichment until committed data is verified and emailed
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=optima-federal-register-enrichment-backfill.service
+
+[Install]
+WantedBy=timers.target

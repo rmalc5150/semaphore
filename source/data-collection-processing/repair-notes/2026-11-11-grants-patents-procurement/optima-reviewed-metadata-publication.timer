@@ -1,0 +1,8 @@
+[Unit]
+Description=Continue reviewed metadata publication
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=120
+Unit=optima-reviewed-metadata-publication.service
+[Install]
+WantedBy=timers.target

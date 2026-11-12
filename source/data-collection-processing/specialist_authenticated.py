@@ -47,6 +47,8 @@ def request(client, name, url, params=None, body=None, form=False):
         headers['Content-Type'] = 'application/x-www-form-urlencoded' if form else 'application/json'
         data = urlencode({'payload': json.dumps(body) if isinstance(body, dict) else body}).encode() if form else canonical_json(body)
     try:
+        from constellation.shared_limits import admit
+        admit(url)
         with build_opener(NoRedirect()).open(Request(url + ('?' + urlencode(query) if query else ''),
                 data=data, headers=headers), timeout=40) as response:
             raw = response.read(16 * 1024 * 1024 + 1)
@@ -116,6 +118,9 @@ def scopes(source, start, end, mode):
 
 def fetch(client, job, cursor, item):
     p = job['parameters']; kind = job['adapter']; url = p['url']
+    if kind == 'eia_api' and job.get('source') == 'eia_retail_prices':
+        from eia_enrichment import retail_page
+        return retail_page(client, job, cursor, item)
     if kind == 'sam_gov':
         page = int(cursor or 0)
         require(page >= 0, 'sam_invalid_page')
@@ -128,6 +133,9 @@ def fetch(client, job, cursor, item):
         rows, total = data.get('opportunitiesData'), data.get('totalRecords')
         require(isinstance(rows, list) and type(total) is int and total >= 0, 'sam_response_shape')
         require(data.get('offset') == page and data.get('limit') == size, 'sam_pagination_mismatch')
+        if page > 0 and page * size >= total and not rows:
+            raise SourceIssue('sam_source_changed_refresh_required', True,
+                              {'page': page, 'total_records': total, 'returned_records': 0})
         require(len(rows) <= size and page * size + len(rows) <= total, 'sam_count_mismatch')
         require(bool(rows) or total == page == 0, 'sam_missing_page')
         require(all(isinstance(r, dict) and r.get('noticeId') and
@@ -180,7 +188,7 @@ def fetch(client, job, cursor, item):
             'filter': json.dumps([{'eventlmdfrom': date.fromisoformat(p['start']).strftime('%m/%d/%Y')},
                                   {'eventlmdto': last.strftime('%m/%d/%Y')}]),
             'start': offset + 1, 'rows': size, 'sort': 'productid', 'sortorder': 'asc'}, form=True)
-        rows = table_rows(data); total = int(data.get('RESULTCOUNT', -1))
+        rows = table_rows(data); total = int(data.get('RESULTCOUNT', 0 if data.get('STATUSCODE') == 412 and not rows else -1))
         lowered = [{k.lower(): v for k, v in r.items()} for r in rows]
         require(all(r.get('productid') is not None for r in lowered), 'ires_missing_id')
         output = [item(r['productid'], r, url) for r in lowered]
@@ -191,6 +199,9 @@ def fetch(client, job, cursor, item):
 
 def table_rows(data):
     require(data.get('STATUSCODE', data.get('APIRETURNCODE')) in (400, 412), 'fda_api_status')
+    if data.get('STATUSCODE') == 412 and data.get('MESSAGE', '').strip().lower() == 'no results found' and data.get('RESULT') is None:
+        require(data.get('RESULTCOUNT', 0) == 0, 'fda_empty_count_mismatch')
+        return []
     rows = data.get('RESULT')
     if isinstance(rows, dict):
         columns, values = rows.get('COLUMNS'), rows.get('DATA')

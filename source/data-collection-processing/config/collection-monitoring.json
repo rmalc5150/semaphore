@@ -11,6 +11,7 @@
   "sms": "+13104033167",
   "jobs": {
     "optima-collection-daily.service": {
+      "checkpoint_progress": true,
       "memory_max_bytes": 1200000000,
       "memory_high_bytes": 960000000,
       "serialized": true,
@@ -20,43 +21,69 @@
       "max_start_gap_seconds": 129600,
       "stale_progress_seconds": 129600,
       "progress_keys": [
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/sec/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/clinicaltrials/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/fda/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/ema/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/uk/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/japan/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/hkex-filings/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/documents/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/press-releases/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/licensing-agreements/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/ma-announcements/progress-2026-09-21.json",
-        "operations/streams/d02de907b34b6619a8a58fbbbf08905b20ba5eb97777817b63cf1cd87a08846d/daily/strategic-transactions/progress-2026-09-21.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/sec/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/clinicaltrials/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/fda/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/ema/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/uk/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/japan/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/hkex-filings/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/documents/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/press-releases/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/licensing-agreements/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/ma-announcements/progress-2026-09-24.json",
-        "operations/streams/53664d47ecb1e79d7a7e19cd522cf9b70352e4033b91db301c47387336aa4f6f/daily/strategic-transactions/progress-2026-09-24.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/sec/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/clinicaltrials/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/fda/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/ema/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/uk/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/japan/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/hkex-filings/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/documents/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/press-releases/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/licensing-agreements/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/ma-announcements/progress-2026-09-25.json",
-        "operations/streams/df4ce02e73b60006fbe6d876dfea273622d5ee63c0906e7031ddb9e01eed2eb9/daily/strategic-transactions/progress-2026-09-25.json"
-      ]
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/sec/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/clinicaltrials/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/fda/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/ema/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/uk/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/japan/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/hkex-filings/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/documents/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/press-releases/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/licensing-agreements/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/ma-announcements/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/strategic-transactions/progress-2026-09-21.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/sec/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/clinicaltrials/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/fda/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/ema/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/uk/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/japan/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/hkex-filings/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/documents/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/press-releases/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/licensing-agreements/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/ma-announcements/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/strategic-transactions/progress-2026-09-24.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/sec/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/clinicaltrials/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/fda/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/ema/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/uk/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/japan/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/hkex-filings/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/documents/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/press-releases/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/licensing-agreements/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/ma-announcements/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/strategic-transactions/progress-2026-09-25.json"
+      ],
+      "progress_end_exclusive": {
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/sec/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/clinicaltrials/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/fda/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/ema/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/uk/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/japan/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/hkex-filings/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/documents/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/press-releases/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/licensing-agreements/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/ma-announcements/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/strategic-transactions/progress-2026-09-21.json": "2026-09-24",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/sec/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/clinicaltrials/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/fda/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/ema/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/uk/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/japan/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/hkex-filings/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/documents/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/press-releases/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/licensing-agreements/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/ma-announcements/progress-2026-09-24.json": "2026-09-25",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/strategic-transactions/progress-2026-09-24.json": "2026-09-25"
+      }
     },
     "optima-conference-collection.service": {
       "memory_max_bytes": 536870912,
@@ -68,9 +95,9 @@
       "max_start_gap_seconds": 43200,
       "stale_progress_seconds": 43200,
       "progress_keys": [
-        "operations/conferences/progress/9b1ec523fc7379bd200a28a0341da811154f234cd9ba277a453f7b78705ebe7b.json",
-        "operations/conferences/progress/063154dbde3fcb5219b465f572a13c7de016ed318972296f50c56a38a200a303.json"
-      ]
+        "operations/conferences/progress/9b1ec523fc7379bd200a28a0341da811154f234cd9ba277a453f7b78705ebe7b.json"
+      ],
+      "maintenance_pause_reason": "Replaced by bounded worker optima-crossref-resumed.service; daily/history receipts and checkpoints: constellation-backfill/conferences-resumed/. Source remains enabled."
     },
     "optima-conference-publication.service": {
       "memory_max_bytes": 805306368,
@@ -83,7 +110,8 @@
       "stale_progress_seconds": 43200,
       "publication_owners": [
         "conferences"
-      ]
+      ],
+      "maintenance_pause_reason": "Replaced by local optima-crossref-publication-resumed.service, monitored separately; verified publication queues and data retained."
     },
     "optima-eodhd-profiles.service": {
       "memory_max_bytes": 1200000000,
@@ -93,7 +121,9 @@
       "queue_timeout_seconds": 21600,
       "execution_timeout_seconds": 21600,
       "max_start_gap_seconds": 43200,
-      "stale_progress_seconds": 43200
+      "stale_progress_seconds": 43200,
+      "execution_worker_unit": "optima-m7-capture-eodhd-profiles.service",
+      "checkpoint_progress": true
     },
     "optima-market-collection.service": {
       "memory_max_bytes": 402653184,
@@ -123,6 +153,7 @@
       ]
     },
     "optima-news-collection.service": {
+      "checkpoint_progress": true,
       "memory_max_bytes": 402653184,
       "memory_high_bytes": 322122547,
       "serialized": true,
@@ -160,7 +191,8 @@
       "queue_timeout_seconds": 21600,
       "execution_timeout_seconds": 14400,
       "max_start_gap_seconds": 129600,
-      "stale_progress_seconds": 129600
+      "stale_progress_seconds": 129600,
+      "maintenance_pause_reason": "Obsolete controller capture remains disabled; bounded inventory/details now run as optima-nmpa-resumed-{inventory,details}.service on the worker. Receipts: constellation-backfill/legacy-operation-receipts/nmpa-resumed/."
     },
     "optima-patents-backfill.service": {
       "memory_max_bytes": 1000000000,
@@ -174,7 +206,8 @@
       "progress_keys": [
         "operations/patents/global-backfill/streams/f80276b540a3f85eecc0e748099faa1d2664766b4933827652aedbca4f9dd8af/progress.json"
       ],
-      "end_exclusive": "2026-09-23"
+      "end_exclusive": "2026-09-23",
+      "maintenance_pause_reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
     },
     "optima-patents-daily.service": {
       "memory_max_bytes": 1200000000,
@@ -187,7 +220,9 @@
       "stale_progress_seconds": 43200,
       "progress_keys": [
         "operations/patents/streams/44665aa249c9c9b77ac9bc129346baee12b1e557fec48d470205e81fb9ea9099/daily/uspto/progress-2026-09-22.json"
-      ]
+      ],
+      "execution_worker_unit": "optima-m7-capture-patents-daily.service",
+      "checkpoint_progress": true
     },
     "optima-patents-global-monitor.service": {
       "memory_max_bytes": 201326592,
@@ -214,7 +249,8 @@
       "progress_keys": [
         "operations/patents/global-backfill/streams/f80276b540a3f85eecc0e748099faa1d2664766b4933827652aedbca4f9dd8af/athena-publication/progress.json"
       ],
-      "upstream_progress_key": "operations/patents/global-backfill/streams/f80276b540a3f85eecc0e748099faa1d2664766b4933827652aedbca4f9dd8af/progress.json"
+      "upstream_progress_key": "operations/patents/global-backfill/streams/f80276b540a3f85eecc0e748099faa1d2664766b4933827652aedbca4f9dd8af/progress.json",
+      "maintenance_pause_reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
     },
     "optima-research-publication.service": {
       "memory_max_bytes": 1200000000,
@@ -238,7 +274,7 @@
       "memory_high_bytes": 214748364,
       "serialized": false,
       "execution_timeout": "45min",
-      "queue_timeout_seconds": 0,
+      "queue_timeout_seconds": 21600,
       "role": "single bounded RSS/archive worker; sequential lanes; parallel only within reserved aggregate headroom",
       "execution_timeout_seconds": 2700,
       "max_start_gap_seconds": 43200,
@@ -259,7 +295,7 @@
     },
     "optima-authenticated-daily.service": {
       "serialized": false,
-      "queue_timeout_seconds": 0,
+      "queue_timeout_seconds": 21600,
       "execution_timeout_seconds": 7200,
       "max_start_gap_seconds": 43200,
       "stale_progress_seconds": 43200,
@@ -271,7 +307,8 @@
       "execution_timeout_seconds": 7200,
       "max_start_gap_seconds": 43200,
       "stale_progress_seconds": 43200,
-      "checkpoint_progress": true
+      "checkpoint_progress": true,
+      "maintenance_pause_reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
     },
     "optima-specialist-daily.service": {
       "serialized": true,
@@ -287,7 +324,8 @@
       "execution_timeout_seconds": 7200,
       "max_start_gap_seconds": 43200,
       "stale_progress_seconds": 43200,
-      "checkpoint_progress": true
+      "checkpoint_progress": true,
+      "maintenance_pause_reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
     },
     "optima-specialist-publication.service": {
       "serialized": false,
@@ -304,15 +342,16 @@
       "queue_timeout_seconds": 0,
       "execution_timeout_seconds": 7200,
       "max_start_gap_seconds": 43200,
-      "stale_progress_seconds": 43200
+      "stale_progress_seconds": 43200,
+      "maintenance_pause_reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
     },
     "optima-search-capture.service": {
       "serialized": true,
       "queue_timeout_seconds": 21600,
       "execution_timeout_seconds": 7200,
-      "max_start_gap_seconds": 129600,
-      "stale_progress_seconds": 129600,
-      "timer": "optima-search-daily.timer"
+      "max_start_gap_seconds": 691200,
+      "stale_progress_seconds": 777600,
+      "timer": "optima-search-capture.timer"
     },
     "optima-social-daily.service": {
       "serialized": true,
@@ -320,7 +359,8 @@
       "execution_timeout_seconds": 7200,
       "max_start_gap_seconds": 129600,
       "stale_progress_seconds": 129600,
-      "checkpoint_progress": true
+      "checkpoint_progress": true,
+      "maintenance_pause_reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
     },
     "optima-chictr-daily.service": {
       "serialized": true,
@@ -336,15 +376,17 @@
       "execution_timeout_seconds": 7200,
       "max_start_gap_seconds": 43200,
       "stale_progress_seconds": 43200,
-      "checkpoint_progress": true
+      "checkpoint_progress": true,
+      "maintenance_pause_reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
     },
     "optima-patents-prosecution.service": {
       "serialized": false,
-      "queue_timeout_seconds": 0,
+      "queue_timeout_seconds": 21600,
       "execution_timeout_seconds": 7200,
       "max_start_gap_seconds": 10800,
       "stale_progress_seconds": 43200,
-      "checkpoint_progress": true
+      "checkpoint_progress": true,
+      "execution_worker_unit": "optima-m7-capture-patents-prosecution.service"
     },
     "optima-patents-prosecution-publication.service": {
       "serialized": false,
@@ -363,6 +405,128 @@
       "execution_timeout_seconds": 7200,
       "max_start_gap_seconds": 129600,
       "stale_progress_seconds": 129600
+    },
+    "optima-crossref-publication-resumed.service": {
+      "memory_max_bytes": 402653184,
+      "serialized": false,
+      "execution_timeout_seconds": 300,
+      "queue_timeout_seconds": 0,
+      "max_start_gap_seconds": 900,
+      "stale_progress_seconds": 1800,
+      "publication_owners": [
+        "conferences"
+      ]
+    },
+    "optima-cms-coverage-publication.service": {
+      "memory_max_bytes": 402653184,
+      "serialized": false,
+      "execution_timeout_seconds": 300,
+      "queue_timeout_seconds": 0,
+      "max_start_gap_seconds": 900,
+      "stale_progress_seconds": 3600,
+      "publication_owners": [
+        "specialists"
+      ]
+    },
+    "optima-cms-financial-resumed.service": {
+      "memory_max_bytes": 402653184,
+      "serialized": false,
+      "execution_timeout_seconds": 360,
+      "queue_timeout_seconds": 0,
+      "max_start_gap_seconds": 1800,
+      "stale_progress_seconds": 86400,
+      "progress_keys": [
+        "cms-financial/status.json",
+        "constellation-backfill/cms-payments/verification/latest.json"
+      ]
+    },
+    "optima-cms-catalog-publication.service": {
+      "memory_max_bytes": 268435456,
+      "serialized": false,
+      "execution_timeout_seconds": 360,
+      "queue_timeout_seconds": 0,
+      "max_start_gap_seconds": 1800,
+      "stale_progress_seconds": 86400,
+      "progress_keys": []
+    },
+    "optima-fda-product-codes-capture.service": {
+      "memory_max_bytes": 268435456,
+      "serialized": false,
+      "execution_timeout_seconds": 300,
+      "queue_timeout_seconds": 0,
+      "max_start_gap_seconds": 1800,
+      "stale_progress_seconds": 86400
+    },
+    "optima-fda-reviewed-publication.service": {
+      "memory_max_bytes": 268435456,
+      "serialized": false,
+      "execution_timeout_seconds": 300,
+      "queue_timeout_seconds": 0,
+      "max_start_gap_seconds": 1800,
+      "stale_progress_seconds": 86400
+    },
+    "optima-edinet-documents-daily.service": {
+      "serialized": false,
+      "execution_timeout_seconds": 900,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "queue_timeout_seconds": 21600,
+      "execution_worker_unit": "optima-m7-capture-edinet-documents-daily.service",
+      "checkpoint_progress": true
+    },
+    "optima-authenticated-processing.service": {
+      "serialized": false,
+      "execution_timeout_seconds": 900,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "queue_timeout_seconds": 21600,
+      "execution_worker_unit": "optima-m7-capture-authenticated-processing.service",
+      "checkpoint_progress": true
+    },
+    "optima-eia-daily-processing.service": {
+      "serialized": false,
+      "execution_timeout_seconds": 900,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "queue_timeout_seconds": 21600,
+      "execution_worker_unit": "optima-m7-capture-eia-daily-processing.service",
+      "checkpoint_progress": true
+    },
+    "optima-assignments-reviewed-daily.service": {
+      "serialized": false,
+      "execution_timeout_seconds": 900,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "queue_timeout_seconds": 21600,
+      "execution_worker_unit": "optima-m7-capture-assignments-reviewed-daily.service",
+      "checkpoint_progress": true
+    },
+    "optima-assignments-reviewed-historical.service": {
+      "serialized": false,
+      "execution_timeout_seconds": 900,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "queue_timeout_seconds": 21600,
+      "execution_worker_unit": "optima-m7-capture-assignments-reviewed-historical.service",
+      "checkpoint_progress": true
+    },
+    "optima-federal-register-daily-enrichment.service": {
+      "serialized": false,
+      "execution_timeout_seconds": 900,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "queue_timeout_seconds": 21600,
+      "execution_worker_unit": "optima-m7-capture-federal-register-daily-enrichment.service",
+      "checkpoint_progress": true
+    },
+    "optima-nist-robotics-daily.service": {
+      "serialized": false,
+      "execution_timeout_seconds": 900,
+      "max_start_gap_seconds": 43200,
+      "stale_progress_seconds": 43200,
+      "queue_timeout_seconds": 21600,
+      "execution_worker_unit": "optima-m7-capture-nist-robotics-daily.service",
+      "checkpoint_progress": true
     }
   },
   "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",

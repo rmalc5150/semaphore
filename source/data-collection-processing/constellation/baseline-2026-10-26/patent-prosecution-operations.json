@@ -1,0 +1,14 @@
+{
+  "start_date": "2021-01-01",
+  "historical_end_exclusive": "2026-10-14",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "storage_config": "config/collection-storage.s3.json",
+  "page_size": 5,
+  "max_pages": 10,
+  "max_windows": 2,
+  "max_requests": 180,
+  "max_download_bytes": 67108864,
+  "restart_cooldown_hours": 6,
+  "reconcile_days": 7
+}

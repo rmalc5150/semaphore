@@ -1,0 +1,34 @@
+{
+  "manifest_key": "research-data/manifests/collection_runs/source=epo_ops_patent_legal_events/dataset=specialist_inputs/run_3ef8fd81-4ab2-416d-bc1a-3333fa42cbe0/final.json",
+  "records": 5,
+  "reference": "WO.2016207445.A1",
+  "mode": "historical",
+  "checksum_verified": true,
+  "event_dates": [
+    {
+      "precision": "day",
+      "source_timezone": null,
+      "value": "2017-02-15"
+    },
+    {
+      "precision": "day",
+      "source_timezone": null,
+      "value": "2017-12-28"
+    },
+    {
+      "precision": "day",
+      "source_timezone": null,
+      "value": "2018-01-25"
+    },
+    {
+      "precision": "day",
+      "source_timezone": null,
+      "value": "2018-07-25"
+    },
+    {
+      "precision": "day",
+      "source_timezone": null,
+      "value": "2017-11-30"
+    }
+  ]
+}

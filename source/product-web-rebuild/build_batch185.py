@@ -1,0 +1,7 @@
+from research_helpers import *
+a=ev('https://forward-pharma.com/about/','Current company website confirms DMF formulation development from 2005 to 2017, Biogen IP licence and completed solvent liquidation in 2025.')
+b=ev('https://www.sec.gov/Archives/edgar/data/1604924/000104746919001957/a2237546z20-f.htm','Issuer annual filing explicitly confirms permanent discontinuation of DMF formulation development, including FP187, after 2017 restructuring.')
+c=ev('https://forward-pharma.com/contact/','Company confirms completed voluntary solvent liquidation. Similar-name Chinese Forward Pharmaceuticals pipeline is a different entity.')
+products=[p('FP187','Historical proprietary dimethyl fumarate formulation for multiple sclerosis and inflammatory indications. Forward permanently discontinued development after the 2017 Biogen transaction; not identical to every marketed dimethyl fumarate formulation.',b,'discontinued',evidence=[a,b,c])]
+co=company('Forward Pharma A/S',products,[a,b,c],'Completed review of publicly identified molecular/formulation portfolio and historical issuer filings. One identified FP187 formulation programme; indications not duplicated. Similar-name Chinese Forward Pharmaceuticals FWD programmes and former management employers products excluded. Liquidation confirmed by company website.',status='complete')
+(out/'batch-0185.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

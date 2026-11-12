@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Preserve publisher feeds and bounded public social searches as event sources."""
+from historical_policy import historical_start
 from datetime import date, datetime, timedelta, timezone
 import argparse
 from email.utils import parsedate_to_datetime
@@ -60,7 +61,7 @@ def record(run, identity, url, data, event, evidence, note):
 def collect_feed(store, settings, universe, taxonomy, name, url, day, client=None, capture_full_text=True):
     require(day == datetime.now(timezone.utc).date(), 'rss_snapshot_cannot_be_backdated')
     spec = task_spec('people_rss', 'people_source_records', 'daily', instant(day), instant(day + timedelta(days=1)),
-        {'feed_name': name, 'feed_url': url, 'coverage': 'current_feed_snapshot', **({'full_text_pipeline_version': 'people-rss-fulltext-1.0'} if capture_full_text else {})}, VERSION, universe, taxonomy)
+        {'feed_name': name, 'feed_url': url, 'coverage': 'current_feed_snapshot', **({'full_text_pipeline_version': __import__('people_rss_content').VERSION} if capture_full_text else {})}, VERSION, universe, taxonomy)
     try:
         run = CollectionRun.start(store, spec, universe, taxonomy, settings, resume=True)
     except AlreadyComplete as exc:
@@ -78,9 +79,9 @@ def collect_feed(store, settings, universe, taxonomy, name, url, day, client=Non
             capture = Capture(store, None, max_publisher_requests=10)
             # All publisher captures share a durable daily budget. If news is
             # using it, retain discovery and let the content worker retry.
-            content_lock = (ROOT / '.news-collection.lock').open('a')
             self_budget_lock = False
             if capture_full_text:
+                content_lock = (ROOT / '.news-collection.lock').open('a')
                 try:
                     fcntl.flock(content_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
                     self_budget_lock = True
@@ -96,7 +97,7 @@ def collect_feed(store, settings, universe, taxonomy, name, url, day, client=Non
                     try:
                         if not self_budget_lock:
                             raise SourceIssue('fulltext_runner_busy', True)
-                        body = capture.get(entry, historical=False)
+                        body = capture.get({**entry,'_feed_evidence':listing_evidence}, historical=False)
                     except SourceIssue as exc:
                         if not exc.partial:
                             raise
@@ -104,7 +105,8 @@ def collect_feed(store, settings, universe, taxonomy, name, url, day, client=Non
                             'captured_at': now(), 'source_evidence': [], 'text_characters': 0, 'reason': exc.code}
                     output = apply(output, body, store)
                 records.append(output)
-            content_lock.close()
+            if content_lock is not None:
+                content_lock.close()
             run.commit_page(records, next_cursor=None, exhausted=True)
         return {'status': 'complete', 'records': run.state['record_count'],
                 'manifest': run.finish('complete', expected_records=run.state['record_count'])}
@@ -115,33 +117,52 @@ def collect_feed(store, settings, universe, taxonomy, name, url, day, client=Non
             content_lock.close()
 
 
-def collect_social(store, settings, universe, taxonomy, sector, query, day, client=None, max_pages=10):
-    require(date(2021, 1, 1) <= day < datetime.now(timezone.utc).date(), 'social_requires_closed_daily_window')
+def collect_social(store, settings, universe, taxonomy, sector, query, day, client=None, max_pages=10,
+                   refresh=False, partitioned=False):
+    require(historical_start() <= day < datetime.now(timezone.utc).date(), 'social_requires_closed_daily_window')
     spec = task_spec('bluesky_search', 'social_records', 'daily', instant(day), instant(day + timedelta(days=1)),
         {'query': query, 'candidate_sector': sector, 'sort': 'latest', 'date_basis': 'provider_sortAt',
          'coverage': 'provider_search_view_not_exhaustive'}, VERSION, universe, taxonomy)
     try:
-        run = CollectionRun.start(store, spec, universe, taxonomy, settings, resume=True)
+        run = CollectionRun.start(store, spec, universe, taxonomy, settings, resume=not refresh, refresh=refresh)
     except AlreadyComplete as exc:
         return {'status': 'complete', 'manifest': str(exc), 'already_complete': True}
     client = client or EvidenceClient(store, 'bluesky_search')
+    partitioned = partitioned or bool(run.cursor and run.cursor.startswith('{'))
     try:
         seen = set()
         for page in run.state['pages']:
             for batch in page['batches']:
                 seen.update(json.loads(line)['source_record_id'] for line in store.get(batch['key']).body.splitlines())
-        for _ in range(max_pages):
+        for attempt in range(max_pages):
             if run.exhausted:
                 return {'status': 'complete', 'records': run.state['record_count'],
                         'manifest': run.finish('complete', expected_records=run.state['record_count'])}
             params = {'q': query, 'sort': 'latest', 'since': instant(day),
                       'until': instant(day + timedelta(days=1)), 'limit': 100}
-            if run.cursor:
+            intervals = None
+            if partitioned:
+                position = json.loads(run.cursor) if run.cursor else {'version':1,'pending':[[params['since'],params['until']]]}
+                require(position.get('version') == 1 and position.get('pending'), 'social_invalid_partition_cursor')
+                intervals = position['pending']
+                params['since'],params['until'] = intervals[0]
+            elif run.cursor:
                 params['cursor'] = run.cursor
             client.evidence = []
             result = json.loads(client.get('https://api.bsky.app/xrpc/app.bsky.feed.searchPosts', params))
             posts = result.get('posts'); require(isinstance(posts, list), 'social_invalid_response')
             cursor = result.get('cursor')
+            if partitioned and cursor:
+                lo=datetime.fromisoformat(params['since'].replace('Z','+00:00'))
+                hi=datetime.fromisoformat(params['until'].replace('Z','+00:00'))
+                require((hi-lo).total_seconds()>1, 'social_dense_interval_requires_access')
+                mid=(lo+(hi-lo)/2).isoformat().replace('+00:00','Z')
+                following={'version':1,'pending':[[params['since'],mid],[mid,params['until']]]+intervals[1:]}
+                # Do not count the truncated parent as a complete interval.
+                run.commit_page([],next_cursor=json.dumps(following,sort_keys=True),exhausted=False)
+                continue
+            if partitioned:
+                cursor=json.dumps({'version':1,'pending':intervals[1:]},sort_keys=True) if len(intervals)>1 else None
             require(not cursor or (isinstance(cursor, str) and cursor != run.cursor), 'social_cursor_stalled')
             records = []
             for post in posts:
@@ -158,6 +179,13 @@ def collect_social(store, settings, universe, taxonomy, sector, query, day, clie
                     'manifest': run.finish('complete', expected_records=run.state['record_count'])}
         raise SourceIssue('social_page_budget', True)
     except (Exception, KeyboardInterrupt) as exc:
+        if (isinstance(exc,SourceIssue) and exc.code=='source_http_403' and run.cursor
+                and not partitioned and max_pages > attempt + 1):
+            old=finish_error(run,exc,client.evidence)
+            result=collect_social(store,settings,universe,taxonomy,sector,query,day,client,
+                                  max_pages-attempt-1,refresh=True,partitioned=True)
+            return {**result,'refreshed_from_manifest':old['manifest'],
+                    'pagination_strategy':'bounded_time_partitions; provider search view is not an exhaustive archive'}
         return finish_error(run, exc, client.evidence)
 
 
@@ -166,6 +194,12 @@ def main():
     parser.add_argument('--feeds-only', action='store_true', help='Skip social sources pending verified access')
     parser.add_argument('--social-only', action='store_true', help='Run social sources without repeating personnel feeds')
     args = parser.parse_args()
+    from source_pauses import is_paused
+    if is_paused("bluesky_search"):
+        if args.social_only:
+            print(json.dumps({"status": "paused_by_user", "source": "bluesky_search"}))
+            return 0
+        args.feeds_only = True
     with (ROOT / '.people-social.lock').open('a') as lock:
         try:
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)

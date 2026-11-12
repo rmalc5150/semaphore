@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue optima-grants-reviewed-publication
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=120
+Persistent=true
+Unit=optima-grants-reviewed-publication.service
+[Install]
+WantedBy=timers.target

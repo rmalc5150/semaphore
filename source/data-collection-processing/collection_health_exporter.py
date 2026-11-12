@@ -21,7 +21,7 @@ def command(args):
 
 def properties(unit):
     fields = ['ActiveState', 'SubState', 'UnitFileState', 'Result', 'MainPID',
-              'ExecMainStatus', 'ExecMainStartTimestampMonotonic', 'ExecMainExitTimestampMonotonic', 'ControlGroup']
+              'ActiveEnterTimestampMonotonic', 'ExecMainStatus', 'ExecMainStartTimestampMonotonic', 'ExecMainExitTimestampMonotonic', 'ControlGroup']
     return dict(line.split('=', 1) for line in command(
         ['systemctl', 'show', unit, '--no-pager', '--property='+','.join(fields)]).splitlines() if '=' in line)
 
@@ -31,8 +31,6 @@ def activity(props, serialized):
         return 'idle', 0
     started = int(props.get('ExecMainStartTimestampMonotonic') or 0) / 1e6
     elapsed = max(0, time.clock_gettime(time.CLOCK_BOOTTIME) - started)
-    if not serialized:
-        return 'running', elapsed
     cg = Path('/sys/fs/cgroup') / props['ControlGroup'].lstrip('/')
     pids = (cg/'cgroup.procs').read_text().splitlines()
     ticks = __import__('os').sysconf('SC_CLK_TCK')
@@ -41,6 +39,8 @@ def activity(props, serialized):
         try:
             name = Path('/proc', pid, 'comm').read_text().strip()
             if name not in {'flock', 'timeout'}:
+                if name.startswith('python') and b'm7_capture_worker.py' in Path('/proc',pid,'cmdline').read_bytes():
+                    continue  # Admission/queue wrapper; the payload is a child.
                 # Parenthesized comm can contain spaces: parse after its last ')'.
                 fields = Path('/proc', pid, 'stat').read_text().rsplit(')', 1)[1].split()
                 payload_starts.append(float(fields[19])/ticks)
@@ -114,9 +114,17 @@ class Evidence:
             return self.cache[key]
         try:
             r = self.s3.get_object(Bucket=self.bucket, Key=self.prefix+key)
-            if r['ContentLength'] > 8*1024*1024:
-                raise ValueError('Monitoring metadata exceeds 8 MiB: '+key)
-            body = r['Body'].read()
+            # The shared runtime index grows with retained paths; ordinary
+            # metadata keeps its smaller limit. Bound the actual read as well.
+            limit = (32 if key == 'operations/s3-runtime/current.json' else 8)*1024*1024
+            try:
+                if r['ContentLength'] > limit:
+                    raise ValueError('Monitoring metadata exceeds '+str(limit//(1024*1024))+' MiB: '+key)
+                body = r['Body'].read(limit+1)
+                if len(body) > limit:
+                    raise ValueError('Monitoring metadata exceeds actual read bound: '+key)
+            finally:
+                r['Body'].close()
             value = json.loads(body)
             result = (value, hashlib.sha256(body).hexdigest(), stamp(r['LastModified'].timestamp()))
         except Exception as exc:
@@ -205,6 +213,23 @@ class Evidence:
                         if count != page['record_count']:
                             raise ValueError('Checkpoint page count mismatch: '+receipt)
                         commits.append((receipt, committed_at))
+                # Hourly patent parents commit an hour only after its entire
+                # scan completes. A bounded child can still have real pages.
+                child_key = value.get('partition_manifest')
+                if child_key and manifest and manifest.get('task', {}).get('scope', {}).get('partition_strategy') == 'hourly-v1':
+                    child, _, _ = self.read(child_key)
+                    parent_task = manifest['task']
+                    child_task = (child or {}).get('task', {})
+                    same = all(child_task.get(k) == parent_task.get(k) for k in
+                               ('source','dataset','mode','collector_version','universe_hash','taxonomy_hash','window'))
+                    bounds = child_task.get('scope', {}).get('query_bounds', [])
+                    window = parent_task['window']
+                    if (not same or len(bounds) != 2 or not
+                            epoch(window['start']) <= epoch(bounds[0]) < epoch(bounds[1]) <= epoch(window['end'])):
+                        raise ValueError('Patent partition task/window mismatch: '+child_key)
+                    observed, outstanding = self.checkpoint_commits({'manifest': child_key})
+                    commits.extend(observed)
+                    pending |= outstanding
             for name in ('results', 'sources', 'windows'):
                 item = value.get(name)
                 if name == 'sources' and isinstance(item, dict):
@@ -216,24 +241,114 @@ class Evidence:
         return commits, pending
 
 
+def apply_document_exceptions(value, decisions):
+    """Remove only explicitly excepted document-denial alerts; retain raw audit evidence."""
+    if isinstance(value, list):
+        return [apply_document_exceptions(v, decisions) for v in value]
+    if not isinstance(value, dict):
+        return value
+    result = {k: apply_document_exceptions(v, decisions) for k, v in value.items()}
+    diagnostics = value.get('diagnostics', {})
+    if (value.get('reason') == 'source_http_403' and diagnostics.get('host') == 'api.uspto.gov'
+            and diagnostics.get('http_status') == 403
+            and any(d.get('status') == 'active' and d.get('dataset') == 'patent_office_actions'
+                    and d.get('application_number') == '16545140'
+                    and diagnostics.get('path') == '/api/v1/patent/applications/16545140/documents'
+                    for d in decisions)):
+        result.update(status='excluded', reason='owner_accepted_document_access_gap')
+    return result
+
+
+def reconcile_repaired_outcomes(value, evidence):
+    """Replace stale failures only with a newer, page-verified same-task outcome."""
+    commits = []
+    if isinstance(value, list):
+        updated = []
+        for item in value:
+            item, observed = reconcile_repaired_outcomes(item, evidence)
+            updated.append(item); commits.extend(observed)
+        return updated, commits
+    if not isinstance(value, dict): return value, commits
+    result = dict(value)
+    reason = value.get('reason') or value.get('reason_code')
+    key = value.get('manifest')
+    repairable = {'disclosure_unsupported_zip', 'hkex_non_pdf_response', 'hkex_original_empty_or_oversize', 'news_source_changed_refresh_required', 'news_duplicate_page_refresh_required', 'source_http_400',
+                  'scrape_gateway_http_429', 'nih_split_count_changed',
+                  'sam_count_mismatch', 'sam_source_changed_refresh_required'}
+    if reason in repairable and isinstance(key, str) and key.startswith('manifests/collection_runs/'):
+        old, _, _ = evidence.read(key)
+        if old and old.get('task_id') and old.get('task'):
+            head, _, _ = evidence.read('checkpoints/'+old['task_id']+'/head.json')
+            replacement = (head or {}).get('terminal_manifest')
+            if (head and head.get('task') == old['task'] and replacement and replacement != key
+                    and replacement in head.get('terminal_history', [])):
+                current, _, _ = evidence.read(replacement)
+                if (current and current.get('task') == old['task']
+                        and current.get('status') in {'complete', 'partial'}
+                        and epoch(current.get('finished_at')) > epoch(old.get('finished_at'))):
+                    observed, _ = evidence.checkpoint_commits({'manifest': replacement})
+                    if observed and max(epoch(at) for _, at in observed) > epoch(old.get('finished_at')):
+                        for name in ('reason', 'reason_code', 'error', 'error_type', 'capture_error'):
+                            result.pop(name, None)
+                        result.update(status=current['status'], reason=current.get('reason_code'),
+                                      manifest=replacement, superseded_manifest=key)
+                        commits.extend(observed)
+    for name in ('results', 'sources', 'windows', 'last_result', 'universe_epochs'):
+        child = result.get(name)
+        if isinstance(child, dict) and name == 'sources':
+            revised = {}
+            for k, v in child.items():
+                revised[k], observed = reconcile_repaired_outcomes(v, evidence); commits.extend(observed)
+            result[name] = revised
+        elif isinstance(child, (dict, list)):
+            result[name], observed = reconcile_repaired_outcomes(child, evidence); commits.extend(observed)
+    return result, commits
+
+
 def inspect_job(unit, policy, evidence, since, now):
-    service = properties(unit)
+    from source_pauses import unit_pause
+    pause = unit_pause(unit)
+    if not pause and policy.get('maintenance_pause_reason'):
+        pause={'reason':policy['maintenance_pause_reason']}
+    if pause:
+        return {'operator_paused': pause, 'issues': [], 'progress': {'pending': False}}
+    from constellation.m7_health import UNITS, view
+    worker = view(unit,evidence,now) if policy.get('execution_worker_unit') and unit in UNITS else None
+    service = worker['service'] if worker else properties(unit)
     timer = properties(policy.get('timer', unit.replace('.service', '.timer')))
-    state, elapsed = activity(service, policy.get('serialized'))
+    state, elapsed = (worker['activity'],worker['elapsed']) if worker else activity(service, policy.get('serialized'))
     started = int(service.get('ExecMainStartTimestampMonotonic') or 0)/1e6
-    reports, events, latest_commit = json_reports(unit)
+    # A newly enabled weekly timer may not have invoked its service this boot.
+    # Its activation starts schedule grace; it does not establish data progress.
+    schedule_started = started or int(timer.get('ActiveEnterTimestampMonotonic') or 0)/1e6
+    reports, events, latest_commit = (worker['reports'],worker['events'],worker['latest_commit']) if worker else json_reports(unit)
     result = {'timer_enabled': timer.get('UnitFileState'), 'timer_state': timer.get('ActiveState'),
               'activity': state, 'activity_seconds': elapsed, 'result': service.get('Result'),
               'exit_status': int(service.get('ExecMainStatus') or 0),
-              'last_start_age_seconds': max(0, time.clock_gettime(time.CLOCK_BOOTTIME)-started) if started else now,
+              'last_start_age_seconds': max(0, time.clock_gettime(time.CLOCK_BOOTTIME)-schedule_started) if schedule_started else now,
               'failure_events': [e for e in events if epoch(e['at']) > since], 'issues': [], 'evidence_keys': []}
+    if worker:result['execution_host']={'instance_id':'i-06241bd1c4e91c2fc','unit':worker['worker_unit']}
     commits, pending, tokens = evidence.confirmed(latest_commit), False, []
     values = [(r['value'], r['at']) for r in reports]
     search_verified = False
     if unit == 'optima-search-capture.service':
-        paths = sorted((ROOT / 'reports').glob('search-capture-*/publication.json'))
-        if paths:
-            pointer = json.loads(paths[-1].read_text())
+        # Durable S3 state, independent of the collector's evictable RAM workspace.
+        runtime, _, _ = evidence.read('operations/s3-runtime/current.json')
+        pointers = sorted(k for k in (runtime or {}).get('paths', {})
+                          if k.startswith('reports/search-capture-') and k.endswith('/publication.json'))
+        pointer = None
+        if pointers:
+            entry = runtime['paths'][pointers[-1]]
+            key = entry['key']
+            if not key.startswith(evidence.prefix):
+                raise ValueError('Search runtime pointer outside collection prefix')
+            pointer, checksum, _ = evidence.read(key[len(evidence.prefix):])
+            if checksum != entry['sha256']:
+                raise ValueError('Search runtime pointer checksum mismatch')
+        if pointer is None and not (ROOT / 'reports').is_symlink():
+            paths = sorted((ROOT / 'reports').glob('search-capture-*/publication.json'))
+            pointer = json.loads(paths[-1].read_text()) if paths else None
+        if pointer:
             key = pointer.get('verification_s3_key', '')
             if key.startswith(evidence.prefix + 'search-capture/'):
                 doc, _, _ = evidence.read(key[len(evidence.prefix):])
@@ -250,6 +365,9 @@ def inspect_job(unit, policy, evidence, since, now):
     market_keys = [key for key in policy.get('progress_keys', [])
                    if key.startswith('operations/market/automation/') and key.endswith(('/daily.json', '/historical.json'))]
     for key in policy.get('progress_keys', []):
+        from source_pauses import is_paused
+        if '/marketaux/' in key and is_paused('marketaux'):
+            continue
         doc, _, modified = evidence.read(key)
         result['evidence_keys'].append(key)
         if doc is None:
@@ -264,10 +382,14 @@ def inspect_job(unit, policy, evidence, since, now):
             market_states[key] = doc
         values.append((doc, modified))
         cursor = doc.get('next_date')
-        end = policy.get('end_exclusive') or stamp(now)[:10]
+        end = policy.get('progress_end_exclusive', {}).get(key) or policy.get('end_exclusive') or stamp(now)[:10]
         if cursor:
             pending |= cursor < end
             tokens.append((key, cursor))
+            if (unit == 'optima-conference-collection.service' and cursor >= end
+                    and len(policy.get('progress_keys', [])) == 1 and evidence.confirmed(doc)):
+                result['progress_scope_complete'] = {'checked_at': stamp(now), 'checkpoint': key,
+                                                     'manifest': doc.get('last_manifest')}
         if 'symbols' in doc:
             unresolved_count = sum(unresolved(v) for v in doc['symbols'].values())
             if unresolved_count:
@@ -295,8 +417,20 @@ def inspect_job(unit, policy, evidence, since, now):
             if doc:
                 values.append((doc, modified))
     page_commits = []
+    decisions = []
+    if unit == 'optima-patents-prosecution.service':
+        decisions = json.loads((ROOT/'config/patent-document-exceptions.json').read_text())['exceptions']
+        result['document_exceptions'] = [d for d in decisions if d.get('status') == 'active']
+        for decision in result['document_exceptions']:
+            manifest = decision.get('recovery_manifest')
+            if manifest and manifest.startswith('manifests/collection_runs/source=uspto_odp/dataset=patent_office_actions/'):
+                recovered, _ = evidence.checkpoint_commits({'manifest': manifest})
+                commits.extend(recovered)
+                page_commits.extend(recovered)
     for value, at in values:
-        for code, severity in outcome_issues(value):
+        value, repaired_commits = reconcile_repaired_outcomes(value, evidence)
+        commits.extend(repaired_commits)
+        for code, severity in outcome_issues(apply_document_exceptions(value, decisions)):
             result['issues'].append({'code': code, 'severity': severity, 'detail': code, 'at': at})
         commits.extend(evidence.confirmed(value))
         if policy.get('checkpoint_progress') or unit in {'optima-patents-daily.service', 'optima-nmpa-inventory.service'}:
@@ -350,6 +484,7 @@ def inspect_job(unit, policy, evidence, since, now):
         if excluded:
             result['coverage_resolutions'] = {code: {'at': stamp(now), 'basis': 'reviewed_scoped_exclusions',
                 'registry_keys': result['coverage_review']['registry_keys']} for code in clear}
+    verified_publication_receipts = []
     for owner in policy.get('publication_owners', []):
         queue = evidence.inventory('operations/'+owner+'/publication-queue/')
         receipts = evidence.inventory('operations/'+owner+'/publication-receipts/')
@@ -362,8 +497,16 @@ def inspect_job(unit, policy, evidence, since, now):
         if receipts:
             newest = max(receipts, key=lambda k: receipts[k]['LastModified'])
             doc, _, _ = evidence.read(newest)
-            commits.extend(evidence.confirmed(doc))
+            verified = evidence.confirmed(doc)
+            commits.extend(verified)
+            if verified:
+                verified_publication_receipts.append(newest)
             tokens.append((owner, newest, receipts[newest]['ETag']))
+    if (policy.get('publication_owners') and not pending
+            and len(verified_publication_receipts) == len(policy['publication_owners'])):
+        result['publication_queue_drained'] = {'checked_at': stamp(now),
+            'owners': list(policy['publication_owners']),
+            'verified_receipts': verified_publication_receipts}
     # Historical patent publication tracks collected vs verified months.
     if policy.get('upstream_progress_key'):
         upstream, _, _ = evidence.read(policy['upstream_progress_key'])
@@ -396,7 +539,17 @@ def export(config, s3):
     previous = watchdog.get('health/latest.json') or {}
     since = max(epoch(previous.get('checked_at')), now-3600)
     evidence = Evidence(s3, config['bucket'], config['data_prefix'])
+    from constellation.m7_health import UNITS
+    for unit,worker in UNITS.items():
+        if unit in config['jobs']:config['jobs'][unit]['execution_worker_unit']=worker
     result = {'schema_version': 1, 'checked_at': stamp(now), 'bucket':config['bucket'], 'jobs': {}, 'errors': []}
+    try:
+        from constellation.m7_health import refresh
+        refresh(config['bucket'])
+    except Exception as exc:
+        result['errors'].append('Worker execution inspection: '+str(exc)[:500])
+    now=time.time()
+    result['checked_at']=stamp(now)
     for unit, policy in config['jobs'].items():
         try:
             result['jobs'][unit] = inspect_job(unit, policy, evidence, since, now)
@@ -406,7 +559,7 @@ def export(config, s3):
     from pipeline_health import inspect_stages
     def inspect_future(unit):
         try:
-            return inspect_job(unit, {'serialized':False, 'queue_timeout_seconds':0,
+            return inspect_job(unit, {'execution_worker_unit':UNITS.get(unit), 'serialized':False, 'queue_timeout_seconds':0,
                 'execution_timeout_seconds':7200, 'max_start_gap_seconds':129600,
                 'stale_progress_seconds':129600}, evidence, since, now)
         except Exception as exc:

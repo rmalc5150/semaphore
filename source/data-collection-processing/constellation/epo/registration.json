@@ -1,0 +1,8 @@
+{
+  "source": "epo_ops_patent_legal_events",
+  "applicant_query_groups": 496,
+  "companies": 496,
+  "universe_sha256": "fc53f3cdc196e0fb55df2ad5c8f0d6386ad64ea6556b84cfaf9d6e3b742296cf",
+  "scope_note": "Applicant-name and existing-alias candidate discovery for the enabled company universe, including pre-2016 patents; current INPADOC legal histories retain gazette dates since 2016 and undated events. Gazette, effective, created and exchanged dates remain distinct. Applicant links are unreviewed; aliases/subsidiaries and provider omissions can leave gaps. This is not original historical vintages or a calendar-completeness certification. Daily discovery overlaps seven days; known patents rotate through bounded refresh shards.",
+  "historical_unit": "constellation-specialist-epo_ops_patent_legal_events.service"
+}

@@ -21,11 +21,23 @@ def extend(config):
         if name in {'authenticated-daily','authenticated-historical','specialist-daily',
                     'specialist-historical','social-daily','chictr-daily','core-historical'}:
             jobs[unit]['checkpoint_progress'] = True
-    jobs['optima-search-capture.service']['timer']='optima-search-daily.timer'
+    jobs['optima-search-capture.service']['timer']='optima-search-capture.timer'
+    jobs['optima-search-capture.service']['max_start_gap_seconds']=8*86400
+    jobs['optima-search-capture.service']['stale_progress_seconds']=9*86400
     jobs['optima-specialist-publication.service']['publication_owners']=['specialists']
     jobs['optima-specialist-publication.service']['max_start_gap_seconds']=7200
     jobs['optima-patents-prosecution.service']['checkpoint_progress']=True
+    # Capture now shares the S3 runtime workspace even without the heavy-job
+    # lock. Apply the same queue grace as other shared-workspace collectors.
+    jobs['optima-patents-prosecution.service']['queue_timeout_seconds']=21600
     jobs['optima-patents-prosecution-publication.service']['publication_owners']=['patent_office_actions','patent_petition_decisions']
     jobs['optima-patents-prosecution.service']['max_start_gap_seconds']=10800
     jobs['optima-patents-prosecution-publication.service']['max_start_gap_seconds']=7200
+    from constellation.m7_capture_plan import UNITS
+    for unit,worker in UNITS.items():
+        entry=jobs.setdefault(unit,{'serialized':False,'execution_timeout_seconds':900,
+            'max_start_gap_seconds':43200,'stale_progress_seconds':43200})
+        entry.update(queue_timeout_seconds=21600,execution_worker_unit=worker,checkpoint_progress=True)
+    for unit in ('optima-people-collection.service','optima-authenticated-daily.service'):
+        if unit in jobs:jobs[unit]['queue_timeout_seconds']=21600
     return config

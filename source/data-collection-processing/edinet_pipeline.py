@@ -30,6 +30,11 @@ COVERAGE = ('EDINET daily inventory and all advertised original report formats; 
     'current archive observations, not historical API vintages or certified accounting interpretation')
 FORMATS = [('1', 'xbrlFlag', 'main_report'), ('2', 'pdfFlag', 'pdf'),
            ('3', 'attachDocFlag', 'attachments'), ('4', 'englishDocFlag', 'english'), ('5', 'csvFlag', 'csv')]
+# S100MMO0 contains a legitimate 34,356,747-byte XBRL member in a
+# 67,508,667-byte expanded archive. Keep a bounded member allowance and the
+# unchanged total expansion ceiling; never disable archive size checks.
+MAX_MEMBER_BYTES = 64 * 1024 * 1024
+MAX_EXPANDED_BYTES = 128 * 1024 * 1024
 
 
 def repair_japanese(value):
@@ -76,6 +81,8 @@ def download(client, doc_id, kind):
     try:
         time.sleep(max(0, 1 - (time.monotonic() - client.last_request)))
         client.last_request = time.monotonic()
+        from constellation.shared_limits import admit
+        admit(API)
         with build_opener(NoRedirect()).open(Request(public + '&' + urlencode({'Subscription-Key': key}),
                 headers={'User-Agent': 'Optima/1.0 (support@optima-holdings.com)', 'Accept-Encoding': 'identity'}), timeout=60) as response:
             raw = response.read(64 * 1024 * 1024 + 1)
@@ -172,7 +179,7 @@ def extract(raw, kind):
                 if entry.is_dir():
                     continue
                 expanded += entry.file_size
-                require(expanded <= 128 * 1024 * 1024 and entry.file_size <= 32 * 1024 * 1024,
+                require(expanded <= MAX_EXPANDED_BYTES and entry.file_size <= MAX_MEMBER_BYTES,
                         'edinet_zip_expansion_limit')
                 # Members are read in memory; no source-controlled path is written to disk.
                 files.append(extract_file(archive.read(entry), entry.filename))

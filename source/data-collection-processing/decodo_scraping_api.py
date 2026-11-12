@@ -8,6 +8,7 @@ import base64
 import json
 import os
 from functools import lru_cache
+from http.client import IncompleteRead, RemoteDisconnected
 from typing import Any, Callable
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
@@ -93,12 +94,16 @@ def scrape(
         "User-Agent": "data-collection-decodo-client/1.0",
     })
     try:
+        from constellation.shared_limits import admit
+        admit(API_URL)
         with opener(request, timeout=timeout) as response:
             result = json.loads(response.read().decode("utf-8"))
     except HTTPError as exc:
         raise ScrapeError("gateway", exc.code) from None
-    except (URLError, TimeoutError):
+    except (URLError, TimeoutError, IncompleteRead, RemoteDisconnected, ConnectionResetError):
         raise ScrapeError("transport") from None
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        raise ScrapeError("incomplete_response") from None
     if not isinstance(result, dict) or not isinstance(result.get("results"), list):
         raise ScrapeError("incomplete_response")
     return result

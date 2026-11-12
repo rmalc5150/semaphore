@@ -1,0 +1,10 @@
+{
+  "job_id": "grant-backfill-2026-10-18",
+  "inventory_file": "reports/grant-backfill-2026-10-18/input-batches.json",
+  "inventory_digest": "8be70f192efbc31a6b319fd32130c049b9361ab0753d83e6b4f9129cf499e5f8",
+  "lookups_per_invocation": 24,
+  "grants_per_invocation": 100,
+  "max_lookup_records": 10000,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com"
+}

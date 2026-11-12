@@ -54,6 +54,9 @@ class NewsClient(EvidenceClient):
         self.fulltext_api_reserve = 2
 
     def reserve(self):
+        from source_pauses import is_paused
+        if is_paused(self.source):
+            raise SourceIssue("source_paused_by_owner", True)
         if self.remaining <= 0:
             raise SourceIssue("run_request_budget_reached", True)
         key = f"operations/news/budgets/{self.source}/{now()[:10]}.json"
@@ -75,6 +78,8 @@ class NewsClient(EvidenceClient):
             request = Request(public + "&" + urlencode({"api_token": self.key}), headers=headers)
         for attempt in range(3):
             self.reserve()  # Retries and ambiguous requests also consume the cap.
+            from constellation.shared_limits import admit
+            admit(URLS[self.source])
             self.sleep(1 if not attempt else 2 ** attempt)
             try:
                 with self.opener(request, timeout=45) as response:
@@ -219,6 +224,8 @@ def collect(store, settings, universe, taxonomy, config, provider, target, langu
             for batch in page["batches"]:
                 seen.update(json.loads(line)["source_record_id"] for line in store.get(batch["key"]).body.splitlines())
         pages = 0
+        terminal_probe_available = False
+        terminal_probe_used = False
         # Revalidate the last committed page before resuming an offset-based API.
         if state["page"] > 1 and not run.exhausted:
             previous = client.page(parameters(provider, scope["query"], language, start, end, state["page"] - 1, pc["page_size"]))
@@ -226,7 +233,14 @@ def collect(store, settings, universe, taxonomy, config, provider, target, langu
             require(digest(previous_rows) == state["previous_hash"] and limit == state["limit"] and total == state["total"], "news_source_changed_refresh_required")
         while not run.exhausted:
             if pages >= max_pages:
-                raise SourceIssue("page_limit", True)
+                # Finlight requires an explicit empty page. If the final allowed
+                # page is short, permit one bounded completion probe now rather
+                # than leaving an otherwise finished window to drift overnight.
+                # A nonempty probe is committed but cannot trigger another probe.
+                if provider == 'finlight' and terminal_probe_available and not terminal_probe_used:
+                    terminal_probe_used = True
+                else:
+                    raise SourceIssue("page_limit", True)
             if provider == "marketaux" and state["limit"] and (state["page"] - 1) * state["limit"] >= 20000:
                 raise SourceIssue("news_result_cap_split_window_required", True)
             data = client.page(parameters(provider, scope["query"], language, start, end, state["page"], pc["page_size"]))
@@ -270,6 +284,7 @@ def collect(store, settings, universe, taxonomy, config, provider, target, langu
             run.commit_page(records, next_cursor=None if exhausted else json.dumps(state, sort_keys=True), exhausted=exhausted)
             seen.update(identities)
             pages += 1
+            terminal_probe_available = bool(rows) and len(rows) < limit
         if mode == "historical" and not history_known:
             raise SourceIssue("history_entitlement_unverified", True)
         return {"status": "complete", "records": run.state["record_count"],

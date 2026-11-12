@@ -1,0 +1,17 @@
+{
+  "checked_date": "2026-11-11",
+  "placement": {"specialist_publication":"m7","cms_coverage_publication":"m7","crossref_publication":"m7","market_publication":"m7","news_publication":"m7"},
+  "controller_dispatchers": "installed; market, news and specialist returned success; CMS and Crossref dispatched",
+  "auxiliary_execution": "serialized with shared flock; 2 GiB per service; specialist and market bounded to one window",
+  "lifecycle": "shared timer enabled; checks enabled metadata backlog, controller dispatchers, all m7 Optima services and historical workers; requires 600 seconds idle; dispatch waits for SSM acknowledgement; startup/shutdown serialized",
+  "t3_available_memory_mib":506,
+  "m7_available_memory_mib":4516,
+  "restarted": ["optima-collection-daily.service","optima-eodhd-inventory.service","optima-nist-robotics-matching.service"],
+  "t3_activating_capture_or_processing": ["authenticated-daily","caiso-daily","collection-daily","committed-athena","company-catalogue","doe-storage-daily","edinet-documents-daily","eodhd-inventory","eodhd-profiles","federal-register-daily-enrichment","grant-daily","market-collection","news-collection","nist-robotics-daily","patents-daily","patents-prosecution-publication","patents-prosecution","people-collection","specialist-daily","trade-screening-enrichment"],
+  "other_failed_service": "constellation-gap-audit.service",
+  "metadata_enabled_source_jobs": {"queued":111849,"running":2,"retry":17,"raw_failed":1054,"uncommitted":101,"accepted":18031,"superseded":53597},
+  "metadata_automatically_stopped_source_jobs": {"queued":39129,"raw_failed":310,"uncommitted":2,"retry":4,"accepted":177},
+  "historical_jobs": {"running":4,"succeeded":124594,"retryable_failed":1,"blocked":859},
+  "owner_paused_metadata_sources": ["bluesky_search","github_sdk","marketaux","nice_technology_appraisals","reddit"],
+  "limitations": ["Service activation is not a verified publication receipt.","Capture services remain serialized behind t3 supervisor/RAM limits.","Automatically raw-stopped metadata sources require evidence/contract repairs before resumption.","Research m7 writable-workspace failure found and corrected during audit."]
+}

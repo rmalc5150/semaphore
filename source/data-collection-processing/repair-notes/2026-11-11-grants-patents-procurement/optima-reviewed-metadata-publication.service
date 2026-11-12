@@ -1,0 +1,12 @@
+[Unit]
+Description=Publish reviewed source metadata independently
+After=network-online.target
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B reviewed_metadata_publication.py
+Slice=optima-financial.slice
+MemoryMax=201326592
+CPUQuota=15%
+TimeoutStartSec=300

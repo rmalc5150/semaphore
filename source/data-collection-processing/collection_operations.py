@@ -8,6 +8,7 @@ from datetime import date, datetime, timedelta, timezone
 import argparse
 import fcntl
 import json
+import os
 from pathlib import Path
 from uuid import uuid4
 
@@ -170,11 +171,28 @@ class Operations:
             inputs.append(result["manifest"])
         if (not refresh and self.completed(prior, source, start, end, mode) and
                 prior.get("inputs", []) == inputs):
+            if mode == "daily" and str(start) in self.pending_dates(source):
+                self.set_pending(source, start, False)
             return {**prior, "already_complete": True}
         # A killed refresh attempt must resume its pages on the next invocation.
         refresh = refresh and bool(prior and prior.get("status") == "complete")
+        # A mutable HKEX index cannot resume a cursor whose prefix changed.
+        # Start a new immutable run after cooldown; preserve old manifests/pages.
+        if (source == "hkex-filings" and prior and prior.get("reason") in
+                {"hkex_prefix_changed", "source_changed_during_pagination"}):
+            try:
+                finished = datetime.fromisoformat(prior["finished_at"].replace("Z", "+00:00"))
+                elapsed = (datetime.now(timezone.utc) - finished).total_seconds()
+            except (KeyError, TypeError, ValueError):
+                elapsed = 0
+            prior_manifest, _ = load_stored(self.store, prior['manifest']) if prior.get('manifest') else (None, None)
+            old_index = bool(prior_manifest and prior_manifest.get('task', {}).get('scope', {}).get('index_capture') != 'complete_daily_snapshot_v1')
+            if not old_index and elapsed < 6 * 3600:
+                return prior
+            refresh = True
         attempt = {"source": source, "start": str(start), "end": str(end),
-                   "mode": mode, "inputs": inputs, "status": "running", "started_at": now()}
+                   "mode": mode, "inputs": inputs, "status": "running", "started_at": now(),
+                   "historical_window_attempts": int((prior or {}).get("historical_window_attempts",0))+1 if mode=="historical" else 0}
         token = write_json(self.store, key, attempt, token)
         try:
             result = self.invoke(source, start, end, mode, inputs, refresh)
@@ -183,11 +201,15 @@ class Operations:
         except Exception as exc:
             result = {"status": "failed", "reason": "collector_exception", "error_type": type(exc).__name__}
         result = {**attempt, **{k: v for k, v in result.items() if k != "task"}, "finished_at": now()}
-        receipt = f"operations/attempts/{uuid4()}.json"
+        receipt = f"{os.environ.get('CONSTELLATION_OPERATION_RECEIPT_PREFIX','operations')}/attempts/{uuid4()}.json"
         write_json(self.store, receipt, result)
         result["attempt_receipt"] = receipt
         write_json(self.store, key, result, token)
         if mode == "daily" and result["status"] == "complete":
+            # This verified result consumes the current prerequisite manifests.
+            # Clear an old invalidation even when the one-window budget is used.
+            if str(start) in self.pending_dates(source):
+                self.set_pending(source, start, False)
             for child, parents in DEPENDENCIES.items():
                 if source in parents:
                     previous, _ = load_stored(self.store, self.outcome_key(child, start, end, mode))
@@ -205,6 +227,7 @@ class Operations:
             progress_key = f"{self.prefix}/{mode}/{source}/progress-{suffix}.json"
             progress, token = load_stored(self.store, progress_key)
             cursor = date.fromisoformat(progress["next_date"]) if progress else origin
+            retained_gaps = list((progress or {}).get("accepted_gaps",[]))
             results, attempted = [], 0
             while cursor < end and attempted < max_windows:
                 following = following_window(cursor, end, mode)
@@ -214,11 +237,19 @@ class Operations:
                 print(json.dumps({"source": source, "start": str(cursor), "status": result["status"],
                     "manifest": result.get("manifest"), "reason": result.get("reason")}), flush=True)
                 if result["status"] != "complete":
-                    break
+                    limit=self.config.get("historical_gap_continue_after_attempts") if mode=="historical" else None
+                    # A bounded page/record allowance resumes its cursor; it is
+                    # not a failed scope to skip after repeated healthy batches.
+                    bounded=result.get("reason") in {"page_limit","page_budget","record_limit","max_pages","max_records"}
+                    if not limit or result.get("historical_window_attempts",0)<limit or bounded:
+                        break
+                    retained_gaps.append({"start":str(cursor),"end":str(following),
+                        "reason":result.get("reason"),"attempt_receipt":result.get("attempt_receipt"),
+                        "manifest":result.get("manifest"),"status":result["status"]})
                 cursor = following
                 token = write_json(self.store, progress_key,
-                    {"next_date": str(cursor), "origin": str(origin),
-                     "last_manifest": result["manifest"], "updated_at": now()}, token)
+                    {"next_date": str(cursor), "origin": str(origin), "accepted_gaps":retained_gaps,
+                     "last_manifest": result.get("manifest"), "updated_at": now()}, token)
             if mode == "daily" and cursor >= end:
                 recent = {str(end - timedelta(days=n)) for n in range(1, reconcile_days + 1)
                           if end - timedelta(days=n) >= origin}
@@ -237,11 +268,11 @@ class Operations:
                     self.set_pending(source, day, False)
             pending = sorted(self.pending_dates(source)) if mode == "daily" else []
             report["sources"][source] = {"next_date": str(cursor), "windows": results,
-                "pending_reconciliation_dates": pending,
-                "status": "complete" if cursor >= end and not pending and all(r["status"] == "complete" for r in results) else "partial"}
+                "pending_reconciliation_dates": pending, "accepted_gaps":retained_gaps,
+                "status": "complete" if not retained_gaps and cursor >= end and not pending and all(r["status"] == "complete" for r in results) else "partial"}
         report["status"] = "complete" if all(r["status"] == "complete" for r in report["sources"].values()) else "partial"
         report["finished_at"] = now()
-        key = f"operations/reports/{uuid4()}.json"
+        key = f"{os.environ.get('CONSTELLATION_OPERATION_RECEIPT_PREFIX','operations')}/reports/{uuid4()}.json"
         write_json(self.store, key, report)
         return {**report, "report_key": key}
 

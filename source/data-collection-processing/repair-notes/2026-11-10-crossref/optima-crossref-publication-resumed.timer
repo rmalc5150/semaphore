@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue Crossref Athena publication independently
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=120
+Persistent=true
+Unit=optima-crossref-publication-resumed.service
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,7 @@
+from research_helpers import *
+a=ev('https://coiledplc.com/pipeline','Current two-programme pipeline: AO-252 explicitly in Phase I; STAT6 siRNA awaiting development assessment, not a clinical degrader.')
+b=ev('https://coiledplc.com/','Company identifies spinout/reverse-takeover history and lead oncology asset.')
+c=ev('https://www.lse.co.uk/rns/annual-report-financial-statements-54hzu6l6itbzug2.html','Issuer annual-results announcement identifies AO-252 worldwide rights agreement and divestment of Lyramid/MK Cell non-core programmes.')
+products=[p('AO-252','Investigational brain-penetrant TACC3 protein-interaction inhibitor in Phase I solid-tumour development.',a,life='development',roles=['licensee'],evidence=[a,c]),p('Coiled STAT6 siRNA programme','Preclinical RNA-silencing programme for immunology indications; company assessing progression toward IND and Phase I.',a,life='development')]
+co=dict(company_id='cmp_321bfcee-c3a0-4f12-8d46-854cd56d0c85',products=products,evidence=[a,b,c],status='partial',coverage_note='Both current named pipeline programmes recorded. Different cancer indications and AO-252 formulation work not counted as independent molecules. Partial: legacy Roquefort/Lyramid/MK Cell portfolio and divestment boundaries need additional review. Other companies STAT6 degraders mentioned on pipeline page are not Coiled products.')
+(out/'batch-0400.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

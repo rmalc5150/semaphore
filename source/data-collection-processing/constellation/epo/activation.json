@@ -1,0 +1,102 @@
+{
+  "historical": {
+    "unit": "constellation-specialist-epo_ops_patent_legal_events.service",
+    "status": "queued_on_c7i",
+    "job_id": "766191ffe6e24b73448db712c2ff9201da4314f71e8854b52e9c948b7f378e90",
+    "collection_enabled": true
+  },
+  "daily_activation_pending": false,
+  "daily_enabled": true,
+  "daily_timer": "active",
+  "verified_captures": [
+    {
+      "mode": "historical",
+      "manifest_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/manifests/collection_runs/source=epo_ops_patent_legal_events/dataset=specialist_inputs/run_3ef8fd81-4ab2-416d-bc1a-3333fa42cbe0/final.json",
+      "records": 5,
+      "checksum_verified": true,
+      "event_dates": [
+        {
+          "precision": "day",
+          "source_timezone": null,
+          "value": "2017-02-15"
+        },
+        {
+          "precision": "day",
+          "source_timezone": null,
+          "value": "2017-12-28"
+        },
+        {
+          "precision": "day",
+          "source_timezone": null,
+          "value": "2018-01-25"
+        },
+        {
+          "precision": "day",
+          "source_timezone": null,
+          "value": "2018-07-25"
+        },
+        {
+          "precision": "day",
+          "source_timezone": null,
+          "value": "2017-11-30"
+        }
+      ]
+    },
+    {
+      "mode": "daily",
+      "manifest_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/manifests/collection_runs/source=epo_ops_patent_legal_events/dataset=specialist_inputs/run_1567b49c-887c-440d-86bc-92af5cab9319/final.json",
+      "records": 5,
+      "checksum_verified": true,
+      "event_dates": [
+        {
+          "precision": "day",
+          "source_timezone": null,
+          "value": "2017-02-15"
+        },
+        {
+          "precision": "day",
+          "source_timezone": null,
+          "value": "2017-12-28"
+        },
+        {
+          "precision": "day",
+          "source_timezone": null,
+          "value": "2018-01-25"
+        },
+        {
+          "precision": "day",
+          "source_timezone": null,
+          "value": "2018-07-25"
+        },
+        {
+          "precision": "day",
+          "source_timezone": null,
+          "value": "2017-11-30"
+        }
+      ]
+    }
+  ],
+  "verified_at": "2026-10-26T20:15:31.022252+00:00",
+  "current_queue": [
+    {
+      "status": "pending",
+      "jobs": 1
+    },
+    {
+      "status": "succeeded",
+      "jobs": 2
+    }
+  ],
+  "quota_sample": [
+    {
+      "source_key": "epo_ops",
+      "used_requests": 58
+    },
+    {
+      "source_key": "epo_ops_bytes",
+      "used_requests": 542422
+    }
+  ],
+  "tests_passed": 66,
+  "reported_at": "2026-10-26T20:18:26.082256+00:00"
+}

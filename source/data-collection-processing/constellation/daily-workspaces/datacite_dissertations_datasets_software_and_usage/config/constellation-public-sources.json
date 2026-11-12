@@ -1,0 +1,1128 @@
+{
+  "schema_version": 1,
+  "historical_start_target": "2016-01-01",
+  "historical_host": "c7i",
+  "daily_host": "t3",
+  "sources": [
+    {
+      "catalog_entry": 1,
+      "source": "gleif_legal_entities",
+      "name": "GLEIF legal entities",
+      "seeds": [
+        "https://www.gleif.org/en/lei-data/gleif-api"
+      ],
+      "hosts": [
+        "gleif.org",
+        "www.gleif.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 4,
+      "source": "hkex_prices",
+      "name": "HKEX prices",
+      "seeds": [
+        "https://www.hkex.com.hk/Market-Data/Securities-Prices/Equities?sc_lang=en"
+      ],
+      "hosts": [
+        "hkex.com.hk",
+        "www.hkex.com.hk"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 7,
+      "source": "hkex_news",
+      "name": "HKEX announcements",
+      "seeds": [
+        "https://www1.hkexnews.hk/search/titlesearch.xhtml"
+      ],
+      "hosts": [
+        "www.www1.hkexnews.hk",
+        "www1.hkexnews.hk"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 16,
+      "source": "ema_ctis",
+      "name": "EMA Clinical Trials Information System",
+      "seeds": [
+        "https://euclinicaltrials.eu/"
+      ],
+      "hosts": [
+        "euclinicaltrials.eu",
+        "www.euclinicaltrials.eu"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 23,
+      "source": "chictr",
+      "name": "Chinese Clinical Trial Registry",
+      "seeds": [
+        "https://www.chictr.org.cn/"
+      ],
+      "hosts": [
+        "chictr.org.cn",
+        "www.chictr.org.cn"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 24,
+      "source": "nmpa_trials",
+      "name": "NMPA trials",
+      "seeds": [
+        "https://www.chinadrugtrials.org.cn/"
+      ],
+      "hosts": [
+        "chinadrugtrials.org.cn",
+        "www.chinadrugtrials.org.cn"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 27,
+      "source": "europe_pmc_fulltext",
+      "name": "Europe PMC full text",
+      "seeds": [
+        "https://europepmc.org/RestfulWebService"
+      ],
+      "hosts": [
+        "europepmc.org",
+        "www.europepmc.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 28,
+      "source": "crossref_proceedings",
+      "name": "Crossref conference proceedings",
+      "seeds": [
+        "https://api.crossref.org/works?filter=type:proceedings-article,from-pub-date:2016-01-01&rows=1000&cursor=*"
+      ],
+      "hosts": [
+        "api.crossref.org",
+        "www.api.crossref.org"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 30,
+      "source": "cms_coverage_documents",
+      "name": "CMS coverage documents",
+      "seeds": [
+        "https://api.coverage.cms.gov/docs/"
+      ],
+      "hosts": [
+        "api.coverage.cms.gov",
+        "www.api.coverage.cms.gov"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 31,
+      "source": "cms_payments_catalog",
+      "name": "CMS payments catalog and financial records",
+      "seeds": [
+        "https://data.cms.gov/"
+      ],
+      "hosts": [
+        "data.cms.gov",
+        "www.data.cms.gov"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 45,
+      "source": "nist_robotics_methods",
+      "name": "NIST robotics methods",
+      "seeds": [
+        "https://www.nist.gov/robotics"
+      ],
+      "hosts": [
+        "nist.gov",
+        "www.nist.gov"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 49,
+      "source": "trade_screening",
+      "name": "Trade screening lists",
+      "seeds": [
+        "https://www.trade.gov/consolidated-screening-list"
+      ],
+      "hosts": [
+        "trade.gov",
+        "www.trade.gov"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 52,
+      "source": "doe_storage_program",
+      "name": "Department of Energy storage program",
+      "seeds": [
+        "https://www.energy.gov/oe/energy-storage"
+      ],
+      "hosts": [
+        "energy.gov",
+        "www.energy.gov"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 54,
+      "source": "eia_generator_index",
+      "name": "EIA generator index",
+      "seeds": [
+        "https://www.eia.gov/electricity/data/eia860/"
+      ],
+      "hosts": [
+        "eia.gov",
+        "www.eia.gov"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 58,
+      "source": "ror_institutions",
+      "name": "Research Organization Registry institutions",
+      "seeds": [
+        "https://api.ror.org/organizations?query=research"
+      ],
+      "hosts": [
+        "api.ror.org",
+        "www.api.ror.org"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 65,
+      "source": "bis_sdmx_api",
+      "name": "BIS SDMX API",
+      "seeds": [
+        "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_CBPOL/1.0/D.?startPeriod=2016-01-01&format=csv"
+      ],
+      "hosts": [
+        "stats.bis.org",
+        "www.stats.bis.org"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "BIS central-bank policy-rate daily CSV from 2016; selected dataflow only.",
+      "asset_only": true,
+      "accept": "text/csv"
+    },
+    {
+      "catalog_entry": 67,
+      "source": "unido_iip_and_indstat",
+      "name": "UNIDO IIP and INDSTAT",
+      "seeds": [
+        "https://stat.unido.org/portal/dataset/getDataset/IIP",
+        "https://stat.unido.org/portal/dataset/getDataset/INDSTAT/4"
+      ],
+      "hosts": [
+        "stat.unido.org",
+        "www.stat.unido.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 68,
+      "source": "ilostat_labor_statistics",
+      "name": "ILOSTAT labor statistics",
+      "seeds": [
+        "https://rplumber.ilo.org/files/indicator/UNE_2UNE_SEX_AGE_NB_A.rds"
+      ],
+      "hosts": [
+        "rplumber.ilo.org",
+        "www.rplumber.ilo.org"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "ILOSTAT annual unemployment-by-sex/age RDS snapshot. Original vintages and forecast/observation separation are not yet extracted.",
+      "asset_only": true,
+      "signature": "1f8b"
+    },
+    {
+      "catalog_entry": 69,
+      "source": "imf_portwatch_shipping_activity",
+      "name": "IMF PortWatch shipping activity",
+      "seeds": [
+        "https://portwatch.imf.org/"
+      ],
+      "hosts": [
+        "portwatch.imf.org",
+        "www.portwatch.imf.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 80,
+      "source": "england_nhsbsa_prescribing_data",
+      "name": "England NHSBSA prescribing data",
+      "seeds": [
+        "https://opendata.nhsbsa.net/api/3/action/package_list"
+      ],
+      "hosts": [
+        "opendata.nhsbsa.net",
+        "www.opendata.nhsbsa.net"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 82,
+      "source": "sia_wsts_public_semiconductor_sales",
+      "name": "SIA / WSTS public semiconductor sales",
+      "seeds": [
+        "https://www.wsts.org/67/Historical-Billings-Report"
+      ],
+      "hosts": [
+        "wsts.org",
+        "www.wsts.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "WSTS public regional monthly semiconductor billings workbook; detailed paid products are excluded."
+    },
+    {
+      "catalog_entry": 83,
+      "source": "semi_worldwide_equipment_billings",
+      "name": "SEMI worldwide equipment billings",
+      "seeds": [
+        "https://www.semi.org/en/news-resources/press"
+      ],
+      "hosts": [
+        "semi.org",
+        "www.semi.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public press releases and report summaries only; licensed full historical datasets are excluded."
+    },
+    {
+      "catalog_entry": 84,
+      "source": "international_federation_of_robotics_world_robotics",
+      "name": "International Federation of Robotics World Robotics",
+      "seeds": [
+        "https://ifr.org/ifr-press-releases/"
+      ],
+      "hosts": [
+        "ifr.org",
+        "www.ifr.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public press releases and report summaries only; licensed full historical datasets are excluded."
+    },
+    {
+      "catalog_entry": 85,
+      "source": "iea_pvps_solar_deployment_reports",
+      "name": "IEA-PVPS solar deployment reports",
+      "seeds": [
+        "https://iea-pvps.org/publications/"
+      ],
+      "hosts": [
+        "iea-pvps.org",
+        "www.iea-pvps.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 86,
+      "source": "germany_g_ba_drug_benefit_assessments",
+      "name": "Germany G-BA drug benefit assessments",
+      "seeds": [
+        "https://www.g-ba.de/bewertungsverfahren/nutzenbewertung/"
+      ],
+      "hosts": [
+        "g-ba.de",
+        "www.g-ba.de"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 87,
+      "source": "france_has_medicine_assessment_opinions",
+      "name": "France HAS medicine assessment opinions",
+      "seeds": [
+        "https://www.has-sante.fr/jcms/p_3546197/fr/open-data"
+      ],
+      "hosts": [
+        "has-sante.fr",
+        "www.has-sante.fr"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 88,
+      "source": "nice_technology_appraisals",
+      "name": "NICE technology appraisals",
+      "seeds": [
+        "https://www.nice.org.uk/guidance/published?ngt=Technology%20appraisal%20guidance"
+      ],
+      "hosts": [
+        "nice.org.uk",
+        "www.nice.org.uk"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "NICE direct licensing clarification: AI use must use licensed syndication API after cybersecurity review; development documents excluded.",
+      "enabled": false,
+      "pause_reason": "NICE direct licensing clarification: AI use must use licensed syndication API after cybersecurity review; development documents excluded."
+    },
+    {
+      "catalog_entry": 89,
+      "source": "canada_cda_amc_cadth_reimbursement_reviews",
+      "name": "Canada CDA-AMC / CADTH reimbursement reviews",
+      "seeds": [
+      "https://www.cda-amc.ca/",
+      "https://www.cda-amc.ca/sites/default/files/DRR/2024/SR0860_Patient_and_Clinician_Group_Input.pdf"
+      ],
+      "hosts": [
+        "cda-amc.ca",
+        "www.cda-amc.ca"
+      ],
+      "max_depth": 3,
+    "raw_content_revision": "raw-v2",
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 90,
+      "source": "france_assurance_maladie_open_medic",
+      "name": "France Assurance Maladie Open Medic",
+      "seeds": [
+      "https://www.data.gouv.fr/api/1/datasets/open-medic-base-complete-sur-les-depenses-de-medicaments-interregimes/"
+      ],
+      "hosts": [
+        "data.gouv.fr",
+      "files.data.gouv.fr",
+        "www.data.gouv.fr"
+      ],
+      "max_depth": 3,
+    "raw_content_revision": "raw-v2",
+    "catalog_index": true,
+    "asset_only": true,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 91,
+      "source": "japan_mhlw_ndb_open_data",
+      "name": "Japan MHLW NDB Open Data",
+      "seeds": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177182.html"
+      ],
+      "hosts": [
+        "mhlw.go.jp",
+        "www.mhlw.go.jp"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 92,
+      "source": "cninfo_mainland_china_company_disclosures",
+      "name": "CNINFO mainland-China company disclosures",
+      "seeds": [
+        "https://www.cninfo.com.cn/new/index"
+      ],
+      "hosts": [
+        "cninfo.com.cn",
+        "www.cninfo.com.cn"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 93,
+      "source": "china_nbs_industrial_production",
+      "name": "China NBS industrial production",
+      "seeds": [
+        "https://data.stats.gov.cn/english/?cn=C01",
+        "https://www.stats.gov.cn/english/PressRelease/"
+      ],
+      "hosts": [
+        "data.stats.gov.cn",
+        "stats.gov.cn",
+        "www.data.stats.gov.cn",
+        "www.stats.gov.cn"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 94,
+      "source": "china_miit_electronics_and_battery_statistics",
+      "name": "China MIIT electronics and battery statistics",
+      "seeds": [
+        "https://www.miit.gov.cn/"
+      ],
+      "hosts": [
+        "miit.gov.cn",
+        "www.miit.gov.cn"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 95,
+      "source": "china_nea_power_statistics",
+      "name": "China NEA power statistics",
+      "seeds": [
+        "https://www.nea.gov.cn/"
+      ],
+      "hosts": [
+        "nea.gov.cn",
+        "www.nea.gov.cn"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 96,
+      "source": "china_nhsa_reimbursement_and_procurement",
+      "name": "China NHSA reimbursement and procurement",
+      "seeds": [
+        "https://www.nhsa.gov.cn/"
+      ],
+      "hosts": [
+        "nhsa.gov.cn",
+        "www.nhsa.gov.cn"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 97,
+      "source": "china_mofcom_export_controls",
+      "name": "China MOFCOM export controls",
+      "seeds": [
+        "https://www.mofcom.gov.cn/"
+      ],
+      "hosts": [
+        "mofcom.gov.cn",
+        "www.mofcom.gov.cn"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 100,
+      "source": "taiwan_twse_mops_issuer_and_revenue_archives",
+      "name": "Taiwan TWSE/MOPS issuer and revenue archives",
+      "seeds": [
+        "https://openapi.twse.com.tw/v1/opendata/t187ap03_L",
+        "https://openapi.twse.com.tw/v1/opendata/t187ap05_L"
+      ],
+      "hosts": [
+        "openapi.twse.com.tw",
+        "www.openapi.twse.com.tw"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 101,
+      "source": "taiwan_customs_trade_statistics",
+      "name": "Taiwan customs trade statistics",
+      "seeds": [
+        "https://www.sw.nat.gov.tw/"
+      ],
+      "hosts": [
+        "sw.nat.gov.tw",
+        "www.sw.nat.gov.tw"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 102,
+      "source": "india_ibm_mineral_production",
+      "name": "India IBM mineral production",
+      "seeds": [
+        "https://ibm.gov.in/"
+      ],
+      "hosts": [
+        "ibm.gov.in",
+        "www.ibm.gov.in"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 103,
+      "source": "indonesia_esdm_and_geological_agency_mineral_statistics",
+      "name": "Indonesia ESDM and Geological Agency mineral statistics",
+      "seeds": [
+        "https://www.esdm.go.id/"
+      ],
+      "hosts": [
+        "esdm.go.id",
+        "www.esdm.go.id"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 104,
+      "source": "brazil_anm_mineral_yearbook",
+      "name": "Brazil ANM mineral yearbook",
+      "seeds": [
+        "https://www.gov.br/anm/pt-br/centrais-de-conteudo/dados-abertos"
+      ],
+      "hosts": [
+        "gov.br",
+        "www.gov.br"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 105,
+      "source": "brazil_anm_cfem_mining_royalties",
+      "name": "Brazil ANM CFEM mining royalties",
+      "seeds": [
+        "https://www.gov.br/anm/pt-br/assuntos/arrecadacao"
+      ],
+      "hosts": [
+        "gov.br",
+        "www.gov.br"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 106,
+      "source": "brazil_mdic_comex_stat_api",
+      "name": "Brazil MDIC Comex Stat API",
+      "seeds": [
+        "https://api-comexstat.mdic.gov.br/"
+      ],
+      "hosts": [
+        "api-comexstat.mdic.gov.br",
+        "www.api-comexstat.mdic.gov.br"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 107,
+      "source": "chile_cochilco_production_and_mining_economics",
+      "name": "Chile COCHILCO production and mining economics",
+      "seeds": [
+        "https://www.cochilco.cl/"
+      ],
+      "hosts": [
+        "cochilco.cl",
+        "www.cochilco.cl"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 108,
+      "source": "chile_sernageomin_mining_yearbooks",
+      "name": "Chile SERNAGEOMIN mining yearbooks",
+      "seeds": [
+        "https://www.sernageomin.cl/anuario-de-la-mineria-de-chile/"
+      ],
+      "hosts": [
+        "sernageomin.cl",
+        "www.sernageomin.cl"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 109,
+      "source": "chile_sma_snifa_environmental_compliance",
+      "name": "Chile SMA SNIFA environmental compliance",
+      "seeds": [
+        "https://snifa.sma.gob.cl/"
+      ],
+      "hosts": [
+        "snifa.sma.gob.cl",
+        "www.snifa.sma.gob.cl"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 110,
+      "source": "peru_minem_mining_bulletins_and_yearbooks",
+      "name": "Peru MINEM mining bulletins and yearbooks",
+      "seeds": [
+        "https://www.gob.pe/minem"
+      ],
+      "hosts": [
+        "gob.pe",
+        "www.gob.pe"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 111,
+      "source": "argentina_siacam_mining_indicators",
+      "name": "Argentina SIACAM mining indicators",
+      "seeds": [
+        "https://www.argentina.gob.ar/produccion/mineria/siacam"
+      ],
+      "hosts": [
+        "argentina.gob.ar",
+        "www.argentina.gob.ar"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 112,
+      "source": "brazil_anm_sigmine_and_cadastro_mineiro",
+      "name": "Brazil ANM SIGMINE and Cadastro Mineiro",
+      "seeds": [
+        "https://geo.anm.gov.br/"
+      ],
+      "hosts": [
+        "geo.anm.gov.br",
+        "www.geo.anm.gov.br"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 113,
+      "source": "peru_ingemmet_geocatmin",
+      "name": "Peru INGEMMET GEOCATMIN",
+      "seeds": [
+        "https://geocatmin.ingemmet.gob.pe/"
+      ],
+      "hosts": [
+        "geocatmin.ingemmet.gob.pe",
+        "www.geocatmin.ingemmet.gob.pe"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 119,
+      "source": "eurostat_comext_goods_trade",
+      "name": "Eurostat Comext goods trade",
+      "seeds": [
+        "https://ec.europa.eu/eurostat/web/international-trade-in-goods/database"
+      ],
+      "hosts": [
+        "ec.europa.eu",
+        "www.ec.europa.eu"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 120,
+      "source": "climate_trace_industrial_assets_and_activity",
+      "name": "Climate TRACE industrial assets and activity",
+      "seeds": [
+        "https://climatetrace.org/data"
+      ],
+      "hosts": [
+        "climatetrace.org",
+        "www.climatetrace.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 122,
+      "source": "openstreetmap_overpass_industrial_facilities",
+      "name": "OpenStreetMap / Overpass industrial facilities",
+      "seeds": [
+        "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3Bnwr%5B%22industrial%22%5D%5B%22name%22%5D%2833%2C-113%2C34%2C-112%29%3Bout%20center%3B"
+      ],
+      "hosts": [
+        "overpass-api.de",
+        "www.overpass-api.de"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "Named industrial facilities in a Phoenix reference bounding box, current OSM snapshot only; not global coverage or reconstructed 2016 facilities."
+    },
+    {
+      "catalog_entry": 123,
+      "source": "global_energy_monitor_asset_and_ownership_api",
+      "name": "Global Energy Monitor asset and ownership API",
+      "seeds": [
+        "https://api.globalenergymonitor.org/redoc"
+      ],
+      "hosts": [
+        "api.globalenergymonitor.org",
+        "www.api.globalenergymonitor.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 124,
+      "source": "european_environment_agency_industrial_facilities",
+      "name": "European Environment Agency industrial facilities",
+      "seeds": [
+        "https://www.eea.europa.eu/en/datahub"
+      ],
+      "hosts": [
+        "eea.europa.eu",
+        "www.eea.europa.eu"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 126,
+      "source": "brazil_abve_electric_vehicle_registrations",
+      "name": "Brazil ABVE electric vehicle registrations",
+      "seeds": [
+        "https://abve.org.br/"
+      ],
+      "hosts": [
+        "abve.org.br",
+        "www.abve.org.br"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 127,
+      "source": "brazil_senatran_vehicle_fleet",
+      "name": "Brazil SENATRAN vehicle fleet",
+      "seeds": [
+        "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/estatisticas-frota-de-veiculos-senatran"
+      ],
+      "hosts": [
+        "gov.br",
+        "www.gov.br"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 128,
+      "source": "iea_global_ev_data_explorer_and_outlook",
+      "name": "IEA Global EV Data Explorer and Outlook",
+      "seeds": [
+        "https://www.iea.org/data-and-statistics/data-tools/global-ev-data-explorer"
+      ],
+      "hosts": [
+        "iea.org",
+        "www.iea.org"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 129,
+      "source": "faostat_food_balances",
+      "name": "FAOSTAT food balances",
+      "seeds": [
+        "https://bulks-faostat.fao.org/production/FoodBalanceSheets_E_All_Data_(Normalized).zip"
+      ],
+      "hosts": [
+        "bulks-faostat.fao.org",
+        "www.bulks-faostat.fao.org"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "FAOSTAT normalized Food Balance Sheets bulk ZIP; year filtering and table extraction pending.",
+      "asset_only": true,
+      "signature": "504b"
+    },
+    {
+      "catalog_entry": 136,
+      "source": "y_combinator_company_directory_and_cohorts",
+      "name": "Y Combinator company directory and cohorts",
+      "seeds": [
+        "https://www.ycombinator.com/companies"
+      ],
+      "hosts": [
+        "www.ycombinator.com",
+        "ycombinator.com"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 137,
+      "source": "techstars_portfolio_and_cohorts",
+      "name": "Techstars portfolio and cohorts",
+      "seeds": [
+        "https://www.techstars.com/portfolio"
+      ],
+      "hosts": [
+        "techstars.com",
+        "www.techstars.com"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 138,
+      "source": "500_global_portfolio_and_cohorts",
+      "name": "500 Global portfolio and cohorts",
+      "seeds": [
+        "https://500.co/companies"
+      ],
+      "hosts": [
+        "500.co",
+        "www.500.co"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 139,
+      "source": "antler_early_stage_portfolio",
+      "name": "Antler early-stage portfolio",
+      "seeds": [
+        "https://www.antler.co/portfolio"
+      ],
+      "hosts": [
+        "antler.co",
+        "www.antler.co"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 141,
+      "source": "wefunder_and_republic_crowdfunding_campaigns",
+      "name": "Wefunder and Republic crowdfunding campaigns",
+      "seeds": [
+        "https://wefunder.com/"
+      ],
+      "hosts": [
+        "wefunder.com",
+        "www.wefunder.com"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 144,
+      "source": "openaire_graph_projects_and_research_products",
+      "name": "OpenAIRE Graph projects and research products",
+      "seeds": [
+        "https://api.openaire.eu/search/projects?format=json&size=100"
+      ],
+      "hosts": [
+        "api.openaire.eu",
+        "www.api.openaire.eu"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "Public OpenAIRE project metadata sample. This capture does not yet paginate the full graph or assert historical completeness."
+    },
+    {
+      "catalog_entry": 146,
+      "source": "open_science_framework_projects_and_preregistrations",
+      "name": "Open Science Framework projects and preregistrations",
+      "seeds": [
+        "https://api.osf.io/v2/registrations/?page%5Bsize%5D=100"
+      ],
+      "hosts": [
+        "api.osf.io",
+        "www.api.osf.io"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 148,
+      "source": "semantic_scholar_citation_context",
+      "name": "Semantic Scholar citation context",
+      "seeds": [
+        "https://api.semanticscholar.org/graph/v1/paper/search?query=robotics&limit=100&fields=paperId,title,year,publicationDate,citationCount"
+      ],
+      "hosts": [
+        "api.semanticscholar.org",
+        "www.api.semanticscholar.org"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "Public Semantic Scholar robotics keyword metadata sample, at most the first public result page. Full citation-context coverage needs a dedicated adapter and potentially a key."
+    },
+    {
+      "catalog_entry": 149,
+      "source": "france_theses_fr_doctoral_theses",
+      "name": "France theses.fr doctoral theses",
+      "seeds": [
+        "https://theses.fr/"
+      ],
+      "hosts": [
+        "theses.fr",
+        "www.theses.fr"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 150,
+      "source": "brazil_capes_theses_and_dissertations",
+      "name": "Brazil CAPES theses and dissertations",
+      "seeds": [
+        "https://dadosabertos.capes.gov.br/"
+      ],
+      "hosts": [
+        "dadosabertos.capes.gov.br",
+        "www.dadosabertos.capes.gov.br"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 152,
+      "source": "european_commission_cordis",
+      "name": "European Commission CORDIS",
+      "seeds": [
+        "https://cordis.europa.eu/data/cordis-h2020projects-csv.zip",
+        "https://cordis.europa.eu/data/cordis-HORIZONprojects-csv.zip"
+      ],
+      "hosts": [
+        "cordis.europa.eu",
+        "www.cordis.europa.eu"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "CORDIS H2020 and Horizon Europe public project CSV archives; pre-programme coverage is not asserted.",
+      "asset_only": true,
+      "signature": "504b"
+    },
+    {
+      "catalog_entry": 154,
+      "source": "brazil_fapesp_pipe_and_grants",
+      "name": "Brazil FAPESP PIPE and grants",
+      "seeds": [
+        "https://bv.fapesp.br/en/"
+      ],
+      "hosts": [
+        "bv.fapesp.br",
+        "www.bv.fapesp.br"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 155,
+      "source": "ukri_gateway_to_research",
+      "name": "UKRI Gateway to Research",
+      "seeds": [
+        "https://gtr.ukri.org/gtr/api/projects?f=json&s=100&p=1"
+      ],
+      "hosts": [
+        "gtr.ukri.org",
+        "www.gtr.ukri.org"
+      ],
+      "max_depth": 3,
+      "decodo": false,
+      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+    },
+    {
+      "catalog_entry": 158,
+      "source": "university_technology_transfer_catalogs_and_reports",
+      "name": "University technology-transfer catalogs and reports",
+      "seeds": [
+        "https://otl.stanford.edu/annual-report",
+        "https://tlo.mit.edu/about/annual-reports"
+      ],
+      "hosts": [
+        "otl.stanford.edu",
+        "tlo.mit.edu",
+        "www.otl.stanford.edu",
+        "www.tlo.mit.edu"
+      ],
+      "max_depth": 3,
+      "decodo": true,
+      "scope_note": "Initial Stanford and MIT public technology-transfer report indexes only; broader universities require additional configured publisher URLs."
+    }
+  ]
+}

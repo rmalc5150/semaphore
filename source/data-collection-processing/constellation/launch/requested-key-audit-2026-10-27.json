@@ -1,0 +1,162 @@
+{
+  "checked_at": "2026-10-27T08:39:39.266473+00:00",
+  "key_presence": {
+    "UN-primary": true,
+    "UN-Secondary": false,
+    "UN-secondary": true,
+    "FRED": true,
+    "Ember": true,
+    "WTO-primary": true,
+    "WTO-secondary": true,
+    "copernicus": true,
+    "dart": true,
+    "US-census": true,
+    "usda-fas": true,
+    "EPO-consumer": true,
+    "EPO-consumer-secret": true,
+    "EPO-comsuner-secret": false
+  },
+  "sources": {
+    "un_comtrade": {
+      "historical_enabled": true,
+      "daily_definition": true,
+      "daily_lane": null,
+      "historical_state": {
+        "tasks": 220,
+        "statuses": {
+          "complete": 220,
+          "partial": 0,
+          "failed": 0
+        },
+        "records": 190,
+        "last_attempt": "2026-10-26T14:11:20.328294Z"
+      },
+      "independent_daily_state": null,
+      "shared_daily_state": {
+        "tasks": 38,
+        "statuses": {
+          "complete": 38,
+          "partial": 0,
+          "failed": 0
+        },
+        "last_attempt": "2026-10-23T05:38:22.191457Z"
+      }
+    },
+    "fred_alfred_series_and_vintages": {
+      "historical_enabled": false,
+      "daily_definition": false,
+      "daily_lane": null,
+      "historical_state": null,
+      "independent_daily_state": null
+    },
+    "ember_electricity_demand_and_generation": {
+      "historical_enabled": false,
+      "daily_definition": false,
+      "daily_lane": null,
+      "historical_state": null,
+      "independent_daily_state": null
+    },
+    "wto_timeseries_api": {
+      "historical_enabled": false,
+      "daily_definition": false,
+      "daily_lane": null,
+      "historical_state": null,
+      "independent_daily_state": null
+    },
+    "wto_quantitative_restrictions_api": {
+      "historical_enabled": false,
+      "daily_definition": false,
+      "daily_lane": null,
+      "historical_state": null,
+      "independent_daily_state": null
+    },
+    "wto_eping_sps_tbt_notifications": {
+      "historical_enabled": false,
+      "daily_definition": false,
+      "daily_lane": null,
+      "historical_state": null,
+      "independent_daily_state": null
+    },
+    "copernicus_era5_era5_land": {
+      "historical_enabled": false,
+      "daily_definition": false,
+      "daily_lane": null,
+      "historical_state": null,
+      "independent_daily_state": null
+    },
+    "south_korea_fss_opendart": {
+      "historical_enabled": false,
+      "daily_definition": false,
+      "daily_lane": null,
+      "historical_state": null,
+      "independent_daily_state": null
+    },
+    "us_census_international_trade_api": {
+      "historical_enabled": false,
+      "daily_definition": false,
+      "daily_lane": null,
+      "historical_state": null,
+      "independent_daily_state": null
+    },
+    "usda_fas_production_supply_and_distribution": {
+      "historical_enabled": false,
+      "daily_definition": false,
+      "daily_lane": null,
+      "historical_state": null,
+      "independent_daily_state": null
+    },
+    "epo_ops_patent_legal_events": {
+      "historical_enabled": true,
+      "daily_definition": true,
+      "daily_lane": "independent_public_daily",
+      "historical_state": {
+        "tasks": 1212,
+        "statuses": {
+          "complete": 910,
+          "partial": 301,
+          "failed": 1
+        },
+        "records": 13437,
+        "last_attempt": "2026-10-27T08:02:47.683807Z"
+      },
+      "independent_daily_state": {
+        "tasks": 292,
+        "statuses": {
+          "complete": 257,
+          "partial": 34,
+          "failed": 1
+        },
+        "records": 117,
+        "last_attempt": "2026-10-27T08:03:01.500479Z"
+      }
+    }
+  },
+  "fresh_probes": {
+    "fred": {
+      "http_status": 200,
+      "json": true,
+      "has_data": true
+    },
+    "dart": {
+      "http_status": 200,
+      "json": true,
+      "provider_status": "000",
+      "has_data": true
+    },
+    "census": {
+      "error_type": "ReadTimeout"
+    },
+    "usda": {
+      "http_status": 500,
+      "json": true,
+      "has_data": false
+    }
+  },
+  "control_enabled": true,
+  "daily_enabled": true,
+  "worker": {
+    "state": "running",
+    "type": "m7i.large"
+  },
+  "daily_timer": "active"
+}

@@ -1,0 +1,14 @@
+{
+  "FunctionName": "optima-collection-watchdog",
+  "RevisionId": "89a16217-b89c-4e0e-adce-7112f763b67f",
+  "LastModified": "2026-10-26T21:05:48.000+0000",
+  "CodeSha256": "8+GJVZaNjwGbaz05yHFC3qB9KKUqd7FpPlfEGNi0cYo=",
+  "LastUpdateStatus": "InProgress",
+  "changed_modules": [
+    "collection_alerts.py",
+    "monitoring_overview.py"
+  ],
+  "schedule_and_recipients_changed": false,
+  "verified_update_status": "Successful",
+  "verified_revision_id": "4e9fa71f-7a79-4cf1-b4d2-17830328c31e"
+}

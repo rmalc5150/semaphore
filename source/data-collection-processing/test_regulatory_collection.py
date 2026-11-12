@@ -32,6 +32,16 @@ class FakeClient:
 
 
 class CollectionTests(unittest.TestCase):
+    def test_github_release_cap_keeps_evidence_and_is_not_empty_success(self):
+        from urllib.error import HTTPError
+        body=b'{"message":"Only the first 1000 results are available."}'
+        opener=Mock(side_effect=HTTPError('https://api.github.com/repos/intel/llvm/releases',422,'',{},io.BytesIO(body)))
+        client=core.EvidenceClient(self.store,'github_sdk',opener=opener,sleeper=Mock())
+        with self.assertRaisesRegex(core.SourceIssue,'github_release_archive_cap'):
+            client.get('https://api.github.com/repos/intel/llvm/releases',params={'page':11,'per_page':100})
+        self.assertEqual(len(client.evidence),1)
+        self.assertEqual(opener.call_count,1)
+
     def test_rendered_transient_failure_retries_and_saves_evidence(self):
         from decodo_scraping_api import ScrapeError
         client = core.EvidenceClient(self.store, "chictr", sleeper=Mock())
@@ -294,12 +304,39 @@ class CollectionTests(unittest.TestCase):
             result, _, _ = sources.Japan().page(Mock(), self.start, self.end, "daily", {}, 100)
         self.assertEqual(len({row["id"] for row in result}), 2)
 
+    def test_uk_current_and_expired_register_assertions_have_distinct_ids(self):
+        def collect(stage):
+            client = Mock()
+            label = 'Expired Orphan Register' if stage == 2 else 'Orphan Register'
+            client.get.side_effect = [('<a href="/orphan.csv">' + label + '</a>').encode(),
+                b'Product name,Designation number\nExample,PLGB 123/001/OD1\n']
+            with patch('mhra_product_enrichment.enrich', return_value={'companyRelationships':[]}):
+                return sources.UK().page(client, self.start, self.end, 'daily', {'stage':stage}, 100)[0][0]
+        current, expired = collect(1), collect(2)
+        self.assertNotEqual(current['id'], expired['id'])
+        self.assertTrue(current['id'].startswith('orphan:'))
+        self.assertTrue(expired['id'].startswith('orphan_expired:'))
+
+    def test_uk_renamed_nonactive_register_keeps_identity_and_stays_separate(self):
+        html = b'<a href="/current.csv">Orphan Register</a><a href="/inactive.csv">Non-active Orphan Register</a>'
+        records = b'Product name,Designation number\nExample,PLGB 123/001/OD1\n'
+        observed = []
+        for stage in (1, 2):
+            client = Mock()
+            client.get.side_effect = [html, records]
+            with patch('mhra_product_enrichment.enrich', return_value={'companyRelationships': []}):
+                rows, _, _ = sources.UK().page(client, self.start, self.end, 'daily', {'stage': stage}, 100)
+            self.assertTrue(client.get.call_args.args[0].endswith('/current.csv' if stage == 1 else '/inactive.csv'))
+            observed.append(rows[0]['id'])
+        self.assertTrue(observed[1].startswith('orphan_expired:'))
+        self.assertNotEqual(*observed)
+
     def test_uk_windows_encoding_preserves_names(self):
         client = Mock()
         client.get.side_effect = [b'<a href="/orphan.csv">Orphan Register</a>',
             'Product name ,Company Name,Date\nExample,Compañía,03/06/2024\n'.encode("cp1252")]
         rows, _, done = sources.UK().page(client, self.start, self.end, "daily", {"stage": 1}, 100)
-        self.assertTrue(done)
+        self.assertFalse(done)
         self.assertEqual(rows[0]["company_names"], ["Compañía"])
 
     def test_uk_undated_history_is_partial_not_backdated(self):

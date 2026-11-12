@@ -22,7 +22,9 @@ class NewsOperations:
         self.taxonomy = load_json(ROOT / self.daily['taxonomy'])
         if self.history['universe'] != self.daily['universe']:
             raise ValueError('news configs must use the same universe')
-        self.identity = digest({'config': config, 'daily': self.daily, 'history': self.history,
+        identity_config = deepcopy(config)
+        identity_config['historical_start'] = identity_config.pop('state_identity_historical_start', config['historical_start'])
+        self.identity = digest({'config': identity_config, 'daily': self.daily, 'history': self.history,
                                 'universe': digest(self.universe), 'taxonomy': digest(self.taxonomy)})
         self.prefix = 'operations/news/automation/' + self.identity
 
@@ -61,15 +63,20 @@ class NewsOperations:
             write_json(self.store, key, item, token)
         return {'status': 'complete', 'queue_key': key, 'manifests': item['manifests']}
 
-    def run(self, clients, today=None):
+    def run(self, clients, today=None, lanes=('daily','reconcile','historical')):
+        if not lanes or set(lanes)-{'daily','reconcile','historical'}:
+            raise ValueError('invalid news lanes')
         today = today or datetime.now(timezone.utc).date()
         outcomes = []
         origin = date.fromisoformat(self.config['daily_origin'])
         history_start = date.fromisoformat(self.config['historical_start'])
         for provider in sorted(self.daily['providers']):
+            from source_pauses import is_paused
+            if is_paused(provider):
+                continue
             # Daily catch-up is always attempted first. Each lane has a separate
             # per-invocation request allowance; all use the same durable daily cap.
-            for lane in ('daily', 'reconcile', 'historical'):
+            for lane in lanes:
                 if lane == 'historical' and provider != 'marketaux':
                     continue
                 key = self.prefix + '/' + provider + '/' + lane + '.json'
@@ -112,6 +119,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', type=Path, default=ROOT/'config/news-operations.json')
     parser.add_argument('--status', action='store_true')
+    parser.add_argument('--lane', choices=['daily','historical','all'], default='all')
     args = parser.parse_args()
     config = load_json(args.config)
     daily = load_json(ROOT/config['daily_config'])
@@ -140,9 +148,9 @@ def main():
                     if not completed or not (completed.get('notification_message_id') or completed.get('full_text_notification_message_id')):
                         cap = control['max_requests_per_day']
             return NewsClient(store,provider,keys[pc['secret_field']],cap,config['requests_per_lane'][lane])
-        report = runner.run(client)
+        report = runner.run(client, lanes=('daily','reconcile') if args.lane == 'daily' else ('historical',) if args.lane == 'historical' else ('daily','reconcile','historical'))
         from finlight_backfill import collect_archive
-        report['finlight_backfill'] = collect_archive(runner, keys[daily['providers']['finlight']['secret_field']])
+        report['finlight_backfill'] = ({'status':'not_selected_daily_lane'} if args.lane == 'daily' else collect_archive(runner, keys[daily['providers']['finlight']['secret_field']]))
         archive_status = report['finlight_backfill'].get('last_result', {}).get('status')
         if archive_status == 'failed':
             report['status'] = 'failed'

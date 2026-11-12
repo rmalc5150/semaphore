@@ -1,0 +1,1006 @@
+openapi: 3.0.1
+info:
+  title: Quantitative Restrictions (QR)
+  description: "The database contains detailed information on export and import prohibitions and restrictions other than tariffs and taxes. <br/>\nDetails are available on the products (tariff lines) covered by the measure, the related WTO justification, national legal basis and administrative mechanisms."
+  version: '1.0'
+servers:
+  - url: https://api.wto.org/qrs
+paths:
+  /members:
+    get:
+      summary: Member list
+      description: Member list
+      operationId: get-members
+      parameters:
+        - name: member_code
+          in: query
+          description: WTO member code
+          schema:
+            type: string
+          examples:
+            Member code:
+              value: C036
+        - name: name
+          in: query
+          description: Member's name
+          schema:
+            type: string
+          examples:
+            Member name:
+              value: Australia
+        - name: page
+          in: query
+          description: Page number
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of WTO members matching the member_code or name url parameter.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Member'
+              examples:
+                Member list:
+                  value:
+                    data:
+                      - code: C004
+                        name:
+                          en: Afghanistan
+                          es: Afganistán
+                          fr: Afghanistan
+                      - code: C008
+                        name:
+                          en: Albania
+                          es: Albania
+                          fr: Albanie
+                      - code: C024
+                        name:
+                          en: Angola
+                          es: Angola
+                          fr: Angola
+                    links:
+                      first: /members?page=1
+                      last: /members?page=4
+                      next: /members?page=2
+                    meta:
+                      current_page: 1
+                      from: 1
+                      last_page: 4
+                      links:
+                        - label: '&laquo; Previous'
+                          active: false
+                        - url: /members?page=1
+                          label: '1'
+                          active: true
+                        - url: /members?page=2
+                          label: '2'
+                          active: false
+                        - url: /members?page=3
+                          label: '3'
+                          active: false
+                        - url: /members?page=4
+                          label: '4'
+                          active: false
+                        - url: /members?page=2
+                          label: Next &raquo;
+                          active: false
+                      path: /members
+                      per_page: 50
+                      to: 50
+                      total: 164
+  /products:
+    get:
+      summary: Product list
+      description: Product list
+      operationId: get-products
+      parameters:
+        - name: hs_version
+          in: query
+          description: 'HS version (h1, h2, h3, h4, h5, h6, h7)'
+          required: true
+          schema:
+            type: string
+          examples:
+            'HS version ':
+              value: h3
+        - name: code
+          in: query
+          description: 'Product code to fully or partially (prefix) match in the results '
+          schema:
+            type: string
+          examples:
+            Product code:
+              value: 1
+        - name: page
+          in: query
+          description: Page number
+          schema:
+            type: integer
+        - name: description
+          in: query
+          description: Search in the description of the products.
+          schema:
+            type: string
+          examples:
+            description:
+              value: Live animals
+        - name: hs_version
+          in: query
+          description: 'HS version (h1, h2, h3, h4, h5, h6, h7)'
+          required: true
+          schema:
+            type: string
+          examples:
+            'HS version ':
+              value: h3
+      responses:
+        '200':
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+              examples:
+                product list:
+                  value:
+                    data:
+                      - id: h6-00
+                        code: '00'
+                        tier: '1'
+                        leaf: '0'
+                        description:
+                          en: N/A
+                          es: N/A
+                          fr: N/A
+                        hs_version: HS-17
+                      - id: h6-01
+                        code: '01'
+                        tier: '1'
+                        leaf: '6'
+                        description:
+                          en: LIVE ANIMALS
+                          es: ANIMALES VIVOS
+                          fr: ANIMAUX VIVANTS
+                        hs_version: HS-17
+                      - id: h6-0101
+                        code: '0101'
+                        tier: '2'
+                        leaf: '3'
+                        description:
+                          en: 'Live horses, asses, mules and hinnies'
+                          es: 'Caballos, asnos, mulos y burdéganos, vivos'
+                          fr: 'Chevaux, ânes, mulets et bardots, vivants'
+                        hs_version: HS-17
+                    links:
+                      first: /products?page=1
+                      last: /products?page=154
+                      next: /products?page=2
+                    meta:
+                      current_page: 1
+                      from: 1
+                      last_page: 154
+                      links:
+                        - label: '&laquo; Previous'
+                          active: false
+                        - url: /products?page=1
+                          label: '1'
+                          active: true
+                        - url: /products?page=2
+                          label: '2'
+                          active: false
+                        - url: /products?page=3
+                          label: '3'
+                          active: false
+                        - url: /products?page=4
+                          label: '4'
+                          active: false
+                        - url: /products?page=5
+                          label: '5'
+                          active: false
+                        - url: /products?page=6
+                          label: '6'
+                          active: false
+                        - url: /products?page=7
+                          label: '7'
+                          active: false
+                        - url: /products?page=8
+                          label: '8'
+                          active: false
+                        - url: /products?page=9
+                          label: '9'
+                          active: false
+                        - url: /products?page=10
+                          label: '10'
+                          active: false
+                        - label: ...
+                          active: false
+                        - url: /products?page=153
+                          label: '153'
+                          active: false
+                        - url: /products?page=154
+                          label: '154'
+                          active: false
+                        - url: /products?page=2
+                          label: Next &raquo;
+                          active: false
+                      path: /products
+                      per_page: 50
+                      to: 50
+                      total: 7663
+        '422':
+          description: Missing or non-existing hs_version query parameter
+          content:
+            application/json:
+              examples:
+                Missing hs_version:
+                  value:
+                    errors:
+                      hs_version:
+                        - The hs version field is required.
+                    status: 422
+                Wrong hs_version:
+                  value:
+                    errors:
+                      hs_version:
+                        - The selected hs version is invalid.
+                    status: 422
+  /notifications:
+    get:
+      summary: Notification list
+      description: List of notifications matching the filter criterias
+      operationId: get-notifications
+      parameters:
+        - name: page
+          in: query
+          description: Page number
+          schema:
+            type: integer
+          examples:
+            Page number:
+              value: 2
+        - name: reporter_member_code
+          in: query
+          description: WTO member code of the notifying member
+          schema:
+            type: string
+          examples:
+            Reporting member:
+              value: C036
+        - name: notification_year
+          in: query
+          description: Year of submission
+          schema:
+            type: integer
+          examples:
+            Notification year:
+              value: 2020
+      responses:
+        '200':
+          description: Notifications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+              examples:
+                Notifications:
+                  value:
+                    data:
+                      - reporter_member:
+                          code: C004
+                          name:
+                            en: Afghanistan
+                            es: Afganistán
+                            fr: Afghanistan
+                        notification_dt: '2016-07-29'
+                        document_symbol: G/MA/QR/N/AFG/1
+                        document_url: https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?MetaCollection=WTO&SymbolList=G/MA/QR/N/AFG/1
+                        original_language: en
+                        type: complete-notification
+                        covered_periods:
+                          - 2014-2016
+                      - reporter_member:
+                          code: C008
+                          name:
+                            en: Albania
+                            es: Albania
+                            fr: Albanie
+                        notification_dt: '2018-11-20'
+                        document_symbol: G/MA/QR/N/ALB/1
+                        document_url: https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?MetaCollection=WTO&SymbolList=G/MA/QR/N/ALB/1
+                        original_language: en
+                        type: complete-notification
+                        covered_periods:
+                          - 2018-2020
+                    links:
+                      first: /notifications?page=1
+                      last: /notifications?page=6
+                      next: /notifications?page=2
+                    meta:
+                      current_page: 1
+                      from: 1
+                      last_page: 6
+                      links:
+                        - label: '&laquo; Previous'
+                          active: false
+                        - url: /notifications?page=1
+                          label: '1'
+                          active: true
+                        - url: /notifications?page=2
+                          label: '2'
+                          active: false
+                        - url: /notifications?page=3
+                          label: '3'
+                          active: false
+                        - url: /notifications?page=4
+                          label: '4'
+                          active: false
+                        - url: /notifications?page=5
+                          label: '5'
+                          active: false
+                        - url: /notifications?page=6
+                          label: '6'
+                          active: false
+                        - url: /notifications?page=2
+                          label: Next &raquo;
+                          active: false
+                      path: /notifications
+                      per_page: 50
+                      to: 50
+                      total: 285
+  '/qrs/{qrId}':
+    get:
+      summary: QR details
+      description: Return the details of the QR with historical versions
+      operationId: get-qrs-qrid
+      parameters:
+        - name: qrId
+          in: path
+          description: Id of the QR
+          required: true
+          schema:
+            $ref: '#/components/schemas/QrId'
+          examples:
+            id:
+              value: 14
+      responses:
+        '200':
+          description: QR details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Qr'
+              examples:
+                QR details:
+                  value:
+                    data:
+                      id: 10
+                      in_force_from: '2014-10-01'
+                      termination_dt: '2016-09-30'
+                      reporter_member:
+                        code: C004
+                        name:
+                          en: Afghanistan
+                          es: Afganistán
+                          fr: Afghanistan
+                      general_description: Re-exportation prohibition
+                      national_legal_bases: N/A
+                      administrative_mechanisms: N/A
+                      restrictions:
+                        - 'P-X '
+                      measures:
+                        - flow: export
+                          symbol: P-X
+                          group_name: P
+                          mast_codes:
+                            - P31
+                          description:
+                            en: Prohibition
+                            es: Prohibición
+                            fr: Prohibition
+                          interpreted: 0
+                      affected_products:
+                        - id: h5-080231
+                          code: '080231'
+                          description:
+                            en: 'Fresh or dried walnuts, in shell'
+                            es: 'Nueces frescas o secas, con cáscara'
+                            fr: 'Noix communes, fraîches ou sèches, en coques'
+                          hs_version: H5
+                        - id: h5-080232
+                          code: '080232'
+                          description:
+                            en: 'Fresh or dried walnuts, shelled'
+                            es: 'Nueces frescas o secas, sin cáscara'
+                            fr: 'Noix communes, fraîches ou sèches, sans coques'
+                          hs_version: H5
+                      responsible_entities: [ ]
+                      notified_in:
+                        - qr_sn: 10
+                          notification_dt: '2016-07-29'
+                          document_symbol: G/MA/QR/N/AFG/1
+                          document_url: https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?MetaCollection=WTO&SymbolList=G/MA/QR/N/AFG/1
+                          original_language: en
+                          type: complete-notification
+                          covered_periods:
+                            - 2014-2016
+        '404':
+          description: QR not found
+  /hs-versions:
+    get:
+      summary: HS version list
+      description: HS version list
+      operationId: get-hs-versions
+      responses:
+        '200':
+          description: List of HS versions
+          content:
+            application/json:
+              examples:
+                HS versions:
+                  value:
+                    data:
+                      - code: H1
+                        version: HS-92
+                        label: HS 1992
+                      - code: H2
+                        version: HS-96
+                        label: HS 1996
+  /qrs:
+    get:
+      summary: QR list
+      description: QR list
+      operationId: get-qrs
+      parameters:
+        - name: page
+          in: query
+          description: Page number
+          schema:
+            type: integer
+        - name: reporter_member_code
+          in: query
+          description: WTO country code of the reporting member
+          schema:
+            type: string
+        - name: in_force_only
+          in: query
+          description: 'If true, only QRs currently in force will be returned'
+          schema:
+            type: boolean
+        - name: year_of_entry_into_force
+          in: query
+          description: Year when the QRs went into force
+          schema:
+            type: integer
+        - name: product_codes
+          in: query
+          description: Comma separated list of product codes to fully or partially (prefix) match any of the provided codes in any HS version.
+          schema:
+            type: string
+          examples:
+            Product code:
+              value: '940199,940191'
+        - name: product_ids
+          in: query
+          description: 'Comma separated list of product ids (in {version code}-{6 digit code} format, ex. h7-940191). The result only contains QRs where any of the product ids have a partial match (ex.: h7-0104 will match Qrs having h7-0104, h7-010410 and h7-010420).'
+          schema:
+            type: string
+          examples:
+            Product id:
+              value: 'h7-940199,h6-940191'
+      responses:
+        '200':
+          description: QRs matching the filter criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Qr'
+              examples:
+                QRs:
+                  value:
+                    data:
+                      - id: 9
+                        in_force_from: '2014-10-01'
+                        termination_dt: '2016-09-30'
+                        reporter_member:
+                          code: C004
+                          name:
+                            en: Afghanistan
+                            es: Afganistán
+                            fr: Afghanistan
+                        general_description: Re-exportation prohibition
+                        national_legal_bases: NA
+                        administrative_mechanisms: NA
+                        restrictions:
+                          - 'P-X '
+                        measures:
+                          - flow: export
+                            symbol: P-X
+                            group_name: P
+                            mast_codes:
+                              - P31
+                            description:
+                              en: Prohibition
+                              es: Prohibición
+                              fr: Prohibition
+                            interpreted: 0
+                        responsible_entities: [ ]
+                        notified_in:
+                          - qr_sn: 9
+                            notification_dt: '2016-07-29'
+                            document_symbol: G/MA/QR/N/AFG/1
+                            document_url: https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?MetaCollection=WTO&SymbolList=G/MA/QR/N/AFG/1
+                            original_language: en
+                            type: complete-notification
+                            covered_periods:
+                              - 2014-2016
+                        details: /qrs/9
+                      - id: 10
+                        in_force_from: '2014-10-01'
+                        termination_dt: '2016-09-30'
+                        reporter_member:
+                          code: C004
+                          name:
+                            en: Afghanistan
+                            es: Afganistán
+                            fr: Afghanistan
+                        general_description: Re-exportation prohibition
+                        national_legal_bases: N/A
+                        administrative_mechanisms: ''
+                        restrictions:
+                          - 'P-X '
+                        measures:
+                          - flow: export
+                            symbol: P-X
+                            group_name: P
+                            mast_codes:
+                              - P31
+                            description:
+                              en: Prohibition
+                              es: Prohibición
+                              fr: Prohibition
+                            interpreted: 0
+                        responsible_entities: [ ]
+                        notified_in:
+                          - qr_sn: 10
+                            notification_dt: '2016-07-29'
+                            document_symbol: G/MA/QR/N/AFG/1
+                            document_url: https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?MetaCollection=WTO&SymbolList=G/MA/QR/N/AFG/1
+                            original_language: en
+                            type: complete-notification
+                            covered_periods:
+                              - 2014-2016
+                        details: /qrs/9
+                    links:
+                      first: /qrs?page=1
+                      last: /qrs?page=35
+                      next: /qrs?page=2
+                    meta:
+                      current_page: 1
+                      from: 1
+                      last_page: 35
+                      links:
+                        - label: '&laquo; Previous'
+                          active: false
+                        - url: /qrs?page=1
+                          label: '1'
+                          active: true
+                        - url: /qrs?page=2
+                          label: '2'
+                          active: false
+                        - url: /qrs?page=3
+                          label: '3'
+                          active: false
+                        - url: /qrs?page=4
+                          label: '4'
+                          active: false
+                        - url: /qrs?page=5
+                          label: '5'
+                          active: false
+                        - url: /qrs?page=6
+                          label: '6'
+                          active: false
+                        - url: /qrs?page=7
+                          label: '7'
+                          active: false
+                        - url: /qrs?page=8
+                          label: '8'
+                          active: false
+                        - url: /qrs?page=9
+                          label: '9'
+                          active: false
+                        - url: /qrs?page=10
+                          label: '10'
+                          active: false
+                        - label: ...
+                          active: false
+                        - url: /qrs?page=34
+                          label: '34'
+                          active: false
+                        - url: /qrs?page=35
+                          label: '35'
+                          active: false
+                        - url: /qrs?page=2
+                          label: Next &raquo;
+                          active: false
+                      path: /qrs
+                      per_page: 50
+                      to: 50
+                      total: 1738
+components:
+  schemas:
+    Product:
+      required:
+        - id
+        - hs_version
+        - code
+        - tier
+        - leaf
+        - description
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique id of the product including the hs class and the code
+          example: h3-590310
+        code:
+          type: string
+          description: Product code
+          example: '590310'
+        tier:
+          type: integer
+          description: Level of product in the product tree
+          example: '3'
+        leaf:
+          type: integer
+          description: Number of leaves of the product in the product tree
+          example: '0'
+        description:
+          $ref: '#/components/schemas/TranslatedText'
+        hs_version:
+          type: string
+          description: Version of the HS class
+          example: HS-02
+      example:
+        id: h3-590310
+        code: '590310'
+        tier: 3
+        leaf: 0
+        description:
+          en: 'Textile fabrics impregnated, coated, covered or laminated with poly"vinyl chloride" (excl. wall coverings of textile materials impregnated or covered with poly"vinyl chloride"; floor coverings consisting of a textile backing and a top layer or covering of poly"vinyl chloride")'
+          es: 'Telas impregnadas, recubiertas, revestidas o estratificadas con poli"cloruro de vinilo" (exc. revestimientas de materia textil para paredes, impregnadas o revestidas de poli"cloruro de vinilo"; revestimientas para suelos con una base de materia textil con un recubrimiento o revestimiento de poli"cloruro de vinilo")'
+          fr: 'Tissus imprégnés, enduits ou recouverts de poly[chlorure de vinyle] ou stratifiés avec du poly[chlorure de vinyle] (à l''excl. des tissus imprégnés ou enduits de poly[chlorure de vinyle] ayant le caractère de revêtements muraux ainsi que des tissus enduits ou recouverts de poly[chlorure de vinyle] conçus pour être utilisés comme revêtements de sol)'
+        hs_version: HS-02
+    Member:
+      required:
+        - code
+        - name
+      type: object
+      properties:
+        code:
+          type: string
+          description: WTO member code
+        name:
+          $ref: '#/components/schemas/TranslatedText'
+      example:
+        code: C400
+        name:
+          en: Jordan
+          es: Jordania
+          fr: Jordanie
+    Notification:
+      required:
+        - reporter_member
+        - notification_dt
+        - document_symbol
+        - document_url
+        - original_language
+        - type
+        - covered_periods
+      type: object
+      properties:
+        reporter_member:
+          $ref: '#/components/schemas/Member'
+        notification_dt:
+          type: string
+          description: Date of the notification
+          format: date
+          readOnly: true
+          example: '2017-08-10'
+        document_symbol:
+          type: string
+          description: Notification's WTO document symbol
+          example: G/MA/QR/N/AUS/3
+        document_url:
+          type: string
+          description: Link to the document in the WTO documents online
+          example: https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?MetaCollection=WTO&SymbolList=%22G%2fMA%2fQR%2fN%2fAUS%2f3%22&Language=ENGLISH&SearchPage=FE_S_S001&languageUIChanged=true#
+        original_language:
+          type: string
+          description: 'Original language of the notification (en: English, fr: French, es: Spanish)'
+          example: en
+        type:
+          type: string
+          description: Type of notification (complete-notification / changes-to-previous-notification)
+          example: complete-notification
+        covered_periods:
+          type: array
+          items:
+            type: string
+          description: Array of 2 years notification periods covered
+          readOnly: true
+          example: "[\n'2010-2012',\n'2012-2014'\n]"
+      description: Object representing a notification
+      example:
+        reporter_member:
+          code: C036
+          name:
+            en: Australia
+            es: Australia
+            fr: Australie
+        notification_dt: '2017-08-10'
+        document_symbol: G/MA/QR/N/AUS/3
+        document_url: https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?MetaCollection=WTO&SymbolList=%22G%2fMA%2fQR%2fN%2fAUS%2f3%22&Language=ENGLISH&SearchPage=FE_S_S001
+        original_language: en
+        type: complete-notification
+        covered_periods:
+          - 2016-2018
+    QrId:
+      type: integer
+    Error:
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human readable error message
+    TranslatedText:
+      required:
+        - en
+        - fr
+        - es
+      type: object
+      properties:
+        en:
+          type: string
+          description: English translation
+        fr:
+          type: string
+          description: French translation
+        es:
+          type: string
+          description: Spanish translation
+      description: 'Object to hold text in English (en), French (fr) and Spanish (es)'
+      example:
+        en: apple
+        fr: pomme
+        es: manzana
+    Measure:
+      title: Root Type for Measure
+      required:
+        - description
+        - group_name
+        - flow
+        - interpreted
+        - symbol
+      type: object
+      properties:
+        flow:
+          type: string
+          description: Import/Export flow
+          example: export
+        symbol:
+          type: string
+          description: Symbol of the restriction
+          example: NAL-X
+        group_name:
+          type: string
+          description: Name of resriction group
+          example: NAL
+        description:
+          $ref: '#/components/schemas/TranslatedText'
+        interpreted:
+          type: boolean
+          description: Flag to indicate if the measure is interpreted by the secretariat
+          example: '0'
+      description: Object to represent a QR measure
+      example:
+        flow: export
+        symbol: NAL-X
+        group_name: NAL
+        description:
+          en: Non-automatic licensing
+          es: Régimen de licencias no automáticas
+          fr: Régime de licences non automatiques
+        interpreted: '0'
+    Qr:
+      required:
+        - id
+        - in_force_from
+        - reporting_member
+        - general_description
+        - restrictions
+        - national_legal_bases
+        - administrative_mechanisms
+        - measures
+        - affected_products
+        - responsible_entities
+        - valid_from
+        - version_id
+        - notified_in
+      properties:
+        id:
+          $ref: '#/components/schemas/QrId'
+        in_force_from:
+          type: string
+          description: Date of entry into force
+          format: date
+          example: '2014-10-01'
+        termination_dt:
+          type: string
+          description: Date of termination. Empty if the QR is in force
+          format: date
+          example: '2020-10-30'
+        reporting_member:
+          $ref: '#/components/schemas/Member'
+        general_description:
+          type: string
+          description: Description of the QR
+          example: Non-Automatic Export Licensing
+        restrictions:
+          type: array
+          items:
+            type: string
+          description: Reported restrictions
+          example: '["NAL-X"]'
+        national_legal_bases:
+          type: string
+          description: National legal bases
+          example: Minerals Law; Official Gazette No 1143 of 16 August 2014; entered into force on 16 August 2014
+        administrative_mechanisms:
+          type: string
+          description: Administrative mechanisms
+          example: 'Pursuant to Article 104 of the Law, export is subject to holding an Exploitation Licence; Small-Scale Mining Licence or Artisanal Mining Licence. For the sale or export of restricted minerals; a special authorization may be required.'
+        measures:
+          type: array
+          items:
+            $ref: '#/components/schemas/Measure'
+          description: Measures applied by the QR
+          example: "[\n{\n    \"flow\": \"export\",\n    \"symbol\": \"NAL-X\",\n    \"group_name\": \"NAL\",\n    \"description\": {\n        \"en\": \"Non-automatic licensing\",\n        \"es\": \"Régimen de licencias no automáticas\",\n        \"fr\": \"Régime de licences non automatiques\"\n    },\n    \"interpreted\": 0\n},\n{\n    \"flow\": \"import\",\n    \"symbol\": \"P\",\n    \"group_name\": \"P\",\n    \"description\": {\"en\": \"Prohibition\", \"es\": \"Prohibición\", \"fr\": \"Prohibition\"},\n    \"interpreted\": 0\n}\n]"
+        affected_products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+          description: Products affected by the QR
+          example: "[{\n    \"id\": \"h5-080211\", \n    \"code\": \"080211\", \n    \"tier\": 3,\n    \"leaf\": 0,\n    \"description\": {\"en\": \"Fresh or dried almonds in shell\", \"es\": \"Almendras, frescas o secas, con cáscara\", \"fr\": \"Amandes, fraîches ou sèches, en coques\"},\n    \"hs_version\": \"HS-12\"\n}, \n{\n    \"id\": \"h5-080212\", \n    \"code\": \"080212\",\n    \"tier\": 3,\n    \"leaf\": 0,\n    \"description\": {\"en\": \"Fresh or dried almonds, shelled\", \"es\": \"Almendras frescas o secas, sin cáscara\", \"fr\": \"Amandes fraîches ou sèches, sans coques\"},\n    \"hs_version\": \"HS-12\"\n}]"
+        responsible_entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslatedText'
+          description: Resposible entities
+          example: '[{"en": "Cadastre Department under the Ministry of Mines and Petroleum", "es": "Cadastre Department under the Ministry of Mines and Petroleum", "fr": "Cadastre Department under the Ministry of Mines and Petroleum"}]'
+        valid_from:
+          type: string
+          description: Current version valid from date
+          format: date
+          example: '2016-01-01'
+        valid_to:
+          type: string
+          description: Current version valid from date
+          format: date
+          example: NULL
+        version_id:
+          type: integer
+          description: Id of the current version
+          example: '14'
+        notified_in:
+          type: array
+          items:
+            $ref: '#/components/schemas/Notification'
+          description: Notification(s) where this version was notified
+          example: "[{\n    \"reporter_member\": {\n        \"code\": \"C036\",\n        \"name\": {\n            \"en\": \"Australia\",\n            \"es\": \"Australia\",\n            \"fr\": \"Australie\"\n        }\n    },\n    \"notification_dt\": \"2017-08-10\",\n    \"document_symbol\": \"G/MA/QR/N/AUS/3\",\n    \"document_url\": \"https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?MetaCollection=WTO&SymbolList=%22G%2fMA%2fQR%2fN%2fAUS%2f3%22&Language=ENGLISH&SearchPage=FE_S_S001\",\n    \"original_language\": \"en\",\n    \"type\": \"complete-notification\",\n    \"covered_periods\": [\n        \"2016-2018\"\n    ]\n}]"
+      description: Data structure of a QR in the QR list
+      example:
+        id: 14
+        in_force_from: '2014-10-01'
+        termination_dt: '2020-10-30'
+        reporting_member:
+          code: C036
+          name:
+            en: Australia
+            es: Australia
+            fr: Australie
+        general_description: Non-Automatic Export Licensing
+        restrictions:
+          - NAL-X
+        national_legal_bases: Minerals Law; Official Gazette No 1143 of 16 August 2014; entered into force on 16 August 2014
+        administrative_mechanisms: 'Pursuant to Article 104 of the Law, export is subject to holding an Exploitation Licence; Small-Scale Mining Licence or Artisanal Mining Licence. For the sale or export of restricted minerals; a special authorization may be required.'
+        measures:
+          - flow: export
+            symbol: NAL-X
+            group_name: NAL
+            description:
+              en: Non-automatic licensing
+              es: Régimen de licencias no automáticas
+              fr: Régime de licences non automatiques
+            interpreted: 0
+          - flow: import
+            symbol: P
+            group_name: P
+            description:
+              en: Prohibition
+              es: Prohibición
+              fr: Prohibition
+            interpreted: 0
+        affected_products:
+          - id: some text
+            code: some text
+            tier: 84
+            leaf: 79
+            description:
+              en: some text
+              fr: some text
+              es: some text
+            hs_version: some text
+          - id: some text
+            code: some text
+            tier: 27
+            leaf: 67
+            description:
+              en: some text
+              fr: some text
+              es: some text
+            hs_version: some text
+        responsible_entities:
+          - en: Cadastre Department under the Ministry of Mines and Petroleum
+            es: Cadastre Department under the Ministry of Mines and Petroleum
+            fr: Cadastre Department under the Ministry of Mines and Petroleum
+        version_id: 14
+        valid_from: '2020-01-01'
+        notified_in:
+          - reporter_member:
+              code: C036
+              name:
+                en: Australia
+                es: Australia
+                fr: Australie
+            notification_dt: '2017-08-10'
+            document_symbol: G/MA/QR/N/AUS/3
+            document_url: https://docs.wto.org/dol2fe/Pages/FE_Search/FE_S_S006.aspx?MetaCollection=WTO&SymbolList=%22G%2fMA%2fQR%2fN%2fAUS%2f3%22&Language=ENGLISH&SearchPage=FE_S_S001
+            original_language: en
+            type: complete-notification
+            covered_periods:
+              - 2016-2018
+    ProductCode:
+      title: Root Type for ProductCode
+      type: integer
+      description: Product code in any HS version
+      format: int32
+      example: 940199
+    ProductId:
+      type: object
+      description: Product code prefixed with the HS version code.
+      example: '"h7-940199"'
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

@@ -9,6 +9,38 @@ from regulatory_collection import SourceIssue
 
 
 class AuthenticatedTests(unittest.TestCase):
+    @patch('specialist_authenticated.sam_request_budget')
+    @patch('specialist_authenticated.request')
+    def test_sam_archived_inventory_requires_new_generation(self, request, budget):
+        request.return_value = {'totalRecords': 2884, 'offset': 4, 'limit': 1000, 'opportunitiesData': []}
+        with self.assertRaisesRegex(SourceIssue, 'sam_source_changed_refresh_required') as caught:
+            fetch(Mock(), self.job('sam_gov'), '4', item)
+        self.assertEqual(caught.exception.diagnostics['total_records'], 2884)
+        budget.assert_called_once()
+
+    @patch('specialist_authenticated.sam_request_budget')
+    @patch('specialist_authenticated.request')
+    def test_sam_valid_terminal_and_corrupt_counts_stay_distinct(self, request, budget):
+        request.return_value = {'totalRecords': 1, 'offset': 0, 'limit': 1000,
+            'opportunitiesData': [{'noticeId': 'notice-a', 'postedDate': '2021-01-05'}]}
+        rows, cursor = fetch(Mock(), self.job('sam_gov'), None, item)
+        self.assertEqual(len(rows), 1)
+        self.assertIsNone(cursor)
+        request.return_value['totalRecords'] = 0
+        with self.assertRaisesRegex(SourceIssue, 'sam_count_mismatch'):
+            fetch(Mock(), self.job('sam_gov'), None, item)
+
+    def test_sam_refresh_preserves_healthy_cursor(self):
+        from specialist_inputs import nih_refresh_required
+        def obj(d): return Mock(body=json.dumps(d).encode())
+        store = Mock()
+        store.get.side_effect = [obj({'cursor': '4', 'terminal_manifest': 'old.json'}),
+                                obj({'status': 'failed', 'reason_code': 'sam_count_mismatch'})]
+        self.assertTrue(nih_refresh_required(store, {}, self.job('sam_gov')))
+        store.get.side_effect = [obj({'cursor': '4', 'terminal_manifest': 'old.json'}),
+                                obj({'status': 'partial', 'reason_code': 'page_budget'})]
+        self.assertFalse(nih_refresh_required(store, {}, self.job('sam_gov')))
+
     def test_eia_echo_redacted_before_persistence(self):
         from specialist_authenticated import request
         response = io.BytesIO(json.dumps({'request': {'api_key': 'test-only-secret'}, 'response': {'data': []}}).encode())

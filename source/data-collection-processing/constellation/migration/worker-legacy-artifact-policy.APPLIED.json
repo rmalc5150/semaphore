@@ -1,0 +1,84 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ExistingCollectionArtifacts",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/raw/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/checkpoints/task_*/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/checkpoints/watermarks/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/manifests/collection_runs/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/manifests/configurations/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/source_documents/*"
+      ]
+    },
+    {
+      "Sid": "HistoricalProgressAndQueues",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/streams/*/historical/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/conferences/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/scheduler/historical.json",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/scheduler/authenticated-historical.json",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/discovered-jobs/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/executions/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/budgets/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/finlight-backfill/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/automation/*/*/historical.json",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/automation/*/attempts/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/publication-queue/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/market/automation/*/historical.json",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/market/publication-queue/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/patents/*"
+      ]
+    },
+    {
+      "Sid": "ReadSharedProgressForDependencies",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/market/automation/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/automation/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/*"
+      ]
+    },
+    {
+      "Sid": "ListCollectionIndexes",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket"
+      ],
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "research-data/checkpoints/*",
+            "research-data/manifests/*",
+            "research-data/raw/*",
+            "research-data/operations/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "ProtectOriginalRuntimePointer",
+      "Effect": "Deny",
+      "Action": [
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/s3-runtime/*"
+    }
+  ]
+}

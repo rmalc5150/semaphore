@@ -1,0 +1,14 @@
+from research_helpers import *
+a=ev('https://www.zealandpharma.com/pipeline/','Current pipeline lists eight programmes; dapiglutide explicitly paused. Same molecule across indications grouped; distinct fixed-dose combination retained.')
+b=ev('https://www.zealandpharma.com/pipeline/petrelintide/','Issuer confirms petrelintide formerly ZP8396 and distinct combination with Roche CT-388.')
+c=ev('https://www.zealandpharma.com/media/qwsfuu1b/zealand-pharma-2024-annual-report.pdf','Issuer confirms Zegalogue licence, retained separate dasiglucagon programmes, lixisenatide-related Sanofi products and royalty transfer history.')
+d=ev('https://www.sec.gov/Archives/edgar/data/1674988/000110465921065242/tm2116130d2_ex99-1.htm','Issuer confirms dapiglutide development code ZP7570.')
+products=[]
+for name,desc in [('Petrelintide','Long-acting amylin analogue for obesity.'),('Petrelintide / CT-388','Distinct amylin/incretin combination programme.'),('Survodutide','Glucagon/GLP-1 dual agonist.'),('ZP6590','GIP-receptor agonist.'),('Dasiglucagon continuous infusion','Distinct pump-infusion programme for congenital hyperinsulinism.'),('Glepaglutide','Long-acting GLP-2 analogue for short bowel syndrome.'),('ZP9830','Kv1.3 channel blocker for inflammatory diseases.')]:
+ products.append(p(name,desc,a,'development',aliases=['ZP8396'] if name=='Petrelintide' else [],evidence=[a,b] if name in ['Petrelintide','Petrelintide / CT-388'] else [a]))
+products.append(p('Dapiglutide','GLP-1/GLP-2 dual agonist; development paused.',a,aliases=['ZP7570'],evidence=[a,d]))
+products.append(p('Zegalogue','Dasiglucagon rescue injection for severe hypoglycaemia.',c,'commercial',typ='product'))
+products.append(p('Lixisenatide','GLP-1 medicine historically discovered by Zealand; marketed through Sanofi.',c,'unknown',aliases=['Lyxumia','Adlyxin'],typ='product'))
+products.append(p('Soliqua','Insulin glargine/lixisenatide combination; historical Zealand-associated licensed component.',c,'unknown',aliases=['Suliqua'],roles=['commercial_partner'],typ='product'))
+co=dict(company_id='cmp_18cad1d4-52f8-41b0-bf2f-9567e968dda9',products=products,evidence=[a,b,c,d],status='partial',coverage_note='Eleven named current/historical medicines and formulation programmes recorded. ADR company record links to same operating company portfolio; no security treated as separate developer. Partial: historical outlicensed candidates including rusfertide, Encycle/Protagonist projects, current Sanofi product availability and older Zealand codes need review. Dapiglutide pause not global discontinuation; Zegalogue rescue injection and investigational continuous infusion distinct. Royalty monetisation not loss of historical inventor lineage.')
+(out/'batch-0258.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

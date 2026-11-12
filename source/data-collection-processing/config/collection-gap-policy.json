@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "approved_on": "2026-10-26",
+  "historical_start_target": "2016-01-01",
+  "allow_explicit_gaps": true,
+  "missing_is_zero": false,
+  "fabricate_or_interpolate_source_evidence": false,
+  "gap_blocks_unrelated_partitions": false,
+  "gap_completes_partition": false,
+  "max_attempts_per_partition": 3,
+  "coverage_states": [
+    "verified_complete",
+    "partial",
+    "unavailable",
+    "not_yet_audited"
+  ],
+  "missing_reasons": [
+    "not_yet_audited",
+    "operator_paused",
+    "source_not_operating",
+    "provider_retention",
+    "no_historical_vintage",
+    "entitlement_required",
+    "license_restricted",
+    "forward_only",
+    "request_failed",
+    "throttled",
+    "parser_failed",
+    "pagination_incomplete",
+    "field_unavailable"
+  ],
+  "permanent_gap_requires": [
+    "source_key",
+    "period_start",
+    "period_end",
+    "reason",
+    "evidence_uri",
+    "reviewed_at"
+  ],
+  "transient_failures": "Retry with bounded backoff; retain unresolved failures after the attempt budget. Do not classify transient failures as permanently unavailable.",
+  "point_in_time": "Keep observation, publication, revision and retrieval dates distinct. Revised data and current snapshots do not prove historical public availability.",
+  "completion": "A run may finish with documented gaps. Report collected, partial, unavailable and unaudited scopes separately; never report gap acceptance as complete historical coverage.",
+  "checkup_reporting": {
+    "flag_when_gap_days_greater_than": 5,
+    "exactly_five_days": "record_only",
+    "less_than_five_days": "record_only",
+    "duration_basis": "consecutive calendar time in explicit [start,end) coverage intervals; merge adjacent gaps within the same source/dataset/scope",
+    "record_all_gaps": true,
+    "destination": "existing 24-hour overview email",
+    "backlog_is_gap": false
+  }
+}

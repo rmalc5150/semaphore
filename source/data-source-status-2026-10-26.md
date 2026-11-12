@@ -1,0 +1,2878 @@
+# Data-source status — refreshed 11 November 2026
+
+## November 11 — NIH, NIST, awards, TED and patent pipelines reviewed
+
+**No new API key, account or manual restart task for you for these seven configured routes.** Your metadata queries now return Athena data. Repaired original-response validators, the USPTO normalized assignment-ledger check, publication and credential placement. Verified fresh API capture, raw evidence and actual Athena payloads, including a NIST method PDF and TED notice XML.
+
+Added bounded metadata continuation/publication and online database queue indexes after the sustained run exposed slow scheduling queries. Restored the older drained NIH historical route under the current scope. Daily/historical patent and assignment continuations use the existing authorised controller role. Approved USPTO document exclusions remain in force. **68 tests passed.**
+
+Review scope matters: Google covers bibliography; full patent text remains a separate gap. USAspending covers selected contract-award summaries for named recipients; assignment histories cover eight applications. One older NIH batch lacks its original commit checkpoint and remains explicitly uncommitted, with raw files retained. Historical completion and every specialist feature are not certified. [Verified counts, exact scope and optional Athena samples](data-collection-processing/repair-notes/2026-11-11-grants-patents-procurement/README.md). This update supersedes older stopped-pipeline/access notes for these sources; unrelated source tasks remain below.
+
+## November 11 — five FDA feeds repaired and reviewed
+
+**No new FDA key/account/manual restart task for you.** Compliance actions, import refusals, inspection citations, Enforcement Report recalls and the industry-code reference now return Athena rows. Fixed FDA-specific original-response validation and replayed the failed inputs. All five sources are enabled with zero consecutive raw failures.
+
+Fresh API capture, original evidence, metadata and native specialist Athena payloads passed for **442 records** across the five feeds. Verified metadata snapshot: **162 compliance actions, 425 import refusals, 195 citations, 179 recall observations and 217 industry-reference observations**; these are observations over capture dates. **66 tests passed.** Restored independent daily capture/publication; the PCB credential is used from its existing authorized controller role. Historical processing and metadata catchup continue.
+
+Review scope is explicit: product codes currently cover **89 industry entries**; recalls retain the configured API columns and use modification-date selection. Original 483/warning-letter files, full product-code hierarchy, historical vintages and entity resolution are separate. [FDA evidence and optional Athena spot checks](data-collection-processing/repair-notes/2026-11-11-fda-authenticated/README.md).
+
+## November 11 — CMS payments catalog and financial records reviewed
+
+**No CMS access/key task for you.** The single catalog JSON contains dataset descriptions and repeated agency/contact information; individual payments live elsewhere. Repaired its stopped metadata validator. Your original catalog SQL now returns **168 raw-complete observations representing 40 dataset IDs**, including today's capture.
+
+Actual Athena financial data verified: **76,013,225 Open Payments rows (15 editions)** in `optima_collected_data.cms_open_payments_rows` and **63,336 spending rows (5 editions)** in `optima_collected_data.cms_drug_spending_rows`. Full original fields are in `row_json`. Checked payment/ownership/spending payloads and automatically reconciled all 20 editions against committed CSV counts and original-file size/checksum receipts at **15:25 Madrid time**.
+
+Restored daily discovery, resumable file collection, catalog metadata and Athena publication. Reused the preserved checkpoint and existing permissions; isolated CMS controller jobs in a capped 384 MiB budget after finding shared-memory throttling. **67 tests passed.** All 20 configured financial files are complete; earlier unconfigured releases and historical vintages are separate. Your optional next step is the [CMS financial Athena samples](data-collection-processing/repair-notes/2026-11-11-cms-payments/README.md).
+
+## November 10 — CMS coverage policies and documents repaired and reviewed
+
+**No new CMS key, account or manual restart task for you.** The SQL was correct; metadata processing had stopped because the generic JSON check rejected valid CMS responses. Added exact source-specific validation, replayed all eight original failed batches, and verified fresh API capture through both metadata and specialist Athena tables.
+
+Verified metadata snapshot: **114 policy observations / 6 raw batches**, and **8 full-document observations / 8 raw batches**, all raw-complete, including November 10 captures. Original criteria and version fields are preserved; readable coverage text is available in metadata. Both sources enabled with zero consecutive raw failures. **61 tests passed.**
+
+Independent CMS discovery, document capture and Athena publication timers are enabled. Daily refresh and annual historical/version discovery continue; successful capture enters the metadata queue directly. This is a functioning-pipeline review for national Medicare NCD data, not certification of a finished archive or all payer policies. Your optional next step is the [CMS Athena sample checks](data-collection-processing/repair-notes/2026-11-10-cms/README.md).
+
+## November 10 — Crossref proceedings metadata repaired and reviewed
+
+**No new Crossref access/key task for you.** Corrected a contract that wrongly demanded full papers from the configured metadata API. Athena now returns **321 raw-complete observations / 11 batches**. A fresh DOI lookup was verified in both metadata and conference curated tables, with matching DOI/title/publisher and complete returned metadata. Source enabled, zero consecutive raw failures. **43 focused tests passed.**
+
+Restored bounded independent capture/publication timers and preserved old checkpoints. The large 2016-origin archive window advanced from 12,000 to **48,000 saved records** across real cursor continuations; it is still partial, and those counts are not all published. Daily capture is caught up through November 9. The old waiting controller jobs were replaced, with migration recorded in monitoring. Historical capture, metadata/publication catchup and full publisher papers remain separate from this metadata pipeline review.
+
+**Your optional check:** run the SQL in the [Crossref repair report](data-collection-processing/repair-notes/2026-11-10-crossref/README.md). Crossref supplies DOI/proceedings metadata, including deposited abstracts where available; it does not supply the full papers. No manual restart is needed.
+
+## November 10 — Europe PMC full text repaired and reviewed
+
+**No new Europe PMC access/key task for you.** Fixed the missing official API-host mapping while retaining complete-article validation. Athena now returns **14 raw-complete observations / 14 batches**. Fresh current articles and a January 2021 historical article scope passed capture, metadata processing and publication. Readback in both metadata and specialist tables confirmed original XML plus matching titles and full article body text. **59 focused tests passed**; source enabled with zero consecutive raw failures.
+
+Independent worker discovery/capture timers now continue two minutes after completion. Daily topic discovery and historical queue indexing are bounded; failed articles have their own cooldown and cannot stop other articles. Website-discovery receipts are kept as discovery evidence and no longer recur as missing full text. Twenty original article scopes were recovered into the queue. Historical completeness, remaining metadata/publication backlog, external supplements and historical-vintage coverage are still separate checks.
+
+**Your optional check:** run the aggregate and random-row SQL in the [Europe PMC full-text repair report](data-collection-processing/repair-notes/2026-11-10-europe-pmc-fulltext/README.md). No manual restart is needed. Existing unrelated account/access tasks below remain applicable.
+
+## November 10 — PubMed abstracts repaired and reviewed
+
+**No new PubMed access/key task for you.** Fixed a metadata contract that incorrectly demanded full articles from an abstracts source. Original EFetch citations/abstracts now validate correctly. Athena returns **179 raw-complete observations / eight batches**, including **61 freshly captured daily-topic observations**. Titles, original citation XML and abstract sections were inspected in both metadata and specialist curated tables. Source enabled, zero consecutive raw failures; **52 focused tests passed**.
+
+Restored an independent bounded worker daily job at **08:10 Europe/Madrid**, with hourly continuation and separate topic outcomes. The three configured topics cover vaccine, gene-therapy and immunotherapy clinical trials; this is not all PubMed or full article text. Historical jobs remain separate; their configured interval reports drained through October 26 with coverage not audited. Metadata backlog and archive/date-gap reconciliation are not declared complete. Other collection workers and metadata scheduling remain active; unrelated source failures still exist.
+
+**Your optional check:** run the random-row SQL in the [PubMed repair report](data-collection-processing/repair-notes/2026-11-10-pubmed/README.md). No manual restart is needed.
+
+## November 10 — NMPA trials repaired, resumed and reviewed
+
+**No new NMPA key/account task for you.** Fixed dataset-specific metadata validation and verified **153 raw-complete observations** in Athena: 120 inventory rows, eight full trial snapshots and 25 events. Full detail payloads from both historical-pending and new 2026 trials are readable in metadata and regulatory tables. Inventory rows remain explicitly separate from full trial records. **79 tests passed.**
+
+The substantive inventory/detail producers had been disabled during migration; they now run as bounded **worker** timers `optima-nmpa-resumed-inventory.timer` and `optima-nmpa-resumed-details.timer`. The existing 6,359 completed trials are preserved. Daily discovery, baseline continuation and detail processing have made real saved progress. Original controller timers remain disabled to avoid duplicates. Historical coverage and metadata/publication catchup remain in progress.
+
+**Your optional check:** run the full-trial SQL in the [NMPA repair report](data-collection-processing/repair-notes/2026-11-10-nmpa-trials/README.md). No manual restart or new subscription is required based on the successful captures.
+
+## November 10 — Chinese Clinical Trial Registry repaired and rechecked
+
+**No new ChiCTR access task for you.** The fresh uncached Athena query now returns **94 raw-complete observations / 11 batches**, after publishing six further accepted batches. Metadata and regulatory payload checks show today's saved full trial detail with **73 fields**. Source enabled, zero consecutive raw failures. **55 focused tests passed on recheck.**
+
+The remaining three website-discovery receipts were correctly classified as non-trial inputs, and their single open incident was resolved; files and audit history remain. Actual trial failures are still checked. Daily capture is scheduled for November 11 around **09:37 Europe/Madrid**. Its last run ended normally at the configured page budget, with partial catch-up windows still unfinished; that does not certify registry-wide historical coverage. Metadata processing and publication remain scheduled.
+
+**Your optional check:** use **us-east-1 / AwsDataCatalog / optima-collected-data**, turn result reuse off, and run the SQL in the [ChiCTR recheck report](data-collection-processing/repair-notes/2026-11-10-chictr-recheck/README.md). No manual restart or new account is needed.
+
+## November 10 — Health Canada NOC repaired and reviewed
+
+**No access task for you.** The complete current official notice snapshot — **38,276 unique notices**, including inactive records and all five drug categories — is verified in curated Athena. The metadata query now returns fresh rows; the source is enabled with zero consecutive raw failures. Full-notice daily refresh runs at **07:55 Europe/Madrid**; historical date scopes continue. A separate bounded inventory adds every NOC product's brand name/DIN and linkage to its notice. **All 78,468 product records are also published and verified in Athena**, with zero missing notice links. Exact SQL, counts and evidence are in the [Canada repair report](data-collection-processing/repair-notes/2026-11-10-canada-noc/README.md).
+
+**Your optional check:** open Athena in us-east-1, choose AwsDataCatalog / optima-collected-data, disable result reuse, and run the notice/product sample SQL in that report. This review covers NOC records; it does not establish all Canadian marketed-drug or historical-vintage coverage. Existing account/access tasks below remain applicable.
+
+## November 10 — Japan PMDA feed repaired; owner action needed for all-drug access
+
+**Today: register PMDA Medi-Navi and My Drug List.** You confirmed no account exists. The existing `japan_pmda` route only captures the public SAKIGAKE designation list. It does **not** meet the all-drug requirement. PMDA documents a separate all-prescription-drug package-insert download service behind that registration: [Medi-Navi](https://www.pmda.go.jp/safety/info-services/medi-navi/0006.html), [My Drug List registration](https://push.info.pmda.go.jp/mypage/view/mypage/agreementForUse.html), [official instructions](https://www.pmda.go.jp/safety/info-services/medi-navi/0012.html). Register, confirm the email, then choose the all-package-insert export (PDF and XML/SGML). Tell us when account/export access is ready; no password in chat. Bulk ingestion and daily bulk-update integration remain engineering work after access is available.
+
+**Fixed now:** metadata host/validation failure and typed PDF-table parsing. Source contract 2.0.3 is enabled, zero consecutive failures. Requeued 34 jobs; replaced two incompatible legacy flattened extractions only after proving the corrected capture uses the same original PDF SHA-256 and covers every original record ID. Raw history and failure evidence are retained.
+
+**Athena verified:** 50 raw-complete observations / two batches; today's full SAKIGAKE list has **25 records** and is published in curated regulatory Athena. Product, applicant and holder fields were checked. **39 focused tests passed.** Daily current-list capture is active at **07:45 Europe/Madrid**. All 15 standard workers and metadata processing were checked online; owner pauses elsewhere remain. Entry 21 is marked reviewed **for this existing designation scope only**. All-drug coverage remains explicitly pending. [Repair and account steps](data-collection-processing/repair-notes/2026-11-10-pmda/README.md).
+
+## November 10 — UK MHRA reviewed; broader medicine-document capture running
+
+Repaired `uk_mhra` metadata validation: official register attachments were saved but the old empty host contract/generic validator rejected them. New contract 2.0.3 validates original CSV/XLSX rows and separately validates linked medicine PDFs plus their exact official catalogue evidence. Source enabled, zero consecutive failures; 51 unfinished old-version jobs requeued.
+
+**Athena verified:** 70 raw-complete observations / four batches, including today's new product document. Original PDF and **29,641 characters of extracted text** verified in both metadata and curated regulatory tables. Entry 20 is reviewed and its SQL uses `uk_mhra` (separate from `japan_pmda`). **43 focused tests passed.**
+
+**All-drug scope widened:** existing ILAP/orphan lists alone were too narrow. `optima-mhra-products.timer` now traverses the whole public product-information catalogue without company/product/document-type filters, saving original PDFs and extracted text. It continues every two minutes with 384 MiB/20% CPU and up to ten entries/run; document failures/timeouts are separate gaps and do not stop subsequent documents. Initial catalogue count 79,646, later 79,648: these are document entries, not unique drugs or all-current-licence proof. First ten documents completed without failure; remaining download and metadata/publication backlog continues. Index-only evidence cannot pass as a complete medicine document.
+
+All 15 standard workers and metadata/capture/publication schedules were checked online. No owner key/account action is needed. Complete catalogue coverage, current authorisation status, historical vintages, undated designation history and OCR of image-only PDFs are not certified. [Evidence and full-text inspection SQL](data-collection-processing/repair-notes/2026-11-10-mhra/README.md).
+
+**Separate monitoring repair discovered:** `constellation-gap-audit.service` OOM-kills at its 512 MiB cap; its SQL is batched but its Python code retains the entire job/receipt inventory. Stream/reduce the coverage inputs and bound caches, then verify a successful audit. Its timer remains active, but the audit is stale until repaired. Capture and metadata continue. No owner credential action is required for this software repair.
+
+## November 10 — EMA medicines reviewed; complete current report verified in Athena
+
+Repaired `ema_medicines` metadata validation using official report origin, EMA product ID and exact original-row equality. Source contract 2.0.3 is enabled with zero consecutive failures; 40 unfinished jobs requeued. **Metadata query now returns 160 validated observations / five batches**, including today's capture. Source data is broader than the current labelling subset: **all 2,757 current report rows are published and verified in curated Athena**, with **2,357 human / 400 veterinary** medicines and all reported statuses retained.
+
+New independent worker timer **optima-ema-medicines-daily.timer** captures the full current report daily at **07:35 Europe/Madrid**, with boot catch-up and 384 MiB/20% CPU bounds. No company, category or authorisation-status filter. Count/distinct-product reconciliation in Athena exactly matched provider totals. Daily shared execution skips the dedicated EMA lane; existing historical date scopes continue. Those are current report rows with historical first-publication dates, not recovered historical vintages.
+
+Entry 19 is reviewed and its SQL explicitly uses `ema_medicines` / AwsDataCatalog. All 15 standard workers, metadata processing and capture/publication schedules were checked online; source holds elsewhere remain. **43 focused tests passed.** No credential action is needed. Scope is the EMA published report, not every national European medicine or all linked EPAR PDFs. [Evidence and full-snapshot query](data-collection-processing/repair-notes/2026-11-10-ema-medicines/README.md).
+
+## November 10 — Drugs@FDA applications reviewed; all-provider inventory running
+
+Repaired `drugsfda_applications` metadata validation against entire original FDA application results, including every returned product and submission. Requeued 20 unfinished old-contract jobs; reviewed-source contract 2.0.3 is enabled with zero consecutive failures. **Athena: 192 raw-complete observations / five raw batches**, including new November 10 inventory capture. Both metadata product-array readback and curated specialist application queries passed. Entry 18 is now reviewed; it uses `drugsfda_applications`, separately from openFDA event records and EMA medicines.
+
+**All-drug coverage:** existing historical/daily date queries have no company filter, but cannot alone cover older applications with no recent activity. Added a separate weekly all-provider inventory, split into 30 numeric application ranges plus an unexpected-ID complement. Live API reported **29,447 applications**. Retains all returned products, including discontinued drugs. New `optima-drugsfda-inventory.timer` continues every two minutes on the worker, capped at two scopes/four pages per scope, 384 MiB and 20% CPU. Initial saved checkpoint committed 800 applications; remaining partitions/pages continue. No finished-inventory or all-world-medicines claim is made.
+
+All 15 workers and metadata/capture/publication schedules were checked online. **34 focused tests passed.** No owner credential action is required; rerun entry 18's SQL in us-east-1 / AwsDataCatalog / optima-collected-data with reuse off. Existing other-source validation holds and Constellation product-entity discovery remain separate. [Detailed evidence and scope](data-collection-processing/repair-notes/2026-11-10-drugsfda/README.md).
+
+## November 10 — openFDA query rechecked
+
+openFDA remains reviewed and enabled, with zero consecutive metadata failures. Published two newly accepted batches; final query `214f3440-5582-4180-9ef6-660f1bc741f1` returned **108 raw-complete observations / seven raw batches**. Before that publication, a fresh, uncached query explicitly using `AwsDataCatalog` returned **75 observations / five raw batches**; query ID `33f10377-35d6-43af-bfff-66d1318d843a`. Both metadata and curated provider-payload queries also returned records. The console's empty result was not reproduced. Entry 17 now specifies **account 059416028963, us-east-1, AwsDataCatalog, optima-collected-data**, with result reuse off. If still empty, compare the failing execution ID with the successful one; no console-context cause has yet been established.
+
+All 15 workers, metadata processing and capture/publication schedules were checked online. Owner pauses remain. Existing raw-validation holds and capture catch-up remain separate; latest checked nonempty openFDA ingestion is October 31. [Current checks and console steps](data-collection-processing/repair-notes/2026-11-10-openfda-recheck/README.md).
+
+## November 10 — product-search database error repaired; discovery dependency remains
+
+**Affected collector:** `optima-product-search-daily.service` (S65 / DataForSEO product search attention), separate from CTIS. It still queried the deliberately retired `tracking` schema. Connected it to **all named product entities in Constellation's `metadata_engine` registry**, including provisional candidates, with no manual watchlist or inferred ownership/sector.
+
+The actual service now completes successfully and its timer remains active. **12 tests passed.** Empty-registry checks avoid paid calls and shared capture locks, and save an explicit pending-dependency status to S3. Existing provider budgets and supervised collection resume automatically when product entities appear.
+
+**Remaining engineering work:** Constellation currently has **zero product entities**; its graph extraction does not yet create them from captured product evidence. Implement source-supported product discovery/entity/name registration, then verify paid capture, raw commits and Athena publication. This is not fixed by recreating `tracking`, changing an API key or choosing a manual subset. Product capture remains pending, not complete; no new product observations were claimed. [Repair and live evidence](data-collection-processing/repair-notes/2026-11-10-product-search/README.md).
+
+## November 10 — openFDA repaired and reviewed
+
+Fixed the empty metadata SQL: the old contract had no allowed provider hosts, so valid saved API responses were rejected. Deployed exact application/submission/CRL identity checks under contract 2.0.3, requeued 21 unfinished old-contract jobs and successfully replayed five batches. The source is enabled with zero consecutive failures; reviewed-source date queues keep individual gaps separate. **39 tests passed.**
+
+**Athena:** 75 raw-complete observations / five linked raw batches; application IDs, approval status and full provider payloads verified. Published and read back a 14-record complete October 23 regulatory window. Both live openFDA approval and CRL endpoints passed authenticated probes November 10. API responses and validation evidence are saved. No new key or owner access action is needed; rerun entry 17's SQL.
+
+**Freshness remains catch-up work:** the newest checked nonempty raw batch was ingested October 31. The shared collector successfully completed an empty October 24 calendar window November 9 and advanced its catch-up cursor to October 25; active capture schedules continue. This review does not mean history is finished or that current-day data has caught up. All 15 workers and metadata/publication timers were checked active; separate source holds and the previously documented product-search directory/database failure remain. [Evidence and exact Athena checks](data-collection-processing/repair-notes/2026-11-10-openfda/README.md).
+
+## November 10 — CTIS reviewed and processing resumed
+
+EMA CTIS now uses validated API trial details and matched application/decision events under immutable contract 2.0.3. The metadata source is **enabled**, zero consecutive failures; public discovery pages remain separately recorded gaps and cannot stop this reviewed source. Requeued 65 unfinished jobs; two bounded batches passed strict original-response validation and replay. Athena metadata query returned **1,996 raw-complete observations / 84 raw batches**, latest capture November 9. Published **35 trial/event records** in two complete curated windows (November 6 and 8); readback and payload evidence are in the [repair report](data-collection-processing/repair-notes/2026-11-10-ctis/README.md). Marked entry 16 reviewed in the raw verification schedule. **34 tests passed.** No CTIS API key or owner access step is required; rerun the supplied SQL to inspect the data.
+
+Daily/historical controls permit work. All **15 workers** are active; the metadata worker processed eight jobs successfully, metadata controller succeeded in its isolated slice, and collection/publication timers are active. Owner pauses are preserved. Other sources still have raw-validation holds; this is not an all-source completeness certificate.
+
+**Separate engineering issue found today:** `optima-product-search-daily.service` failed because its directory query targets the nonexistent RDS `tracking` database (`Unknown database 'tracking'`). Its retry timer is enabled. Reconcile the intended directory database/schema and connection before replaying this collector; do not create an empty replacement database and call it repaired. The unrelated code-backup service also remains failed. Neither issue blocks CTIS or metadata processing.
+
+## ClinicalTrials.gov repaired and reviewed — November 9
+
+**The previously empty metadata SQL now returns 128 validated observations across four raw batches, including November 9 capture.** Fixed its empty provider-host contract with exact NCT/provider-response validation, replayed failed batches and verified publication in Athena. Contract 2.0.3 is enabled with zero consecutive failures and non-blocking reviewed-source date queues; 33 old-version jobs were superseded/requeued without deleting raw data. **41 focused tests passed.** No API key or account action is required from you; rerun the existing review query.
+
+Full study protocol data is available in `optima_metadata_engine.source_observations.labelled_json` under `$.payload.data`, with NCT ID, sponsor, status, interventions, outcomes and supplied provider fields. ClinicalTrials.gov captures current study versions, not past-vintage snapshots. The older curated regulatory window table was also payload-checked, but its latest checked observation is October 15. The newest captured window is partial (300 records); finishing capture and curated publication remains engineering catch-up, not a completed historical archive.
+
+**Runtime check:** daily and historical controls permit collection. The metadata controller had been timing out behind a memory-heavy EDINET process; moved it to its own 256 MiB sibling slice and verified subsequent successful discovery/publication cycles. Worker processing and publication are progressing. Other sources still have **74 raw-validation holds** and five owner pauses; engine availability does not make those sources complete. The separate code-backup service remains failed and is outside collection/metadata. [Evidence and exact Athena checks](data-collection-processing/repair-notes/2026-11-09-clinicaltrials/README.md).
+
+Reviewed the November 9 email, current receipts/journals and targeted live probes. The catalog and SQL links below retain their dated baseline; a successful sample does not certify full history or original raw-content completeness.
+
+## Personnel announcement archives repaired and reviewed — November 9
+
+The empty `personnel_archive` metadata query was caused by validating a derived archive wrapper as a standalone provider record. Added committed-parent observation/record/URL linkage, pinned manifest/batch checks and upstream original-content validation under immutable contract `2.0.3`. Individual missing/unsupported parent bodies are recorded separately; valid records continue. Personnel/event/entity classification remains unverified.
+
+**Athena now returns nine raw-complete archive observations / five raw batches**, including a fresh November 9 capture from repaired RSS input. Curated payload inspection verified the nested **1,958-character** article body and S3 evidence reference. **37 focused tests passed.** Marked Personnel announcement archives reviewed; preserved old failed reports and requeued old-contract inputs. No new owner key or access step is needed.
+
+**Runtime check:** daily/historical controls enabled; all **15 historical workers** active; metadata worker/controller schedules enabled with fresh accepted jobs. No failed data worker units remained after clearing only recovered diagnostic flags; the controller's separate code-backup unit is still failed. Owner pauses are unchanged. **75 other sources retain raw-validation holds**, and **2,137 accepted metadata batches await publication** at this snapshot. Infrastructure being online does not certify every source or complete history.
+
+The IDE-selected query for `clinicaltrials_gov` is a different source and remains a separate validation repair. Its review checkbox has not been changed. Use the updated Personnel archive query (`source_key='personnel_archive'`) for this review. [Evidence](data-collection-processing/repair-notes/2026-11-09-personnel-archive/README.md).
+
+## People RSS article bodies repaired and reviewed — November 9
+
+Implemented **explicit RSS full content → direct publisher article → Decodo fallback**. Existing descriptions/URLs do not establish full-text completeness. Original HTML/feed bytes, extracted text, checksums, chunks and direct/rendered provenance are retained. Explicit access restrictions are not bypassed; unavailable bodies and rate limits stay as gaps.
+
+Repaired metadata with immutable contract `2.0.3` and original-body verification. Valid articles continue while unavailable ones enter a durable per-article failure queue. Old failed reports remain; 136 old-contract jobs were superseded/requeued. The metadata query now verifies **42 full-text observations / five raw batches**. Curated Athena payload inspection verifies the corrected **2,939-character** article and its S3 evidence reference. A live budgeted Decodo probe independently extracted **2,945 characters**.
+
+The independent worker `optima-rss-content-repair.timer` is enabled on the historical worker and retries up to two saved article gaps every two minutes under a 512 MiB/25% CPU cap. A successful production run captured additional BioSpace and Energy Storage News bodies (**1,958 / 3,018 characters**) and queued their corrected observations for metadata. Existing feed collection and research publication schedules remain enabled. Decodo uses a 40-request RSS daily cap plus existing shared provider controls; direct publisher budgets remain bounded.
+
+Marked RSS **reviewed** after **40 focused tests**, actual article capture, metadata/Athena publication and curated text checks. This does not mark all linked articles or saved history complete. No new key/account step is required; remaining body gaps and publication catch-up are engineering work. [Evidence](data-collection-processing/repair-notes/2026-11-09-people-rss/README.md).
+
+## Finlight repaired and reviewed — November 9
+
+Finlight's empty metadata query was a real validation blockage: the contract had no allowed API hosts, and generic substantive-content rules could not verify its news response. Deployed a source-specific validator and immutable contract `2.0.3`; API request receipts cannot pass, and article identity/provider fields must match the original checksummed response. Publisher full text remains separate from news-provider record completeness.
+
+**Verified in Athena:** metadata query now returns **160 raw-complete observations / five raw batches**, including November 9 capture. Curated news now has **13,740 distinct Finlight articles** with November 9 ingestion after publishing a complete November 3 query set (all eight sector/language manifests). Finlight is marked reviewed and uses non-blocking source/date failure queues. Both news capture/publication timers remain enabled; remaining metadata jobs continue processing.
+
+Corrected the finite archive's unsupported 2016 cursor to its verified **January 2021** start; pre-2021 availability remains unverified, not permanently excluded. Enabled and queued the isolated historical route. Repaired its executor registry and worker credential wiring; the historical workspace uses the existing `dataSourceAPIkeys` bundle's mirrored `finlight-api-key` field, with other fields unchanged. Existing 1,000/day and 100/invocation request limits remain. No new API key or subscription purchase is needed.
+
+The repaired historical invocation is **running**, resuming the retained **November 10, 2021** checkpoint. Actual API/publisher budgets and full-text cache writes advanced at 16:37 UTC after repairing the cache/budget prefix permissions. Existing limits remain; publisher pages that cannot supply full text retain explicit unavailable/pending status.
+
+Historical completion, all publisher full text and the Pro downgrade notice are not certified by these samples. Existing receipt-based completion checks remain. [Implementation, verification and live archive state](data-collection-processing/repair-notes/2026-11-09-finlight/README.md).
+
+## Disclosure Documents and Candidates restarted — November 9
+
+**Fresh capture-to-Athena verification passed.** Documents now have **538 rows / 288 distinct record IDs**; candidates have **926 rows**. Both show November 9 ingestion. Repaired October 16 capture produced five documents and five passage-supported candidates, all published through verified canonical windows. Licensing-agreement candidates were correctly zero for that day; their last nonempty observation remains older.
+
+Moved disclosure capture from the controller shared queue to isolated worker services with **512 MiB memory / 25% CPU** limits and one disclosure invocation at a time. Daily timer resumes after 120 seconds; historical timer after 300 seconds. One source-calendar day per invocation, with resumable record/page limits. Preserved the daily cursor, verified its advance to **October 17, 2026**, and enabled historical capture from **January 1, 2016 through October 14, 2026**; its first complete-day receipt advanced to **January 2, 2016**. Daily capture covers October 15 onward and then follows newly completed days.
+
+Applied narrowly scoped worker checkpoint read/write permissions. Disabled the superseded controller S11 daily timer and removed it from the controller resume list to avoid duplicate execution. Existing research-publication scheduling continues to discover and publish committed windows; five repaired derived windows were published and counted in Athena during this repair.
+
+**No owner access action is needed.** Remaining work is backlog processing and continued publication verification, not a completed historical-data claim. The first repaired day retains one unsupported embedded-file gap and unresolved company identities; candidate events remain unreviewed. [Deployment, receipts and Athena evidence](data-collection-processing/repair-notes/2026-11-09-disclosure-resume/README.md).
+
+## EDINET reviewed — live check November 9, approximately 17:00 CET
+
+**Owner review complete for `edinet_filings`. No new key, purchase or account step is needed.** Applied reviewed-source/date queue handling locally, on the metadata worker and in runtime installation defaults. Individual failures remain recorded without stopping the entire EDINET source.
+
+Repaired seven metadata retries: the validator was attempting to load derived extraction JSON (one was 61 MB) as original-provider evidence. EDINET now retains extraction links and validates original PDF/ZIP evidence instead. Derived JSON alone cannot satisfy original-document requirements. All seven jobs committed successfully; published 18 previously accepted EDINET batches through bounded staging/count checks. Athena now verifies **138 raw-complete observations / 138 linked raw objects**, query `bccb8a46-4dde-4ccd-b387-3585319bc50e`. Latest published ingestion is **November 1**; this does not certify current-day freshness or full history.
+
+**Infrastructure functioning:** daily/historical controls enabled; all 15 historical workers active; metadata controller and worker show fresh successful jobs; scheduled research publication completed verified releases. No collection/metadata systemd unit was failed. The separate code-backup service remains failed.
+
+**Outstanding engineering work, highest attention first:**
+
+1. **78 source-specific raw-validation holds** remain. Their missing original artifacts/contracts must be repaired; collection of other sources continues. Owner pauses are retained.
+2. **Metadata publication catch-up:** approximately 2,000 other accepted batches remain pending. EDINET’s accepted backlog at the start of this check was published, but thousands of its input jobs remain queued. Processing an old input now does not change its original ingestion timestamp.
+3. Latest saved health report (15:30 UTC, no inspection errors) retains **collection prerequisite incomplete**, **market coverage gaps (175 daily / 202 historical symbols; 52 reviewed exclusions)**, and **patent PDF unavailable/source refresh required**. These require scoped investigation; this check does not close them or waive evidence requirements.
+4. **Disclosure freshness** was repaired later November 9; the newest section above supersedes this earlier October 21 baseline. Full historical catch-up remains pending.
+
+[EDINET review, repair and runtime evidence](data-collection-processing/repair-notes/2026-11-09-edinet-review/README.md).
+
+## What you need to do today — Monday, November 9
+
+**No source-access action is required from you for the current USPTO document gap.** On November 9 you instructed us to skip **MMOWZII4X158X88** in application **35526479**. That exact exception is now configured and tested; the earlier support request is withdrawn. Other documents in the application still require normal capture. The original failed receipt and denial evidence remain archived, and the record explicitly states that the PDF was excluded rather than captured.
+
+Your BLS permission approval has also been applied and verified. Census activation, Copernicus terms and SMS setup do not need repeating. No new purchase or API key is requested by these checks.
+
+Optional: continue the [SEC](#q005), [FDA enforcement](#q036) and [EIA](#q055) Athena payload checks. Return query IDs and example records for missing fields. The remaining infrastructure repairs below are implementation work.
+
+## HKEX repaired and collection resumed — November 9, 16:49 CET
+
+**No new key, purchase or account action is needed for this HKEX repair.** English availability notices were being mistaken for original announcements. The collector now archives same-issuer/same-minute Chinese candidates under their own HKEX IDs, retaining their listing/PDF evidence and recording that translation equivalence is unverified. The notices remain separate from substantive filings.
+
+All four failed HKEX metadata batches were replayed successfully and published through staged Athena count verification. Actual Athena queries returned **86 raw-complete row occurrences / 53 distinct filing IDs**, with Chinese payload/PDF provenance inspected and zero English placeholder IDs counted as filings. Query: `063ba399-87f9-4036-a6f1-0f73b3922f4a`. The four batches overlap; 86 is not a unique-document count or a full-history claim.
+
+Restored **33 existing daily capture/publication timers**. Daily and historical collection controls are enabled; all **15 historical workers** are running; metadata worker/controller timers are active, with fresh accepted jobs after deployment. Reddit, Bluesky, GitHub and Marketaux remain owner-paused; access-layer exclusions remain unchanged.
+
+**Remaining engineering work:** metadata processing is enabled for 70 sources; **78 other sources still have raw-validation holds**, plus 5 owner-paused and 4 access-layer entries. Those holds were not waived. The general metadata publication queue still has **2,066 accepted batches awaiting publication** at this check; HKEX's four repaired batches were published directly and verified. Historical completion, later HKEX batches, downstream disclosure dependencies and publication throughput still require tracking. This resumes infrastructure and repairs HKEX; it does not certify every source pipeline as healthy.
+
+**Your next step:** rerun the HKEX query in [RAW_DATA_VERIFICATION_SCHEDULE.md](data-collection-processing/RAW_DATA_VERIFICATION_SCHEDULE.md), then inspect sample `labelled_json` payloads and original-document links. Mark HKEX reviewed only after your content check. [Implementation, evidence and sample SQL](data-collection-processing/repair-notes/2026-11-09-hkex-repair/README.md).
+
+## Latest runtime check — November 9, approximately 16:15 CET
+
+SEC company financial facts is recorded as owner-reviewed. Its source is enabled and uses the same source/date error queue as the other reviewed sources. Athena verified **8,439 raw-complete observations linked to 198 raw objects**. The published sample's latest ingestion date is October 26; metadata processing/publication is still catching up.
+
+Repaired S11's missing shared-runtime startup wrapper, restored eight overdue enabled daily services, restored the company-catalogue timer and corrected the daily runner's expected partial-exit handling. Remote historical workers and the metadata engine show fresh processing. The public archive/raw services completed new runs. Queued services still need their post-repair completion checks.
+
+Metadata infrastructure is running, while **79 sources remain raw-stopped**, 5 owner-paused and 4 access-layer entries. Those raw-content holds remain explicit; this is not a claim that every source is healthy. No new owner action is required beyond the reviews already in progress. [Detailed runtime check](data-collection-processing/repair-notes/2026-11-09-runtime-check/README.md).
+
+## Repairs and verification completed November 9
+
+| Item | Result | Remaining verification |
+|---|---|---|
+| USPTO document exception | Exact document `MMOWZII4X158X88` excluded by owner; live saved-record verification passed with zero provider requests. Original failure archived. | Normal window catch-up/publication must still be verified; no PDF coverage claimed. |
+| HKEX changing index | Saved complete daily index before downloading documents; checksum/provenance checked on resume. September 23 live test returned **890 entries**, explicitly exhausted. Deployed; normal daily run started. | Finish linked-document capture, dependent disclosures and Athena publication. Index success alone is insufficient. |
+| Zenodo dates | Valid dates with trailing whitespace now normalize correctly. Original dates and intervals remain in raw payload; ambiguous dates carry explicit unknown status. Deployed; normal retries retain the existing provider HTTP 500 cooldown. | Verify actual repaired-date commits and publication after the cooldown. |
+| BLS worker S3 access | Applied your approved narrow permission repair. Actual worker read/write checks passed in all **three metadata folders**. Six old permission-failed scopes now have **complete, exhausted manifests covering 70 observations**. | Verify these exact BLS batches in Athena; no full-source history claim. |
+| USDA publication | Exact repaired cotton batch is **verified in Athena: 1,500 rows / 1,500 distinct IDs**, matching its S3 manifest. Query `36c69eb3-dbe4-4eb8-9f67-85d27063a0d7`. | Other USDA commodities/years remain separate scopes. |
+| Tests / deployment | **46 targeted tests passed**; four modules deployed to 149 historical workspace roots plus controller/daily copies. | Live completion is reported separately above. |
+
+## Current engineering work — highest priority first
+
+| Priority | Remaining issue | Required next step |
+|---|---|---|
+| 1 | HKEX original documents and dependent disclosures | Exercise the saved-index collector through committed document batches; verify downstream manifests and Athena. |
+| 2 | BLS / Zenodo repair verification and publication queues | Inspect exact replay results; retain provider cooldowns and resource locks; verify committed output and Athena readback. |
+| 3 | USPTO office-action document gap | Apply the owner-approved exact-document exclusion, then verify subsequent committed pages and publication. No account-owner support task remains for this document. Other document failures remain separate. |
+| 4 | Historical source gaps | Continue scoped repairs for FDA, preprints, EDINET, FRED, DataCite, Census, Copernicus, ClinicalTrials, MHRA/CTIS, WTO, USGS, TED and USAspending. TED's old S3 denial needs exact-key diagnosis before another permission change. |
+| 5 | Market coverage | Email baseline: **175 daily and 202 historical unresolved symbols**, with **52 reviewed exclusions**. Review exact ticker/date evidence; no blanket exclusions. |
+
+The November 8 database index repair remains applied; repaired routes dispatch quickly and workers execute. The email's **236 gaps longer than five days** include older failed scopes. The separate 3,933-failure handoff is older evidence. These counts do not mean that every source failed again today. HTTP errors alone do not justify permanent exclusions.
+
+[November 9 repair evidence and limitations](data-collection-processing/repair-notes/2026-11-09-checkup/README.md).
+
+## Earlier November 5 repair record
+
+
+- **Email delivery:** the oversized-subject fix is deployed; you received the email, current notification errors are empty and CloudWatch reports OK. The emailed HIGH entry was the pre-recovery state, not a fresh capture failure.
+- **Search monitoring:** corrected the nonexistent `optima-search-daily.timer` reference to the enabled weekly `optima-search-capture.timer`; aligned grace with its weekly schedule. A service not yet invoked since boot uses timer activation for schedule grace, never as proof of collected data. Next observed trigger: **Friday November 6, approximately 11:01 CET**.
+- **Conference monitoring:** the daily checkpoint is caught up to November 5 with an exhausted committed manifest. Removed the migrated historical checkpoint from this daily service's scope. Verified current-scope completion can now resolve an old stall without fabricating new rows. Historical conference work remains tracked separately.
+- **HKEX recovery:** changed-prefix/changed-total failures previously kept resuming an invalid cursor. The runner now starts a fresh immutable run after six hours, preserving older evidence and dependent-source gates. Tested and deployed to the controller and historical workspaces; successful live recollection and downstream Athena publication are **not yet verified**.
+- **USGS historical archive URLs:** added 19 exact links discovered on official USGS mineral pages (2015–2019, including prior-edition comparisons). Four 2016 reports downloaded and parsed: lithium 67, cobalt 105, nickel 128, graphite 88 statistics. Lithium and graphite retain parsing/unit review flags. These are probe results, not newly published Athena counts. Deployed to daily and historical collectors; remaining failed-scope replay and publication are still open.
+- **Tests:** 83 focused tests passed. A broader run also exposed an existing missing `company-universe.v0.2.json` fixture target; that separate test was not counted as passing.
+
+[Repair evidence, deployments and limitations](data-collection-processing/repair-notes/2026-11-05-email/README.md).
+
+## Email items still open — engineering work, not additional account tasks
+
+These November 5 findings are retained as dated engineering detail; the November 7 section above supersedes account actions and counts.
+
+| Priority | Unresolved items | Required repair / verification |
+|---|---|---|
+| 1 | Shared-lock waits: authenticated capture, committed Athena, daily audit, patent global/prosecution/publication, people and specialist publication | Bound long-running batches and verify queued services get execution time within the host memory budget. Do not remove locks or run competing publishers to silence alerts. Latest email waits were 48–237 minutes; invocation/progress alone does not establish full publication. |
+| 2 | HKEX and dependent documents/disclosures | Verify a post-deployment changed-index refresh succeeds, then require matching upstream manifests before dependent capture. |
+| 3 | Census and Copernicus historical scopes | Reconcile old access failures against working credentials; verify resumed production jobs and Athena publication. Copernicus still needs structured weather extraction beyond raw NetCDF. No owner access work remains. |
+| 4 | USGS; TED; BLS | Replay repaired USGS archive scopes, retain extraction gaps and publish verified output. Investigate TED/BLS exact failed artifact permissions, requests and checkpoints before any narrowly scoped permission request. The earlier approved USGS metadata permission repair remains complete. |
+| 5 | FDA, ClinicalTrials, MHRA, EMA, EDINET and OpenDART | Replay date/identity/request failures; inspect provider responses and archive retention. Do not classify HTTP failures or old windows as permanently unavailable without evidence. |
+| 6 | Patents, bioRxiv/medRxiv, DataCite, Zenodo, Europe PMC; NSF/arXiv in the old handoff | Repair duplicate identities and unstable pagination without discarding distinct versions; retain rate limits and bounded retries. Earlier successful probes do not close every failed scope. |
+| 7 | FRED, WTO, USAspending and USDA | Reconcile fixed request scopes and replay remaining failures. Keep explicit unavailable-vintage evidence distinct from request defects; USDA route/authentication repaired November 7; production replay and publication remain to verify. |
+| 8 | Market coverage | Review the email's 182 daily and 202 historical unresolved symbols; 52 scoped exclusions already exist. Validate mappings, trading dates and provider evidence before excluding more windows. |
+
+The email contains **55 historical scope groups**, not 55 wholly failed sources. Its **3,933-failure handoff is dated October 30**. No blanket closure, raw-artifact waiver or permanent exclusion was applied. The separate stopped-raw-jobs checklist remains open where original documents/exports are required.
+
+## Repairs completed or checked November 4
+
+- **Census and Copernicus access resolved after activation/acceptance:** the 12:51 UTC Census probe returned **36 February 2016 trade rows**. Both ERA5 single-levels and ERA5-Land sample retrieval jobs completed successfully; their 25 KB downloads passed size and file-signature checks. These local samples are not production Athena records. Your account tasks are complete. Daily source configuration remains enabled under the running shared daily timer. Historical queue inspection timed out; resumption of parked scopes and production Athena publication remain engineering verification, not confirmed recovery.
+
+- **Monitoring index read repaired:** the runtime index had grown to 21,563,527 bytes, beyond the old 8 MiB metadata cap. Only that named index now has a bounded 32 MiB cap; ordinary metadata retains its 8 MiB limit. Its 51,713 paths loaded successfully.
+- **Live health refresh:** all **29 jobs inspected with zero inspection errors**. The refresh still recorded **19 active service alerts**; this is not an all-clear for their collection work.
+- **Overview corrected and deployed:** service counts now exclude historical-scope labels; historical scopes are shown separately. The reported **3,933 historical failures** came from a handoff dated **October 30**, not a fresh November 3 recount. The report now exposes that evidence timestamp. Historical-scope guidance points to receipts/checkpoints rather than nonexistent systemd units.
+- **NSF targeted replay:** the February 29, 2016 query returned **53 unique records across three pages**, exhausting pagination without the earlier duplicate failure. One retry of that exact parked scope was authorized in the queue; latest observed status is **pending**, attempts **2**. No committed recovery or Athena publication is claimed yet.
+- **Validation:** 22 focused tests passed. Monitoring Lambda deployment completed successfully. No test SMS/email was sent.
+
+[November 4 repair evidence and remaining limitations](data-collection-processing/repair-notes/2026-11-04-checkup/README.md).
+
+## Collection failure policy
+
+A failed source/window is logged and deferred; independent sources must continue. Failed work remains incomplete and visible for repair. October 28 changes isolate publication discovery and source-group exceptions, increase repeated-failure cooldowns, and prioritize lower-attempt historical jobs. Existing concurrency limits and three-attempt parking prevent one failed job from occupying the pool indefinitely. [Implementation, tests and deployment receipts](data-collection-processing/repair-notes/2026-10-28-isolation/README.md).
+
+## Earlier repair detail — October 30 (superseded by November 4 priorities)
+
+| Priority | Source / pipeline | Current finding | Next action | Owner |
+|---|---|---|---|---|
+| 1 | **118 US Census trade** | Live authenticated request returned HTTP 302 to `/data/invalid_key.html`. This is rejected access, not unavailable historical data. Collector now reports `census_api_key_rejected`. | Sign into/check the Census API-key registration email; confirm activation, then replace only `US-census` in the existing `dataSourceAPIkeys` secret with the issued key. Do not paste it into chat. Tell me when updated so the same bounded query can be retested. No paid plan requested. | You, then engineering |
+| 2 | **042 TED; 050 USGS** | Historical AccessDenied/download failures remain in the supplied checkup. A 404 or permission error does not prove the underlying data does not exist. | Obtain the exact denied artifact key, correct the narrow worker permission or official archive URL, replay the failed scope, then verify publication. No blanket exclusion. | Engineering |
+| 3 | **017 FDA openFDA** | Alerts still contain earlier invalid-date, duplicate-ID and HTTP 400 failures. October 28 parser fixes do not prove those earlier scopes have been repaired. Undated submissions are retained as unknown dates, not discarded. | Replay the earlier failed windows using the deployed parser; inspect remaining HTTP 400 bodies; reconcile successful checkpoints into gap reporting and verify Athena output. | Engineering |
+| 4 | **147 Zenodo; 143 DataCite; 145 bioRxiv / post-launch medRxiv** | Request errors, oversized responses, duplicate identities and pagination remain repairable/unresolved. Only pre-launch medRxiv windows qualify for the reviewed exclusion below. | Replay exact failing query scopes, repair request/identity logic and split oversized scopes. Preserve partial commits and avoid retry loops. | Engineering |
+| 5 | **075 ERA5; 066 FRED; 125 USDA; 071 WTO; 098 OpenDART** | Access/provider/request failures remain unresolved. Existing keys do not prove dataset entitlement; HTTP errors do not establish missing historical data. | Validate exact response bodies and parameters before asking for replacement credentials. For a demonstrated entitlement denial, provide the specific dataset/account action. | Engineering first |
+| 6 | **EMA, Europe PMC, USAspending** | Interruptions, source changes and exhausted retries remain in the supplied checkup. | Resume bounded scopes, validate pagination/counts and retain failures for targeted repair. Do not label these permanent gaps. | Engineering |
+| 7 | **Publication / NMPA / other repaired captures** | Earlier timestamp and capture fixes still require final publication evidence for their repaired windows. | Query the matching Athena windows and inspect payloads; successful capture or local curation is not sufficient. | Engineering; your random SQL checks afterward |
+
+## Reviewed unavailable data — retained, not an action item
+
+**145 medRxiv before June 2019:** the provider confirms a June 2019 launch ([CSHL evidence](https://www.cshl.edu/cshl-and-plos-partner-to-host-papers-on-medrxiv/)). The reviewed rule excludes only medRxiv windows wholly within `[2016-01-01, 2019-06-01)`. June 2019 and later remain eligible; bioRxiv is unaffected. The collector records `accepted_unavailable` with a durable decision receipt instead of calling the provider or claiming complete coverage. Gap reporting retains these in a separate accepted-unavailable list and omits their recurring repair alerts. This is the only new permanent exclusion established in this review.
+
+**071 WTO HTTP 204:** repaired as an empty query response, not a permanent data exclusion. The 2016 `ITS_CS_AM5` replay completed with zero records and a committed manifest. A 204 after pagination has already started still fails validation. Other WTO failures remain open; historical alert reconciliation/publication is separate.
+
+**Monitoring repair:** the gap reporter's unbounded database history read timed out. It now reads in 500-job keyset batches. The live refresh succeeded on October 30 at 12:07 Madrid: 41 accepted-unavailable windows, 139 flagged merged intervals and 51 record-only intervals. These counts describe intervals, not source counts. See [October 30 repair evidence](data-collection-processing/repair-notes/2026-10-30-gaps/README.md).
+
+**SMS:** owner confirmed delivery; remains removed from action items. Marketaux, GitHub, Reddit, Bluesky and NICE pauses remain unchanged. All older counts and Athena previews below retain their original audit date.
+
+## Longer-term access backlog — not required for today’s repairs
+
+Store newly issued credentials in the existing Secrets Manager secret **`dataSourceAPIkeys`** and add only the field names/status to [apiKeyRegister.md](apiKeyRegister.md). Do not put secret values in this report. A stored key does not establish working endpoints or historical entitlement.
+
+### Approvals already requested
+
+| Sources | Current position and next step | Official instructions |
+|---|---|---|
+| 078 UCDP organized violence | Already emailed. Follow up with the API maintainer and describe the project; store the issued access token. | [Provider](https://ucdp.uu.se/apidocs/) |
+| 088 NICE technology appraisals | NICE replied: submit the syndication application, provide a qualifying cybersecurity certification/report for NICE review (US applicants generally SOC 2 Type II), agree the licence and obtain the API key. Only final published guidance is available; drafts, company submissions, assessment reports and committee papers are excluded. Public daily/historical capture is paused. | [Provider](https://www.nice.org.uk/reusing-our-content/nice-syndication-api) |
+| 099 South Korea KOSIS statistical OpenAPI | Already emailed. Follow up on the OpenAPI application and obtain the authentication key. | [Provider](https://kosis.kr/openapi/) |
+
+### Access follow-up — including existing applications and keys
+
+These entries still need owner follow-up. TikTok and X keys are already obtained and are listed separately below; LinkedIn has already been applied for.
+
+| Sources | Steps | Official instructions |
+|---|---|---|
+| 131 Meta Ad Library API | Complete Meta developer/identity and Ad Library access steps; obtain the token for the approved Ad Library scope. | [Provider](https://www.facebook.com/ads/library/api/) |
+| 132 TikTok Commercial Content API | Keys obtained. October 27 token request succeeded; ad queries returned HTTP 500 twice. Engineering must retry and validate the content endpoint; do not apply for another key. | [Provider](https://developers.tiktok.com/products/commercial-content-api) |
+| 133 LinkedIn Ad Library / external API | Application submitted. Await LinkedIn’s response; follow up on that application rather than submitting another. | [Provider](https://www.linkedin.com/blog/engineering/trust-and-safety/enhancing-transparency-with-linkedins-ad-library) |
+| 134 X Ads Repository DSA API | Keys obtained. October 27 lookup returned HTTP 402 (credits depleted); Ads Repository returned HTTP 403/code 453. Review the account’s Ads Repository entitlement; do not buy credits assuming they resolve a separate product-access denial. | [Provider](https://help.x.com/en/business-and-advertising/ads-transparency) |
+| 142 OpenAlex scholarly graph | Create an OpenAlex account, verify the email, then copy the key from Settings → API key; bulk cursor paging requires it. | [Provider](https://help.openalex.org/api/authentication/) |
+| 153 Japan KAKEN funded research | Register the application ID used by KAKEN; describe commercial use to NII as required by their guidance. | [Provider](https://support.nii.ac.jp/en/kaken/api/api_outline) |
+| 121 Open Supply Hub production locations | Apply for API access; after approval generate a token in My Account > Settings > API. Confirm commercial terms. | [Provider](https://info.opensupplyhub.org/resources/api-documentation) |
+
+### Commercial access decisions
+
+Request a quote only for the full product you want. Existing public summaries/download routes can continue separately. Ask the provider which years are available back to 2016 and which API product includes them.
+
+| Sources | Your next step | Provider |
+|---|---|---|
+| 114 ImportYeti shipment and supplier relationships | Request API access; confirm volume, history and allowed storage/ML use. Free website access is not bulk API entitlement. | [Provider](https://docs.importyeti.com/docs/getting-started) |
+| 115 ImportGenius international shipments | Request an API-enabled plan and token from the implementation team; specify country and historical scope. | [Provider](https://w3.importgenius.com/features/api-integration) |
+| 116 MarineTraffic historical vessel tracks and port calls | Request historical vessel-track and port-call API entitlements, not only a website login. | [Provider](https://servicedocs.marinetraffic.com/tag/Vessel-Historical-Track/) |
+| 117 Kpler commodity cargo flows | Ask Kpler for cargo-flow API access and authentication for the contracted product; do not assume a MarineTraffic key covers it. | [Provider](https://developers.kpler.com/) |
+| 130 Euromonitor Passport Statistics API (paid candidate) | Ask the account team for Statistics API entitlement and the credentials required by the current portal. | [Provider](https://www.euromonitor.com/solutions/passport/connect/api) |
+| 135 Sensor Tower / Pathmatics advertising intelligence (paid candidate) | Request Sensor Tower/Pathmatics advertising API and historical entitlements. Exact credential format is not confirmed from public documentation. | [Provider](https://sensortower.com/) |
+| 140 Dealroom startup and funding API (commercial) | Request the Premium API key and confirm use restrictions and historical coverage. | [Provider](https://knowledge.dealroom.co/knowledge/dealroom-api-1) |
+| 157 Altmetric scholarly attention (commercial) | Request commercial access appropriate to the endpoints; free academic permission is not a commercial entitlement. | [Provider](https://docs.altmetric.com/details-page-api/licensing/) |
+| 083 SEMI worldwide equipment billings | Use public releases; request a licence if detailed historical equipment data are required. Public capture remains separate. | [Provider](https://www.semi.org/en/products-services/market-data) |
+| 084 International Federation of Robotics World Robotics | Public summaries are not the full licensed dataset; ask for machine-readable access and permitted use. Public capture remains separate. | [Provider](https://ifr.org/worldrobotics/) |
+
+### Credentials already obtained — no repeat application
+
+The register includes the following obtained provider groups, plus TikTok and X above. EPO credentials and first historical/daily captures are verified; earlier presence and endpoint probes cover the other registered groups. Remaining work belongs to integration/testing unless a test establishes a provider-side access problem.
+
+| Sources | Existing secret field(s) | Remaining work |
+|---|---|---|
+| 051 UN Comtrade | `UN-primary / UN-Secondary (register spelling); deployed presence check found UN-secondary` | Existing UN Comtrade collector has older data and an enabled historical route; validate that the newly supplied subscription fields are mapped, including case-sensitive secondary-field spelling. |
+| 066 FRED / ALFRED series and vintages | `FRED` | October 26 probe succeeded; October 28 checkup now includes historical request failures. Repair the failing scope and verify daily and historical commits; the earlier “not enabled” status is superseded. |
+| 070 Ember electricity demand and generation | `Ember` | Validate key, configure the endpoint and collector, then verify committed historical and daily captures. |
+| 071 WTO Timeseries API; 072 WTO Quantitative Restrictions API; 073 WTO ePing SPS/TBT notifications | `WTO-primary / WTO-secondary` | Validate key, configure the endpoint and collector, then verify committed historical and daily captures. |
+| 075 Copernicus ERA5 / ERA5-Land | `copernicus` | November 4: terms accepted and both dataset sample retrievals succeeded. Daily configuration enabled; verify historical resumption, production downloads and structured extraction/publication. |
+| 098 South Korea FSS OpenDART | `dart` | October 26 probe succeeded; October 28 checkup now includes historical request failures. Repair the failing scope and verify daily and historical commits; the earlier “not enabled” status is superseded. |
+| 118 US Census International Trade API | `US-census` | October 30: stored key redirects to invalid_key.html. Confirm activation/replace US-census; then engineering retests the exact query. |
+| 125 USDA FAS Production, Supply and Distribution | `usda-fas` | Earlier probe returned HTTP 403. Check endpoint/header configuration and the FAS product entitlement; contact FAS only if a correctly authenticated retry is still denied. |
+| 074 EPO OPS patent legal events | `EPO-consumer / EPO-consumer-secret` | Historical collection is active on m7i.large; daily discovery and tracked-patent refresh are active on t3. Continue backfill and verify analytical publication; no further owner key application is needed. |
+
+### Existing owner pauses
+
+Marketaux (012), GitHub SDK (044), Reddit (059) and Bluesky (061) remain paused. Their retained data remains queryable where previously published. Resume instructions from you are needed to change those pauses; obtaining a replacement key is not the default fix.
+
+## Earlier operational baseline — unresolved items retained
+
+Historical collection remains enabled on **m7i.large**, with **15 configured workers** sharing **2 CPUs / 6 GiB RAM** (host: 2 vCPUs / 8 GiB). Daily capture/control stay on t3; the latest resize verification recorded 36 active daily timers. Five raw workers, six legacy executors and four public-download workers are configured. Queue jobs marked succeeded can represent one bounded invocation, not a finished source.
+
+October 26 baseline (not recounted October 28): public routes: **73/73 daily attempts**, **73/73 historical attempts**; **61** sources with an artifact and **34** with a non-HTML file. Fresh structured Athena previews returned rows for **69 catalog entries**. Artifact counts are saved objects, not parsed analytical rows or full history.
+
+The following October 26 observations remain a backlog reference unless superseded by the October 28 priorities above. They are not a new live audit of every public route.
+
+| Sources | Observed issue | Fix |
+|---|---|---|
+| 001 GLEIF legal entities | public_http_404, public_redirect_limit, unreviewed_public_redirect | Replace stale URLs with the current official archive/resource links; retry. Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. Review the official destination and add only approved redirect hosts; retry the affected URLs. |
+| 004 HKEX prices | unreviewed_public_redirect | Review the official destination and add only approved redirect hosts; retry the affected URLs. |
+| 023 Chinese Clinical Trial Registry | public_http_405 | Correct endpoint/method or use the reviewed Decodo retrieval route. |
+| 024 NMPA trials | public_http_202 | Handle the provider challenge/async response and validate returned content. |
+| 027 Europe PMC full text | scrape_incomplete_response, scrape_target_http_404 | Validate Decodo rendering/response handling and retry with a bounded backoff. Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 045 NIST robotics methods | public_http_405 | Correct endpoint/method or use the reviewed Decodo retrieval route. |
+| 049 Trade screening lists | ChunkedEncodingError | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 052 Department of Energy storage program | public_http_404 | Replace stale URLs with the current official archive/resource links; retry. |
+| 082 SIA / WSTS public semiconductor sales | unreviewed_public_redirect | Review the official destination and add only approved redirect hosts; retry the affected URLs. |
+| 083 SEMI worldwide equipment billings | scrape_incomplete_response | Validate Decodo rendering/response handling and retry with a bounded backoff. |
+| 089 Canada CDA-AMC / CADTH reimbursement reviews | scrape_gateway_http_502, scrape_incomplete_response | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. Validate Decodo rendering/response handling and retry with a bounded backoff. |
+| 090 France Assurance Maladie Open Medic | public_http_410, unreviewed_public_redirect | Find the replacement official resource; record unavailable historical material. Review the official destination and add only approved redirect hosts; retry the affected URLs. |
+| 092 CNINFO mainland-China company disclosures | unreviewed_public_redirect | Review the official destination and add only approved redirect hosts; retry the affected URLs. |
+| 093 China NBS industrial production | public_http_404 | Replace stale URLs with the current official archive/resource links; retry. |
+| 094 China MIIT electronics and battery statistics | scrape_gateway_http_400 | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 096 China NHSA reimbursement and procurement | ConnectTimeout, scrape_gateway_http_400 | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 101 Taiwan customs trade statistics | scrape_gateway_http_400 | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 102 India IBM mineral production | unreviewed_public_redirect | Review the official destination and add only approved redirect hosts; retry the affected URLs. |
+| 103 Indonesia ESDM and Geological Agency mineral statistics | public_asset_too_large | Use a bounded streaming download for the large file, then verify checksum and commit it. |
+| 104 Brazil ANM mineral yearbook | public_http_404 | Replace stale URLs with the current official archive/resource links; retry. |
+| 105 Brazil ANM CFEM mining royalties | public_http_404 | Replace stale URLs with the current official archive/resource links; retry. |
+| 106 Brazil MDIC Comex Stat API | public_http_401 | Check whether this endpoint requires authentication or use the documented public export; a missing key is not established by this response alone. |
+| 107 Chile COCHILCO production and mining economics | unreviewed_public_redirect | Review the official destination and add only approved redirect hosts; retry the affected URLs. |
+| 108 Chile SERNAGEOMIN mining yearbooks | scrape_target_http_404 | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 110 Peru MINEM mining bulletins and yearbooks | unreviewed_public_redirect | Review the official destination and add only approved redirect hosts; retry the affected URLs. |
+| 113 Peru INGEMMET GEOCATMIN | scrape_gateway_http_400 | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 119 Eurostat Comext goods trade | unreviewed_public_redirect | Review the official destination and add only approved redirect hosts; retry the affected URLs. |
+| 122 OpenStreetMap / Overpass industrial facilities | ReadTimeout, public_http_502 | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 124 European Environment Agency industrial facilities | public_http_410 | Find the replacement official resource; record unavailable historical material. |
+| 128 IEA Global EV Data Explorer and Outlook | public_rendered_page_too_large | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 148 Semantic Scholar citation context | public_http_429 | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 149 France theses.fr doctoral theses | ConnectTimeout | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 150 Brazil CAPES theses and dissertations | public_asset_too_large, scrape_gateway_http_400 | Use a bounded streaming download for the large file, then verify checksum and commit it. Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 154 Brazil FAPESP PIPE and grants | scrape_incomplete_response | Validate Decodo rendering/response handling and retry with a bounded backoff. |
+| 155 UKRI Gateway to Research | public_http_400 | Check the provider response, redirect and Decodo/transport logs; repair the route and retry without raising provider limits. |
+| 158 University technology-transfer catalogs and reports | public_http_404 | Replace stale URLs with the current official archive/resource links; retry. |
+| 042 Tenders Electronic Daily procurement notices (historical structured tasks) | [Errno 28] No space left on device: '/home/ec2-user/data-collection-processing/ted-package-cache/202200085.lock' (4), An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:G (12), [Errno 28] No space left on device: '/home/ec2-user/data-collection-processing/ted-package-cache/202200065.lock' (3), [Errno 28] No space left on device: '/home/ec2-user/data-collection-processing/ted-package-cache/202200107.lock' (1) | Inspect failed-task manifests and correct source parameters/pagination, then retry; keep partial committed pages. |
+| 057 BLS wages (historical structured tasks) | An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:G (6) | Inspect failed-task manifests and correct source parameters/pagination, then retry; keep partial committed pages. |
+| 050 USGS minerals (historical structured tasks) | An error occurred (AccessDenied) when calling the PutObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:P (12), An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:G (4), source_http_404 (16) | Inspect failed-task manifests and correct source parameters/pagination, then retry; keep partial committed pages. |
+| 056 California ISO prices (historical structured tasks) | An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:G (56) | Inspect failed-task manifests and correct source parameters/pagination, then retry; keep partial committed pages. |
+| 035 FDA Dashboard inspection classifications (historical structured tasks) | source_http_502 (1) | Inspect failed-task manifests and correct source parameters/pagination, then retry; keep partial committed pages. |
+| 036 FDA Enforcement Report recalls (historical structured tasks) | Earlier baseline: fda_result_shape (30) | October 28: parser repaired and one empty January 2016 scope completed. Remaining affected scopes and publication still need verification. |
+| 008 Japan EDINET corporate filings (historical structured tasks) | edinet_api_status (272), source_http_302 (1) | Inspect failed-task manifests and correct source parameters/pagination, then retry; keep partial committed pages. |
+| 055 EIA retail prices (historical structured tasks) | An error occurred (AccessDenied) when calling the PutObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:P (16) | Inspect failed-task manifests and correct source parameters/pagination, then retry; keep partial committed pages. |
+| 143 DataCite dissertations, datasets, software and usage (historical structured tasks) | additional_response_too_large_split_scope (1), additional_request_failed (2), source_http_503 (1) | Inspect failed-task manifests and correct source parameters/pagination, then retry; keep partial committed pages. |
+| 145 bioRxiv / medRxiv preprints (historical structured tasks) | biorxiv_provider_error (41), additional_duplicate_provider_ids (3) | Inspect failed-task manifests and correct source parameters/pagination, then retry; keep partial committed pages. |
+| 147 Zenodo research artifacts and usage (historical structured tasks) | source_http_400 (88), source_http_500 (1) | Inspect failed-task manifests and correct source parameters/pagination, then retry; keep partial committed pages. |
+| 143 DataCite dissertations, datasets, software and usage (daily structured tasks) | source_changed_refresh_required (5) | Refresh the unstable source snapshot/cursor according to the provider contract, then retry; preserve already committed pages. |
+| 147 Zenodo research artifacts and usage (daily structured tasks) | source_changed_refresh_required (8), source_http_500 (1) | Refresh the unstable source snapshot/cursor according to the provider contract, then retry; preserve already committed pages. |
+
+Raw USGS/NSF/arXiv output still needs analytical publication. The five new public structured APIs have visible Athena samples; full publication membership for their newest batches remains unaudited. Discovery-only public routes require resource-specific downloads and parsing; the artifact inventory below exposes file metadata only. Temporary historical gates remain for MLPerf/GitHub shared quota, USPTO assignments and SAM shared budgets. Optional NCBI/BLS keys can improve limits but do not block their public collection. WSTS public history and the selected IEA EV public route do not require buying an API key.
+
+## All 158 sources — attention order, with dated baseline evidence
+
+Daily and historical scheduler counts refer to bounded tasks. Committed observations can include repeated versions and overlapping queries. Requested `[start, end)` windows describe the query envelope, not uninterrupted event-date coverage. An empty completed query is not automatically a gap. Rows with only earlier native audit evidence are labelled accordingly; a configured timer or route is not proof of a fresh successful capture.
+
+**Athena (October 26 baseline):** one-row previews show whether rows are visible now, not full publication completeness. Public artifact SQL returns metadata/URIs, not the contents of binary files. Earlier native row totals are retained for continuity; they are not refreshed totals.
+
+| # | Source | Daily / historical execution | Collected evidence and 2016 scope | Athena / SQL | Next action |
+|---:|---|---|---|---|---|
+| 118 | US Census International Trade API (`us_census_international_trade_api`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Access resolved November 4: activated key returned 36 historical rows. Engineering: verify resumed capture and Athena publication. |
+| 042 | Tenders Electronic Daily procurement notices (`ted_notices`) | Daily: existing daily schedule; fresh success not audited; historical: 26 succeeded/1 running; structured: 225 complete; 63 partial; 20 failed; 50,399 captured observations | Earlier native audit: 26,907 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 225 complete; 63 partial; 20 failed; 50,399 captured observations. Record-bearing requested task envelope [2017-01-01, 2022-10-01); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q042) | Technical structured-task failures listed above; repair/retry while retaining committed pages. |
+| 050 | USGS minerals (`usgs_minerals`) | Daily: existing daily schedule; fresh success not audited; historical: 107 succeeded; structured: 36 complete; 0 partial; 32 failed; 60 captured observations | Earlier native audit: 176 committed row occurrences; windows [2021-01-01, 2026-10-23); 2016-era coverage not established Current structured scheduler: 36 complete; 0 partial; 32 failed; 60 captured observations. Record-bearing requested task envelope [2021-01-01, 2026-10-10); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q050) | Technical structured-task failures listed above; repair/retry while retaining committed pages. |
+| 017 | FDA openFDA (`fda_openfda`) | Daily: existing daily schedule; fresh success not audited; historical: 116 succeeded/1 pending | Earlier native audit: 9,446 committed row occurrences; windows [2016-01-01, 2026-10-20) | YES — fresh preview returned rows — [SQL](#q017) | October 28: missing-date/duplicate handling deployed; June 2016 replay partial at page limit. Continue and verify publication. |
+| 147 | Zenodo research artifacts and usage (`zenodo_research_artifacts_and_usage`) | Daily: structured: 0 complete; 0 partial; 9 failed; 800 captured observations; historical: 42 succeeded/1 pending; structured: 8 complete; 13 partial; 89 failed; 2,650 captured observations | No committed structured-data evidence in earlier native audit. Current structured scheduler: 8 complete; 13 partial; 89 failed; 2,650 captured observations. Record-bearing requested task envelope [2016-01-01, 2016-01-22); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q147) | Technical structured-task failures listed above; repair/retry while retaining committed pages. |
+| 143 | DataCite dissertations, datasets, software and usage (`datacite_dissertations_datasets_software_and_usage`) | Daily: structured: 0 complete; 0 partial; 5 failed; 1,300 captured observations; historical: 55 succeeded; structured: 46 complete; 160 partial; 4 failed; 193,140 captured observations | No committed structured-data evidence in earlier native audit. Current structured scheduler: 46 complete; 160 partial; 4 failed; 193,140 captured observations. Record-bearing requested task envelope [2016-01-01, 2021-11-01); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q143) | Technical structured-task failures listed above; repair/retry while retaining committed pages. |
+| 145 | bioRxiv / medRxiv preprints (`biorxiv_medrxiv_preprints`) | Daily: structured: 4 complete; 0 partial; 0 failed; 2,109 captured observations; historical: 75 succeeded; structured: 14 complete; 202 partial; 44 failed; 99,185 captured observations | No committed structured-data evidence in earlier native audit. Current structured scheduler: 14 complete; 202 partial; 44 failed; 99,185 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q145) | Pre-June-2019 medRxiv excluded with reviewed evidence; bioRxiv and post-launch failures remain repair work. |
+| 075 | Copernicus ERA5 / ERA5-Land (`copernicus_era5_era5_land`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Existing key/register entry; integration or access validation pending (top). |
+| 066 | FRED / ALFRED series and vintages (`fred_alfred_series_and_vintages`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | NO rows in fresh preview — [SQL](#q066) | Existing key/register entry; integration or access validation pending (top). |
+| 125 | USDA FAS Production, Supply and Distribution (`usda_fas_production_supply_and_distribution`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Existing key/register entry; integration or access validation pending (top). |
+| 071 | WTO Timeseries API (`wto_timeseries_api`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | HTTP 204 handling repaired; ITS_CS_AM5 2016 query completed empty. Other failing indicators and publication remain unverified. |
+| 098 | South Korea FSS OpenDART (`south_korea_fss_opendart`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | NO rows in fresh preview — [SQL](#q098) | Existing key/register entry; integration or access validation pending (top). |
+| 019 | EMA medicines (`ema_medicines`) | Daily: existing daily schedule; fresh success not audited; historical: 1 succeeded; structured: 12 complete; 0 partial; 0 failed; 2,448 captured observations | Earlier native audit: 42,059 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 12 complete; 0 partial; 0 failed; 2,448 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q019) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 026 | Europe PMC publication metadata (`europe_pmc`) | Daily: existing daily schedule; fresh success not audited; historical: 17 succeeded/1 pending; structured: 69 complete; 172 partial; 0 failed; 127,966 captured observations | Earlier native audit: 53,515 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 69 complete; 172 partial; 0 failed; 127,966 captured observations. Record-bearing requested task envelope [2016-01-01, 2023-04-01); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q026) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 027 | Europe PMC full text (`europe_pmc_fulltext`) | Daily: public: 0 files; 10 pages; 32 pending; 1 errors; historical: public: 0 files; 17 pages; 25 pending; 25 errors; 70 succeeded | Earlier native audit: 633 committed row occurrences; windows [2021-01-01, 2026-10-12); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 27 artifact metadata rows visible — [SQL](#q027) | Technical retrieval fixes listed above; no new key established. |
+| 041 | USPTO assignment histories (`uspto_assignment_histories`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 116 committed row occurrences; windows [2023-01-01, 2026-10-23); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q041) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 024 | NMPA trials (`nmpa_trials`) | Daily: public: 0 files; 1 pages; 2 pending; 2 errors; historical: public: 0 files; 1 pages; 2 pending; 2 errors; 72 succeeded | Earlier native audit: 65,197 committed row occurrences; windows [2021-01-01, 2026-10-16); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 2 artifact metadata rows visible — [SQL](#q024) | October 28: timestamp curation fixed; both failed six-record batches pass locally. Await publisher receipts and Athena queries. |
+| 036 | FDA Enforcement Report recalls (`fda_ires_recalls`) | Daily: existing daily schedule; fresh success not audited; historical: 131 succeeded; structured: 100 complete; 1 partial; 30 failed; 135,036 captured observations | Earlier native audit: 31,304 committed row occurrences; windows [2021-01-01, 2026-10-25); 2016-era coverage not established Current structured scheduler: 100 complete; 1 partial; 30 failed; 135,036 captured observations. Record-bearing requested task envelope [2018-03-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q036) | October 28: empty-response parser deployed; one January 2016 scope complete with zero rows. Reconcile remaining scopes and coverage publication. |
+| 057 | BLS wages (`bls_wages`) | Daily: existing daily schedule; fresh success not audited; historical: 85 succeeded; structured: 6 complete; 0 partial; 6 failed; 69 captured observations | Earlier native audit: 500 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 6 complete; 0 partial; 6 failed; 69 captured observations. Record-bearing requested task envelope [2021-01-01, 2026-10-10); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q057) | Technical structured-task failures listed above; repair/retry while retaining committed pages. |
+| 055 | EIA retail prices (`eia_retail_prices`) | Daily: existing daily schedule; fresh success not audited; historical: 31 succeeded; structured: 185 complete; 0 partial; 16 failed; 179 captured observations | Earlier native audit: 197 committed row occurrences; windows [2021-01-01, 2026-10-27); 2016-era coverage not established Current structured scheduler: 185 complete; 0 partial; 16 failed; 179 captured observations. Record-bearing requested task envelope [2017-05-01, 2026-09-01); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q055) | Technical structured-task failures listed above; repair/retry while retaining committed pages. |
+| 056 | California ISO prices (`caiso_prices`) | Daily: existing daily schedule; fresh success not audited; historical: 41 succeeded/1 running; structured: 327 complete; 0 partial; 56 failed; 39,240 captured observations | Earlier native audit: 186,766 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 327 complete; 0 partial; 56 failed; 39,240 captured observations. Record-bearing requested task envelope [2023-07-01, 2024-01-07); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q056) | Technical structured-task failures listed above; repair/retry while retaining committed pages. |
+| 070 | Ember electricity demand and generation (`ember_electricity_demand_and_generation`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Existing key/register entry; integration or access validation pending (top). |
+| 072 | WTO Quantitative Restrictions API (`wto_quantitative_restrictions_api`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Existing key/register entry; integration or access validation pending (top). |
+| 073 | WTO ePing SPS/TBT notifications (`wto_eping_sps_tbt_notifications`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Existing key/register entry; integration or access validation pending (top). |
+| 051 | UN Comtrade (`un_comtrade`) | Daily: existing daily schedule; fresh success not audited; historical: 20 succeeded; structured: 220 complete; 0 partial; 0 failed; 190 captured observations | Earlier native audit: 58 committed row occurrences; windows [2021-01-01, 2024-01-01); 2016-era coverage not established Current structured scheduler: 220 complete; 0 partial; 0 failed; 190 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-01-01); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q051) | Existing key/register entry; integration or access validation pending (top). |
+| 008 | Japan EDINET corporate filings (`edinet_filings`) | Daily: existing daily schedule; fresh success not audited; historical: 34 succeeded; structured: 812 complete; 508 partial; 273 failed; 146,518 captured observations | Earlier native audit: 165,538 committed row occurrences; windows [2021-01-04, 2026-10-26); 2016-era coverage not established Current structured scheduler: 812 complete; 508 partial; 273 failed; 146,518 captured observations. Record-bearing requested task envelope [2021-01-04, 2023-02-07); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q008) | Technical structured-task failures listed above; repair/retry while retaining committed pages. |
+| 020 | UK MHRA (`uk_mhra`) | Daily: existing daily schedule; fresh success not audited; historical: 116 succeeded | Earlier native audit: 13,355 committed row occurrences; windows [2021-01-01, 2026-10-16); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q020) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 021 | Japan PMDA (`japan_pmda`) | Daily: existing daily schedule; fresh success not audited; historical: 15 succeeded | Earlier native audit: 2,950 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q021) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 007 | HKEX announcements (`hkex_news`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Earlier native audit: 67,909 committed row occurrences; windows [2020-12-31, 2026-10-14); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 2 artifact metadata rows visible — [SQL](#q007) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 011 | Finlight news (`finlight`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 34,970 committed row occurrences; windows [2021-01-01, 2026-10-22); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q011) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 014 | Personnel announcement archives (`personnel_archive`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 2,167 committed row occurrences; windows [2021-01-01, 2026-10-16); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q014) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 003 | EOD Historical Data market data (`eodhd_market`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 571,037 committed row occurrences; windows [2021-01-01, 2026-10-25); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q003) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 134 | X Ads Repository DSA API (`x_ads_repository_dsa_api`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Keys obtained; October 27 HTTP 402 credits and Ads Repository 403/453. Confirm intended product entitlement before spending. |
+| 132 | TikTok Commercial Content API (`tiktok_commercial_content_api`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Key obtained; token succeeded October 27, content requests HTTP 500. Engineering retry; no replacement key request. |
+| 001 | GLEIF legal entities (`gleif_legal_entities`) | Daily: public: 0 files; 11 pages; 118 pending; 0 errors; historical: public: 173 files; 197 pages; 999 pending; 26 errors; 67 succeeded | Earlier native audit: 156 committed row occurrences; windows [2026-10-09, 2026-10-24); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 381 artifact metadata rows visible — [SQL](#q001) | Technical retrieval fixes listed above; no new key established. |
+| 002 | EOD Historical Data company profiles and listings (`eodhd`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 1,157,369 committed row occurrences; windows [2026-09-18, 2026-10-26); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q002) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 004 | HKEX prices (`hkex_prices`) | Daily: public: 0 files; 11 pages; 159 pending; 0 errors; historical: public: 53 files; 357 pages; 1209 pending; 4 errors; 69 succeeded | Earlier native audit: 17,644 committed row occurrences; windows [2026-09-23, 2026-09-24); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 421 artifact metadata rows visible — [SQL](#q004) | Technical retrieval fixes listed above; no new key established. |
+| 005 | US SEC filings (including Form D and crowdfunding forms) (`sec_edgar`) | Daily: existing daily schedule; fresh success not audited; historical: 171 succeeded | Earlier native audit: 1,007,620 committed row occurrences; windows [2016-01-01, 2026-10-24) | YES — fresh preview returned rows — [SQL](#q005) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 006 | SEC company financial facts (`sec_companyfacts`) | Daily: existing daily schedule; fresh success not audited; historical: 9 succeeded; structured: 121 complete; 0 partial; 0 failed; 145,471 captured observations | Earlier native audit: 78,640 committed row occurrences; windows [2021-01-01, 2026-01-01); 2016-era coverage not established Current structured scheduler: 121 complete; 0 partial; 0 failed; 145,471 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q006) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 009 | Disclosure candidates (internal route) (`disclosure_candidates`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 1,394 committed row occurrences; windows [2021-01-04, 2026-10-15); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q009) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 010 | Disclosure documents (internal route) (`disclosure_documents`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 776 committed row occurrences; windows [2021-01-04, 2026-10-15); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q010) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 013 | People-related RSS feeds (`people_rss`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 16,980 committed row occurrences; windows [2021-01-01, 2026-10-27); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q013) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 015 | ClinicalTrials.gov (`clinicaltrials_gov`) | Daily: existing daily schedule; fresh success not audited; historical: 16 succeeded | Earlier native audit: 182,994 committed row occurrences; windows [2016-01-01, 2026-10-23) | YES — fresh preview returned rows — [SQL](#q015) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 016 | EMA Clinical Trials Information System (`ema_ctis`) | Daily: public: 0 files; 11 pages; 42 pending; 0 errors; historical: public: 0 files; 53 pages; 0 pending; 0 errors; 3 blocked/1 retryable_failed; 9 succeeded | Earlier native audit: 1,607 committed row occurrences; windows [2026-09-17, 2026-10-24); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 64 artifact metadata rows visible — [SQL](#q016) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 018 | Drugs@FDA applications (`drugsfda_applications`) | Daily: existing daily schedule; fresh success not audited; historical: 10 succeeded; structured: 130 complete; 0 partial; 0 failed; 42,991 captured observations | Earlier native audit: 19,026 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 130 complete; 0 partial; 0 failed; 42,991 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q018) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 022 | Health Canada notices of compliance (`canada_noc`) | Daily: existing daily schedule; fresh success not audited; historical: 1 succeeded; structured: 12 complete; 0 partial; 0 failed; 22,392 captured observations | Earlier native audit: 13,744 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 12 complete; 0 partial; 0 failed; 22,392 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q022) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 023 | Chinese Clinical Trial Registry (`chictr`) | Daily: public: 0 files; 1 pages; 19 pending; 10 errors; historical: public: 0 files; 1 pages; 19 pending; 19 errors; 71 succeeded | Earlier native audit: 93 committed row occurrences; windows [2026-09-17, 2026-09-18); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 2 artifact metadata rows visible — [SQL](#q023) | Technical retrieval fixes listed above; no new key established. |
+| 025 | PubMed abstracts (`pubmed_abstracts`) | Daily: existing daily schedule; fresh success not audited; historical: 38 succeeded; structured: 390 complete; 0 partial; 0 failed; 85,441 captured observations | Earlier native audit: 26,304 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 390 complete; 0 partial; 0 failed; 85,441 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q025) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 028 | Crossref conference proceedings (`crossref_proceedings`) | Daily: public: 1 files; 0 pages; 0 pending; 0 errors; historical: public: 1 files; 0 pages; 0 pending; 0 errors; 1 succeeded | Earlier native audit: 2,603,004 committed row occurrences; windows [2021-01-01, 2026-10-25); 2016-era coverage not established; typed table also has 679,325 rows dated 2016-01-01–2026-10-26 by publication date; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 2 artifact metadata rows visible — [SQL](#q028) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 029 | CMS coverage policies (`cms_coverage`) | Daily: existing daily schedule; fresh success not audited; historical: 1 succeeded; structured: 12 complete; 0 partial; 0 failed; 104 captured observations | Earlier native audit: 4,947 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 12 complete; 0 partial; 0 failed; 104 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q029) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 030 | CMS coverage documents (`cms_coverage_documents`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 7 succeeded | Earlier native audit: 372 committed row occurrences; windows [2021-01-01, 2026-10-10); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 2 artifact metadata rows visible — [SQL](#q030) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 031 | CMS payments catalog and financial records (`cms_payments_catalog`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Earlier native audit: 680 committed row occurrences; windows [2026-10-09, 2026-10-24); 2016-era coverage not established; plus 76,013,225 bulk payments rows (2021–2025) and 63,336 drug-spending rows (edition years unverified); Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 2 artifact metadata rows visible — [SQL](#q031) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 032 | FDA Dashboard compliance actions (`fda_dd_compliance_actions`) | Daily: existing daily schedule; fresh success not audited; historical: 26 succeeded; structured: 131 complete; 0 partial; 0 failed; 134,238 captured observations | Earlier native audit: 80,564 committed row occurrences; windows [2021-01-01, 2026-10-27); 2016-era coverage not established Current structured scheduler: 131 complete; 0 partial; 0 failed; 134,238 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q032) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 033 | FDA Dashboard import refusals (`fda_dd_import_refusals`) | Daily: existing daily schedule; fresh success not audited; historical: 52 succeeded; structured: 131 complete; 0 partial; 0 failed; 213,603 captured observations | Earlier native audit: 199,147 committed row occurrences; windows [2021-01-01, 2026-10-27); 2016-era coverage not established Current structured scheduler: 131 complete; 0 partial; 0 failed; 213,603 captured observations. Record-bearing requested task envelope [2016-10-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q033) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 034 | FDA Dashboard inspection citations (`fda_dd_inspections_citations`) | Daily: existing daily schedule; fresh success not audited; historical: 20 succeeded/1 running; structured: 78 complete; 53 partial; 0 failed; 122,365 captured observations | Earlier native audit: 63,357 committed row occurrences; windows [2021-01-01, 2026-10-26); 2016-era coverage not established Current structured scheduler: 78 complete; 53 partial; 0 failed; 122,365 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q034) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 035 | FDA Dashboard inspection classifications (`fda_dd_inspections_classifications`) | Daily: existing daily schedule; fresh success not audited; historical: 79 succeeded; structured: 116 complete; 14 partial; 1 failed; 185,641 captured observations | Earlier native audit: 82,431 committed row occurrences; windows [2021-01-01, 2026-10-25); 2016-era coverage not established Current structured scheduler: 116 complete; 14 partial; 1 failed; 185,641 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q035) | Technical structured-task failures listed above; repair/retry while retaining committed pages. |
+| 037 | FDA product codes (`fda_product_codes`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 1,246 committed row occurrences; windows [2026-10-11, 2026-10-25); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q037) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 038 | NIH RePORTER grants (`nih_reporter`) | Daily: existing daily schedule; fresh success not audited; historical: 64 succeeded; structured: 390 complete; 0 partial; 0 failed; 359,630 captured observations | Earlier native audit: 67,231 committed row occurrences; windows [2021-01-01, 2026-10-19); 2016-era coverage not established Current structured scheduler: 390 complete; 0 partial; 0 failed; 359,630 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q038) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 039 | Google Patents BigQuery (`google_patents_bigquery`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 5,540,316 committed row occurrences; windows [2021-01-01, 2026-09-23); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q039) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 040 | USPTO Open Data Portal (`uspto_odp`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 6,740,099 committed row occurrences; windows [2025-01-06, 2026-10-24); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q040) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 043 | USAspending federal awards (`usa_spending`) | Daily: existing daily schedule; fresh success not audited; historical: 78 succeeded/1 running; structured: 20 complete; 712 partial; 0 failed; 34,140 captured observations | Earlier native audit: 4,312 committed row occurrences; windows [2021-01-01, 2021-03-01); 2016-era coverage not established Current structured scheduler: 20 complete; 712 partial; 0 failed; 34,140 captured observations. Record-bearing requested task envelope [2016-01-01, 2021-03-01); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q043) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 045 | NIST robotics methods (`nist_robotics_methods`) | Daily: public: 0 files; 11 pages; 100 pending; 1 errors; historical: public: 2 files; 339 pages; 408 pending; 91 errors; 72 succeeded | Earlier native audit: 530 committed row occurrences; windows [2026-10-09, 2026-10-24); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 352 artifact metadata rows visible — [SQL](#q045) | Technical retrieval fixes listed above; no new key established. |
+| 046 | MLPerf benchmark results (`mlperf_results`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 33,072 committed row occurrences; windows [2021-01-01, 2026-10-18); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q046) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 047 | CPSC recalls (`cpsc_recalls`) | Daily: existing daily schedule; fresh success not audited; historical: 10 succeeded; structured: 130 complete; 0 partial; 0 failed; 3,416 captured observations | Earlier native audit: 1,452 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 130 complete; 0 partial; 0 failed; 3,416 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q047) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 048 | Federal Register (`federal_register`) | Daily: existing daily schedule; fresh success not audited; historical: 7 blocked/1 pending; structured: 108 complete; 0 partial; 0 failed; 2,027 captured observations | Earlier native audit: 3,513 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 108 complete; 0 partial; 0 failed; 2,027 captured observations. Record-bearing requested task envelope [2016-01-01, 2022-11-01); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q048) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 049 | Trade screening lists (`trade_screening`) | Daily: public: 3 files; 8 pages; 76 pending; 0 errors; historical: public: 53 files; 87 pages; 1 pending; 1 errors; 71 succeeded | Earlier native audit: 444,362 committed row occurrences; windows [2026-10-09, 2026-10-24); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 151 artifact metadata rows visible — [SQL](#q049) | Technical retrieval fixes listed above; no new key established. |
+| 052 | Department of Energy storage program (`doe_storage_program`) | Daily: public: 4 files; 8 pages; 16 pending; 0 errors; historical: public: 8 files; 23 pages; 1 pending; 1 errors; 72 succeeded | Earlier native audit: 813 committed row occurrences; windows [2026-10-09, 2026-10-24); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 43 artifact metadata rows visible — [SQL](#q052) | Technical retrieval fixes listed above; no new key established. |
+| 053 | EIA battery generators (`eia_battery_generators`) | Daily: existing daily schedule; fresh success not audited; historical: 2 blocked/10 succeeded; structured: 129 complete; 0 partial; 0 failed; 82,938 captured observations | Earlier native audit: 76,933 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established Current structured scheduler: 129 complete; 0 partial; 0 failed; 82,938 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-01); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q053) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 054 | EIA generator index (`eia_generator_index`) | Daily: public: 11 files; 1 pages; 39 pending; 0 errors; historical: public: 274 files; 146 pages; 4580 pending; 0 errors; 70 succeeded | Earlier native audit: 2,148 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 432 artifact metadata rows visible — [SQL](#q054) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 058 | Research Organization Registry institutions (`ror_institutions`) | Daily: public: 1 files; 0 pages; 0 pending; 0 errors; historical: public: 1 files; 0 pages; 0 pending; 0 errors; 1 succeeded | Earlier native audit: 96 committed row occurrences; windows [2026-10-09, 2026-10-10); 2016-era coverage not established; Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | YES — fresh preview returned rows; 2 artifact metadata rows visible — [SQL](#q058) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 060 | DataForSEO search capture (`S65`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 6,464 search/trend/keyword-history sample rows; dated trend/history reaches 2021, search snapshots begin October 2026 | YES — fresh preview returned rows — [SQL](#q060) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 062 | SAM.gov opportunities (`sam_gov_opportunities`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 62,535 committed row occurrences; windows [2021-01-01, 2026-10-24); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q062) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 063 | USPTO Office Actions (`uspto_odp`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 2,920 committed row occurrences; windows [2021-01-01, 2026-10-21); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q063) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 064 | USPTO final Petition Decisions (`uspto_odp`) | Daily: existing daily schedule; fresh success not audited; historical: not verified enabled | Earlier native audit: 3,999 committed row occurrences; windows [2021-01-04, 2026-10-25); 2016-era coverage not established | YES — fresh preview returned rows — [SQL](#q064) | Audit/implement historical route and publication; no current enabled historical route established. |
+| 065 | BIS SDMX API (`bis_sdmx_api`) | Daily: public: 1 files; 0 pages; 0 pending; 0 errors; historical: public: 1 files; 0 pages; 0 pending; 0 errors; 1 succeeded | Public route: BIS central-bank policy-rate daily CSV from 2016; selected dataflow only. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q065) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 067 | UNIDO IIP and INDSTAT (`unido_iip_and_indstat`) | Daily: public: 2 files; 0 pages; 0 pending; 0 errors; historical: public: 2 files; 0 pages; 0 pending; 0 errors; 6 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 4 artifact metadata rows visible — [SQL](#q067) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 068 | ILOSTAT labor statistics (`ilostat_labor_statistics`) | Daily: public: 1 files; 0 pages; 0 pending; 0 errors; historical: public: 1 files; 0 pages; 0 pending; 0 errors; 1 succeeded | Public route: ILOSTAT annual unemployment-by-sex/age RDS snapshot. Original vintages and forecast/observation separation are not yet extracted. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q068) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 069 | IMF PortWatch shipping activity (`imf_portwatch_shipping_activity`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q069) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 074 | EPO OPS patent legal events (`epo_ops_patent_legal_events`) | Daily: structured: 5 complete; 0 partial; 0 failed; 5 captured observations; historical: 4 succeeded/1 running; structured: 11 complete; 6 partial; 0 failed; 467 captured observations | No committed structured-data evidence in earlier native audit. Current structured scheduler: 11 complete; 6 partial; 0 failed; 467 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | NO rows in fresh preview — [SQL](#q074) | Active collection; continue scoped backfill, legal-event refresh and publication verification. |
+| 076 | NASA POWER weather and solar resource (`nasa_power_weather_and_solar_resource`) | Daily: structured: 8 complete; 0 partial; 0 failed; 56 captured observations; historical: 11 succeeded; structured: 88 complete; 0 partial; 0 failed; 31,608 captured observations | No committed structured-data evidence in earlier native audit. Current structured scheduler: 88 complete; 0 partial; 0 failed; 31,608 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q076) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 077 | USGS Earthquake Catalog API (`usgs_earthquakes`) | Daily: raw daily enabled; shared provider budget may defer; historical: 1975 succeeded; 1976 pending | 864,052 records in 1975 succeeded daily-query partitions; requested window envelope [2016-01-01, 2026-10-26). Not continuous coverage. | NO rows in fresh preview — [SQL](#q077) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 078 | UCDP organized violence (`ucdp_organized_violence`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your action: follow up existing approval request (top). Public capture continues if listed. |
+| 079 | arXiv early technical disclosures (`arxiv`) | Daily: raw daily enabled; shared provider budget may defer; historical: 1643 succeeded; 10 blocked; 1 running; 2297 pending | 874,952 records in 1643 succeeded daily-query partitions; requested window envelope [2016-01-01, 2026-10-26). Not continuous coverage. | NO rows in fresh preview — [SQL](#q079) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 080 | England NHSBSA prescribing data (`england_nhsbsa_prescribing_data`) | Daily: public: 1 files; 0 pages; 0 pending; 0 errors; historical: public: 1 files; 0 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q080) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 081 | Decodo shared web retrieval (access layer) (`decodo_shared_web_retrieval_access_layer`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Audit/implement historical route and publication; no current enabled historical route established. |
+| 082 | SIA / WSTS public semiconductor sales (`sia_wsts_public_semiconductor_sales`) | Daily: public: 3 files; 4 pages; 10 pending; 4 errors; historical: public: 8 files; 22 pages; 6 pending; 6 errors; 66 succeeded | Public route: WSTS public regional monthly semiconductor billings workbook; detailed paid products are excluded. No full 2016 coverage verified. | No structured Athena visibility established; 37 artifact metadata rows visible — [SQL](#q082) | Technical retrieval fixes listed above; no new key established. |
+| 083 | SEMI worldwide equipment billings (`semi_worldwide_equipment_billings`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 71 succeeded | Public route: Public press releases and report summaries only; licensed full historical datasets are excluded. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q083) | Technical retrieval fixes listed above; no new key established. |
+| 084 | International Federation of Robotics World Robotics (`international_federation_of_robotics_world_robotics`) | Daily: public: 10 files; 1 pages; 168 pending; 0 errors; historical: public: 181 files; 4 pages; 0 pending; 0 errors; 35 succeeded | Public route: Public press releases and report summaries only; licensed full historical datasets are excluded. No full 2016 coverage verified. | No structured Athena visibility established; 196 artifact metadata rows visible — [SQL](#q084) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 085 | IEA-PVPS solar deployment reports (`iea_pvps_solar_deployment_reports`) | Daily: public: 0 files; 12 pages; 51 pending; 0 errors; historical: public: 138 files; 123 pages; 0 pending; 0 errors; 44 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 273 artifact metadata rows visible — [SQL](#q085) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 086 | Germany G-BA drug benefit assessments (`germany_g_ba_drug_benefit_assessments`) | Daily: public: 1 files; 5 pages; 0 pending; 0 errors; historical: public: 1 files; 5 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 12 artifact metadata rows visible — [SQL](#q086) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 087 | France HAS medicine assessment opinions (`france_has_medicine_assessment_opinions`) | Daily: public: 0 files; 11 pages; 156 pending; 0 errors; historical: public: 0 files; 377 pages; 3733 pending; 0 errors; 68 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 388 artifact metadata rows visible — [SQL](#q087) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 089 | Canada CDA-AMC / CADTH reimbursement reviews (`canada_cda_amc_cadth_reimbursement_reviews`) | Daily: public: 0 files; 9 pages; 289 pending; 3 errors; historical: public: 0 files; 244 pages; 2294 pending; 168 errors; 67 succeeded/1 running | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 253 artifact metadata rows visible — [SQL](#q089) | Technical retrieval fixes listed above; no new key established. |
+| 090 | France Assurance Maladie Open Medic (`france_assurance_maladie_open_medic`) | Daily: public: 0 files; 2 pages; 46 pending; 10 errors; historical: public: 1 files; 344 pages; 4655 pending; 39 errors; 64 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 347 artifact metadata rows visible — [SQL](#q090) | Technical retrieval fixes listed above; no new key established. |
+| 091 | Japan MHLW NDB Open Data (`japan_mhlw_ndb_open_data`) | Daily: public: 3 files; 9 pages; 183 pending; 0 errors; historical: public: 3 files; 193 pages; 0 pending; 0 errors; 33 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 208 artifact metadata rows visible — [SQL](#q091) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 092 | CNINFO mainland-China company disclosures (`cninfo_mainland_china_company_disclosures`) | Daily: public: 0 files; 12 pages; 15 pending; 0 errors; historical: public: 0 files; 17 pages; 10 pending; 10 errors; 70 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 29 artifact metadata rows visible — [SQL](#q092) | Technical retrieval fixes listed above; no new key established. |
+| 093 | China NBS industrial production (`china_nbs_industrial_production`) | Daily: public: 0 files; 10 pages; 7 pending; 1 errors; historical: public: 0 files; 16 pages; 1 pending; 1 errors; 71 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 26 artifact metadata rows visible — [SQL](#q093) | Technical retrieval fixes listed above; no new key established. |
+| 094 | China MIIT electronics and battery statistics (`china_miit_electronics_and_battery_statistics`) | Daily: public: 0 files; 12 pages; 58 pending; 0 errors; historical: public: 4 files; 76 pages; 2 pending; 2 errors; 72 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 92 artifact metadata rows visible — [SQL](#q094) | Technical retrieval fixes listed above; no new key established. |
+| 095 | China NEA power statistics (`china_nea_power_statistics`) | Daily: public: 0 files; 12 pages; 62 pending; 0 errors; historical: public: 15 files; 66 pages; 0 pending; 0 errors; 14 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 93 artifact metadata rows visible — [SQL](#q095) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 096 | China NHSA reimbursement and procurement (`china_nhsa_reimbursement_and_procurement`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 34 files; 137 pages; 7 pending; 7 errors; 72 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 171 artifact metadata rows visible — [SQL](#q096) | Technical retrieval fixes listed above; no new key established. |
+| 097 | China MOFCOM export controls (`china_mofcom_export_controls`) | Daily: public: 0 files; 12 pages; 28 pending; 0 errors; historical: public: 19 files; 34 pages; 0 pending; 0 errors; 9 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 65 artifact metadata rows visible — [SQL](#q097) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 099 | South Korea KOSIS statistical OpenAPI (`south_korea_kosis_statistical_openapi`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your action: follow up existing approval request (top). Public capture continues if listed. |
+| 100 | Taiwan TWSE/MOPS issuer and revenue archives (`taiwan_twse_mops_issuer_and_revenue_archives`) | Daily: public: 2 files; 0 pages; 0 pending; 0 errors; historical: public: 2 files; 0 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 4 artifact metadata rows visible — [SQL](#q100) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 101 | Taiwan customs trade statistics (`taiwan_customs_trade_statistics`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 69 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q101) | Technical retrieval fixes listed above; no new key established. |
+| 102 | India IBM mineral production (`india_ibm_mineral_production`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 72 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q102) | Technical retrieval fixes listed above; no new key established. |
+| 103 | Indonesia ESDM and Geological Agency mineral statistics (`indonesia_esdm_and_geological_agency_mineral_statistics`) | Daily: public: 10 files; 1 pages; 9 pending; 0 errors; historical: public: 26 files; 17 pages; 2 pending; 2 errors; 72 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 54 artifact metadata rows visible — [SQL](#q103) | Technical retrieval fixes listed above; no new key established. |
+| 104 | Brazil ANM mineral yearbook (`brazil_anm_mineral_yearbook`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 71 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q104) | Technical retrieval fixes listed above; no new key established. |
+| 105 | Brazil ANM CFEM mining royalties (`brazil_anm_cfem_mining_royalties`) | Daily: public: 7 files; 1 pages; 14 pending; 4 errors; historical: public: 10 files; 2 pages; 10 pending; 10 errors; 72 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 20 artifact metadata rows visible — [SQL](#q105) | Technical retrieval fixes listed above; no new key established. |
+| 106 | Brazil MDIC Comex Stat API (`brazil_mdic_comex_stat_api`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 71 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q106) | Technical retrieval fixes listed above; no new key established. |
+| 107 | Chile COCHILCO production and mining economics (`chile_cochilco_production_and_mining_economics`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 69 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q107) | Technical retrieval fixes listed above; no new key established. |
+| 108 | Chile SERNAGEOMIN mining yearbooks (`chile_sernageomin_mining_yearbooks`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 72 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q108) | Technical retrieval fixes listed above; no new key established. |
+| 109 | Chile SMA SNIFA environmental compliance (`chile_sma_snifa_environmental_compliance`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q109) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 110 | Peru MINEM mining bulletins and yearbooks (`peru_minem_mining_bulletins_and_yearbooks`) | Daily: public: 0 files; 11 pages; 36 pending; 1 errors; historical: public: 0 files; 133 pages; 1 pending; 1 errors; 65 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 144 artifact metadata rows visible — [SQL](#q110) | Technical retrieval fixes listed above; no new key established. |
+| 111 | Argentina SIACAM mining indicators (`argentina_siacam_mining_indicators`) | Daily: public: 1 files; 1 pages; 0 pending; 0 errors; historical: public: 1 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 4 artifact metadata rows visible — [SQL](#q111) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 112 | Brazil ANM SIGMINE and Cadastro Mineiro (`brazil_anm_sigmine_and_cadastro_mineiro`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q112) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 113 | Peru INGEMMET GEOCATMIN (`peru_ingemmet_geocatmin`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 71 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q113) | Technical retrieval fixes listed above; no new key established. |
+| 114 | ImportYeti shipment and supplier relationships (`importyeti_shipment_and_supplier_relationships`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your decision: request API-enabled commercial access (top). |
+| 115 | ImportGenius international shipments (`importgenius_international_shipments`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your decision: request API-enabled commercial access (top). |
+| 116 | MarineTraffic historical vessel tracks and port calls (`marinetraffic_historical_vessel_tracks_and_port_calls`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your decision: request API-enabled commercial access (top). |
+| 117 | Kpler commodity cargo flows (`kpler_commodity_cargo_flows`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your decision: request API-enabled commercial access (top). |
+| 119 | Eurostat Comext goods trade (`eurostat_comext_goods_trade`) | Daily: public: 0 files; 12 pages; 110 pending; 0 errors; historical: public: 71 files; 354 pages; 1776 pending; 1 errors; 71 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 437 artifact metadata rows visible — [SQL](#q119) | Technical retrieval fixes listed above; no new key established. |
+| 120 | Climate TRACE industrial assets and activity (`climate_trace_industrial_assets_and_activity`) | Daily: public: 0 files; 4 pages; 0 pending; 0 errors; historical: public: 0 files; 4 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 8 artifact metadata rows visible — [SQL](#q120) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 121 | Open Supply Hub production locations (`open_supply_hub_production_locations`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your action: obtain access/key (top). |
+| 122 | OpenStreetMap / Overpass industrial facilities (`openstreetmap_overpass_industrial_facilities`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 65 succeeded | Public route: Named industrial facilities in a Phoenix reference bounding box, current OSM snapshot only; not global coverage or reconstructed 2016 facilities. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q122) | Technical retrieval fixes listed above; no new key established. |
+| 123 | Global Energy Monitor asset and ownership API (`global_energy_monitor_asset_and_ownership_api`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q123) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 124 | European Environment Agency industrial facilities (`european_environment_agency_industrial_facilities`) | Daily: public: 0 files; 11 pages; 2 pending; 1 errors; historical: public: 1 files; 11 pages; 1 pending; 1 errors; 72 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 23 artifact metadata rows visible — [SQL](#q124) | Technical retrieval fixes listed above; no new key established. |
+| 126 | Brazil ABVE electric vehicle registrations (`brazil_abve_electric_vehicle_registrations`) | Daily: public: 0 files; 12 pages; 0 pending; 0 errors; historical: public: 0 files; 12 pages; 0 pending; 0 errors; 2 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 24 artifact metadata rows visible — [SQL](#q126) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 127 | Brazil SENATRAN vehicle fleet (`brazil_senatran_vehicle_fleet`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q127) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 128 | IEA Global EV Data Explorer and Outlook (`iea_global_ev_data_explorer_and_outlook`) | Daily: public: 0 files; 12 pages; 488 pending; 0 errors; historical: public: 0 files; 409 pages; 4591 pending; 1 errors; 68 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 421 artifact metadata rows visible — [SQL](#q128) | Technical retrieval fixes listed above; no new key established. |
+| 129 | FAOSTAT food balances (`faostat_food_balances`) | Daily: public: 1 files; 0 pages; 0 pending; 0 errors; historical: public: 1 files; 0 pages; 0 pending; 0 errors; 1 succeeded | Public route: FAOSTAT normalized Food Balance Sheets bulk ZIP; year filtering and table extraction pending. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q129) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 130 | Euromonitor Passport Statistics API (paid candidate) (`euromonitor_passport_statistics_api_paid_candidate`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your decision: request API-enabled commercial access (top). |
+| 131 | Meta Ad Library API (`meta_ad_library_api`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your action: obtain access/key (top). |
+| 133 | LinkedIn Ad Library / external API (`linkedin_ad_library_external_api`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Application submitted; await provider reply. |
+| 135 | Sensor Tower / Pathmatics advertising intelligence (paid candidate) (`sensor_tower_pathmatics_advertising_intelligence_paid_candidate`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your decision: request API-enabled commercial access (top). |
+| 136 | Y Combinator company directory and cohorts (`y_combinator_company_directory_and_cohorts`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q136) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 137 | Techstars portfolio and cohorts (`techstars_portfolio_and_cohorts`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q137) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 138 | 500 Global portfolio and cohorts (`500_global_portfolio_and_cohorts`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q138) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 139 | Antler early-stage portfolio (`antler_early_stage_portfolio`) | Daily: public: 0 files; 2 pages; 0 pending; 0 errors; historical: public: 0 files; 2 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 4 artifact metadata rows visible — [SQL](#q139) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 140 | Dealroom startup and funding API (commercial) (`dealroom_startup_and_funding_api_commercial`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your decision: request API-enabled commercial access (top). |
+| 141 | Wefunder and Republic crowdfunding campaigns (`wefunder_and_republic_crowdfunding_campaigns`) | Daily: public: 0 files; 1 pages; 0 pending; 0 errors; historical: public: 0 files; 1 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q141) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 142 | OpenAlex scholarly graph (`openalex_scholarly_graph`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your action: obtain access/key (top). |
+| 144 | OpenAIRE Graph projects and research products (`openaire_graph_projects_and_research_products`) | Daily: public: 1 files; 0 pages; 0 pending; 0 errors; historical: public: 1 files; 0 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public OpenAIRE project metadata sample. This capture does not yet paginate the full graph or assert historical completeness. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q144) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 146 | Open Science Framework projects and preregistrations (`open_science_framework_projects_and_preregistrations`) | Daily: public: 1 files; 0 pages; 0 pending; 0 errors; historical: public: 1 files; 0 pages; 0 pending; 0 errors; 1 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q146) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 148 | Semantic Scholar citation context (`semantic_scholar_citation_context`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 66 succeeded | Public route: Public Semantic Scholar robotics keyword metadata sample, at most the first public result page. Full citation-context coverage needs a dedicated adapter and potentially a key. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q148) | Technical retrieval fixes listed above; no new key established. |
+| 149 | France theses.fr doctoral theses (`france_theses_fr_doctoral_theses`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 72 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q149) | Technical retrieval fixes listed above; no new key established. |
+| 150 | Brazil CAPES theses and dissertations (`brazil_capes_theses_and_dissertations`) | Daily: public: 0 files; 11 pages; 394 pending; 1 errors; historical: public: 149 files; 214 pages; 454 pending; 37 errors; 66 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 374 artifact metadata rows visible — [SQL](#q150) | Technical retrieval fixes listed above; no new key established. |
+| 151 | NSF research awards API (`nsf_awards`) | Daily: raw daily enabled; shared provider budget may defer; historical: 364 succeeded; 30 blocked; 3557 pending | 8,374 records in 364 succeeded daily-query partitions; requested window envelope [2016-01-04, 2026-10-20). Not continuous coverage. | NO rows in fresh preview — [SQL](#q151) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 152 | European Commission CORDIS (`european_commission_cordis`) | Daily: public: 2 files; 0 pages; 0 pending; 0 errors; historical: public: 2 files; 0 pages; 0 pending; 0 errors; 1 succeeded | Public route: CORDIS H2020 and Horizon Europe public project CSV archives; pre-programme coverage is not asserted. No full 2016 coverage verified. | No structured Athena visibility established; 4 artifact metadata rows visible — [SQL](#q152) | Continue crawl; implement dataset extraction/parse and audit dates. |
+| 153 | Japan KAKEN funded research (`japan_kaken_funded_research`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your action: obtain access/key (top). |
+| 154 | Brazil FAPESP PIPE and grants (`brazil_fapesp_pipe_and_grants`) | Daily: public: 0 files; 12 pages; 24 pending; 0 errors; historical: public: 0 files; 51 pages; 1 pending; 1 errors; 71 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; 63 artifact metadata rows visible — [SQL](#q154) | Technical retrieval fixes listed above; no new key established. |
+| 155 | UKRI Gateway to Research (`ukri_gateway_to_research`) | Daily: public: 0 files; 0 pages; 1 pending; 1 errors; historical: public: 0 files; 0 pages; 1 pending; 1 errors; 69 succeeded | Public route: Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification. No full 2016 coverage verified. | No structured Athena visibility established; no artifact rows returned by fresh inventory — [SQL](#q155) | Technical retrieval fixes listed above; no new key established. |
+| 156 | Hugging Face Hub models and datasets (`hugging_face_hub_models_and_datasets`) | Daily: structured: 1 complete; 1 partial; 0 failed; 29,604 captured observations; historical: 43 succeeded/1 running; structured: 0 complete; 2 partial; 0 failed; 416,800 captured observations | No committed structured-data evidence in earlier native audit. Current structured scheduler: 0 complete; 2 partial; 0 failed; 416,800 captured observations. Record-bearing requested task envelope [2016-01-01, 2026-10-26); not continuous coverage. | YES — fresh preview returned rows — [SQL](#q156) | Continue capture/backfill; audit 2016 coverage and publication lag. |
+| 157 | Altmetric scholarly attention (commercial) (`altmetric_scholarly_attention_commercial`) | Daily: not verified active; historical: not verified enabled | No committed structured-data evidence in earlier native audit. | No structured Athena visibility established; SQL unavailable until publication exists | Your decision: request API-enabled commercial access (top). |
+| 158 | University technology-transfer catalogs and reports (`university_technology_transfer_catalogs_and_reports`) | Daily: public: 10 files; 1 pages; 16 pending; 1 errors; historical: public: 25 files; 1 pages; 1 pending; 1 errors; 72 succeeded | Public route: Initial Stanford and MIT public technology-transfer report indexes only; broader universities require additional configured publisher URLs. No full 2016 coverage verified. | No structured Athena visibility established; 37 artifact metadata rows visible — [SQL](#q158) | Technical retrieval fixes listed above; no new key established. |
+| 012 | Marketaux news (paused) (`marketaux`) | Daily: OWNER PAUSED; historical: OWNER PAUSED | Earlier native audit: 34,300 committed row occurrences; windows [2021-01-01, 2026-10-21); 2016-era coverage not established; OWNER PAUSE PRESERVED | YES — fresh preview returned rows — [SQL](#q012) | Owner pause preserved. |
+| 044 | GitHub repositories and SDKs (paused) (`github_sdk`) | Daily: OWNER PAUSED; historical: OWNER PAUSED | Earlier native audit: 8,041 committed row occurrences; windows [2026-10-09, 2026-10-20); 2016-era coverage not established; OWNER PAUSE PRESERVED | YES — fresh preview returned rows — [SQL](#q044) | Owner pause preserved. |
+| 059 | Reddit posts and comments (paused) (`reddit`) | Daily: OWNER PAUSED; historical: OWNER PAUSED | Earlier native audit: 4,099 Athena rows with creation dates 2021-01-19 through 2026-10-21; capture paused; OWNER PAUSE PRESERVED | YES — fresh preview returned rows — [SQL](#q059) | Owner pause preserved. |
+| 061 | Bluesky posts (paused) (`bluesky_search`) | Daily: OWNER PAUSED; historical: OWNER PAUSED | Earlier native audit: 1,053 committed row occurrences; windows [2026-09-23, 2026-10-22); 2016-era coverage not established; OWNER PAUSE PRESERVED | YES — fresh preview returned rows — [SQL](#q061) | Owner pause preserved. |
+| 088 | NICE technology appraisals (`nice_technology_appraisals`) | Daily: PAUSED — retained prior artifact evidence only; historical: PAUSED — NICE API licence/security approval required | Public route: NICE direct licensing clarification: AI use must use licensed syndication API after cybersecurity review; development documents excluded. No full 2016 coverage verified. Retained artifacts must not feed AI pending NICE approval. | No structured Athena visibility established; 2 artifact metadata rows visible — [SQL](#q088) | Owner action: NICE syndication application, certification/report review and licence. Exclude development documents from AI. |
+
+## SQL to view each available source
+
+Use **us-east-1** and the named workgroup. A LIMIT preview does not establish full history. Empty visibility checks are included for raw/new API sources that are not yet published.
+
+### q001
+
+**001. GLEIF legal entities**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('gleif_legal_entities')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 1
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q002
+
+**002. EOD Historical Data company profiles and listings**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('eodhd')
+  AND dataset IN ('company_profiles', 'listing_inventory')
+LIMIT 1;
+```
+
+### q003
+
+**003. EOD Historical Data market data**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('eodhd_market')
+  AND dataset IN ('market_records')
+LIMIT 1;
+```
+
+### q004
+
+**004. HKEX prices**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('hkex_prices')
+  AND dataset IN ('market_records')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 4
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q005
+
+**005. US SEC filings (including Form D and crowdfunding forms)**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('sec_edgar')
+  AND dataset IN ('filings')
+LIMIT 1;
+```
+
+### q006
+
+**006. SEC company financial facts**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('sec_companyfacts')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q007
+
+**007. HKEX announcements**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('hkex_news')
+  AND dataset IN ('filings')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 7
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q008
+
+**008. Japan EDINET corporate filings**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('edinet_filings')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q009
+
+**009. Disclosure candidates (internal route)**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('disclosure_candidates')
+  AND dataset IN ('licensing_agreements', 'ma_announcements', 'press_releases', 'strategic_transactions')
+LIMIT 1;
+```
+
+### q010
+
+**010. Disclosure documents (internal route)**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('disclosure_documents')
+  AND dataset IN ('documents')
+LIMIT 1;
+```
+
+### q011
+
+**011. Finlight news**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('finlight')
+  AND dataset IN ('news_articles')
+LIMIT 1;
+```
+
+### q012
+
+**012. Marketaux news (paused)**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('marketaux')
+  AND dataset IN ('news_articles')
+LIMIT 1;
+```
+
+### q013
+
+**013. People-related RSS feeds**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('people_rss')
+  AND dataset IN ('people_source_records')
+LIMIT 1;
+```
+
+### q014
+
+**014. Personnel announcement archives**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('personnel_archive')
+  AND dataset IN ('people_source_records')
+LIMIT 1;
+```
+
+### q015
+
+**015. ClinicalTrials.gov**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('clinicaltrials_gov')
+  AND dataset IN ('research_records')
+LIMIT 1;
+```
+
+### q016
+
+**016. EMA Clinical Trials Information System**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('ema_ctis')
+  AND dataset IN ('research_records')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 16
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q017
+
+**017. FDA openFDA**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('fda_openfda')
+  AND dataset IN ('research_records')
+LIMIT 1;
+```
+
+### q018
+
+**018. Drugs@FDA applications**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('drugsfda_applications')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q019
+
+**019. EMA medicines**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('ema_medicines')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q020
+
+**020. UK MHRA**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('uk_mhra')
+  AND dataset IN ('research_records')
+LIMIT 1;
+```
+
+### q021
+
+**021. Japan PMDA**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('japan_pmda')
+  AND dataset IN ('research_records')
+LIMIT 1;
+```
+
+### q022
+
+**022. Health Canada notices of compliance**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('canada_noc')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q023
+
+**023. Chinese Clinical Trial Registry**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('chictr')
+  AND dataset IN ('research_records')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 23
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q024
+
+**024. NMPA trials**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('nmpa_trials')
+  AND dataset IN ('registry_inventory', 'research_records')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 24
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q025
+
+**025. PubMed abstracts**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('pubmed_abstracts')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q026
+
+**026. Europe PMC publication metadata**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('europe_pmc')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q027
+
+**027. Europe PMC full text**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('europe_pmc_fulltext')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 27
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q028
+
+**028. Crossref conference proceedings**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('crossref_proceedings')
+  AND dataset IN ('conference_records')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 28
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q029
+
+**029. CMS coverage policies**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('cms_coverage')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q030
+
+**030. CMS coverage documents**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('cms_coverage_documents')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 30
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q031
+
+**031. CMS payments catalog and financial records**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('cms_payments_catalog')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 31
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q032
+
+**032. FDA Dashboard compliance actions**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('fda_dd_compliance_actions')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q033
+
+**033. FDA Dashboard import refusals**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('fda_dd_import_refusals')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q034
+
+**034. FDA Dashboard inspection citations**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('fda_dd_inspections_citations')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q035
+
+**035. FDA Dashboard inspection classifications**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('fda_dd_inspections_classifications')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q036
+
+**036. FDA Enforcement Report recalls**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('fda_ires_recalls')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q037
+
+**037. FDA product codes**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('fda_product_codes')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q038
+
+**038. NIH RePORTER grants**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('nih_reporter', 'nih_grant_facts', 'nih_grant_lifecycles', 'nih_grant_publications', 'grant_institutions', 'grant_institution_links', 'grant_entity_connections')
+LIMIT 1;
+```
+
+### q039
+
+**039. Google Patents BigQuery**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('google_patents_bigquery')
+  AND dataset IN ('patent_records')
+LIMIT 1;
+```
+
+### q040
+
+**040. USPTO Open Data Portal**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('uspto_odp')
+  AND dataset IN ('patent_assignment_records', 'patent_records')
+LIMIT 1;
+```
+
+### q041
+
+**041. USPTO assignment histories**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('uspto_assignment_histories')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q042
+
+**042. Tenders Electronic Daily procurement notices**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('ted_notices')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q043
+
+**043. USAspending federal awards**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('usa_spending')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q044
+
+**044. GitHub repositories and SDKs (paused)**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('github_sdk')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q045
+
+**045. NIST robotics methods**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('nist_robotics_methods', 'nist_robotics_documents', 'nist_robotics_product_matches')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 45
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q046
+
+**046. MLPerf benchmark results**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('mlperf_results')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q047
+
+**047. CPSC recalls**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('cpsc_recalls')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q048
+
+**048. Federal Register**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('federal_register', 'federal_register_documents')
+LIMIT 1;
+```
+
+### q049
+
+**049. Trade screening lists**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('trade_screening', 'trade_screening_enriched')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 49
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q050
+
+**050. USGS minerals**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('usgs_minerals')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q051
+
+**051. UN Comtrade**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('un_comtrade')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q052
+
+**052. Department of Energy storage program**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('doe_storage_program', 'doe_storage_benchmarks', 'doe_storage_documents', 'doe_storage_funding')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 52
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q053
+
+**053. EIA battery generators**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('eia_battery_generators')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q054
+
+**054. EIA generator index**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('eia_generator_index')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 54
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q055
+
+**055. EIA retail prices**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('eia_retail_prices')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q056
+
+**056. California ISO prices**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('caiso_prices', 'caiso_ancillary_prices', 'caiso_archive_inventory', 'caiso_price_intervals', 'caiso_storage_indicators')
+LIMIT 1;
+```
+
+### q057
+
+**057. BLS wages**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('bls_wages')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q058
+
+**058. Research Organization Registry institutions**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('ror_institutions')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 58
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q059
+
+**059. Reddit posts and comments (paused)**
+
+Structured data preview. Workgroup: `optima-social-research`.
+
+```sql
+SELECT record_id, subreddit, created_utc, observed_utc, verified_utc, source_url
+FROM optima_social_research.reddit_records
+WHERE created_utc >= 1451606400
+LIMIT 1;
+```
+
+### q060
+
+**060. DataForSEO search capture**
+
+Structured data preview. Workgroup: `optima-eodhd-research`.
+
+```sql
+SELECT source_id,dataset,event_date,observed_at,source_url,payload_json
+FROM optima_source_readiness.source_samples_windows
+WHERE source_id='S65'
+LIMIT 1;
+```
+
+### q061
+
+**061. Bluesky posts (paused)**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('bluesky_search', 'bluesky_company_accounts', 'bluesky_company_posts', 'bluesky_company_events')
+LIMIT 1;
+```
+
+### q062
+
+**062. SAM.gov opportunities**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('sam_gov_opportunities')
+  AND dataset IN ('specialist_inputs')
+LIMIT 1;
+```
+
+### q063
+
+**063. USPTO Office Actions**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('uspto_odp')
+  AND dataset IN ('patent_office_actions')
+LIMIT 1;
+```
+
+### q064
+
+**064. USPTO final Petition Decisions**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source, dataset, record_id, ingested_at,
+       json_extract_scalar(event_at_json, '$.value') AS event_date, source_url
+FROM optima_collected_data.observations
+WHERE source IN ('uspto_odp')
+  AND dataset IN ('patent_petition_decisions')
+LIMIT 1;
+```
+
+### q065
+
+**065. BIS SDMX API**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 65
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q066
+
+**066. FRED / ALFRED series and vintages**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id FROM optima_collected_data.observations WHERE source='fred_alfred_series_and_vintages' LIMIT 1;
+```
+
+### q067
+
+**067. UNIDO IIP and INDSTAT**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 67
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q068
+
+**068. ILOSTAT labor statistics**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 68
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q069
+
+**069. IMF PortWatch shipping activity**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 69
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q074
+
+**074. EPO OPS patent legal events**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id FROM optima_collected_data.observations WHERE source='epo_ops_patent_legal_events' LIMIT 1;
+```
+
+### q076
+
+**076. NASA POWER weather and solar resource**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id FROM optima_collected_data.observations WHERE source='nasa_power_weather_and_solar_resource' LIMIT 1;
+```
+
+### q077
+
+**077. USGS Earthquake Catalog API**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id,ingested_at FROM optima_collected_data.observations WHERE source='usgs_earthquakes' LIMIT 5;
+```
+
+### q079
+
+**079. arXiv early technical disclosures**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id,ingested_at FROM optima_collected_data.observations WHERE source='arxiv' LIMIT 5;
+```
+
+### q080
+
+**080. England NHSBSA prescribing data**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 80
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q082
+
+**082. SIA / WSTS public semiconductor sales**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 82
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q083
+
+**083. SEMI worldwide equipment billings**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 83
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q084
+
+**084. International Federation of Robotics World Robotics**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 84
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q085
+
+**085. IEA-PVPS solar deployment reports**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 85
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q086
+
+**086. Germany G-BA drug benefit assessments**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 86
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q087
+
+**087. France HAS medicine assessment opinions**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 87
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q088
+
+**088. NICE technology appraisals**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 88
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q089
+
+**089. Canada CDA-AMC / CADTH reimbursement reviews**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 89
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q090
+
+**090. France Assurance Maladie Open Medic**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 90
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q091
+
+**091. Japan MHLW NDB Open Data**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 91
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q092
+
+**092. CNINFO mainland-China company disclosures**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 92
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q093
+
+**093. China NBS industrial production**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 93
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q094
+
+**094. China MIIT electronics and battery statistics**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 94
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q095
+
+**095. China NEA power statistics**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 95
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q096
+
+**096. China NHSA reimbursement and procurement**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 96
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q097
+
+**097. China MOFCOM export controls**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 97
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q098
+
+**098. South Korea FSS OpenDART**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id FROM optima_collected_data.observations WHERE source='south_korea_fss_opendart' LIMIT 1;
+```
+
+### q100
+
+**100. Taiwan TWSE/MOPS issuer and revenue archives**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 100
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q101
+
+**101. Taiwan customs trade statistics**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 101
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q102
+
+**102. India IBM mineral production**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 102
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q103
+
+**103. Indonesia ESDM and Geological Agency mineral statistics**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 103
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q104
+
+**104. Brazil ANM mineral yearbook**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 104
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q105
+
+**105. Brazil ANM CFEM mining royalties**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 105
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q106
+
+**106. Brazil MDIC Comex Stat API**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 106
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q107
+
+**107. Chile COCHILCO production and mining economics**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 107
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q108
+
+**108. Chile SERNAGEOMIN mining yearbooks**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 108
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q109
+
+**109. Chile SMA SNIFA environmental compliance**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 109
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q110
+
+**110. Peru MINEM mining bulletins and yearbooks**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 110
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q111
+
+**111. Argentina SIACAM mining indicators**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 111
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q112
+
+**112. Brazil ANM SIGMINE and Cadastro Mineiro**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 112
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q113
+
+**113. Peru INGEMMET GEOCATMIN**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 113
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q119
+
+**119. Eurostat Comext goods trade**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 119
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q120
+
+**120. Climate TRACE industrial assets and activity**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 120
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q122
+
+**122. OpenStreetMap / Overpass industrial facilities**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 122
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q123
+
+**123. Global Energy Monitor asset and ownership API**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 123
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q124
+
+**124. European Environment Agency industrial facilities**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 124
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q126
+
+**126. Brazil ABVE electric vehicle registrations**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 126
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q127
+
+**127. Brazil SENATRAN vehicle fleet**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 127
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q128
+
+**128. IEA Global EV Data Explorer and Outlook**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 128
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q129
+
+**129. FAOSTAT food balances**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 129
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q136
+
+**136. Y Combinator company directory and cohorts**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 136
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q137
+
+**137. Techstars portfolio and cohorts**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 137
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q138
+
+**138. 500 Global portfolio and cohorts**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 138
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q139
+
+**139. Antler early-stage portfolio**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 139
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q141
+
+**141. Wefunder and Republic crowdfunding campaigns**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 141
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q143
+
+**143. DataCite dissertations, datasets, software and usage**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id FROM optima_collected_data.observations WHERE source='datacite_dissertations_datasets_software_and_usage' LIMIT 1;
+```
+
+### q144
+
+**144. OpenAIRE Graph projects and research products**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 144
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q145
+
+**145. bioRxiv / medRxiv preprints**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id FROM optima_collected_data.observations WHERE source='biorxiv_medrxiv_preprints' LIMIT 1;
+```
+
+### q146
+
+**146. Open Science Framework projects and preregistrations**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 146
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q147
+
+**147. Zenodo research artifacts and usage**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id FROM optima_collected_data.observations WHERE source='zenodo_research_artifacts_and_usage' LIMIT 1;
+```
+
+### q148
+
+**148. Semantic Scholar citation context**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 148
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q149
+
+**149. France theses.fr doctoral theses**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 149
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q150
+
+**150. Brazil CAPES theses and dissertations**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 150
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q151
+
+**151. NSF research awards API**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id,ingested_at FROM optima_collected_data.observations WHERE source='nsf_awards' LIMIT 5;
+```
+
+### q152
+
+**152. European Commission CORDIS**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 152
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q154
+
+**154. Brazil FAPESP PIPE and grants**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 154
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q155
+
+**155. UKRI Gateway to Research**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 155
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+### q156
+
+**156. Hugging Face Hub models and datasets**
+
+Structured data preview. Workgroup: `optima-collected-data`.
+
+```sql
+SELECT source,dataset,record_id FROM optima_collected_data.observations WHERE source='hugging_face_hub_models_and_datasets' LIMIT 1;
+```
+
+### q158
+
+**158. University technology-transfer catalogs and reports**
+
+Artifact metadata only. Workgroup: `optima-regulatory-pilot`.
+
+```sql
+SELECT catalog_entry,source,mode,artifact_kind,retrieved_at,artifact_uri,bytes,sha256,scope_note
+FROM optima_regulatory_pilot.constellation_public_artifacts
+WHERE catalog_entry = 158
+ORDER BY retrieved_at DESC
+LIMIT 25;
+```
+
+## Earlier detailed native audit
+
+The following retained counts and windows belong to the morning audit, not this refresh. Current execution/visibility is given above.
+
+## Specialized Athena tables and important publication differences
+
+These queries were executed successfully during the earlier audit; row counts refer to these typed tables, rather than the versioned shared observations table.
+
+### market-range
+
+Workgroup: `optima-market-research`. Query ID: `dc47529c-5a17-43d7-9dd3-1fe1a1f32853`.
+
+```sql
+SELECT source,min(event_date) AS first_date,max(event_date) AS last_date,count(*) AS rows_since_2016 FROM optima_market_research.market_prices_windows WHERE event_date>='2016-01-01' GROUP BY source;
+```
+
+| source | first_date | last_date | rows_since_2016 |
+|---|---|---|---|
+| eodhd_market | 2021-01-04 | 2026-10-23 | 484172 |
+| hkex_prices | 2026-09-23 | 2026-09-23 | 17644 |
+
+### news-range
+
+Workgroup: `optima-news-research`. Query ID: `db0c20c7-763e-4853-8c70-f488b5f10e1c`.
+
+```sql
+SELECT source,min(published_at) AS first_date,max(published_at) AS last_date,count(*) AS rows_since_2016 FROM optima_news_research.news_articles_windows WHERE published_at>='2016-01-01' GROUP BY source;
+```
+
+| source | first_date | last_date | rows_since_2016 |
+|---|---|---|---|
+| marketaux | 2021-01-01T01:06:00+00:00 | 2026-10-11T23:55:20+00:00 | 15592 |
+| finlight | 2021-01-04T03:03:09+00:00 | 2026-10-16T23:58:56+00:00 | 8415 |
+
+### conference-range
+
+Workgroup: `optima-collected-data`. Query ID: `402cc715-b1e7-450c-a2fa-4db35866ed7c`.
+
+```sql
+SELECT min(publication_date) AS first_date,max(publication_date) AS last_date,count(*) AS rows_since_2016 FROM optima_conference_research.conference_observations_windows WHERE publication_date>='2016-01-01' AND publication_date<=CAST(CURRENT_DATE AS varchar);
+```
+
+| first_date | last_date | rows_since_2016 |
+|---|---|---|
+| 2016-01-01 | 2026-10-26 | 679325 |
+
+### global-patents-range
+
+Workgroup: `optima-patent-research`. Query ID: `948b6578-3d48-4c2f-95a3-71e7c0c1fe6d`.
+
+```sql
+SELECT min(publication_date) AS first_date,max(publication_date) AS last_date,count(*) AS rows_since_2016 FROM optima_patent_research.patent_backfill_publications WHERE publication_date>=DATE '2016-01-01';
+```
+
+| first_date | last_date | rows_since_2016 |
+|---|---|---|
+| 2021-01-01 | 2026-09-17 | 5296699 |
+
+### profile-count
+
+Workgroup: `optima-eodhd-research`. Query ID: `e7c182f0-250c-4047-a305-a8bcd09400bf`.
+
+```sql
+SELECT count(*) AS rows,min(ingested_at) AS first_capture,max(ingested_at) AS latest_capture FROM optima_eodhd_research.company_profiles;
+```
+
+| rows | first_capture | latest_capture |
+|---|---|---|
+| 9438 | 2026-09-18T16:00:29.934200Z | 2026-09-22T17:44:53.041840Z |
+
+### listing-count
+
+Workgroup: `optima-eodhd-research`. Query ID: `d1f16c51-ac71-421b-acfd-44361eaa4e49`.
+
+```sql
+SELECT count(*) AS rows,min(inventory_observed_at) AS first_capture,max(inventory_observed_at) AS latest_capture FROM optima_eodhd_research.listing_inventory;
+```
+
+| rows | first_capture | latest_capture |
+|---|---|---|
+| 141783 | 2026-09-22T16:32:56.507936Z | 2026-09-22T16:36:38.181517Z |
+
+### cms-editions
+
+Workgroup: `optima-collected-data`. Query ID: `43382141-42d7-4a0e-a451-4649f7d968d9`.
+
+```sql
+SELECT source,category,min(program_year) AS first_year,max(program_year) AS last_year,count(*) AS editions,sum(row_count) AS edition_rows FROM optima_collected_data.cms_financial_editions GROUP BY source,category;
+```
+
+| source | category | first_year | last_year | editions | edition_rows |
+|---|---|---|---|---|---|
+| cms_open_payments | ownership | 2021 | 2025 | 5 | 20245 |
+| cms_open_payments | research | 2021 | 2025 | 5 | 4747581 |
+| cms_drug_spending | quarterly | unknown | unknown | 2 | 29490 |
+| cms_open_payments | general | 2021 | 2025 | 5 | 71245399 |
+| cms_drug_spending | annual | unknown | unknown | 3 | 33846 |
+
+### cms-open-payments-count
+
+Workgroup: `optima-collected-data`. Query ID: `dd6828db-20e7-4d14-a564-0a4e9a18a9cb`.
+
+```sql
+SELECT edition_id,count(*) AS rows FROM optima_collected_data.cms_open_payments_rows GROUP BY edition_id;
+```
+
+**76,013,225 rows** across 15 edition partitions. Individual edition counts are preserved in the JSON evidence.
+
+### cms-drug-spending-count
+
+Workgroup: `optima-collected-data`. Query ID: `83b3ee6b-c9e8-46d0-b556-5b4638f997d0`.
+
+```sql
+SELECT edition_id,count(*) AS rows FROM optima_collected_data.cms_drug_spending_rows GROUP BY edition_id;
+```
+
+**63,336 rows** across 5 edition partitions. Individual edition counts are preserved in the JSON evidence.
+
+The CMS payments editions cover program years 2021–2025. Their catalog rows are not the underlying payments; the bulk row counts above come from live Athena queries. Drug-spending edition metadata lacks a program-year value, so a year span is not inferred. For raw row contents, filter one returned `edition_id` and select `row_json` from the matching bulk table with a small LIMIT.
+
+Profiles/listing typed tables are older curated subsets of the shared observation history. To inspect all captured versions, use Q002. Publication lag and version selection explain why typed-table counts differ from the shared receipt; the report does not treat them as interchangeable.
+
+## Expanded dataset breakdowns
+
+### 002. EOD Historical Data company profiles and listings
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `eodhd` / `company_profiles` | 142,558 | [2026-09-18, 2026-10-26) |
+| `eodhd` / `listing_inventory` | 1,014,811 | [2026-09-18, 2026-10-26) |
+
+### 009. Disclosure candidates (internal route)
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `disclosure_candidates` / `licensing_agreements` | 123 | [2021-01-04, 2026-10-09) |
+| `disclosure_candidates` / `ma_announcements` | 381 | [2021-01-04, 2026-10-15) |
+| `disclosure_candidates` / `press_releases` | 429 | [2021-01-04, 2026-10-15) |
+| `disclosure_candidates` / `strategic_transactions` | 461 | [2021-01-04, 2026-10-15) |
+
+### 024. NMPA trials
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `nmpa_trials` / `registry_inventory` | 28,854 | [2026-09-22, 2026-09-23) |
+| `nmpa_trials` / `research_records` | 36,343 | [2021-01-01, 2026-10-16) |
+
+### 038. NIH RePORTER grants
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `grant_entity_connections` / `specialist_inputs` | 11,862 | [2026-10-18, 2026-10-19) |
+| `grant_institution_links` / `specialist_inputs` | 11,862 | [2026-10-18, 2026-10-19) |
+| `grant_institutions` / `specialist_inputs` | 541 | [2026-10-18, 2026-10-19) |
+| `nih_grant_facts` / `specialist_inputs` | 11,862 | [2026-10-18, 2026-10-19) |
+| `nih_grant_lifecycles` / `specialist_inputs` | 1,166 | [2026-10-18, 2026-10-19) |
+| `nih_grant_publications` / `specialist_inputs` | 1,165 | [2026-10-18, 2026-10-19) |
+| `nih_reporter` / `specialist_inputs` | 28,773 | [2021-01-01, 2026-10-16) |
+
+### 040. USPTO Open Data Portal
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `uspto_odp` / `patent_assignment_records` | 23 | [2026-09-22, 2026-09-24) |
+| `uspto_odp` / `patent_records` | 6,740,076 | [2025-01-06, 2026-10-24) |
+
+### 045. NIST robotics methods
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `nist_robotics_documents` / `specialist_inputs` | 280 | [2026-10-18, 2026-10-23) |
+| `nist_robotics_methods` / `specialist_inputs` | 16 | [2026-10-09, 2026-10-24) |
+| `nist_robotics_product_matches` / `specialist_inputs` | 234 | [2026-10-18, 2026-10-20) |
+
+### 048. Federal Register
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `federal_register` / `specialist_inputs` | 2,946 | [2021-01-01, 2026-10-24) |
+| `federal_register_documents` / `specialist_inputs` | 567 | [2022-02-01, 2026-10-24) |
+
+### 049. Trade screening lists
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `trade_screening` / `specialist_inputs` | 392,054 | [2026-10-09, 2026-10-24) |
+| `trade_screening_enriched` / `specialist_inputs` | 52,308 | [2026-10-18, 2026-10-20) |
+
+### 052. Department of Energy storage program
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `doe_storage_benchmarks` / `specialist_inputs` | 247 | [2026-10-18, 2026-10-19) |
+| `doe_storage_documents` / `specialist_inputs` | 335 | [2026-10-18, 2026-10-19) |
+| `doe_storage_funding` / `specialist_inputs` | 214 | [2026-10-18, 2026-10-19) |
+| `doe_storage_program` / `specialist_inputs` | 17 | [2026-10-09, 2026-10-24) |
+
+### 056. California ISO prices
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `caiso_ancillary_prices` / `specialist_inputs` | 71,042 | [2021-01-01, 2026-10-21) |
+| `caiso_archive_inventory` / `specialist_inputs` | 1,270 | [2021-01-01, 2026-10-21) |
+| `caiso_price_intervals` / `specialist_inputs` | 102,848 | [2021-01-01, 2026-10-21) |
+| `caiso_prices` / `specialist_inputs` | 10,080 | [2023-07-01, 2026-10-24) |
+| `caiso_storage_indicators` / `specialist_inputs` | 1,526 | [2021-01-01, 2026-10-21) |
+
+### 061. Bluesky posts (paused)
+
+| Stored source / dataset | Distinct-batch row occurrences | Captured requested windows, end exclusive |
+|---|---:|---|
+| `bluesky_company_accounts` / `specialist_inputs` | 13 | [2026-10-21, 2026-10-22) |
+| `bluesky_search` / `social_records` | 1,040 | [2026-09-23, 2026-10-05) |
+
+
+
+## Evidence, limits and gap policy
+
+- Current queue/S3/Athena reads: `2026-10-26T20:22:59.865479+00:00` through `2026-10-26T20:25:06.278577+00:00` UTC. Evidence: [current-source-evidence.json](data-collection-processing/constellation/status/current-source-evidence.json).
+- Public states snapshot: **2026-10-26 21:24:43 CET**; [public-source-rollout-2026-10-26.md](public-source-rollout-2026-10-26.md).
+- Prior native final-manifest audit and baseline row counts: [native-manifest-audit.json](data-collection-processing/constellation/status/native-manifest-audit.json). Earlier publication counts are not current totals.
+- Fresh bounded Athena preview query IDs/results and artifact inventory query ID are in the current evidence file. A successful preview proves visibility of a sample only.
+- Key fields/status: [apiKeyRegister.md](apiKeyRegister.md); earlier credential-presence and endpoint probes are retained under `data-collection-processing/constellation/expansion/`. Key presence is not retested by printing or exposing secrets.
+- Resize/worker limits: [resize record](data-collection-processing/constellation/expansion/resize-2026-10-26.md). Resource samples are short observations, not a sustained benchmark.
+
+**Gap rule:** record every verified dated gap. Flag gaps **longer than five days** in the existing 24-hour checkup email; gaps of five days or less are record-only. Unprocessed backlog, healthy pagination and unverified date coverage are not classified as proven gaps.

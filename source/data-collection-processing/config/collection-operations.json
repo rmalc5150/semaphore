@@ -37,14 +37,17 @@
   "sectors": [],
   "separate_jobs": {
     "eodhd": "optima-eodhd-profiles.timer",
-    "nmpa": "optima-nmpa-inventory.timer"
+    "nmpa": "worker:optima-nmpa-resumed-inventory.timer",
+    "chictr": "optima-chictr-daily.timer",
+    "nmpa-details": "worker:optima-nmpa-resumed-details.timer",
+    "conferences": "worker:optima-crossref-resumed.timer (daily + historical); controller:optima-crossref-publication-resumed.timer",
+    "cms-payments": "worker:optima-cms-payments-resumed.timer (catalog daily); controller:optima-cms-catalog-publication.timer; controller:optima-cms-financial-resumed.timer (file continuation + daily discovery)",
+    "fda-reviewed": "worker:optima-fda-reviewed-capture.timer (four daily FDA feeds); controller:optima-fda-product-codes-capture.timer; controller:optima-fda-reviewed-publication.timer; existing isolated historical routes remain enabled"
   },
   "not_scheduled": {
-    "chictr": "Available with --only chictr; dedicated reconciliation schedule pending.",
     "patents": "Nine patent Athena tables verified. Universe 0.3 adds four registry-backed legal entities and four receipt/underlying relationships; two display-sector decisions remain pending. Broader identity/ownership resolution, current global feed and patent scheduling pending. See PATENT_ATHENA.md and COMPANY_UNIVERSE.md.",
     "news": "Shared historical/daily migration pending.",
     "market-prices": "Shared historical/daily migration pending.",
-    "people-movements": "Shared historical/daily migration pending.",
-    "conferences": "Shared historical/daily migration pending."
+    "people-movements": "Shared historical/daily migration pending."
   }
 }

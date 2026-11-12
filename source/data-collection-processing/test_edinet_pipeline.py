@@ -29,6 +29,16 @@ def metadata(n=1):
 
 
 class Tests(unittest.TestCase):
+    def test_archive_limits_are_enforced_before_member_read(self):
+        raw = bundle({'large.txt': b'12345'})
+        with patch.object(e, 'MAX_MEMBER_BYTES', 4):
+            with self.assertRaisesRegex(SourceIssue, 'edinet_zip_expansion_limit'):
+                e.extract(raw, '1')
+        with patch.object(e, 'MAX_EXPANDED_BYTES', 4):
+            with self.assertRaisesRegex(SourceIssue, 'edinet_zip_expansion_limit'):
+                e.extract(raw, '1')
+        self.assertEqual(e.extract(raw, '1')['files'][0]['text'], '12345')
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

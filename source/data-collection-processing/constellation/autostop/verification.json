@@ -1,0 +1,12 @@
+{
+  "verified_at": "2026-10-26T21:09:43.054969+00:00",
+  "autostop_timer": "enabled",
+  "timer_active": "active",
+  "worker_state": "running",
+  "worker_type": "m7i.large",
+  "last_status": "work_remains",
+  "failure_count": 1125,
+  "healthy_routes_remaining": 23,
+  "tests_passed": 63,
+  "daily_timer": "active"
+}

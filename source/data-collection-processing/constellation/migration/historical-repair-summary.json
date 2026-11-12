@@ -1,0 +1,9 @@
+{
+  "date":"2026-11-11",
+  "nsf_repair":{"sortKey":"awardNumber","initial_offset":0,"live_pilot_unique_awards":75,"provider_total":75,"pages":3,"proof_key":"research-data/constellation-backfill/repairs/nsf-stable-sort-pilot.json"},
+  "requeued":{"nsf_awards":400,"biorxiv_medrxiv":164,"ema_interrupted":24,"edinet_interrupted":20,"hugging_face_interrupted":16,"ted_interrupted":44,"arxiv_timeout_throttling":11,"total":679},
+  "latest_queue":{"pending":681,"running":7,"succeeded":124730,"blocked":181},
+  "prior_failure_archives":["research-data/constellation-backfill/repairs/requeue-369695960bde4c35abb3febb93013b70.json","research-data/constellation-backfill/repairs/arxiv-transient-297267c9156742f09223e5cb1986abb3.json"],
+  "requires_iam_administrator":{"action":"Add s3:GetObject and s3:PutObject permission for Federal Register discovered-job evidence","resource":"arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/federal-register/discovered-jobs/*","blocked_jobs":141,"controller_api_denial":"iam:CreatePolicyVersion"},
+  "limits":"Retried is not completed. Provider budgets, source pauses, checkpoint validation and duplicate guards remain enabled. NSF live pilot verified raw pagination, not Athena publication."
+}

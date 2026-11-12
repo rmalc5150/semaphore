@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue source-isolated grants/procurement capture
+[Timer]
+OnBootSec=300
+OnUnitInactiveSec=300
+Persistent=true
+Unit=optima-grants-reviewed-capture.service
+[Install]
+WantedBy=timers.target

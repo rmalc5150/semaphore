@@ -17,6 +17,30 @@ from regulatory_collection import CompanyMatcher, EvidenceClient, SourceIssue, r
 from research_contract import ROOT, digest, load_json
 
 
+def committed_profile_symbols(store,key,inventory):
+    """Use an exact completed task roster for planning; never for publication.
+
+    Partial runs still require verified committed rows. Publication independently
+    verifies every raw record and evidence object through read_inputs.
+    """
+    obj=store.get(key);require(obj is not None,'profile_manifest_missing')
+    manifest=json.loads(obj.body);task=manifest.get('task',{});symbols=task.get('scope',{}).get('symbols')
+    require(task.get('source')=='eodhd' and task.get('dataset')=='company_profiles','profile_scope_mismatch')
+    require(all(task.get(k)==inventory['task'][k] for k in ('universe_hash','taxonomy_hash')),'profile_configuration_mismatch')
+    if manifest.get('status')=='complete' and isinstance(symbols,list):
+        require(manifest.get('exhausted') and len(symbols)==len(set(symbols))==manifest['record_count']==manifest['expected_records'],
+                'completed_profile_roster_count_mismatch')
+        require(sum(p['record_count'] for p in manifest['pages'])==len(symbols),'profile_page_count_mismatch')
+        task_id='task_'+digest(task);head_obj=store.get('checkpoints/'+task_id+'/head.json')
+        require(head_obj is not None,'profile_checkpoint_missing')
+        head=json.loads(head_obj.body)
+        require(manifest['task_id']==task_id and head['task']==task and key in head['terminal_history'],'profile_manifest_not_committed')
+        require(all(valid_symbol(symbol) for symbol in symbols),'invalid_profile_roster_symbol')
+        return manifest,set(symbols)
+    manifest,rows=read_records(store,key,'company_profiles')
+    return manifest,{r['payload']['provider_symbol'] for r in rows}
+
+
 def make_plan(store,inventory_key,profile_keys,limit,config):
     require(isinstance(limit,int) and limit>0,'invalid_cohort_limit')
     buckets=defaultdict(set)
@@ -26,9 +50,13 @@ def make_plan(store,inventory_key,profile_keys,limit,config):
     require(inventory['status']=='complete','inventory_not_complete')
     reused=set();inputs=[]
     for key in sorted(set(profile_keys)):
-        manifest,rows=read_records(store,key,'company_profiles')
-        require(all(manifest['task'][k]==inventory['task'][k] for k in ('universe_hash','taxonomy_hash')),'profile_configuration_mismatch')
-        reused.update(r['payload']['provider_symbol'] for r in rows)
+        if config.get('planning_use_committed_rosters'):
+            manifest,symbols_seen=committed_profile_symbols(store,key,inventory)
+            reused.update(symbols_seen)
+        else:
+            manifest,rows=read_records(store,key,'company_profiles')
+            require(all(manifest['task'][k]==inventory['task'][k] for k in ('universe_hash','taxonomy_hash')),'profile_configuration_mismatch')
+            reused.update(r['payload']['provider_symbol'] for r in rows)
         inputs.append({'key':key,'sha256':hashlib.sha256(store.get(key).body).hexdigest()})
     all_symbols=set().union(*buckets.values())
     queues=[deque(sorted(values-reused)) for _,values in sorted(buckets.items())]

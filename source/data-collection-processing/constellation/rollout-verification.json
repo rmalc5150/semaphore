@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-26T05:56:55.196118+00:00",
+  "targeted_regression_tests_passed": 59,
+  "control": {
+    "singleton": 1,
+    "enabled": false,
+    "pilot_job_ids": [],
+    "stop_after_epoch": 1794720993
+  },
+  "pilot_jobs": [
+    {
+      "source_key": "usgs_earthquakes",
+      "status": "succeeded",
+      "attempts": 1
+    },
+    {
+      "source_key": "nsf_awards",
+      "status": "succeeded",
+      "attempts": 1
+    },
+    {
+      "source_key": "arxiv",
+      "status": "succeeded",
+      "attempts": 1
+    }
+  ],
+  "full_test_suite_claimed": false,
+  "legacy_pubmed_fixture_failures": 2
+}

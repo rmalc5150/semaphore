@@ -1,0 +1,8 @@
+[Unit]
+Description=Continue bounded DrugsFDA inventory
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=120
+Unit=optima-drugsfda-inventory.service
+[Install]
+WantedBy=timers.target

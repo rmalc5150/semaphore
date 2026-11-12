@@ -1,0 +1,15 @@
+from research_helpers import *
+a=ev('https://www.lithionbattery.com/wp-content/uploads/2019/12/Valence-Module-Range-210623.pdf','2021 module-range table documents seven additional historical models. Not assumed current availability or updated specifications.')
+b=ev('https://cdn.sanity.io/files/r2kqk28y/staging/869ed1551782717a62da0a3753328b95beb746d8.pdf','Current resources link to March 2021 datasheet naming four U-BMS variants and exact part numbers; current active availability unresolved.')
+c=ev('https://www.lithionbattery.com/wp-content/uploads/2019/12/Valence-BMS-MH-Datasheet-210623.pdf','Historical U-BMS-MH variant; battery system ratings not module voltages.')
+d=ev('https://cdn.sanity.io/files/r2kqk28y/staging/e243808630704ae0f9a0794c9c742b0abf3ce641.pdf','CANbus monitoring kit part number 1005931; 2021 document remains linked in current resources.')
+e=ev('https://cdn.sanity.io/files/r2kqk28y/staging/cdb7cb086779ca67ba00a08e258887de44a3a75b.pdf','Named U-BMS Starter Kit; image-only contents not inferred.')
+f=ev('https://www.lithionbattery.com/valence/downloads','Current public resources provenance for legacy datasheets; not evidence all legacy models are actively sold.')
+products=[]
+for name in ['U1-12XP','UEV-18XP','U24-24XP','U27-24XP','P40-24','U1-12RJ','U1-12BMS']:products.append(p(name,'Historical Valence battery module; current availability unresolved.',a,typ='product',sector='energy_storage',sub='batteries'))
+for name,sku in [('U-BMS-LV','1004443'),('U-BMS-LVM','1007427'),('U-BMS-HV','1004440'),('U-BMS-SHV','1004437')]:products.append(p(name,'Valence battery management controller variant.',b,typ='product',sector='energy_storage',sub='batteries',attributes={'manufacturer_sku':sku},evidence=[b,f]))
+products.append(p('U-BMS-MH','Historical Valence battery management controller variant.',c,typ='product',sector='energy_storage',sub='batteries',attributes={'manufacturer_sku':'1007833'}))
+products.append(p('Valence CANbus Monitoring Kit','Battery-system monitoring software and communications kit.',d,typ='product',sector='energy_storage',sub='batteries',attributes={'manufacturer_sku':'1005931'},evidence=[d,f]))
+products.append(p('Valence U-BMS Starter Kit','Battery-management starter kit; detailed contents unresolved.',e,typ='product',sector='energy_storage',sub='batteries',evidence=[e,f]))
+co=dict(company_id='cmp_2b03ae6c-ada3-4678-b2d4-9241285f49e0',products=products,evidence=[a,b,c,d,e,f],status='partial',coverage_note='Fourteen further historically documented module/controller/toolkit identities, 22 total. Five distinct U-BMS variants preserved; voltage-range categories not confused with battery-module ratings. Historical 2021 U24 capacity differs from current product page; older table not used to overwrite current data. Partial: older RT/Saphion/custom-product archives and current availability of legacy models unresolved; no phantom individual custom customer packs.')
+(out/'batch-0343.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

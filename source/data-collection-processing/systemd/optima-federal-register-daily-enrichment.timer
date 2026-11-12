@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume S51 parent-discovered full-notice evidence capture
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=optima-federal-register-daily-enrichment.service
+
+[Install]
+WantedBy=timers.target

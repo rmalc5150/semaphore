@@ -1,0 +1,9 @@
+[Unit]
+Description=Prepare isolated historical RAM workspaces
+
+[Service]
+Type=oneshot
+User=ec2-user
+ExecStart=/usr/bin/mkdir -p /dev/shm/constellation-legacy
+RemainAfterExit=yes
+UMask=0077

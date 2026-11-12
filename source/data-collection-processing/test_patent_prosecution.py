@@ -94,6 +94,52 @@ class Tests(unittest.TestCase):
         self.assertTrue(self.store.get(d['documents'][0]['key']).body.startswith(b'%PDF'))
         self.assertEqual(validate_record(row,self.universe),[])
 
+    def test_owner_exception_keeps_metadata_and_does_not_request_documents(self):
+        c = FakeClient(self.store, [action(patentApplicationNumber=['16545140'])])
+        def forbidden(*args, **kwargs):
+            raise AssertionError('Excluded document endpoint called')
+        c.documents = forbidden
+        r = self.collect(c)
+        self.assertEqual(r['status'], 'complete')
+        row = self.records(r)[0]
+        self.assertEqual(row['payload']['data']['document_retrieval_status'], 'excluded_by_owner')
+        self.assertEqual(row['payload']['data']['documents'], [])
+        self.assertEqual(row['payload']['data']['document_exception']['application_number'], '16545140')
+        self.assertEqual(validate_record(row, self.universe), [])
+        self.assertTrue(any(e.get('evidence_type') == 'owner_authorized_exception' for e in row['payload']['source_evidence']))
+
+    def test_document_exception_does_not_skip_other_documents_in_same_application(self):
+        c = FakeClient(self.store, [action(patentApplicationNumber=['35526479'], obsoleteDocumentIdentifier=['MMOWZII4X158X88'])])
+        def denied(*args):
+            raise p.SourceIssue('source_http_403', False)
+        c.documents = denied
+        r = self.collect(c)
+        self.assertEqual(r['status'], 'complete')
+        data = self.records(r)[0]['payload']['data']
+        self.assertEqual(data['document_retrieval_status'], 'excluded_by_owner')
+        self.assertEqual(data['documents'], [])
+        invalid = self.records(r)[0]
+        invalid['payload']['data']['official_document_id'] = 'OTHERDOCUMENT'
+        self.assertTrue(any('prosecution payload' in e for e in validate_record(invalid, self.universe)))
+        other = action(1, patentApplicationNumber=['35526479'], obsoleteDocumentIdentifier=['OTHERDOCUMENT'])
+        with self.assertRaises(p.SourceIssue):
+            p.enrich(c, p.DATASETS[0], other, p.normalize(p.DATASETS[0], other))
+
+    def test_exception_is_revocable_and_other_applications_still_fail(self):
+        from unittest.mock import patch
+        c = FakeClient(self.store, [action(patentApplicationNumber=['16545140'])])
+        row = c.rows[0]; data = p.normalize(p.DATASETS[0], row)
+        self.assertEqual(p.enrich(c, p.DATASETS[0], row, data)['status'], 'excluded_by_owner')
+        def denied(*args):
+            raise p.SourceIssue('source_http_403', False)
+        c.documents = denied
+        with patch.object(p, 'load_json', return_value={'schema_version': 1, 'exceptions': []}):
+            with self.assertRaises(p.SourceIssue):
+                p.enrich(c, p.DATASETS[0], row, data)
+        other = action(1)
+        with self.assertRaises(p.SourceIssue):
+            p.enrich(c, p.DATASETS[0], other, p.normalize(p.DATASETS[0], other))
+
     def test_partial_resume_and_completed_skip(self):
         c=FakeClient(self.store,[action(0),action(1),action(2)])
         first=self.collect(c,max_pages=1); self.assertEqual(first['status'],'partial')
@@ -180,6 +226,15 @@ class Tests(unittest.TestCase):
         def missing(req,timeout):raise HTTPError(req.full_url,404,'missing',{},io.BytesIO(b'{}'))
         c.opener=missing
         with self.assertRaises(p.SourceIssue):c.search(p.DATASETS[1],'query',0,1)
+
+    def test_access_diagnostics_exclude_secrets_and_query(self):
+        def denied(req,timeout):
+            raise HTTPError(req.full_url,403,'denied',{},io.BytesIO(b'private response'))
+        c=p.Client(self.store,key_loader=lambda:'secret-key',opener=denied,gate=lambda:None)
+        with self.assertRaises(p.SourceIssue) as caught:
+            c.request(p.OA_PATH+'/records?signature=private')
+        self.assertEqual(caught.exception.diagnostics,{'host':'api.uspto.gov',
+            'path':p.OA_PATH+'/records','http_status':403,'operation':'metadata'})
 
     def test_pdf_redirect_strips_credentials_and_does_not_save_signed_url(self):
         calls=[]

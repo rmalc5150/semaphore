@@ -1,0 +1,159 @@
+{
+  "verified_at": "2026-10-26T07:22:29.278376+00:00",
+  "collection_enabled": false,
+  "pilot_allowlist_empty": true,
+  "active_jobs": 0,
+  "registry_entries": 158,
+  "optima_timer_count": 74,
+  "enabled_optima_timers": 0,
+  "worker_deployment": "Success",
+  "worker_services_and_hashes": "active\nactive\nactive\n8a3eb917088ad5a8fd4b43b3520c3398b7310745ed316b0d98075b223c4d2113  /opt/constellation/constellation/legacy_worker.py\n72d03395f2d3220a7ad191a57a3f9333e724aeb483b72e5db8cc9e1ec021aad0  /opt/constellation/config/constellation-legacy-routes.json\n",
+  "approved_artifact_policy_matches": true,
+  "routes": [
+    {
+      "unit": "optima-authenticated-historical.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-bls-enrichment-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-caiso-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-cms-financial-collection.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-core-historical.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-doe-storage-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-edinet-document-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-eia-enrichment-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-federal-register-enrichment-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-finlight-content-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-grant-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-hkex-document-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-marketaux-content-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-mlperf-enrichment-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-nist-robotics-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-nmpa-enrichment.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-patents-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-people-content-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-pubmed-enrichment-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-regulatory-enrichment-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-s11-content-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-specialist-historical.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-ted-enrichment-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-usgs-minerals-backfill.service",
+      "kind": "historical_only",
+      "verified": true
+    },
+    {
+      "unit": "optima-market-collection-historical.service",
+      "kind": "split_historical",
+      "verified": true
+    },
+    {
+      "unit": "optima-news-collection-historical.service",
+      "kind": "split_historical",
+      "verified": true
+    },
+    {
+      "unit": "optima-conference-collection-historical.service",
+      "kind": "split_historical",
+      "verified": true
+    },
+    {
+      "unit": "optima-people-collection-historical.service",
+      "kind": "split_historical",
+      "verified": true
+    },
+    {
+      "unit": "optima-patents-prosecution-historical.service",
+      "kind": "split_historical",
+      "verified": true
+    }
+  ]
+}

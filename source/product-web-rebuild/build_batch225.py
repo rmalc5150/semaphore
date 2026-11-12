@@ -1,0 +1,5 @@
+from research_helpers import *
+a=ev('https://airiq.com/products/','Reviewed current public catalogue: vehicle cameras, GPS trackers, telematics, locks, cargo sensors and worker safety devices. Battery-powered trackers are tracking products rather than battery storage products.')
+b=ev('https://www.airiq.com/solutions/','Current application catalogue describes fleet location, video safety, asset tracking and compliance. No explicit robotic autonomy or four-sector product offering identified.')
+co=dict(company_id='cmp_09849fd2-5642-4f5c-aceb-b68f71f7fb95',products=[],evidence=[a,b],status='complete',coverage_note='Completed current public product/solution catalogue relevance review. No products explicitly within biotechnology, robotics, semiconductor products/materials/equipment, or energy storage found. GPS tracking and driver-assistance telematics not treated as autonomous robotics, and batteries powering trackers not standalone energy storage offerings. Company eligibility flags unchanged.')
+(out/'batch-0225.json').write_text(json.dumps({'companies':[co]},indent=2));print(0)

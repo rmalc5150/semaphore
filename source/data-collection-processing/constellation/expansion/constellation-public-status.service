@@ -1,0 +1,15 @@
+[Unit]
+Description=Refresh the public-source Markdown collection ledger
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B -m constellation.public_status
+Environment=CONSTELLATION_ROLE=controller
+Environment=PYTHONDONTWRITEBYTECODE=1
+MemoryMax=256M
+CPUQuota=20%
+Nice=15
+TimeoutStartSec=3min

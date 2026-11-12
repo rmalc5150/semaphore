@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Collect DOI-registered proceedings with bounded, auditable daily windows."""
+from historical_policy import historical_start
 from datetime import date, datetime, timedelta, timezone
 import fcntl
+import argparse
 import json
+import os
 from urllib.parse import quote
 
 from collection_operations import load_stored
@@ -25,23 +28,42 @@ def publication(row):
     return {'value': date(*parts).isoformat(), 'precision': 'day', 'source_timezone': None}
 
 
-def collect(store, settings, universe, taxonomy, start, end, mode, client=None, max_pages=240, rows=500):
+def recent_cursor(store,head):
+    if not head or not head.get('terminal_manifest') or not head.get('cursor'):return False
+    prior,_=load_stored(store,head['terminal_manifest'])
+    if not prior or prior.get('reason_code')not in ('conference_page_budget','collection_error'):return False
+    try:elapsed=(datetime.now(timezone.utc)-datetime.fromisoformat(prior['finished_at'].replace('Z','+00:00'))).total_seconds()
+    except (KeyError,ValueError,TypeError):return False
+    return 0<=elapsed<180
+
+def collect(store, settings, universe, taxonomy, start, end, mode, client=None, max_pages=240, rows=500,resume_recent_cursor=False):
     require(end == start + timedelta(days=1), 'conference_requires_single_day_window')
-    require(start >= date(2021, 1, 1), 'conference_before_historical_floor')
+    require(start >= historical_start(), 'conference_before_historical_floor')
     basis = 'pub' if mode == 'historical' else 'update'
     scope = {'type': 'proceedings-article', 'date_filter': basis, 'selection': 'all', 'rows': rows}
     spec = task_spec(SOURCE, 'conference_records', mode, instant(start), instant(end), scope, VERSION, universe, taxonomy)
     head, _ = load_stored(store, 'checkpoints/task_' + digest(spec) + '/head.json')
-    # Crossref cursors are temporary. Restart an unfinished single-day query from
-    # its beginning; immutable earlier attempts remain available for inspection.
+    # Short worker continuations can retain a recent cursor. Old/invalid
+    # cursors restart safely, preserving earlier immutable attempts.
+    resume=bool(resume_recent_cursor and recent_cursor(store,head))
     try:
         run = CollectionRun.start(store, spec, universe, taxonomy, settings,
-            refresh=bool(head and head['status'] != 'complete'))
+            resume=resume,refresh=bool(head and head['status'] != 'complete'and not resume))
     except AlreadyComplete as exc:
         return {'status': 'complete', 'manifest': str(exc), 'already_complete': True}
     client = client or EvidenceClient(store, SOURCE)
-    seen, cursor, total = set(), '*', None
+    seen, cursor, total = set(), run.cursor or '*', None
     try:
+        if resume:
+            for page in run.state['pages']:
+                for batch in page['batches']:
+                    for line in store.get(batch['key']).body.splitlines():
+                        prior=json.loads(line);seen.add(prior['source_record_id'])
+                        if total is None:
+                            ref=prior['payload']['source_evidence'][0]
+                            original=json.loads(store.get(ref['key']).body)
+                            total=original['message']['total-results']
+            require(len(seen)==run.state['record_count'],'conference_resume_identity_count_mismatch')
         for _ in range(max_pages):
             params = {'filter': f'type:proceedings-article,from-{basis}-date:{start},until-{basis}-date:{start}',
                 'rows': rows, 'cursor': cursor, 'mailto': 'support@optima-holdings.com'}
@@ -88,19 +110,20 @@ def collect(store, settings, universe, taxonomy, start, end, mode, client=None, 
         return finish_error(run, exc, client.evidence)
 
 
-def advance(store, settings, universe, taxonomy, mode, origin, end):
+def advance(store, settings, universe, taxonomy, mode, origin, end, max_pages=240,resume_recent_cursor=False):
     identity = digest({'version': VERSION, 'daily_filter': 'update', 'universe': digest(universe), 'taxonomy': digest(taxonomy),
                        'mode': mode, 'origin': str(origin)})
-    key = f'operations/conferences/progress/{identity}.json'
+    operation_prefix=os.environ.get('CONSTELLATION_CONFERENCE_OPERATION_PREFIX','operations/conferences').rstrip('/')
+    key = f'{operation_prefix}/progress/{identity}.json'
     state, token = load_stored(store, key)
     day = date.fromisoformat(state['next_date']) if state else origin
     if day >= end:
         return {'status': 'caught_up', 'mode': mode, 'next_date': str(day)}
-    result = collect(store, settings, universe, taxonomy, day, day + timedelta(days=1), mode)
+    result = collect(store, settings, universe, taxonomy, day, day + timedelta(days=1), mode,max_pages=max_pages,resume_recent_cursor=resume_recent_cursor)
     if result['status'] == 'complete':
         manifest, _ = load_stored(store, result['manifest'])
         wid = digest(manifest['task'])
-        queue_key = f'operations/conferences/publication-queue/{wid}.json'
+        queue_key = f'{operation_prefix}/publication-queue/{wid}.json'
         previous, queue_token = load_stored(store, queue_key)
         if not previous or previous['manifests'] != [result['manifest']]:
             write_json(store, queue_key, {'window_id': wid, 'manifests': [result['manifest']], 'queued_at': now()}, queue_token)
@@ -108,7 +131,10 @@ def advance(store, settings, universe, taxonomy, mode, origin, end):
     return {**result, 'mode': mode, 'day': str(day)}
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--mode', choices=['daily','historical','all'], default='all')
+    args = parser.parse_args(argv)
     with (ROOT / '.conference-collection.lock').open('a') as lock:
         try:
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -120,8 +146,11 @@ def main():
         taxonomy = load_json(ROOT / 'config/sectors.v1.json')
         today = datetime.now(timezone.utc).date()
         origin = date(2026, 9, 23)
-        results = [advance(store, settings, universe, taxonomy, 'daily', origin, today),
-                   advance(store, settings, universe, taxonomy, 'historical', date(2021, 1, 1), origin)]
+        results = []
+        if args.mode in ('daily','all'):
+            results.append(advance(store, settings, universe, taxonomy, 'daily', origin, today))
+        if args.mode in ('historical','all'):
+            results.append(advance(store, settings, universe, taxonomy, 'historical', historical_start(), origin))
         print(json.dumps(results), flush=True)
         return int(any(r['status'] not in {'complete', 'caught_up'} for r in results))
 

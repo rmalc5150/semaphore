@@ -1,0 +1,14 @@
+[
+  {
+    "filename": "pmda-sakigake.pdf",
+    "source_url": "https://www.pmda.go.jp/files/000235895.pdf",
+    "sha256": "bac77cbd4c35884559812da0c9aed16b07ca3e1b2b55aed8789c7d27e37d6c49",
+    "retrieved_date": "2026-10-16"
+  },
+  {
+    "filename": "spexotras-spc.pdf",
+    "source_url": "https://mhraproducts4853.blob.core.windows.net/docs/11f2c2fe87e16fe71f278a6a75f581e52b942ce1",
+    "sha256": "c1e84efdea71c29575ff13fb977dc3b25799dc16152603168327c723c4573622",
+    "retrieved_date": "2026-10-16"
+  }
+]

@@ -156,7 +156,12 @@ def parse_feed(payload: bytes, source: str) -> list[dict[str, Any]]:
                 if node.tag.rsplit("}", 1)[-1] == "link" and node.attrib.get("href"):
                     link = node.attrib["href"]
                     break
+        full = next((node for node in entry.iter() if
+            (node.tag == '{http://purl.org/rss/1.0/modules/content/}encoded' or
+             node.tag == '{http://www.w3.org/2005/Atom}content')), None)
+        feed_content = (''.join(full.itertext()) if full is not None else '')
         records.append({
+            **({'feed_content': feed_content} if feed_content else {}),
             "source": source,
             "title": child_text(entry, ("title",)),
             "text": child_text(entry, ("description", "summary", "content")),

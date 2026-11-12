@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue optima-patents-reviewed-odp
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=900
+Persistent=true
+Unit=optima-patents-reviewed-odp.service
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,17 @@
+{
+  "job_id": "usgs-minerals-backfill-2026-10-18",
+  "window_start": "2021-01-01T00:00:00Z",
+  "snapshot_cutoff": "2026-10-18T10:56:58.957916Z",
+  "inventory_file": "reports/usgs-minerals-backfill-2026-10-18/input-batches.json",
+  "inventory_sha256": "c1b1eede856d62faa87297a3dd4105b0d508239ff35bd933f17e633a59135fa7",
+  "storage_config": "config/collection-storage.s3.json",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "max_batches_per_invocation": 100,
+  "max_versions_per_invocation": 30,
+  "max_attempts": 3,
+  "retry_minutes": 30,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Re-parse every saved S53 PDF version in the pinned inventory in full, preserving original pages, evidence and dates. Geometry-checked statistics retain units, scale, estimate/withheld markers, footnotes, stockpile/tariff context. Compare available saved prior editions or explicitly label current prior-edition retrieval, extract source-attributed developments and application/asset candidates, and read-only current RDS mentions. Legacy page rows share report_version_id and must be deduplicated for report/event analysis. Email after processing every pinned version and exact Athena job counts verified, including gaps and unresolved exposure. No registry writes, historical availability promotion or specialist scoring."
+}

@@ -1,0 +1,86 @@
+{
+  "optima-edinet-documents-daily.service": {
+    "MainPID": "0",
+    "Result": "signal",
+    "ExecMainStartTimestampMonotonic": "1123705537828",
+    "ExecMainExitTimestampMonotonic": "1126897150351",
+    "ExecMainStatus": "2",
+    "ControlGroup": "",
+    "ActiveState": "failed",
+    "SubState": "failed",
+    "UnitFileState": "static",
+    "ActiveEnterTimestampMonotonic": "0"
+  },
+  "optima-eodhd-profiles.service": {
+    "MainPID": "0",
+    "Result": "signal",
+    "ExecMainStartTimestampMonotonic": "1125176260415",
+    "ExecMainExitTimestampMonotonic": "1126897005317",
+    "ExecMainStatus": "2",
+    "ControlGroup": "",
+    "ActiveState": "failed",
+    "SubState": "failed",
+    "UnitFileState": "static",
+    "ActiveEnterTimestampMonotonic": "0"
+  },
+  "optima-patents-daily.service": {
+    "MainPID": "0",
+    "Result": "signal",
+    "ExecMainStartTimestampMonotonic": "1124975430129",
+    "ExecMainExitTimestampMonotonic": "1126897025400",
+    "ExecMainStatus": "2",
+    "ControlGroup": "",
+    "ActiveState": "failed",
+    "SubState": "failed",
+    "UnitFileState": "static",
+    "ActiveEnterTimestampMonotonic": "0"
+  },
+  "optima-patents-prosecution.service": {
+    "MainPID": "0",
+    "Result": "signal",
+    "ExecMainStartTimestampMonotonic": "1124988170213",
+    "ExecMainExitTimestampMonotonic": "1126897047675",
+    "ExecMainStatus": "2",
+    "ControlGroup": "",
+    "ActiveState": "failed",
+    "SubState": "failed",
+    "UnitFileState": "static",
+    "ActiveEnterTimestampMonotonic": "0"
+  },
+  "optima-assignments-reviewed-daily.service": {
+    "MainPID": "0",
+    "Result": "success",
+    "ExecMainStartTimestampMonotonic": "1126639823791",
+    "ExecMainExitTimestampMonotonic": "1126645394547",
+    "ExecMainStatus": "0",
+    "ControlGroup": "",
+    "ActiveState": "inactive",
+    "SubState": "dead",
+    "UnitFileState": "static",
+    "ActiveEnterTimestampMonotonic": "0"
+  },
+  "optima-assignments-reviewed-historical.service": {
+    "MainPID": "0",
+    "Result": "success",
+    "ExecMainStartTimestampMonotonic": "1126615580253",
+    "ExecMainExitTimestampMonotonic": "1126620027087",
+    "ExecMainStatus": "0",
+    "ControlGroup": "",
+    "ActiveState": "inactive",
+    "SubState": "dead",
+    "UnitFileState": "static",
+    "ActiveEnterTimestampMonotonic": "0"
+  },
+  "optima-authenticated-daily.service": {
+    "MainPID": "0",
+    "Result": "signal",
+    "ExecMainStartTimestampMonotonic": "1125216386829",
+    "ExecMainExitTimestampMonotonic": "1126897136380",
+    "ExecMainStatus": "2",
+    "ControlGroup": "",
+    "ActiveState": "failed",
+    "SubState": "failed",
+    "UnitFileState": "static",
+    "ActiveEnterTimestampMonotonic": "0"
+  }
+}

@@ -42,6 +42,21 @@ def manifest_keys(store,settings,universe,taxonomy):
     return sorted(keys)
 
 
+def current_inventory(store, universe, taxonomy):
+    pointer=store.get('operations/eodhd/latest-inventory.json')
+    if pointer is None:
+        return 'manifests/collection_runs/source=eodhd/dataset=listing_inventory/run_4accc263-2cce-4a36-a647-e63d955517c5/final.json'
+    key=json.loads(pointer.body)['manifest']
+    obj=store.get(key)
+    if obj is None:raise ValueError('latest_inventory_manifest_missing')
+    manifest=json.loads(obj.body);task=manifest.get('task',{})
+    if not (manifest.get('status')=='complete' and manifest.get('exhausted') and
+            task.get('source')=='eodhd' and task.get('dataset')=='listing_inventory' and
+            task.get('universe_hash')==digest(universe) and task.get('taxonomy_hash')==digest(taxonomy)):
+        raise ValueError('latest_inventory_not_complete_or_configuration_changed')
+    return key
+
+
 def run(args):
     settings=StorageSettings.load(args.storage_config);store=settings.store();config=load_json(args.config)
     universe=load_json(args.universe);taxonomy=load_json(args.taxonomy);client=EODHDClient.configured(config)
@@ -69,7 +84,8 @@ def run(args):
             limit=min(limit,max(0,remaining//config['fundamentals_general_api_calls']))
         if limit<1:return {'status':'partial','reason':'daily_quota_reserve','account':account}
         profiles=manifest_keys(store,settings,universe,taxonomy)
-        plan=make_plan(store,args.inventory_manifest,profiles,limit,config)
+        inventory_key=current_inventory(store,universe,taxonomy) if args.inventory_manifest=='latest' else args.inventory_manifest
+        plan=make_plan(store,inventory_key,profiles,limit,config)
         plan_path.write_text(json.dumps(plan,indent=2)+'\n')
     plan=load_json(plan_path);result=collect(store,settings,config,plan,client,args.workers,
         max_pages=getattr(args,'max_pages',8))
@@ -78,7 +94,7 @@ def run(args):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--inventory-manifest',default='manifests/collection_runs/source=eodhd/dataset=listing_inventory/run_4accc263-2cce-4a36-a647-e63d955517c5/final.json')
+    p.add_argument('--inventory-manifest',default='latest')
     p.add_argument('--top-up',action='store_true')
     p.add_argument('--max-profiles',type=int,default=8800);p.add_argument('--workers',type=int,default=4)
     p.add_argument('--max-pages',type=int,default=8,help='Commit at most this many 64-profile pages per invocation, then resume the pinned plan next time.')

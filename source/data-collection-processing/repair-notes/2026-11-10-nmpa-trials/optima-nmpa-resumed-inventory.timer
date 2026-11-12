@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue NMPA inventory capture
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=300
+Persistent=true
+Unit=optima-nmpa-resumed-inventory.service
+[Install]
+WantedBy=timers.target

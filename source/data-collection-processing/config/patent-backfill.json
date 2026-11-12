@@ -9,5 +9,5 @@
   "max_reserved_bytes_per_day": 200000000000,
   "page_size": 500,
   "max_pages": 100,
-  "start_date": "2021-01-01"
+  "start_date": "2016-01-01"
 }

@@ -1,0 +1,148 @@
+{
+  "value": [
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/eping",
+      "type": "Microsoft.ApiManagement/service/apis",
+      "name": "eping",
+      "properties": {
+        "displayName": "ePing",
+        "apiRevision": "1",
+        "description": "Returns SPS and TBT notifications that are in the ePing website. Allows external applications/systems to search for notifications programatically.",
+        "subscriptionRequired": true,
+        "serviceUrl": null,
+        "backendId": null,
+        "path": "eping",
+        "protocols": [
+          "https"
+        ],
+        "mcpProperties": null,
+        "a2aProperties": null,
+        "isAgent": false,
+        "agent": null,
+        "jsonRpcProperties": null,
+        "authenticationSettings": {
+          "oAuth2": null,
+          "openid": null,
+          "oAuth2AuthenticationSettings": [],
+          "openidAuthenticationSettings": []
+        },
+        "subscriptionKeyParameterNames": {
+          "header": "Ocp-Apim-Subscription-Key",
+          "query": "subscription-key",
+          "bearer": null
+        },
+        "isCurrent": true,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/quantitative-restrictions",
+      "type": "Microsoft.ApiManagement/service/apis",
+      "name": "quantitative-restrictions",
+      "properties": {
+        "displayName": "Quantitative Restrictions (QR)",
+        "apiRevision": "1",
+        "description": "The database contains detailed information on export and import prohibitions and restrictions other than tariffs and taxes. <br/>\nDetails are available on the products (tariff lines) covered by the measure, the related WTO justification, national legal basis and administrative mechanisms.",
+        "subscriptionRequired": true,
+        "serviceUrl": "https://qr.wto.org/api",
+        "backendId": null,
+        "path": "qrs",
+        "protocols": [
+          "https"
+        ],
+        "mcpProperties": null,
+        "a2aProperties": null,
+        "isAgent": false,
+        "agent": null,
+        "jsonRpcProperties": null,
+        "authenticationSettings": {
+          "oAuth2": null,
+          "openid": null,
+          "oAuth2AuthenticationSettings": [],
+          "openidAuthenticationSettings": []
+        },
+        "subscriptionKeyParameterNames": {
+          "header": "Ocp-Apim-Subscription-Key",
+          "query": "subscription-key",
+          "bearer": null
+        },
+        "isCurrent": true,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1",
+      "type": "Microsoft.ApiManagement/service/apis",
+      "name": "version1",
+      "properties": {
+        "displayName": "Timeseries API",
+        "apiRevision": "1",
+        "description": "WTO Data extraction API. You can use it to download in JSON or CSV format a larger data series or to integrate WTO Data into your web pages.<br/>You can also consult the WTO Stats Portal at https://stats.wto.org, which allows you to retrieve the data interactively and which includes an API query builder. <br/> Comma separated values are considered inclusive (logical OR).",
+        "subscriptionRequired": true,
+        "serviceUrl": "http://dataapi.wto.org/",
+        "backendId": null,
+        "path": "timeseries",
+        "protocols": [
+          "http",
+          "https"
+        ],
+        "mcpProperties": null,
+        "a2aProperties": null,
+        "isAgent": false,
+        "agent": null,
+        "jsonRpcProperties": null,
+        "authenticationSettings": {
+          "oAuth2": null,
+          "openid": null,
+          "oAuth2AuthenticationSettings": [],
+          "openidAuthenticationSettings": []
+        },
+        "subscriptionKeyParameterNames": {
+          "header": "Ocp-Apim-Subscription-Key",
+          "query": "subscription-key",
+          "bearer": null
+        },
+        "isCurrent": true,
+        "apiVersion": "v1",
+        "apiVersionSetId": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apiVersionSets/96c85c6e-f723-464f-8598-f46fd27529d6",
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/tfad",
+      "type": "Microsoft.ApiManagement/service/apis",
+      "name": "tfad",
+      "properties": {
+        "displayName": "Trade Facilitation Agreement Database (TFAD)",
+        "apiRevision": "1",
+        "description": "Returns the Trade Facilitation Agreement Database (TFAD) data for Import Export and Transit procedures [Article 1.4 a) and b)], Contact Information of the enquiry points [Article 1.4 c) and the operation of the Single Window (Article 10.4), for all Members or a given list of Members.",
+        "subscriptionRequired": true,
+        "serviceUrl": "https://www.tfadatabase.org/api",
+        "backendId": null,
+        "path": "tfad",
+        "protocols": [
+          "https"
+        ],
+        "mcpProperties": null,
+        "a2aProperties": null,
+        "isAgent": false,
+        "agent": null,
+        "jsonRpcProperties": null,
+        "authenticationSettings": {
+          "oAuth2": null,
+          "openid": null,
+          "oAuth2AuthenticationSettings": [],
+          "openidAuthenticationSettings": []
+        },
+        "subscriptionKeyParameterNames": {
+          "header": "Ocp-Apim-Subscription-Key",
+          "query": "subscription-key",
+          "bearer": null
+        },
+        "isCurrent": true,
+        "effectivePath": null
+      }
+    }
+  ],
+  "count": 4
+}

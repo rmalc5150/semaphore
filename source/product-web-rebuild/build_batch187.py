@@ -1,0 +1,8 @@
+from research_helpers import *
+a=ev('https://www.astrazeneca.com/media-centre/press-releases/2023/astrazeneca-acquires-cincor-for-cardiorenal-asset.html','Acquisition closed February 24, 2023; baxdrostat identified as CIN-107. Parent assets and combination components not automatically subsidiary products.')
+b=ev('https://www.sec.gov/Archives/edgar/data/1868734/000119312522215087/d335310ds1.htm','CinCor issuer filing explicitly identifies baxdrostat as its only candidate, licensed from Roche in 2019.')
+c=ev('https://www.astrazeneca.com/media-centre/press-releases/2026/Baxdrostat-MNR-2026.html','May 18, 2026 parent release confirms US approval of Baxfendy, formerly baxdrostat/CIN-107.')
+d=ev('https://www.azpatientdirect.com/baxfendy','Current manufacturer patient-direct fulfilment page supports actual commercial availability beyond approval.')
+products=[p('Baxfendy','Baxdrostat oral aldosterone synthase inhibitor developed by CinCor as CIN-107 and acquired by AstraZeneca in 2023. US approved and commercially available in 2026; other indications remain investigational.',c,'commercial',typ='product',aliases=['baxdrostat','CIN-107'],roles=['developer'],evidence=[a,b,c,d])]
+co=company('CinCor Pharma Inc',products,[a,b,c,d],'Completed publicly named molecular portfolio review: issuer identifies sole candidate baxdrostat, now Baxfendy. Historical CinCor development linked without asserting current manufacturing or ownership. Strengths and indications grouped at formulation family; AstraZeneca dapagliflozin and other CinRx spinout assets not attributed.',status='complete')
+(out/'batch-0187.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

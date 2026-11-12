@@ -1,0 +1,17 @@
+from research_helpers import *
+a=ev('https://www.daihen-robot.com/items/Aitran','AiTran500, Lift and Trailer current official descriptions reviewed.')
+b=ev('https://www.daihen.co.jp/newinfo_2026/news_260821.html','VIVACE market introduction August 2026, orders began July; mobile manipulator integration overlaps base/arm products.')
+c=ev('https://www.daihen-robot.com/items/fd_vc8','Current FD-VC8 collaborative robot page; newer Japanese portfolio extends English list.')
+d=ev('https://www.daihen.co.jp/en/products/wireless/agv/','D-Broad CORE/slim named systems and two explicit 57F/171F capacitor units reviewed. Capacitor units separate from wireless charger.')
+e=ev('https://www.daihen.co.jp/en/products/fineplasma/','AVANCER semiconductor process RF-generator brand family explicitly offered; no unnamed exact RF model codes invented.')
+f=ev('https://www.daihen-robot.com/items/joypen','Current JoyPEN teaching pendant.')
+g=ev('https://www.daihen-robot.com/items/teaching_less','Photo Touch Teach tablet-based automatic robot-program generation system.')
+products=[]
+for name in ['AiTran 500','AiTran Lift','AiTran Trailer']:products.append(p('DAIHEN '+name,'Autonomous factory transport robot offering.',a,life='commercial',typ='product',sector='robotics',sub='industrial_robotics'))
+products += [p('DAIHEN VIVACE','Mobile manipulator combining autonomous transport and collaborative arm with task-dependent tools.',b,life='commercial',typ='product',sector='robotics',sub='industrial_robotics'),p('DAIHEN FD-VC8','Collaborative industrial robot.',c,life='commercial',typ='product',sector='robotics',sub='industrial_robotics'),p('DAIHEN Tablet TP','Tablet robot teaching/operation interface; bundled with supported robot systems.',c,life='commercial',typ='product',sector='robotics',sub='autonomy_and_components')]
+for name in ['D-Broad CORE','D-Broad slim']:products.append(p('DAIHEN '+name,'Wireless AGV charging-system family.',d,life='commercial',typ='product',sector='robotics',sub='autonomy_and_components'))
+for cap in ['57F','171F']:products.append(p('DAIHEN D-Broad '+cap+' capacitor unit','Optional '+cap+' energy-storage capacitor assembly for AGV wireless charging.',d,life='commercial',typ='product',sector='energy_storage',sub='supercapacitors'))
+products += [p('DAIHEN AVANCER','Semiconductor-process RF power-generator family; individual models not enumerated.',e,life='commercial',typ='product',sector='semiconductors',sub='semiconductor_equipment'),p('DAIHEN JoyPEN','Joystick robot teaching pendant.',f,life='commercial',typ='product',sector='robotics',sub='autonomy_and_components'),p('DAIHEN Photo Touch Teach','Tablet-based robot programming system using photographed workpieces.',g,life='commercial',typ='product',sector='robotics',sub='autonomy_and_components')]
+co=dict(company_id='cmp_2fe2e646-d117-4d7f-9262-3b85673da2c5',products=products,evidence=[a,b,c,d,e,f,g],status='partial',coverage_note='84 total DAIHEN offerings: prior 71 plus 13 AMRs/mobile manipulator, FD-VC8, tablet/pendant/programming tools, wireless charging families, two capacitor assemblies and AVANCER RF family. Integration/system/constituent overlaps explicit. Japanese current pages resolve English AMR 404 and newer products. Partial: exact semiconductor RF/MW/matching models, old FD families, positioner exact variants, welding robot peripherals and further storage products require review.')
+assert len(products)==13
+(out/'batch-0379.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

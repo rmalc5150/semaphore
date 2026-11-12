@@ -1,0 +1,2129 @@
+{
+  "at": "2026-10-26T20:46:34.741941+00:00",
+  "active_editor_server_versions_retained": [
+    "Stable-e646868227c3e3a9e3f24277c8c7220be42c0be7"
+  ],
+  "removed": [
+    {
+      "path": "/home/ec2-user/.vscode-server/cli/servers/Stable-7baac39ec3ca969dab74ac12c097f6a486e46593",
+      "reason": "unused VS Code server version",
+      "allocated_bytes_before": 700059648
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/cli/servers/Stable-16507d91be0dc1ce4f94c04d4d0430210b8685d9",
+      "reason": "unused VS Code server version",
+      "allocated_bytes_before": 700108800
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/cli/servers/Stable-6d62b1d5dace93a33b3a6d3eca1317bd5e15bcb1",
+      "reason": "unused VS Code server version",
+      "allocated_bytes_before": 655917056
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/cli/servers/Stable-2d0b7506a36c1d6db9a466440131a8e01eab2289",
+      "reason": "unused VS Code server version",
+      "allocated_bytes_before": 668938240
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/code-2a59476c9bfcb90b3ddc372c36762471b7dfad1c",
+      "reason": "unused VS Code launcher",
+      "allocated_bytes_before": 34918400
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/code-16507d91be0dc1ce4f94c04d4d0430210b8685d9",
+      "reason": "unused VS Code launcher",
+      "allocated_bytes_before": 34918400
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/code-6d62b1d5dace93a33b3a6d3eca1317bd5e15bcb1",
+      "reason": "unused VS Code launcher",
+      "allocated_bytes_before": 35098624
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/code-2d0b7506a36c1d6db9a466440131a8e01eab2289",
+      "reason": "unused VS Code launcher",
+      "allocated_bytes_before": 35106816
+    },
+    {
+      "path": "/home/ec2-user/.cache/pip",
+      "reason": "pip package download cache",
+      "allocated_bytes_before": 329003008
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/data/CachedExtensionVSIXs/mechatroner.rainbow-csv-3.24.1",
+      "reason": "download archive of installed extension",
+      "allocated_bytes_before": 892928
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/data/CachedExtensionVSIXs/shahilkumar.docxreader-1.4.3",
+      "reason": "download archive of installed extension",
+      "allocated_bytes_before": 4771840
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/data/CachedExtensionVSIXs/openai.codex-audio-26.1021.22027",
+      "reason": "download archive of installed extension",
+      "allocated_bytes_before": 1904640
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/data/CachedExtensionVSIXs/anthropic.claude-code-2.1.310-linux-x64",
+      "reason": "download archive of installed extension",
+      "allocated_bytes_before": 136413184
+    },
+    {
+      "path": "/home/ec2-user/.vscode-server/data/CachedExtensionVSIXs/openai.chatgpt-26.1021.22027-linux-x64",
+      "reason": "download archive of installed extension",
+      "allocated_bytes_before": 428077056
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/usgs_minerals_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/collection_storage.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 36864
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_usgs_minerals_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/research_contract.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/disclosure_athena.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eodhd_batch.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/regulatory_sources.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/disclosure_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 45056
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/mhra_product_enrichment.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/regulatory_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_nih_pagination.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/sec_filings.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 40960
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/doe_storage_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eodhd_coverage.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eia_enrichment.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eodhd_universe.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 40960
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/nih_pagination.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eodhd_quota.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/regulatory_enrichment_pilot.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_collection_digest.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_regulatory_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_collection_alerts.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/doe_storage_pipeline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 36864
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/collection_alerts.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/regulatory_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/collection_health_exporter.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 49152
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_regulatory_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/deploy_collection_monitoring.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_doe_storage.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/decodo_scraping_api.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/specialist_authenticated.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/nmpa_drug_trials.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_eia_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/chictr_studies.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eia_enrichment_backfill.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/patent_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 40960
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eia_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/patent_landscape.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eia_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/uspto_patents.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/mhra_product_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_patent_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 40960
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/nmpa_enrichment_worker.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_patent_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_eia_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/patent_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_nmpa_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/collection_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/caiso_pipeline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 53248
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/regulatory_sources.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 40960
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/tracking_mysql_trial.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/patent_bigquery_access.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/caiso_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/patent_query_plan.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/caiso_transport.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/patent_review.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_caiso_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/regulatory_athena.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/bls_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/sec_athena_pilot.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 40960
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/marketaux_content_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_collection_health_repairs.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/pubmed_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_market_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/bls_enrichment.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/market_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/bls_enrichment_backfill.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/historical_policy.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_pubmed_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/hkex_historical_prices.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_bls_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/hkex_csv_cleaner.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/edinet_pipeline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/hkex_cross_listed_prices.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/bls_evidence_joins.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/market_athena.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/bls_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/window_publication.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/pubmed_enrichment_pilot.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_market_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_grant_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/market_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_pubmed_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_decodo_scraping_api.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_bls_evidence_joins.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_nmpa_baseline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/grant_pipeline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 40960
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/nmpa_baseline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/pubmed_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_regulatory_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 40960
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/grant_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/ema_ctis_actions.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/tracking_people_migration.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/clinicaltrials_studies.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/cms_financial_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 36864
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/japan_pmda_designations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/product_search_daily.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/uk_mhra_designations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/ted_enrichment_backfill.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/market_coverage_exclusions.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/personnel_archive.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_market_coverage_exclusions.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_weekly_readiness.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/weekly_readiness.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_cms_financial_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/readiness_publication.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_product_search_daily.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/readiness_recurring.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_personnel_archive.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/build_weekly_readiness_report.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/product_search_daily.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/specialist_plan.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/bluesky_company_daily.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/specialist_inputs.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 65536
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/ted_enrichment.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_specialist_inputs.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/people_rss_content.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/build_specialist_expansion_report.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_ted_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/archive_specialist_probes.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/bluesky_company_events.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_eodhd_universe.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_edinet_pipeline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eodhd_athena.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/repair_scope.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eodhd_review.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_bluesky_companies.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eodhd_sector_review.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/ted_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/company_universe_pipeline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 36864
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/ted_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/company_registry_verify.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_ted_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_eodhd_daily_cohort.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/migrate_server_data_to_s3.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/eodhd_daily_cohort.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_ted_packages.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/source_observation_athena.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/ted_packages.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_specialist_inputs.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/migrate_server_data_to_s3.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/collection_storage.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/s3_runtime_fs.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/research_contract.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/s3_runtime.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/regulatory_collection.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/repair_core_batch.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/sec_filings.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/sitecustomize.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/specialist_inputs.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 36864
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/install_s3_runtime.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/specialist_plan.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/github_company_mapping.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/specialist_public_apis.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/ted_packages.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/specialist_public_apis.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/rds_company_directory.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_source_schedule_control.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/nist_robotics.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/source_schedule_control.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_people_content.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_people_social_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_github_company_mapping.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/people_social_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/install_s3_runtime.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/people_movements.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 36864
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/nist_robotics_pipeline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_collection_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/nist_robotics_match.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_historical_policy.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/s3_runtime.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/news_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 36864
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/product_catalogue_migration.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/streaming_release.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/mlperf_enrichment_backfill.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/source_schedule_control.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_nist_robotics.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/provision_source_catalogs.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/mlperf_enrichment.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/people_social_collection.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/mlperf_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/specialist_authenticated.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/repair_verify.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/fda_access.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/company_catalogue_pipeline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 53248
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/finlight_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/federal_register_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/committed_data_athena.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_mlperf_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_window_publication.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/rds_company_directory.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/monitoring_extra_jobs.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_mlperf_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_regulatory_athena.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/mlperf_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_monitoring_extra_jobs.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_federal_register_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/monitoring_extra_jobs.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/federal_register_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/specialist_publication.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_repair_scope.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_sam_gov.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/people_content_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_specialist_authenticated.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/federal_register_daily.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_monitoring_overview.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/product_catalogue_pipeline.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/monitoring_overview.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_product_catalogue.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/tracking_mysql_trial.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/repair_individual.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/uspto_patents.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/company_catalogue_sources.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/patent_prosecution.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 36864
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/japan_pmda_designations.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/patent_prosecution_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_federal_register_enrichment_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/patent_prosecution_athena.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/product_catalogue_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/monitoring_runbooks.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/verify_product_catalogue.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_pipeline_health.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_s3_runtime.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/pipeline_health.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/repair_verify_receipts.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/event_pilot.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 69632
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/product_web_registry.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_news_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 36864
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/s3_runtime_fs.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/disclosure_content.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_trade_screening_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_finlight_content.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_disclosure_content.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/finlight_content.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/sec_athena_pilot.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_finlight_content_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/usgs_minerals_enrichment.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/finlight_content_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/uspto_rate_limit.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_news_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_disclosure_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/news_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/trade_screening_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_finlight_backfill.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/usgs_minerals_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 49152
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/marketaux_history_probe.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_patent_prosecution.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/news_athena.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/repair_npd_publish.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/news_audit.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/usgs_minerals_backfill.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_marketaux_content.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_reddit_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/marketaux_content.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/clinicaltrials_studies.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_regulatory_enrichment.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_usgs_minerals_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_regulatory_collection.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/trade_screening_daily.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_regulatory_athena.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/disclosure_document_cache.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/regulatory_athena.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/reddit_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/chictr_studies.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/corporate_disclosures.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/decodo_scraping_api.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/strategic_transactions.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/ema_ctis_actions.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_repair_individual.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/nmpa_drug_trials.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_research_publication.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/uk_mhra_designations.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/research_publication.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/nmpa_enrichment.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_market_symbol_mappings.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/market_symbol_mappings.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/disclosure_collection.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 28672
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/disclosure_content.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/source_pauses.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_checkup_repairs.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/sitecustomize.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/conference_collection.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/personnel_archive.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_constellation.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/conference_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/people_collection_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/collection_operations.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/additional_source_apis.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/additional_source_plan.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_public_source_capture.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/public_source_capture.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_additional_source_apis.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/additional_source_apis.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/additional_source_plan.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/public_source_capture.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_public_collection_operations.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_epo_ops.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/epo_ops.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_constellation_expansion.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_constellation_launch.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/test_constellation_migration.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/__pycache__/epo_ops.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/unused/__pycache__/ibkr_hkex_news.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/unused/__pycache__/ibkr_hkex_news.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/unused/__pycache__/publish_universe_v04.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/unused/__pycache__/test_ibkr_hkex_news.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/unused/__pycache__/test_ibkr_hkex_news.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/upgrade/t3-large/__pycache__/test_prepare.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/upgrade/t3-large/__pycache__/prepare.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/runtime_source_files/reports/uspto-prosecution-2026-10-14/__pycache__/verify-pilot.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/baseline-2026-10-26/__pycache__/conference_collection.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/baseline-2026-10-26/__pycache__/people_social_collection.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/baseline-2026-10-26/__pycache__/personnel_archive.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/baseline-2026-10-26/__pycache__/test_historical_policy.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/baseline-2026-10-26/__pycache__/conference_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/baseline-2026-10-26/__pycache__/people_social_collection.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/baseline-2026-10-26/__pycache__/personnel_archive.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/baseline-2026-10-26/__pycache__/test_historical_policy.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/__init__.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/catalog.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/__init__.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/catalog.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/control.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/provision.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/sources.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/worker.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/control.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 24576
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/provision.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/sources.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/worker.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/build_access_inventory.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 32768
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/build_legacy_routes.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/check_rds.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/deploy.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/legacy_dispatch.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/legacy_routes.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/legacy_worker.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 16384
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/pilot.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/plan.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/probe_sources.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/register_catalog.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/shared_limits.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/verify_pilot.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/deploy_legacy.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/legacy_worker.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/deploy.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/deploy_legacy.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/gaps.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/legacy_dispatch.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/shared_limits.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/public_daily.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/daily_raw.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/daily_raw.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/public_status.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 20480
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/gaps.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/coverage_scope.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/__pycache__/public_status.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/__pycache__/deploy_expansion.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/__pycache__/deploy_expansion.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/__pycache__/register_public_sources.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/__pycache__/install_public_daily.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/__pycache__/deploy_public.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/__pycache__/prepare_daily_api.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/__pycache__/refresh_public_code.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/__pycache__/deploy_public_pool.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/__pycache__/resume_resized_worker.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/__pycache__/install_worker_plan.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 12288
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/epo/__pycache__/validate_access.cpython-312.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/epo/__pycache__/register.cpython-39.pyc",
+      "reason": "regenerable project Python bytecode",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/tmp/activate_epo.py",
+      "reason": "completed one-time EPO/report diagnostic",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/launch_epo_bootstrap.py",
+      "reason": "completed one-time EPO/report diagnostic",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/pause_nice.py",
+      "reason": "completed one-time EPO/report diagnostic",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/tmp/start_epo_daily.py",
+      "reason": "completed one-time EPO/report diagnostic",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/epo-empty.xml",
+      "reason": "completed one-time EPO/report diagnostic",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/epo-legal.xml",
+      "reason": "completed one-time EPO/report diagnostic",
+      "allocated_bytes_before": 77824
+    },
+    {
+      "path": "/tmp/epo-search.xml",
+      "reason": "completed one-time EPO/report diagnostic",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/recovery-native-audit.md",
+      "reason": "completed one-time EPO/report diagnostic",
+      "allocated_bytes_before": 94208
+    },
+    {
+      "path": "/tmp/constellation-public-final-tests.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-probe-bulk.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-expanded-logs.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-probe-new-apis.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-expansion-tests.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-expansion-access.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-cap-resources.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-sec-athena-membership.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-add-worker.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-capture-status.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-check-audit.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-start-native-audit.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-inspect-daily.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-isolated-tests.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-verify-launch.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-monitor-pauses.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-final-hotfix.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-sec-diagnostic.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-debug-and-hotfix.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-check-running.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-start-collection.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-enable-checkup.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-register-launch.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-stage-launch.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/tmp/constellation-inspect-launch.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-verify-final.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/tmp/constellation-finalize-migration.py",
+      "reason": "completed one-time infrastructure helper",
+      "allocated_bytes_before": 4096
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/resume_resized_worker.py",
+      "reason": "obsolete hardcoded m7i.xlarge resize helper; superseded by install_worker_plan.py",
+      "allocated_bytes_before": 8192
+    },
+    {
+      "path": "/home/ec2-user/data-collection-processing/constellation/expansion/resume_resized_worker.xlarge-backup.py",
+      "reason": "obsolete hardcoded m7i.xlarge resize helper; superseded by install_worker_plan.py",
+      "allocated_bytes_before": 8192
+    }
+  ],
+  "skipped": [],
+  "root_used_before": 12956786688,
+  "root_used_after": 9173078016,
+  "root_free_after": 22959464448,
+  "root_bytes_reclaimed": 3783708672,
+  "removed_allocated_bytes": 3772354560,
+  "verification": {
+    "timers_before": 49,
+    "timers_after": 49,
+    "missing_timers": [],
+    "required_files_exist": {
+      "data-source-status-2026-10-26.md": true,
+      "apiKeyRegister.md": true,
+      "constellation_00_historical_backfill_infrastructure.md": false,
+      "data-collection-processing/.venv-athena/bin/python": true,
+      "data-collection-processing/.venv/bin/python": true
+    },
+    "pre_existing_missing_documents": [
+      "/home/ec2-user/constellation_00_historical_backfill_infrastructure.md"
+    ]
+  }
+}

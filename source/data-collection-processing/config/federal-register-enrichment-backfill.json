@@ -1,0 +1,17 @@
+{
+  "job_id": "federal-register-enrichment-backfill-2026-10-18",
+  "window_start": "2021-01-01T00:00:00Z",
+  "snapshot_cutoff": "2026-10-18T10:14:46.931295Z",
+  "inventory_file": "reports/federal-register-enrichment-backfill-2026-10-18/input-batches.json",
+  "inventory_sha256": "fc47aa4c442d919520aaf50139cf7304ebc72ae5e2bb0c1c037fa2e553f3719e",
+  "storage_config": "config/collection-storage.s3.json",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "max_batches_per_invocation": 200,
+  "max_versions_per_invocation": 8,
+  "max_attempts": 3,
+  "retry_minutes": 30,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Enrich each unique Federal Register document number in the pinned committed S51 archive (topic queries can repeat notices). Preserve original IDs, publication dates, search metadata and latest original-observation lineage. Retrieve full notice XML or HTML and official published PDF now; extract source-located policy stages and chemical/use provisions. Confidential identities, current law and product applicability remain unresolved. Completion includes explicit artifact gaps and exact Athena counts; this is not a reconstruction of old text versions."
+}

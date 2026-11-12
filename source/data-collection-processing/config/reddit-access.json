@@ -5,7 +5,7 @@
   "client_secret_field": "client_secret",
   "token_endpoint": "https://www.reddit.com/api/v1/access_token",
   "user_agent": "server:optima-access-check:1.0 (contact: support@optima-holdings.com)",
-  "collection_enabled": true,
+  "collection_enabled": false,
   "bucket": "data-collection-059416028963-us-east-1-an",
   "prefix": "research-data/social/reddit-refreshable",
   "max_requests_per_run": 96,

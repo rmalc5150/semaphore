@@ -1,0 +1,1173 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Research collection contract 1.0",
+  "description": "Validate a universe, sector taxonomy, or collected record. Cross-record constraints require validate_research_data.py.",
+  "oneOf": [
+    {
+      "$ref": "#/definitions/universe"
+    },
+    {
+      "$ref": "#/definitions/taxonomy"
+    },
+    {
+      "$ref": "#/definitions/record"
+    }
+  ],
+  "definitions": {
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "source",
+        "reference",
+        "note"
+      ]
+    },
+    "cmp_id": {
+      "type": "string",
+      "pattern": "^cmp_[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "lst_id": {
+      "type": "string",
+      "pattern": "^lst_[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "prd_id": {
+      "type": "string",
+      "pattern": "^prd_[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "per_id": {
+      "type": "string",
+      "pattern": "^per_[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "als_id": {
+      "type": "string",
+      "pattern": "^als_[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "xid_id": {
+      "type": "string",
+      "pattern": "^xid_[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "rel_id": {
+      "type": "string",
+      "pattern": "^rel_[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "entity_id": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/cmp_id"
+        },
+        {
+          "$ref": "#/definitions/lst_id"
+        },
+        {
+          "$ref": "#/definitions/prd_id"
+        },
+        {
+          "$ref": "#/definitions/per_id"
+        }
+      ]
+    },
+    "time_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+            }
+          ]
+        },
+        "precision": {
+          "enum": [
+            "day",
+            "second",
+            "millisecond",
+            "microsecond"
+          ]
+        },
+        "source_timezone": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "precision",
+        "source_timezone"
+      ]
+    },
+    "sector_membership": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sector_id": {
+          "enum": [
+            "biotech",
+            "robotics",
+            "semiconductors",
+            "energy_storage"
+          ]
+        },
+        "subsector_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "uniqueItems": true
+        },
+        "classification_basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "valid_from": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "valid_to": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "review_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "rejected"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "sector_id",
+        "subsector_ids",
+        "classification_basis",
+        "valid_from",
+        "valid_to",
+        "observed_at",
+        "review_status",
+        "evidence"
+      ]
+    },
+    "company": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "company_id": {
+          "$ref": "#/definitions/cmp_id"
+        },
+        "canonical_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entity_type": {
+          "enum": [
+            "legal_entity",
+            "business_unit",
+            "unresolved_organization"
+          ]
+        },
+        "ownership_status": {
+          "enum": [
+            "public",
+            "private",
+            "government",
+            "nonprofit",
+            "unknown"
+          ]
+        },
+        "domicile_country": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collection_enabled": {
+          "type": "boolean"
+        },
+        "sectors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/sector_membership"
+          },
+          "minItems": 1
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "review_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "rejected"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "company_id",
+        "canonical_name",
+        "entity_type",
+        "ownership_status",
+        "domicile_country",
+        "collection_enabled",
+        "sectors",
+        "observed_at",
+        "review_status",
+        "evidence"
+      ]
+    },
+    "company_alias": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "alias_id": {
+          "$ref": "#/definitions/als_id"
+        },
+        "company_id": {
+          "$ref": "#/definitions/cmp_id"
+        },
+        "alias": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "alias_type": {
+          "enum": [
+            "legal_name",
+            "former_name",
+            "trade_name",
+            "transliteration",
+            "source_name",
+            "unclassified"
+          ]
+        },
+        "valid_from": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "valid_to": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "review_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "rejected"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "alias_id",
+        "company_id",
+        "alias",
+        "language",
+        "alias_type",
+        "valid_from",
+        "valid_to",
+        "observed_at",
+        "review_status",
+        "evidence"
+      ]
+    },
+    "external_identifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identifier_id": {
+          "$ref": "#/definitions/xid_id"
+        },
+        "entity_id": {
+          "$ref": "#/definitions/entity_id"
+        },
+        "system": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "valid_from": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "valid_to": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "review_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "rejected"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "identifier_id",
+        "entity_id",
+        "system",
+        "value",
+        "valid_from",
+        "valid_to",
+        "observed_at",
+        "review_status",
+        "evidence"
+      ]
+    },
+    "listing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "listing_id": {
+          "$ref": "#/definitions/lst_id"
+        },
+        "company_id": {
+          "$ref": "#/definitions/cmp_id"
+        },
+        "exchange_mic": {
+          "type": "string",
+          "pattern": "^[A-Z0-9]{4}$"
+        },
+        "ticker": {
+          "type": "string",
+          "minLength": 1
+        },
+        "security_type": {
+          "enum": [
+            "ordinary_share",
+            "preferred_share",
+            "adr",
+            "gdr",
+            "depositary_receipt",
+            "canadian_depositary_receipt",
+            "other"
+          ]
+        },
+        "company_role": {
+          "enum": ["issuer", "underlying_issuer"]
+        },
+        "depositary_issuer_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "trading_from": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "share_class": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "valid_from": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "valid_to": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "review_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "rejected"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "listing_id",
+        "company_id",
+        "exchange_mic",
+        "ticker",
+        "security_type",
+        "share_class",
+        "currency",
+        "valid_from",
+        "valid_to",
+        "observed_at",
+        "review_status",
+        "evidence"
+      ]
+    },
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "product_id": {
+          "$ref": "#/definitions/prd_id"
+        },
+        "canonical_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "product_type": {
+          "enum": [
+            "product",
+            "development_program",
+            "technology"
+          ]
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "review_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "rejected"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "product_id",
+        "canonical_name",
+        "product_type",
+        "aliases",
+        "observed_at",
+        "review_status",
+        "evidence"
+      ]
+    },
+    "person": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "person_id": {
+          "$ref": "#/definitions/per_id"
+        },
+        "canonical_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "review_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "rejected"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "person_id",
+        "canonical_name",
+        "aliases",
+        "observed_at",
+        "review_status",
+        "evidence"
+      ]
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "relationship_id": {
+          "$ref": "#/definitions/rel_id"
+        },
+        "subject_id": {
+          "$ref": "#/definitions/entity_id"
+        },
+        "object_id": {
+          "$ref": "#/definitions/entity_id"
+        },
+        "relationship_type": {
+          "enum": [
+            "subsidiary_of",
+            "business_unit_of",
+            "owns",
+            "develops",
+            "manufactures",
+            "licenses_in",
+            "licenses_out",
+            "employed_by",
+            "board_member_of"
+          ]
+        },
+        "role": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "valid_from": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "valid_to": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "review_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "rejected"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "relationship_id",
+        "subject_id",
+        "object_id",
+        "relationship_type",
+        "role",
+        "valid_from",
+        "valid_to",
+        "observed_at",
+        "review_status",
+        "evidence"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "geography": {
+          "enum": [
+            "global"
+          ]
+        },
+        "include_private_companies": {
+          "const": true
+        },
+        "sector_ids": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "biotech",
+              "robotics",
+              "semiconductors",
+              "energy_storage"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": [
+        "geography",
+        "include_private_companies",
+        "sector_ids"
+      ]
+    },
+    "universe": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "document_type": {
+          "const": "company_universe"
+        },
+        "schema_version": {
+          "const": "1.0"
+        },
+        "universe_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "taxonomy_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "purpose": {
+          "enum": [
+            "validation",
+            "research"
+          ]
+        },
+        "scope": {
+          "$ref": "#/definitions/scope"
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/company"
+          }
+        },
+        "company_aliases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/company_alias"
+          }
+        },
+        "external_identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/external_identifier"
+          }
+        },
+        "listings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/listing"
+          }
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/product"
+          }
+        },
+        "people": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/person"
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/relationship"
+          }
+        }
+      },
+      "required": [
+        "document_type",
+        "schema_version",
+        "universe_version",
+        "taxonomy_version",
+        "created_at",
+        "purpose",
+        "scope",
+        "companies",
+        "company_aliases",
+        "external_identifiers",
+        "listings",
+        "products",
+        "people",
+        "relationships"
+      ]
+    },
+    "taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "document_type": {
+          "const": "sector_taxonomy"
+        },
+        "schema_version": {
+          "const": "1.0"
+        },
+        "taxonomy_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "sectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "sector_id": {
+                "enum": [
+                  "biotech",
+                  "robotics",
+                  "semiconductors",
+                  "energy_storage"
+                ]
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "subsectors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "subsector_id": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "subsector_id",
+                    "name"
+                  ]
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "sector_id",
+              "name",
+              "description",
+              "subsectors"
+            ]
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "legacy_sector_mapping": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "biotech": {
+              "const": "biotech"
+            },
+            "robotics": {
+              "const": "robotics"
+            },
+            "semiconductor": {
+              "const": "semiconductors"
+            },
+            "battery": {
+              "const": "energy_storage"
+            }
+          },
+          "required": [
+            "biotech",
+            "robotics",
+            "semiconductor",
+            "battery"
+          ]
+        }
+      },
+      "required": [
+        "document_type",
+        "schema_version",
+        "taxonomy_version",
+        "sectors",
+        "legacy_sector_mapping"
+      ]
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "document_type": {
+          "const": "collected_record"
+        },
+        "schema_version": {
+          "const": "1.0"
+        },
+        "record_id": {
+          "type": "string",
+          "pattern": "^rec_[0-9a-f]{64}$"
+        },
+        "observation_id": {
+          "type": "string",
+          "pattern": "^obs_[0-9a-f]{64}$"
+        },
+        "source": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "dataset": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "source_record_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_record_id_basis": {
+          "enum": [
+            "provider",
+            "documented_composite"
+          ]
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "universe_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "company_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cmp_id"
+          },
+          "uniqueItems": true
+        },
+        "listing_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/lst_id"
+          },
+          "uniqueItems": true
+        },
+        "product_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/prd_id"
+          },
+          "uniqueItems": true
+        },
+        "person_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/per_id"
+          },
+          "uniqueItems": true
+        },
+        "entity_match_status": {
+          "enum": [
+            "matched",
+            "partial",
+            "unresolved"
+          ]
+        },
+        "event_at": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/time_value"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "available_at": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/time_value"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_updated_at": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/time_value"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ingested_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "availability_basis": {
+          "enum": [
+            "unknown",
+            "source_publication",
+            "source_revision",
+            "archive_evidence",
+            "provider_metadata"
+          ]
+        },
+        "availability_evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/evidence"
+          }
+        },
+        "run_id": {
+          "$ref": "#/definitions/run_id"
+        },
+        "payload_hash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "document_type",
+        "schema_version",
+        "record_id",
+        "observation_id",
+        "source",
+        "dataset",
+        "source_record_id",
+        "source_record_id_basis",
+        "source_url",
+        "universe_version",
+        "company_ids",
+        "listing_ids",
+        "product_ids",
+        "person_ids",
+        "entity_match_status",
+        "event_at",
+        "available_at",
+        "source_updated_at",
+        "ingested_at",
+        "availability_basis",
+        "availability_evidence",
+        "run_id",
+        "payload_hash",
+        "payload"
+      ]
+    }
+  }
+}

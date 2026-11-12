@@ -1,0 +1,1 @@
+{"managementApiUrl":"https://wto-data.management.azure-api.net/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA","managementApiVersion":"2022-04-01-preview","supportAdminPath":true,"customSettings":{"maxFileSizeInBytes":null,"apiCacheTtl":null},"featureFlags":{"powCaptcha.Enabled":true}}

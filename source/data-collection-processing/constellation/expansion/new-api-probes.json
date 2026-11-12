@@ -1,0 +1,99 @@
+{
+  "checked_at": "2026-10-26T08:52:58.553431+00:00",
+  "probes": [
+    {
+      "source": "fred",
+      "http_status": 200,
+      "bytes": 4336,
+      "type": "dict",
+      "top_keys": [
+        "realtime_start",
+        "realtime_end",
+        "observation_start",
+        "observation_end",
+        "units",
+        "output_type",
+        "file_type",
+        "order_by",
+        "sort_order",
+        "count",
+        "offset",
+        "limit",
+        "observations"
+      ],
+      "rows": 41,
+      "evidence_key": "research-data/constellation-backfill/expansion/probes/fred-7aab80f3c64782b627f8086402bf384f871254d728934e38792423cdfc6edb41.json",
+      "provider_code": null,
+      "first_row_keys": null
+    },
+    {
+      "source": "census",
+      "error_type": "JSONDecodeError"
+    },
+    {
+      "source": "dart",
+      "http_status": 200,
+      "bytes": 24221,
+      "type": "dict",
+      "top_keys": [
+        "status",
+        "message",
+        "page_no",
+        "page_count",
+        "total_count",
+        "total_page",
+        "list"
+      ],
+      "rows": 100,
+      "evidence_key": "research-data/constellation-backfill/expansion/probes/dart-4416b25ea1d1fa2b0abba3e9b1fa9f97e736480f13a892217533fff2e192ae32.json",
+      "provider_code": "000",
+      "first_row_keys": null
+    },
+    {
+      "source": "usda",
+      "http_status": 403,
+      "bytes": 133,
+      "type": "dict",
+      "top_keys": [
+        "error"
+      ],
+      "rows": 0,
+      "evidence_key": "research-data/constellation-backfill/expansion/probes/usda-dea4c9ce541d6cbc30a7d3b363cb59c45d70c3e12cd41a9286b5abc7c1bdefe5.json",
+      "provider_code": null,
+      "first_row_keys": null
+    },
+    {
+      "source": "nasa",
+      "http_status": 200,
+      "bytes": 2229,
+      "type": "dict",
+      "top_keys": [
+        "type",
+        "geometry",
+        "properties",
+        "header",
+        "messages",
+        "parameters",
+        "times"
+      ],
+      "rows": 0,
+      "evidence_key": "research-data/constellation-backfill/expansion/probes/nasa-c3e755adb32ac13f2b2a982340f1400d809e999f36f551b02949773887fd02c7.json",
+      "provider_code": null,
+      "first_row_keys": null
+    },
+    {
+      "source": "biorxiv",
+      "http_status": 200,
+      "bytes": 62558,
+      "type": "dict",
+      "top_keys": [
+        "messages",
+        "collection"
+      ],
+      "rows": 30,
+      "evidence_key": "research-data/constellation-backfill/expansion/probes/biorxiv-3f3101d8ec277516d70e7253b7e2956e0d21a6a1794d3448e9647c05041c315e.json",
+      "provider_code": null,
+      "first_row_keys": null
+    }
+  ]
+}

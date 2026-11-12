@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue CMS financial collection and daily catalog discovery
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=300
+Persistent=true
+Unit=optima-cms-payments-resumed.service
+[Install]
+WantedBy=timers.target

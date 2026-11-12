@@ -1,0 +1,108 @@
+  UNIT                                                LOAD   ACTIVE     SUB     JOB   DESCRIPTION
+● optima-authenticated-daily.service                  loaded failed     failed        Bounded authenticated FDA EDINET EIA daily collection and publication
+● optima-bluesky-companies.service                    loaded failed     failed        S64 daily RDS company Bluesky posts and publication events
+  optima-caiso-backfill.service                       loaded activating start   start S57 CAISO backfill market enrichment and verified completion notification
+  optima-caiso-daily.service                          loaded activating start   start S57 CAISO daily market enrichment and verified completion notification
+  optima-chictr-daily.service                         loaded activating start   start Bounded ChiCTR daily catch-up and access verification
+● optima-collection-daily.service                     loaded failed     failed        Optima migrated daily collectors with catch-up and reconciliation
+  optima-committed-athena.service                     loaded activating start   start Verify Athena access to all committed collection batches
+  optima-company-catalogue.service                    loaded activating start   start Enrich all-exchange company catalogue in RDS from S3 and external evidence
+  optima-conference-collection.service                loaded activating start   start Optima daily and historical DOI proceedings collection
+  optima-conference-publication.service               loaded activating start   start Optima verified proceedings Athena publication
+● optima-core-historical.service                      loaded failed     failed        Bounded resumable original SEC/regulatory/disclosure 2021 archive
+● optima-daily-health-audit.service                   loaded failed     failed        Daily live collection, S3 and Athena readback audit
+  optima-doe-storage-backfill.service                 loaded activating start   start S55 DOE storage backfill document extraction and verified completion notification
+  optima-doe-storage-daily.service                    loaded activating start   start S55 DOE storage daily document extraction and verified completion notification
+  optima-edinet-document-backfill.service             loaded activating start   start EDINET original reports, Japanese extraction and company linkage backfill
+  optima-edinet-documents-daily.service               loaded activating start   start EDINET completed-day full reports, Japanese extraction and entity matching
+  optima-eia-enrichment-backfill.service              loaded activating start   start S56 EIA index and retail saved-record enrichment and verified completion email
+  optima-eodhd-profiles.service                       loaded activating start   start Optima quota-safe EODHD company profile cohort
+  optima-federal-register-daily-enrichment.service    loaded activating start   start S51 daily full-notice and official-PDF capture
+  optima-federal-register-enrichment-backfill.service loaded activating start   start S51 Federal Register saved-record enrichment and verified completion email
+  optima-finlight-content-backfill.service            loaded activating start   start Finlight full publisher article capture and saved-observation enrichment
+● optima-github-company-mapping.service               loaded failed     failed        Daily post-S46 repository mapping against the RDS company directory
+  optima-grant-backfill.service                       loaded activating start   start S68 grant lifecycle backfill and verified completion notification
+  optima-grant-daily.service                          loaded activating start   start S68 grant lifecycle daily and verified completion notification
+  optima-hkex-document-backfill.service               loaded activating start   start Verified HKEX announcement and original report backfill with completion email
+  optima-market-collection.service                    loaded activating start   start Optima Bounded market prices and corporate actions
+  optima-market-publication.service                   loaded activating start   start Optima Verified incremental market Athena publication
+  optima-mlperf-enrichment-backfill.service           loaded activating start   start S48 MLPerf commit-pinned result evidence enrichment and verified completion email
+  optima-news-collection.service                      loaded activating start   start Optima Bounded news catch-up, reconciliation and 2021 archive
+  optima-news-publication.service                     loaded activating start   start Optima Verified incremental news Athena publication
+  optima-nist-robotics-backfill.service               loaded activating start   start S47 original-evidence backfill and verified completion email
+  optima-nist-robotics-daily.service                  loaded activating start   start S47 daily linked evidence after landing capture
+  optima-nmpa-enrichment.service                      loaded activating start   start S26 NMPA detail enrichment, substantive changes and verified completion email
+● optima-nmpa-inventory.service                       loaded failed     failed        Optima checkpointed NMPA registration inventory cohort
+  optima-patents-backfill.service                     loaded activating start   start Optima resumable monthly global patent backfill from approved historical start
+  optima-patents-daily.service                        loaded activating start   start Optima bounded USPTO daily patent catch-up
+● optima-patents-global-monitor.service               loaded failed     failed        Observe global patent source revision without executing BigQuery queries
+  optima-patents-prosecution-publication.service      loaded activating start   start Optima verified USPTO prosecution observation publication
+● optima-patents-prosecution.service                  loaded failed     failed        Optima historical and incremental USPTO prosecution evidence
+  optima-patents-publication.service                  loaded activating start   start Optima verified Athena publication of completed patent backfill months
+  optima-people-collection.service                    loaded activating start   start Optima bounded four-sector personnel source collection and archive retrieval
+  optima-people-content-backfill.service              loaded activating start   start S15 RSS and personnel archive full publisher article capture and saved-observation enrichment
+  optima-pubmed-enrichment-backfill.service           loaded activating start   start S27 PubMed saved-record enrichment and verified completion email
+● optima-reddit-collection.service                    loaded failed     failed        Bounded Reddit posts/comments and historical search with Athena verification
+  optima-regulatory-enrichment-backfill.service       loaded activating start   start S22/S23 saved-record enrichment and verified completion email
+● optima-repair-core.service                          loaded failed     failed        /usr/bin/flock --exclusive --timeout 7200 /dev/shm/optima-s3/supervisor.lock /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/s3_runtime.py --unit optima-repair-core -- /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/repair_core_batch.py
+● optima-repair-verify.service                        loaded failed     failed        /usr/bin/flock --exclusive --timeout 7200 /dev/shm/optima-s3/supervisor.lock /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/s3_runtime.py --unit optima-repair-verify -- /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/repair_verify.py
+  optima-research-publication.service                 loaded activating start   start Optima SEC regulatory and disclosure Athena publication
+  optima-s11-content-backfill.service                 loaded activating start   start S11 full disclosure content and passage-supported candidate backfill
+● optima-source-schedule-daily.service                loaded failed     failed        All 68 source daily capture readiness and Athena status
+  optima-source-schedule-historical.service           loaded activating start   start All 68 source historical capture readiness and Athena status
+● optima-specialist-daily.service                     loaded failed     failed        Optima daily additional specialist inputs and linked original documents
+  optima-specialist-historical.service                loaded activating start   start Optima resumable 2021 specialist archives and verified publication
+  optima-specialist-publication.service               loaded activating start   start Verified specialist Athena publication independent of capture queue
+  optima-ted-enrichment-backfill.service              loaded activating start   start S42 TED linked-XML enrichment and verified completion email
+  optima-trade-screening-enrichment.service           loaded activating start   start S52 authority evidence and daily RDS company/product exposure matching
+  optima-usgs-minerals-backfill.service               loaded activating start   start S53 USGS minerals full-report enrichment and verified completion email
+  optima-caiso-backfill.timer                         loaded active     running       Resume S57 backfill collection, interval assembly and completion checks
+  optima-caiso-daily.timer                            loaded active     running       Resume S57 daily collection, interval assembly and completion checks
+  optima-chictr-daily.timer                           loaded active     running       Bounded ChiCTR daily catch-up and access verification
+  optima-committed-athena.timer                       loaded active     running       Expose and verify newly committed data in Athena every hour
+  optima-company-catalogue.timer                      loaded active     running       Resume global company import and enrichment every thirty minutes
+  optima-conference-collection.timer                  loaded active     running       Resume daily and historical proceedings collection every 30 minutes
+  optima-conference-publication.timer                 loaded active     running       Publish completed proceedings windows every 15 minutes
+  optima-doe-storage-backfill.timer                   loaded active     running       Resume S55 backfill document discovery and extraction
+  optima-doe-storage-daily.timer                      loaded active     running       Resume S55 daily document discovery and extraction
+  optima-edinet-document-backfill.timer               loaded active     running       Resume EDINET original reports and extraction backfill
+  optima-edinet-documents-daily.timer                 loaded active     running       Resume EDINET full-report daily capture
+  optima-eia-enrichment-backfill.timer                loaded active     running       Resume S56 EIA index and retail enrichment until committed data is verified and emailed
+  optima-eodhd-profiles.timer                         loaded active     running       Run the Optima EODHD profile cohorts with hourly quota-safe top-ups
+  optima-federal-register-daily-enrichment.timer      loaded active     running       Resume S51 parent-discovered full-notice evidence capture
+  optima-federal-register-enrichment-backfill.timer   loaded active     running       Resume S51 Federal Register enrichment until committed data is verified and emailed
+  optima-finlight-content-backfill.timer              loaded active     running       Resume Finlight full-article backfill without duplicate archive discovery
+  optima-grant-backfill.timer                         loaded active     running       Resume S68 grant lifecycle backfill
+  optima-grant-daily.timer                            loaded active     running       Resume S68 grant lifecycle daily
+  optima-hkex-document-backfill.timer                 loaded active     running       Resume HKEX original report backfill every five minutes after each bounded run
+  optima-market-collection.timer                      loaded active     running       Optima Bounded market prices and corporate actions
+  optima-market-publication.timer                     loaded active     running       Optima Verified incremental market Athena publication
+  optima-mlperf-enrichment-backfill.timer             loaded active     running       Resume S48 MLPerf enrichment until committed data is verified and emailed
+  optima-news-collection.timer                        loaded active     running       Optima Bounded news catch-up, reconciliation and 2021 archive
+  optima-news-publication.timer                       loaded active     running       Optima Verified incremental news Athena publication
+  optima-nist-robotics-backfill.timer                 loaded active     running       S47 original-evidence backfill and verified completion email
+  optima-nist-robotics-daily.timer                    loaded active     running       S47 daily linked evidence after landing capture
+  optima-nmpa-enrichment.timer                        loaded active     running       Resume S26 detail backfill and reconcile known trials
+  optima-patents-backfill.timer                       loaded active     running       Resume global patent backfill hourly with a daily query budget
+  optima-patents-daily.timer                          loaded active     running       Resume bounded patent catch-up hourly while EC2 is running
+  optima-patents-prosecution-publication.timer        loaded active     running       Publish completed USPTO prosecution windows every 15 minutes
+  optima-patents-publication.timer                    loaded active     running       Publish completed patent months to Athena every ten minutes
+  optima-people-collection.timer                      loaded active     running       Capture personnel sources and advance archive retrieval every 30 minutes
+  optima-people-content-backfill.timer                loaded active     running       Resume S15 RSS and personnel archive full-article backfill without duplicate archive discovery
+  optima-pubmed-enrichment-backfill.timer             loaded active     running       Resume S27 PubMed enrichment until committed data is verified and emailed
+  optima-regulatory-enrichment-backfill.timer         loaded active     running       Resume S22/S23 enrichment until committed data is verified and emailed
+  optima-research-publication.timer                   loaded active     running       Publish committed research collection windows every 15 minutes
+  optima-s11-content-backfill.timer                   loaded active     running       Resume S11 full-content backfill after each bounded run
+  optima-source-schedule-historical.timer             loaded active     running       All 68 source historical capture readiness and Athena status
+  optima-specialist-historical.timer                  loaded active     running       Optima resumable 2021 specialist archives and verified publication
+  optima-specialist-publication.timer                 loaded active     running       Publish committed specialist windows every fifteen minutes
+  optima-ted-enrichment-backfill.timer                loaded active     running       Resume S42 TED enrichment until committed data is verified and emailed
+  optima-trade-screening-enrichment.timer             loaded active     running       Resume S52 post-capture enrichment and daily RDS rechecking
+  optima-usgs-minerals-backfill.timer                 loaded active     running       Resume S53 USGS minerals enrichment until committed data is verified and emailed
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+JOB    = Pending job for the unit.
+
+100 loaded units listed.

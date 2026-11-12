@@ -21,6 +21,19 @@ class Client:
 
 
 class SpecialistTests(unittest.TestCase):
+    def test_fulltext_fallback_requires_matching_pmc_identity(self):
+        from unittest.mock import Mock
+        client=Mock()
+        job={'adapter':'epmc_fulltext','parameters':{'url':'https://www.ebi.ac.uk/article','pmcid':'PMC123'}}
+        xml=b'<pmc-articleset><article><front><article-meta><article-id pub-id-type="pmc">123</article-id><title-group><article-title>Trial report</article-title></title-group></article-meta></front><body>Full text</body></article></pmc-articleset>'
+        client.get.side_effect=[SourceIssue('source_retries_exhausted'),xml]
+        rows,cursor=fetch_page(client,job,None)
+        self.assertEqual(rows[0]['data']['retrieval_provider'],'NCBI PMC')
+        self.assertIn('Full text',rows[0]['data']['article_xml'])
+        self.assertIsNone(cursor)
+        client.get.side_effect=[SourceIssue('source_retries_exhausted'),xml.replace(b'>123<',b'>999<')]
+        with self.assertRaisesRegex(SourceIssue,'identity_mismatch'):fetch_page(client,job,None)
+
     def test_usaspending_cursor_exhausts_each_recipient_before_next(self):
         from unittest.mock import Mock
         client=Mock()

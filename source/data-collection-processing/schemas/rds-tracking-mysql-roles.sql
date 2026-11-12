@@ -14,3 +14,10 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON tracking.company_listings TO 'tracking_e
 GRANT SELECT, INSERT, UPDATE, DELETE ON tracking.product_contexts TO 'tracking_editor';
 -- Grant one role to a separately provisioned application account and activate
 -- it with SET DEFAULT ROLE. Application accounts should REQUIRE SSL.
+
+-- After applying rds-tracking-people-mysql.sql:
+GRANT SELECT, INSERT, UPDATE, DELETE ON tracking.people TO 'tracking_editor';
+GRANT SELECT, INSERT, UPDATE, DELETE ON tracking.person_aliases TO 'tracking_editor';
+GRANT SELECT, INSERT, UPDATE, DELETE ON tracking.person_identifiers TO 'tracking_editor';
+GRANT SELECT, INSERT, UPDATE, DELETE ON tracking.person_companies TO 'tracking_editor';
+GRANT SELECT, INSERT, UPDATE, DELETE ON tracking.person_products TO 'tracking_editor';

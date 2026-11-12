@@ -1,0 +1,8 @@
+  UNIT                            LOAD   ACTIVE SUB    DESCRIPTION
+● constellation-gap-audit.service loaded failed failed Constellation gap-audit on controller
+● ec2-code-backup.service         loaded failed failed Back up EC2 source code to GitHub
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+2 loaded units listed.

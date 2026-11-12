@@ -1,0 +1,24 @@
+NextElapseUSecRealtime=Wed 2026-11-11 08:36:57 UTC
+Result=success
+Id=optima-chictr-daily.timer
+LoadState=loaded
+ActiveState=active
+
+SuccessExitStatus=0 2 75
+Result=success
+ExecMainStatus=2
+Id=optima-chictr-daily.service
+LoadState=loaded
+ActiveState=inactive
+
+NextElapseUSecRealtime=
+Result=success
+Id=optima-metadata-controller.timer
+LoadState=loaded
+ActiveState=active
+
+NextElapseUSecRealtime=
+Result=success
+Id=optima-research-publication.timer
+LoadState=loaded
+ActiveState=active

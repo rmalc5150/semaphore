@@ -152,7 +152,8 @@ def finish_error(run, exc, evidence=()):
     code = exc.code if isinstance(exc, SourceIssue) else "interrupted" if isinstance(exc, KeyboardInterrupt) else "collection_error"
     status = "partial" if isinstance(exc, KeyboardInterrupt) or (isinstance(exc, SourceIssue) and exc.partial) else "failed"
     write_json(run.store, run.state["manifest_prefix"] + "/failure.json", {
-        "reason": code, "error_type": type(exc).__name__, "evidence": list(evidence), "cursor": run.cursor})
+        "reason": code, "error_type": type(exc).__name__, "evidence": list(evidence), "cursor": run.cursor,
+        "diagnostics":getattr(exc,'diagnostics',None)})
     return {"status": status, "reason": code, "manifest": run.finish(status, code)}
 
 
@@ -188,11 +189,41 @@ def hkex_page(client, day, state, page_size, stock_id=""):
     return rows[loaded:], {"loaded": returned, "total": total, "prefix_hash": digest(rows)}, returned == total
 
 
+def hkex_snapshot_page(client, day, state, page_size, stock_id, snapshot_key):
+    """Freeze a complete daily listing before bounded document capture."""
+    key = state.get('index_snapshot_key') or snapshot_key
+    saved = client.store.get(key)
+    if saved is None:
+        require(not state.get('index_snapshot_key'), 'hkex_index_snapshot_missing')
+        rows, _, done = hkex_page(client, day, {}, 100000, stock_id)
+        require(done, 'hkex_daily_index_snapshot_incomplete')
+        snapshot = {'day': str(day), 'stock_id': stock_id, 'rows': rows,
+                    'sha256': digest(rows), 'evidence': list(client.evidence)}
+        write_json(client.store, key, snapshot)
+    else:
+        snapshot = json.loads(saved.body)
+    require(snapshot['day'] == str(day) and snapshot['stock_id'] == stock_id,
+            'hkex_index_snapshot_scope_mismatch')
+    rows = snapshot['rows']
+    require(digest(rows) == snapshot['sha256'], 'hkex_index_snapshot_checksum_mismatch')
+    for proof in snapshot['evidence']:
+        get_bytes(client.store, proof['key'], proof['sha256'])
+    client.evidence = list(snapshot['evidence'])
+    loaded = state.get('loaded', 0)
+    require(type(loaded) is int and 0 <= loaded <= len(rows), 'hkex_index_snapshot_offset_invalid')
+    following = min(loaded + page_size, len(rows))
+    return rows[loaded:following], {'loaded': following, 'total': len(rows),
+        'index_snapshot_key': key}, following == len(rows)
+
+
 def collect_hkex(store, settings, universe, taxonomy, start, end, mode, selection="all", sectors=(),
                  stock_id="", page_size=100, max_pages=None, refresh=False, client=None, capture_documents=True):
     scope = {"selection": selection, "sectors": sorted(set(sectors)), "stock_id": stock_id,
              "market": "SEHK", "language": "EN", "page_size": page_size, "date_basis": "hkex_release_date",
              "document_capture": "original_bytes_v1" if capture_documents else "metadata_only"}
+    if capture_documents:
+        scope['index_capture'] = 'complete_daily_snapshot_v1'
+        scope['chinese_original_fallback'] = 'separate_provider_identity_v1'
     spec = task_spec("hkex_news", "filings", mode, midnight(start, "Asia/Hong_Kong"), midnight(end, "Asia/Hong_Kong"), scope, VERSION, universe, taxonomy)
     try:
         run = CollectionRun.start(store, spec, universe, taxonomy, settings, resume=not refresh, refresh=refresh)
@@ -207,7 +238,11 @@ def collect_hkex(store, settings, universe, taxonomy, start, end, mode, selectio
                 return {"status": "partial", "reason": "page_limit", "manifest": run.finish("partial", "page_limit")}
             day = date.fromisoformat(state["day"])
             client.evidence = []
-            rows, following, done = hkex_page(client, day, state, page_size, stock_id)
+            if capture_documents:
+                rows, following, done = hkex_snapshot_page(client, day, state, page_size, stock_id,
+                    run.state['manifest_prefix'] + '/index-snapshots/' + str(day) + '.json')
+            else:
+                rows, following, done = hkex_page(client, day, state, page_size, stock_id)
             search_evidence = list(client.evidence)
             records = []
             for row in rows:
@@ -227,14 +262,35 @@ def collect_hkex(store, settings, universe, taxonomy, start, end, mode, selectio
                         else:
                             raw = client.get(record["source_url"])
                         if row.get("FILE_TYPE", "").upper() == "PDF":
-                            require(raw.startswith(b"%PDF-"), "hkex_non_pdf_response")
+                            from disclosure_content import issuer_removed_notice
+                            require(raw.startswith(b"%PDF-") or issuer_removed_notice(raw, record), "hkex_non_pdf_response")
                         else:
                             document_text(raw, record)
                         require(bool(client.evidence), "hkex_document_evidence_missing")
+                        from hkex_originals import language_notice, resolve_notice, original_record, OriginalError
+                        if language_notice(raw):
+                            notice_refs = list(client.evidence)
+                            try:
+                                resolution = resolve_notice(record, raw, client)
+                            except OriginalError as exc:
+                                raise SourceIssue(str(exc), True, getattr(exc,'diagnostics',None)) from exc
+                            for original in resolution['originals']:
+                                records.append(original_record(record, original, resolution))
+                            payload['record_type'] = 'language_availability_notice'
+                            payload['language_availability'] = {'status':'english_version_unavailable',
+                                'resolution_id':resolution['resolution_id'],
+                                'original_record_ids':[str(e['row']['NEWS_ID']) for e in resolution['originals']],
+                                'relation':resolution['relation']}
+                            client.evidence = notice_refs
                         remember(store, client.evidence[0])
-                        payload["document_capture"] = {"status": "captured", "bytes": len(raw),
+                        from disclosure_content import issuer_removed_notice
+                        payload["document_capture"] = {"status": "language_placeholder" if language_notice(raw) else "publisher_removed" if issuer_removed_notice(raw, record) else "captured", "bytes": len(raw),
                             "source_evidence": list(client.evidence)}
                         payload["coverage_note"] = "English HKEX SEHK search metadata and original linked documents within the configured scope; text extraction is a separate stage; current observations, not reconstructed historical versions."
+                        if payload["document_capture"]["status"] == "language_placeholder":
+                            payload["coverage_note"] = "English language-availability notice only. Related Chinese originals retain separate HKEX identifiers; exact translation equivalence is unverified."
+                        if payload["document_capture"]["status"] == "publisher_removed":
+                            payload["coverage_note"] = "HKEX index metadata retained; the issuer removed the linked original. Only the publisher removal notice was captured, not the original filing."
                         record = make_record(run, str(row["NEWS_ID"]), payload, str(day), record["source_url"],
                             names=[row["STOCK_NAME"]], evidence=search_evidence + list(client.evidence), timezone_name="Asia/Hong_Kong")
                     records.append(record)
@@ -361,7 +417,7 @@ def collect_derived(store, settings, universe, taxonomy, start, end, mode, stage
                 host = "www.sec.gov" if parent["source"] == "sec_edgar" else "www1.hkexnews.hk"
                 require(urlsplit(url).scheme == "https" and urlsplit(url).hostname == host, "unapproved_document_host")
                 captured = parent["payload"].get("document_capture")
-                if captured and captured.get("status") == "captured":
+                if captured and captured.get("status") in {"captured", "publisher_removed"}:
                     refs = captured["source_evidence"]
                     require(len(refs) == 1 and refs[0]["source_url"] == url, "document_capture_reference_invalid")
                     raw = get_bytes(store, refs[0]["key"], refs[0]["sha256"])

@@ -1,0 +1,10 @@
+{
+  "command_id": "833d3dad-3e57-4f27-90dd-b1c5750e4666",
+  "files": {
+    "constellation/legacy_worker.py": "8a3eb917088ad5a8fd4b43b3520c3398b7310745ed316b0d98075b223c4d2113",
+    "config/constellation-legacy-routes.json": "72d03395f2d3220a7ad191a57a3f9333e724aeb483b72e5db8cc9e1ec021aad0",
+    "constellation/constellation-legacy-runtime-init.service": "a88e37e2ce8195d7acbeab9693a882cc8d1f60cc819c53b2469a3dccd2de59eb",
+    "patent_prosecution_operations.py": "42a77896b98e4ef6c5855216ef53d03e4ef0e09459cd95c44239e0853934ba12"
+  },
+  "collection_enabled": false
+}

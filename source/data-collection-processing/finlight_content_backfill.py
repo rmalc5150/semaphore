@@ -202,6 +202,10 @@ def main():
     parser.add_argument('--config', default='config/finlight-content-backfill.json')
     args = parser.parse_args()
     config = load_json(ROOT / args.config)
+    from source_pauses import is_paused
+    if is_paused(config.get('provider', 'finlight')):
+        print(json.dumps({'status': 'paused', 'reason': 'source_paused_by_owner'}))
+        return 0
     # The discovery timer starts around minute 05. Leave it an admission
     # window; this worker's service is bounded to four minutes per run.
     if 1 <= datetime.now(timezone.utc).minute <= 9:

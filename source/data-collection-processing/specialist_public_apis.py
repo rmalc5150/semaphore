@@ -47,7 +47,7 @@ def fetch(client, job, cursor, item):
             require(identity is not None and len(day) == 10, kind + '_missing_identity_or_date')
             if kind == 'cpsc':
                 require(p['start'] <= day < p['end'], 'cpsc_ignored_date_filter')
-            if p['start'] <= day < p['end']:
+            if (kind=='canada_noc' and p.get('full_inventory')) or p['start'] <= day < p['end']:
                 rows.append(item(identity, row, row.get('URL') or url, day))
         return rows, None
     if kind == 'pubmed':
@@ -70,20 +70,31 @@ def fetch(client, job, cursor, item):
         for article in list(root):
             pmid = article.findtext('.//PMID')
             require(pmid in ids, 'pubmed_unexpected_pmid')
-            rows.append(item(pmid, {'pmid': pmid, 'article_xml': ET.tostring(article, encoding='unicode'),
-                'rights': 'metadata/abstract rights require review; not training eligible'}, 'https://pubmed.ncbi.nlm.nih.gov/' + pmid + '/'))
+            from pubmed_enrichment import enrich
+            article_xml = ET.tostring(article, encoding='unicode')
+            enrichment = enrich(article_xml, pmid)
+            published = enrichment['publication_event']['date']
+            day = published['value'] if published and published['precision'] == 'day' else None
+            rows.append(item(pmid, {'pmid': pmid, 'article_xml': article_xml, 'enrichment': enrichment,
+                'rights': 'metadata/abstract rights require review; not training eligible'}, 'https://pubmed.ncbi.nlm.nih.gov/' + pmid + '/', day))
         require(sorted(r['id'] for r in rows) == sorted(ids), 'pubmed_incomplete_fetch')
         return rows, str(offset + len(ids)) if offset + len(ids) < total else None
     if kind == 'drugsfda':
-        offset = int(cursor or 0)
+        inventory=bool(p.get('inventory_scope'))
+        state=json.loads(cursor) if inventory and cursor else {}
+        offset=state.get('count',0) if inventory else int(cursor or 0)
         data = client.json(url, params={**p['query'], 'skip': offset, 'limit': 100}, no_matches=True)
         total = data.get('meta', {}).get('results', {}).get('total')
         rows = data.get('results')
         require(isinstance(total, int) and isinstance(rows, list), 'drugsfda_response_shape')
         require(total <= 25000, 'drugsfda_split_scope_required')
         require(bool(rows) or offset == total, 'drugsfda_missing_page')
+        if inventory and state:
+            require(total==state['total'] and data['meta'].get('last_updated')==state['revision'],'source_changed_refresh_required')
+        require(offset+len(rows)<=total,'drugsfda_count_mismatch')
         result = [item(r['application_number'], r, url) for r in rows]
-        return result, str(offset + len(rows)) if offset + len(rows) < total else None
+        following=json.dumps({'count':offset+len(rows),'total':total,'revision':data['meta'].get('last_updated')}) if inventory else str(offset+len(rows))
+        return result, following if offset+len(rows)<total else None
     if kind == 'sec_companyfacts':
         data = client.json(url)
         require(str(data.get('cik', '')).zfill(10) == p['cik'], 'sec_facts_cik_mismatch')

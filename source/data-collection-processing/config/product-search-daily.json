@@ -1,0 +1,24 @@
+{
+  "version": "product-search-v1",
+  "storage_config": "config/collection-storage.s3.json",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "daily_budget_usd": "1.00",
+  "request_reservation_usd": {
+    "volume": "0.20",
+    "snapshot": "0.02"
+  },
+  "locales": [
+    {
+      "location_code": 2840,
+      "location_name": "United States",
+      "language_code": "en"
+    }
+  ],
+  "geographic_interest_scope": "worldwide",
+  "coverage": "All named nonretired Constellation product entities, including provisional candidates. No manual product subset. Empty registry is an explicit pending dependency, not complete coverage. Monthly volumes, daily SERP and rolling-90-day global interest/geography, within existing request/cost limits.",
+  "directory": {
+    "mode": "metadata_engine",
+    "scope": "All named, nonretired product entities in the Constellation metadata registry; includes provisional candidates without asserting verification."
+  }
+}

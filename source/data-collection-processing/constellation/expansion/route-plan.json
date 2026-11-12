@@ -1,0 +1,44 @@
+{
+  "added_routes": [
+    "constellation-specialist-nih_reporter.service",
+    "constellation-specialist-ted_notices.service",
+    "constellation-specialist-bls_wages.service",
+    "constellation-specialist-un_comtrade.service",
+    "constellation-specialist-federal_register.service",
+    "constellation-specialist-europe_pmc.service",
+    "constellation-specialist-usa_spending.service",
+    "constellation-specialist-usgs_minerals.service",
+    "constellation-specialist-caiso_prices.service",
+    "constellation-specialist-eia_battery_generators.service",
+    "constellation-specialist-cms_coverage.service",
+    "constellation-specialist-sec_companyfacts.service",
+    "constellation-specialist-drugsfda_applications.service",
+    "constellation-specialist-ema_medicines.service",
+    "constellation-specialist-pubmed_abstracts.service",
+    "constellation-specialist-canada_noc.service",
+    "constellation-specialist-cpsc_recalls.service",
+    "constellation-specialist-fda_dd_inspections_classifications.service",
+    "constellation-specialist-fda_dd_inspections_citations.service",
+    "constellation-specialist-fda_dd_compliance_actions.service",
+    "constellation-specialist-fda_dd_import_refusals.service",
+    "constellation-specialist-fda_ires_recalls.service",
+    "constellation-specialist-edinet_filings.service",
+    "constellation-specialist-eia_retail_prices.service",
+    "constellation-core-uk-historical.service",
+    "constellation-core-japan-historical.service"
+  ],
+  "temporary_gates": [
+    {
+      "source": "mlperf_results",
+      "reason": "shared_GitHub_rolling_quota"
+    },
+    {
+      "source": "uspto_assignment_histories",
+      "reason": "USPTO_account_shared_quota"
+    },
+    {
+      "source": "sam_gov_opportunities",
+      "reason": "shared_SAM_hourly_daily_quota"
+    }
+  ]
+}

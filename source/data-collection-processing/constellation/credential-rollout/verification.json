@@ -1,0 +1,89 @@
+{
+  "manifest_checks": [
+    {
+      "source": "un_comtrade",
+      "mode": "daily",
+      "manifest_exists": true
+    },
+    {
+      "source": "un_comtrade",
+      "mode": "historical",
+      "manifest_exists": true
+    },
+    {
+      "source": "ember_electricity_demand_and_generation",
+      "mode": "daily",
+      "manifest_exists": true
+    },
+    {
+      "source": "ember_electricity_demand_and_generation",
+      "mode": "historical",
+      "manifest_exists": true
+    },
+    {
+      "source": "wto_timeseries_api",
+      "mode": "daily",
+      "manifest_exists": true
+    },
+    {
+      "source": "wto_timeseries_api",
+      "mode": "historical",
+      "manifest_exists": true
+    },
+    {
+      "source": "wto_quantitative_restrictions_api",
+      "mode": "daily",
+      "manifest_exists": true
+    },
+    {
+      "source": "wto_quantitative_restrictions_api",
+      "mode": "historical",
+      "manifest_exists": true
+    },
+    {
+      "source": "wto_eping_sps_tbt_notifications",
+      "mode": "daily",
+      "manifest_exists": true
+    },
+    {
+      "source": "wto_eping_sps_tbt_notifications",
+      "mode": "historical",
+      "manifest_exists": true
+    },
+    {
+      "source": "fred_alfred_series_and_vintages",
+      "mode": "daily",
+      "manifest_exists": true
+    },
+    {
+      "source": "fred_alfred_series_and_vintages",
+      "mode": "historical",
+      "manifest_exists": true
+    },
+    {
+      "source": "south_korea_fss_opendart",
+      "mode": "daily",
+      "manifest_exists": true
+    },
+    {
+      "source": "south_korea_fss_opendart",
+      "mode": "historical",
+      "manifest_exists": true
+    },
+    {
+      "source": "epo_ops_patent_legal_events",
+      "mode": "daily",
+      "manifest_exists": true
+    },
+    {
+      "source": "epo_ops_patent_legal_events",
+      "mode": "historical",
+      "manifest_exists": true
+    }
+  ],
+  "tests_passed": 62,
+  "shutdown_scope_matches": true,
+  "source_evidence": "current-status.json",
+  "daily_on_controller": true,
+  "historical_enabled": true
+}

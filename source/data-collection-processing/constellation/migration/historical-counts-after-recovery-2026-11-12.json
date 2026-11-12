@@ -1,0 +1,12 @@
+{
+  "checked_at": 1794482691.2040386,
+  "historical_sources": 123,
+  "historical_counts": {
+    "succeeded": 130804,
+    "pending": 534,
+    "running": 10,
+    "retryable_failed": 30,
+    "blocked": 8
+  },
+  "basis": "Live covering-index per-source counts after journal-proven disk-full requeue; concurrent writes may affect totals."
+}

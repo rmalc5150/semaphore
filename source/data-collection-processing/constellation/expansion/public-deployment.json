@@ -1,0 +1,475 @@
+{
+  "command_id": "b4512213-105c-4ef4-a38b-581baeb5a181",
+  "bundle_sha256": "6da880e2f28d1bbed47506796e963c27ec15284e0a1c37deab77756eb82777c0",
+  "public_archive_routes": 73,
+  "public_native_routes": 5,
+  "new_runtime_seeds": 6,
+  "controller_activation_pending": false,
+  "activated_at": 1793022459.3363132,
+  "deployment_diagnostics_reset": 5,
+  "routes": [
+    {
+      "unit": "constellation-specialist-nasa_power_weather_and_solar_resource.service",
+      "status": "already_queued",
+      "job_id": "9e216f7c04b31a6ec17d69ce493f33a5592b4073651b48bdff8a1130392bb2c4"
+    },
+    {
+      "unit": "constellation-specialist-datacite_dissertations_datasets_software_and_usage.service",
+      "status": "already_queued",
+      "job_id": "2835dc2df6704ce95cc87244d33005b22e2d205bde1b93b52fedb4ed117e4166"
+    },
+    {
+      "unit": "constellation-specialist-biorxiv_medrxiv_preprints.service",
+      "status": "already_queued",
+      "job_id": "4a2f1b16eb2fdb1e451347fd92aa976c4a6fbd8df5426445e8d1aaf1914a1083"
+    },
+    {
+      "unit": "constellation-specialist-zenodo_research_artifacts_and_usage.service",
+      "status": "already_queued",
+      "job_id": "1a37eb06f97466f75483c14e1cedb688377836656f7c01bf98961e073217ca0c"
+    },
+    {
+      "unit": "constellation-specialist-hugging_face_hub_models_and_datasets.service",
+      "status": "already_queued",
+      "job_id": "c973108482305ca53d139755a9427450e1d175e705c631681cd0856bc53ed532"
+    },
+    {
+      "unit": "constellation-public-gleif_legal_entities.service",
+      "status": "queued_on_c7i",
+      "job_id": "7fb72696c8bc5f33c935b7d369133c0fea4421288434adf66d31c793f5bb6f83",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-hkex_prices.service",
+      "status": "queued_on_c7i",
+      "job_id": "f1e29def0ab6e96f73506b0e71c8c28173d2abd9cc44d23d8afee3b65a26835d",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-hkex_news.service",
+      "status": "queued_on_c7i",
+      "job_id": "43d4d98392895aa12af64d9cde6da776ee5a1301417df63fb5fef2e268de6d18",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-ema_ctis.service",
+      "status": "queued_on_c7i",
+      "job_id": "7d13fb83f69f3a95d700eb5d887908445db3c3ac9b99940c1e0430e3e20278d9",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-chictr.service",
+      "status": "queued_on_c7i",
+      "job_id": "df31b19e09d49ca91948a41ff6231651164e94affe12f81ef70099126cf59807",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-nmpa_trials.service",
+      "status": "queued_on_c7i",
+      "job_id": "08998bfd9ee264f91a8be20ff8ace0b232e0c5c3a46ec91fb207fb24fdcb1a21",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-europe_pmc_fulltext.service",
+      "status": "queued_on_c7i",
+      "job_id": "d2a36065c3863011f154826de0b289c53226860627e2f5b503d806d9118e77f1",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-crossref_proceedings.service",
+      "status": "queued_on_c7i",
+      "job_id": "175dcbb9f90885596748463385b18e384b70b0c7b2bb495b0e6c61911405b418",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-cms_coverage_documents.service",
+      "status": "queued_on_c7i",
+      "job_id": "0190585feda0074f27421bd1fb6bcb69efb5be0e501be2e2f4270c0cae208d32",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-cms_payments_catalog.service",
+      "status": "queued_on_c7i",
+      "job_id": "64bff1f0b1ff16c8b13ece758370579a3eb9572fce48701c89588e8b927cd421",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-nist_robotics_methods.service",
+      "status": "queued_on_c7i",
+      "job_id": "9c435f014b74f2c72ef967d934e46bf3b308282e8a7ee8e775c766b43cd99be6",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-trade_screening.service",
+      "status": "queued_on_c7i",
+      "job_id": "54321c07d4737407e5eb63f848f18352c41d27dced64b550b86a13807af88fe8",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-doe_storage_program.service",
+      "status": "queued_on_c7i",
+      "job_id": "6cd6106089f68dfb2a9bbc90829d81783778e7c7aa057b36cfa7fce104d87455",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-eia_generator_index.service",
+      "status": "queued_on_c7i",
+      "job_id": "e6f42ebb0362ba8216fd09bafb1a070a7f6c1bee117fc453628f0d66a1c9a512",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-ror_institutions.service",
+      "status": "queued_on_c7i",
+      "job_id": "1f0cd189d10084c9ca8792deac6f3ea9a34db91d12420a9e56dee6a1fc922550",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-bis_sdmx_api.service",
+      "status": "queued_on_c7i",
+      "job_id": "eba45ec73ca382dfac64e1c253b46a877b281de16919d2213a6b460941b2b60d",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-unido_iip_and_indstat.service",
+      "status": "queued_on_c7i",
+      "job_id": "f19825af9335cfe9730c72d6d5bfa2dac26aedd887cafefe44eba0dde93342b8",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-ilostat_labor_statistics.service",
+      "status": "queued_on_c7i",
+      "job_id": "d6301ab14d33a8880ca3de654c6a3c86b9f9f713d803fb84b4b1661f39b68ad4",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-imf_portwatch_shipping_activity.service",
+      "status": "queued_on_c7i",
+      "job_id": "d86f0175dcd44b6e54c0dd10ec220609e91bf26440b7851fc3812a71d2287ee0",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-england_nhsbsa_prescribing_data.service",
+      "status": "queued_on_c7i",
+      "job_id": "edd6e47d31e8f47e16dfde234c3e9ceb74f56f4ca7133639a3cae07cdd1845a2",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-sia_wsts_public_semiconductor_sales.service",
+      "status": "queued_on_c7i",
+      "job_id": "a8d9bad156e4e2508c278fa1b8df61b96bbbff498dbd1ce6d1131dff28556475",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-semi_worldwide_equipment_billings.service",
+      "status": "queued_on_c7i",
+      "job_id": "313867acb3a6d2c3247c2e25eb4982c51e1743f15f6c7d18b900b1bda9d8bbc5",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-international_federation_of_robotics_world_robotics.service",
+      "status": "queued_on_c7i",
+      "job_id": "fde86dfaab1b1c90a5891a5aaaf6fa06f521cba2e9415fff4340d68b2760a367",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-iea_pvps_solar_deployment_reports.service",
+      "status": "queued_on_c7i",
+      "job_id": "89113694370fd4c9a79ee9f0bc8b4065f4e123762986ec82e1038f20cc35fa74",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-germany_g_ba_drug_benefit_assessments.service",
+      "status": "queued_on_c7i",
+      "job_id": "bc4c78b8d2a0a6675f27ee956490a60d8576c950b52f861b6245161bec42351b",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-france_has_medicine_assessment_opinions.service",
+      "status": "queued_on_c7i",
+      "job_id": "eb7fc9cd664999557a5ad0c68b14cee46c21d63c268ed966cf74abc18618d762",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-nice_technology_appraisals.service",
+      "status": "queued_on_c7i",
+      "job_id": "cdac17f88de9a0d527489bb4be4d236da407e3ac9be019411fe5aabdb4d4f026",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-canada_cda_amc_cadth_reimbursement_reviews.service",
+      "status": "queued_on_c7i",
+      "job_id": "cef236b945723da906ffddb27f09d402600965210add3bd927e4e02ef580b8d1",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-france_assurance_maladie_open_medic.service",
+      "status": "queued_on_c7i",
+      "job_id": "1d17a9320d7eba3445f727e12f7ba2e5af036654e6e253b47107cc288e44d645",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-japan_mhlw_ndb_open_data.service",
+      "status": "queued_on_c7i",
+      "job_id": "8b5937aa9cabe6b1647cb8da519e0ebc342624c00f6be55bbf31232b6e4e631f",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-cninfo_mainland_china_company_disclosures.service",
+      "status": "queued_on_c7i",
+      "job_id": "79175d756913fa466ea0ed200f3d05f245b38c02d36504527bb30aabc50e7b5a",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-china_nbs_industrial_production.service",
+      "status": "queued_on_c7i",
+      "job_id": "0b9488d89b2eda14193e1efb8e6e7f903acc198ac76e1dfb6d352c99e46e3a53",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-china_miit_electronics_and_battery_statistics.service",
+      "status": "queued_on_c7i",
+      "job_id": "0fb289d11e0c624baa5997d19915fd816834b434f600dce2292e61aa7369ebb6",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-china_nea_power_statistics.service",
+      "status": "queued_on_c7i",
+      "job_id": "bed033f4d81f587eddca8ee576ef4e53e5a1690e59da055405cbfdc6519a89c4",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-china_nhsa_reimbursement_and_procurement.service",
+      "status": "queued_on_c7i",
+      "job_id": "1b1e2d57b211ed750ff0b084e82b95871aedd3266db3a7235acfdba187ff1f64",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-china_mofcom_export_controls.service",
+      "status": "queued_on_c7i",
+      "job_id": "60d69f97f696b9e68527a62c57cafc4731b3194c02f3569d6d4bf14bffcb57d1",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-taiwan_twse_mops_issuer_and_revenue_archives.service",
+      "status": "queued_on_c7i",
+      "job_id": "99f6d81110092138bf7f4ac6396fe6428d9e5efa28d1f93c6f853a850a18b2c9",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-taiwan_customs_trade_statistics.service",
+      "status": "queued_on_c7i",
+      "job_id": "0ed9fe8c42e2e65d69a9892f338c899710bd72fc923597548faab3241215a02d",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-india_ibm_mineral_production.service",
+      "status": "queued_on_c7i",
+      "job_id": "c37469053c9bd2922e5473dd4cf130adbd7aa631b4ca00a4f8781e536aa1fa4e",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-indonesia_esdm_and_geological_agency_mineral_statistics.service",
+      "status": "queued_on_c7i",
+      "job_id": "e0f8f291359d9808ae5bebfff46b19141089c90b2e13c8e506adb17a9942d8b9",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-brazil_anm_mineral_yearbook.service",
+      "status": "queued_on_c7i",
+      "job_id": "a899d3371579da632d248ff5266131f2abbdc56e21228c7695a397a1a2bbc494",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-brazil_anm_cfem_mining_royalties.service",
+      "status": "queued_on_c7i",
+      "job_id": "01db9f34944dc3c3bc1d7c6e230b50190644b3223ad1f5cb42d241846d425d2d",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-brazil_mdic_comex_stat_api.service",
+      "status": "queued_on_c7i",
+      "job_id": "fcece69270bad529ad6cd0f75bc609d96020bd7b1eccad1b440a74adab5d76de",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-chile_cochilco_production_and_mining_economics.service",
+      "status": "queued_on_c7i",
+      "job_id": "63d8823121ac06a8d179e3b818cda840d43890e72cc0cba49e137f154d9ae0cd",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-chile_sernageomin_mining_yearbooks.service",
+      "status": "queued_on_c7i",
+      "job_id": "b71a6008a0b32c7f7b6b60c0fd2b61c8d870025e9483079f1a2e38f36a783368",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-chile_sma_snifa_environmental_compliance.service",
+      "status": "queued_on_c7i",
+      "job_id": "7be53519e5ee40c4db2046510b869f14e142772e158cd45e986d77d2fc279e0c",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-peru_minem_mining_bulletins_and_yearbooks.service",
+      "status": "queued_on_c7i",
+      "job_id": "dbc268953f57b296c9f5e6e6b20979e858a0f0af499d5263585da420c9bbbe83",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-argentina_siacam_mining_indicators.service",
+      "status": "queued_on_c7i",
+      "job_id": "342480b3e63e5fbac5584076c4764e734601e846761cb364ffd8ac9803cbb008",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-brazil_anm_sigmine_and_cadastro_mineiro.service",
+      "status": "queued_on_c7i",
+      "job_id": "71972c3aeb2cfab8dce7baeb306cfc68f5730384165d474ebb1a77eee2f55dc7",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-peru_ingemmet_geocatmin.service",
+      "status": "queued_on_c7i",
+      "job_id": "a38b7e4adafe11427b0c05958b6bec3e5cfcc71a3059075798c9f2296d6bc980",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-eurostat_comext_goods_trade.service",
+      "status": "queued_on_c7i",
+      "job_id": "8be76f3dfead3352360d276a1c3eaff216f07f0ff4f0b218341df662f7afd486",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-climate_trace_industrial_assets_and_activity.service",
+      "status": "queued_on_c7i",
+      "job_id": "1af199c975a2d8432f2b8e27d2a32013491e2acf58961829d46c36f678fa78ad",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-openstreetmap_overpass_industrial_facilities.service",
+      "status": "queued_on_c7i",
+      "job_id": "3a21182cc2282964b3260fbe5594c24bd1b1aa76becba4e81a029c3e5998da72",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-global_energy_monitor_asset_and_ownership_api.service",
+      "status": "queued_on_c7i",
+      "job_id": "5679e26c26df7d565b395d29423b4947334219d5952795d589e8f3204397e81f",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-european_environment_agency_industrial_facilities.service",
+      "status": "queued_on_c7i",
+      "job_id": "37ff5074206d409b3b0a1aa8dec106ca0cef8f7f88085c4569e416b69333b0c3",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-brazil_abve_electric_vehicle_registrations.service",
+      "status": "queued_on_c7i",
+      "job_id": "bd1e922a32cbac9b8ef436db4f54ac588e5c4f35695ae208214c5b0dc802c91d",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-brazil_senatran_vehicle_fleet.service",
+      "status": "queued_on_c7i",
+      "job_id": "eb22f025b403c66ffbe6f1c5fc67024ddefcebf4584c69e6611fd72a41efe488",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-iea_global_ev_data_explorer_and_outlook.service",
+      "status": "queued_on_c7i",
+      "job_id": "6d4ab2643f4b0cf6ad71c84c3562fc826649ca08c3aca5d53d5c17b9a161fed2",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-faostat_food_balances.service",
+      "status": "queued_on_c7i",
+      "job_id": "81507b9d4d54a776187319c4db00e767cc6ebd7fb4b8be42cdff06e9c02f42ce",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-y_combinator_company_directory_and_cohorts.service",
+      "status": "queued_on_c7i",
+      "job_id": "a6fd690e0992e20df778668a5ada4e2fe1a9e205925163bd79853772ed85ac44",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-techstars_portfolio_and_cohorts.service",
+      "status": "queued_on_c7i",
+      "job_id": "d44deed63378e04787108f17b0cfc0224e72c42a5b58cfb92310423d4ae3f730",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-500_global_portfolio_and_cohorts.service",
+      "status": "queued_on_c7i",
+      "job_id": "a57dd526dc97048790bf30639d57d8b4d7017833208fa977744c568da306d0d7",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-antler_early_stage_portfolio.service",
+      "status": "queued_on_c7i",
+      "job_id": "057a1172faeca12021aa3753f2a16b3da6438f2b431167dd19558c61a04bdea0",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-wefunder_and_republic_crowdfunding_campaigns.service",
+      "status": "queued_on_c7i",
+      "job_id": "a9703e3195d2bdfe259232e2b1fe688475ba56d6da0723905ba1fec74dce940f",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-openaire_graph_projects_and_research_products.service",
+      "status": "queued_on_c7i",
+      "job_id": "3935e24505ebd47df46db6015755876557a175771d8f1853e2fdd4389a19e67e",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-open_science_framework_projects_and_preregistrations.service",
+      "status": "queued_on_c7i",
+      "job_id": "53fcec50d6c2e6410d2d054555770faca7efa3ea46fa7a178c686749e04c96de",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-semantic_scholar_citation_context.service",
+      "status": "queued_on_c7i",
+      "job_id": "0361e1b2cbf67309b7d210b4458cb84325b36a194239bf841559beda977402ed",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-france_theses_fr_doctoral_theses.service",
+      "status": "queued_on_c7i",
+      "job_id": "c06abf2f9834ed0d36f17e9158d3b61e67ca1e0fb6b3a7644d182bc550b1ab7b",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-brazil_capes_theses_and_dissertations.service",
+      "status": "queued_on_c7i",
+      "job_id": "36daec5759a44a272313fca76488800406a43b934eb373eb18251d51366f7651",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-european_commission_cordis.service",
+      "status": "queued_on_c7i",
+      "job_id": "9cb26bfeab65d9ef3bdd10e5d9c612a4ea3d6199f194691935dae928512051bf",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-brazil_fapesp_pipe_and_grants.service",
+      "status": "queued_on_c7i",
+      "job_id": "72e94af10d9ff306b50659eab3658f568ce834d1a17659145c12e80db7d3492c",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-ukri_gateway_to_research.service",
+      "status": "queued_on_c7i",
+      "job_id": "641a725ac6a3365b032004a435b0c7e5765f7e7abe688785a1200b3de08759e2",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-university_technology_transfer_catalogs_and_reports.service",
+      "status": "queued_on_c7i",
+      "job_id": "645832bc67569a8efe52de2f3433094994a30ef14e7899e0c761c2dd56c4ff60",
+      "collection_enabled": true
+    }
+  ]
+}

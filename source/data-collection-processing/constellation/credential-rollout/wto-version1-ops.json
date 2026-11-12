@@ -1,0 +1,1498 @@
+{
+  "value": [
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-data-i-i",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-data-i-i",
+      "properties": {
+        "displayName": "01. Timeseries datapoints",
+        "method": "GET",
+        "urlTemplate": "/data",
+        "templateParameters": [],
+        "description": "Timeseries datapoints. If you reach the URL length limit, you can use the POST method.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "i",
+              "description": "Indicator code. ```See Indicators.```",
+              "type": "string",
+              "defaultValue": "TP_A_0010",
+              "required": true,
+              "values": []
+            },
+            {
+              "name": "r",
+              "description": "Reporting economies (comma separated codes). ```See Reporting economies.```",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "p",
+              "description": "Partner economies where applicable (comma separated codes). ```See Partner economies.```",
+              "type": "string",
+              "defaultValue": "default",
+              "values": []
+            },
+            {
+              "name": "ps",
+              "description": "Time period :<ul><li><i>default</i> : The last eight years are applied.\r\n            </li><li><i>all</i> : All years are applied.\r\n            </li><li>YYYY : comma separated list of years.\r\n            ```If the frequency of the requested indicator is monthly or quarterly, the resulting output will reflect this, e.g. 2010 will give an output of January-December or 2010Q1-Q4.```\r\n            </li><li>YYYYQn : comma separated list of year + quarter.\r\n            ```If the indicator frequency is monthly, the output will be given in months, e.g. 2010Q2 will produce an output of April, May, June.```\r\n            </li><li>YYYYMM : comma separated list of year + month.\r\n            ```e.g. 201007, 201507.```\r\n            </li><li>YYYY-YYYY : range of years.\r\n            ```e.g. 1995-2015.```\r\n            </li><li>YYYYQn-YYYYQn : range of quarters.\r\n            ```e.g. 2010Q1-2013Q3.```\r\n            </li><li>YYYYMM-YYYYMM : range of months.\r\n            ```e.g. 201501-201606.```\r\n            </li></ul>",
+              "type": "string",
+              "defaultValue": "default",
+              "values": []
+            },
+            {
+              "name": "pc",
+              "description": "Products/sectors (comma separated codes) where applicable. ```See Products/sectors.```<ul><li><i>default</i> : includes all the product/sector codes <u>of the indicator's classification</u> (except for <i>HS</i> : includes all the top level 2-digit products + the whole chapter 01)</li><li><i>all</i> : includes all the product/sector codes <u>of the indicator's classification</u></li><li>HS2, HS4, HS6 : All HS codes at 2,4,6-digit level</li><li>AG,AGFOFI,MAIS,... : comma separated list of product codes</li></ul>",
+              "type": "string",
+              "defaultValue": "default",
+              "values": []
+            },
+            {
+              "name": "spc",
+              "description": "Include sub products/sectors. If true, all child items in the product/sector hierarchy are recursively included.",
+              "type": "boolean",
+              "defaultValue": "false",
+              "values": []
+            },
+            {
+              "name": "fmt",
+              "description": "Output format : <ul><li><i>json</i> : json content is streamed</li><li><i>csv</i> : csv file is compressed and zipped</li></ul>",
+              "type": "string",
+              "defaultValue": "json",
+              "values": []
+            },
+            {
+              "name": "mode",
+              "description": "Output mode : <ul><li><i>full</i> : all columns, information repeated on each row</li><li><i>codes</i> : technical codes only</li></ul>",
+              "type": "string",
+              "defaultValue": "full",
+              "values": []
+            },
+            {
+              "name": "dec",
+              "description": "Number of decimals : <ul><li><i>default</i> : applies the default number of decimals for the Indicator</li><li>N : sets the number of decimals to N</li></ul>",
+              "type": "string",
+              "defaultValue": "default",
+              "values": []
+            },
+            {
+              "name": "off",
+              "description": "Number of records to skip (offset).<br />You can use it for implementing pagination.",
+              "type": "integer",
+              "defaultValue": "0",
+              "values": []
+            },
+            {
+              "name": "max",
+              "description": "Maximum number of records to return (limited to 1 000 000).",
+              "type": "integer",
+              "defaultValue": "500",
+              "values": []
+            },
+            {
+              "name": "head",
+              "description": "Heading style :<ul><li><i>H</i> : human readable headings, including special characters and spaces</li><li><i>M</i> : machine readable headings, easy to parse</li></ul>",
+              "type": "string",
+              "defaultValue": "H",
+              "values": []
+            },
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            },
+            {
+              "name": "meta",
+              "description": "Include Metadata information. If enabled, it will generate additional files/arrays (depending on the format, see parameter fmt) :<ul><li>Metadata records</li><li>Request summary : number of data records retrieved, total number of data records, number of metadata records retrieved, start time, end time, duration in seconds</li></ul>",
+              "type": "boolean",
+              "defaultValue": "false",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The Json array or Zip file including data points. It also includes metadata and summary if parameter <i>Include Metadata</i> is set to true.",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"indicatorCategoryCode\": \"string\",\r\n  \"indicatorCategory\": \"string\",\r\n  \"indicatorCode\": \"string\",\r\n  \"indicator\": \"string\",\r\n  \"reportingEconomyCode\": \"string\",\r\n  \"reportingEconomy\": \"string\",\r\n  \"partnerEconomyCode\": \"string\",\r\n  \"partnerEconomy\": \"string\",\r\n  \"productOrSectorClassificationCode\": \"string\",\r\n  \"productOrSectorClassification\": \"string\",\r\n  \"productOrSectorCode\": \"string\",\r\n  \"productOrSector\": \"string\",\r\n  \"periodCode\": \"string\",\r\n  \"period\": \"string\",\r\n  \"frequencyCode\": \"string\",\r\n  \"frequency\": \"string\",\r\n  \"unitCode\": \"string\",\r\n  \"unit\": \"string\",\r\n  \"year\": 0,\r\n  \"valueFlagCode\": \"string\",\r\n  \"valueFlag\": \"string\",\r\n  \"textValue\": \"string\",\r\n  \"value\": 0.0\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "DataPointExtended",
+                "generatedSample": "{\r\n  \"indicatorCategoryCode\": \"string\",\r\n  \"indicatorCategory\": \"string\",\r\n  \"indicatorCode\": \"string\",\r\n  \"indicator\": \"string\",\r\n  \"reportingEconomyCode\": \"string\",\r\n  \"reportingEconomy\": \"string\",\r\n  \"partnerEconomyCode\": \"string\",\r\n  \"partnerEconomy\": \"string\",\r\n  \"productOrSectorClassificationCode\": \"string\",\r\n  \"productOrSectorClassification\": \"string\",\r\n  \"productOrSectorCode\": \"string\",\r\n  \"productOrSector\": \"string\",\r\n  \"periodCode\": \"string\",\r\n  \"period\": \"string\",\r\n  \"frequencyCode\": \"string\",\r\n  \"frequency\": \"string\",\r\n  \"unitCode\": \"string\",\r\n  \"unit\": \"string\",\r\n  \"year\": 0,\r\n  \"valueFlagCode\": \"string\",\r\n  \"valueFlag\": \"string\",\r\n  \"textValue\": \"string\",\r\n  \"value\": 0.0\r\n}",
+                "sample": "{\r\n  \"indicatorCategoryCode\": \"string\",\r\n  \"indicatorCategory\": \"string\",\r\n  \"indicatorCode\": \"string\",\r\n  \"indicator\": \"string\",\r\n  \"reportingEconomyCode\": \"string\",\r\n  \"reportingEconomy\": \"string\",\r\n  \"partnerEconomyCode\": \"string\",\r\n  \"partnerEconomy\": \"string\",\r\n  \"productOrSectorClassificationCode\": \"string\",\r\n  \"productOrSectorClassification\": \"string\",\r\n  \"productOrSectorCode\": \"string\",\r\n  \"productOrSector\": \"string\",\r\n  \"periodCode\": \"string\",\r\n  \"period\": \"string\",\r\n  \"frequencyCode\": \"string\",\r\n  \"frequency\": \"string\",\r\n  \"unitCode\": \"string\",\r\n  \"unit\": \"string\",\r\n  \"year\": 0,\r\n  \"valueFlagCode\": \"string\",\r\n  \"valueFlag\": \"string\",\r\n  \"textValue\": \"string\",\r\n  \"value\": 0.0\r\n}"
+              },
+              {
+                "contentType": "application/zip",
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "DataPointExtended"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "Validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetails",
+                "generatedSample": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}",
+                "sample": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}"
+              },
+              {
+                "contentType": "application/zip",
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetails"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/post-data",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "post-data",
+      "properties": {
+        "displayName": "02. Timeseries datapoints",
+        "method": "POST",
+        "urlTemplate": "/data",
+        "templateParameters": [],
+        "description": "Timeseries datapoints.",
+        "request": {
+          "queryParameters": [],
+          "headers": [],
+          "representations": [
+            {
+              "contentType": "application/json",
+              "schemaId": "5e21cf581948951cac515ce7",
+              "typeName": "DataQuery"
+            },
+            {
+              "contentType": "text/json",
+              "schemaId": "5e21cf581948951cac515ce7",
+              "typeName": "DataQuery"
+            },
+            {
+              "contentType": "application/*+json",
+              "schemaId": "5e21cf581948951cac515ce7",
+              "typeName": "DataQuery"
+            }
+          ]
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The Json array or Zip file including data/metadata/summary",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"indicatorCategoryCode\": \"string\",\r\n  \"indicatorCategory\": \"string\",\r\n  \"indicatorCode\": \"string\",\r\n  \"indicator\": \"string\",\r\n  \"reportingEconomyCode\": \"string\",\r\n  \"reportingEconomy\": \"string\",\r\n  \"partnerEconomyCode\": \"string\",\r\n  \"partnerEconomy\": \"string\",\r\n  \"productOrSectorClassificationCode\": \"string\",\r\n  \"productOrSectorClassification\": \"string\",\r\n  \"productOrSectorCode\": \"string\",\r\n  \"productOrSector\": \"string\",\r\n  \"periodCode\": \"string\",\r\n  \"period\": \"string\",\r\n  \"frequencyCode\": \"string\",\r\n  \"frequency\": \"string\",\r\n  \"unitCode\": \"string\",\r\n  \"unit\": \"string\",\r\n  \"year\": 0,\r\n  \"valueFlagCode\": \"string\",\r\n  \"valueFlag\": \"string\",\r\n  \"textValue\": \"string\",\r\n  \"value\": 0.0\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "DataPointExtended",
+                "generatedSample": "{\r\n  \"indicatorCategoryCode\": \"string\",\r\n  \"indicatorCategory\": \"string\",\r\n  \"indicatorCode\": \"string\",\r\n  \"indicator\": \"string\",\r\n  \"reportingEconomyCode\": \"string\",\r\n  \"reportingEconomy\": \"string\",\r\n  \"partnerEconomyCode\": \"string\",\r\n  \"partnerEconomy\": \"string\",\r\n  \"productOrSectorClassificationCode\": \"string\",\r\n  \"productOrSectorClassification\": \"string\",\r\n  \"productOrSectorCode\": \"string\",\r\n  \"productOrSector\": \"string\",\r\n  \"periodCode\": \"string\",\r\n  \"period\": \"string\",\r\n  \"frequencyCode\": \"string\",\r\n  \"frequency\": \"string\",\r\n  \"unitCode\": \"string\",\r\n  \"unit\": \"string\",\r\n  \"year\": 0,\r\n  \"valueFlagCode\": \"string\",\r\n  \"valueFlag\": \"string\",\r\n  \"textValue\": \"string\",\r\n  \"value\": 0.0\r\n}",
+                "sample": "{\r\n  \"indicatorCategoryCode\": \"string\",\r\n  \"indicatorCategory\": \"string\",\r\n  \"indicatorCode\": \"string\",\r\n  \"indicator\": \"string\",\r\n  \"reportingEconomyCode\": \"string\",\r\n  \"reportingEconomy\": \"string\",\r\n  \"partnerEconomyCode\": \"string\",\r\n  \"partnerEconomy\": \"string\",\r\n  \"productOrSectorClassificationCode\": \"string\",\r\n  \"productOrSectorClassification\": \"string\",\r\n  \"productOrSectorCode\": \"string\",\r\n  \"productOrSector\": \"string\",\r\n  \"periodCode\": \"string\",\r\n  \"period\": \"string\",\r\n  \"frequencyCode\": \"string\",\r\n  \"frequency\": \"string\",\r\n  \"unitCode\": \"string\",\r\n  \"unit\": \"string\",\r\n  \"year\": 0,\r\n  \"valueFlagCode\": \"string\",\r\n  \"valueFlag\": \"string\",\r\n  \"textValue\": \"string\",\r\n  \"value\": 0.0\r\n}"
+              },
+              {
+                "contentType": "application/zip",
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "DataPointExtended"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetails",
+                "generatedSample": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}",
+                "sample": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}"
+              },
+              {
+                "contentType": "application/zip",
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetails"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-data_count-i-i",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-data_count-i-i",
+      "properties": {
+        "displayName": "03. Timeseries data count",
+        "method": "GET",
+        "urlTemplate": "/data_count",
+        "templateParameters": [],
+        "description": "Total number of data points.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "i",
+              "description": "Indicator code. ```See Indicators.```",
+              "type": "string",
+              "defaultValue": "TP_A_0010",
+              "required": true,
+              "values": []
+            },
+            {
+              "name": "r",
+              "description": "Reporting economies (comma separated codes). ```See Reporting economies.```",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "p",
+              "description": "Partner economies where applicable (comma separated codes). ```See Partner economies.```",
+              "type": "string",
+              "defaultValue": "default",
+              "values": []
+            },
+            {
+              "name": "ps",
+              "description": "Time period :<ul><li><i>default</i> : The last eight years will be applied.\r\n            </li><li><i>all</i> : All years are applied.\r\n            </li><li>YYYY : comma separated list of years.\r\n            ```If the frequency of the requested indicator is monthly or quarterly, the resulting output will reflect this, e.g. 2010 will give an output of January-December or 2010Q1-Q4.```\r\n            </li><li>YYYYQn : comma separated list of year + quarter.\r\n            ```If the indicator frequency is monthly, the output will be given in months, e.g. 2010Q2 will produce an output of April, May, June.```\r\n            </li><li>YYYYMM : comma separated list of year + month.\r\n            ```e.g. 201007, 201507.```\r\n            </li><li>YYYY-YYYY : range of years.\r\n            ```e.g. 1995-2015.```\r\n            </li><li>YYYYQn-YYYYQn : range of quarters.\r\n            ```e.g. 2010Q1-2013Q3.```\r\n            </li><li>YYYYMM-YYYYMM : range of months.\r\n            ```e.g. 201501-201606.```\r\n            </li></ul>",
+              "type": "string",
+              "defaultValue": "default",
+              "values": []
+            },
+            {
+              "name": "pc",
+              "description": "Products/sectors (comma separated codes) where applicable. ```See Products/sectors.```<ul><li><i>default</i> : includes all the product/sector codes <u>of the indicator's classification</u> (except for <i>HS</i> : includes all the top level 2-digit products + the whole chapter 01)</li><li><i>all</i> : includes all the product/sector codes <u>of the indicator's classification</u></li><li>HS2, HS4, HS6 : All HS codes at 2,4,6-digit level</li><li>AG,AGFOFI,MAIS,... : comma separated list of product codes</li></ul>",
+              "type": "string",
+              "defaultValue": "default",
+              "values": []
+            },
+            {
+              "name": "spc",
+              "description": "Include sub products/sectors.",
+              "type": "boolean",
+              "defaultValue": "false",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "Success",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "0"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "Data_countGet200ApplicationJsonResponse",
+                "generatedSample": "0",
+                "sample": "0"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "Bad Request",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetails",
+                "generatedSample": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}",
+                "sample": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-metadata-i-i",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-metadata-i-i",
+      "properties": {
+        "displayName": "04. Timeseries metadata",
+        "method": "GET",
+        "urlTemplate": "/metadata",
+        "templateParameters": [],
+        "description": "Timeseries metadata.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "i",
+              "description": "Indicator code. ```See Indicators.```",
+              "type": "string",
+              "defaultValue": "TP_A_0010",
+              "required": true,
+              "values": []
+            },
+            {
+              "name": "r",
+              "description": "Reporting economies (comma separated codes). ```See Reporting economies.```",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "p",
+              "description": "Partner economies where applicable (comma separated codes). ```See Partner economies.```",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "pc",
+              "description": "Products/sectors (comma separated codes) where applicable. ```See Products/sectors.```<ul><li><i>default</i> : includes all the product/sectors codes <u>of the indicator's classification</u> (except for <i>HS</i> : Include all the top level 2 digit products + the whole chapter 01)</li><li><i>all</i> : includes all the product/sectors codes <u>of the indicator's classification</u></li><li>HS2, HS4, HS6 : All HS codes at 2,4,6 digit-level</li><li>AG,AGFOFI,MAIS,... : comma separated list of product codes</li></ul>",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "spc",
+              "description": "Include sub products/sectors. If true, all child items in the product/sector hierarchy are recursively included.",
+              "type": "boolean",
+              "defaultValue": "false",
+              "values": []
+            },
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of metadata",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"metadataCategoryCode\": \"string\",\r\n    \"indicatorCategoryCode\": \"string\",\r\n    \"indicatorCode\": \"string\",\r\n    \"reportingEconomyCode\": \"string\",\r\n    \"partnerEconomyCode\": \"string\",\r\n    \"productOrSectorClassificationCode\": \"string\",\r\n    \"productOrSectorCode\": \"string\",\r\n    \"periodCode\": \"string\",\r\n    \"frequencyCode\": \"string\",\r\n    \"unitCode\": \"string\",\r\n    \"value\": 0.0\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "MetadataGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"metadataCategoryCode\": \"string\",\r\n    \"indicatorCategoryCode\": \"string\",\r\n    \"indicatorCode\": \"string\",\r\n    \"reportingEconomyCode\": \"string\",\r\n    \"partnerEconomyCode\": \"string\",\r\n    \"productOrSectorClassificationCode\": \"string\",\r\n    \"productOrSectorCode\": \"string\",\r\n    \"periodCode\": \"string\",\r\n    \"frequencyCode\": \"string\",\r\n    \"unitCode\": \"string\",\r\n    \"value\": 0.0\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"metadataCategoryCode\": \"string\",\r\n    \"indicatorCategoryCode\": \"string\",\r\n    \"indicatorCode\": \"string\",\r\n    \"reportingEconomyCode\": \"string\",\r\n    \"partnerEconomyCode\": \"string\",\r\n    \"productOrSectorClassificationCode\": \"string\",\r\n    \"productOrSectorCode\": \"string\",\r\n    \"periodCode\": \"string\",\r\n    \"frequencyCode\": \"string\",\r\n    \"unitCode\": \"string\",\r\n    \"value\": 0.0\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetails",
+                "generatedSample": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}",
+                "sample": "{\r\n  \"errors\": {},\r\n  \"type\": \"string\",\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"detail\": \"string\",\r\n  \"instance\": \"string\",\r\n  \"extensions\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-topics",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-topics",
+      "properties": {
+        "displayName": "05. Topics",
+        "method": "GET",
+        "urlTemplate": "/topics",
+        "templateParameters": [],
+        "description": "List of topics grouping indicators.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of topics",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"id\": 0,\r\n    \"name\": \"string\",\r\n    \"sortOrder\": 0\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "TopicsGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"id\": 0,\r\n    \"name\": \"string\",\r\n    \"sortOrder\": 0\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"id\": 0,\r\n    \"name\": \"string\",\r\n    \"sortOrder\": 0\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-frequencies",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-frequencies",
+      "properties": {
+        "displayName": "06. Frequencies",
+        "method": "GET",
+        "urlTemplate": "/frequencies",
+        "templateParameters": [],
+        "description": "List of frequencies, for instance annual or monthly.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of frequencies",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\"\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "FrequenciesGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\"\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\"\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-periods",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-periods",
+      "properties": {
+        "displayName": "07. Periods",
+        "method": "GET",
+        "urlTemplate": "/periods",
+        "templateParameters": [],
+        "description": "List of time periods per frequencies, for instance January or Q1.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of periods",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"description\": \"string\",\r\n    \"frequencyCode\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "PeriodsGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"description\": \"string\",\r\n    \"frequencyCode\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"description\": \"string\",\r\n    \"frequencyCode\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-units",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-units",
+      "properties": {
+        "displayName": "08. Units",
+        "method": "GET",
+        "urlTemplate": "/units",
+        "templateParameters": [],
+        "description": "Units of measurement in which datapoints are expressed, for instance USD. It includes the magnitude, such as millions.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of units",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\"\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "UnitsGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\"\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\"\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-indicator_categories",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-indicator_categories",
+      "properties": {
+        "displayName": "09. Indicator categories",
+        "method": "GET",
+        "urlTemplate": "/indicator_categories",
+        "templateParameters": [],
+        "description": "Categories for grouping indicators. They can contain subcategories.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of indicator categories",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"parentCode\": \"string\",\r\n    \"sortOrder\": 0\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "Indicator_categoriesGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"parentCode\": \"string\",\r\n    \"sortOrder\": 0\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"parentCode\": \"string\",\r\n    \"sortOrder\": 0\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-indicators",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-indicators",
+      "properties": {
+        "displayName": "10. Indicators",
+        "method": "GET",
+        "urlTemplate": "/indicators",
+        "templateParameters": [],
+        "description": "List of indicators.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "i",
+              "description": "Indicator :<ul><li><i>all</i></li><li><i>Indicator Code</i> : Filter on one specific indicator</li></ul>",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "name",
+              "description": "Indicator name (or part of the name)",
+              "type": "string",
+              "values": []
+            },
+            {
+              "name": "t",
+              "description": "Topics (comma separated ids). ```See Topics.```",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "pc",
+              "description": "Product Classifications :<ul><li><i>all</i> : all classifications</li><li><i>none</i> : no product dimension</li><li>comma separated codes : ```See Classifications.```</li></ul>",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "tp",
+              "description": "Trade partner :<ul><li><i>yes</i></li><li><i>no</i></li><li><i>all</i></li></ul>",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "frq",
+              "description": "Frequency :<ul><li><i>A</i> : annualy</li><li><i>S</i> : semiannualy</li><li><i>Q</i> : quarterly</li><li><i>M</i> : monthly</li><li><i>all</i></li></ul>",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of indicators",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"categoryCode\": \"string\",\r\n    \"categoryLabel\": \"string\",\r\n    \"subcategoryCode\": \"string\",\r\n    \"subcategoryLabel\": \"string\",\r\n    \"unitCode\": \"string\",\r\n    \"unitLabel\": \"string\",\r\n    \"startYear\": 0,\r\n    \"endYear\": 0,\r\n    \"frequencyCode\": \"string\",\r\n    \"frequencyLabel\": \"string\",\r\n    \"numberReporters\": 0,\r\n    \"numberPartners\": 0,\r\n    \"productSectorClassificationCode\": \"string\",\r\n    \"productSectorClassificationLabel\": \"string\",\r\n    \"hasMetadata\": \"string\",\r\n    \"numberDecimals\": 0,\r\n    \"numberDatapoints\": 0,\r\n    \"updateFrequency\": \"string\",\r\n    \"description\": \"string\",\r\n    \"sortOrder\": 0\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "IndicatorsGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"categoryCode\": \"string\",\r\n    \"categoryLabel\": \"string\",\r\n    \"subcategoryCode\": \"string\",\r\n    \"subcategoryLabel\": \"string\",\r\n    \"unitCode\": \"string\",\r\n    \"unitLabel\": \"string\",\r\n    \"startYear\": 0,\r\n    \"endYear\": 0,\r\n    \"frequencyCode\": \"string\",\r\n    \"frequencyLabel\": \"string\",\r\n    \"numberReporters\": 0,\r\n    \"numberPartners\": 0,\r\n    \"productSectorClassificationCode\": \"string\",\r\n    \"productSectorClassificationLabel\": \"string\",\r\n    \"hasMetadata\": \"string\",\r\n    \"numberDecimals\": 0,\r\n    \"numberDatapoints\": 0,\r\n    \"updateFrequency\": \"string\",\r\n    \"description\": \"string\",\r\n    \"sortOrder\": 0\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"categoryCode\": \"string\",\r\n    \"categoryLabel\": \"string\",\r\n    \"subcategoryCode\": \"string\",\r\n    \"subcategoryLabel\": \"string\",\r\n    \"unitCode\": \"string\",\r\n    \"unitLabel\": \"string\",\r\n    \"startYear\": 0,\r\n    \"endYear\": 0,\r\n    \"frequencyCode\": \"string\",\r\n    \"frequencyLabel\": \"string\",\r\n    \"numberReporters\": 0,\r\n    \"numberPartners\": 0,\r\n    \"productSectorClassificationCode\": \"string\",\r\n    \"productSectorClassificationLabel\": \"string\",\r\n    \"hasMetadata\": \"string\",\r\n    \"numberDecimals\": 0,\r\n    \"numberDatapoints\": 0,\r\n    \"updateFrequency\": \"string\",\r\n    \"description\": \"string\",\r\n    \"sortOrder\": 0\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-territory-regions",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-territory-regions",
+      "properties": {
+        "displayName": "11. Geographical regions",
+        "method": "GET",
+        "urlTemplate": "/territory/regions",
+        "templateParameters": [],
+        "description": "Geographical regions.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of geographical regions",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "TerritoryRegionsGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-territory-groups",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-territory-groups",
+      "properties": {
+        "displayName": "12. Economic groups",
+        "method": "GET",
+        "urlTemplate": "/territory/groups",
+        "templateParameters": [],
+        "description": "Groups of territories that are not geographical.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of economic groups",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "TerritoryGroupsGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-reporters",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-reporters",
+      "properties": {
+        "displayName": "13. Reporting economies",
+        "method": "GET",
+        "urlTemplate": "/reporters",
+        "templateParameters": [],
+        "description": "Territories reporting data.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "name",
+              "description": "Reporter name (or part of name)",
+              "type": "string",
+              "values": []
+            },
+            {
+              "name": "ig",
+              "description": "Individual / Group economies :<ul><li><i>individual</i></li><li><i>group</i></li><li><i>all</i></li></ul>",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "reg",
+              "description": "Regions (comma separated codes). ```See Geographical regions.```",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "gp",
+              "description": "Groups (comma separated codes). ```See Economic groups.```",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of reporting economies",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"iso3A\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ReportersGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"iso3A\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"iso3A\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-partners",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-partners",
+      "properties": {
+        "displayName": "14. Partner economies",
+        "method": "GET",
+        "urlTemplate": "/partners",
+        "templateParameters": [],
+        "description": "Territories in the role of partners.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "name",
+              "description": "Reporter name (or part of name)",
+              "type": "string",
+              "values": []
+            },
+            {
+              "name": "ig",
+              "description": "Individual / Group economies :<ul><li><i>individual</i></li><li><i>group</i></li><li><i>all</i></li></ul>",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "reg",
+              "description": "Regions (comma separated codes). ```See Geographical regions.```",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "gp",
+              "description": "Groups (comma separated codes). ```See Economic groups.```",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of partner economies",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"iso3A\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "PartnersGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"iso3A\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"iso3A\": \"string\",\r\n    \"name\": \"string\",\r\n    \"displayOrder\": 0\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-product_classifications",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-product_classifications",
+      "properties": {
+        "displayName": "15. Classifications",
+        "method": "GET",
+        "urlTemplate": "/product_classifications",
+        "templateParameters": [],
+        "description": "Classifications.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of product/sector classifications",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\"\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "Product_classificationsGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\"\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\"\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-products",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-products",
+      "properties": {
+        "displayName": "16. Products/sectors",
+        "method": "GET",
+        "urlTemplate": "/products",
+        "templateParameters": [],
+        "description": "Indicators cover goods (products) and services (sectors).",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "name",
+              "description": "Product/sector name (or part of name)",
+              "type": "string",
+              "values": []
+            },
+            {
+              "name": "pc",
+              "description": "Product/sector Classifications (comma separated codes). ```See Classifications.```",
+              "type": "string",
+              "defaultValue": "all",
+              "values": []
+            },
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of products/sectors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"note\": \"string\",\r\n    \"productClassification\": \"string\",\r\n    \"codeUnique\": \"string\",\r\n    \"displayOrder\": 0,\r\n    \"hierarchy\": \"string\"\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ProductsGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"note\": \"string\",\r\n    \"productClassification\": \"string\",\r\n    \"codeUnique\": \"string\",\r\n    \"displayOrder\": 0,\r\n    \"hierarchy\": \"string\"\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"name\": \"string\",\r\n    \"note\": \"string\",\r\n    \"productClassification\": \"string\",\r\n    \"codeUnique\": \"string\",\r\n    \"displayOrder\": 0,\r\n    \"hierarchy\": \"string\"\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "Validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-years",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-years",
+      "properties": {
+        "displayName": "17. Years",
+        "method": "GET",
+        "urlTemplate": "/years",
+        "templateParameters": [],
+        "description": "Years for which datapoints exist.",
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of years",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"year\": 0\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "YearsGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"year\": 0\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"year\": 0\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    },
+    {
+      "id": "/subscriptions/000/resourceGroups/000/providers/Microsoft.ApiManagement/service/WTO-DATA/apis/version1/operations/get-value_flags",
+      "type": "Microsoft.ApiManagement/service/apis/operations",
+      "name": "get-value_flags",
+      "properties": {
+        "displayName": "18. Value flags",
+        "method": "GET",
+        "urlTemplate": "/value_flags",
+        "templateParameters": [],
+        "description": "Value flags are predefined metadata for values, such as estimation.",
+        "request": {
+          "queryParameters": [
+            {
+              "name": "lang",
+              "description": "Language id :<ul><li><i>1</i> : English</li><li><i>2</i> : French</li><li><i>3</i> : Spanish</li></ul>",
+              "type": "integer",
+              "defaultValue": "1",
+              "values": []
+            }
+          ],
+          "headers": [],
+          "representations": []
+        },
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "The list of value flags",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"description\": \"string\"\r\n  }\r\n]"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "Value_flagsGet200ApplicationJsonResponse",
+                "generatedSample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"description\": \"string\"\r\n  }\r\n]",
+                "sample": "[\r\n  {\r\n    \"code\": \"string\",\r\n    \"description\": \"string\"\r\n  }\r\n]"
+              }
+            ],
+            "headers": []
+          },
+          {
+            "statusCode": 400,
+            "description": "The validation errors",
+            "representations": [
+              {
+                "contentType": "application/json",
+                "examples": {
+                  "default": {
+                    "value": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+                  }
+                },
+                "schemaId": "5e21cf581948951cac515ce7",
+                "typeName": "ValidationProblemDetailsResult",
+                "generatedSample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}",
+                "sample": "{\r\n  \"title\": \"string\",\r\n  \"status\": 0,\r\n  \"errors\": {}\r\n}"
+              }
+            ],
+            "headers": []
+          }
+        ],
+        "policies": null,
+        "effectivePath": null
+      }
+    }
+  ],
+  "count": 18
+}

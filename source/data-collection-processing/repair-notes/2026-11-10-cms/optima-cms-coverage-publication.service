@@ -1,0 +1,13 @@
+[Unit]
+Description=Bounded independent CMS coverage Athena publication
+After=network-online.target
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B cms_coverage_publication.py
+Slice=optima-data.slice
+MemoryMax=402653184
+CPUQuota=20%
+TimeoutStartSec=300
+SuccessExitStatus=2

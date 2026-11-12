@@ -1,0 +1,19 @@
+{
+  "job_id": "eia-enrichment-backfill-2026-10-18",
+  "window_start": "2021-01-01T00:00:00Z",
+  "snapshot_cutoff": "2026-10-18T11:16:49.819207Z",
+  "inventory_file": "reports/eia-enrichment-backfill-2026-10-18/input-batches.json",
+  "inventory_sha256": "56b4314c0f66e06d475fbba47e1eab9c32c02e7aa4e48a226f0b561782965f92",
+  "storage_config": "config/collection-storage.s3.json",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "max_batches_per_invocation": 200,
+  "max_versions_per_invocation": 20,
+  "max_attempts": 3,
+  "retry_minutes": 30,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Enrich only eia_generator_index and eia_retail_prices saved observations. Validate linked official archive workbooks and summarize schema/status/capacity with provenance links to existing battery rows; do not reprocess battery observations. Preserve all discovered archive periods, including pre-2021 context. Retail coverage is US all-sector monthly January 2021 through July 2026 (67 months audited complete); fetch price/sales/revenue/customers and twelve-month baselines as current API vintage, preserving original saved fields. Transient API failures defer without exhausting record attempts. Email after all pinned versions have output and exact Athena job counts verified, explicitly reporting review/gap outcomes.",
+  "retail_coverage_file": "reports/eia-enrichment-backfill-2026-10-18/retail-coverage.json",
+  "retail_coverage_sha256": "a63e249e6237678f9656372687ad8ed04e91c00f695df98ba0d3d324271865fd"
+}

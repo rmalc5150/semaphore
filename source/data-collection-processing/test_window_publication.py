@@ -41,6 +41,23 @@ class WindowTests(unittest.TestCase):
         self.assertEqual(result['status'],'failed')
         self.assertIsNone(self.store.get('operations/news/publication-receipts/'+self.wid+'.json'))
 
+    def test_repeated_failure_increases_cooldown_without_success_receipt(self):
+        from datetime import datetime
+        item={'window_id':self.wid,'manifests':['m']}
+        write_json(self.store,'operations/news/publication-queue/'+self.wid+'.json',item)
+        prepare=Mock(side_effect=ValueError('provider unavailable'))
+        publish_pending(self.store,self.settings,'news',{},prepare,self.root)
+        key='operations/news/publication-retries/'+self.wid+'.json'
+        first=self.store.get(key);one=json.loads(first.body)
+        self.assertEqual(one['attempts'],1)
+        write_json(self.store,key,{**one,'retry_after':'2000-01-01T00:00:00Z'},first.token)
+        publish_pending(self.store,self.settings,'news',{},prepare,self.root)
+        two=json.loads(self.store.get(key).body)
+        self.assertEqual(two['attempts'],2)
+        self.assertGreater((datetime.fromisoformat(two['retry_after'].replace('Z','+00:00'))-
+                            datetime.fromisoformat(one['retry_after'].replace('Z','+00:00'))).total_seconds(),1700)
+        self.assertIsNone(self.store.get('operations/news/publication-receipts/'+self.wid+'.json'))
+
     def test_uncommitted_specialist_does_not_starve_valid_window(self):
         bad,good='a'*64,'b'*64
         for wid in (bad,good):
@@ -62,9 +79,28 @@ class WindowTests(unittest.TestCase):
                        {'window_id':wid,'manifests':['same-manifest'],**extra})
         prepare=Mock(return_value=self.root)
         with patch('window_publication.release.publish'),patch('window_publication.deploy_window',return_value={'release_id':'valid'}):
-            result=publish_pending(self.store,self.settings,'specialists',{},prepare,self.root,1,{'b'*64})
+            result=publish_pending(self.store,self.settings,'specialists',{},prepare,self.root,1)
         self.assertEqual(prepare.call_count,1)
         self.assertEqual(result['results'][0]['reason'],'duplicate_queue_alias_requires_review')
         self.assertIsNone(self.store.get('operations/specialists/publication-receipts/'+'a'*64+'.json'))
+
+    def test_targeted_canonical_window_does_not_scan_queue(self):
+        write_json(self.store,'operations/specialists/publication-queue/'+self.wid+'.json',
+                   {'window_id':self.wid,'manifests':['m']})
+        prepare=Mock(return_value=self.root)
+        with patch('window_publication.list_keys',side_effect=AssertionError('Full queue scan')), \
+             patch('window_publication.release.publish'), \
+             patch('window_publication.deploy_window',return_value={'release_id':'valid'}):
+            result=publish_pending(self.store,self.settings,'specialists',{},prepare,self.root,1,{self.wid})
+        self.assertEqual(result['results'][0]['status'],'verified')
+
+    def test_targeted_alias_still_checks_canonical_manifest(self):
+        for wid,extra in [('a'*64,{'repair_evidence':'saved'}),('b'*64,{})]:
+            write_json(self.store,'operations/specialists/publication-queue/'+wid+'.json',
+                       {'window_id':wid,'manifests':['same'],**extra})
+        prepare=Mock()
+        result=publish_pending(self.store,self.settings,'specialists',{},prepare,self.root,1,{'a'*64})
+        prepare.assert_not_called()
+        self.assertEqual(result['results'][0]['reason'],'duplicate_queue_alias_requires_review')
 
 if __name__=='__main__':unittest.main()

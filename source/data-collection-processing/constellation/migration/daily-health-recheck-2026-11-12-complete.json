@@ -1,0 +1,703 @@
+{
+  "checked_at": "2026-11-12T12:37:01.755355+00:00",
+  "services": 93,
+  "monitored_jobs": 40,
+  "partitions": 101,
+  "observations": 50667412,
+  "publisher_finished_at": "2026-11-12T11:47:56.989054+00:00",
+  "queries": 108,
+  "query_failures": [],
+  "bytes_scanned": 181800060,
+  "shared_readbacks_passed": 101,
+  "s3_manifests": 15,
+  "s3_objects": 479,
+  "s3_failures": [],
+  "receipt_queries": 6529,
+  "receipt_query_failures": [],
+  "routes": {
+    "reddit": {
+      "name": "reddit",
+      "sql": "SELECT count(*) AS records,count(DISTINCT record_id) AS distinct_ids FROM optima_social_research.reddit_records",
+      "workgroup": "optima-social-research",
+      "query_id": "0332063e-dd58-4902-8206-bcb5216dd863",
+      "state": "SUCCEEDED",
+      "reason": null,
+      "bytes_scanned": 8561480,
+      "columns": [
+        "records",
+        "distinct_ids"
+      ],
+      "rows": [
+        [
+          "4099",
+          "4099"
+        ]
+      ]
+    },
+    "reddit-freshness": {
+      "name": "reddit-freshness",
+      "sql": "SELECT count(*) AS records,max(verified_utc) AS latest_verified,count_if(verified_utc < 1794400436.052969) AS overdue_24h FROM optima_social_research.reddit_records",
+      "workgroup": "optima-social-research",
+      "query_id": "96724bfb-23b1-4004-b702-8b3a1385bc9c",
+      "state": "SUCCEEDED",
+      "reason": null,
+      "bytes_scanned": 8561480,
+      "columns": [
+        "records",
+        "latest_verified",
+        "overdue_24h"
+      ],
+      "rows": [
+        [
+          "4099",
+          "1.7926076524367867E9",
+          "4099"
+        ]
+      ]
+    },
+    "search": {
+      "name": "search",
+      "sql": "SELECT source_id,count(*) AS records,max(observed_at) AS latest_capture FROM optima_source_readiness.source_samples_windows GROUP BY source_id",
+      "workgroup": "optima-eodhd-research",
+      "query_id": "9d108e21-e6b2-43f7-be15-3796dc800e65",
+      "state": "SUCCEEDED",
+      "reason": null,
+      "bytes_scanned": 7753,
+      "columns": [
+        "source_id",
+        "records",
+        "latest_capture"
+      ],
+      "rows": [
+        [
+          "S65",
+          "7945",
+          "2026-11-06T14:13:41.328208+00:00"
+        ],
+        [
+          "S28",
+          "26",
+          "2026-10-09T09:47:43.334088+00:00"
+        ],
+        [
+          "S27",
+          "8",
+          "2026-10-09T09:47:31.799686+00:00"
+        ],
+        [
+          "S19",
+          "30",
+          "2026-10-09T09:52:15.052573+00:00"
+        ],
+        [
+          "S59",
+          "25",
+          "2026-10-09T09:47:43.727484+00:00"
+        ],
+        [
+          "S17",
+          "4",
+          "2026-10-09T09:47:42.702161+00:00"
+        ],
+        [
+          "S43",
+          "9",
+          "2026-10-09T09:52:21.182329+00:00"
+        ],
+        [
+          "S51",
+          "4",
+          "2026-10-09T09:47:33.526304+00:00"
+        ],
+        [
+          "S48",
+          "60",
+          "2026-10-09T09:52:30.004224+00:00"
+        ],
+        [
+          "S56",
+          "6",
+          "2026-10-09T09:55:07.103194+00:00"
+        ],
+        [
+          "S46",
+          "11",
+          "2026-10-09T09:51:39.358981+00:00"
+        ],
+        [
+          "S11",
+          "3",
+          "2026-10-09T09:52:15.552680+00:00"
+        ]
+      ]
+    },
+    "petitions": {
+      "name": "petitions",
+      "sql": "SELECT count(*) AS records,count(DISTINCT provider_id) AS documents,max(ingested_at) AS latest_capture,count_if(document_retrieval_status IS DISTINCT FROM 'downloaded') AS missing_downloads FROM optima_patent_petitions.source_observations_windows",
+      "workgroup": "optima-patent-petitions",
+      "query_id": "9a3f73f6-87e2-42e7-b197-0dc7201f7a77",
+      "state": "SUCCEEDED",
+      "reason": null,
+      "bytes_scanned": 44600,
+      "columns": [
+        "records",
+        "documents",
+        "latest_capture",
+        "missing_downloads"
+      ],
+      "rows": [
+        [
+          "249",
+          "226",
+          "2026-10-25T17:29:03.088194Z",
+          "0"
+        ]
+      ]
+    },
+    "office-actions": {
+      "name": "office-actions",
+      "sql": "SELECT * FROM optima_patent_office_actions.source_observations_windows LIMIT 1",
+      "workgroup": "optima-patent-office-actions",
+      "query_id": "b19a10a8-4ea6-49e4-9df5-7d32b8fe9bc9",
+      "state": "SUCCEEDED",
+      "reason": null,
+      "bytes_scanned": 0,
+      "columns": [
+        "record_id",
+        "observation_id",
+        "source",
+        "dataset",
+        "provider_id",
+        "event_at_json",
+        "ingested_at",
+        "source_url",
+        "payload_json",
+        "record_json",
+        "source_manifests",
+        "source_document_keys",
+        "point_in_time_eligible",
+        "application_number",
+        "official_document_id",
+        "document_type",
+        "action_date",
+        "provider_updated_at",
+        "first_observed_at",
+        "document_retrieval_status",
+        "documents_json",
+        "structured_source_fields_json",
+        "reported_parties_json",
+        "source_text",
+        "window_id"
+      ],
+      "rows": []
+    },
+    "specialist-observations": {
+      "name": "specialist-observations",
+      "sql": "SELECT source,dataset,count(*) AS records,max(ingested_at) AS latest_capture FROM optima_specialist_inputs.source_observations_windows GROUP BY source,dataset",
+      "workgroup": "optima-collected-data",
+      "query_id": "7599a567-a6fe-420c-99aa-60924f2b3b61",
+      "state": "SUCCEEDED",
+      "reason": null,
+      "bytes_scanned": 17321914,
+      "columns": [
+        "source",
+        "dataset",
+        "records",
+        "latest_capture"
+      ],
+      "rows": [
+        [
+          "edinet_filings",
+          "specialist_inputs",
+          "159155",
+          "2026-10-18T07:03:12.255522Z"
+        ],
+        [
+          "europe_pmc",
+          "specialist_inputs",
+          "2932",
+          "2026-10-18T07:53:57.432089Z"
+        ],
+        [
+          "un_comtrade",
+          "specialist_inputs",
+          "52",
+          "2026-10-18T07:33:06.701500Z"
+        ],
+        [
+          "fda_product_codes",
+          "specialist_inputs",
+          "890",
+          "2026-11-12T00:07:34.365184Z"
+        ],
+        [
+          "cms_payments_catalog",
+          "specialist_inputs",
+          "520",
+          "2026-11-12T00:04:02.870305Z"
+        ],
+        [
+          "eia_battery_generators",
+          "specialist_inputs",
+          "69269",
+          "2026-10-21T20:44:07.742144Z"
+        ],
+        [
+          "cms_coverage_documents",
+          "specialist_inputs",
+          "746",
+          "2026-11-11T01:34:00.668933Z"
+        ],
+        [
+          "trade_screening_enriched",
+          "specialist_inputs",
+          "2500",
+          "2026-10-18T11:06:07.615406Z"
+        ],
+        [
+          "nist_robotics_methods",
+          "specialist_inputs",
+          "16",
+          "2026-11-12T00:24:16.069235Z"
+        ],
+        [
+          "eia_generator_index",
+          "specialist_inputs",
+          "1390",
+          "2026-10-18T02:41:15.611724Z"
+        ],
+        [
+          "usa_spending",
+          "specialist_inputs",
+          "828",
+          "2026-11-12T01:03:51.261192Z"
+        ],
+        [
+          "caiso_prices",
+          "specialist_inputs",
+          "8640",
+          "2026-10-21T20:24:37.946553Z"
+        ],
+        [
+          "ror_institutions",
+          "specialist_inputs",
+          "55",
+          "2026-10-18T07:53:22.869434Z"
+        ],
+        [
+          "federal_register",
+          "specialist_inputs",
+          "1161",
+          "2026-10-18T07:54:05.786354Z"
+        ],
+        [
+          "fda_dd_inspections_citations",
+          "specialist_inputs",
+          "22997",
+          "2026-11-12T06:39:57.636522Z"
+        ],
+        [
+          "ted_notices",
+          "specialist_inputs",
+          "7776",
+          "2026-11-12T00:24:10.027545Z"
+        ],
+        [
+          "doe_storage_documents",
+          "specialist_inputs",
+          "2",
+          "2026-10-18T11:06:16.807474Z"
+        ],
+        [
+          "gleif_legal_entities",
+          "specialist_inputs",
+          "140",
+          "2026-10-18T07:54:14.485040Z"
+        ],
+        [
+          "canada_noc",
+          "specialist_inputs",
+          "130340",
+          "2026-11-10T12:59:14.347718Z"
+        ],
+        [
+          "pubmed_abstracts",
+          "specialist_inputs",
+          "13702",
+          "2026-11-10T20:03:30.173689Z"
+        ],
+        [
+          "bls_wages",
+          "specialist_inputs",
+          "168",
+          "2026-10-18T02:40:06.400314Z"
+        ],
+        [
+          "europe_pmc_fulltext",
+          "specialist_inputs",
+          "587",
+          "2026-11-10T20:21:14.759482Z"
+        ],
+        [
+          "nih_reporter",
+          "specialist_inputs",
+          "46602",
+          "2026-11-12T00:31:01.407668Z"
+        ],
+        [
+          "eia_retail_prices",
+          "specialist_inputs",
+          "77",
+          "2026-10-21T20:29:00.952864Z"
+        ],
+        [
+          "fda_dd_import_refusals",
+          "specialist_inputs",
+          "129515",
+          "2026-11-12T07:50:27.664439Z"
+        ],
+        [
+          "uspto_assignment_histories",
+          "specialist_inputs",
+          "133",
+          "2026-11-12T01:03:31.748002Z"
+        ],
+        [
+          "cms_coverage",
+          "specialist_inputs",
+          "4341",
+          "2026-11-11T00:00:37.291756Z"
+        ],
+        [
+          "fda_dd_inspections_classifications",
+          "specialist_inputs",
+          "32379",
+          "2026-10-18T04:57:04.871800Z"
+        ],
+        [
+          "fda_ires_recalls",
+          "specialist_inputs",
+          "4418",
+          "2026-11-12T00:07:24.039659Z"
+        ],
+        [
+          "cpsc_recalls",
+          "specialist_inputs",
+          "1423",
+          "2026-10-21T18:13:37.673496Z"
+        ],
+        [
+          "drugsfda_applications",
+          "specialist_inputs",
+          "18250",
+          "2026-10-18T07:33:36.310044Z"
+        ],
+        [
+          "ema_medicines",
+          "specialist_inputs",
+          "31046",
+          "2026-11-10T11:23:42.199096Z"
+        ],
+        [
+          "fda_dd_compliance_actions",
+          "specialist_inputs",
+          "37187",
+          "2026-11-12T06:40:07.077487Z"
+        ],
+        [
+          "usgs_minerals",
+          "specialist_inputs",
+          "97",
+          "2026-10-21T18:21:55.396058Z"
+        ],
+        [
+          "trade_screening",
+          "specialist_inputs",
+          "261282",
+          "2026-10-18T02:43:00.231943Z"
+        ],
+        [
+          "federal_register_documents",
+          "specialist_inputs",
+          "13",
+          "2026-10-18T10:26:40.353641Z"
+        ],
+        [
+          "github_sdk",
+          "specialist_inputs",
+          "2281",
+          "2026-10-18T07:54:10.099404Z"
+        ],
+        [
+          "sec_companyfacts",
+          "specialist_inputs",
+          "78640",
+          "2026-10-18T07:33:18.866184Z"
+        ],
+        [
+          "doe_storage_benchmarks",
+          "specialist_inputs",
+          "2",
+          "2026-10-18T11:06:21.684175Z"
+        ],
+        [
+          "sam_gov_opportunities",
+          "specialist_inputs",
+          "33005",
+          "2026-10-21T20:25:41.760211Z"
+        ],
+        [
+          "mlperf_results",
+          "specialist_inputs",
+          "24016",
+          "2026-10-21T20:27:43.992945Z"
+        ],
+        [
+          "doe_storage_funding",
+          "specialist_inputs",
+          "1",
+          "2026-10-18T11:06:26.798305Z"
+        ],
+        [
+          "doe_storage_program",
+          "specialist_inputs",
+          "10",
+          "2026-10-18T02:40:45.112640Z"
+        ]
+      ]
+    },
+    "specialist-coverage": {
+      "name": "specialist-coverage",
+      "sql": "SELECT source,dataset,count(*) AS windows FROM optima_specialist_inputs.source_coverage_windows GROUP BY source,dataset",
+      "workgroup": "optima-collected-data",
+      "query_id": "f2dfbced-58ad-4a0d-9d48-0484b156b583",
+      "state": "SUCCEEDED",
+      "reason": null,
+      "bytes_scanned": 941050,
+      "columns": [
+        "source",
+        "dataset",
+        "windows"
+      ],
+      "rows": [
+        [
+          "canada_noc",
+          "specialist_inputs",
+          "18"
+        ],
+        [
+          "fda_dd_import_refusals",
+          "specialist_inputs",
+          "35"
+        ],
+        [
+          "sam_gov_opportunities",
+          "specialist_inputs",
+          "25"
+        ],
+        [
+          "nist_robotics_methods",
+          "specialist_inputs",
+          "16"
+        ],
+        [
+          "bls_wages",
+          "specialist_inputs",
+          "17"
+        ],
+        [
+          "pubmed_abstracts",
+          "specialist_inputs",
+          "81"
+        ],
+        [
+          "eia_retail_prices",
+          "specialist_inputs",
+          "104"
+        ],
+        [
+          "europe_pmc",
+          "specialist_inputs",
+          "25"
+        ],
+        [
+          "caiso_prices",
+          "specialist_inputs",
+          "72"
+        ],
+        [
+          "gleif_legal_entities",
+          "specialist_inputs",
+          "140"
+        ],
+        [
+          "uspto_assignment_histories",
+          "specialist_inputs",
+          "185"
+        ],
+        [
+          "cms_coverage_documents",
+          "specialist_inputs",
+          "746"
+        ],
+        [
+          "usa_spending",
+          "specialist_inputs",
+          "39"
+        ],
+        [
+          "fda_product_codes",
+          "specialist_inputs",
+          "10"
+        ],
+        [
+          "cms_payments_catalog",
+          "specialist_inputs",
+          "13"
+        ],
+        [
+          "un_comtrade",
+          "specialist_inputs",
+          "86"
+        ],
+        [
+          "fda_dd_inspections_classifications",
+          "specialist_inputs",
+          "41"
+        ],
+        [
+          "eia_generator_index",
+          "specialist_inputs",
+          "10"
+        ],
+        [
+          "europe_pmc_fulltext",
+          "specialist_inputs",
+          "587"
+        ],
+        [
+          "nih_reporter",
+          "specialist_inputs",
+          "136"
+        ],
+        [
+          "eia_battery_generators",
+          "specialist_inputs",
+          "66"
+        ],
+        [
+          "doe_storage_program",
+          "specialist_inputs",
+          "10"
+        ],
+        [
+          "ema_medicines",
+          "specialist_inputs",
+          "17"
+        ],
+        [
+          "drugsfda_applications",
+          "specialist_inputs",
+          "63"
+        ],
+        [
+          "cpsc_recalls",
+          "specialist_inputs",
+          "64"
+        ],
+        [
+          "cms_coverage",
+          "specialist_inputs",
+          "39"
+        ],
+        [
+          "federal_register",
+          "specialist_inputs",
+          "87"
+        ],
+        [
+          "fda_dd_inspections_citations",
+          "specialist_inputs",
+          "57"
+        ],
+        [
+          "ted_notices",
+          "specialist_inputs",
+          "75"
+        ],
+        [
+          "doe_storage_documents",
+          "specialist_inputs",
+          "2"
+        ],
+        [
+          "sec_companyfacts",
+          "specialist_inputs",
+          "92"
+        ],
+        [
+          "doe_storage_benchmarks",
+          "specialist_inputs",
+          "2"
+        ],
+        [
+          "github_sdk",
+          "specialist_inputs",
+          "31"
+        ],
+        [
+          "federal_register_documents",
+          "specialist_inputs",
+          "13"
+        ],
+        [
+          "usgs_minerals",
+          "specialist_inputs",
+          "49"
+        ],
+        [
+          "fda_dd_compliance_actions",
+          "specialist_inputs",
+          "56"
+        ],
+        [
+          "trade_screening_enriched",
+          "specialist_inputs",
+          "5"
+        ],
+        [
+          "mlperf_results",
+          "specialist_inputs",
+          "324"
+        ],
+        [
+          "doe_storage_funding",
+          "specialist_inputs",
+          "1"
+        ],
+        [
+          "trade_screening",
+          "specialist_inputs",
+          "10"
+        ],
+        [
+          "edinet_filings",
+          "specialist_inputs",
+          "773"
+        ],
+        [
+          "ror_institutions",
+          "specialist_inputs",
+          "39"
+        ],
+        [
+          "fda_ires_recalls",
+          "specialist_inputs",
+          "19"
+        ]
+      ]
+    }
+  },
+  "expected_unpublished_routes": [],
+  "evidence_prefix": "research-data/monitoring/daily-health/2026-11-12/"
+}

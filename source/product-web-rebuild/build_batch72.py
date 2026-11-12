@@ -1,0 +1,19 @@
+from research_helpers import *
+F=ev('https://focalone.com/','Current robotic HIFU platform, prostate-tissue ablation indication, HIFUsion and dedicated components.')
+I=ev('https://focalone.com/focalone-i/','Current FocalOnei generation, imaging-fusion software, dynamic-focusing probe and patentedAblasonic cooling fluid reviewed. Endometriosis-ready is not established regulatory approval.')
+Y=ev('https://www.sec.gov/Archives/edgar/data/1041934/000110465926034528/edap-20251231x10k.htm','2025 issuer states finalSonolithiMove system sales in secondhalf2025; service/consumables continue. No assumption wholeinstalledbase unsupported.')
+Q=ev('https://www.sec.gov/Archives/edgar/data/1041934/000110465926097063/edap-20260630x10q.htm','ESWL/distribution accountingdiscontinuedoperations June2026, heldforsale; no definitive sale signed as ofreport. Accounting designation not automatic transfer ofrights.')
+O=ev('https://www.sec.gov/Archives/edgar/data/1041934/000110465921047574/edap-20201231x20f.htm','2020 issuer stoppedSonolithiSys manufacturing andEndoUpR&D/launch; named historicAblatherm platform.')
+L=ev('https://www.sec.gov/Archives/edgar/data/1041934/000090342309000298/edap-20f_0331.htm','Historical issuer identifiesSonolithPraktis,Vision,iSys; oldgeographic approvals not asserted current.')
+V=ev('https://www.sec.gov/Archives/edgar/data/1041934/000117184320002662/f20f_041620p.htm','Issuer identifiesVisioTrack proprietary infrared-stereovision robotic stone localization andEndoUp integrated urology platform.')
+ps=[]
+for name,desc in [('Focal One','Robotic focused-ultrasound prostate-tissue ablation system.'),('Focal One i','New-generation robotic HIFU platform.')]:ps.append(p(name,desc,I,'commercial',typ='product',sector='robotics',sub='medical_robotics',evidence=[F,I],contexts=[{'application_key':'prostate_tissue_ablation','application_name':'Prostate tissue ablation','geography_key':'US','regulatory_status':'cleared for prostate tissue ablation'}]))
+for name,desc in [('HIFUsion','Imaging-fusion planning software for Focal One robotic ablation.'),('Focal One Dynamic Focusing Probe','Dedicated ultrasound imaging/therapy probe.'),('Ablasonic','Dedicated cooling fluid forHIFU rectal-cooling system.')]:ps.append(p(name,desc,I,'commercial',typ='product',sector='robotics',sub='autonomy_and_components'))
+ps.append(p('Sonolith i-move','Lithotripsy system; final new-system sales in 2025, service continues.',Y,'discontinued',typ='product',sub='medical_devices',attributes={'system_sales_ended':'secondhalf2025','installed_base_support':'service/spares/consumables continue'},evidence=[Y,Q]))
+ps.append(p('Sonolith i-sys','Historical lithotripsy system; manufacturing stopped in 2020.',O,'discontinued',typ='product',sub='medical_devices'))
+for n in ['Sonolith Praktis','Sonolith Vision']:ps.append(p(n,'Historical electroconductive urinary-stone lithotripsy system.',L,typ='product',sub='medical_devices'))
+ps.append(p('Ablatherm','Historical HIFU prostate-treatment platform.',O,typ='product',sector='robotics',sub='medical_robotics'))
+ps.append(p('EDAP Endo-UP','Historical integrated urology platform; R&D and launch discontinued in 2020.',O,'discontinued',typ='product',sub='medical_devices',evidence=[O,V]))
+ps.append(p('EDAP Visio-Track','Infrared-stereovision stone-localization technology for robotically guided lithotripsy.',V,typ='technology',sector='robotics',sub='autonomy_and_components'))
+cs=[company('Edap TMS SA',ps,[F,I,Y,Q,O,L,V],'CurrentFocalOne/i,software,probe/coolant and namedlegacy platforms reviewed. SonolithiMove/iSys andEndoUp explicit cessation captured. PlannedESWL/distribution sale not claimed completed. CompleteAblatherm variants,disposables,Prostatron historicalrights and third-party distributioncatalogues require followup. Compatiblethirdparty imagingsoftware not claimed company-developed.')]
+(out/'batch-0072.json').write_text(json.dumps({'companies':cs},indent=2));print(len(ps))

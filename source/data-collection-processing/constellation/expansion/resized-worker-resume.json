@@ -1,0 +1,35 @@
+{
+  "resumed_at": "2026-10-26T15:47:04.787965+00:00",
+  "resumed_epoch": 1793029624.7879848,
+  "worker_instance_type": "m7i.xlarge",
+  "installation": {
+    "verified": true,
+    "active_enabled_workers": 15,
+    "cpu_capacity": 4,
+    "memory_max_gib": 13,
+    "memory_high_gib": 11,
+    "sum_individual_memory_max_mib": 13184,
+    "mount": "/dev/nvme1n1 /opt/constellation"
+  },
+  "baseline": [
+    {
+      "status": "pending",
+      "n": 8491
+    },
+    {
+      "status": "succeeded",
+      "n": 4637
+    },
+    {
+      "status": "retryable_failed",
+      "n": 11
+    },
+    {
+      "status": "blocked",
+      "n": 55
+    }
+  ],
+  "pause_interrupted_partitions_requeued": 0,
+  "historical_enabled": true,
+  "daily_enabled": true
+}

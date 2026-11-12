@@ -57,6 +57,15 @@ class ConferenceTests(unittest.TestCase):
         self.assertEqual(result['status'], 'complete', result)
         self.assertEqual(self.calls[0]['cursor'], '*')
 
+    def test_recent_worker_resume_keeps_cursor_and_all_prior_records(self):
+        first=self.run_pages([self.page(['10.1/a','10.1/b'],3)],max_pages=1)
+        self.assertEqual(first['status'],'partial')
+        self.calls=[]
+        second=self.run_pages([self.page(['10.1/c'],3)],resume_recent_cursor=True)
+        self.assertEqual(second['status'],'complete',second)
+        self.assertEqual(self.calls[0]['cursor'],'next')
+        self.assertEqual(second['records'],3)
+
     def test_daily_uses_update_date(self):
         result = self.run_pages([self.page([], 0)], mode='daily')
         self.assertEqual(result['status'], 'complete', result)

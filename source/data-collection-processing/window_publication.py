@@ -116,9 +116,20 @@ def publish_pending(store,settings,owner,config,prepare,output_root,max_windows=
     # Queue inventories grow with every historical window. Read the small
     # metadata objects concurrently so discovery does not monopolize the shared
     # heavy-job lock; preparation, publication and receipt writes stay serial.
-    keys = list_keys(store,settings,'operations/'+owner+'/publication-queue/')
-    with ThreadPoolExecutor(max_workers=8) as pool:
-        queued=list(pool.map(lambda key: load_stored(store,key)[0], keys))
+    prefix = 'operations/'+owner+'/publication-queue/'
+    queued = None
+    if window_ids is not None:
+        # Isolated repairs must not read the entire historical queue before
+        # publishing one canonical window. Alias requests still need the full
+        # inventory for the duplicate-manifest check below.
+        queued = [load_stored(store,prefix+wid+'.json')[0] for wid in sorted(set(window_ids))]
+        queued = [q for q in queued if q]
+        if owner == 'specialists' and any(q.get('repair_evidence') for q in queued):
+            queued = None
+    if queued is None:
+        keys = list_keys(store,settings,prefix)
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            queued=list(pool.map(lambda key: load_stored(store,key)[0], keys))
     if owner == 'specialists':
         canonical = {tuple(sorted(q['manifests'])) for q in queued if not q.get('repair_evidence')}
         aliases = [q for q in queued if q.get('repair_evidence') and tuple(sorted(q['manifests'])) in canonical]
@@ -176,7 +187,9 @@ def publish_pending(store,settings,owner,config,prepare,output_root,max_windows=
                     blocked_commits += 1
                     failure['reason_code'] = 'uncommitted_publication_input'
                 write_json(store,'operations/'+owner+'/publication-failures/'+digest(failure)+'.json',failure)
-                write_json(store,retry_key,{'source_hash':source_hash,
-                    'retry_after':(datetime.now(timezone.utc)+timedelta(minutes=1440 if uncommitted else 30)).isoformat().replace('+00:00','Z')},retry_token)
+                attempts = (retry.get('attempts', 0) if retry and retry.get('source_hash') == source_hash else 0) + 1
+                delay = 1440 if uncommitted else min(1440, 30 * 2 ** min(attempts - 1, 6))
+                write_json(store,retry_key,{'source_hash':source_hash, 'attempts': attempts,
+                    'retry_after':(datetime.now(timezone.utc)+timedelta(minutes=delay)).isoformat().replace('+00:00','Z')},retry_token)
                 outcomes.append(failure)
     return {'status':'failed' if any(r['status']=='failed' for r in outcomes) else 'complete','results':outcomes}

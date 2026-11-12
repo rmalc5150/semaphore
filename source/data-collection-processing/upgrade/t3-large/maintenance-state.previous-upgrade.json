@@ -1,0 +1,450 @@
+{
+  "created_at": "2026-10-21T17:15:22.555451+00:00",
+  "timers": {
+    "ec2-code-backup.timer": {
+      "Unit": "ec2-code-backup.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-authenticated-daily.timer": {
+      "Unit": "optima-authenticated-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-authenticated-historical.timer": {
+      "Unit": "optima-authenticated-historical.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-bls-enrichment-backfill.timer": {
+      "Unit": "optima-bls-enrichment-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-bluesky-companies.timer": {
+      "Unit": "optima-bluesky-companies.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-caiso-backfill.timer": {
+      "Unit": "optima-caiso-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-caiso-daily.timer": {
+      "Unit": "optima-caiso-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-chictr-daily.timer": {
+      "Unit": "optima-chictr-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-cms-financial-collection.timer": {
+      "Unit": "optima-cms-financial-collection.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-collection-daily.timer": {
+      "Unit": "optima-collection-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-collection-health.timer": {
+      "Unit": "optima-collection-health.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-committed-athena.timer": {
+      "Unit": "optima-committed-athena.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-company-auto-review.timer": {
+      "Unit": "optima-company-auto-review.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-company-catalogue-bootstrap.timer": {
+      "Unit": "optima-company-catalogue-bootstrap.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-company-catalogue.timer": {
+      "Unit": "optima-company-catalogue.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-company-identity-enrichment.timer": {
+      "Unit": "optima-company-identity-enrichment.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-company-web-enrichment.timer": {
+      "Unit": "optima-company-web-enrichment.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-conference-collection.timer": {
+      "Unit": "optima-conference-collection.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-conference-publication.timer": {
+      "Unit": "optima-conference-publication.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-core-historical.timer": {
+      "Unit": "optima-core-historical.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-daily-health-audit.timer": {
+      "Unit": "optima-daily-health-audit.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-doe-storage-backfill.timer": {
+      "Unit": "optima-doe-storage-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-doe-storage-daily.timer": {
+      "Unit": "optima-doe-storage-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-edinet-document-backfill.timer": {
+      "Unit": "optima-edinet-document-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-edinet-documents-daily.timer": {
+      "Unit": "optima-edinet-documents-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-eia-enrichment-backfill.timer": {
+      "Unit": "optima-eia-enrichment-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-eodhd-inventory.timer": {
+      "Unit": "optima-eodhd-inventory.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-eodhd-profiles.timer": {
+      "Unit": "optima-eodhd-profiles.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-federal-register-daily-enrichment.timer": {
+      "Unit": "optima-federal-register-daily-enrichment.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-federal-register-enrichment-backfill.timer": {
+      "Unit": "optima-federal-register-enrichment-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-finlight-content-backfill.timer": {
+      "Unit": "optima-finlight-content-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-github-company-mapping.timer": {
+      "Unit": "optima-github-company-mapping.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-grant-backfill.timer": {
+      "Unit": "optima-grant-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-grant-daily.timer": {
+      "Unit": "optima-grant-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-hkex-document-backfill.timer": {
+      "Unit": "optima-hkex-document-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-market-collection.timer": {
+      "Unit": "optima-market-collection.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-market-publication.timer": {
+      "Unit": "optima-market-publication.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-marketaux-content-backfill.timer": {
+      "Unit": "optima-marketaux-content-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-mlperf-enrichment-backfill.timer": {
+      "Unit": "optima-mlperf-enrichment-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-news-collection.timer": {
+      "Unit": "optima-news-collection.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-news-publication.timer": {
+      "Unit": "optima-news-publication.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-nist-robotics-backfill.timer": {
+      "Unit": "optima-nist-robotics-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-nist-robotics-daily.timer": {
+      "Unit": "optima-nist-robotics-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-nist-robotics-matching.timer": {
+      "Unit": "optima-nist-robotics-matching.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-nmpa-enrichment.timer": {
+      "Unit": "optima-nmpa-enrichment.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-nmpa-inventory.timer": {
+      "Unit": "optima-nmpa-inventory.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-patents-backfill.timer": {
+      "Unit": "optima-patents-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-patents-daily.timer": {
+      "Unit": "optima-patents-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-patents-global-monitor.timer": {
+      "Unit": "optima-patents-global-monitor.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-patents-prosecution-publication.timer": {
+      "Unit": "optima-patents-prosecution-publication.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-patents-prosecution.timer": {
+      "Unit": "optima-patents-prosecution.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-patents-publication.timer": {
+      "Unit": "optima-patents-publication.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-people-collection.timer": {
+      "Unit": "optima-people-collection.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-people-content-backfill.timer": {
+      "Unit": "optima-people-content-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-product-search-daily.timer": {
+      "Unit": "optima-product-search-daily.service",
+      "ActiveState": "inactive",
+      "UnitFileState": "disabled"
+    },
+    "optima-pubmed-enrichment-backfill.timer": {
+      "Unit": "optima-pubmed-enrichment-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-reddit-access.timer": {
+      "Unit": "optima-reddit-access.service",
+      "ActiveState": "inactive",
+      "UnitFileState": "disabled"
+    },
+    "optima-reddit-collection.timer": {
+      "Unit": "optima-reddit-collection.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-regulatory-enrichment-backfill.timer": {
+      "Unit": "optima-regulatory-enrichment-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-research-publication.timer": {
+      "Unit": "optima-research-publication.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-s11-content-backfill.timer": {
+      "Unit": "optima-s11-content-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-s11-content-daily.timer": {
+      "Unit": "optima-s11-content-daily.service",
+      "ActiveState": "inactive",
+      "UnitFileState": "disabled"
+    },
+    "optima-search-capture.timer": {
+      "Unit": "optima-search-capture.service",
+      "ActiveState": "inactive",
+      "UnitFileState": "disabled"
+    },
+    "optima-search-daily.timer": {
+      "Unit": "optima-search-capture.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-sms-followup.timer": {
+      "Unit": "optima-sms-followup.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-social-daily.timer": {
+      "Unit": "optima-social-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-source-schedule-daily.timer": {
+      "Unit": "optima-source-schedule-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-source-schedule-historical.timer": {
+      "Unit": "optima-source-schedule-historical.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-specialist-daily.timer": {
+      "Unit": "optima-specialist-daily.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-specialist-historical.timer": {
+      "Unit": "optima-specialist-historical.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-specialist-publication.timer": {
+      "Unit": "optima-specialist-publication.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-ted-enrichment-backfill.timer": {
+      "Unit": "optima-ted-enrichment-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-trade-screening-enrichment.timer": {
+      "Unit": "optima-trade-screening-enrichment.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    },
+    "optima-usgs-minerals-backfill.timer": {
+      "Unit": "optima-usgs-minerals-backfill.service",
+      "ActiveState": "active",
+      "UnitFileState": "enabled"
+    }
+  },
+  "workers": [
+    "ec2-code-backup.service",
+    "optima-authenticated-daily.service",
+    "optima-authenticated-historical.service",
+    "optima-bls-enrichment-backfill.service",
+    "optima-bluesky-companies.service",
+    "optima-caiso-backfill.service",
+    "optima-caiso-daily.service",
+    "optima-chictr-daily.service",
+    "optima-cms-financial-collection.service",
+    "optima-collection-daily.service",
+    "optima-collection-health.service",
+    "optima-committed-athena.service",
+    "optima-company-auto-review.service",
+    "optima-company-catalogue-bootstrap.service",
+    "optima-company-catalogue.service",
+    "optima-company-identity-enrichment.service",
+    "optima-company-web-enrichment.service",
+    "optima-conference-collection.service",
+    "optima-conference-publication.service",
+    "optima-core-historical.service",
+    "optima-daily-health-audit.service",
+    "optima-doe-storage-backfill.service",
+    "optima-doe-storage-daily.service",
+    "optima-edinet-document-backfill.service",
+    "optima-edinet-documents-daily.service",
+    "optima-eia-enrichment-backfill.service",
+    "optima-eodhd-inventory.service",
+    "optima-eodhd-profiles.service",
+    "optima-federal-register-daily-enrichment.service",
+    "optima-federal-register-enrichment-backfill.service",
+    "optima-finlight-content-backfill.service",
+    "optima-github-company-mapping.service",
+    "optima-grant-backfill.service",
+    "optima-grant-daily.service",
+    "optima-hkex-document-backfill.service",
+    "optima-market-collection.service",
+    "optima-market-publication.service",
+    "optima-marketaux-content-backfill.service",
+    "optima-mlperf-enrichment-backfill.service",
+    "optima-news-collection.service",
+    "optima-news-publication.service",
+    "optima-nist-robotics-backfill.service",
+    "optima-nist-robotics-daily.service",
+    "optima-nist-robotics-matching.service",
+    "optima-nmpa-enrichment.service",
+    "optima-nmpa-inventory.service",
+    "optima-patents-backfill.service",
+    "optima-patents-daily.service",
+    "optima-patents-global-monitor.service",
+    "optima-patents-prosecution-publication.service",
+    "optima-patents-prosecution.service",
+    "optima-patents-publication.service",
+    "optima-people-collection.service",
+    "optima-people-content-backfill.service",
+    "optima-product-search-daily.service",
+    "optima-pubmed-enrichment-backfill.service",
+    "optima-reddit-access.service",
+    "optima-reddit-collection.service",
+    "optima-regulatory-enrichment-backfill.service",
+    "optima-research-publication.service",
+    "optima-s11-content-backfill.service",
+    "optima-s11-content-daily.service",
+    "optima-search-capture.service",
+    "optima-sms-followup.service",
+    "optima-social-daily.service",
+    "optima-source-schedule-daily.service",
+    "optima-source-schedule-historical.service",
+    "optima-specialist-daily.service",
+    "optima-specialist-historical.service",
+    "optima-specialist-publication.service",
+    "optima-ted-enrichment-backfill.service",
+    "optima-trade-screening-enrichment.service",
+    "optima-usgs-minerals-backfill.service"
+  ]
+}

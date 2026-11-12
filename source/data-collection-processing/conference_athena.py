@@ -119,6 +119,16 @@ def prepare(store, settings, config, keys, output_root):
     return root
 
 
+def bridge_resumed(store,settings):
+    from window_publication import list_keys
+    from collection_storage import write_json
+    count=0
+    for key in list_keys(store,settings,'constellation-backfill/conferences-resumed/publication-queue/'):
+        entry=json.loads(store.get(key).body);target='operations/conferences/publication-queue/'+entry['window_id']+'.json';old=store.get(target)
+        if old is None:write_json(store,target,entry);count+=1
+        elif json.loads(old.body)['manifests']!=entry['manifests']:raise ValueError('conference_resumed_queue_conflict')
+    return count
+
 def main():
     with (ROOT / '.conference-athena.lock').open('a') as lock:
         try:
@@ -126,7 +136,8 @@ def main():
         except BlockingIOError:
             return 2
         settings = StorageSettings.load(ROOT / 'config/collection-storage.s3.json')
-        result = publish_pending(settings.store(), settings, 'conferences',
+        store=settings.store();bridge_resumed(store,settings)
+        result = publish_pending(store, settings, 'conferences',
             load_json(ROOT / 'config/conference-athena.json'), prepare, ROOT / 'conference-athena-build', 1)
         print(json.dumps(result), flush=True)
         return int(result['status'] == 'failed')

@@ -1,0 +1,26 @@
+{
+  "stopped_at": "2026-10-26T15:07:56.079128+00:00",
+  "instance_id": "i-06241bd1c4e91c2fc",
+  "state": "stopped",
+  "instance_type": "m7i.xlarge",
+  "historical_queue_enabled": false,
+  "daily_capture_enabled": true,
+  "resize_target_pending_user_selection": false,
+  "price_comparison_us_east_1_linux_on_demand": {
+    "c7i.xlarge": {
+      "vcpus": 4,
+      "ram_gib": 8,
+      "usd_per_hour": 0.1785,
+      "usd_per_730h": 130.305
+    },
+    "m7i.xlarge": {
+      "vcpus": 4,
+      "ram_gib": 16,
+      "usd_per_hour": 0.2016,
+      "usd_per_730h": 147.168
+    }
+  },
+  "resized_at": "2026-10-26T15:10:49.850910+00:00",
+  "vcpus": 4,
+  "ram_gib": 16
+}

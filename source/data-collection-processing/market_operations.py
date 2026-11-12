@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Quota-bounded EODHD history and daily refresh across the pinned listing universe."""
 import argparse
+from copy import deepcopy
 from datetime import date,datetime,timedelta,timezone
 import fcntl
 import json
@@ -44,8 +45,30 @@ class MarketOperations:
     def __init__(self,store,settings,config,universe,taxonomy):
         self.store,self.settings,self.config,self.universe,self.taxonomy=store,settings,config,universe,taxonomy
         self.symbols=symbols(universe)
-        self.identity=digest({'version':'market-operations-1.0','config':config,'universe':digest(universe),'taxonomy':digest(taxonomy)})
+        identity_config = deepcopy(config)
+        identity_config['historical_start'] = identity_config.pop('state_identity_historical_start', config['historical_start'])
+        self.identity=digest({'version':'market-operations-1.0','config':identity_config,'universe':digest(universe),'taxonomy':digest(taxonomy)})
         self.prefix='operations/market/automation/'+self.identity
+    def expand_historical_scope(self, item):
+        if not item:
+            return item
+        floor = self.config['historical_start']
+        old_floor = item.get('scope_floor', self.config.get('state_identity_historical_start', floor))
+        if floor >= old_floor:
+            return item
+        item = deepcopy(item)
+        # Preserve the scan and all completed/excluded windows; register each
+        # newly requested year as an explicit unresolved interval.
+        item.setdefault('scan_next_date', item.get('next_date', old_floor))
+        cursor = date.fromisoformat(floor)
+        while cursor < date.fromisoformat(old_floor):
+            end = min(date(cursor.year + 1, 1, 1), date.fromisoformat(old_floor))
+            item.setdefault('gaps', {}).setdefault(str(cursor), {'end_exclusive': str(end),
+                'reason': 'historical_scope_expanded_not_yet_collected', 'last_attempt': ''})
+            cursor = end
+        item['scope_floor'] = floor
+        item['next_date'] = min(item['gaps'])
+        return item
     def reconcile_exclusions(self, registry=None, persist=True):
         registry = registry or Exclusions(self.store, self.prefix, self.symbols)
         states = {}
@@ -56,11 +79,14 @@ class MarketOperations:
             if persist and state is not None and states[lane] != state:
                 write_json(self.store, key, states[lane], token)
         return states
-    def run(self,client,today=None):
+    def run(self,client,today=None,lanes=('daily','historical')):
+        if not lanes or set(lanes)-{'daily','historical'}:raise ValueError('invalid market lanes')
         today=today or datetime.now(timezone.utc).date();outcomes=[]
         registry = Exclusions(self.store, self.prefix, self.symbols)
+        from market_symbol_mappings import load as load_mappings
+        mappings = load_mappings(self.store, self.prefix, self.symbols)
         self.reconcile_exclusions(registry)
-        for lane in ('daily','historical'):
+        for lane in lanes:
             if lane == 'historical':
                 daily, _ = load_stored(self.store, self.prefix+'/daily.json')
                 daily = (daily or {}).get('symbols', {})
@@ -73,6 +99,8 @@ class MarketOperations:
             attempted=0
             for symbol in ordered:
                 item=state['symbols'].get(symbol,{})
+                if lane == 'historical':
+                    item = self.expand_historical_scope(item)
                 diagnosing_empty = item.get('last_result', {}).get('reason') == 'market_empty_price_window_unverified' and not item.get('empty_window_diagnosed')
                 advancing_empty_month = (lane == 'daily' and not item.get('scan_next_date') and
                     item.get('last_result', {}).get('reason') == 'market_empty_price_window_unverified' and
@@ -98,7 +126,8 @@ class MarketOperations:
                     item.setdefault('excluded_windows', {})[str(start)] = result
                 else:
                     result=collect_eodhd(self.store,self.settings,self.universe,self.taxonomy,symbol,start,end,
-                        'daily' if lane=='daily' else 'historical',client,self.symbols[symbol])
+                        'daily' if lane=='daily' else 'historical',client,self.symbols[symbol],
+                        **({'symbol_mapping':mappings[symbol]} if symbol in mappings else {}))
                 if retry_gap:
                     item['gaps'][retry_gap]['last_attempt'] = now()
                 if result['status'] in SUCCESS:
@@ -140,14 +169,14 @@ class MarketOperations:
             saved, _ = load_stored(self.store, self.prefix+'/'+lane+'.json')
             unresolved_counts[lane] = sum(unresolved(v) for v in (saved or {}).get('symbols', {}).values())
             excluded_counts[lane] = sum(len(v.get('excluded_windows', {})) for v in (saved or {}).get('symbols', {}).values())
-        return {'status':'partial' if any(unresolved_counts.values()) or any(r['status'] not in SUCCESS for r in outcomes) else 'complete',
+        return {'status':'partial' if any(unresolved_counts[lane] for lane in lanes) or any(r['status'] not in SUCCESS for r in outcomes) else 'complete',
             'stream_id':self.identity,'listing_symbols':len(self.symbols),'results':outcomes,
             'symbols_with_unresolved_windows': unresolved_counts, 'excluded_windows': excluded_counts,
             'coverage':'Invocation status only; complete historical coverage requires every symbol cursor and gap review.'}
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--status',action='store_true');p.add_argument('--dry-run',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--status',action='store_true');p.add_argument('--dry-run',action='store_true');p.add_argument('--lane',choices=['daily','historical','all'],default='all');a=p.parse_args()
     config=load_json(ROOT/'config/market-operations.json');u=load_json(ROOT/config['universe']);t=load_json(ROOT/config['taxonomy'])
     if a.dry_run:print(json.dumps({'historical_start':config['historical_start'],'daily_origin':config['daily_origin'],'symbols':len(symbols(u)),**config,'runtime_quota':load_json(ROOT/'config/eodhd-quota.json')}));return 0
     with (ROOT/'.market-collection.lock').open('a') as lock:
@@ -167,7 +196,7 @@ def main():
         allowance=min(limits['market_requests_per_run'],max(0,limit-used-source_config['daily_api_call_reserve']))
         if allowance<3:print(json.dumps({'status':'partial','reason':'shared_eodhd_quota_reserve'}));return 2
         client.opener=Budget(store,{**config,'max_requests_per_day':limits['daily_group_caps']['market']},allowance,client.opener)
-        result=runner.run(client);write_json(store,runner.prefix+'/attempts/'+digest(result)+'.json',result)
+        result=runner.run(client,lanes=('daily','historical') if a.lane=='all' else (a.lane,));write_json(store,runner.prefix+'/attempts/'+digest(result)+'.json',result)
         print(json.dumps(result),flush=True);return 0 if result['status']=='complete' else 2
 
 if __name__=='__main__':raise SystemExit(main())

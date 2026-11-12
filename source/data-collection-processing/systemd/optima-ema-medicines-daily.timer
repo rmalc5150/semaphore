@@ -1,0 +1,9 @@
+[Unit]
+Description=Capture all EMA medicine report records daily
+[Timer]
+OnBootSec=180
+OnCalendar=*-*-* 07:35:00 Europe/Madrid
+Persistent=true
+Unit=optima-ema-medicines-daily.service
+[Install]
+WantedBy=timers.target

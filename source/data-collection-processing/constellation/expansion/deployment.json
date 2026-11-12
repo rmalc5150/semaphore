@@ -1,0 +1,8 @@
+{
+  "command_id": "d68749ff-6d1c-4ba4-b125-e2e9af15b0f0",
+  "bundle_sha256": "961043fe91f62888b5ad8948a3ce65855c40182e27ace5a629fc4f609dac5513",
+  "source_modules": 108,
+  "enabled_historical_routes": 30,
+  "collection_enabled": true,
+  "daily_capture_touched": false
+}

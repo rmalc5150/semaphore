@@ -1,0 +1,17 @@
+{
+  "job_id": "mlperf-enrichment-backfill-2026-10-18",
+  "window_start": "2021-01-01T00:00:00Z",
+  "snapshot_cutoff": "2026-10-18T10:05:52.159186Z",
+  "inventory_file": "reports/mlperf-enrichment-backfill-2026-10-18/input-batches.json",
+  "inventory_sha256": "72fef86ebfd0b61f40cdf586fdcc2f5556c2e82552795f19a2307f6e774c9c27",
+  "storage_config": "config/collection-storage.s3.json",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "max_batches_per_invocation": 400,
+  "max_versions_per_invocation": 100,
+  "max_attempts": 3,
+  "retry_minutes": 60,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Enrich distinct saved S48 result/commit versions using pinned official system descriptions, measurement configurations, accuracy reports and performance logs. Retain original observations, commit identities, raw evidence and lineage. Supporting artifacts stay distinct from benchmark result events. Missing, oversized and API-deferred inventory remains explicit. No automatic RDS matching/admission or main event dispatch. Email after every pinned version is processed and exact job counts are verified in Athena, reporting gaps and review-required outcomes."
+}

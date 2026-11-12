@@ -1,0 +1,15 @@
+[Unit]
+Description=Daily full EMA medicines report capture
+After=network-online.target
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/opt/constellation/source
+ExecStart=/opt/constellation/legacy-venv/bin/python -B ema_medicines_capture.py
+Slice=constellation-workers.slice
+MemoryMax=402653184
+MemorySwapMax=0
+CPUQuota=20%
+TimeoutStartSec=300
+Environment=CONSTELLATION_SHARED_HTTP_LIMITS=1
+Environment=CONSTELLATION_ROLE=worker

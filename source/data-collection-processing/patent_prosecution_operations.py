@@ -90,7 +90,7 @@ class Operations:
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('mode', choices=['tick', 'historical', 'daily', 'reconcile', 'status'], default='tick', nargs='?')
+    parser.add_argument('mode', choices=['tick', 'daily-only', 'historical-only', 'historical', 'daily', 'reconcile', 'status'], default='tick', nargs='?')
     parser.add_argument('--config', type=Path, default=ROOT / 'config/patent-prosecution-operations.json')
     args = parser.parse_args(argv)
     config = load_json(args.config)
@@ -105,10 +105,10 @@ def main(argv=None):
         except BlockingIOError:
             print(json.dumps({'status': 'partial', 'reason': 'worker_running'}), flush=True); return 2
         today = datetime.now(timezone.utc).date()
-        modes = ['daily', 'historical'] if args.mode == 'tick' else [args.mode]
+        modes = ['daily', 'historical'] if args.mode == 'tick' else ['daily'] if args.mode == 'daily-only' else ['historical'] if args.mode == 'historical-only' else [args.mode]
         # Recheck recent update windows once per day with durable progress;
         # newly added old actions are also covered by the older-history sweep.
-        if args.mode == 'tick':
+        if args.mode in ('tick','daily-only'):
             for dataset in prosecution.DATASETS:
                 key = f'{ops.prefix}/{dataset}/daily-overlap.json'
                 overlap, token = load_stored(store, key)
@@ -130,7 +130,7 @@ def main(argv=None):
                         write_json(store, key, {'through': str(today), 'next_date': str(next_date),
                             'active_date': str(start), 'complete': next_date >= today, 'result': result, 'updated_at': now()}, token)
         results = [ops.run(dataset, mode, today) for mode in modes for dataset in prosecution.DATASETS]
-        if args.mode == 'tick':
+        if args.mode in ('tick','historical-only'):
             marker = f'{ops.prefix}/reconciliation-day.json'
             seen, token = load_stored(store, marker)
             if not seen or seen['day'] != str(today):

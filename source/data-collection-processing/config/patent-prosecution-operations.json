@@ -1,5 +1,5 @@
 {
-  "start_date": "2021-01-01",
+  "start_date": "2016-01-01",
   "historical_end_exclusive": "2026-10-14",
   "universe": "config/company-universe.v0.5.json",
   "taxonomy": "config/sectors.v1.json",

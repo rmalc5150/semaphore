@@ -2,6 +2,11 @@
 """Isolated event experiment: GET saved evidence, freeze samples, replay locally.
 
 No production database, catalog, timer, provider, or S3 write path exists here.
+
+TODO: integrate the separately deployed S47 NIST evidence/product-match candidates
+into the main event workflow; requirements are in ENTITY_DISCOVERY_ROLLOUT_PLAN.md#event-pipeline under
+"Pending implementation: integrate S47 robotics evidence". This pilot does not
+consume or promote those production source-side candidates yet.
 """
 from __future__ import annotations
 

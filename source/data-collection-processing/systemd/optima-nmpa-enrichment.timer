@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume S26 detail backfill and reconcile known trials
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=optima-nmpa-enrichment.service
+
+[Install]
+WantedBy=timers.target

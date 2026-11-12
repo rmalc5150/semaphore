@@ -1,0 +1,9 @@
+[Unit]
+Description=Bounded Crossref daily and historical continuation
+[Timer]
+OnBootSec=180
+OnUnitInactiveSec=120
+Persistent=true
+Unit=optima-crossref-resumed.service
+[Install]
+WantedBy=timers.target

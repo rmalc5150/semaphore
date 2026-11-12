@@ -1,0 +1,21 @@
+{
+  "job_id": "doe-storage-backfill-2026-10-18-v2",
+  "inventory_file": "reports/doe-storage-backfill-2026-10-18/input-batches.json",
+  "inventory_digest": "459eacb9e022dac7675856526a9a5df917d7177cbe473e8b5a1c493ee654c9d9",
+  "max_depth": 4,
+  "max_documents_per_job": 300,
+  "documents_per_invocation": 6,
+  "max_document_bytes": 33554432,
+  "max_pdf_pages": 250,
+  "max_spreadsheet_cells": 30000,
+  "max_attempts": 3,
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "seed_urls": [
+    "https://www.energy.gov/oe/storage-innovations-2030",
+    "https://www.energy.gov/oe/rapid-operational-validation-initiative-rovi",
+    "https://www.energy.gov/oe/storage-innovations-2030-technology-liftoff",
+    "https://www.pnnl.gov/projects/esgc-cost-performance/download-reports",
+    "https://www.energy.gov/cmei/oced/long-duration-energy-storage"
+  ]
+}

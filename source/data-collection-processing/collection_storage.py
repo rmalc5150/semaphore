@@ -141,6 +141,17 @@ class S3Store:
             # empty checkpoint. Only a missing object is treated as absent.
             if exc.response.get("Error", {}).get("Code") == "NoSuchKey":
                 return None
+            if (exc.response.get('Error', {}).get('Code') == 'AccessDenied'
+                    and os.environ.get('CONSTELLATION_VERIFY_MISSING_S3_KEYS') == '1'):
+                # Prefix-scoped ListBucket rights can make GetObject return
+                # 403 instead of 404 for an absent key. Prove exact absence
+                # through an authorized, bounded listing; never turn a denied
+                # existing object or a denied listing into an empty checkpoint.
+                args=self._args(key)
+                listed=self.client.list_objects_v2(Bucket=args['Bucket'],Prefix=args['Key'],MaxKeys=1,
+                    **({'ExpectedBucketOwner':self.owner} if self.owner else {}))
+                if not any(item['Key']==args['Key'] for item in listed.get('Contents',[])):
+                    return None
             raise
         stream = response["Body"]
         try:
@@ -447,6 +458,19 @@ class CollectionRun:
                    "terminal_history": self.state["terminal_history"] + [key]}
         token = write_json(self.store, self.checkpoint_key, updated, self.token)
         self.state, self.token, self.closed = updated, token, True
+        # The metadata engine consumes only the manifest committed above. This
+        # opt-in wake-up is best effort; independent discovery repairs misses.
+        if (self.spec['mode']=='daily' and os.environ.get('METADATA_ENGINE_NOTIFY')=='1'
+                and isinstance(self.store,S3Store)):
+            try:
+                notice={'source':self.spec['source'],'mode':'daily','manifest_key':self.store._args(key)['Key'],
+                    'batches':[self.store._args(batch['key'])['Key'] for page in self.state['pages'] for batch in page['batches']]}
+                intake='research-data/constellation-backfill/metadata-engine/runtime-v2/intake/'+now()[:10]+'/'+digest(notice)+'.json'
+                self.store.client.put_object(Bucket=self.store.bucket,Key=intake,Body=canonical_json(notice),
+                    ContentType='application/json',ServerSideEncryption='AES256',IfNoneMatch='*')
+            except Exception as error:
+                import logging
+                logging.getLogger(__name__).warning('metadata commit notice deferred: %s',type(error).__name__)
         return key
 
 

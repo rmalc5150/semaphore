@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue CMS coverage Athena publication independently
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=120
+Persistent=true
+Unit=optima-cms-coverage-publication.service
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,9 @@
+from research_helpers import *
+a=ev('https://www.verseon.com/pipeline.html','Reviewed all sixteen named current candidates; only VE-1902 is explicitly Phase 1 in detailed pipeline. Optimization/design remain research stages.')
+b=ev('https://www.verseon.com/','Current issuer supports drug discovery platform and confirms corporate biomedical identity; unrelated ProShares ETF URL in tracking record not used as product evidence.')
+products=[]
+for code,area in [('1902','Anticoagulant'),('2851','Anticoagulant'),('4840','Diabetic vision loss'),('3539','Diabetic vision loss'),('4666','Hereditary angioedema'),('4062','Hereditary angioedema'),('5773','Fatty liver disease'),('5708','Fatty liver disease'),('1919','Undisclosed target'),('1941','Undisclosed target'),('4054','Multidrug-resistant cancer'),('4932','Multidrug-resistant cancer'),('3771','CD73-positive cancer'),('5953','CD73-positive cancer'),('2843','Cancer metastasis'),('1787','Cancer metastasis')]:
+ products.append(p('VE-'+code,area+' drug candidate.',a,'development' if code=='1902' else 'research'))
+products.append(p('Verseon computational drug discovery platform','Physics-based molecular design and AI-assisted therapeutic discovery technology.',b,'research',typ='technology',sub='research_tools'))
+co=dict(company_id='cmp_0d99a655-1b4d-482a-8f40-618cdb02604f',products=products,evidence=[a,b],status='partial',coverage_note='All sixteen named current pipeline candidates and core discovery technology recorded. Company description confirms Fremont pharmaceutical issuer despite erroneous ETF website. Partial: historical angiogenesis assets/older codes, specific mechanism details and discovery software commercialization require follow-up. Detailed candidate stages used over broad homepage program-level clinical labels; undisclosed target not invented.')
+(out/'batch-0235.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

@@ -1,0 +1,15 @@
+[Unit]
+Description=Bounded FDA daily capture; historical routes remain independent
+After=network-online.target
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/opt/constellation/source
+ExecStart=/opt/constellation/legacy-venv/bin/python -B fda_review_capture.py --sources fda_dd_compliance_actions fda_dd_import_refusals fda_dd_inspections_citations fda_ires_recalls
+Slice=constellation-workers.slice
+MemoryMax=402653184
+MemorySwapMax=0
+CPUQuota=20%
+TimeoutStartSec=300
+Environment=CONSTELLATION_ROLE=worker
+Environment=CONSTELLATION_SHARED_HTTP_LIMITS=1

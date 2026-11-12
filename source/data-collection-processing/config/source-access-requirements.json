@@ -1,0 +1,2314 @@
+{
+  "checked_on": "2026-10-26",
+  "catalog_entries": 158,
+  "credential_group_counts": {
+    "stored": 11,
+    "paused_stored": 2,
+    "stored_optional": 1,
+    "configured_identity": 1,
+    "obtain": 18,
+    "commercial_conditional": 9,
+    "optional": 5,
+    "paused_optional": 1,
+    "license_not_key": 4,
+    "stored_validated": 1
+  },
+  "values_included": false,
+  "scope": "Existing config/Secrets Manager presence plus current official access documentation. Presence does not verify token validity, historic entitlement or commercial ML rights.",
+  "groups": [
+    {
+      "group": "eodhd",
+      "catalog_entries": [
+        2,
+        3
+      ],
+      "status": "stored",
+      "credential": "API token",
+      "action": "Use existing EODHD secret; verify historic/delisted-security entitlement.",
+      "reference": "https://eodhd.com/financial-apis/"
+    },
+    {
+      "group": "edinet",
+      "catalog_entries": [
+        8
+      ],
+      "status": "stored",
+      "credential": "Subscription key",
+      "action": "Use existing EDINET key.",
+      "reference": "https://disclosure2dl.edinet-fsa.go.jp/guide/static/disclosure/WZEK0110.html"
+    },
+    {
+      "group": "finlight",
+      "catalog_entries": [
+        11
+      ],
+      "status": "stored",
+      "credential": "API key",
+      "action": "Use existing finlight-api-key in newKeys; archive availability is separate.",
+      "reference": "https://docs.finlight.me/"
+    },
+    {
+      "group": "marketaux",
+      "catalog_entries": [
+        12
+      ],
+      "status": "paused_stored",
+      "credential": "API token",
+      "action": "Already stored. Keep paused; do not renew or reactivate for this task.",
+      "reference": "https://www.marketaux.com/documentation"
+    },
+    {
+      "group": "openfda",
+      "catalog_entries": [
+        17,
+        18
+      ],
+      "status": "stored_optional",
+      "credential": "Optional API key",
+      "action": "Existing FDA secret is configured; optional for basic requests, useful for quota.",
+      "reference": "https://open.fda.gov/apis/authentication/"
+    },
+    {
+      "group": "fda_dashboard",
+      "catalog_entries": [
+        32,
+        33,
+        34,
+        35
+      ],
+      "status": "stored",
+      "credential": "Authorization user + key",
+      "action": "One existing FDA-Data credential pair covers these dashboard routes.",
+      "reference": "https://datadashboard.fda.gov/ora/api/"
+    },
+    {
+      "group": "fda_enforcement",
+      "catalog_entries": [
+        36
+      ],
+      "status": "stored",
+      "credential": "Authorization user + key",
+      "action": "Existing FDA-Enforcement credential pair.",
+      "reference": "https://www.accessdata.fda.gov/scripts/ires/"
+    },
+    {
+      "group": "fda_productcodes",
+      "catalog_entries": [
+        37
+      ],
+      "status": "stored",
+      "credential": "Authorization user + key",
+      "action": "Existing FDA-ProductCodes credential pair.",
+      "reference": "https://www.accessdata.fda.gov/scripts/ora/pcb/"
+    },
+    {
+      "group": "google_patents",
+      "catalog_entries": [
+        39
+      ],
+      "status": "configured_identity",
+      "credential": "AWS/Google workload identity",
+      "action": "No downloaded API key. Verify Google federation authorizes the new c7i IAM role before moving this job.",
+      "reference": "https://cloud.google.com/iam/docs/workload-identity-federation-with-other-clouds"
+    },
+    {
+      "group": "uspto",
+      "catalog_entries": [
+        40,
+        41,
+        63,
+        64
+      ],
+      "status": "stored",
+      "credential": "ODP API key",
+      "action": "Reuse existing USPTO key; these entries are not four independent key applications.",
+      "reference": "https://data.uspto.gov/apis/getting-started"
+    },
+    {
+      "group": "reddit",
+      "catalog_entries": [
+        59
+      ],
+      "status": "paused_stored",
+      "credential": "OAuth client ID + secret and approved data access",
+      "action": "Credentials are stored. Source remains paused; API approval and permitted scope are separate.",
+      "reference": "https://support.reddithelp.com/hc/en-us/articles/14945211791892-Reddit-Data-API-Wiki"
+    },
+    {
+      "group": "dataforseo",
+      "catalog_entries": [
+        60
+      ],
+      "status": "stored",
+      "credential": "API login + API password/basic authorization",
+      "action": "Existing dataForSEO secret has login and encoded authorization; not a new API key.",
+      "reference": "https://docs.dataforseo.com/v3/auth/"
+    },
+    {
+      "group": "decodo",
+      "catalog_entries": [
+        81
+      ],
+      "status": "stored",
+      "credential": "Web Scraping API credential",
+      "action": "Existing proxies secret contains decodo-web-scraping. Access layer, not an independent data publisher.",
+      "reference": "https://docs.decodo.com/"
+    },
+    {
+      "group": "eia",
+      "catalog_entries": [
+        55
+      ],
+      "status": "stored",
+      "credential": "API key",
+      "action": "Reuse existing EIA key for the API. Generator archive downloads (53,54) do not require it.",
+      "reference": "https://www.eia.gov/opendata/register.php"
+    },
+    {
+      "group": "sam",
+      "catalog_entries": [
+        62
+      ],
+      "status": "stored",
+      "credential": "SAM.gov API key",
+      "action": "Existing key is stored; account allowance still needs verification.",
+      "reference": "https://open.gsa.gov/api/get-opportunities-public-api/"
+    },
+    {
+      "group": "comtrade",
+      "catalog_entries": [
+        51
+      ],
+      "status": "obtain",
+      "credential": "Subscription key",
+      "action": "Create account, My Comtrade > My API Portal > Generate API Key. Preview without a key is limited.",
+      "reference": "https://uncomtrade.org/docs/api-subscription-keys/"
+    },
+    {
+      "group": "fred_alfred",
+      "catalog_entries": [
+        66
+      ],
+      "status": "obtain",
+      "credential": "FRED API key",
+      "action": "Create/sign in to a FRED account and request one key for FRED and ALFRED/vintage endpoints.",
+      "reference": "https://fred.stlouisfed.org/docs/api/api_key.html"
+    },
+    {
+      "group": "ember",
+      "catalog_entries": [
+        70
+      ],
+      "status": "obtain",
+      "credential": "API key",
+      "action": "Register for the electricity-data API and verify the email.",
+      "reference": "https://ember-energy.org/data/api/"
+    },
+    {
+      "group": "wto",
+      "catalog_entries": [
+        71,
+        72,
+        73
+      ],
+      "status": "obtain",
+      "credential": "WTO API subscription key(s)",
+      "action": "Register at the WTO portal; enable each needed API product. One account may require separate product subscriptions/keys.",
+      "reference": "https://apiportal.wto.org/"
+    },
+    {
+      "group": "epo_ops",
+      "catalog_entries": [
+        74
+      ],
+      "status": "stored_validated",
+      "credential": "Consumer key + consumer secret",
+      "action": "Active: historical collection on m7i.large and recurring daily discovery/known-patent refresh on t3. First historical and daily captures each verified five observations in S3; daily re-observations are not additional unique events. Full 2016 coverage and Athena publication remain unverified.",
+      "reference": "https://www.epo.org/en/searching-for-patents/data/web-services/ops"
+    },
+    {
+      "group": "copernicus",
+      "catalog_entries": [
+        75
+      ],
+      "status": "obtain",
+      "credential": "CDS personal access token",
+      "action": "Create CDS account, accept each requested dataset licence and copy the profile PAT.",
+      "reference": "https://cds.climate.copernicus.eu/how-to-api"
+    },
+    {
+      "group": "ucdp",
+      "catalog_entries": [
+        78
+      ],
+      "status": "obtain",
+      "credential": "Access token",
+      "action": "Request API access from the maintainer using the instructions in the official documentation. Do not assume older anonymous examples still work.",
+      "reference": "https://ucdp.uu.se/apidocs/"
+    },
+    {
+      "group": "nice",
+      "catalog_entries": [
+        88
+      ],
+      "status": "obtain",
+      "credential": "Syndication API key and content licence",
+      "action": "NICE correspondence supplied by the user: AI use requires syndication API access, a licence and NICE cybersecurity review; only final published guidance is available. Draft guidance, company submissions, assessment reports and committee papers are excluded.",
+      "reference": "https://www.nice.org.uk/reusing-our-content/nice-syndication-api"
+    },
+    {
+      "group": "opendart",
+      "catalog_entries": [
+        98
+      ],
+      "status": "obtain",
+      "credential": "Authentication key",
+      "action": "Register at OpenDART and request an authentication key.",
+      "reference": "https://engopendart.fss.or.kr/uss/umt/EgovMberInsertView.do"
+    },
+    {
+      "group": "kosis",
+      "catalog_entries": [
+        99
+      ],
+      "status": "obtain",
+      "credential": "KOSIS OpenAPI key",
+      "action": "Apply for the KOSIS authentication key; a different data.go.kr route can have a different service key.",
+      "reference": "https://kosis.kr/openapi/"
+    },
+    {
+      "group": "census",
+      "catalog_entries": [
+        118
+      ],
+      "status": "obtain",
+      "credential": "Census API key",
+      "action": "Request and activate a Census key. Plan a keyed production collector; older keyless examples are not an access guarantee.",
+      "reference": "https://api.census.gov/data/key_signup.html"
+    },
+    {
+      "group": "usda_fas",
+      "catalog_entries": [
+        125
+      ],
+      "status": "obtain",
+      "credential": "FAS API key",
+      "action": "Sign in to the FAS data portal and retrieve the PSD/Open Data API key.",
+      "reference": "https://apps.fas.usda.gov/opendataweb/home"
+    },
+    {
+      "group": "meta_ads",
+      "catalog_entries": [
+        131
+      ],
+      "status": "obtain",
+      "credential": "App credentials and access token",
+      "action": "Complete Meta developer/identity and Ad Library access steps; obtain the token for the approved Ad Library scope.",
+      "reference": "https://www.facebook.com/ads/library/api/"
+    },
+    {
+      "group": "tiktok_ads",
+      "catalog_entries": [
+        132
+      ],
+      "status": "credentials_present_validation_blocked",
+      "credential": "Approved app client key + secret/access token",
+      "action": "Credentials stored and OAuth validated 2026-10-27. Retry Commercial Content product query: HTTP 500/internal_error on two tests. Capture is not active. Published-date query minimum is within one year; this endpoint cannot supply 2016 history.",
+      "reference": "https://developers.tiktok.com/products/commercial-content-api"
+    },
+    {
+      "group": "linkedin_ads",
+      "catalog_entries": [
+        133
+      ],
+      "status": "obtain",
+      "credential": "Approved Ad Library API product + app credentials",
+      "action": "Request the external Ad Library API product from LinkedIn developer portal; generic Marketing API access is not sufficient.",
+      "reference": "https://www.linkedin.com/blog/engineering/trust-and-safety/enhancing-transparency-with-linkedins-ad-library"
+    },
+    {
+      "group": "x_ads",
+      "catalog_entries": [
+        134
+      ],
+      "status": "credentials_present_product_access_blocked",
+      "credential": "Developer app bearer token",
+      "action": "X-bearer stored and tested 2026-10-27. Ads Repository export denied HTTP 403/code 453: enable the correct product/access level. Ordinary public lookup returned HTTP 402/credits depleted; funding reads is separate from repository entitlement. Capture inactive.",
+      "reference": "https://help.x.com/en/business-and-advertising/ads-transparency"
+    },
+    {
+      "group": "openalex",
+      "catalog_entries": [
+        142
+      ],
+      "status": "obtain",
+      "credential": "Verified-email API key for bulk/cursor access",
+      "action": "Create an account, verify the email, and obtain a key from settings. Current cursor access beyond page one requires a key.",
+      "reference": "https://help.openalex.org/api/authentication/"
+    },
+    {
+      "group": "kaken",
+      "catalog_entries": [
+        153
+      ],
+      "status": "obtain",
+      "credential": "NII/CiNii application ID",
+      "action": "Register the application ID used by KAKEN; describe commercial use to NII as required by their guidance.",
+      "reference": "https://support.nii.ac.jp/en/kaken/api/api_outline"
+    },
+    {
+      "group": "cninfo",
+      "catalog_entries": [
+        92
+      ],
+      "status": "commercial_conditional",
+      "credential": "Provider-issued credentials if the commercial API is chosen",
+      "action": "Public filing downloads are an alternative. No self-service key requirement has been verified for the chosen public route; request approved API access if needed.",
+      "reference": "https://webapi.cninfo.com.cn/"
+    },
+    {
+      "group": "importyeti",
+      "catalog_entries": [
+        114
+      ],
+      "status": "commercial_conditional",
+      "credential": "ImportYeti API key",
+      "action": "Request API access; confirm volume, history and allowed storage/ML use. Free website access is not bulk API entitlement.",
+      "reference": "https://docs.importyeti.com/docs/getting-started"
+    },
+    {
+      "group": "importgenius",
+      "catalog_entries": [
+        115
+      ],
+      "status": "commercial_conditional",
+      "credential": "Enterprise API access token",
+      "action": "Request an API-enabled plan and token from the implementation team; specify country and historical scope.",
+      "reference": "https://w3.importgenius.com/features/api-integration"
+    },
+    {
+      "group": "marinetraffic",
+      "catalog_entries": [
+        116
+      ],
+      "status": "commercial_conditional",
+      "credential": "Product-specific API key",
+      "action": "Request historical vessel-track and port-call API entitlements, not only a website login.",
+      "reference": "https://servicedocs.marinetraffic.com/tag/Vessel-Historical-Track/"
+    },
+    {
+      "group": "kpler",
+      "catalog_entries": [
+        117
+      ],
+      "status": "commercial_conditional",
+      "credential": "Provisioned API credentials/token",
+      "action": "Ask Kpler for cargo-flow API access and authentication for the contracted product; do not assume a MarineTraffic key covers it.",
+      "reference": "https://developers.kpler.com/"
+    },
+    {
+      "group": "euromonitor",
+      "catalog_entries": [
+        130
+      ],
+      "status": "commercial_conditional",
+      "credential": "API-enabled Passport credentials/subscription and OAuth token",
+      "action": "Ask the account team for Statistics API entitlement and the credentials required by the current portal.",
+      "reference": "https://www.euromonitor.com/solutions/passport/connect/api"
+    },
+    {
+      "group": "sensortower",
+      "catalog_entries": [
+        135
+      ],
+      "status": "commercial_conditional",
+      "credential": "Provider-issued API credential; exact product scope to confirm",
+      "action": "Request Sensor Tower/Pathmatics advertising API and historical entitlements. Exact credential format is not confirmed from public documentation.",
+      "reference": "https://sensortower.com/"
+    },
+    {
+      "group": "dealroom",
+      "catalog_entries": [
+        140
+      ],
+      "status": "commercial_conditional",
+      "credential": "Premium API key",
+      "action": "Request the Premium API key and confirm use restrictions and historical coverage.",
+      "reference": "https://knowledge.dealroom.co/knowledge/dealroom-api-1"
+    },
+    {
+      "group": "altmetric",
+      "catalog_entries": [
+        157
+      ],
+      "status": "commercial_conditional",
+      "credential": "Details Page API key; Explorer key + secret if needed",
+      "action": "Request commercial access appropriate to the endpoints; free academic permission is not a commercial entitlement.",
+      "reference": "https://docs.altmetric.com/details-page-api/licensing/"
+    },
+    {
+      "group": "ncbi",
+      "catalog_entries": [
+        25
+      ],
+      "status": "optional",
+      "credential": "NCBI API key",
+      "action": "Optional for higher E-utilities throughput; email/tool identification and a conservative no-key limit can be used initially.",
+      "reference": "https://www.ncbi.nlm.nih.gov/books/NBK25497/"
+    },
+    {
+      "group": "bls",
+      "catalog_entries": [
+        57
+      ],
+      "status": "optional",
+      "credential": "BLS API registration key",
+      "action": "Optional for registered API limits; public files and unregistered API access exist.",
+      "reference": "https://www.bls.gov/developers/home.htm"
+    },
+    {
+      "group": "github",
+      "catalog_entries": [
+        44
+      ],
+      "status": "paused_optional",
+      "credential": "Read-only GitHub token",
+      "action": "Optional higher-limit credential; source stays paused and no token acquisition is required until you resume it.",
+      "reference": "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api"
+    },
+    {
+      "group": "openaire",
+      "catalog_entries": [
+        144
+      ],
+      "status": "optional",
+      "credential": "OpenAIRE AAI account/access token",
+      "action": "Authenticated access is recommended for production limits; use current OpenAIRE guidance or public bulk releases.",
+      "reference": "https://graph.openaire.eu/docs/7.2.0/apis/authentication/"
+    },
+    {
+      "group": "semantic_scholar",
+      "catalog_entries": [
+        148
+      ],
+      "status": "optional",
+      "credential": "Academic Graph API key",
+      "action": "Recommended for sustained collection; some endpoints require it, many public endpoints do not.",
+      "reference": "https://www.semanticscholar.org/product/api"
+    },
+    {
+      "group": "huggingface",
+      "catalog_entries": [
+        156
+      ],
+      "status": "optional",
+      "credential": "Read-only Hugging Face token",
+      "action": "Not needed for basic public metadata; useful for authenticated quotas or explicitly permitted gated assets.",
+      "reference": "https://huggingface.co/docs/hub/security-tokens"
+    },
+    {
+      "group": "wsts",
+      "catalog_entries": [
+        82
+      ],
+      "status": "license_not_key",
+      "credential": "No key/login for public Blue Book history; review reuse terms",
+      "action": "WSTS now offers four decades of regional monthly billings as a free Excel download without login. Detailed products may have separate terms; no purchase is needed for this public history.",
+      "reference": "https://www.wsts.org/"
+    },
+    {
+      "group": "semi",
+      "catalog_entries": [
+        83
+      ],
+      "status": "license_not_key",
+      "credential": "Report/data licence; no general API key confirmed",
+      "action": "Use public releases; request a licence if detailed historical equipment data are required.",
+      "reference": "https://www.semi.org/en/products-services/market-data"
+    },
+    {
+      "group": "ifr",
+      "catalog_entries": [
+        84
+      ],
+      "status": "license_not_key",
+      "credential": "World Robotics report/dataset licence",
+      "action": "Public summaries are not the full licensed dataset; ask for machine-readable access and permitted use.",
+      "reference": "https://ifr.org/worldrobotics/"
+    },
+    {
+      "group": "iea_ev",
+      "catalog_entries": [
+        128
+      ],
+      "status": "license_not_key",
+      "credential": "IEA account/terms if the selected download requires them",
+      "action": "The current Global EV Data Explorer is CC BY 4.0. A free IEA account may be used for downloads; no general API key is established for this public route.",
+      "reference": "https://www.iea.org/data-and-statistics/data-tools/global-ev-data-explorer"
+    },
+    {
+      "group": "opensupplyhub",
+      "catalog_entries": [
+        121
+      ],
+      "status": "obtain",
+      "credential": "Approved API access + token",
+      "action": "Apply for API access; after approval generate a token in My Account > Settings > API. Confirm commercial terms.",
+      "reference": "https://info.opensupplyhub.org/resources/api-documentation"
+    }
+  ],
+  "sources": [
+    {
+      "catalog_entry": 1,
+      "source_key": "gleif_legal_entities",
+      "source_name": "GLEIF legal entities",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.gleif.org/en/lei-data/gleif-api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 2,
+      "source_key": "eodhd",
+      "source_name": "EOD Historical Data company profiles and listings",
+      "credential_group": "eodhd",
+      "access_status": "stored",
+      "credential": "API token",
+      "action": "Use existing EODHD secret; verify historic/delisted-security entitlement.",
+      "reference": "https://eodhd.com/financial-apis/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 3,
+      "source_key": "eodhd_market",
+      "source_name": "EOD Historical Data market data",
+      "credential_group": "eodhd",
+      "access_status": "stored",
+      "credential": "API token",
+      "action": "Use existing EODHD secret; verify historic/delisted-security entitlement.",
+      "reference": "https://eodhd.com/financial-apis/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 4,
+      "source_key": "hkex_prices",
+      "source_name": "HKEX prices",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.hkex.com.hk/Market-Data",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 5,
+      "source_key": "sec_edgar",
+      "source_name": "US SEC filings (including Form D and crowdfunding forms)",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Configure a truthful organization/contact User-Agent; SEC does not issue an EDGAR API key.",
+      "reference": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 6,
+      "source_key": "sec_companyfacts",
+      "source_name": "SEC company financial facts",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 7,
+      "source_key": "hkex_news",
+      "source_name": "HKEX announcements",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www1.hkexnews.hk/search/titlesearch.xhtml",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 8,
+      "source_key": "edinet_filings",
+      "source_name": "Japan EDINET corporate filings",
+      "credential_group": "edinet",
+      "access_status": "stored",
+      "credential": "Subscription key",
+      "action": "Use existing EDINET key.",
+      "reference": "https://disclosure2dl.edinet-fsa.go.jp/guide/static/disclosure/WZEK0110.html",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 9,
+      "source_key": "disclosure_candidates",
+      "source_name": "Disclosure candidates (internal route)",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "internal:disclosure_candidates",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 10,
+      "source_key": "disclosure_documents",
+      "source_name": "Disclosure documents (internal route)",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "internal:disclosure_documents",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 11,
+      "source_key": "finlight",
+      "source_name": "Finlight news",
+      "credential_group": "finlight",
+      "access_status": "stored",
+      "credential": "API key",
+      "action": "Use existing finlight-api-key in newKeys; archive availability is separate.",
+      "reference": "https://docs.finlight.me/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 12,
+      "source_key": "marketaux",
+      "source_name": "Marketaux news (paused)",
+      "credential_group": "marketaux",
+      "access_status": "paused_stored",
+      "credential": "API token",
+      "action": "Already stored. Keep paused; do not renew or reactivate for this task.",
+      "reference": "https://www.marketaux.com/documentation",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 13,
+      "source_key": "people_rss",
+      "source_name": "People-related RSS feeds",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "public:configured-publisher-rss",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 14,
+      "source_key": "personnel_archive",
+      "source_name": "Personnel announcement archives",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "internal:personnel_archive",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 15,
+      "source_key": "clinicaltrials_gov",
+      "source_name": "ClinicalTrials.gov",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://clinicaltrials.gov/data-api/api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 16,
+      "source_key": "ema_ctis",
+      "source_name": "EMA Clinical Trials Information System",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://euclinicaltrials.eu/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 17,
+      "source_key": "fda_openfda",
+      "source_name": "FDA openFDA",
+      "credential_group": "openfda",
+      "access_status": "stored_optional",
+      "credential": "Optional API key",
+      "action": "Existing FDA secret is configured; optional for basic requests, useful for quota.",
+      "reference": "https://open.fda.gov/apis/authentication/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 18,
+      "source_key": "drugsfda_applications",
+      "source_name": "Drugs@FDA applications",
+      "credential_group": "openfda",
+      "access_status": "stored_optional",
+      "credential": "Optional API key",
+      "action": "Existing FDA secret is configured; optional for basic requests, useful for quota.",
+      "reference": "https://open.fda.gov/apis/authentication/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 19,
+      "source_key": "ema_medicines",
+      "source_name": "EMA medicines",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.ema.europa.eu/en/medicines/download-medicine-data",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 20,
+      "source_key": "uk_mhra",
+      "source_name": "UK MHRA",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 21,
+      "source_key": "japan_pmda",
+      "source_name": "Japan PMDA",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Public SAKIGAKE PDF capture is repaired and does not require a key. All-prescription-drug package-insert bulk capture remains pending: owner confirmed no Medi-Navi/My Drug List account on 2026-11-10. Register both services and obtain the official all-package-insert PDF and XML/SGML export; bulk ingestion/daily-update integration must then be verified.",
+      "reference": "https://www.pmda.go.jp/safety/info-services/medi-navi/0012.html",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 22,
+      "source_key": "canada_noc",
+      "source_name": "Health Canada notices of compliance",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://health-products.canada.ca/api/notice-of-compliance/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 23,
+      "source_key": "chictr",
+      "source_name": "Chinese Clinical Trial Registry",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "No publisher API key confirmed for public pages. Decodo is an access layer already configured; do not interpret captcha/session barriers as missing API keys.",
+      "reference": "https://www.chictr.org.cn/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 24,
+      "source_key": "nmpa_trials",
+      "source_name": "NMPA trials",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "No publisher API key confirmed for public pages. Decodo is an access layer already configured; do not interpret captcha/session barriers as missing API keys.",
+      "reference": "http://www.chinadrugtrials.org.cn/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 25,
+      "source_key": "pubmed_abstracts",
+      "source_name": "PubMed abstracts",
+      "credential_group": "ncbi",
+      "access_status": "optional",
+      "credential": "NCBI API key",
+      "action": "Optional for higher E-utilities throughput; email/tool identification and a conservative no-key limit can be used initially.",
+      "reference": "https://www.ncbi.nlm.nih.gov/books/NBK25497/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 26,
+      "source_key": "europe_pmc",
+      "source_name": "Europe PMC publication metadata",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://europepmc.org/RestfulWebService",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 27,
+      "source_key": "europe_pmc_fulltext",
+      "source_name": "Europe PMC full text",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://europepmc.org/RestfulWebService",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 28,
+      "source_key": "crossref_proceedings",
+      "source_name": "Crossref conference proceedings",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 29,
+      "source_key": "cms_coverage",
+      "source_name": "CMS coverage policies",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "CMS Coverage API removed its API-key requirement in 2024. Some endpoints still require acceptance of a licence/token.",
+      "reference": "https://api.coverage.cms.gov/docs/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 30,
+      "source_key": "cms_coverage_documents",
+      "source_name": "CMS coverage documents",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "CMS Coverage API removed its API-key requirement in 2024. Some endpoints still require acceptance of a licence/token.",
+      "reference": "https://api.coverage.cms.gov/docs/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 31,
+      "source_key": "cms_payments_catalog",
+      "source_name": "CMS payments catalog and financial records",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://data.cms.gov/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 32,
+      "source_key": "fda_dd_compliance_actions",
+      "source_name": "FDA Dashboard compliance actions",
+      "credential_group": "fda_dashboard",
+      "access_status": "stored",
+      "credential": "Authorization user + key",
+      "action": "One existing FDA-Data credential pair covers these dashboard routes.",
+      "reference": "https://datadashboard.fda.gov/ora/api/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 33,
+      "source_key": "fda_dd_import_refusals",
+      "source_name": "FDA Dashboard import refusals",
+      "credential_group": "fda_dashboard",
+      "access_status": "stored",
+      "credential": "Authorization user + key",
+      "action": "One existing FDA-Data credential pair covers these dashboard routes.",
+      "reference": "https://datadashboard.fda.gov/ora/api/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 34,
+      "source_key": "fda_dd_inspections_citations",
+      "source_name": "FDA Dashboard inspection citations",
+      "credential_group": "fda_dashboard",
+      "access_status": "stored",
+      "credential": "Authorization user + key",
+      "action": "One existing FDA-Data credential pair covers these dashboard routes.",
+      "reference": "https://datadashboard.fda.gov/ora/api/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 35,
+      "source_key": "fda_dd_inspections_classifications",
+      "source_name": "FDA Dashboard inspection classifications",
+      "credential_group": "fda_dashboard",
+      "access_status": "stored",
+      "credential": "Authorization user + key",
+      "action": "One existing FDA-Data credential pair covers these dashboard routes.",
+      "reference": "https://datadashboard.fda.gov/ora/api/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 36,
+      "source_key": "fda_ires_recalls",
+      "source_name": "FDA Enforcement Report recalls",
+      "credential_group": "fda_enforcement",
+      "access_status": "stored",
+      "credential": "Authorization user + key",
+      "action": "Existing FDA-Enforcement credential pair.",
+      "reference": "https://www.accessdata.fda.gov/scripts/ires/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 37,
+      "source_key": "fda_product_codes",
+      "source_name": "FDA product codes",
+      "credential_group": "fda_productcodes",
+      "access_status": "stored",
+      "credential": "Authorization user + key",
+      "action": "Existing FDA-ProductCodes credential pair.",
+      "reference": "https://www.accessdata.fda.gov/scripts/ora/pcb/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 38,
+      "source_key": "nih_reporter",
+      "source_name": "NIH RePORTER grants",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://api.reporter.nih.gov/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 39,
+      "source_key": "google_patents_bigquery",
+      "source_name": "Google Patents BigQuery",
+      "credential_group": "google_patents",
+      "access_status": "configured_identity",
+      "credential": "AWS/Google workload identity",
+      "action": "No downloaded API key. Verify Google federation authorizes the new c7i IAM role before moving this job.",
+      "reference": "https://cloud.google.com/iam/docs/workload-identity-federation-with-other-clouds",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 40,
+      "source_key": "uspto_odp",
+      "source_name": "USPTO Open Data Portal",
+      "credential_group": "uspto",
+      "access_status": "stored",
+      "credential": "ODP API key",
+      "action": "Reuse existing USPTO key; these entries are not four independent key applications.",
+      "reference": "https://data.uspto.gov/apis/getting-started",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 41,
+      "source_key": "uspto_assignment_histories",
+      "source_name": "USPTO assignment histories",
+      "credential_group": "uspto",
+      "access_status": "stored",
+      "credential": "ODP API key",
+      "action": "Reuse existing USPTO key; these entries are not four independent key applications.",
+      "reference": "https://data.uspto.gov/apis/getting-started",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 42,
+      "source_key": "ted_notices",
+      "source_name": "Tenders Electronic Daily procurement notices",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://docs.ted.europa.eu/api/latest/index.html",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 43,
+      "source_key": "usa_spending",
+      "source_name": "USAspending federal awards",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://api.usaspending.gov/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 44,
+      "source_key": "github_sdk",
+      "source_name": "GitHub repositories and SDKs (paused)",
+      "credential_group": "github",
+      "access_status": "paused_optional",
+      "credential": "Read-only GitHub token",
+      "action": "Optional higher-limit credential; source stays paused and no token acquisition is required until you resume it.",
+      "reference": "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 45,
+      "source_key": "nist_robotics_methods",
+      "source_name": "NIST robotics methods",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.nist.gov/robotics",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 46,
+      "source_key": "mlperf_results",
+      "source_name": "MLPerf benchmark results",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://github.com/mlcommons",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 47,
+      "source_key": "cpsc_recalls",
+      "source_name": "CPSC recalls",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.saferproducts.gov/RestWebServices/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 48,
+      "source_key": "federal_register",
+      "source_name": "Federal Register",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.federalregister.gov/developers/documentation/api/v1",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 49,
+      "source_key": "trade_screening",
+      "source_name": "Trade screening lists",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public screening-list downloads initially; a trade.gov API route can separately require a data.gov key.",
+      "reference": "https://www.trade.gov/consolidated-screening-list",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 50,
+      "source_key": "usgs_minerals",
+      "source_name": "USGS minerals",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.usgs.gov/centers/national-minerals-information-center",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 51,
+      "source_key": "un_comtrade",
+      "source_name": "UN Comtrade",
+      "credential_group": "comtrade",
+      "access_status": "obtain",
+      "credential": "Subscription key",
+      "action": "Create account, My Comtrade > My API Portal > Generate API Key. Preview without a key is limited.",
+      "reference": "https://uncomtrade.org/docs/api-subscription-keys/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 52,
+      "source_key": "doe_storage_program",
+      "source_name": "Department of Energy storage program",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.energy.gov/oe/energy-storage",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 53,
+      "source_key": "eia_battery_generators",
+      "source_name": "EIA battery generators",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.eia.gov/electricity/data/eia860m/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 54,
+      "source_key": "eia_generator_index",
+      "source_name": "EIA generator index",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.eia.gov/electricity/data/eia860/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 55,
+      "source_key": "eia_retail_prices",
+      "source_name": "EIA retail prices",
+      "credential_group": "eia",
+      "access_status": "stored",
+      "credential": "API key",
+      "action": "Reuse existing EIA key for the API. Generator archive downloads (53,54) do not require it.",
+      "reference": "https://www.eia.gov/opendata/register.php",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 56,
+      "source_key": "caiso_prices",
+      "source_name": "California ISO prices",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://oasis.caiso.com/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 57,
+      "source_key": "bls_wages",
+      "source_name": "BLS wages",
+      "credential_group": "bls",
+      "access_status": "optional",
+      "credential": "BLS API registration key",
+      "action": "Optional for registered API limits; public files and unregistered API access exist.",
+      "reference": "https://www.bls.gov/developers/home.htm",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 58,
+      "source_key": "ror_institutions",
+      "source_name": "Research Organization Registry institutions",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "ROR client-ID registration is currently paused; it is an identifier, not a secret/authentication key. API/public dumps remain available.",
+      "reference": "https://ror.readme.io/docs/client-id",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 59,
+      "source_key": "reddit",
+      "source_name": "Reddit posts and comments (paused)",
+      "credential_group": "reddit",
+      "access_status": "paused_stored",
+      "credential": "OAuth client ID + secret and approved data access",
+      "action": "Credentials are stored. Source remains paused; API approval and permitted scope are separate.",
+      "reference": "https://support.reddithelp.com/hc/en-us/articles/14945211791892-Reddit-Data-API-Wiki",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 60,
+      "source_key": "S65",
+      "source_name": "DataForSEO search capture",
+      "credential_group": "dataforseo",
+      "access_status": "stored",
+      "credential": "API login + API password/basic authorization",
+      "action": "Existing dataForSEO secret has login and encoded authorization; not a new API key.",
+      "reference": "https://docs.dataforseo.com/v3/auth/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 61,
+      "source_key": "bluesky_search",
+      "source_name": "Bluesky posts (paused)",
+      "credential_group": null,
+      "access_status": "paused_public",
+      "credential": "No API key for the selected public route",
+      "action": "Keep paused. The selected public AppView search route does not require buying or requesting an API key.",
+      "reference": "https://docs.bsky.app/docs/api/app-bsky-feed-search-posts",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 62,
+      "source_key": "sam_gov_opportunities",
+      "source_name": "SAM.gov opportunities",
+      "credential_group": "sam",
+      "access_status": "stored",
+      "credential": "SAM.gov API key",
+      "action": "Existing key is stored; account allowance still needs verification.",
+      "reference": "https://open.gsa.gov/api/get-opportunities-public-api/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 63,
+      "source_key": "uspto_odp",
+      "source_name": "USPTO Office Actions",
+      "credential_group": "uspto",
+      "access_status": "stored",
+      "credential": "ODP API key",
+      "action": "Reuse existing USPTO key; these entries are not four independent key applications.",
+      "reference": "https://data.uspto.gov/apis/getting-started",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 64,
+      "source_key": "uspto_odp",
+      "source_name": "USPTO final Petition Decisions",
+      "credential_group": "uspto",
+      "access_status": "stored",
+      "credential": "ODP API key",
+      "action": "Reuse existing USPTO key; these entries are not four independent key applications.",
+      "reference": "https://data.uspto.gov/apis/getting-started",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 65,
+      "source_key": "bis_sdmx_api",
+      "source_name": "BIS SDMX API",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://data.bis.org/help/tools",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 66,
+      "source_key": "fred_alfred_series_and_vintages",
+      "source_name": "FRED / ALFRED series and vintages",
+      "credential_group": "fred_alfred",
+      "access_status": "obtain",
+      "credential": "FRED API key",
+      "action": "Create/sign in to a FRED account and request one key for FRED and ALFRED/vintage endpoints.",
+      "reference": "https://fred.stlouisfed.org/docs/api/api_key.html",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 67,
+      "source_key": "unido_iip_and_indstat",
+      "source_name": "UNIDO IIP and INDSTAT",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "UNIDO documents a public API. A 403/bot challenge is an access issue, not evidence that an API key is needed.",
+      "reference": "https://stat.unido.org/unido-statistics-portal-api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 68,
+      "source_key": "ilostat_labor_statistics",
+      "source_name": "ILOSTAT labor statistics",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://rplumber.ilo.org/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 69,
+      "source_key": "imf_portwatch_shipping_activity",
+      "source_name": "IMF PortWatch shipping activity",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://portwatch.imf.org/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 70,
+      "source_key": "ember_electricity_demand_and_generation",
+      "source_name": "Ember electricity demand and generation",
+      "credential_group": "ember",
+      "access_status": "obtain",
+      "credential": "API key",
+      "action": "Register for the electricity-data API and verify the email.",
+      "reference": "https://ember-energy.org/data/api/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 71,
+      "source_key": "wto_timeseries_api",
+      "source_name": "WTO Timeseries API",
+      "credential_group": "wto",
+      "access_status": "obtain",
+      "credential": "WTO API subscription key(s)",
+      "action": "Register at the WTO portal; enable each needed API product. One account may require separate product subscriptions/keys.",
+      "reference": "https://apiportal.wto.org/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 72,
+      "source_key": "wto_quantitative_restrictions_api",
+      "source_name": "WTO Quantitative Restrictions API",
+      "credential_group": "wto",
+      "access_status": "obtain",
+      "credential": "WTO API subscription key(s)",
+      "action": "Register at the WTO portal; enable each needed API product. One account may require separate product subscriptions/keys.",
+      "reference": "https://apiportal.wto.org/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 73,
+      "source_key": "wto_eping_sps_tbt_notifications",
+      "source_name": "WTO ePing SPS/TBT notifications",
+      "credential_group": "wto",
+      "access_status": "obtain",
+      "credential": "WTO API subscription key(s)",
+      "action": "Register at the WTO portal; enable each needed API product. One account may require separate product subscriptions/keys.",
+      "reference": "https://apiportal.wto.org/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 74,
+      "source_key": "epo_ops_patent_legal_events",
+      "source_name": "EPO OPS patent legal events",
+      "credential_group": "epo_ops",
+      "access_status": "stored_validated",
+      "credential": "Consumer key + consumer secret",
+      "action": "Active: historical collection on m7i.large and recurring daily discovery/known-patent refresh on t3. First historical and daily captures each verified five observations in S3; daily re-observations are not additional unique events. Full 2016 coverage and Athena publication remain unverified.",
+      "reference": "https://www.epo.org/en/searching-for-patents/data/web-services/ops",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 75,
+      "source_key": "copernicus_era5_era5_land",
+      "source_name": "Copernicus ERA5 / ERA5-Land",
+      "credential_group": "copernicus",
+      "access_status": "obtain",
+      "credential": "CDS personal access token",
+      "action": "Create CDS account, accept each requested dataset licence and copy the profile PAT.",
+      "reference": "https://cds.climate.copernicus.eu/how-to-api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 76,
+      "source_key": "nasa_power_weather_and_solar_resource",
+      "source_name": "NASA POWER weather and solar resource",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://power.larc.nasa.gov/docs/services/api/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 77,
+      "source_key": "usgs_earthquakes",
+      "source_name": "USGS Earthquake Catalog API",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 78,
+      "source_key": "ucdp_organized_violence",
+      "source_name": "UCDP organized violence",
+      "credential_group": "ucdp",
+      "access_status": "obtain",
+      "credential": "Access token",
+      "action": "Request API access from the maintainer using the instructions in the official documentation. Do not assume older anonymous examples still work.",
+      "reference": "https://ucdp.uu.se/apidocs/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 79,
+      "source_key": "arxiv",
+      "source_name": "arXiv early technical disclosures",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://info.arxiv.org/help/api/user-manual.html",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 80,
+      "source_key": "england_nhsbsa_prescribing_data",
+      "source_name": "England NHSBSA prescribing data",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://opendata.nhsbsa.net/pages/api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 81,
+      "source_key": "decodo_shared_web_retrieval_access_layer",
+      "source_name": "Decodo shared web retrieval (access layer)",
+      "credential_group": "decodo",
+      "access_status": "stored",
+      "credential": "Web Scraping API credential",
+      "action": "Existing proxies secret contains decodo-web-scraping. Access layer, not an independent data publisher.",
+      "reference": "https://docs.decodo.com/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 82,
+      "source_key": "sia_wsts_public_semiconductor_sales",
+      "source_name": "SIA / WSTS public semiconductor sales",
+      "credential_group": "wsts",
+      "access_status": "license_not_key",
+      "credential": "No key/login for public Blue Book history; review reuse terms",
+      "action": "WSTS now offers four decades of regional monthly billings as a free Excel download without login. Detailed products may have separate terms; no purchase is needed for this public history.",
+      "reference": "https://www.wsts.org/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 83,
+      "source_key": "semi_worldwide_equipment_billings",
+      "source_name": "SEMI worldwide equipment billings",
+      "credential_group": "semi",
+      "access_status": "license_not_key",
+      "credential": "Report/data licence; no general API key confirmed",
+      "action": "Use public releases; request a licence if detailed historical equipment data are required.",
+      "reference": "https://www.semi.org/en/products-services/market-data",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 84,
+      "source_key": "international_federation_of_robotics_world_robotics",
+      "source_name": "International Federation of Robotics World Robotics",
+      "credential_group": "ifr",
+      "access_status": "license_not_key",
+      "credential": "World Robotics report/dataset licence",
+      "action": "Public summaries are not the full licensed dataset; ask for machine-readable access and permitted use.",
+      "reference": "https://ifr.org/worldrobotics/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 85,
+      "source_key": "iea_pvps_solar_deployment_reports",
+      "source_name": "IEA-PVPS solar deployment reports",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://iea-pvps.org/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 86,
+      "source_key": "germany_g_ba_drug_benefit_assessments",
+      "source_name": "Germany G-BA drug benefit assessments",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.g-ba.de/bewertungsverfahren/nutzenbewertung/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 87,
+      "source_key": "france_has_medicine_assessment_opinions",
+      "source_name": "France HAS medicine assessment opinions",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.has-sante.fr/jcms/p_3546197/fr/open-data",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 88,
+      "source_key": "nice_technology_appraisals",
+      "source_name": "NICE technology appraisals",
+      "credential_group": "nice",
+      "access_status": "obtain",
+      "credential": "Syndication API key and content licence",
+      "action": "NICE correspondence supplied by the user: AI use requires syndication API access, a licence and NICE cybersecurity review; only final published guidance is available. Draft guidance, company submissions, assessment reports and committee papers are excluded.",
+      "reference": "https://www.nice.org.uk/reusing-our-content/nice-syndication-api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 89,
+      "source_key": "canada_cda_amc_cadth_reimbursement_reviews",
+      "source_name": "Canada CDA-AMC / CADTH reimbursement reviews",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.cda-amc.ca/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 90,
+      "source_key": "france_assurance_maladie_open_medic",
+      "source_name": "France Assurance Maladie Open Medic",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.data.gouv.fr/datasets/open-medic-base-complete-sur-les-depenses-de-medicaments-interregimes/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 91,
+      "source_key": "japan_mhlw_ndb_open_data",
+      "source_name": "Japan MHLW NDB Open Data",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177182.html",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 92,
+      "source_key": "cninfo_mainland_china_company_disclosures",
+      "source_name": "CNINFO mainland-China company disclosures",
+      "credential_group": "cninfo",
+      "access_status": "commercial_conditional",
+      "credential": "Provider-issued credentials if the commercial API is chosen",
+      "action": "Public filing downloads are an alternative. No self-service key requirement has been verified for the chosen public route; request approved API access if needed.",
+      "reference": "https://webapi.cninfo.com.cn/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 93,
+      "source_key": "china_nbs_industrial_production",
+      "source_name": "China NBS industrial production",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://data.stats.gov.cn/english/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 94,
+      "source_key": "china_miit_electronics_and_battery_statistics",
+      "source_name": "China MIIT electronics and battery statistics",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.miit.gov.cn/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 95,
+      "source_key": "china_nea_power_statistics",
+      "source_name": "China NEA power statistics",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.nea.gov.cn/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 96,
+      "source_key": "china_nhsa_reimbursement_and_procurement",
+      "source_name": "China NHSA reimbursement and procurement",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.nhsa.gov.cn/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 97,
+      "source_key": "china_mofcom_export_controls",
+      "source_name": "China MOFCOM export controls",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.mofcom.gov.cn/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 98,
+      "source_key": "south_korea_fss_opendart",
+      "source_name": "South Korea FSS OpenDART",
+      "credential_group": "opendart",
+      "access_status": "obtain",
+      "credential": "Authentication key",
+      "action": "Register at OpenDART and request an authentication key.",
+      "reference": "https://engopendart.fss.or.kr/uss/umt/EgovMberInsertView.do",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 99,
+      "source_key": "south_korea_kosis_statistical_openapi",
+      "source_name": "South Korea KOSIS statistical OpenAPI",
+      "credential_group": "kosis",
+      "access_status": "obtain",
+      "credential": "KOSIS OpenAPI key",
+      "action": "Apply for the KOSIS authentication key; a different data.go.kr route can have a different service key.",
+      "reference": "https://kosis.kr/openapi/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 100,
+      "source_key": "taiwan_twse_mops_issuer_and_revenue_archives",
+      "source_name": "Taiwan TWSE/MOPS issuer and revenue archives",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://openapi.twse.com.tw/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 101,
+      "source_key": "taiwan_customs_trade_statistics",
+      "source_name": "Taiwan customs trade statistics",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.sw.nat.gov.tw/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 102,
+      "source_key": "india_ibm_mineral_production",
+      "source_name": "India IBM mineral production",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://ibm.gov.in/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 103,
+      "source_key": "indonesia_esdm_and_geological_agency_mineral_statistics",
+      "source_name": "Indonesia ESDM and Geological Agency mineral statistics",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.esdm.go.id/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 104,
+      "source_key": "brazil_anm_mineral_yearbook",
+      "source_name": "Brazil ANM mineral yearbook",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.gov.br/anm/pt-br/centrais-de-conteudo/dados-abertos",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 105,
+      "source_key": "brazil_anm_cfem_mining_royalties",
+      "source_name": "Brazil ANM CFEM mining royalties",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.gov.br/anm/pt-br/assuntos/arrecadacao",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 106,
+      "source_key": "brazil_mdic_comex_stat_api",
+      "source_name": "Brazil MDIC Comex Stat API",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://api-comexstat.mdic.gov.br/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 107,
+      "source_key": "chile_cochilco_production_and_mining_economics",
+      "source_name": "Chile COCHILCO production and mining economics",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.cochilco.cl/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 108,
+      "source_key": "chile_sernageomin_mining_yearbooks",
+      "source_name": "Chile SERNAGEOMIN mining yearbooks",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.sernageomin.cl/anuario-de-la-mineria-de-chile/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 109,
+      "source_key": "chile_sma_snifa_environmental_compliance",
+      "source_name": "Chile SMA SNIFA environmental compliance",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://snifa.sma.gob.cl/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 110,
+      "source_key": "peru_minem_mining_bulletins_and_yearbooks",
+      "source_name": "Peru MINEM mining bulletins and yearbooks",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.gob.pe/minem",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 111,
+      "source_key": "argentina_siacam_mining_indicators",
+      "source_name": "Argentina SIACAM mining indicators",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.argentina.gob.ar/produccion/mineria/siacam",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 112,
+      "source_key": "brazil_anm_sigmine_and_cadastro_mineiro",
+      "source_name": "Brazil ANM SIGMINE and Cadastro Mineiro",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://geo.anm.gov.br/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 113,
+      "source_key": "peru_ingemmet_geocatmin",
+      "source_name": "Peru INGEMMET GEOCATMIN",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://geocatmin.ingemmet.gob.pe/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 114,
+      "source_key": "importyeti_shipment_and_supplier_relationships",
+      "source_name": "ImportYeti shipment and supplier relationships",
+      "credential_group": "importyeti",
+      "access_status": "commercial_conditional",
+      "credential": "ImportYeti API key",
+      "action": "Request API access; confirm volume, history and allowed storage/ML use. Free website access is not bulk API entitlement.",
+      "reference": "https://docs.importyeti.com/docs/getting-started",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 115,
+      "source_key": "importgenius_international_shipments",
+      "source_name": "ImportGenius international shipments",
+      "credential_group": "importgenius",
+      "access_status": "commercial_conditional",
+      "credential": "Enterprise API access token",
+      "action": "Request an API-enabled plan and token from the implementation team; specify country and historical scope.",
+      "reference": "https://w3.importgenius.com/features/api-integration",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 116,
+      "source_key": "marinetraffic_historical_vessel_tracks_and_port_calls",
+      "source_name": "MarineTraffic historical vessel tracks and port calls",
+      "credential_group": "marinetraffic",
+      "access_status": "commercial_conditional",
+      "credential": "Product-specific API key",
+      "action": "Request historical vessel-track and port-call API entitlements, not only a website login.",
+      "reference": "https://servicedocs.marinetraffic.com/tag/Vessel-Historical-Track/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 117,
+      "source_key": "kpler_commodity_cargo_flows",
+      "source_name": "Kpler commodity cargo flows",
+      "credential_group": "kpler",
+      "access_status": "commercial_conditional",
+      "credential": "Provisioned API credentials/token",
+      "action": "Ask Kpler for cargo-flow API access and authentication for the contracted product; do not assume a MarineTraffic key covers it.",
+      "reference": "https://developers.kpler.com/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 118,
+      "source_key": "us_census_international_trade_api",
+      "source_name": "US Census International Trade API",
+      "credential_group": "census",
+      "access_status": "obtain",
+      "credential": "Census API key",
+      "action": "Request and activate a Census key. Plan a keyed production collector; older keyless examples are not an access guarantee.",
+      "reference": "https://api.census.gov/data/key_signup.html",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 119,
+      "source_key": "eurostat_comext_goods_trade",
+      "source_name": "Eurostat Comext goods trade",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 120,
+      "source_key": "climate_trace_industrial_assets_and_activity",
+      "source_name": "Climate TRACE industrial assets and activity",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://climatetrace.org/data",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 121,
+      "source_key": "open_supply_hub_production_locations",
+      "source_name": "Open Supply Hub production locations",
+      "credential_group": "opensupplyhub",
+      "access_status": "obtain",
+      "credential": "Approved API access + token",
+      "action": "Apply for API access; after approval generate a token in My Account > Settings > API. Confirm commercial terms.",
+      "reference": "https://info.opensupplyhub.org/resources/api-documentation",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 122,
+      "source_key": "openstreetmap_overpass_industrial_facilities",
+      "source_name": "OpenStreetMap / Overpass industrial facilities",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://wiki.openstreetmap.org/wiki/Overpass_API",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 123,
+      "source_key": "global_energy_monitor_asset_and_ownership_api",
+      "source_name": "Global Energy Monitor asset and ownership API",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://api.globalenergymonitor.org/redoc",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 124,
+      "source_key": "european_environment_agency_industrial_facilities",
+      "source_name": "European Environment Agency industrial facilities",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.eea.europa.eu/en/datahub",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 125,
+      "source_key": "usda_fas_production_supply_and_distribution",
+      "source_name": "USDA FAS Production, Supply and Distribution",
+      "credential_group": "usda_fas",
+      "access_status": "obtain",
+      "credential": "FAS API key",
+      "action": "Sign in to the FAS data portal and retrieve the PSD/Open Data API key.",
+      "reference": "https://apps.fas.usda.gov/opendataweb/home",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 126,
+      "source_key": "brazil_abve_electric_vehicle_registrations",
+      "source_name": "Brazil ABVE electric vehicle registrations",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://abve.org.br/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 127,
+      "source_key": "brazil_senatran_vehicle_fleet",
+      "source_name": "Brazil SENATRAN vehicle fleet",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/estatisticas-frota-de-veiculos-senatran",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 128,
+      "source_key": "iea_global_ev_data_explorer_and_outlook",
+      "source_name": "IEA Global EV Data Explorer and Outlook",
+      "credential_group": "iea_ev",
+      "access_status": "license_not_key",
+      "credential": "IEA account/terms if the selected download requires them",
+      "action": "The current Global EV Data Explorer is CC BY 4.0. A free IEA account may be used for downloads; no general API key is established for this public route.",
+      "reference": "https://www.iea.org/data-and-statistics/data-tools/global-ev-data-explorer",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 129,
+      "source_key": "faostat_food_balances",
+      "source_name": "FAOSTAT food balances",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.fao.org/faostat/en/#data",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 130,
+      "source_key": "euromonitor_passport_statistics_api_paid_candidate",
+      "source_name": "Euromonitor Passport Statistics API (paid candidate)",
+      "credential_group": "euromonitor",
+      "access_status": "commercial_conditional",
+      "credential": "API-enabled Passport credentials/subscription and OAuth token",
+      "action": "Ask the account team for Statistics API entitlement and the credentials required by the current portal.",
+      "reference": "https://www.euromonitor.com/solutions/passport/connect/api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 131,
+      "source_key": "meta_ad_library_api",
+      "source_name": "Meta Ad Library API",
+      "credential_group": "meta_ads",
+      "access_status": "obtain",
+      "credential": "App credentials and access token",
+      "action": "Complete Meta developer/identity and Ad Library access steps; obtain the token for the approved Ad Library scope.",
+      "reference": "https://www.facebook.com/ads/library/api/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 132,
+      "source_key": "tiktok_commercial_content_api",
+      "source_name": "TikTok Commercial Content API",
+      "credential_group": "tiktok_ads",
+      "access_status": "credentials_present_validation_blocked",
+      "credential": "Approved app client key + secret/access token",
+      "action": "Credentials stored and OAuth validated 2026-10-27. Retry Commercial Content product query: HTTP 500/internal_error on two tests. Capture is not active. Published-date query minimum is within one year; this endpoint cannot supply 2016 history.",
+      "reference": "https://developers.tiktok.com/products/commercial-content-api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 133,
+      "source_key": "linkedin_ad_library_external_api",
+      "source_name": "LinkedIn Ad Library / external API",
+      "credential_group": "linkedin_ads",
+      "access_status": "obtain",
+      "credential": "Approved Ad Library API product + app credentials",
+      "action": "Request the external Ad Library API product from LinkedIn developer portal; generic Marketing API access is not sufficient.",
+      "reference": "https://www.linkedin.com/blog/engineering/trust-and-safety/enhancing-transparency-with-linkedins-ad-library",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 134,
+      "source_key": "x_ads_repository_dsa_api",
+      "source_name": "X Ads Repository DSA API",
+      "credential_group": "x_ads",
+      "access_status": "credentials_present_product_access_blocked",
+      "credential": "Developer app bearer token",
+      "action": "X-bearer stored and tested 2026-10-27. Ads Repository export denied HTTP 403/code 453: enable the correct product/access level. Ordinary public lookup returned HTTP 402/credits depleted; funding reads is separate from repository entitlement. Capture inactive.",
+      "reference": "https://help.x.com/en/business-and-advertising/ads-transparency",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 135,
+      "source_key": "sensor_tower_pathmatics_advertising_intelligence_paid_candidate",
+      "source_name": "Sensor Tower / Pathmatics advertising intelligence (paid candidate)",
+      "credential_group": "sensortower",
+      "access_status": "commercial_conditional",
+      "credential": "Provider-issued API credential; exact product scope to confirm",
+      "action": "Request Sensor Tower/Pathmatics advertising API and historical entitlements. Exact credential format is not confirmed from public documentation.",
+      "reference": "https://sensortower.com/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 136,
+      "source_key": "y_combinator_company_directory_and_cohorts",
+      "source_name": "Y Combinator company directory and cohorts",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.ycombinator.com/companies",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 137,
+      "source_key": "techstars_portfolio_and_cohorts",
+      "source_name": "Techstars portfolio and cohorts",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.techstars.com/portfolio",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 138,
+      "source_key": "500_global_portfolio_and_cohorts",
+      "source_name": "500 Global portfolio and cohorts",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://500.co/companies",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 139,
+      "source_key": "antler_early_stage_portfolio",
+      "source_name": "Antler early-stage portfolio",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://www.antler.co/portfolio",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 140,
+      "source_key": "dealroom_startup_and_funding_api_commercial",
+      "source_name": "Dealroom startup and funding API (commercial)",
+      "credential_group": "dealroom",
+      "access_status": "commercial_conditional",
+      "credential": "Premium API key",
+      "action": "Request the Premium API key and confirm use restrictions and historical coverage.",
+      "reference": "https://knowledge.dealroom.co/knowledge/dealroom-api-1",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 141,
+      "source_key": "wefunder_and_republic_crowdfunding_campaigns",
+      "source_name": "Wefunder and Republic crowdfunding campaigns",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://wefunder.com/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 142,
+      "source_key": "openalex_scholarly_graph",
+      "source_name": "OpenAlex scholarly graph",
+      "credential_group": "openalex",
+      "access_status": "obtain",
+      "credential": "Verified-email API key for bulk/cursor access",
+      "action": "Create an account, verify the email, and obtain a key from settings. Current cursor access beyond page one requires a key.",
+      "reference": "https://help.openalex.org/api/authentication/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 143,
+      "source_key": "datacite_dissertations_datasets_software_and_usage",
+      "source_name": "DataCite dissertations, datasets, software and usage",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://support.datacite.org/docs/api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 144,
+      "source_key": "openaire_graph_projects_and_research_products",
+      "source_name": "OpenAIRE Graph projects and research products",
+      "credential_group": "openaire",
+      "access_status": "optional",
+      "credential": "OpenAIRE AAI account/access token",
+      "action": "Authenticated access is recommended for production limits; use current OpenAIRE guidance or public bulk releases.",
+      "reference": "https://graph.openaire.eu/docs/7.2.0/apis/authentication/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 145,
+      "source_key": "biorxiv_medrxiv_preprints",
+      "source_name": "bioRxiv / medRxiv preprints",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://api.biorxiv.org/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 146,
+      "source_key": "open_science_framework_projects_and_preregistrations",
+      "source_name": "Open Science Framework projects and preregistrations",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://developer.osf.io/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 147,
+      "source_key": "zenodo_research_artifacts_and_usage",
+      "source_name": "Zenodo research artifacts and usage",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://developers.zenodo.org/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 148,
+      "source_key": "semantic_scholar_citation_context",
+      "source_name": "Semantic Scholar citation context",
+      "credential_group": "semantic_scholar",
+      "access_status": "optional",
+      "credential": "Academic Graph API key",
+      "action": "Recommended for sustained collection; some endpoints require it, many public endpoints do not.",
+      "reference": "https://www.semanticscholar.org/product/api",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 149,
+      "source_key": "france_theses_fr_doctoral_theses",
+      "source_name": "France theses.fr doctoral theses",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://documentation.abes.fr/aidethesesfr/accueil/index.html",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 150,
+      "source_key": "brazil_capes_theses_and_dissertations",
+      "source_name": "Brazil CAPES theses and dissertations",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://dadosabertos.capes.gov.br/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 151,
+      "source_key": "nsf_awards",
+      "source_name": "NSF research awards API",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://resources.research.gov/common/webapi/awardapisearch-v1.htm",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 152,
+      "source_key": "european_commission_cordis",
+      "source_name": "European Commission CORDIS",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://cordis.europa.eu/about/dataextractions",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 153,
+      "source_key": "japan_kaken_funded_research",
+      "source_name": "Japan KAKEN funded research",
+      "credential_group": "kaken",
+      "access_status": "obtain",
+      "credential": "NII/CiNii application ID",
+      "action": "Register the application ID used by KAKEN; describe commercial use to NII as required by their guidance.",
+      "reference": "https://support.nii.ac.jp/en/kaken/api/api_outline",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 154,
+      "source_key": "brazil_fapesp_pipe_and_grants",
+      "source_name": "Brazil FAPESP PIPE and grants",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://bv.fapesp.br/en/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 155,
+      "source_key": "ukri_gateway_to_research",
+      "source_name": "UKRI Gateway to Research",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "https://gtr.ukri.org/resources/GtR-2-API-v1.7.5.pdf",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 156,
+      "source_key": "hugging_face_hub_models_and_datasets",
+      "source_name": "Hugging Face Hub models and datasets",
+      "credential_group": "huggingface",
+      "access_status": "optional",
+      "credential": "Read-only Hugging Face token",
+      "action": "Not needed for basic public metadata; useful for authenticated quotas or explicitly permitted gated assets.",
+      "reference": "https://huggingface.co/docs/hub/security-tokens",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 157,
+      "source_key": "altmetric_scholarly_attention_commercial",
+      "source_name": "Altmetric scholarly attention (commercial)",
+      "credential_group": "altmetric",
+      "access_status": "commercial_conditional",
+      "credential": "Details Page API key; Explorer key + secret if needed",
+      "action": "Request commercial access appropriate to the endpoints; free academic permission is not a commercial entitlement.",
+      "reference": "https://docs.altmetric.com/details-page-api/licensing/",
+      "historical_start_target": "2016-01-01"
+    },
+    {
+      "catalog_entry": 158,
+      "source_key": "university_technology_transfer_catalogs_and_reports",
+      "source_name": "University technology-transfer catalogs and reports",
+      "credential_group": null,
+      "access_status": "public_route_no_key",
+      "credential": "No API key for the selected public route",
+      "action": "Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available.",
+      "reference": "multiple:university-technology-transfer-offices",
+      "historical_start_target": "2016-01-01"
+    }
+  ],
+  "newly_located_priority_groups": {
+    "secret_config": "config/constellation-additional-credentials.json",
+    "groups": [
+      "comtrade",
+      "fred_alfred",
+      "ember",
+      "wto",
+      "copernicus",
+      "opendart",
+      "epo_ops"
+    ],
+    "field_values_logged": false,
+    "authenticated_endpoints_verified": false
+  }
+}

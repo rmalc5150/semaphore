@@ -1,0 +1,12 @@
+Nov 10 11:30:05 ip-172-31-47-178.ec2.internal systemd[1]: Starting constellation-gap-audit.service - Constellation gap-audit on controller...
+Nov 10 11:31:54 ip-172-31-47-178.ec2.internal systemd[1]: constellation-gap-audit.service: A process of this unit has been killed by the OOM killer.
+Nov 10 11:31:54 ip-172-31-47-178.ec2.internal systemd[1]: constellation-gap-audit.service: Main process exited, code=killed, status=9/KILL
+Nov 10 11:31:54 ip-172-31-47-178.ec2.internal systemd[1]: constellation-gap-audit.service: Failed with result 'oom-kill'.
+Nov 10 11:31:54 ip-172-31-47-178.ec2.internal systemd[1]: Failed to start constellation-gap-audit.service - Constellation gap-audit on controller.
+Nov 10 11:31:54 ip-172-31-47-178.ec2.internal systemd[1]: constellation-gap-audit.service: Consumed 40.009s CPU time.
+Nov 10 12:00:05 ip-172-31-47-178.ec2.internal systemd[1]: Starting constellation-gap-audit.service - Constellation gap-audit on controller...
+Nov 10 12:01:59 ip-172-31-47-178.ec2.internal systemd[1]: constellation-gap-audit.service: A process of this unit has been killed by the OOM killer.
+Nov 10 12:01:59 ip-172-31-47-178.ec2.internal systemd[1]: constellation-gap-audit.service: Main process exited, code=killed, status=9/KILL
+Nov 10 12:01:59 ip-172-31-47-178.ec2.internal systemd[1]: constellation-gap-audit.service: Failed with result 'oom-kill'.
+Nov 10 12:01:59 ip-172-31-47-178.ec2.internal systemd[1]: Failed to start constellation-gap-audit.service - Constellation gap-audit on controller.
+Nov 10 12:01:59 ip-172-31-47-178.ec2.internal systemd[1]: constellation-gap-audit.service: Consumed 45.292s CPU time.

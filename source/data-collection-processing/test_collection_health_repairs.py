@@ -27,6 +27,84 @@ class Evidence:
 
 
 class HealthRepairTests(unittest.TestCase):
+    def test_partial_patent_child_requires_matching_scope_and_verified_pages(self):
+        raw = b'{"record":1}\n'
+        page = {'sequence':0,'run_id':'child-run','record_count':1,
+                'batches':[{'key':'batch','sha256':hashlib.sha256(raw).hexdigest(),'records':1}]}
+        receipt = 'manifests/child-run/pages/00000000-'+digest(page)+'.json'
+        task = {'source':'uspto_odp','dataset':'patent_records','mode':'daily',
+                'collector_version':'patents-1.0','universe_hash':'u','taxonomy_hash':'t',
+                'window':{'start':'2026-11-10T00:00:00Z','end':'2026-11-11T00:00:00Z'}}
+        parent_task = {**task,'scope':{'partition_strategy':'hourly-v1'}}
+        child_task = {**task,'scope':{'query_bounds':['2026-11-10T04:00:00','2026-11-10T04:30:00']}}
+        docs = {'parent':{'task_id':'parent-id','task':parent_task},
+                'child':{'task_id':'child-id','task':child_task},
+                'checkpoints/parent-id/head.json':{'task':parent_task,'pages':[],'exhausted':False},
+                'checkpoints/child-id/head.json':{'task':child_task,'pages':[page],
+                    'manifest_prefix':'manifests/child-run','exhausted':False},receipt:page}
+        def get(**kwargs):
+            key=kwargs['Key'].removeprefix('data/')
+            body=raw if key=='batch'else json.dumps(docs[key]).encode()
+            return {'Body':io.BytesIO(body),'ContentLength':len(body),
+                    'LastModified':datetime(2026,11,12,12,tzinfo=timezone.utc)}
+        s3=Mock();s3.get_object.side_effect=get
+        outcome={'manifest':'parent','partition_manifest':'child'}
+        observed,pending=StoredEvidence(s3,'bucket','data').checkpoint_commits(outcome)
+        self.assertEqual(observed,[(receipt,'2026-11-12T12:00:00Z')]);self.assertTrue(pending)
+        child_task['universe_hash']='other'
+        with self.assertRaisesRegex(ValueError,'partition task/window mismatch'):
+            StoredEvidence(s3,'bucket','data').checkpoint_commits(outcome)
+        child_task['universe_hash']='u'
+        raw=b'corrupt\n'
+        with self.assertRaisesRegex(ValueError,'batch verification failed'):
+            StoredEvidence(s3,'bucket','data').checkpoint_commits(outcome)
+
+    def test_never_started_service_uses_timer_activation_for_schedule_grace(self):
+        e = Mock()
+        e.confirmed.return_value = []
+        props = [{'ExecMainStartTimestampMonotonic':'0'},
+                 {'ActiveEnterTimestampMonotonic':'100000000', 'ActiveState':'active', 'UnitFileState':'enabled'}]
+        with patch('collection_health_exporter.properties', side_effect=props), \
+             patch('collection_health_exporter.activity', return_value=('idle',0)), \
+             patch('collection_health_exporter.json_reports', return_value=([],[],None)), \
+             patch('collection_health_exporter.time.clock_gettime', return_value=200):
+            result=inspect_job('example.service',{},e,0,time.time())
+        self.assertEqual(result['last_start_age_seconds'],100)
+        self.assertIsNone(result['progress']['last_verified_at'])
+
+
+    def test_only_owner_excepted_exact_patent_endpoint_alert_is_cleared(self):
+        from collection_health_exporter import apply_document_exceptions
+        from collection_alerts import outcome_issues
+        d = [{'status': 'active', 'dataset': 'patent_office_actions', 'application_number': '16545140'}]
+        v = {'status': 'partial', 'reason': 'source_http_403', 'diagnostics': {'host': 'api.uspto.gov', 'http_status': 403, 'path': '/api/v1/patent/applications/16545140/documents'}}
+        self.assertFalse(outcome_issues(apply_document_exceptions(v, d)))
+        self.assertTrue(outcome_issues(apply_document_exceptions(v, [])))
+        other = {**v, 'diagnostics': {**v['diagnostics'], 'path': '/api/v1/patent/applications/15123456/documents'}}
+        self.assertTrue(outcome_issues(apply_document_exceptions(other, d)))
+        self.assertEqual(v['status'], 'partial')
+
+    def test_new_runtime_lock_is_queued_even_for_legacy_nonserialized_job(self):
+        from collection_health_exporter import activity
+        def read(path):
+            return '42\n' if path.name == 'cgroup.procs' else 'flock\n'
+        with patch('pathlib.Path.read_text', read):
+            state, _ = activity({'ActiveState':'activating', 'ControlGroup':'/test',
+                'ExecMainStartTimestampMonotonic':'1'}, False)
+        self.assertEqual(state, 'queued')
+
+    def test_search_runtime_pointer_checksum_is_required(self):
+        evidence = Mock(prefix='data/')
+        evidence.confirmed.return_value = []
+        evidence.read.side_effect = [({'paths': {'reports/search-capture-2026-10-21/publication.json':
+            {'key':'data/snapshot/publication.json', 'sha256':'expected'}}}, None, None),
+            ({'release_id':'r'}, 'different', None)]
+        with patch('collection_health_exporter.properties', return_value={}), \
+             patch('collection_health_exporter.activity', return_value=('idle',0)), \
+             patch('collection_health_exporter.json_reports', return_value=([],[],None)):
+            with self.assertRaisesRegex(ValueError, 'checksum mismatch'):
+                inspect_job('optima-search-capture.service', {}, evidence, 0, time.time())
+
     def test_partial_progress_requires_reachable_receipt_and_valid_batches(self):
         raw = b'{"record": 1}\n'
         page = {'sequence': 0, 'run_id': 'old-run', 'record_count': 1,
@@ -99,6 +177,12 @@ class HealthRepairTests(unittest.TestCase):
     def test_newer_failures_do_not_hide_market_success(self):
         result = self.inspect({}, [], {'progress_keys': ['market']})
         self.assertEqual(result['progress']['last_verified_at'], '2026-09-27T07:00:00Z')
+
+    def test_closed_universe_epoch_uses_its_own_end_boundary(self):
+        with patch.object(Evidence, 'read', return_value=({'next_date': '2026-09-24'}, None, '2026-09-24T00:00:00Z')):
+            policy = {'progress_keys': ['old-epoch'], 'progress_end_exclusive': {'old-epoch': '2026-09-24'}}
+            self.assertFalse(self.inspect({}, [], policy)['progress']['pending'])
+            self.assertTrue(self.inspect({}, [], {'progress_keys': ['old-epoch']})['progress']['pending'])
 
     def test_success_requires_completed_process_and_verified_invocation_output(self):
         props = {'ActiveState': 'inactive', 'Result': 'success', 'ExecMainStatus': '0',

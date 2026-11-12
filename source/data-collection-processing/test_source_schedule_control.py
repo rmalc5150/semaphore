@@ -34,13 +34,13 @@ class PublicSourceTests(unittest.TestCase):
         for sid in ('S31', 'S66', 'S67'):
             self.assertEqual('blocked_no_capture_route', rows[sid]['modes']['daily']['status'])
 
-    def test_official_new_sources_have_real_2021_jobs_and_daily_jobs(self):
+    def test_official_new_sources_have_real_2016_jobs_and_daily_jobs(self):
         plan = load_json(ROOT / 'config/specialist-inputs.json')
         universe = load_json(ROOT / 'config/company-universe.v0.5.json')
         expected = {'sec_companyfacts', 'drugsfda_applications', 'ema_medicines', 'pubmed_abstracts'}
         historical = list(jobs(plan, universe, 'historical', date(2026, 10, 9)))
         daily = list(jobs(plan, universe, 'daily', date(2026, 10, 9)))
-        self.assertTrue(expected <= {j['source'] for j in historical if j['start'] == '2021-01-01'})
+        self.assertTrue(expected <= {j['source'] for j in historical if j['start'] == '2016-01-01'})
         self.assertTrue(expected <= {j['source'] for j in daily})
 
     def test_pubmed_cap_never_claims_complete(self):

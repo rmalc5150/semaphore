@@ -1,0 +1,22 @@
+{
+  "daily": {
+    "tasks": 3,
+    "complete": 3,
+    "partial": 0,
+    "failed": 0,
+    "records": 5,
+    "reasons": []
+  },
+  "historical": {
+    "tasks": 13,
+    "complete": 8,
+    "partial": 5,
+    "failed": 0,
+    "records": 269,
+    "reasons": [
+      "page_budget"
+    ]
+  },
+  "daily_fairness_last_run": "2026-10-26T20:16:34.141677+00:00",
+  "worker_update_command": "5314178a-333d-43ec-ac2b-dc39d8bb2556"
+}

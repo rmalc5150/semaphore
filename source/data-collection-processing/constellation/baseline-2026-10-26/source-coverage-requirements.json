@@ -1,0 +1,731 @@
+{
+  "schema_version": "1.0",
+  "historical_start": "2021-01-01",
+  "daily_freshness_target_hours": 48,
+  "freshness_target_status": "proposed operational target, not a provider guarantee",
+  "universe": "config/company-universe.v0.5.json",
+  "scope_decision": "All markets are in scope, confirmed by the user on 2026-09-25. No HKEX-only restriction. Sector eligibility and company identity review still apply; enabled company set is provisional, not an approved final watchlist.",
+  "sources": [
+    {
+      "source": "eodhd",
+      "dataset": "company_profiles",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Global exchange inventory; private companies not covered",
+      "implemented": "shared",
+      "access_limits": "Shared configured 98,000 weighted calls/day, 900 requests/min; profile allocation 88,000/day",
+      "known_gaps": "Current profiles are not historical fundamentals; identity review and cohort reconciliation incomplete"
+    },
+    {
+      "source": "eodhd",
+      "dataset": "listing_inventory",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Global provider exchanges",
+      "implemented": "shared",
+      "access_limits": "Inventory allocation 1,000 weighted calls/day",
+      "known_gaps": "Provider universe is not all legal companies; private-company discovery needed"
+    },
+    {
+      "source": "eodhd_market",
+      "dataset": "market_records",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Tracked listings on supported exchanges",
+      "implemented": "shared",
+      "access_limits": "Market allocation 9,000 weighted calls/day; 300 requests/invocation",
+      "known_gaps": "Per-symbol prices/splits/dividends; unavailable windows, other actions and revisions require reconciliation"
+    },
+    {
+      "source": "hkex_prices",
+      "dataset": "market_records",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Hong Kong Main Board and GEM",
+      "implemented": "shared",
+      "access_limits": "Bounded one-day official quotation requests",
+      "known_gaps": "No corporate actions or opening/adjusted prices; historical completeness unverified"
+    },
+    {
+      "source": "finlight",
+      "dataset": "news_articles",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Four-sector multilingual provider searches",
+      "implemented": "shared",
+      "access_limits": "Configured 40 HTTP attempts/day; current plan recent-only",
+      "known_gaps": "Query exhaustion is not exhaustive company coverage; full 2021-onward archive and company matching incomplete"
+    },
+    {
+      "source": "marketaux",
+      "dataset": "news_articles",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Four-sector multilingual provider searches",
+      "implemented": "shared",
+      "access_limits": "Configured 40 HTTP attempts/day; bounded historical queries",
+      "known_gaps": "Query exhaustion is not exhaustive company coverage; full 2021-onward archive and company matching incomplete"
+    },
+    {
+      "source": "sec_edgar",
+      "dataset": "filings",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "US SEC filers; foreign issuers only where they file",
+      "implemented": "shared",
+      "access_limits": "Configured 10,000 records/window; source-specific request pacing",
+      "known_gaps": "Company identifier gates and historical filings/document coverage require reconciliation"
+    },
+    {
+      "source": "hkex_news",
+      "dataset": "filings",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Hong Kong listed issuers",
+      "implemented": "shared",
+      "access_limits": "Bounded historical/daily requests",
+      "known_gaps": "Historical gaps and document text extraction; not global disclosure coverage"
+    },
+    {
+      "source": "disclosure_documents",
+      "dataset": "documents",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Documents discovered through SEC/HKEX paths",
+      "implemented": "shared",
+      "access_limits": "Dependent on parent filing discovery and readable document access",
+      "known_gaps": "Unreadable documents; regional/IR sources and complete history missing"
+    },
+    {
+      "source": "disclosure_candidates",
+      "dataset": "press_releases",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Parent SEC/HKEX document coverage",
+      "implemented": "shared",
+      "access_limits": "Dependent on collected documents; candidate retrieval",
+      "known_gaps": "Candidate events need review; independent news/IR coverage and entity linking incomplete"
+    },
+    {
+      "source": "disclosure_candidates",
+      "dataset": "licensing_agreements",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Parent SEC/HKEX document coverage",
+      "implemented": "shared",
+      "access_limits": "Dependent on collected documents; candidate retrieval",
+      "known_gaps": "Candidate events need review; independent news/IR coverage and entity linking incomplete"
+    },
+    {
+      "source": "disclosure_candidates",
+      "dataset": "ma_announcements",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Parent SEC/HKEX document coverage",
+      "implemented": "shared",
+      "access_limits": "Dependent on collected documents; candidate retrieval",
+      "known_gaps": "Candidate events need review; independent news/IR coverage and entity linking incomplete"
+    },
+    {
+      "source": "disclosure_candidates",
+      "dataset": "strategic_transactions",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Parent SEC/HKEX document coverage",
+      "implemented": "shared",
+      "access_limits": "Dependent on collected documents; candidate retrieval",
+      "known_gaps": "Candidate events need review; independent news/IR coverage and entity linking incomplete"
+    },
+    {
+      "source": "clinicaltrials_gov",
+      "dataset": "research_records",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "Registry-listed trials worldwide",
+      "implemented": "shared",
+      "access_limits": "Bounded adapter requests; public-source access only",
+      "known_gaps": "Historical record versions and sponsor/site links"
+    },
+    {
+      "source": "fda_openfda",
+      "dataset": "research_records",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "United States",
+      "implemented": "shared",
+      "access_limits": "Bounded adapter requests; public-source access only",
+      "known_gaps": "Endpoint and historical completeness"
+    },
+    {
+      "source": "ema_ctis",
+      "dataset": "research_records",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "EU/EEA",
+      "implemented": "shared",
+      "access_limits": "Bounded adapter requests; public-source access only",
+      "known_gaps": "Public records only; confidential/history limits"
+    },
+    {
+      "source": "uk_mhra",
+      "dataset": "research_records",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "United Kingdom",
+      "implemented": "shared",
+      "access_limits": "Bounded adapter requests; public-source access only",
+      "known_gaps": "Historical and endpoint completeness"
+    },
+    {
+      "source": "japan_pmda",
+      "dataset": "research_records",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "Japan",
+      "implemented": "shared",
+      "access_limits": "Bounded adapter requests; public-source access only",
+      "known_gaps": "Historical and endpoint completeness"
+    },
+    {
+      "source": "chictr",
+      "dataset": "research_records",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "China",
+      "implemented": "shared",
+      "access_limits": "Bounded adapter requests; public-source access only",
+      "known_gaps": "Dedicated recurring reconciliation pending"
+    },
+    {
+      "source": "nmpa_trials",
+      "dataset": "research_records",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "China",
+      "implemented": "shared",
+      "access_limits": "Bounded adapter requests; public-source access only",
+      "known_gaps": "Inventory challenge interrupted pagination; fixed-ID detail cohorts and recurring reconciliation incomplete"
+    },
+    {
+      "source": "google_patents_bigquery",
+      "dataset": "patent_records",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Global patent authorities in configured provider dataset",
+      "implemented": "shared",
+      "access_limits": "4 new queries/day; 50 GB/query; 200 GB/day shared budget",
+      "known_gaps": "2021 stream incomplete; retained 2015 releases separate; ownership, identity and historical availability unresolved"
+    },
+    {
+      "source": "uspto_odp",
+      "dataset": "patent_records",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "United States",
+      "implemented": "shared",
+      "access_limits": "Configured bounded API queries; credential/access status requires fresh verification",
+      "known_gaps": "Current discovery, application histories and assignment coverage require reconciliation; no matched publication receipt found in this inventory"
+    },
+    {
+      "source": "crossref_proceedings",
+      "dataset": "conference_records",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Global DOI-registered proceedings",
+      "implemented": "shared",
+      "access_limits": "240 pages of 500 per lane/invocation",
+      "known_gaps": "Non-DOI presentations, conference sites and journal supplements missing; company links unresolved"
+    },
+    {
+      "source": "people_rss",
+      "dataset": "people_source_records",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Nine selected sector/general-industry publishers; geographic and company coverage not exhaustive",
+      "implemented": "shared",
+      "access_limits": "Current RSS snapshots; historical backdating unsupported",
+      "known_gaps": "Publisher reach and company matching incomplete; no RSS history reconstruction"
+    },
+    {
+      "source": "personnel_archive",
+      "dataset": "people_source_records",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Inherited from collected news, filing and RSS sources",
+      "implemented": "shared",
+      "access_limits": "8 parent windows/run; depends on existing archives",
+      "known_gaps": "Lexical candidates need review; false positives/negatives and overlapping announcements; incomplete parent history"
+    },
+    {
+      "source": "reddit",
+      "dataset": "social_records",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Tracked-company discussions; subreddit/language scope to define",
+      "implemented": "legacy only; shared migration pending",
+      "access_limits": "API/archive access, historical depth, quotas and costs unverified",
+      "known_gaps": "Required historical posts/comments from 2021; no verified migrated collection/publication"
+    },
+    {
+      "source": "bluesky_search",
+      "dataset": "social_records",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Four-sector public searches",
+      "implemented": "shared",
+      "access_limits": "Last documented access: HTTP 403",
+      "known_gaps": "No verified usable search records/history; Reddit remains priority"
+    },
+    {
+      "source": "search_rankings",
+      "dataset": "search_rankings",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Tracked-company domains/queries; engines, countries and languages to define",
+      "implemented": "not implemented",
+      "access_limits": "Provider, cost, historical archive and sampling interval unverified",
+      "known_gaps": "Required ranking history from 2021; current search cannot reconstruct old ranks"
+    },
+    {
+      "source": "guidelines_payer_policies",
+      "dataset": "required_source_gap",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "Relevant target markets; detailed scope pending specialist definitions",
+      "implemented": "dedicated collection not verified",
+      "access_limits": "Dedicated access/inventory unverified",
+      "known_gaps": "Guideline versions and reimbursement decisions"
+    },
+    {
+      "source": "kol_disclosures",
+      "dataset": "required_source_gap",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "Relevant target markets; detailed scope pending specialist definitions",
+      "implemented": "dedicated collection not verified",
+      "access_limits": "Dedicated access/inventory unverified",
+      "known_gaps": "Expert identity, independence and financial disclosures"
+    },
+    {
+      "source": "trial_site_history",
+      "dataset": "required_source_gap",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "Relevant target markets; detailed scope pending specialist definitions",
+      "implemented": "dedicated collection not verified",
+      "access_limits": "Dedicated access/inventory unverified",
+      "known_gaps": "Recruitment/execution history and infrastructure"
+    },
+    {
+      "source": "milestone_timelines",
+      "dataset": "required_source_gap",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Relevant target markets; detailed scope pending specialist definitions",
+      "implemented": "dedicated collection not verified",
+      "access_limits": "Dedicated access/inventory unverified",
+      "known_gaps": "Dated supported program/company milestones"
+    },
+    {
+      "source": "additional_conference_abstracts",
+      "dataset": "required_source_gap",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Relevant target markets; detailed scope pending specialist definitions",
+      "implemented": "dedicated collection not verified",
+      "access_limits": "Dedicated access/inventory unverified",
+      "known_gaps": "Non-DOI abstracts and presentations"
+    },
+    {
+      "source": "uspto_odp",
+      "dataset": "patent_assignment_records",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "United States",
+      "implemented": "shared",
+      "access_limits": "Bounded configured source access; see live run outcomes",
+      "known_gaps": "Bounded reviewed assignment samples; complete ownership history unverified"
+    },
+    {
+      "source": "nmpa_trials",
+      "dataset": "registry_inventory",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "China",
+      "implemented": "shared",
+      "access_limits": "Bounded configured source access; see live run outcomes",
+      "known_gaps": "Partial rendered inventory; pagination and baseline remain incomplete"
+    },
+    {
+      "source": "nih_reporter",
+      "dataset": "specialist_inputs",
+      "source_id": "S36",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "ted_notices",
+      "dataset": "specialist_inputs",
+      "source_id": "S42",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "bls_wages",
+      "dataset": "specialist_inputs",
+      "source_id": "S59",
+      "applicable_sectors": [
+        "robotics"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "un_comtrade",
+      "dataset": "specialist_inputs",
+      "source_id": "S54",
+      "applicable_sectors": [
+        "energy_storage",
+        "semiconductors"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "federal_register",
+      "dataset": "specialist_inputs",
+      "source_id": "S51",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "europe_pmc",
+      "dataset": "specialist_inputs",
+      "source_id": "S28",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "usa_spending",
+      "dataset": "specialist_inputs",
+      "source_id": "S43",
+      "applicable_sectors": [
+        "biotech",
+        "robotics",
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "usgs_minerals",
+      "dataset": "specialist_inputs",
+      "source_id": "S53",
+      "applicable_sectors": [
+        "energy_storage"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "trade_screening",
+      "dataset": "specialist_inputs",
+      "source_id": "S52",
+      "applicable_sectors": [
+        "semiconductors",
+        "energy_storage"
+      ],
+      "geographic_scope": "current consolidated US screening lists only; no historical sanctions status or legal interpretation",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "cms_payments_catalog",
+      "dataset": "specialist_inputs",
+      "source_id": "S34",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "dataset editions and download identities only; recipient/payment rows are a separate pending filtered query integration",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "github_sdk",
+      "dataset": "specialist_inputs",
+      "source_id": "S46",
+      "applicable_sectors": [
+        "robotics",
+        "semiconductors"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "ror_institutions",
+      "dataset": "specialist_inputs",
+      "source_id": "S68",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "caiso_prices",
+      "dataset": "specialist_inputs",
+      "source_id": "S57",
+      "applicable_sectors": [
+        "energy_storage"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "eia_generator_index",
+      "dataset": "specialist_inputs",
+      "source_id": "S56",
+      "applicable_sectors": [
+        "energy_storage"
+      ],
+      "geographic_scope": "official archive discovery only; generator rows captured by workbook adapter",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "eia_battery_generators",
+      "dataset": "specialist_inputs",
+      "source_id": "S56",
+      "applicable_sectors": [
+        "energy_storage"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "doe_storage_program",
+      "dataset": "specialist_inputs",
+      "source_id": "S55",
+      "applicable_sectors": [
+        "energy_storage"
+      ],
+      "geographic_scope": "official program document discovery snapshots; cost/performance tables and grants need document-specific extraction",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "nist_robotics_methods",
+      "dataset": "specialist_inputs",
+      "source_id": "S47",
+      "applicable_sectors": [
+        "robotics"
+      ],
+      "geographic_scope": "official test-method discovery snapshots; device-specific benchmark measurements remain gaps",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "cms_coverage",
+      "dataset": "specialist_inputs",
+      "source_id": "S32",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "europe_pmc_fulltext",
+      "dataset": "specialist_inputs",
+      "source_id": "S28",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "parent-discovered versioned documents only",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "cms_coverage_documents",
+      "dataset": "specialist_inputs",
+      "source_id": "S32",
+      "applicable_sectors": [
+        "biotech"
+      ],
+      "geographic_scope": "parent-discovered versioned documents only",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    },
+    {
+      "source": "mlperf_results",
+      "dataset": "specialist_inputs",
+      "source_id": "S48",
+      "applicable_sectors": [
+        "semiconductors"
+      ],
+      "geographic_scope": "Exact configured source/query panel; global entity and field coverage not certified",
+      "implemented": "shared",
+      "access_limits": "shared heavy-job lock; 512 MiB; bounded job/page counts; public sources; GitHub anonymous API quota; rights held; child documents follow parent evidence",
+      "known_gaps": "All entity links remain unresolved; original archives retrieved now do not prove past availability. Full required scope/fields/history and rights remain unverified; see reports/specialist-expansion-2026-10-09/layer-requirements.csv"
+    }
+  ]
+}

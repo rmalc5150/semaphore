@@ -1,0 +1,58 @@
+# /etc/systemd/system/optima-authenticated-historical.service
+[Unit]
+Description=Bounded authenticated FDA EDINET EIA historical collection and publication
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+Slice=optima-data.slice
+MemoryHigh=402653184
+MemoryMax=536870912
+MemorySwapMax=0
+Environment=ARROW_NUM_THREADS=1
+Environment=MALLOC_ARENA_MAX=2
+ExecStart=/usr/bin/timeout --signal=INT --kill-after=120s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/specialist_inputs.py --lane authenticated --mode historical --max-jobs 12 --pages 2 --publish 0
+TimeoutStartSec=25min
+TimeoutStopSec=120
+KillSignal=SIGINT
+SuccessExitStatus=75
+Nice=15
+
+# /etc/systemd/system/optima-authenticated-historical.service.d/99-s3-runtime.conf
+[Unit]
+Requires=optima-s3-runtime-init.service
+After=optima-s3-runtime-init.service
+[Service]
+ExecStart=
+ExecStart=/usr/bin/flock --exclusive --timeout 43200 --conflict-exit-code 75 /dev/shm/optima-s3/supervisor.lock /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/s3_runtime.py --unit optima-authenticated-historical.service -- /usr/bin/timeout --signal=INT --kill-after=120s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/specialist_inputs.py --lane authenticated --mode historical --max-jobs 12 --pages 2 --publish 0
+ProtectSystem=strict
+ReadOnlyPaths=/home/ec2-user /tmp /var/tmp /dev/shm
+ReadWritePaths=/dev/shm/optima-s3
+PrivateTmp=false
+Environment=PYTHONDONTWRITEBYTECODE=1
+MemoryHigh=1700000000
+MemoryMax=1900000000
+MemorySwapMax=0
+TimeoutStartSec=13h
+TimeoutStopSec=240
+KillMode=mixed
+KillSignal=SIGINT
+SuccessExitStatus=75
+
+# /etc/systemd/system/optima-authenticated-historical.service.d/zz-t3-large-memory.conf
+[Service]
+MemoryHigh=4G
+MemoryMax=5G
+MemorySwapMax=0
+
+# /etc/systemd/system/optima-authenticated-historical.service.d/zz-upgrade-maintenance.conf
+[Unit]
+ConditionPathExists=!/home/ec2-user/data-collection-processing/upgrade/t3-large/maintenance-active
+
+# /etc/systemd/system/optima-authenticated-historical.service.d/zzzz-batch-fairness.conf
+[Service]
+ExecStart=
+ExecStart=/usr/bin/flock --exclusive --timeout 43200 --conflict-exit-code 75 /dev/shm/optima-s3/supervisor.lock /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/s3_runtime.py --unit optima-authenticated-historical.service -- /usr/bin/timeout --signal=INT --kill-after=120s 20m /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/specialist_inputs.py --lane authenticated --mode historical --max-jobs 4 --pages 2 --publish 0

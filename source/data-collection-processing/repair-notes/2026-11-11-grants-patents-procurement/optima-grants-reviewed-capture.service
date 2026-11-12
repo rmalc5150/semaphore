@@ -1,0 +1,15 @@
+[Unit]
+Description=Bounded grants/procurement daily capture; historical routes remain independent
+After=network-online.target
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/opt/constellation/source
+ExecStart=/opt/constellation/legacy-venv/bin/python -B grants_review_capture.py --sources nih_reporter usa_spending ted_notices nist_robotics_methods
+Slice=constellation-workers.slice
+MemoryMax=402653184
+MemorySwapMax=0
+CPUQuota=20%
+TimeoutStartSec=300
+Environment=CONSTELLATION_ROLE=worker
+Environment=CONSTELLATION_SHARED_HTTP_LIMITS=1

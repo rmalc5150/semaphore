@@ -223,6 +223,35 @@ class NewsTests(unittest.TestCase):
         self.assertFalse(done)
         self.assertEqual(limit, 100)
 
+    def test_finlight_one_completion_probe_at_page_limit(self):
+        self.pages = {1: {'status':'ok','page':1,'pageSize':1,'articles':[
+            {'link':'https://example.org/a','publishDate':'2026-09-23T12:00:00Z'}]},
+            2: {'status':'ok','page':2,'pageSize':0,'articles':[]}}
+        client = news.NewsClient(self.store,'finlight','SECRET_TOKEN_12345',40,
+            opener=self.opener,sleeper=lambda _:None,capture_full_text=False)
+        result = self.collect(provider='finlight',language='en',client=client,max_pages=1)
+        self.assertEqual(result['status'],'complete')
+        self.assertEqual(len(self.calls),2)
+
+    def test_finlight_nonempty_probe_remains_partial_and_is_bounded(self):
+        self.pages = {n: {'status':'ok','page':n,'pageSize':1,'articles':[
+            {'link':f'https://example.org/{n}','publishDate':'2026-09-23T12:00:00Z'}]} for n in (1,2)}
+        client = news.NewsClient(self.store,'finlight','SECRET_TOKEN_12345',40,
+            opener=self.opener,sleeper=lambda _:None,capture_full_text=False)
+        result = self.collect(provider='finlight',language='en',client=client,max_pages=1)
+        self.assertEqual(result['reason'],'page_limit')
+        self.assertEqual(len(self.calls),2)
+        self.assertEqual(len(self.rows(result)),2)
+
+    def test_finlight_completion_probe_respects_request_budget(self):
+        self.pages = {1: {'status':'ok','page':1,'pageSize':1,'articles':[
+            {'link':'https://example.org/a','publishDate':'2026-09-23T12:00:00Z'}]}}
+        client = news.NewsClient(self.store,'finlight','SECRET_TOKEN_12345',40,max_requests=1,
+            opener=self.opener,sleeper=lambda _:None,capture_full_text=False)
+        result = self.collect(provider='finlight',language='en',client=client,max_pages=1)
+        self.assertEqual(result['reason'],'run_request_budget_reached')
+        self.assertEqual(len(self.calls),1)
+
     def test_audit_validates_partial_batches_and_empty_evidence(self):
         from news_audit import audit
         self.pages[1] = market([article("one"), article("two")], total=3)

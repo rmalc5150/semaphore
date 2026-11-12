@@ -1,0 +1,51 @@
+{
+  "worker_command_id": "814f91d4-0647-4706-bb49-f2c0cecda0ce",
+  "controller_command_id": "9c52fd8a-6f06-4282-8558-3e045744b311",
+  "modules": {
+    "public_source_capture.py": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-ceec94e0763d985a5bdb67c8a8599ca6240626c31581e19caf406d76cb077824/public_source_capture.py",
+      "sha256": "ceec94e0763d985a5bdb67c8a8599ca6240626c31581e19caf406d76cb077824"
+    },
+    "specialist_inputs.py": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-24630b90e2ed36315a127f1cdcc7b32f3dfc3646c5d937b771755b9b34ebf204/specialist_inputs.py",
+      "sha256": "24630b90e2ed36315a127f1cdcc7b32f3dfc3646c5d937b771755b9b34ebf204"
+    },
+    "specialist_plan.py": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-307a2aa6394488d41753e08319c39cca2f43f79d8958223ef2dae840bba02aa7/specialist_plan.py",
+      "sha256": "307a2aa6394488d41753e08319c39cca2f43f79d8958223ef2dae840bba02aa7"
+    },
+    "additional_source_apis.py": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-103f0f13ef156201079b8e15d2794a364a01b25269d76c84a9bb9f70163bc022/additional_source_apis.py",
+      "sha256": "103f0f13ef156201079b8e15d2794a364a01b25269d76c84a9bb9f70163bc022"
+    },
+    "additional_source_plan.py": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-6360b73c3bb8b4dde8e266c7c7bde4d7718b615a9cabb1a6386c5b2e3f846d1f/additional_source_plan.py",
+      "sha256": "6360b73c3bb8b4dde8e266c7c7bde4d7718b615a9cabb1a6386c5b2e3f846d1f"
+    },
+    "epo_ops.py": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-92ee3afd6ae9a36837e6f3537e31815265d7a190f50196d4f37b4556b795a38f/epo_ops.py",
+      "sha256": "92ee3afd6ae9a36837e6f3537e31815265d7a190f50196d4f37b4556b795a38f"
+    },
+    "credential_source_apis.py": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-3a2f9a739120384699c171640dd9a97eb7b2d6ef7f639a5b9493a2a14463b031/credential_source_apis.py",
+      "sha256": "3a2f9a739120384699c171640dd9a97eb7b2d6ef7f639a5b9493a2a14463b031"
+    },
+    "copernicus_capture.py": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-8dbe6ff5d764df80da599867474814f76347b62e0cbc8dc170f21c938545ed5e/copernicus_capture.py",
+      "sha256": "8dbe6ff5d764df80da599867474814f76347b62e0cbc8dc170f21c938545ed5e"
+    },
+    "config/constellation-public-sources.json": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-6f07d8f319f9508bee68f5488d047dd565d623b9cc9eaa5b57220b19840175f5/config/constellation-public-sources.json",
+      "sha256": "6f07d8f319f9508bee68f5488d047dd565d623b9cc9eaa5b57220b19840175f5"
+    },
+    "config/constellation-specialist-historical.json": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-014a6fcaf212be04f080fa16f7fc799507aa0f4152a0813fd93903b322885c87/config/constellation-specialist-historical.json",
+      "sha256": "014a6fcaf212be04f080fa16f7fc799507aa0f4152a0813fd93903b322885c87"
+    },
+    "config/specialist-inputs.json": {
+      "key": "research-data/constellation-backfill/deployments/source-fix-30853843394e95cb79ec937289c038afba3245e7de15ef478bf4efb9e511cb9f/config/specialist-inputs.json",
+      "sha256": "30853843394e95cb79ec937289c038afba3245e7de15ef478bf4efb9e511cb9f"
+    }
+  },
+  "workers_restarted": false
+}

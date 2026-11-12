@@ -1,6 +1,7 @@
 """Explicit source scopes and archive windows; never manufacture snapshot history."""
 from datetime import date, timedelta
 from copy import deepcopy
+from calendar import monthrange
 from research_contract import ROOT, load_json
 
 
@@ -26,7 +27,12 @@ def jobs(plan, universe, mode, today):
         kind = s['adapter']
         scopes = []
         from specialist_authenticated import KINDS as AUTH_KINDS, scopes as auth_scopes
-        if kind in AUTH_KINDS:
+        if kind.startswith('additional_'):
+            from additional_source_plan import scopes as additional_scopes
+            scopes=list(additional_scopes(s,historical_start,min(end,today),mode))
+            if mode=='daily':
+                scopes=[(a,b,{**p,'data_start':a.isoformat(),'data_end':b.isoformat()},note) for a,b,p,note in scopes]
+        elif kind in AUTH_KINDS:
             begin = historical_start if mode == 'historical' else today - timedelta(days=7)
             if kind == 'eia_api' and mode == 'daily':
                 begin = (today - timedelta(days=100)).replace(day=1)
@@ -49,6 +55,8 @@ def jobs(plan, universe, mode, today):
                         'Eight reviewed US application assignment histories only; recorded events and entire original chain retained; chain completeness and legal title unverified'))
         elif kind in {'sec_companyfacts', 'ema_json', 'canada_noc'}:
             windows = [(date(y, 1, 1), min(date(y + 1, 1, 1), end)) for y in range(historical_start.year, today.year + 1)] if mode == 'historical' else [(today - timedelta(days=7), end)]
+            if kind == 'canada_noc' and mode == 'daily' and s.get('full_inventory'):
+                windows=[(date(1900,1,1),end)]
             for start, stop in windows:
                 if kind == 'sec_companyfacts':
                     enabled = {c['company_id'] for c in universe['companies'] if c['collection_enabled']}
@@ -58,7 +66,7 @@ def jobs(plan, universe, mode, today):
                         scopes.append((start, stop, {'url': s['api'].format(cik=cik), 'cik': cik, 'start': start.isoformat(), 'end': stop.isoformat()},
                             'SEC tagged facts by filing date; current API restatements retained; not historical API vintages or narrative notes'))
                 elif kind == 'canada_noc':
-                    scopes.append((start, stop, {'url': s['api'], 'query': {'lang': 'en', 'type': 'json'}, 'start': start.isoformat(), 'end': stop.isoformat()},
+                    scopes.append((start, stop, {'url': s['api'], 'query': {'lang': 'en', 'type': 'json'}, 'start': start.isoformat(), 'end': stop.isoformat(), 'full_inventory': mode=='daily' and s.get('full_inventory',False)},
                         'Health Canada NOC decisions by issue date from current official bulk API; not original review dossiers or superseded vintages'))
                 else:
                     scopes.append((start, stop, {'url': s['api'], 'start': start.isoformat(), 'end': stop.isoformat()},
@@ -80,6 +88,9 @@ def jobs(plan, universe, mode, today):
                         'DrugsFDA applications, submissions and original application-document URLs; original document extraction remains separate'))
         elif kind in {'bls', 'nih', 'comtrade', 'pdf', 'cms_coverage'}:
             years = range(historical_start.year, today.year + 1) if mode == 'historical' else [today.year]
+            if kind == 'bls' and mode == 'daily':
+                # Six years cover the retained archive, including annual seasonal revisions.
+                years = range(historical_start.year, today.year + 1)
             if kind == 'nih':
                 fiscal_year = today.year + (today.month >= 10)
                 years = range(historical_start.year, fiscal_year + 1) if mode == 'historical' else [fiscal_year]
@@ -111,7 +122,7 @@ def jobs(plan, universe, mode, today):
                 else:
                     for mineral in s['minerals']:
                         scopes.append((start, stop, {'url': s['api'].format(year=year, mineral=mineral), 'period': str(year),
-                                      'event_date': None}, 'annual official mineral PDF text; numeric units and estimates need review'))
+                                      'event_date': None}, 'full USGS mineral reports, layout-checked statistics, footnotes, supply-chain evidence, vintage comparisons and unresolved entity exposure; historical availability unverified'))
         elif kind in {'ted', 'federal_register', 'epmc', 'usaspending'}:
             windows = months(historical_start, end) if mode == 'historical' else [(today - timedelta(days=7), end)]
             for start, stop in windows:
@@ -119,7 +130,10 @@ def jobs(plan, universe, mode, today):
                 if kind == 'ted':
                     for cpv in s['cpv']:
                         query = 'publication-date >= ' + start.strftime('%Y%m%d') + ' AND publication-date <= ' + last.strftime('%Y%m%d') + ' AND classification-cpv = ' + cpv
-                        scopes.append((start, stop, {'url': s['api'], 'query': query, 'fields': s['fields']}, 'EU CPV notice candidates; procurement stages, suppliers and contract values require notice XML follow-up'))
+                        scopes.append((start, stop, {'url': s['api'], 'query': query,
+                            'fields': list(dict.fromkeys(s['fields'] + ['ojs-number'])) if mode == 'daily' else s['fields']},
+                            'EU CPV notices with daily-package XML; stages, suppliers and values are source-extracted and require specialist review'
+                            if mode == 'daily' else 'EU CPV notice candidates; procurement stages, suppliers and contract values require notice XML follow-up'))
                 elif kind == 'federal_register':
                     for topic in s['topics']:
                         scopes.append((start, stop, {'url': s['api'], 'query': {'conditions[term]': topic,
@@ -138,14 +152,15 @@ def jobs(plan, universe, mode, today):
             # Standard API retention is 39 months. Older windows are a separate
             # Historical OASIS downloader gap, not repeatedly failed API calls.
             index = today.year * 12 + today.month - 1 - 39
-            retention = date(index // 12, index % 12 + 1, 1)
+            retention = date(index // 12, index % 12 + 1,
+                             min(today.day, monthrange(index // 12, index % 12 + 1)[1]))
             start = max(historical_start, retention) if mode == 'historical' else today - timedelta(days=1)
             while start < today:
                 stop = start + timedelta(days=1)
                 for node in s['nodes']:
                     scopes.append((start, stop, {'url': s['api'], 'query': {'queryname': 'PRC_LMP', 'version': 12, 'resultformat': 6,
                         'market_run_id': 'DAM', 'node': node, 'startdatetime': start.strftime('%Y%m%dT00:00-0000'),
-                        'enddatetime': stop.strftime('%Y%m%dT00:00-0000')}}, 'CAISO DAM hub LMP components USD/MWh; standard 39-month retention; 2021-earlier history and ancillary markets need downloader integration'))
+                        'enddatetime': stop.strftime('%Y%m%dT00:00-0000')}}, 'CAISO DAM hub components with original ZIP/member provenance and precise interval timing. Dedicated S57 worker adds RTM/RTPD, ancillary prices, project nodes and older requester-pays archives. Current retrieved vintages only.'))
                 start = stop
         elif kind == 'eia_xlsx':
             # Use only archive links actually discovered on the official index.
@@ -165,15 +180,26 @@ def jobs(plan, universe, mode, today):
                 scopes.append((today, end, {'url': 'https://api.github.com/repos/' + repo + '/releases'},
                                'named public SDK repositories and complete release pages; repository/product identity and historical compatibility need review'))
         elif kind == 'mlperf':
-            repositories = s['repositories'] if mode == 'historical' else s['repositories'][-1:]
+            repositories = s['repositories'] if mode == 'historical' else s['repositories'][-4:]
             for repository in repositories:
                 scopes.append((historical_start, end, {'url': 'https://github.com/' + repository, 'repository': repository},
-                    'commit-pinned official MLPerf aggregate measurements by edition; complete benchmark configs and non-AI applications remain separate; old summary availability not established'))
+                    'commit-pinned MLPerf results with linked system, configuration, accuracy and performance evidence; explicit missing/size-limited artifacts; entity matching and event dispatch pending; historical availability unverified'))
         elif kind == 'ror':
             for name in s['institutions']:
                 scopes.append((today, end, {'url': s['api'], 'query': name}, 'current institution identity candidates; no historical affiliation reconstruction'))
         else:
             scopes.append((today, end, {'url': s['api']}, s['coverage_note']))
+        if kind=='drugsfda' and mode=='daily' and s.get('full_inventory') and s.get('inventory_execution')!='dedicated_worker':
+            week=today-timedelta(days=today.weekday())
+            ranges=[]
+            for prefix in ('ANDA','NDA','BLA'):
+                for digit in range(10):
+                    query=f'application_number:[{prefix}{digit}00000 TO {prefix}{digit}99999]'
+                    ranges.append(query)
+                    scopes.append((week,week+timedelta(days=7),{'url':s['api'],'query':{'search':query,'sort':'application_number:asc'},'inventory_scope':'all_provider_applications','partition':prefix+str(digit)},
+                        'Current all-provider DrugsFDA inventory, including inactive/discontinued products; weekly capture scope, not historical snapshots or all worldwide drugs'))
+            scopes.append((week,week+timedelta(days=7),{'url':s['api'],'query':{'search':'NOT ('+' OR '.join(ranges)+')','sort':'application_number:asc'},'inventory_scope':'all_provider_applications','partition':'other_application_ids'},
+                'All-provider inventory complement; retains unexpected application identifiers instead of silently excluding them'))
         for start, stop, parameters, note in scopes:
             if kind == 'nih' and mode == 'daily' and today.day != 1:
                 parameters = deepcopy(parameters)
@@ -181,7 +207,7 @@ def jobs(plan, universe, mode, today):
                 note += '; daily newly-added seven-day overlap, monthly full fiscal-year revision check'
             # Every daily observation is a new first-observed snapshot, even
             # when its provider data describes a much older event period.
-            window_start, window_end = (start, stop) if mode == 'historical' else (today, end)
+            window_start, window_end = (start, stop) if mode == 'historical' or parameters.get('inventory_scope') else (today, end)
             yield {'source_id': s['source_id'], 'source': s['source'], 'adapter': kind,
                 'mode': mode, 'start': window_start.isoformat(), 'end': window_end.isoformat(),
                 'parameters': parameters, 'coverage_note': note}

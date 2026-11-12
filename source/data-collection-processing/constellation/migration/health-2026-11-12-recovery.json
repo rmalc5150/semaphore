@@ -1,0 +1,1457 @@
+{
+  "bucket": "data-collection-059416028963-us-east-1-an",
+  "checked_at": "2026-11-12T11:32:15.314355Z",
+  "daily_audit": {
+    "bytes_scanned": 175736587,
+    "checked_at": "2026-11-12T11:05:05.223433+00:00",
+    "evidence_prefix": "research-data/monitoring/daily-health/2026-11-12/",
+    "expected_unpublished_routes": [],
+    "monitored_jobs": 35,
+    "observations": 50543445,
+    "partitions": 101,
+    "publisher_finished_at": "2026-11-12T10:43:08.169082+00:00",
+    "queries": 108,
+    "query_failures": [],
+    "receipt_queries": 6485,
+    "receipt_query_failures": [],
+    "routes": {
+      "office-actions": {
+        "bytes_scanned": 0,
+        "columns": [
+          "record_id",
+          "observation_id",
+          "source",
+          "dataset",
+          "provider_id",
+          "event_at_json",
+          "ingested_at",
+          "source_url",
+          "payload_json",
+          "record_json",
+          "source_manifests",
+          "source_document_keys",
+          "point_in_time_eligible",
+          "application_number",
+          "official_document_id",
+          "document_type",
+          "action_date",
+          "provider_updated_at",
+          "first_observed_at",
+          "document_retrieval_status",
+          "documents_json",
+          "structured_source_fields_json",
+          "reported_parties_json",
+          "source_text",
+          "window_id"
+        ],
+        "name": "office-actions",
+        "query_id": "f19a27e3-214b-4624-b20f-08a7b3bfa9dc",
+        "reason": null,
+        "rows": [],
+        "sql": "SELECT * FROM optima_patent_office_actions.source_observations_windows LIMIT 1",
+        "state": "SUCCEEDED",
+        "workgroup": "optima-patent-office-actions"
+      },
+      "petitions": {
+        "bytes_scanned": 44600,
+        "columns": [
+          "records",
+          "documents",
+          "latest_capture",
+          "missing_downloads"
+        ],
+        "name": "petitions",
+        "query_id": "c6b62b01-04f7-4725-b407-56b0d8b30bdf",
+        "reason": null,
+        "rows": [
+          [
+            "249",
+            "226",
+            "2026-10-25T17:29:03.088194Z",
+            "0"
+          ]
+        ],
+        "sql": "SELECT count(*) AS records,count(DISTINCT provider_id) AS documents,max(ingested_at) AS latest_capture,count_if(document_retrieval_status IS DISTINCT FROM 'downloaded') AS missing_downloads FROM optima_patent_petitions.source_observations_windows",
+        "state": "SUCCEEDED",
+        "workgroup": "optima-patent-petitions"
+      },
+      "reddit": {
+        "bytes_scanned": 8561480,
+        "columns": [
+          "records",
+          "distinct_ids"
+        ],
+        "name": "reddit",
+        "query_id": "78a81707-4cfb-4b1e-a481-aa015ce882bc",
+        "reason": null,
+        "rows": [
+          [
+            "4099",
+            "4099"
+          ]
+        ],
+        "sql": "SELECT count(*) AS records,count(DISTINCT record_id) AS distinct_ids FROM optima_social_research.reddit_records",
+        "state": "SUCCEEDED",
+        "workgroup": "optima-social-research"
+      },
+      "reddit-freshness": {
+        "bytes_scanned": 8561480,
+        "columns": [
+          "records",
+          "latest_verified",
+          "overdue_24h"
+        ],
+        "name": "reddit-freshness",
+        "query_id": "a8d6fe73-7bcd-4547-9d2b-702459421195",
+        "reason": null,
+        "rows": [
+          [
+            "4099",
+            "1.7926076524367867E9",
+            "4099"
+          ]
+        ],
+        "sql": "SELECT count(*) AS records,max(verified_utc) AS latest_verified,count_if(verified_utc < 1794394770.2275877) AS overdue_24h FROM optima_social_research.reddit_records",
+        "state": "SUCCEEDED",
+        "workgroup": "optima-social-research"
+      },
+      "search": {
+        "bytes_scanned": 7753,
+        "columns": [
+          "source_id",
+          "records",
+          "latest_capture"
+        ],
+        "name": "search",
+        "query_id": "25f1f050-0b24-416e-99dd-433f09af578b",
+        "reason": null,
+        "rows": [
+          [
+            "S59",
+            "25",
+            "2026-10-09T09:47:43.727484+00:00"
+          ],
+          [
+            "S17",
+            "4",
+            "2026-10-09T09:47:42.702161+00:00"
+          ],
+          [
+            "S43",
+            "9",
+            "2026-10-09T09:52:21.182329+00:00"
+          ],
+          [
+            "S65",
+            "7945",
+            "2026-11-06T14:13:41.328208+00:00"
+          ],
+          [
+            "S28",
+            "26",
+            "2026-10-09T09:47:43.334088+00:00"
+          ],
+          [
+            "S27",
+            "8",
+            "2026-10-09T09:47:31.799686+00:00"
+          ],
+          [
+            "S19",
+            "30",
+            "2026-10-09T09:52:15.052573+00:00"
+          ],
+          [
+            "S51",
+            "4",
+            "2026-10-09T09:47:33.526304+00:00"
+          ],
+          [
+            "S48",
+            "60",
+            "2026-10-09T09:52:30.004224+00:00"
+          ],
+          [
+            "S56",
+            "6",
+            "2026-10-09T09:55:07.103194+00:00"
+          ],
+          [
+            "S46",
+            "11",
+            "2026-10-09T09:51:39.358981+00:00"
+          ],
+          [
+            "S11",
+            "3",
+            "2026-10-09T09:52:15.552680+00:00"
+          ]
+        ],
+        "sql": "SELECT source_id,count(*) AS records,max(observed_at) AS latest_capture FROM optima_source_readiness.source_samples_windows GROUP BY source_id",
+        "state": "SUCCEEDED",
+        "workgroup": "optima-eodhd-research"
+      },
+      "specialist-coverage": {
+        "bytes_scanned": 935734,
+        "columns": [
+          "source",
+          "dataset",
+          "windows"
+        ],
+        "name": "specialist-coverage",
+        "query_id": "baddc6b3-8f41-49d7-98e2-5aa6c6818ac1",
+        "reason": null,
+        "rows": [
+          [
+            "fda_dd_import_refusals",
+            "specialist_inputs",
+            "35"
+          ],
+          [
+            "mlperf_results",
+            "specialist_inputs",
+            "324"
+          ],
+          [
+            "doe_storage_funding",
+            "specialist_inputs",
+            "1"
+          ],
+          [
+            "fda_dd_inspections_citations",
+            "specialist_inputs",
+            "57"
+          ],
+          [
+            "federal_register",
+            "specialist_inputs",
+            "87"
+          ],
+          [
+            "usgs_minerals",
+            "specialist_inputs",
+            "49"
+          ],
+          [
+            "fda_dd_compliance_actions",
+            "specialist_inputs",
+            "56"
+          ],
+          [
+            "nist_robotics_methods",
+            "specialist_inputs",
+            "16"
+          ],
+          [
+            "gleif_legal_entities",
+            "specialist_inputs",
+            "140"
+          ],
+          [
+            "cms_payments_catalog",
+            "specialist_inputs",
+            "13"
+          ],
+          [
+            "cms_coverage_documents",
+            "specialist_inputs",
+            "734"
+          ],
+          [
+            "eia_retail_prices",
+            "specialist_inputs",
+            "104"
+          ],
+          [
+            "ror_institutions",
+            "specialist_inputs",
+            "39"
+          ],
+          [
+            "europe_pmc",
+            "specialist_inputs",
+            "25"
+          ],
+          [
+            "usa_spending",
+            "specialist_inputs",
+            "37"
+          ],
+          [
+            "edinet_filings",
+            "specialist_inputs",
+            "773"
+          ],
+          [
+            "europe_pmc_fulltext",
+            "specialist_inputs",
+            "587"
+          ],
+          [
+            "nih_reporter",
+            "specialist_inputs",
+            "128"
+          ],
+          [
+            "canada_noc",
+            "specialist_inputs",
+            "18"
+          ],
+          [
+            "trade_screening",
+            "specialist_inputs",
+            "10"
+          ],
+          [
+            "doe_storage_program",
+            "specialist_inputs",
+            "10"
+          ],
+          [
+            "eia_generator_index",
+            "specialist_inputs",
+            "10"
+          ],
+          [
+            "trade_screening_enriched",
+            "specialist_inputs",
+            "5"
+          ],
+          [
+            "pubmed_abstracts",
+            "specialist_inputs",
+            "81"
+          ],
+          [
+            "bls_wages",
+            "specialist_inputs",
+            "17"
+          ],
+          [
+            "fda_product_codes",
+            "specialist_inputs",
+            "10"
+          ],
+          [
+            "eia_battery_generators",
+            "specialist_inputs",
+            "66"
+          ],
+          [
+            "un_comtrade",
+            "specialist_inputs",
+            "86"
+          ],
+          [
+            "uspto_assignment_histories",
+            "specialist_inputs",
+            "183"
+          ],
+          [
+            "cms_coverage",
+            "specialist_inputs",
+            "39"
+          ],
+          [
+            "fda_ires_recalls",
+            "specialist_inputs",
+            "19"
+          ],
+          [
+            "drugsfda_applications",
+            "specialist_inputs",
+            "63"
+          ],
+          [
+            "cpsc_recalls",
+            "specialist_inputs",
+            "64"
+          ],
+          [
+            "sec_companyfacts",
+            "specialist_inputs",
+            "92"
+          ],
+          [
+            "doe_storage_benchmarks",
+            "specialist_inputs",
+            "2"
+          ],
+          [
+            "github_sdk",
+            "specialist_inputs",
+            "31"
+          ],
+          [
+            "federal_register_documents",
+            "specialist_inputs",
+            "13"
+          ],
+          [
+            "fda_dd_inspections_classifications",
+            "specialist_inputs",
+            "41"
+          ],
+          [
+            "sam_gov_opportunities",
+            "specialist_inputs",
+            "25"
+          ],
+          [
+            "ted_notices",
+            "specialist_inputs",
+            "75"
+          ],
+          [
+            "doe_storage_documents",
+            "specialist_inputs",
+            "2"
+          ],
+          [
+            "caiso_prices",
+            "specialist_inputs",
+            "72"
+          ],
+          [
+            "ema_medicines",
+            "specialist_inputs",
+            "17"
+          ]
+        ],
+        "sql": "SELECT source,dataset,count(*) AS windows FROM optima_specialist_inputs.source_coverage_windows GROUP BY source,dataset",
+        "state": "SUCCEEDED",
+        "workgroup": "optima-collected-data"
+      },
+      "specialist-observations": {
+        "bytes_scanned": 17316931,
+        "columns": [
+          "source",
+          "dataset",
+          "records",
+          "latest_capture"
+        ],
+        "name": "specialist-observations",
+        "query_id": "b8c8b811-82f3-45f0-8a56-609b0b824dce",
+        "reason": null,
+        "rows": [
+          [
+            "cms_payments_catalog",
+            "specialist_inputs",
+            "520",
+            "2026-11-12T00:04:02.870305Z"
+          ],
+          [
+            "canada_noc",
+            "specialist_inputs",
+            "130340",
+            "2026-11-10T12:59:14.347718Z"
+          ],
+          [
+            "fda_product_codes",
+            "specialist_inputs",
+            "890",
+            "2026-11-12T00:07:34.365184Z"
+          ],
+          [
+            "trade_screening_enriched",
+            "specialist_inputs",
+            "2500",
+            "2026-10-18T11:06:07.615406Z"
+          ],
+          [
+            "caiso_prices",
+            "specialist_inputs",
+            "8640",
+            "2026-10-21T20:24:37.946553Z"
+          ],
+          [
+            "fda_dd_import_refusals",
+            "specialist_inputs",
+            "129515",
+            "2026-11-12T07:50:27.664439Z"
+          ],
+          [
+            "fda_ires_recalls",
+            "specialist_inputs",
+            "4418",
+            "2026-11-12T00:07:24.039659Z"
+          ],
+          [
+            "eia_retail_prices",
+            "specialist_inputs",
+            "77",
+            "2026-10-21T20:29:00.952864Z"
+          ],
+          [
+            "eia_generator_index",
+            "specialist_inputs",
+            "1390",
+            "2026-10-18T02:41:15.611724Z"
+          ],
+          [
+            "europe_pmc",
+            "specialist_inputs",
+            "2932",
+            "2026-10-18T07:53:57.432089Z"
+          ],
+          [
+            "ted_notices",
+            "specialist_inputs",
+            "7776",
+            "2026-11-12T00:24:10.027545Z"
+          ],
+          [
+            "doe_storage_documents",
+            "specialist_inputs",
+            "2",
+            "2026-10-18T11:06:16.807474Z"
+          ],
+          [
+            "edinet_filings",
+            "specialist_inputs",
+            "159155",
+            "2026-10-18T07:03:12.255522Z"
+          ],
+          [
+            "trade_screening",
+            "specialist_inputs",
+            "261282",
+            "2026-10-18T02:43:00.231943Z"
+          ],
+          [
+            "doe_storage_program",
+            "specialist_inputs",
+            "10",
+            "2026-10-18T02:40:45.112640Z"
+          ],
+          [
+            "usa_spending",
+            "specialist_inputs",
+            "808",
+            "2026-11-11T19:31:43.634623Z"
+          ],
+          [
+            "nist_robotics_methods",
+            "specialist_inputs",
+            "16",
+            "2026-11-12T00:24:16.069235Z"
+          ],
+          [
+            "cms_coverage_documents",
+            "specialist_inputs",
+            "734",
+            "2026-11-11T01:25:06.175826Z"
+          ],
+          [
+            "gleif_legal_entities",
+            "specialist_inputs",
+            "140",
+            "2026-10-18T07:54:14.485040Z"
+          ],
+          [
+            "fda_dd_compliance_actions",
+            "specialist_inputs",
+            "37187",
+            "2026-11-12T06:40:07.077487Z"
+          ],
+          [
+            "usgs_minerals",
+            "specialist_inputs",
+            "97",
+            "2026-10-21T18:21:55.396058Z"
+          ],
+          [
+            "sec_companyfacts",
+            "specialist_inputs",
+            "78640",
+            "2026-10-18T07:33:18.866184Z"
+          ],
+          [
+            "doe_storage_benchmarks",
+            "specialist_inputs",
+            "2",
+            "2026-10-18T11:06:21.684175Z"
+          ],
+          [
+            "fda_dd_inspections_classifications",
+            "specialist_inputs",
+            "32379",
+            "2026-10-18T04:57:04.871800Z"
+          ],
+          [
+            "un_comtrade",
+            "specialist_inputs",
+            "52",
+            "2026-10-18T07:33:06.701500Z"
+          ],
+          [
+            "ror_institutions",
+            "specialist_inputs",
+            "55",
+            "2026-10-18T07:53:22.869434Z"
+          ],
+          [
+            "cpsc_recalls",
+            "specialist_inputs",
+            "1423",
+            "2026-10-21T18:13:37.673496Z"
+          ],
+          [
+            "drugsfda_applications",
+            "specialist_inputs",
+            "18250",
+            "2026-10-18T07:33:36.310044Z"
+          ],
+          [
+            "federal_register_documents",
+            "specialist_inputs",
+            "13",
+            "2026-10-18T10:26:40.353641Z"
+          ],
+          [
+            "federal_register",
+            "specialist_inputs",
+            "1161",
+            "2026-10-18T07:54:05.786354Z"
+          ],
+          [
+            "fda_dd_inspections_citations",
+            "specialist_inputs",
+            "22997",
+            "2026-11-12T06:39:57.636522Z"
+          ],
+          [
+            "sam_gov_opportunities",
+            "specialist_inputs",
+            "33005",
+            "2026-10-21T20:25:41.760211Z"
+          ],
+          [
+            "ema_medicines",
+            "specialist_inputs",
+            "31046",
+            "2026-11-10T11:23:42.199096Z"
+          ],
+          [
+            "cms_coverage",
+            "specialist_inputs",
+            "4341",
+            "2026-11-11T00:00:37.291756Z"
+          ],
+          [
+            "eia_battery_generators",
+            "specialist_inputs",
+            "69269",
+            "2026-10-21T20:44:07.742144Z"
+          ],
+          [
+            "europe_pmc_fulltext",
+            "specialist_inputs",
+            "587",
+            "2026-11-10T20:21:14.759482Z"
+          ],
+          [
+            "nih_reporter",
+            "specialist_inputs",
+            "46602",
+            "2026-11-12T00:31:01.407668Z"
+          ],
+          [
+            "mlperf_results",
+            "specialist_inputs",
+            "24016",
+            "2026-10-21T20:27:43.992945Z"
+          ],
+          [
+            "doe_storage_funding",
+            "specialist_inputs",
+            "1",
+            "2026-10-18T11:06:26.798305Z"
+          ],
+          [
+            "pubmed_abstracts",
+            "specialist_inputs",
+            "13702",
+            "2026-11-10T20:03:30.173689Z"
+          ],
+          [
+            "bls_wages",
+            "specialist_inputs",
+            "168",
+            "2026-10-18T02:40:06.400314Z"
+          ],
+          [
+            "github_sdk",
+            "specialist_inputs",
+            "2281",
+            "2026-10-18T07:54:10.099404Z"
+          ],
+          [
+            "uspto_assignment_histories",
+            "specialist_inputs",
+            "126",
+            "2026-11-12T00:19:28.694031Z"
+          ]
+        ],
+        "sql": "SELECT source,dataset,count(*) AS records,max(ingested_at) AS latest_capture FROM optima_specialist_inputs.source_observations_windows GROUP BY source,dataset",
+        "state": "SUCCEEDED",
+        "workgroup": "optima-collected-data"
+      }
+    },
+    "s3_failures": [],
+    "s3_manifests": 16,
+    "s3_objects": 428,
+    "services": 91,
+    "shared_readbacks_passed": 101
+  },
+  "errors": [],
+  "jobs": {
+    "optima-authenticated-daily.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 8444.511570266914,
+      "progress": {
+        "last_verified_at": "2026-11-12T10:59:27Z",
+        "pending": true,
+        "token": "da97913c70926bd97e401c95db2da7b8a77288ee95d4522c686392de90381181"
+      },
+      "result": "success",
+      "successful_execution_at": "2026-11-12T10:59:13.268527Z",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-authenticated-historical.service": {
+      "issues": [],
+      "operator_paused": {
+        "reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
+      },
+      "progress": {
+        "pending": false
+      }
+    },
+    "optima-chictr-daily.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [],
+      "exit_status": 2,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 10633.656548019964,
+      "progress": {
+        "last_verified_at": "2026-11-12T10:31:34Z",
+        "pending": true,
+        "token": "b6671ae88caf997a1c9fdb212e9d64e1e5899b1256c682af820de4847a8c70c0"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-cms-catalog-publication.service": {
+      "activity": "queued",
+      "activity_seconds": 682.6863529358961,
+      "evidence_keys": [],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-aux-cms-catalog-publication.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 682.31509732618,
+      "progress": {
+        "last_verified_at": null,
+        "pending": false,
+        "token": null
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-cms-coverage-publication.service": {
+      "activity": "queued",
+      "activity_seconds": 455.8028423768992,
+      "evidence_keys": [],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-aux-cms-coverage-publication.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 455.7482588579878,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:27:56.654312Z",
+        "pending": true,
+        "token": "931785a6568a967c1c72f084a1c37353cfb4787ca9a434c2cb9b8dce5611f93a"
+      },
+      "publication_backlog": {
+        "specialists": 20872
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-cms-financial-resumed.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [
+        "cms-financial/status.json",
+        "constellation-backfill/cms-payments/verification/latest.json"
+      ],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-cms-financial-resumed.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 356.9263616250828,
+      "progress": {
+        "last_verified_at": "2026-11-12T09:02:54Z",
+        "pending": false,
+        "token": "f880ffc0b3139a19564c930f87105d1ce8262fc1f8eb135bd9c4af34880d60fd"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-collection-daily.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/sec/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/clinicaltrials/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/fda/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/ema/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/uk/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/japan/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/hkex-filings/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/documents/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/press-releases/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/licensing-agreements/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/ma-announcements/progress-2026-09-21.json",
+        "operations/streams/656fe06ba4c7d922ad513e4d7f0c104eff4ddcf51cc5ec9f22bfa1afc46c2406/daily/strategic-transactions/progress-2026-09-21.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/sec/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/clinicaltrials/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/fda/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/ema/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/uk/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/japan/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/hkex-filings/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/documents/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/press-releases/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/licensing-agreements/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/ma-announcements/progress-2026-09-24.json",
+        "operations/streams/8bd2ae6e8d00cd017a01f252b4008b1fb07510eb1eb77fae653a6fee4aed022a/daily/strategic-transactions/progress-2026-09-24.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/sec/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/clinicaltrials/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/fda/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/ema/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/uk/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/japan/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/hkex-filings/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/documents/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/press-releases/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/licensing-agreements/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/ma-announcements/progress-2026-09-25.json",
+        "operations/streams/935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f/daily/strategic-transactions/progress-2026-09-25.json"
+      ],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-aux-collection-daily.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [
+        {
+          "at": "2026-11-12T11:21:12.598067Z",
+          "code": "prerequisite_incomplete",
+          "detail": "prerequisite_incomplete",
+          "severity": "low"
+        }
+      ],
+      "last_start_age_seconds": 4263.423285032157,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:21:11Z",
+        "pending": true,
+        "token": "b3c9eeca96c9f65356c999701e1c8ae1d25a4cb0a14e821ae282d95e9cfce990"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-committed-athena.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [
+        "athena-committed/latest-report.json"
+      ],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-committed-athena.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 6987.741917338921,
+      "progress": {
+        "last_verified_at": "2026-11-12T10:43:09Z",
+        "pending": false,
+        "token": "735f50e64470e7aaab200f1034a8a25679c5bb2dd6974a84a6e515b4363f345e"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-conference-collection.service": {
+      "issues": [],
+      "operator_paused": {
+        "reason": "Replaced by bounded worker optima-crossref-resumed.service; daily/history receipts and checkpoints: constellation-backfill/conferences-resumed/. Source remains enabled."
+      },
+      "progress": {
+        "pending": false
+      }
+    },
+    "optima-conference-publication.service": {
+      "issues": [],
+      "operator_paused": {
+        "reason": "Replaced by local optima-crossref-publication-resumed.service, monitored separately; verified publication queues and data retained."
+      },
+      "progress": {
+        "pending": false
+      }
+    },
+    "optima-core-historical.service": {
+      "issues": [],
+      "operator_paused": {
+        "reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
+      },
+      "progress": {
+        "pending": false
+      }
+    },
+    "optima-crossref-publication-resumed.service": {
+      "activity": "queued",
+      "activity_seconds": 424.15135726789595,
+      "evidence_keys": [],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-aux-crossref-publication-resumed.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 424.0273399851285,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:25:07.610842Z",
+        "pending": true,
+        "token": "e8f5f1faaae63a6c8efa42f37bc2db3a29834b61a351ea525633a0575eef63ee"
+      },
+      "publication_backlog": {
+        "conferences": 747
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-daily-health-audit.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 2053.0620360269677,
+      "progress": {
+        "last_verified_at": null,
+        "pending": false,
+        "token": null
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-eodhd-profiles.service": {
+      "activity": "queued",
+      "activity_seconds": 1730.1087997001596,
+      "evidence_keys": [],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 1730.1865920710843,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:03:25.821523Z",
+        "pending": false,
+        "token": "6c59b0fa1bdaa7fddf60ef0fa1a03987879807abb57cddeb3f6adb4ed4dd4d72"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-fda-product-codes-capture.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 11.5464662599843,
+      "progress": {
+        "last_verified_at": "2026-11-12T00:07:34.968421Z",
+        "pending": false,
+        "token": "ed4489352989050d7ffe0c3fb54976d243737fc9dd4013a88a0aa5c2f4445692"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-fda-reviewed-publication.service": {
+      "activity": "queued",
+      "activity_seconds": 457.9282420699019,
+      "evidence_keys": [],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-aux-fda-reviewed-publication.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 457.5226443859283,
+      "progress": {
+        "last_verified_at": null,
+        "pending": false,
+        "token": null
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-market-collection.service": {
+      "activity": "queued",
+      "activity_seconds": 1339.5145992729813,
+      "coverage_resolutions": {},
+      "coverage_review": {
+        "excluded_windows": 52,
+        "registry_keys": [
+          "operations/market/automation/73d86afe67f4dc0c545538c8917092c07b4bedb8f92bc1cdb4334e66c029f886/coverage-exclusions.json"
+        ],
+        "unresolved_symbols_across_lanes": 377,
+        "unresolved_symbols_by_lane": {
+          "daily": 175,
+          "historical": 202
+        }
+      },
+      "evidence_keys": [
+        "operations/market/automation/73d86afe67f4dc0c545538c8917092c07b4bedb8f92bc1cdb4334e66c029f886/daily.json",
+        "operations/market/automation/73d86afe67f4dc0c545538c8917092c07b4bedb8f92bc1cdb4334e66c029f886/historical.json"
+      ],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [
+        {
+          "at": "2026-11-12T11:09:57.150542Z",
+          "code": "unresolved_market_coverage",
+          "detail": "Unresolved coverage: daily: 175 symbols; historical: 202 symbols. 52 windows excluded with reviewed evidence.",
+          "severity": "low"
+        },
+        {
+          "at": "2026-10-21T22:05:04Z",
+          "code": "market_empty_price_window_unverified",
+          "detail": "Empty price windows remain unverified outside the 52 reviewed window exclusions.",
+          "severity": "low"
+        }
+      ],
+      "last_start_age_seconds": 1339.7670684070326,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:09:35.042428Z",
+        "pending": true,
+        "token": "57ffed0ba05057f692ab3e7630b896442fba7f8e2cfa69c7fc66c99dd827587a"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-market-publication.service": {
+      "activity": "queued",
+      "activity_seconds": 477.70216025989794,
+      "evidence_keys": [],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-aux-market-publication.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 477.513287713984,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:20:10.333458Z",
+        "pending": true,
+        "token": "4eaa1e16475bf84e37177e4d476a04c076f777b1b005cf1c68187175dea16ff9"
+      },
+      "publication_backlog": {
+        "market": 280
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-news-collection.service": {
+      "activity": "queued",
+      "activity_seconds": 252.62059940001927,
+      "evidence_keys": [
+        "operations/news/automation/4c4eae3c5cc353c83c299b3080b1c54dd90b8dbc541e1929abca34a2a8870b63/finlight/daily.json",
+        "operations/news/automation/4c4eae3c5cc353c83c299b3080b1c54dd90b8dbc541e1929abca34a2a8870b63/finlight/reconcile.json"
+      ],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 252.69806838897057,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:27:57Z",
+        "pending": true,
+        "token": "e10a3c38ad53eb4453fab723d4e9109dee46bea3b9b94a37b60129caa4cd03ea"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-news-publication.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-aux-news-publication.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 2037.692232975969,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:29:41.974550Z",
+        "pending": true,
+        "token": "1b9cbb80f6bf2bc306049777f2a2eef3f6c5f3108670a7b5f6ea3d68f96bb832"
+      },
+      "publication_backlog": {
+        "news": 108
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-nmpa-inventory.service": {
+      "issues": [],
+      "operator_paused": {
+        "reason": "Obsolete controller capture remains disabled; bounded inventory/details now run as optima-nmpa-resumed-{inventory,details}.service on the worker. Receipts: constellation-backfill/legacy-operation-receipts/nmpa-resumed/."
+      },
+      "progress": {
+        "pending": false
+      }
+    },
+    "optima-patents-backfill.service": {
+      "issues": [],
+      "operator_paused": {
+        "reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
+      },
+      "progress": {
+        "pending": false
+      }
+    },
+    "optima-patents-daily.service": {
+      "activity": "running",
+      "activity_seconds": 253.38846816704609,
+      "evidence_keys": [
+        "operations/patents/streams/44665aa249c9c9b77ac9bc129346baee12b1e557fec48d470205e81fb9ea9099/daily/uspto/progress-2026-09-22.json"
+      ],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [
+        {
+          "at": "2026-11-12T10:56:48Z",
+          "code": "source_changed_refresh_required",
+          "detail": "source_changed_refresh_required",
+          "severity": "low"
+        }
+      ],
+      "last_start_age_seconds": 2131.4763145421166,
+      "progress": {
+        "last_verified_at": "2026-11-11T22:51:31Z",
+        "pending": true,
+        "token": "1d4381df3b3d49bb6c05270056d4744ebd6b677ad6efb2930641adb6b56a0611"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-patents-global-monitor.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [
+        "operations/patents/global-source/latest-observation.json"
+      ],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 8436.340097612003,
+      "progress": {
+        "last_verified_at": "2026-11-12T10:58:34.372274Z",
+        "pending": false,
+        "token": "bacbf4e72653b8d07f4dd9a750c524cbd2534805111c89b0dfc050ac4ce4ad95"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-patents-prosecution-publication.service": {
+      "activity": "queued",
+      "activity_seconds": 81.49516331290215,
+      "evidence_keys": [],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-aux-patents-prosecution-publication.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 81.00460551306605,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:06:26.820700Z",
+        "pending": true,
+        "token": "305274a4069519a9b2e0c38a3e0edbb223e8e41c0dfe827db5d8fd1c9bccfa73"
+      },
+      "publication_backlog": {
+        "patent_office_actions": 0,
+        "patent_petition_decisions": 2
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-patents-prosecution.service": {
+      "activity": "queued",
+      "activity_seconds": 2108.0422188770026,
+      "document_exceptions": [
+        {
+          "application_number": "16545140",
+          "authorization": "Account owner explicitly requested exception and continuation.",
+          "authorized_on": "2026-10-23",
+          "dataset": "patent_office_actions",
+          "endpoint": "https://api.uspto.gov/api/v1/patent/applications/16545140/documents",
+          "observed_failure": "HTTP 403 on 2026-10-21 around 21:20 UTC",
+          "reason": "owner_accepted_document_access_gap",
+          "recovery_manifest": "manifests/collection_runs/source=uspto_odp/dataset=patent_office_actions/run_9ee485db-ed80-45af-b6fa-a8d2f7a97eef/final.json",
+          "scope": "Skip document-list/PDF retrieval only; retain available office-action index metadata. Not evidence that documents do not exist.",
+          "status": "active"
+        },
+        {
+          "application_number": "35526479",
+          "authorization": "Owner explicitly requested: Skip document MMOWZII4X158X88.",
+          "authorized_on": "2026-11-09",
+          "dataset": "patent_office_actions",
+          "endpoint": "https://api.uspto.gov/api/v1/download/applications/35526479/MMOWZII4X158X88.pdf",
+          "observed_failure": "Exact document missing from successful document listing; direct download returned HTTP 403 on 2026-11-09 around 12:50 UTC.",
+          "official_document_id": "MMOWZII4X158X88",
+          "reason": "owner_accepted_document_access_gap",
+          "scope": "Skip only this exact original document. Retain office-action metadata and source text; do not assert PDF coverage or document nonexistence.",
+          "status": "active"
+        }
+      ],
+      "evidence_keys": [],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 2108.1142277158797,
+      "progress": {
+        "last_verified_at": "2026-11-12T10:57:29Z",
+        "pending": true,
+        "token": "a2a98220a7aa4cd1308737b3e35633cfd3cfea074ef3a80fa5518895f235b418"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-patents-publication.service": {
+      "issues": [],
+      "operator_paused": {
+        "reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
+      },
+      "progress": {
+        "pending": false
+      }
+    },
+    "optima-people-collection.service": {
+      "activity": "queued",
+      "activity_seconds": 287.989853316918,
+      "evidence_keys": [],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 288.078870837111,
+      "progress": {
+        "last_verified_at": "2026-11-12T10:53:13.348237Z",
+        "pending": false,
+        "token": "8e5fb7ec13a1453350255afb7d215c4ffd3f836bfa36f8cdb31b94735c50338c"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-reddit-collection.service": {
+      "issues": [],
+      "operator_paused": {
+        "reason": "Paused at account owner request",
+        "source": "reddit"
+      },
+      "progress": {
+        "pending": false
+      }
+    },
+    "optima-research-publication.service": {
+      "activity": "running",
+      "activity_seconds": 1488.277713101903,
+      "evidence_keys": [],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-research-publication.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 1487.672631961992,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:06:06.401232Z",
+        "pending": true,
+        "token": "631360ff28548cbba15a61dde05e122a47c3ffe9c72b86192c0d99daf26d305d"
+      },
+      "publication_backlog": {
+        "disclosures": 3034,
+        "eodhd": 0,
+        "people": 2056,
+        "regulatory": 14332,
+        "sec": 455
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-search-capture.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [],
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 523864.14367217105,
+      "progress": {
+        "last_verified_at": "2026-11-06T14:13:48.417097+00:00",
+        "pending": false,
+        "token": "11c35be940896ce1b8f645091b9c5fdb932591d20ba4ca4f7b5b8b77a406813e"
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-social-daily.service": {
+      "issues": [],
+      "operator_paused": {
+        "reason": "Paused at account owner request",
+        "source": "bluesky_search"
+      },
+      "progress": {
+        "pending": false
+      }
+    },
+    "optima-specialist-daily.service": {
+      "activity": "idle",
+      "activity_seconds": 0,
+      "evidence_keys": [],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-specialist-daily.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 288.6738954060711,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:31:46Z",
+        "pending": false,
+        "token": "a9e7c0a8fa96d599474f3dec7d07706d2d48529bf7374f85d2bdb05121af0aa8"
+      },
+      "result": "success",
+      "successful_execution_at": "2026-11-12T11:27:59.511641Z",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    },
+    "optima-specialist-historical.service": {
+      "issues": [],
+      "operator_paused": {
+        "reason": "Controller capture remains paused during historical rollout; validated c7i routes are reported separately."
+      },
+      "progress": {
+        "pending": false
+      }
+    },
+    "optima-specialist-publication.service": {
+      "activity": "running",
+      "activity_seconds": 148.51874709290132,
+      "evidence_keys": [],
+      "execution_host": {
+        "instance_id": "i-06241bd1c4e91c2fc",
+        "unit": "optima-m7-aux-specialist-publication.service"
+      },
+      "exit_status": 0,
+      "failure_events": [],
+      "issues": [],
+      "last_start_age_seconds": 687.5225718428846,
+      "progress": {
+        "last_verified_at": "2026-11-12T11:27:56.654312Z",
+        "pending": true,
+        "token": "931785a6568a967c1c72f084a1c37353cfb4787ca9a434c2cb9b8dce5611f93a"
+      },
+      "publication_backlog": {
+        "specialists": 20872
+      },
+      "result": "success",
+      "timer_enabled": "enabled",
+      "timer_state": "active"
+    }
+  },
+  "pipeline_stages": {
+    "event_pipelines": {
+      "jobs": {},
+      "label": "Event pipelines",
+      "receipts": [],
+      "status": "awaiting_setup"
+    },
+    "hmm": {
+      "jobs": {},
+      "label": "HMM",
+      "receipts": [],
+      "status": "awaiting_setup"
+    },
+    "specialist_models": {
+      "jobs": {},
+      "label": "Specialist layer models",
+      "receipts": [],
+      "status": "awaiting_setup"
+    },
+    "tft_testing": {
+      "jobs": {},
+      "label": "TFT testing",
+      "receipts": [],
+      "status": "awaiting_setup"
+    },
+    "tft_training": {
+      "jobs": {},
+      "label": "TFT training",
+      "receipts": [],
+      "status": "awaiting_setup"
+    }
+  },
+  "schema_version": 1
+}

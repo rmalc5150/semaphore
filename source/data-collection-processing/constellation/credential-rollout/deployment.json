@@ -1,0 +1,49 @@
+{
+  "command_id": "ecf1a464-14da-4c75-8d67-3beed06379e3",
+  "files": {
+    "additional_source_apis.py": {
+      "key": "research-data/constellation-backfill/deployments/credential-rollout-13344c1c4c312c8c57a482dd54cc856f58983eda2d71d1f4ae2c2be67c5e8f33/additional_source_apis.py",
+      "sha256": "13344c1c4c312c8c57a482dd54cc856f58983eda2d71d1f4ae2c2be67c5e8f33"
+    },
+    "additional_source_plan.py": {
+      "key": "research-data/constellation-backfill/deployments/credential-rollout-ed526c88ae11884ae6d0081cdea2ec381f14470cffef6a8c9abbb1c86285bc4a/additional_source_plan.py",
+      "sha256": "ed526c88ae11884ae6d0081cdea2ec381f14470cffef6a8c9abbb1c86285bc4a"
+    },
+    "specialist_inputs.py": {
+      "key": "research-data/constellation-backfill/deployments/credential-rollout-3ee4638a8ba1da4c3ba22886359fe48105b358b1de7eb56967921361642d3bc7/specialist_inputs.py",
+      "sha256": "3ee4638a8ba1da4c3ba22886359fe48105b358b1de7eb56967921361642d3bc7"
+    },
+    "specialist_plan.py": {
+      "key": "research-data/constellation-backfill/deployments/credential-rollout-307a2aa6394488d41753e08319c39cca2f43f79d8958223ef2dae840bba02aa7/specialist_plan.py",
+      "sha256": "307a2aa6394488d41753e08319c39cca2f43f79d8958223ef2dae840bba02aa7"
+    },
+    "credential_source_apis.py": {
+      "key": "research-data/constellation-backfill/deployments/credential-rollout-9beb23097eef6e6a607b58068be4db54b18c0d54d28cba968dc2ce5e57193c7d/credential_source_apis.py",
+      "sha256": "9beb23097eef6e6a607b58068be4db54b18c0d54d28cba968dc2ce5e57193c7d"
+    },
+    "copernicus_capture.py": {
+      "key": "research-data/constellation-backfill/deployments/credential-rollout-8dbe6ff5d764df80da599867474814f76347b62e0cbc8dc170f21c938545ed5e/copernicus_capture.py",
+      "sha256": "8dbe6ff5d764df80da599867474814f76347b62e0cbc8dc170f21c938545ed5e"
+    },
+    "config/constellation-specialist-historical.json": {
+      "key": "research-data/constellation-backfill/deployments/credential-rollout-2283dfc58978866c16892d31c375967a4e58aff393a34ec382ea80b3656bb7eb/config/constellation-specialist-historical.json",
+      "sha256": "2283dfc58978866c16892d31c375967a4e58aff393a34ec382ea80b3656bb7eb"
+    },
+    "config/constellation-legacy-routes.json": {
+      "key": "research-data/constellation-backfill/deployments/credential-rollout-77256cc4e892683794b3aacb61d285a132a0a5e89c5090641ee36cd31b7c0a28/config/constellation-legacy-routes.json",
+      "sha256": "77256cc4e892683794b3aacb61d285a132a0a5e89c5090641ee36cd31b7c0a28"
+    }
+  },
+  "units": [
+    "constellation-specialist-un_comtrade.service",
+    "constellation-specialist-ember_electricity_demand_and_generation.service",
+    "constellation-specialist-wto_timeseries_api.service",
+    "constellation-specialist-wto_quantitative_restrictions_api.service",
+    "constellation-specialist-wto_eping_sps_tbt_notifications.service",
+    "constellation-specialist-copernicus_era5_era5_land.service",
+    "constellation-specialist-us_census_international_trade_api.service",
+    "constellation-specialist-usda_fas_production_supply_and_distribution.service",
+    "constellation-specialist-fred_alfred_series_and_vintages.service",
+    "constellation-specialist-south_korea_fss_opendart.service"
+  ]
+}

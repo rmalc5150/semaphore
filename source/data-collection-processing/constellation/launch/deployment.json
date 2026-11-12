@@ -1,0 +1,21 @@
+{
+  "command_id": "bb8e3e35-7f80-401c-b88a-a93e77a09294",
+  "files": {
+    "constellation/control.py": "5aa28927917c8fd06eb7c5f60ec346301de7b4cfec227d3e2c02b22490cbde2e",
+    "constellation/worker.py": "491bed8d3fd349cdf37b76680637fedb8de1f3e23912f31293682a5a8a5668db",
+    "constellation/legacy_worker.py": "e615bb05aa20d9c04357e9a4361bd250f1e8f43bd66905e7831d0a625189096f",
+    "constellation/constellation-backfill@.service": "ffb5c3bf5406f218636f73a54de9ff37b8b724f65f87afa7824cdb63d7dcc7f1",
+    "constellation/constellation-legacy-worker@.service": "d2e6e140d4e001e5ced8899b81506b42d2321024beb0a91346e115fa8dd52ef5",
+    "constellation/constellation-workers.slice": "0bccb780d95b16180347b6eb5c88729d6faca0a8928bf775d96cd11754209532",
+    "config/constellation-legacy-routes.json": "c83a7dbd39dc74aec877b4fee01632ea5022b9a55a6216baff966db09a7f4bc3",
+    "config/constellation-core-public.json": "626f365b7142b9bfed26dd5dd749e3032e5e1cff5c65c268047f67e3af0aa012",
+    "config/constellation-additional-credentials.json": "7cd6cdbd338b152d8d38205795aae4f858398d90cd8962d15acd848fb73b63d0",
+    "collection_operations.py": "e899ba8b29f1af06872e5ac54dcb6d15c4be2390b1fdfdd9931370eb087afea4"
+  },
+  "pool": {
+    "raw_workers": 4,
+    "legacy_workers": 4,
+    "cpu_capacity": 16,
+    "aggregate_memory_max_gib": 28
+  }
+}

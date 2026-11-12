@@ -1,0 +1,15 @@
+[
+  "research-data/operations/specialists/*",
+  "research-data/operations/conferences/*",
+  "research-data/operations/market/*",
+  "research-data/operations/news/*",
+  "research-data/constellation-backfill/specialist-publication-queue/*",
+  "research-data/curated/specialists/releases/*",
+  "research-data/curated/conferences/releases/*",
+  "research-data/curated/market/releases/*",
+  "research-data/curated/news/releases/*",
+  "research-data/athena-results/specialists/*",
+  "research-data/athena-results/conferences/*",
+  "research-data/athena-results/market/*",
+  "research-data/athena-results/news/*"
+]

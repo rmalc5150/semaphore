@@ -1,0 +1,109 @@
+[
+  {
+    "entry": 66,
+    "source": "fred_alfred_series_and_vintages",
+    "adapter": "fred",
+    "scope_note": "Selected macroeconomic series with all available ALFRED realtime intervals since 2016, fixed realtime cutoff; observation periods and vintage intervals are distinct. Initial scope is the configured series list, not the full FRED catalog.",
+    "daily_enabled": true
+  },
+  {
+    "entry": 76,
+    "source": "nasa_power_weather_and_solar_resource",
+    "adapter": "nasa",
+    "scope_note": "Daily temperature, corrected precipitation and solar radiation for eight named regional reference locations. Current reanalysis retrieval, not original forecast vintages or plant-specific exposure."
+  },
+  {
+    "entry": 98,
+    "source": "south_korea_fss_opendart",
+    "adapter": "dart",
+    "scope_note": "All-company monthly filing index including corrections, date and receipt identifiers since 2016; original report downloads and financial-statement extraction are separate.",
+    "daily_enabled": true
+  },
+  {
+    "entry": 143,
+    "source": "datacite_dissertations_datasets_software_and_usage",
+    "adapter": "datacite",
+    "scope_note": "DOI metadata for dataset, software and dissertation resource-type filters, partitioned by DOI creation month; publication dates, usage and revisions remain distinct; no linked content downloaded."
+  },
+  {
+    "entry": 145,
+    "source": "biorxiv_medrxiv_preprints",
+    "adapter": "biorxiv",
+    "scope_note": "bioRxiv and medRxiv preprint metadata by posting month and version; initial dates before service operation can have empty queries, not proof of historical public availability. No article bodies are downloaded."
+  },
+  {
+    "entry": 147,
+    "source": "zenodo_research_artifacts_and_usage",
+    "adapter": "zenodo",
+    "scope_note": "Public research artifact metadata by publication month, preserving source precision and identifiers. Ten-thousand-result scopes remain blocked for splitting; files and usage vintages are separate."
+  },
+  {
+    "entry": 156,
+    "source": "hugging_face_hub_models_and_datasets",
+    "adapter": "huggingface",
+    "scope_note": "Public model and dataset repository metadata sorted by creation, with dated and undated source fields retained. Current metadata only; no gated content, model weights or private repositories are downloaded."
+  },
+  {
+    "entry": 74,
+    "source": "epo_ops_patent_legal_events",
+    "adapter": "epo",
+    "daily_enabled": true,
+    "scope_note": "Applicant-name and existing-alias candidate discovery for the enabled company universe, including pre-2016 patents; current INPADOC legal histories retain gazette dates since 2016 and undated events. Gazette, effective, created and exchanged dates remain distinct. Applicant links are unreviewed; aliases/subsidiaries and provider omissions can leave gaps. This is not original historical vintages or a calendar-completeness certification. Daily discovery overlaps seven days; known patents rotate through bounded refresh shards."
+  },
+  {
+    "entry": 51,
+    "source": "un_comtrade",
+    "adapter": "comtrade",
+    "daily_enabled": true,
+    "scope_note": "Keyed annual imports and exports for the existing five reporters and four battery/mineral HS6 commodities; world partner totals. Initial scope, not all trade flows."
+  },
+  {
+    "entry": 70,
+    "source": "ember_electricity_demand_and_generation",
+    "adapter": "ember",
+    "daily_enabled": true,
+    "scope_note": "All available geography rows for monthly electricity generation and demand, since 2016; current released data, Ember CC-BY-4.0. Missing months are not inferred as zeros."
+  },
+  {
+    "entry": 71,
+    "source": "wto_timeseries_api",
+    "adapter": "wto_timeseries",
+    "daily_enabled": true,
+    "scope_note": "All currently catalogued indicators, all reporting economies, provider default partner/product scopes, by year since 2016; current vintages and explicit pagination. Not all bilateral/product combinations."
+  },
+  {
+    "entry": 72,
+    "source": "wto_quantitative_restrictions_api",
+    "adapter": "wto_qr",
+    "daily_enabled": true,
+    "scope_note": "Notifications submitted since 2016 and restriction records entering into force since 2016. Current records, not historical database snapshots or a complete inventory of older restrictions still in force."
+  },
+  {
+    "entry": 73,
+    "source": "wto_eping_sps_tbt_notifications",
+    "adapter": "wto_eping",
+    "daily_enabled": true,
+    "scope_note": "English SPS/TBT notification metadata, all notifying members, distribution-date partitions since 2016; includes addenda and revisions, no attached document downloads."
+  },
+  {
+    "entry": 75,
+    "source": "copernicus_era5_era5_land",
+    "adapter": "copernicus",
+    "daily_enabled": true,
+    "scope_note": "ERA5 and ERA5-Land hourly 2m temperature and precipitation, eight named regional reference cells since 2016. Raw NetCDF archives with checksums; structured weather extraction pending. Current reanalysis, not original forecast vintages. Dataset licence acceptance required."
+  },
+  {
+    "entry": 118,
+    "source": "us_census_international_trade_api",
+    "adapter": "census",
+    "daily_enabled": true,
+    "scope_note": "Monthly US imports and exports for TOTAL and four battery/mineral HS6 commodities across all partner codes since 2016; current releases, not original vintages. Country totals and commodity totals remain distinct."
+  },
+  {
+    "entry": 125,
+    "source": "usda_fas_production_supply_and_distribution",
+    "adapter": "usda",
+    "daily_enabled": true,
+    "scope_note": "Current PSD forecasts/estimates for corn, wheat, rice, soybeans and cotton, all countries, market years since 2016. Market year differs from release date; historical forecast vintages not supplied by this route."
+  }
+]

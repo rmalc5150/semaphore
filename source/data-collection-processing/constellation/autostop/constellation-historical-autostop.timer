@@ -1,0 +1,11 @@
+[Unit]
+Description=Check historical worker completion every five minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+Persistent=true
+Unit=constellation-historical-autostop.service
+
+[Install]
+WantedBy=timers.target

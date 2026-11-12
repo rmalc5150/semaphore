@@ -1,5 +1,5 @@
 {
-  "start": "2021-01-01",
+  "start": "2016-01-01",
   "end_exclusive": "2026-10-16",
   "storage_config": "config/collection-storage.s3.json",
   "max_articles_per_invocation": 10,
@@ -14,5 +14,6 @@
   "email_label": "S15 RSS articles and personnel archive",
   "date_basis": "snapshot_ingestion",
   "snapshot_start": "2021-01-01T00:00:00Z",
-  "snapshot_cutoff": "2026-10-15T13:08:03.021625Z"
+  "snapshot_cutoff": "2026-10-15T13:08:03.021625Z",
+  "content_pipeline_version": "people-rss-fulltext-2.0"
 }

@@ -1,0 +1,31 @@
+{
+  "prices": [
+    {
+      "instance": "m7i.xlarge",
+      "usd_per_hour": "0.2016000000",
+      "usd_730_hours": 147.168
+    },
+    {
+      "instance": "c7i.xlarge",
+      "usd_per_hour": "0.1785000000",
+      "usd_730_hours": 130.305
+    },
+    {
+      "instance": "m7i.large",
+      "usd_per_hour": "0.1008000000",
+      "usd_730_hours": 73.584
+    },
+    {
+      "instance": "t3.large",
+      "usd_per_hour": "0.0832000000",
+      "usd_730_hours": 60.736
+    }
+  ],
+  "command_id": "fe236a96-eae1-4787-8b9e-9f8378d9f072",
+  "worker_observation": {
+    "memory_current_gib": 2.3022918701171875,
+    "memory_peak_gib": 2.74542236328125,
+    "memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+    "cpu_stat": "usage_usec 432220723\nuser_usec 410913856\nsystem_usec 21306867\nnice_usec 71036370\ncore_sched.force_idle_usec 0\nnr_periods 4215\nnr_throttled 2\nthrottled_usec 7449\nnr_bursts 0\nburst_usec 0\n"
+  }
+}

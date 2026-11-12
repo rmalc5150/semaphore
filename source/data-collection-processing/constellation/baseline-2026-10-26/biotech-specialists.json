@@ -1,0 +1,82 @@
+{
+  "version": "biotech-specialists-1.0",
+  "status": "rubrics_defined_not_yet_validated_models",
+  "prediction_date_floor": "2021-01-01",
+  "score_scale": {"0": "Strong evidence of serious weakness", "1": "Material weaknesses outweigh support", "2": "Mixed or limited decision-relevant support", "3": "Strong support with bounded limitations", "4": "Strong independent, relevant and reproducible support"},
+  "missing_evidence": "unknown; null score; never zero or inferred disapproval",
+  "aggregation": "No overall score until weights and calibration are validated; report dimension scores and evidence coverage separately.",
+  "specialists": [
+    {
+      "id": "comparator_credibility",
+      "name": "Comparator Credibility",
+      "question": "How credible and decision-relevant is the benchmark used to support claims about a product's clinical, scientific, or commercial performance?",
+      "unit": ["product_id", "indication", "claim_id", "comparator_id", "as_of_date"],
+      "dimensions": [
+        {"id": "standard_of_care", "assess": "Relevance to population, treatment line, biomarker, geography and clinical or buyer decision", "evidence": "Dated guidelines, regulator precedents, payer policies, pivotal trials and credible utilization data", "penalize": "Obsolete, weak, geographically irrelevant, cherry-picked or straw-man benchmarks; supportive care when an active standard exists"},
+        {"id": "design_strength", "assess": "Randomization, prospective controls, prespecification, blinding and protection against selection or measurement bias", "evidence": "Active-control trials, allocation concealment, stratification, blinded central review, analysis plans and regulator-agreed designs", "penalize": "Unadjusted cross-trial claims, post-hoc external controls, single-arm comparative proof, non-concurrent controls and undocumented choices"},
+        {"id": "population_and_statistics", "assess": "Population comparability, sample and event counts, precision, uncertainty, multiplicity and statistical integrity", "evidence": "Eligibility alignment, baseline balance, overlap diagnostics, subgroup justification, confidence intervals, sensitivity analyses, missing-data handling and robust errors", "penalize": "Different lines, responder enrichment, healthier patients, incompatible biomarkers, prior-therapy imbalance, poor common support, nominal multiple-look p-values, underpowered subgroups, hidden wide intervals, inappropriate pooling and outcome-selected models"},
+        {"id": "endpoint_alignment", "assess": "Same clinical question, endpoint definition, timing, adjudication, censoring and estimand", "evidence": "Matched response criteria, assessment schedules, follow-up, clinically important differences and absolute effects", "penalize": "Surrogate substitution, investigator/central-review mismatch, incompatible censoring, selective timepoints, relative-only effects and endpoint switching"},
+        {"id": "maturity", "assess": "Events and follow-up sufficient for survival, durability and safety claims", "evidence": "Event fraction, follow-up, numbers at risk, intervals, proportional-hazards checks, durability curves, late toxicity and successive data cuts", "penalize": "Immature tails, unstable estimates, informative censoring, tiny risk sets and updated company data compared with stale benchmarks"},
+        {"id": "reproducibility", "assess": "Era, geography, care setting, diagnostic capability, access, transparency, independence and reproducibility", "evidence": "Concurrent controls or aligned dates; countries, subsequent therapy, crossover, background care and practice mix; regulatory reviews, full reports, protocols, independent datasets, disclosed methods/code and replication", "penalize": "Unmodeled practice changes, regional care differences, pandemic effects, tertiary-center generalization, investor-deck-only evidence, hand-picked literature, inaccessible cohorts, unvalidated sponsor abstraction, duplicate datasets and undisclosed conflicts"},
+        {"id": "materiality", "assess": "Clinical, regulatory, reimbursement and adoption relevance of the difference", "evidence": "Absolute benefit, NNT/NNH, quality of life, toxicity, convenience, discontinuation, resource use, total cost and prespecified margins", "penalize": "Statistical significance without clinical importance, benefit offset by toxicity or burden, price-only comparisons and mismatch to intended label or buyer"}
+      ]
+    },
+    {
+      "id": "western_validation",
+      "name": "Western Validation",
+      "question": "To what extent has a product or platform been independently validated by credible Western institutions with real scientific, regulatory, clinical, or commercial commitment?",
+      "unit": ["product_id", "indication", "target_market", "as_of_date"],
+      "interpretation": "Report named institution and jurisdiction. Western geography is the user's target-market lens, not evidence of intrinsic scientific superiority. Do not infer commitment from a logo or filing status alone.",
+      "dimensions": [
+        {"id": "counterparty", "assess": "Institution reputation, domain fit, standing and independence", "evidence": "Named regulators, academic centers, biopharma, independent journals, payers and health systems with indication expertise", "penalize": "Affiliates, paid advisers, distributor-only ties, unverifiable logos and undisclosed conflicts"},
+        {"id": "commitment", "assess": "Cost, selectivity and reversibility of the action", "evidence": "Executed licenses/options, investment, sponsorship, co-development, procurement, named grants, accepted filings, activated sites and independent replication funding", "penalize": "Non-binding MOUs, exploratory meetings, generic collaboration language, attendance and company-funded endorsements; distinguish filing acceptance from approval"},
+        {"id": "independence", "assess": "Validation independent of solely company-controlled data or analysis", "evidence": "External replication/labs, peer review, regulator inspection, external protocol ownership and multi-institution consistency", "penalize": "Circular citations, reused datasets, sponsored content presented as independent and unverifiable single sources"},
+        {"id": "relevance", "assess": "Direct applicability to product, indication, population, stage and target market", "evidence": "FDA, EMA, MHRA and Health Canada interactions, trial authorization, designation, protocol agreement and relevant ethics approval", "penalize": "Platform praise transferred to another asset or non-comparable indication; designation treated as efficacy approval"}
+      ]
+    },
+    {
+      "id": "kol_network",
+      "name": "Key Opinion Leaders",
+      "question": "How strong, independent, relevant and behaviorally engaged is the expert network surrounding the asset?",
+      "unit": ["product_id", "indication", "as_of_date"],
+      "kol_definition": "A resolved person with documented disease/modality expertise and at least one dated substantive influence indicator: guideline authorship, relevant trial leadership, society leadership, regulator advisory work, or a disease-specific research record demonstrating peer uptake. Title, employer prestige, follower count and paid quotation alone do not qualify. This is an operational candidate definition pending expert validation.",
+      "dimensions": [
+        {"id": "influence", "assess": "Disease, modality and clinical-setting expertise and influence", "evidence": "Guidelines, trial leadership, relevant publications/citations, society roles, referral-center position, advisory participation and peer-recognized expertise", "penalize": "Generic fame, weak indication fit, inflated titles, predatory publications and follower-count-only influence"},
+        {"id": "breadth_depth", "assess": "Independent expert quality, geographic breadth and institutional diversity", "evidence": "Multiple centers, relevant Western regions and specialties, and community practice where relevant", "penalize": "One-center clusters, company-created panels, repeated same-lab coauthors and celebrity dependence"},
+        {"id": "engagement", "assess": "Effort, reputational commitment and substantive engagement with evidence and limitations", "evidence": "PI/steering roles, protocol authorship, investigator trials, guidelines, invited science, repeated collaboration, adoption research and specific balanced discussion across data updates", "penalize": "Single quotes, paid webinars, passive boards, photos, boilerplate, copied enthusiasm, claims outside expertise and unexplained inconsistency; silence is unknown, never disapproval"},
+        {"id": "motivation", "assess": "Credibility accounting for financial and professional ties", "evidence": "Disclosures, external funding, balanced commentary, pre-engagement activity and uncompensated expertise", "penalize": "Consulting concentration, stock ownership, undisclosed payments, ghostwriting signals, coordinated promotion and company-controlled channels; conflicts must be evidenced"},
+        {"id": "trajectory", "assess": "Network resilience and growth through time", "evidence": "Independent-node growth, cross-institution bridges, qualified new investigators, repeat engagement, concentration and retention after adverse events", "penalize": "Bot-like amplification, duplicate people, promotional bursts, departures, retractions and dependence on one broker"}
+      ]
+    },
+    {
+      "id": "talent_migration",
+      "name": "Talent Migration",
+      "question": "Does the pattern of people joining, leaving or concentrating around the company reveal informed confidence or execution risk?",
+      "unit": ["company_id", "as_of_date"],
+      "milestone_definition": "Use a versioned product/indication milestone timeline from registry versions, dated regulatory records and explicitly attributed company guidance available at the cutoff. Preserve planned versus actual, uncertainty and revisions. If no defensible next milestone is known, role-to-milestone relevance is unknown; never infer an earlier forecast from a later outcome.",
+      "dimensions": [
+        {"id": "criticality_timing", "assess": "Function materiality to documented upcoming milestones", "evidence": "Clinical, regulatory, CMC, translational, commercial, business-development, quality and indication leadership relative to trials, filings, scale-up or launch", "penalize": "Equal weighting of all hires, generic roles overweighted and hires unrelated to execution"},
+        {"id": "track_record", "assess": "Relevant role-level achievements, recency and fit to modality, stage and problem", "evidence": "Approvals, trials, scale-up, launches, research/patents and increasing responsibility attributable to the person", "penalize": "Prestige without fit, unverifiable bios, unexplained short tenure, inflated titles and employer success credited to an individual"},
+        {"id": "origin_destination", "assess": "Information content of origin and destination", "evidence": "Relevant peers, regulators, labs and biopharma; distinguish retirement, academia, stronger peers and unrelated sectors", "penalize": "Every hire positive/every departure negative; ignoring layoffs, acquisitions, geography and personal circumstances; do not invent motives"},
+        {"id": "team_coherence", "assess": "Complementary capabilities assembling around a program or milestone", "evidence": "Clinical, regulatory, biostatistics, CMC and commercial clusters, prior-team ties, hubs and milestone-consistent sequencing", "penalize": "Duplicate postings, recruiter noise, backfills as expansion and acquisition transfers as organic hiring"},
+        {"id": "retention_churn", "assess": "Capability stability, succession and unusual flow acceleration versus own history and matched peers", "evidence": "Tenure-adjusted retention, orderly succession, internal promotion, handoffs, low regretted attrition and post-event retention", "penalize": "Critical-leader churn, simultaneous departures, vacancies, abrupt removals, repeated interims and whole-team losses; absent public reporting is not proof of retention"}
+      ]
+    },
+    {
+      "id": "trial_quality",
+      "name": "Trial Quality",
+      "question": "Are selected and activated institutions likely to recruit appropriate patients, execute reliably and produce credible regulator-ready data?",
+      "unit": ["trial_id", "site_id", "as_of_date"],
+      "aggregation_targets": [["product_id", "indication"], ["company_id"]],
+      "aggregation_policy": "Only resolved site/product/company mappings; report activation state, represented sites, missing sites and dated weights. Do not assume equal enrollment or use future realized enrollment as earlier weights. No numeric aggregate until validated.",
+      "dimensions": [
+        {"id": "investigator_team", "assess": "PI/team experience, stability, bandwidth and compliance", "evidence": "Similar trials, enrollment history, research quality, coordinators, turnover, GCP standing and sanctions resolution", "penalize": "Honorary PI involvement, overstretch, turnover, warning letters, debarment and undisclosed conflicts; distinguish site-specific findings and resolution dates"},
+        {"id": "recruitment", "assess": "Accessible eligible population after competition and screening constraints", "evidence": "Referral networks, registries, historical screening/enrollment, demographics, catchment, prescreening and competing trials", "penalize": "Company forecasts without site history, overlapping referral pools, high screening failure and forecasts reconstructed after outcomes"},
+        {"id": "execution", "assess": "Completeness, timeliness and protocol adherence", "evidence": "Startup, queries, missingness, visits, deviations, samples, review concordance, retention and database lock", "penalize": "Outcome-dependent closure, selective reports, implausible distributions, excessive deviations, delayed entry, missing verification and audits; unavailable private metrics remain unknown"},
+        {"id": "infrastructure", "assess": "Demonstrated capacity for treatment and complex endpoints", "evidence": "Prior analogous work, accredited labs, imaging, pathology, surgery, ICU, cold chain, identity/custody, genomics, pharmacy and multidisciplinary care", "penalize": "Marketing-only claims and unvalidated outsourced handoffs"},
+        {"id": "representativeness", "assess": "Geography and population fit to filing, label and market", "evidence": "ICH-GCP environment, regulator acceptability, diversity, care comparability, ethics readiness and regional mix", "penalize": "Atypical care, incompatible standards, weak oversight, interruption risk and target-market mismatch; geography alone does not establish site quality"},
+        {"id": "resilience", "assess": "Qualified-site diversification without ineffective over-expansion", "evidence": "Enrollment spread, backup sites, concentration, activation pipeline and capability redundancy", "penalize": "Too many low-productivity sites, single-site dependence, correlated disruptions and late rescue sites masking delay"}
+      ]
+    }
+  ]
+}

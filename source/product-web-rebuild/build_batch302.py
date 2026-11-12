@@ -1,0 +1,8 @@
+from research_helpers import *
+a=ev('https://www.sec.gov/Archives/edgar/data/1463729/000119312514239281/d743616ds3a.htm','Historical Receptos lead assets RPC1063 and AbbVie-licensed RPC4046; not current independent commercialization.')
+b=ev('https://www.scripps.edu/newsandviews/e_20150831/ofnote.html','Originator confirms ozanimod/RPC1063 identity and Receptos licensing from Scripps.')
+c=ev('https://www.zeposia.com/','Current ZEPOSIA ozanimod commercial product; Receptos historical developer, not current independent distributor.')
+d=ev('https://cdn.clinicaltrials.gov/large-docs/97/NCT04753697/Prot_SAP_000.pdf','Sponsor protocol equates RPC4046, ABT-308, CC-93538 and BMS-986355. Current continuation not established.')
+products=[p('Ozanimod','S1P modulator marketed as ZEPOSIA; historically developed under licence by Receptos.',b,'commercial',aliases=['RPC1063','ZEPOSIA'],roles=['developer'],typ='product',evidence=[a,b,c]),p('RPC4046','Historical IL-13 antibody programme licensed from AbbVie; latest disposition unresolved.',a,aliases=['ABT-308','CC-93538','BMS-986355'],roles=['licensee'],evidence=[a,d])]
+co=dict(company_id='cmp_26068c66-3bdb-4a38-8bad-247af01abdcf',products=products,evidence=[a,b,c,d],status='partial',coverage_note='Two principal historical molecular identities. Ozanimod brand/development code consolidated. Partial: RPC4046 latest disposition and cendakimab nomenclature need direct primary confirmation; smaller historical discovery portfolio and precise corporate licence successor need further review. Historical Receptos association retained without assigning parent-wide drugs or current independent marketing ownership.')
+(out/'batch-0302.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

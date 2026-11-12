@@ -49,6 +49,26 @@ class OperationsTests(unittest.TestCase):
         with redirect_stdout(io.StringIO()):
             return self.runner.run(sources, mode, start or self.start, end or self.end, max_windows, **kwargs)
 
+    def test_historical_failure_moves_on_after_three_attempts_but_never_claims_complete(self):
+        self.config['historical_gap_continue_after_attempts']=3
+        self.runner.invoke=lambda *a,**kw:{'status':'failed','reason':'fixture_failure'}
+        for n in (1,2):
+            report=self.run_ops(['sec'],mode='historical',max_windows=1)
+            self.assertEqual(report['sources']['sec']['next_date'],str(self.start))
+        report=self.run_ops(['sec'],mode='historical',max_windows=1)
+        self.assertEqual(report['sources']['sec']['next_date'],str(self.end))
+        self.assertEqual(report['status'],'partial')
+        self.assertEqual(len(report['sources']['sec']['accepted_gaps']),1)
+        self.assertEqual(self.run_ops(['sec'],mode='historical')['status'],'partial')
+
+    def test_healthy_bounded_partial_is_not_skipped_by_gap_policy(self):
+        self.config['historical_gap_continue_after_attempts']=3
+        self.fail.add(('sec',self.start))
+        for _ in range(4):
+            report=self.run_ops(['sec'],mode='historical',max_windows=1)
+            self.assertEqual(report['sources']['sec']['next_date'],str(self.start))
+            self.assertFalse(report['sources']['sec']['accepted_gaps'])
+
     def test_downtime_catchup_and_rerun_skip_completed_dates(self):
         report = self.run_ops(["sec"], max_windows=1)
         self.assertEqual(report["sources"]["sec"]["next_date"], "2024-06-04")
@@ -67,6 +87,19 @@ class OperationsTests(unittest.TestCase):
         self.fail.clear()
         self.run_ops(["sec"])
         self.assertEqual(self.calls[-3][1], self.start)
+
+    def test_changed_hkex_prefix_refreshes_after_cooldown_only(self):
+        from collection_storage import write_json
+        from datetime import datetime, timezone
+        key = self.runner.outcome_key('hkex-filings', self.start, self.end, 'daily')
+        failed = {'status': 'partial', 'reason': 'hkex_prefix_changed',
+                  'finished_at': datetime.now(timezone.utc).isoformat()}
+        write_json(self.store, key, failed)
+        self.assertEqual(self.runner.window('hkex-filings', self.start, self.end, 'daily'), failed)
+        self.assertFalse(self.calls)
+        write_json(self.store, key, {**failed, 'finished_at': '2020-01-01T00:00:00Z'}, self.store.get(key).token)
+        self.runner.window('hkex-filings', self.start, self.end, 'daily')
+        self.assertTrue(self.calls[-1][3])
 
     def test_dependencies_expand_and_block_until_both_sources_complete(self):
         self.assertEqual(ops.selected_sources(["press-releases"]),
@@ -131,6 +164,25 @@ class OperationsTests(unittest.TestCase):
         self.runner.window("sec", self.start, date(2024,6,4), "daily", refresh=True)
         self.assertIn(str(self.start), self.runner.pending_dates("documents"))
         self.run_ops(["documents"], end=date(2024,6,4))
+        self.assertEqual(self.runner.pending_dates("documents"), set())
+
+    def test_completed_recovery_clears_pending_with_one_window_budget(self):
+        sources = ops.selected_sources(["documents"])
+        self.fail.add(("documents", self.start))
+        self.run_ops(sources, end=date(2024,6,4), max_windows=1)
+        self.runner.set_pending("documents", self.start, True)
+        self.fail.clear()
+        result = self.run_ops(sources, end=date(2024,6,4), max_windows=1)
+        self.assertEqual(result["status"], "complete")
+        self.assertEqual(self.runner.pending_dates("documents"), set())
+
+    def test_verified_cached_window_clears_stale_pending_without_replay(self):
+        self.run_ops(ops.selected_sources(["documents"]), end=date(2024,6,4))
+        self.runner.set_pending("documents", self.start, True)
+        before = len(self.calls)
+        result = self.runner.window("documents", self.start, date(2024,6,4), "daily")
+        self.assertTrue(result["already_complete"])
+        self.assertEqual(len(self.calls), before)
         self.assertEqual(self.runner.pending_dates("documents"), set())
 
 

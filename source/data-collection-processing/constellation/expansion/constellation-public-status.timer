@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh public-source collection status every five minutes
+
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=5min
+Unit=constellation-public-status.service
+
+[Install]
+WantedBy=timers.target

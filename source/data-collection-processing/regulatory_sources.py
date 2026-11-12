@@ -111,14 +111,17 @@ class FDA:
                     if submission.get("submission_status") != "AP":
                         continue
                     event = day(submission.get("submission_status_date"))
-                    require(event, "invalid_fda_action_date")
-                    if not in_window(event, start, end):
+                    # FDA returns whole applications, including undated submissions.
+                    # Retain these as explicitly undated evidence, never invent an action date.
+                    if event is not None and not in_window(event, start, end):
                         continue
                     require(submission.get("submission_type") and submission.get("submission_number"), "missing_submission_identity")
                     identity = "approval:" + ":".join(str(x) for x in (row["application_number"], submission["submission_type"], submission["submission_number"]))
                     output.append(item(identity, "regulatory_event", {"action": "APPROVAL", "application": row,
                         "submission": submission}, url, self.date_basis, event, [row.get("sponsor_name")],
-                        row["application_number"], identity_basis="documented_composite", coverage_note=self.coverage))
+                        row["application_number"], identity_basis="documented_composite", coverage_note=self.coverage,
+                        action_date_status="reported" if event else "unavailable",
+                        window_membership="action_date" if event else "application_matched_query_only"))
             else:
                 if str(row.get("letter_type") or "").upper() != "COMPLETE RESPONSE":
                     continue
@@ -130,6 +133,18 @@ class FDA:
                     require(row.get("file_name"), "missing_crl_identity")
                     output.append(item("crl:" + row["file_name"], "regulatory_event", row, url,
                         self.date_basis, event, [row.get("company_name")], row["file_name"], coverage_note=self.coverage))
+        # Identical repeated submissions are redundant; distinct source variants
+        # sharing the reported composite identity must both remain recoverable.
+        grouped = {}
+        for record in output:
+            grouped.setdefault(record['id'], {})[digest(record['data'])] = record
+        output = []
+        for identity, variants in grouped.items():
+            for checksum, record in sorted(variants.items()):
+                if len(variants) > 1:
+                    record = {**record, 'id': identity + ':variant:' + checksum,
+                              'reported_composite_identity': identity}
+                output.append(record)
         exhausted = count == total
         following = {"stage": stage, "count": count, "total": total, "revision": revision}
         if exhausted and stage == "approvals":
@@ -204,6 +219,7 @@ class EMA:
 def field_names(fields):
     return list(dict.fromkeys(f["value"] for f in fields
         if any(word in f["label"].lower() for word in ("sponsor", "申办", "申请人名称", "注册申请单位"))
+        and not f["value"].strip().isdigit()
         and not any(word in f["label"].lower() for word in ("contact", "联系人", "电话", "email", "地址"))
         and not f["value"].isdigit()))
 
@@ -212,7 +228,17 @@ def render_documents(client, urls):
     """Bounded detail concurrency, preserving listing order and page atomicity."""
     from concurrent.futures import ThreadPoolExecutor
     with ThreadPoolExecutor(max_workers=3) as pool:
-        return list(pool.map(client.rendered, urls))
+        def fetch(url):
+            if "chinadrugtrials.org.cn/clinicaltrials.searchlistdetail" in url:
+                from urllib.parse import parse_qs, urlsplit
+                from nmpa_enrichment import valid_detail
+                registration = parse_qs(urlsplit(url).query)["reg_no"][0]
+                return client.rendered(url, pending_validator=lambda doc: valid_detail(doc, registration))
+            if 'www.chictr.org.cn/showproj.html' in url:
+                from metadata_engine.chictr_tables import has_trial_detail
+                return client.rendered(url,pending_validator=has_trial_detail)
+            return client.rendered(url)
+        return list(pool.map(fetch, urls))
 
 
 class ChiCTR:
@@ -292,6 +318,7 @@ def nmpa_summaries(document):
 
 class NMPA:
     source = "nmpa_trials"
+    version = "nmpa-structured-changes-v1"
     date_basis = "first_public_disclosure_date"
     coverage = "First-disclosure discovery, not an update feed. Dates come from detail records; full listing pagination is required. Reconcile older windows for changes."
 
@@ -354,13 +381,16 @@ class NMPA:
             if not row.get("title"):
                 row["title"] = next((field["value"] for field in fields if field["label"] in ("试验通俗题目", "试验专业题目")), None)
             if in_window(row["firstPublicDisclosureDate"], start, end):
-                output.append(item(row["registrationNumber"], "clinical_trial", {**row, "fields": fields}, row["detailUrl"],
-                    self.date_basis, row["firstPublicDisclosureDate"], field_names(fields), row["title"], coverage_note=self.coverage))
+                from nmpa_enrichment import structured_detail
+                structured = structured_detail(document, row["registrationNumber"])
+                output.append(item(row["registrationNumber"], "clinical_trial", {**row, "fields": fields, "structured": structured}, row["detailUrl"],
+                    self.date_basis, row["firstPublicDisclosureDate"], structured["sponsors"], row["title"], coverage_note=self.coverage))
         return output
 
 
 class UK:
     source = "uk_mhra"
+    version = "uk-exact-licence-holder-v2"
     date_basis = "current_snapshot_with_optional_record_date"
     coverage = "Current public lists, including undated rows. Requested windows do not recreate historical snapshots; no added/removed events are inferred."
 
@@ -369,13 +399,23 @@ class UK:
         from openpyxl import load_workbook
         output = []
         sources = [("ilap", legacy.ILAP_PAGE, ".xlsx", "Innovation Passport"),
-                   ("orphan", legacy.ORPHAN_PAGE, ".csv", "Orphan Register")]
+                   ("orphan", legacy.ORPHAN_PAGE, ".csv", "Orphan Register"),
+                   ("orphan", legacy.ORPHAN_PAGE, ".csv", "Expired Orphan Register")]
         stage = state.get("stage", 0)
         category, page, suffix, label = sources[stage]
         parser = legacy.Links()
         parser.feed(client.get(page).decode("utf-8"))
-        matches = [urljoin(page, href) for href, text in parser.links
-                   if href.lower().split("?")[0].endswith(suffix) and label.lower() in text.lower()]
+        # MHRA renamed the expired register to "Non-active Orphan Register"
+        # on 2026-11-10. Keep its existing identity and its separate status.
+        labels = ("expired orphan register", "non-active orphan register") if stage == 2 else (label.lower(),)
+        matches = []
+        for href, text in parser.links:
+            name = text.casefold()
+            inactive = "expired" in name or "non-active" in name
+            if (href.lower().split("?")[0].endswith(suffix)
+                    and any(alias in name for alias in labels)
+                    and (category != "orphan" or inactive == (stage == 2))):
+                matches.append(urljoin(page, href))
         require(matches, "mhra_attachment_missing")
         url = matches[-1]
         raw = client.get(url)
@@ -405,7 +445,10 @@ class UK:
             lower = {key.lower().strip(" *"): str(value) for key, value in row.items()}
             identity_parts = [lower[key] for key in ("designation number", "product name", "company name") if lower.get(key)]
             require(identity_parts, "mhra_identity_columns_missing")
-            identity = category + ":" + digest([x.casefold() for x in identity_parts])
+            # A designation may appear in both registers in the same snapshot.
+            # Keep the expired assertion distinct; do not discard either source row.
+            identity_category = 'orphan_expired' if stage == 2 else category
+            identity = identity_category + ":" + digest([x.casefold() for x in identity_parts])
             event = legacy.record_date(row)
             # Daily preserves the current list, including undated rows.
             # Historical windows can only select known dates in that list.
@@ -414,15 +457,30 @@ class UK:
                     raise SourceIssue("historical_designation_date_unavailable", True)
                 if not start <= event < end:
                     continue
-            output.append(item(identity, "regulatory_snapshot", {"category": category, "record": row}, url,
+            data = {"category": category, "record": row,
+                    "registerStatus": ("ilap_list" if stage == 0 else
+                                       "expired_or_removed_orphan_register" if stage == 2 else "current_orphan_register")}
+            names = [value for key, value in lower.items() if any(x in key for x in ("company", "holder", "applicant"))]
+            if category == "orphan":
+                from mhra_product_enrichment import enrich
+                try:
+                    data["holderEnrichment"] = enrich(client, lower.get("designation number", ""))
+                except SourceIssue as exc:
+                    # Source rows remain useful when the secondary lookup is
+                    # unavailable. No company identity is inferred on failure.
+                    data["holderEnrichment"] = {"status": "unavailable", "reason": exc.code,
+                                                 "companyRelationships": []}
+                names.extend(r["name"] for r in data["holderEnrichment"]["companyRelationships"])
+            output.append(item(identity, "regulatory_snapshot", data, url,
                 self.date_basis, str(event) if event else None,
-                [value for key, value in lower.items() if any(x in key for x in ("company", "holder", "applicant"))],
+                list(dict.fromkeys(names)),
                 lower.get("product name"), identity_basis="documented_composite", coverage_note=self.coverage))
-        return output, {"stage": stage + 1}, stage == 1
+        return output, {"stage": stage + 1}, stage == 2
 
 
 class Japan:
     source = "japan_pmda"
+    version = "pmda-ruled-table-v2"
     date_basis = "current_sakigake_list_designation_date"
     coverage = "Current published SAKIGAKE PDF; not historical snapshots or complete PMDA regulatory coverage."
 
@@ -430,7 +488,9 @@ class Japan:
         import japan_pmda_designations as legacy
         records = legacy.parse_pdf(client.get(legacy.SOURCE_URL))
         output = [item("sakigake:" + row["designationDate"] + ":" + row["listNumber"], "regulatory_snapshot", row, legacy.SOURCE_URL,
-            self.date_basis, row["designationDate"], (), row["recordText"], identity_basis="documented_composite",
+            self.date_basis, row["designationDate"],
+            list(dict.fromkeys(r["name"] for r in row.get("companyRelationships", []) if not r.get("nameReviewRequired"))),
+            row.get("designatedProductName", row["recordText"]), identity_basis="documented_composite",
             coverage_note=self.coverage) for row in records
             if mode != "historical" or in_window(row["designationDate"], start, end)]
         return output, {}, True

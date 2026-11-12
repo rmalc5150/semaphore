@@ -1,0 +1,7 @@
+{
+  "command_id": "870d0db8-df2a-4f08-9d22-3eb155e95540",
+  "bundle_sha256": "fa5b87107062b4cd05f0da1dda658e13bb9dbd6991b9fe91e7facec4156b876b",
+  "bundle_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/deployments/fa5b87107062b4cd05f0da1dda658e13bb9dbd6991b9fe91e7facec4156b876b.tar.gz",
+  "worker_instance_id": "i-06241bd1c4e91c2fc",
+  "collection_enabled": false
+}

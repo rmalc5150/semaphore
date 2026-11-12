@@ -26,7 +26,9 @@ NOTE = 'Bounded provider search and comment sample; unresolved issuer links; not
 
 
 class APIError(Exception):
-    pass
+    def __init__(self, code, route=None):
+        super().__init__(code)
+        self.route=route
 
 
 class Reddit:
@@ -43,21 +45,33 @@ class Reddit:
         if not self.token: raise APIError('oauth_no_token')
 
     def _request(self, request):
-        if self.calls >= self.config['max_requests_per_run'] or (self.remaining is not None and self.remaining < 2):
-            raise APIError('request_budget')
-        if self.calls: time.sleep(1.1)
-        self.calls += 1
-        try:
-            with self.opener.open(request,timeout=30) as response:
-                remaining=response.headers.get('x-ratelimit-remaining')
-                if remaining is not None:self.remaining=float(remaining)
-                raw=response.read(4*1024*1024+1)
-            if len(raw)>4*1024*1024:raise APIError('response_size_limit')
-            return json.loads(raw)
-        except HTTPError as exc:
-            code=exc.code;exc.close();raise APIError('reddit_http_'+str(code)) from None
-        except APIError:raise
-        except Exception:raise APIError('reddit_transport_error') from None
+        # Every attempt consumes the existing request budget. Retry only transient
+        # server errors, with bounded backoff; access/quota failures remain visible.
+        for attempt in range(3):
+            if self.calls >= self.config['max_requests_per_run'] or (self.remaining is not None and self.remaining < 2):
+                raise APIError('request_budget')
+            if self.calls: time.sleep(1.1 if not attempt else 2 ** attempt)
+            self.calls += 1
+            try:
+                with self.opener.open(request, timeout=30) as response:
+                    remaining = response.headers.get('x-ratelimit-remaining')
+                    if remaining is not None: self.remaining = float(remaining)
+                    raw = response.read(4*1024*1024+1)
+                if len(raw)>4*1024*1024: raise APIError('response_size_limit')
+                return json.loads(raw)
+            except HTTPError as exc:
+                code = exc.code
+                remaining = exc.headers.get('x-ratelimit-remaining') if exc.headers else None
+                if remaining is not None:
+                    try: self.remaining = float(remaining)
+                    except ValueError: pass
+                exc.close()
+                if code in (500, 502, 503, 504) and attempt < 2:
+                    continue
+                from urllib.parse import urlsplit
+                raise APIError('reddit_http_' + str(code),urlsplit(request.full_url).path) from None
+            except APIError: raise
+            except Exception: raise APIError('reddit_transport_error') from None
 
     def get(self,path,params):
         return self._request(Request('https://oauth.reddit.com'+path+'?'+urlencode(params),
@@ -99,9 +113,17 @@ def comment_children(listing):
 
 def revalidate(api, records, now):
     stale=[k for k,r in records.items() if now-r['verified_utc']>=12*3600]
-    for start in range(0,len(stale),100):
-        ids=stale[start:start+100]
-        result=api.get('/api/info',{'id':','.join(ids),'raw_json':1})
+    gaps=[]
+    def batch(ids):
+        try:
+            result=api.get('/api/info',{'id':','.join(ids),'raw_json':1})
+        except APIError as exc:
+            if str(exc) not in {'reddit_http_500','reddit_http_502','reddit_http_503','reddit_http_504'}:raise
+            if len(ids)>1:
+                mid=len(ids)//2;batch(ids[:mid]);batch(ids[mid:]);return
+            # A single provider failure must not stop all fresh capture. Keep
+            # its old verification timestamp; normal 24-hour expiry still applies.
+            gaps.append({'record_id':ids[0],'reason':str(exc)});return
         replacement={}
         for child in children(result):
             name=child.get('data',{}).get('name')
@@ -112,6 +134,8 @@ def revalidate(api, records, now):
                 row['observed_utc']=prior['observed_utc'];replacement[name]=row
         for name in ids:records.pop(name,None)
         records.update(replacement)
+    for start in range(0,len(stale),100):batch(stale[start:start+100])
+    return gaps
 
 
 def trim(records,now,max_records,max_bytes):
@@ -126,7 +150,7 @@ def trim(records,now,max_records,max_bytes):
 
 def capture(api,records,state,config,report):
     now=time.time()
-    revalidate(api,records,now)
+    report['revalidation_gaps']=revalidate(api,records,now)
     for sector,query in config['queries'].items():
         for mode in ('daily','historical_sample'):
             scope=sector+':'+mode
@@ -187,6 +211,10 @@ def verify(athena,expected):
 
 
 def main():
+    from source_pauses import is_paused
+    if is_paused('reddit'):
+        print(json.dumps({'status': 'paused_by_user', 'source': 'reddit'}))
+        return 0
     with (ROOT/'.reddit-collection.lock').open('a') as lock:
         try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:return 0
@@ -215,6 +243,7 @@ def main():
                 report['requests']=api.calls
             except Exception as exc:
                 report['capture_error']=str(exc) if isinstance(exc,APIError) else type(exc).__name__
+                if isinstance(exc,APIError) and exc.route:report['capture_error_route']=exc.route
             records,body=trim(records,time.time(),config['max_records'],config['max_bytes'])
             put('records/current.jsonl',body)
             put('state.json',json.dumps(state).encode())

@@ -1,0 +1,711 @@
+ACTION ITEMS
+
+constellation-history/fda|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-02-01T00:00:00 to 2016-07-01T00:00:00; 151.0 calendar days; invalid_fda_action_date, source_http_400; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/0b426b65-e1a9-4c80-8d8d-221fdd97a14b.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/42d237d5-d9f0-4e9c-a6
+Evidence: 2016-08-01T00:00:00 to 2016-09-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/f7fa1b24-606f-4abf-8560-4f301792241b.json
+Evidence: 2019-07-01T00:00:00 to 2019-08-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/337f4598-64c1-4f7f-bb32-c48c06bb9a04.json
+Evidence: 2019-12-01T00:00:00 to 2020-02-01T00:00:00; 62.0 calendar days; duplicate_provider_record, invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/0cccc8b3-f08e-4d98-92f5-f8861a4a8364.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/ca3a553d-99a
+Evidence: 2020-08-01T00:00:00 to 2020-09-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/7e9eab5c-fe53-430d-9fbe-f715802e22da.json
+Evidence: 2020-10-01T00:00:00 to 2020-11-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/0e585344-103a-43ee-b7da-9c87db1c1554.json
+Evidence: 2021-12-01T00:00:00 to 2022-01-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/11869440-e4aa-4fc6-a028-068ffdda526c.json
+Evidence: 2022-02-01T00:00:00 to 2022-03-01T00:00:00; 28.0 calendar days; duplicate_provider_record; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/f8eaa700-b03f-4c1e-8d1b-630c3a371778.json
+Evidence: 2022-05-01T00:00:00 to 2022-07-01T00:00:00; 61.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/6d9657d1-30ae-461d-94ae-fc0ecf6a9526.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/95ebaa2c-c648-4142-ae1e-273d0c8b6086.js
+Evidence: 2022-10-01T00:00:00 to 2022-11-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/c39878cf-32ca-4071-bec0-421f9eb274db.json
+Evidence: 2022-12-01T00:00:00 to 2023-01-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/94d16f0a-e465-49f6-8af8-e6067ff49302.json
+Evidence: 2023-02-01T00:00:00 to 2023-03-01T00:00:00; 28.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/7758cad7-1584-41a8-bdcb-42039d85903f.json
+Evidence: 2016-11-01T00:00:00 to 2016-12-01T00:00:00; 30.0 calendar days; source_http_400; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/d66236fa-f301-4d98-ae5a-5f57c67e5535.json
+Evidence: 2023-07-01T00:00:00 to 2023-08-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/cfa12d02-abc5-4e4b-aca0-64fe8359c77a.json
+Evidence: 2023-11-01T00:00:00 to 2023-12-01T00:00:00; 30.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/0aa6e4e8-715b-4ddc-abd0-12127c664c49.json
+Evidence: 2024-01-01T00:00:00 to 2024-04-01T00:00:00; 91.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/39ff8cc7-7b82-41ae-ae71-0a872432cd95.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/e5c32da3-49c1-457d-9785-469248739154.js
+Evidence: 2024-06-01T00:00:00 to 2024-07-01T00:00:00; 30.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/94b9b657-2861-4409-ad1e-26179f0b3674.json
+Evidence: 2024-08-01T00:00:00 to 2025-01-01T00:00:00; 153.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/0531321c-adb9-4821-b45f-5655031b0dc2.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/08dfe7d9-6aed-43c7-8bc9-0a5b7ea6d2a5.j
+Evidence: 2025-02-01T00:00:00 to 2025-04-01T00:00:00; 59.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/34f29b15-93ff-4a87-bc1c-f77377d4e022.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/74bad3ae-6c73-4a40-b2eb-a31302a7294c.js
+Evidence: 2025-05-01T00:00:00 to 2025-06-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/e4bdd69b-3948-4d0d-8583-38b03385d6d1.json
+Evidence: 2025-07-01T00:00:00 to 2025-08-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/823d67b0-a09c-45eb-9949-b852209cfe1d.json
+Evidence: 2025-09-01T00:00:00 to 2025-10-01T00:00:00; 30.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/cb17fe97-a762-4a4f-8603-aa1927d7108d.json
+Evidence: 2025-12-01T00:00:00 to 2026-04-01T00:00:00; 121.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/35e880fd-a40f-4638-8b85-91335f7d3e47.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/9b398435-0611-44d2-ba3d-4ff471d0f898.j
+Evidence: 2017-02-01T00:00:00 to 2017-04-01T00:00:00; 59.0 calendar days; source_http_400; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/182b6124-bc0d-44d4-ba85-69d548ac9908.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/3a027e39-84cd-4849-966e-7b77aaf2b07f.json
+Evidence: 2026-08-01T00:00:00 to 2026-09-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/88d724fd-9f19-492c-b143-45bd10ebbde9.json
+Evidence: 2017-06-01T00:00:00 to 2017-09-01T00:00:00; 92.0 calendar days; invalid_fda_action_date, source_http_400; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/0c3db7e4-0075-4d1f-96f0-83744469fa93.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/9fde2db4-6726-4419-978
+Evidence: 2017-10-01T00:00:00 to 2018-01-01T00:00:00; 92.0 calendar days; invalid_fda_action_date, source_http_400; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/2df87a15-7dac-412d-a4f6-fa703a2853be.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/892777ed-fa63-401a-a45
+Evidence: 2018-03-01T00:00:00 to 2018-04-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/a285d89e-1211-4b26-8552-20b44d0e7281.json
+Evidence: 2018-05-01T00:00:00 to 2018-06-01T00:00:00; 31.0 calendar days; source_http_400; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/48483314-184e-4f63-a9f4-9d4ed822c481.json
+Evidence: 2018-10-01T00:00:00 to 2018-11-01T00:00:00; 31.0 calendar days; invalid_fda_action_date; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/2431088c-eadf-4611-9253-5ec54de7e612.json
+Evidence: 2018-12-01T00:00:00 to 2019-03-01T00:00:00; 90.0 calendar days; invalid_fda_action_date, source_http_400; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/0516ce60-627c-4eeb-8aa8-5a4948de4ffe.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-fda-historical.service/reports/670768c7-ec1d-4297-955
+
+constellation-history/biorxiv_medrxiv_preprints|C145|specialist_historical|3540522538635609279083c7 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2022-04-01T00:00:00 to 2022-05-01T00:00:00; 30.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/f34d4f535f817453e237e8fac9b6eda08cdfebb1570a20e9bd3fe0882ff9a238.json
+Evidence: 2022-12-01T00:00:00 to 2023-01-01T00:00:00; 31.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/f34d4f535f817453e237e8fac9b6eda08cdfebb1570a20e9bd3fe0882ff9a238.json
+Evidence: 2025-11-01T00:00:00 to 2025-12-01T00:00:00; 30.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/e44460c1996d0dc7e1f95eb98deab8358f7e5094d7d15e903ab046560be85c6c.json
+Evidence: 2026-01-01T00:00:00 to 2026-02-01T00:00:00; 31.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/e44460c1996d0dc7e1f95eb98deab8358f7e5094d7d15e903ab046560be85c6c.json
+Evidence: 2026-03-01T00:00:00 to 2026-05-01T00:00:00; 61.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/aefd98e9f1f665202bd9b42a55ad0fd3cbb8133c81967b18f60d1373f8a761db.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxi
+Evidence: 2026-06-01T00:00:00 to 2026-10-01T00:00:00; 122.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/3bf11476ba52d0458d25fbeff68692c8da82b5628d7d4877b1638efe49951c31.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorx
+
+constellation-history/us_census_international_trade_api|C118|specialist_historical|bbb5a6eeab98efe92cd951a8 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-05-01T00:00:00; 486.0 calendar days; source_http_302; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_international_trade_api.service/executions/022120100e1b7cd08c20b99b4ca90c28c972050d4859a72f09be20ae6c933e2a.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_inter
+
+constellation-history/biorxiv_medrxiv_preprints|C145|specialist_historical|bbc24b2e27b47b6d3d7c3712 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2018-09-01T00:00:00 to 2018-10-01T00:00:00; 30.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/e44460c1996d0dc7e1f95eb98deab8358f7e5094d7d15e903ab046560be85c6c.json
+Evidence: 2018-11-01T00:00:00 to 2018-12-01T00:00:00; 30.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/3bf11476ba52d0458d25fbeff68692c8da82b5628d7d4877b1638efe49951c31.json
+Evidence: 2019-10-01T00:00:00 to 2019-11-01T00:00:00; 31.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/e44460c1996d0dc7e1f95eb98deab8358f7e5094d7d15e903ab046560be85c6c.json
+Evidence: 2020-02-01T00:00:00 to 2020-06-01T00:00:00; 121.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/e44460c1996d0dc7e1f95eb98deab8358f7e5094d7d15e903ab046560be85c6c.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorx
+Evidence: 2020-07-01T00:00:00 to 2020-08-01T00:00:00; 31.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/e44460c1996d0dc7e1f95eb98deab8358f7e5094d7d15e903ab046560be85c6c.json
+Evidence: 2022-03-01T00:00:00 to 2022-04-01T00:00:00; 31.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/e44460c1996d0dc7e1f95eb98deab8358f7e5094d7d15e903ab046560be85c6c.json
+Evidence: 2022-06-01T00:00:00 to 2022-07-01T00:00:00; 30.0 calendar days; source_http_503; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/74fa4c0ba386e41d34f85fe4f6b5b6bb09ec4b16f23c0e17207d964a71f37ac0.json
+Evidence: 2022-08-01T00:00:00 to 2022-10-01T00:00:00; 61.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/3bf11476ba52d0458d25fbeff68692c8da82b5628d7d4877b1638efe49951c31.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxi
+Evidence: 2023-05-01T00:00:00 to 2023-06-01T00:00:00; 31.0 calendar days; additional_duplicate_provider_ids; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/e44460c1996d0dc7e1f95eb98deab8358f7e5094d7d15e903ab046560be85c6c.json
+Evidence: 2024-08-01T00:00:00 to 2024-09-01T00:00:00; 31.0 calendar days; source_http_503; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-biorxiv_medrxiv_preprints.service/executions/09c3a9b8596e1192b41af436f19c9f3a35e53b854c9f7afeccab471943c1f8cf.json
+
+constellation-history/edinet_filings|S10|specialist_historical|712f7a31f2024ecd4022ddca — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2016-10-27T00:00:00; 300.0 calendar days; edinet_api_status; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-edinet_filings.service/executions/0081deb56e566f7edd4dafe6167764fad912240158cf1de3d2b0db03cde14352.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-edinet_filings.service/execution
+
+constellation-history/fred_alfred_series_and_vintages|C066|specialist_historical|7bf8a801a3c95cd2d5dbd008 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2026-10-26T00:00:00; 3951.0 calendar days; fred_vintage_unavailable; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-fred_alfred_series_and_vintages.service/executions/36c516258c15408422f5c4e72f66922d5a9ebcd65ebb121b75d60d64fabafdfe.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-fred_al
+
+constellation-history/us_census_international_trade_api|C118|specialist_historical|9c2a63b63b2d3f2aa65eb11e — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-05-01T00:00:00; 486.0 calendar days; source_http_302; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_international_trade_api.service/executions/11a58490ff9616abab9fd0f6b3f19cd5cefc113ef8388488c3722b69aaea9454.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_inter
+
+constellation-history/us_census_international_trade_api|C118|specialist_historical|a1f157ff2df5fd6150aa7fd4 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-06-01T00:00:00; 517.0 calendar days; source_http_302; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_international_trade_api.service/executions/04860e76c7d5d9bff85996698657871d861328802312d085b90a2f031d7cad38.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_inter
+
+constellation-history/us_census_international_trade_api|C118|specialist_historical|72322594e96ceeead90b5986 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-06-01T00:00:00; 517.0 calendar days; source_http_302; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_international_trade_api.service/executions/00cbb6a2f3d802f77123a37fc504df8bfdade0a207b672e4af3a924a4a3eacc9.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_inter
+
+constellation-history/datacite_dissertations_datasets_software_and_usage|C143|specialist_historical|e5227279777d6de88fc3674f — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-05-01T00:00:00 to 2016-06-01T00:00:00; 31.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/116b6d27609846486756ec38aef31d2763628ef295e0a1c782dba0d1f5529f30.json
+Evidence: 2016-08-01T00:00:00 to 2016-09-01T00:00:00; 31.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/116b6d27609846486756ec38aef31d2763628ef295e0a1c782dba0d1f5529f30.json
+Evidence: 2016-10-01T00:00:00 to 2016-11-01T00:00:00; 31.0 calendar days; additional_response_too_large_split_scope; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/116b6d27609846486756ec38aef31d2763628ef295e0a1c782dba0d1f5529f30.json
+Evidence: 2017-04-01T00:00:00 to 2017-06-01T00:00:00; 61.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/01ea383a3d69acd4862166e477b5756d3dea29ad46043ad900f2105f1f82b34c.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constell
+Evidence: 2017-12-01T00:00:00 to 2018-01-01T00:00:00; 31.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/0d92ddc4fc1c0e13c285515fa96dd984dbd85c0e962c0cbec0bfb79395050c4e.json
+Evidence: 2018-12-01T00:00:00 to 2019-08-01T00:00:00; 243.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/0b9435b6d3ab3263b2f05379f84ba810f523d0a87e619f1bff97ba95dcf60a17.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constel
+Evidence: 2019-09-01T00:00:00 to 2019-12-01T00:00:00; 91.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/9ed6096bd61535b11c76c6fbcfc812f69314683312b8f38721a31a76b3186a66.json
+Evidence: 2020-01-01T00:00:00 to 2020-11-01T00:00:00; 305.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/2683a2a6feefd9cd0ba25128950015302e289879e114563b5cac92ddadb2a81b.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constel
+Evidence: 2021-10-01T00:00:00 to 2021-11-01T00:00:00; 31.0 calendar days; additional_request_failed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/7c4cccbf3957cd89b52440282f056b4fb54aac0934d74bd5f71bd42953eece97.json
+Evidence: 2022-01-01T00:00:00 to 2022-02-01T00:00:00; 31.0 calendar days; additional_response_too_large_split_scope; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/a1f2c5ecceea3efbabb4e9ba58dd05bbb34bb3e254c6c6d3282e5077dad12f66.json
+Evidence: 2022-05-01T00:00:00 to 2022-06-01T00:00:00; 31.0 calendar days; additional_response_too_large_split_scope; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/a49d80806e194b257a8ae0af305b5eb64ef39a84ddbf3721ba2a16d92c507903.json
+Evidence: 2022-12-01T00:00:00 to 2023-02-01T00:00:00; 62.0 calendar days; additional_response_too_large_split_scope; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/4564894e27d38db83c1cc14bd4316e86945742bdd995ac37bfa5fbcf2844b678.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipt
+Evidence: 2023-09-01T00:00:00 to 2023-11-01T00:00:00; 61.0 calendar days; additional_response_too_large_split_scope; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/d624e021dd14ffc64415b2a07e6b1529545d3e3ee1afb85d8496e3255cd3e25c.json
+Evidence: 2025-02-01T00:00:00 to 2025-03-01T00:00:00; 28.0 calendar days; additional_request_failed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/f842b5b7e9ae85068e9b9b11e59536265846bfa0d4a017259f3b1d88ef940c67.json
+
+constellation-history/us_census_international_trade_api|C118|specialist_historical|798180bb45b184a133666e13 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-05-01T00:00:00; 486.0 calendar days; source_http_302; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_international_trade_api.service/executions/09b157db04fdbf0c17ec81b9cf56ab97941f83a1c1bc3ad1017664f3b321f535.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_inter
+
+constellation-history/zenodo_research_artifacts_and_usage|C147|specialist_historical|972d7e8166bf09bd002ee3a8 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2023-05-01T00:00:00; 2677.0 calendar days; source_http_400, source_http_500; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-zenodo_research_artifacts_and_usage.service/executions/0ea4d1def803e6f0e6976a0599739528ef005ce2e999da09e868697feb1e24dc.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specia
+
+constellation-history/bls_wages|S59|specialist_historical|6ceb8e4cf80f01f40e11bf04 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2021-01-01T00:00:00; 1827.0 calendar days; An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:G; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-bls_wages.service/executions/ccdfbe6dcad4569b65e32084fa36d0c699363688448531055a8959cfdd8
+Evidence: 2026-01-01T00:00:00 to 2026-10-26T00:00:00; 298.0 calendar days; An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:G; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-bls_wages.service/executions/ccdfbe6dcad4569b65e32084fa36d0c699363688448531055a8959cfdd82
+
+constellation-history/us_census_international_trade_api|C118|specialist_historical|c6406d086126dcb338d33d29 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-05-01T00:00:00; 486.0 calendar days; source_http_302; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_international_trade_api.service/executions/0099aa8c9791c47d5cef73b7533afda40e61057b7c168119d273276ae9b8d795.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_inter
+
+constellation-history/clinicaltrials|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2022-08-01T00:00:00 to 2022-09-01T00:00:00; 31.0 calendar days; source_count_mismatch; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-clinicaltrials-historical.service/reports/56322cdd-2088-4fb3-8dc8-2ca071ae9d1c.json
+
+constellation-history/uk|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2026-10-26T00:00:00; 3951.0 calendar days; historical_designation_date_unavailable; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-uk-historical.service/reports/00c4cdd2-7daa-4ea7-83da-c756a27aacdc.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-uk-historical.service/reports/021e14fd-4181-4be0-bf30
+
+constellation-history/south_korea_fss_opendart|C098|specialist_historical|a18c268669e1ca57c0968639 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2019-03-01T00:00:00 to 2019-05-01T00:00:00; 61.0 calendar days; additional_request_failed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-south_korea_fss_opendart.service/executions/484729ff25b3e43166c34ec033bf7170e129b23e4bb1b91ad69d054fad1eeb84.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-south_korea_fss
+Evidence: 2022-10-01T00:00:00 to 2022-11-01T00:00:00; 31.0 calendar days; additional_request_failed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-south_korea_fss_opendart.service/executions/89b64c407da060e9bdf0594e742aee2dcffffbdaa5d978d9234015576f37d214.json
+Evidence: 2026-04-01T00:00:00 to 2026-06-01T00:00:00; 61.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-south_korea_fss_opendart.service/executions/f09ada6f2eb845286a08dc6743df3552ac82ec7dd8ee7f05d301d5251c80199e.json
+Evidence: 2026-07-01T00:00:00 to 2026-10-26T00:00:00; 117.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-south_korea_fss_opendart.service/executions/f09ada6f2eb845286a08dc6743df3552ac82ec7dd8ee7f05d301d5251c80199e.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|5cd63a07a4d4371ad5c91a03 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2017-01-01T00:00:00 to 2018-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/04705d6f774cb38b54eada1c78428129358508fbb1e8672bd0fe476e9243d257.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|dbc293ea8b379f5fb74ff0a8 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2017-01-01T00:00:00 to 2018-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/04705d6f774cb38b54eada1c78428129358508fbb1e8672bd0fe476e9243d257.json
+
+constellation-history/ted_notices|S42|specialist_historical|c3a72ecba64666f53ddd1942 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-12-01T00:00:00 to 2017-01-01T00:00:00; 31.0 calendar days; An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:G; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-ted_notices.service/executions/54c34ac8d72e24093333086c489d6563a7747fc68f9bd41273b66ffb011
+
+constellation-history/ted_notices|S42|specialist_historical|4609b37113bb7b4aecd96852 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-12-01T00:00:00 to 2017-01-01T00:00:00; 31.0 calendar days; An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:G; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-ted_notices.service/executions/54c34ac8d72e24093333086c489d6563a7747fc68f9bd41273b66ffb011
+
+constellation-history/ted_notices|S42|specialist_historical|c9ff2866e4eeed738763064d — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-12-01T00:00:00 to 2017-01-01T00:00:00; 31.0 calendar days; An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:G; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-ted_notices.service/executions/54c34ac8d72e24093333086c489d6563a7747fc68f9bd41273b66ffb011
+
+constellation-history/ted_notices|S42|specialist_historical|d43f43e4645760f87cd94c4b — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-12-01T00:00:00 to 2017-01-01T00:00:00; 31.0 calendar days; An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::059416028963:assumed-role/constellation-backfill-worker/i-06241bd1c4e91c2fc is not authorized to perform: s3:G; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-ted_notices.service/executions/54c34ac8d72e24093333086c489d6563a7747fc68f9bd41273b66ffb011
+Evidence: 2021-09-01T00:00:00 to 2021-10-01T00:00:00; 30.0 calendar days; interrupted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-ted_notices.service/executions/5d2b4a50bf6ba3963524cc2e41a3db58124392d08bfeb15b4c3477d7d8fcfff9.json
+Evidence: 2022-04-01T00:00:00 to 2022-05-01T00:00:00; 30.0 calendar days; interrupted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-ted_notices.service/executions/2606bd3a3105252a2bd7064f17043ecbb96979daa1d24e151a5d71899dd3bbc0.json
+
+constellation-history/us_census_international_trade_api|C118|specialist_historical|e8f639ab1f9d7706aa28f566 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-06-01T00:00:00; 517.0 calendar days; source_http_302; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_international_trade_api.service/executions/097090cfc9711adcb6a2e20ac24266ea7c90b43644ecb0b6efba522ae5b5955b.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_inter
+
+constellation-history/usgs_minerals|S53|specialist_historical|ea5c623157b24603c698e10b — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/04705d6f774cb38b54eada1c78428129358508fbb1e8672bd0fe476e9243d257.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|97651ec85372d64f30f83010 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/04705d6f774cb38b54eada1c78428129358508fbb1e8672bd0fe476e9243d257.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|bc08918cbae7fd3c9174320f — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/04705d6f774cb38b54eada1c78428129358508fbb1e8672bd0fe476e9243d257.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|9619b5a927135b0b11aad511 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/04705d6f774cb38b54eada1c78428129358508fbb1e8672bd0fe476e9243d257.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|0e42440ca62167d6bf50f27e — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2017-01-01T00:00:00 to 2018-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/04705d6f774cb38b54eada1c78428129358508fbb1e8672bd0fe476e9243d257.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|293922bb69bf43a4e4f0efc4 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2017-01-01T00:00:00 to 2018-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/04705d6f774cb38b54eada1c78428129358508fbb1e8672bd0fe476e9243d257.json
+
+constellation-history/us_census_international_trade_api|C118|specialist_historical|ab19e698ec29d9be32123afe — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-06-01T00:00:00; 517.0 calendar days; source_http_302; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_international_trade_api.service/executions/173c74732302b850fb0eaa5cd753fef5e535e0aa0e62c1700019e2f6387ebe3d.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_inter
+
+constellation-history/us_census_international_trade_api|C118|specialist_historical|fdd5da372f8d5187b0a3cc33 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-06-01T00:00:00; 517.0 calendar days; additional_request_failed, source_http_302; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_international_trade_api.service/executions/115bf7c55b6a1109870dd4764061ca3f9f3e6d09c8fcd24338c14e60907dfc5e.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation
+
+constellation-history/us_census_international_trade_api|C118|specialist_historical|921aa1ef598a8e6895c57559 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-06-01T00:00:00; 517.0 calendar days; source_http_302; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_international_trade_api.service/executions/01a2870394d2744930b2144f6b0724c6329cc8bf72ede2437b6e77f85610efbb.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-us_census_inter
+
+constellation-history/ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-03-01T00:00:00 to 2016-04-01T00:00:00; 31.0 calendar days; interrupted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/a8f47cfe-7a54-471c-b532-9f83ca53b496.json
+Evidence: 2016-06-01T00:00:00 to 2016-07-01T00:00:00; 30.0 calendar days; interrupted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/9ed14f68-e5d9-46ee-acda-bfe7f20be8e7.json
+Evidence: 2016-08-01T00:00:00 to 2016-11-01T00:00:00; 92.0 calendar days; interrupted, source_changed_during_pagination; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/01c53423-34ff-452d-87e6-a975327a01b2.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/7e5df6a2-4de5-4aa
+Evidence: 2017-01-01T00:00:00 to 2017-02-01T00:00:00; 31.0 calendar days; interrupted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/abb211c6-a02c-4c22-ba69-1591e01da939.json
+Evidence: 2017-04-01T00:00:00 to 2017-05-01T00:00:00; 30.0 calendar days; interrupted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/ca63bc89-dd4d-45d9-a1ff-cfb09e2e567c.json
+Evidence: 2017-07-01T00:00:00 to 2017-09-01T00:00:00; 62.0 calendar days; interrupted, source_changed_during_pagination; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/08ba09b5-abf8-46cd-bde4-fdad214912b6.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/d332aa25-28e9-477
+Evidence: 2017-11-01T00:00:00 to 2017-12-01T00:00:00; 30.0 calendar days; interrupted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/12939acb-d0ae-4617-a282-c306bc3bbeca.json
+Evidence: 2018-02-01T00:00:00 to 2018-03-01T00:00:00; 28.0 calendar days; interrupted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/4bd54c43-0a8e-45cd-8b23-283c7ceb0b0a.json
+Evidence: 2018-05-01T00:00:00 to 2018-06-01T00:00:00; 31.0 calendar days; interrupted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/b2532bed-e117-4ac7-b648-8355ac60f1a3.json
+Evidence: 2018-11-01T00:00:00 to 2018-12-01T00:00:00; 30.0 calendar days; collection_error; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/1dc0b2cb-9d74-41d3-a421-155a9aaeba03.json
+Evidence: 2019-02-01T00:00:00 to 2019-03-01T00:00:00; 28.0 calendar days; interrupted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/be2963dc-bee2-4302-a480-0f2b8a20cd6a.json
+Evidence: 2019-05-01T00:00:00 to 2019-06-01T00:00:00; 31.0 calendar days; collection_error; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/0440de2f-1a03-4e69-b13d-bcc992725632.json
+Evidence: 2019-08-01T00:00:00 to 2019-09-01T00:00:00; 31.0 calendar days; collection_error; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/3003eef0-2865-43cb-9e39-321b6439ec2d.json
+Evidence: 2020-05-01T00:00:00 to 2020-06-01T00:00:00; 31.0 calendar days; collection_error; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/7caebd1e-6962-42bd-80d4-12bd1a5515b9.json
+
+constellation-history/copernicus_era5_era5_land|C075|specialist_historical|f5161a5396a51e9575dfedb4 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2016-02-01T00:00:00; 31.0 calendar days; source_http_403; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-copernicus_era5_era5_land.service/executions/a7dd902d5980c09e46b9ad5aaa85b2fb554a6085a60d3a89335d528ffc285b11.json
+
+constellation-history/wto_timeseries_api|C071|specialist_historical|6b804af9bfb76b6b771edd03 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; source_http_400; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-wto_timeseries_api.service/executions/45c7f975b440563f5c1c4ecb52b1964cb62749ac579030bba99bd4c819b61239.json
+
+constellation-history/wto_timeseries_api|C071|specialist_historical|b884f9423eada6f5c55f3b31 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; source_http_400; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-wto_timeseries_api.service/executions/45c7f975b440563f5c1c4ecb52b1964cb62749ac579030bba99bd4c819b61239.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|68a2c37b82a38b194c760c6a — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2018-01-01T00:00:00 to 2019-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/f75b134d2134fa67cc5f0f2d33c6b9598d4868c5ce1e8b7da1e53b776905e3e3.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|69197d7379ec5c19d8459764 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2018-01-01T00:00:00 to 2019-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/f75b134d2134fa67cc5f0f2d33c6b9598d4868c5ce1e8b7da1e53b776905e3e3.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|4673faf9376b291581a8d090 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2018-01-01T00:00:00 to 2019-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/f75b134d2134fa67cc5f0f2d33c6b9598d4868c5ce1e8b7da1e53b776905e3e3.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|beeb72016dca3477f6ce2b12 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2018-01-01T00:00:00 to 2019-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/f75b134d2134fa67cc5f0f2d33c6b9598d4868c5ce1e8b7da1e53b776905e3e3.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|535cb62225aa5a64d47cb556 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2019-01-01T00:00:00 to 2020-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/f75b134d2134fa67cc5f0f2d33c6b9598d4868c5ce1e8b7da1e53b776905e3e3.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|90ac948f72828d6b5ec7e013 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2019-01-01T00:00:00 to 2020-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/f75b134d2134fa67cc5f0f2d33c6b9598d4868c5ce1e8b7da1e53b776905e3e3.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|2612b6c89d465edae6b022b9 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2019-01-01T00:00:00 to 2020-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/f75b134d2134fa67cc5f0f2d33c6b9598d4868c5ce1e8b7da1e53b776905e3e3.json
+
+constellation-history/usgs_minerals|S53|specialist_historical|acbc037758349feeec332605 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2019-01-01T00:00:00 to 2020-01-01T00:00:00; 365.0 calendar days; source_http_404; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usgs_minerals.service/executions/f75b134d2134fa67cc5f0f2d33c6b9598d4868c5ce1e8b7da1e53b776905e3e3.json
+
+constellation-history/datacite_dissertations_datasets_software_and_usage|C143|specialist_historical|f843a17b94374926737d815b — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2018-12-01T00:00:00 to 2019-01-01T00:00:00; 31.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/34155b48b3d3016c0efe3ece1e4b8ab576ef6282f3609f0f667122c568c12f88.json
+Evidence: 2019-04-01T00:00:00 to 2019-05-01T00:00:00; 30.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/67e77923cfd0438e7b2963d51a80543f56d3af9e307d42b22d7c63f4ecfe6e68.json
+Evidence: 2020-04-01T00:00:00 to 2020-07-01T00:00:00; 91.0 calendar days; source_changed_refresh_required; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/9b72d31aea8ae271e7dc975c79c0b72782171f50a945cff64198b6087b350fe2.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constell
+Evidence: 2021-10-01T00:00:00 to 2021-12-01T00:00:00; 61.0 calendar days; additional_request_failed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/7c4cccbf3957cd89b52440282f056b4fb54aac0934d74bd5f71bd42953eece97.json, s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-
+
+constellation-history/europe_pmc|S28|specialist_historical|afcda2e83af30f67b999d0c8 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2025-08-01T00:00:00 to 2025-09-01T00:00:00; 31.0 calendar days; source_retries_exhausted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-europe_pmc.service/executions/677523f4369494c46980907952ceae25e7a7c249cb8265ba5140ef817954e559.json
+
+constellation-history/usda_fas_production_supply_and_distribution|C125|specialist_historical|7cf1f09a01163d0387e2bd6a — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; source_http_500; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usda_fas_production_supply_and_distribution.service/executions/b200f8ac06b5a085e31a3e45b4f3d18ae4cd66492c19a51695b65ab45be07edb.json
+
+constellation-history/datacite_dissertations_datasets_software_and_usage|C143|specialist_historical|b7e985e05c0e393ff92f4c34 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2020-11-01T00:00:00 to 2020-12-01T00:00:00; 30.0 calendar days; source_http_502; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/856e9838599e606cbc68304ac0998f0e3639b42496365b93b94e2a30fdb39624.json
+Evidence: 2021-10-01T00:00:00 to 2021-11-01T00:00:00; 31.0 calendar days; source_http_503; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-datacite_dissertations_datasets_software_and_usage.service/executions/7c4cccbf3957cd89b52440282f056b4fb54aac0934d74bd5f71bd42953eece97.json
+
+constellation-history/usda_fas_production_supply_and_distribution|C125|specialist_historical|d46c277efa2e8b072043e8fe — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; source_http_500; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usda_fas_production_supply_and_distribution.service/executions/8516af8050314e831c3ef86795082c68d3f08837455eb55267adac5ff187ed8f.json
+
+constellation-history/copernicus_era5_era5_land|C075|specialist_historical|dfc4122274d4362068d0d6b5 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2016-02-01T00:00:00; 31.0 calendar days; source_http_403; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-copernicus_era5_era5_land.service/executions/c958522d9622bc289bc894d249cf1d4fefac49a5aa035a7921cab26c37772fca.json
+
+constellation-history/wto_timeseries_api|C071|specialist_historical|3a8096bd5200c6d5683faf63 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; additional_request_failed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-wto_timeseries_api.service/executions/1bd904dcc773f678e14f167b0fe866218e9aeb3b6144269f191fc6d4683d3c34.json
+
+constellation-history/wto_timeseries_api|C071|specialist_historical|8ee10105d1dc985d55a29ac4 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; source_http_204; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-wto_timeseries_api.service/executions/3b96676c64752f68d49b26580543128b7c94bf0d1f96ea61dd4f82ec0111552d.json
+
+constellation-history/usa_spending|S43|specialist_historical|caf8924344978de14d5dfe3e — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2018-01-01T00:00:00 to 2018-02-01T00:00:00; 31.0 calendar days; source_retries_exhausted; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-usa_spending.service/executions/ddd893b51b5c091303cb0c5fdfb748b5946fd6e88f766fbb0cf4549397f99015.json
+
+constellation-history/wto_timeseries_api|C071|specialist_historical|e38132c0fb1f68a6b33611f1 — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Investigate and repair this historical coverage gap, retain its evidence and replay the exact affected scope. It exceeds the owner’s five-day reporting threshold. [historical_gap_over_five_days]
+ 1. Open the named S3 receipt and identify the exact source, query dimensions, dates and failed manifest. The constellation-history label is a coverage scope, not a systemd unit.
+ 2. Compare the failed scope with its latest committed checkpoint and any reviewed unavailability decision; retain the original evidence.
+ 3. Repair and replay only the affected scope through its existing worker, with bounded retries; unrelated sources continue.
+ 4. Verify committed output and publication where applicable before closing the scope.
+Evidence: 2016-01-01T00:00:00 to 2017-01-01T00:00:00; 366.0 calendar days; additional_request_failed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-wto_timeseries_api.service/executions/66fd1a6759ad8f6b5b8308a6682baa0d3f99acddaf97b89483592736ff7e314a.json
+
+optima-collection-daily.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Complete the upstream inventory/index first, then rerun the dependent scope. [prerequisite_incomplete]
+ 1. Read the blocked dependent task and identify its required upstream manifest and exact universe/date scope.
+ 2. Resume or repair the corresponding upstream inventory/index/document window; preserve incomplete checkpoints.
+ 3. Require an exhausted committed upstream manifest with matching scope before restarting the dependent task.
+ 4. Verify dependent S3 output and Athena publication; blocked work must not become a successful empty dataset.
+Action: Inspect the failed invocation, repair its cause, and verify committed output plus Athena publication. [service_failed]
+ 1. Inspect journalctl -u optima-collection-daily.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+ 2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+ 3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+ 4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: optima-collection-daily.service: Failed with result 'exit-code'.
+Latest service-level progress: 2026-11-08T10:29:47.590140Z (not proof every failed scope is fixed).
+
+optima-committed-athena.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Inspect the named source/checkpoint, repair the persistent failure, and verify the affected output in Athena. [queue_timeout]
+ 1. Inspect journalctl -u optima-committed-athena.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+ 2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+ 3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+ 4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: Waiting for shared collection lock for 56 minutes.
+Latest service-level progress: 2026-11-08T10:03:42Z (not proof every failed scope is fixed).
+
+optima-conference-publication.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Check the last committed checkpoint and quota/lock state; restore progress and verify publication. [progress_stalled]
+ 1. Inspect journalctl -u optima-conference-publication.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+ 2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+ 3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+ 4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: Outstanding work with no committed progress beyond the job-specific threshold.
+Latest service-level progress: 2026-11-08T02:00:53.372084Z (not proof every failed scope is fixed).
+
+optima-daily-health-audit.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Inspect the failed invocation, repair its cause, and verify committed output plus Athena publication. [service_failed]
+ 1. Inspect journalctl -u optima-daily-health-audit.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+ 2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+ 3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+ 4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: systemd result: signal
+
+optima-market-collection.service — COVERAGE REVIEW
+Owner: Implementation (no credential purchase requested)
+Action: Reconcile empty symbol/date windows against listing and trading calendars; add only evidence-backed exclusions. [market_empty_price_window_unverified]
+ 1. Locate each empty symbol/date window in the market checkpoints; do not advance it merely because a request succeeded.
+ 2. Check listing history, trading days, ticker changes and provider availability with dated evidence.
+ 3. Retry a correctly mapped window, or record an evidence-backed scoped exclusion in the reviewed registry.
+ 4. Recompute unresolved daily/historical counts and verify saved prices in Athena.
+Action: Resolve missing symbol mappings/provider coverage and verify affected date windows in Athena. [unresolved_market_coverage]
+ 1. Read the market daily/historical progress files and coverage-exclusions registry; enumerate unresolved symbol/date windows separately by lane.
+ 2. Verify exchange/ticker mappings, IPO/delisting dates, trading calendars and provider coverage against dated evidence.
+ 3. Repair valid mappings and replay affected windows. Add exclusions only where reviewed evidence supports that precise date scope.
+ 4. Verify prices/actions in S3 and Athena and reconcile unresolved counts; daily and historical symbol sets may overlap.
+Evidence: Empty price windows remain unverified outside the 52 reviewed window exclusions.
+Evidence: Unresolved coverage: daily: 175 symbols; historical: 202 symbols. 52 windows excluded with reviewed evidence.
+Latest service-level progress: 2026-11-08T10:18:06.480388Z (not proof every failed scope is fixed).
+
+optima-patents-prosecution-publication.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Inspect the named source/checkpoint, repair the persistent failure, and verify the affected output in Athena. [queue_timeout]
+ 1. Inspect journalctl -u optima-patents-prosecution-publication.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+ 2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+ 3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+ 4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: Waiting for shared collection lock for 72 minutes.
+Latest service-level progress: 2026-11-08T09:14:49.693866Z (not proof every failed scope is fixed).
+
+optima-patents-prosecution.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Inspect the named source/checkpoint, repair the persistent failure, and verify the affected output in Athena. [duplicate_provider_document]
+ 1. Inspect journalctl -u optima-patents-prosecution.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+ 2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+ 3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+ 4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Action: Inspect the named source/checkpoint, repair the persistent failure, and verify the affected output in Athena. [queue_timeout]
+ 1. Inspect journalctl -u optima-patents-prosecution.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+ 2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+ 3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+ 4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: Waiting for shared collection lock for 55 minutes.
+Latest service-level progress: 2026-11-08T10:04:25Z (not proof every failed scope is fixed).
+
+optima-people-collection.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Inspect the named source/checkpoint, repair the persistent failure, and verify the affected output in Athena. [queue_timeout]
+ 1. Inspect journalctl -u optima-people-collection.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+ 2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+ 3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+ 4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: Waiting for shared collection lock for 73 minutes.
+Latest service-level progress: 2026-11-08T00:52:14.239670Z (not proof every failed scope is fixed).
+
+optima-specialist-publication.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Inspect the named source/checkpoint, repair the persistent failure, and verify the affected output in Athena. [queue_timeout]
+ 1. Inspect journalctl -u optima-specialist-publication.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+ 2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+ 3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+ 4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: Waiting for shared collection lock for 48 minutes.
+Latest service-level progress: 2026-11-08T10:11:31.237581Z (not proof every failed scope is fixed).
+
+HISTORICAL GAP REGISTER
+135 gaps longer than five days require investigation; 256 gaps of five days or less are recorded without flags.
+Gap audit: 2026-11-08T10:02:23.698856+00:00
+Only attempted scopes. Pending backlog and unaudited coverage are not inferred missing data.
+
+HISTORICAL WORKER AND REPAIR LIST
+Worker shutdown check: guard_busy
+3933 unresolved capture failures are retained for repair; they do not keep the historical worker running after healthy work finishes.
+Repair: arxiv; 2017-11-30 to 2017-12-01; provider_throttled; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/a095ae7de80b2d3fe226431b2d899db716a84ee184ba96ace29545a3e06e27b0/2c4d734e0b784df3ac02deb7d105b22b.json
+Repair: arxiv; 2018-01-01 to 2018-01-02; HTTPSConnectionPool(host='export.arxiv.org', port=443): Read timed out. (read timeout=30); evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/3055edd1d05c6087ddcc97521754d48de598046fa1b5e5c03df68f1d584d869f/d92711560bb14dbdb851e099841bfec1.json
+Repair: arxiv; 2018-02-27 to 2018-02-28; HTTPSConnectionPool(host='export.arxiv.org', port=443): Read timed out. (read timeout=30); evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/308e0680e85c8c41e1c99e5569e8ed0553255de10e498073387d1c23807b63b5/2142ae7855384f1288f71123bf3552e4.json
+Repair: arxiv; 2018-09-03 to 2018-09-04; provider_throttled; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/2fa663b39a9f4d82e4e899ce9e4ca460d11dab877fc3017be3e5d8cba4ea2bf3/63084622252f425d94004ceb102f054e.json
+Repair: arxiv; 2020-05-22 to 2020-05-23; HTTPSConnectionPool(host='export.arxiv.org', port=443): Read timed out. (read timeout=30); evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/30101621bfe13e255351131c1c10cc0ddfc797e87f9e84d76dfcfc1381a0fed2/172e70b5d89f4118b5ab13deb0dddcb4.json
+Repair: arxiv; 2020-10-15 to 2020-10-16; provider_throttled; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/3013a7b336077896c3ba72baaa9fa45ddfc72faeabc60ee099cde48f8828aea0/722fd31e79c34168b7d86b1294628d41.json
+Repair: arxiv; 2021-10-15 to 2021-10-16; HTTPSConnectionPool(host='export.arxiv.org', port=443): Read timed out. (read timeout=30); evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/2fb253ad33988c920f7894284b635d8847bb852bc125c1607be2c39a80605d4d/11ae714162224f99b0a969d75adce65a.json
+Repair: arxiv; 2023-09-09 to 2023-09-10; provider_throttled; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/2f91cbb0778f368b7c830fdf25a0ec98e1b6c7b52e1eb8651cc7be044dfa4872/7f05c085ef6a43698cbe3f8931511dd9.json
+Repair: arxiv; 2025-07-08 to 2025-07-09; HTTPSConnectionPool(host='export.arxiv.org', port=443): Read timed out. (read timeout=30); evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/718693206f9fb9847f5bc9a28a0016236716004ee3f0f7ba438fc5580b0cadc7/823eec69c88245999736cb6dd5099481.json
+Repair: arxiv; 2026-01-20 to 2026-01-21; HTTPSConnectionPool(host='export.arxiv.org', port=443): Read timed out. (read timeout=30); evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/2f8afb8ecccd87635d6acd666972de8b8b6df45860bf93f258129c88ec2ab115/7cceffa5770642af865dbe8a84627a74.json
+Repair: arxiv; 2026-03-14 to 2026-03-15; HTTPSConnectionPool(host='export.arxiv.org', port=443): Read timed out. (read timeout=30); evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/2f9a4a41677e31d9a2186089456ce6d5604536c02e55877034bf84e4b90ea090/d1008d251fa34de99106edbd62c3f32e.json
+Repair: nsf_awards; 2016-02-29 to 2016-03-01; Duplicate provider identities; pagination must be reviewed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/274ddd147c83323e405c7479879a2ede4ea2989ab24db1a46976381840f917bc/c66c7bd8956148afbdd35018ecb666bf.json
+Repair: nsf_awards; 2016-07-20 to 2016-07-21; Duplicate provider identities; pagination must be reviewed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/133d29be7fe680ae1e4e9932b8acb97c82a9bfe169e9c46fd4d774190b284c04/c22c7643a0294cd5990680a8bc5989fa.json
+Repair: nsf_awards; 2016-08-23 to 2016-08-24; Duplicate provider identities; pagination must be reviewed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/1cd255157fc0868286a676f7685ad16d7ae14d22e732df2ae847273c90e9e4ca/bd68ec41e87a4102907b49fb39d5320f.json
+Repair: nsf_awards; 2016-08-25 to 2016-08-26; Duplicate provider identities; pagination must be reviewed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/15dc52555463c08d22c4e522fc78171c1a32b68e1f6a3a32fc752e3118eac259/d1dfa928353543d9995128bb5901f4be.json
+Repair: nsf_awards; 2017-02-28 to 2017-03-01; Duplicate provider identities; pagination must be reviewed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/19995194994ba3a78b15327685ecf8b8b80e9c9700a5268a7f933b5c48bdfc3f/d1efb604fa8a43979c94379d60e723f6.json
+Repair: nsf_awards; 2017-06-30 to 2017-07-01; Duplicate provider identities; pagination must be reviewed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/2922591af856f16394199d1b9e63608f31bbf24481134b4a7f09ed8c3b7455ee/873c5ce65011484cb8b62ffbd02b966e.json
+Repair: nsf_awards; 2017-08-07 to 2017-08-08; Duplicate provider identities; pagination must be reviewed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/28aec1533f6d89e7e9a35abc9a7fabac836359362a66cddecc099a9486af99e6/63b647b0d0174a1d81957896a0409be9.json
+Repair: nsf_awards; 2017-08-17 to 2017-08-18; Duplicate provider identities; pagination must be reviewed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/05a30050242cc1fbd641adf843ae1ad1050bf41852be7cf8d37694fa39458579/d6663294160849279dbd0493244d1d6d.json
+Repair: nsf_awards; 2017-08-21 to 2017-08-22; Duplicate provider identities; pagination must be reviewed; evidence s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/gap-events/08ab5f0a7fa16c74ce84999432e028c2b0ff1d002b5dbfa65e8e3b0c088f176a/ae5b24a202b647628ed97cec49ea98e4.json
+Full failure handoff: s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/monitoring/historical-autostop/latest.json

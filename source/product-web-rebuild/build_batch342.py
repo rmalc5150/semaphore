@@ -1,0 +1,15 @@
+from research_helpers import *
+root='https://www.lithionbattery.com/'
+a=ev(root+'valence/products','Full current Valence-branded selector reviewed: five battery modules and two accessories; other Lithion brands not automatically Valence-developed.')
+b=ev(root+'news/valence-successfully-recertifies-ece-r100-r2-module-tests-for-commercial-ev-applications-in-europe','Historical July 2021 recertification article republished in 2026; confirms Lithion acquired Valence in late 2020, not a new 2026 acquisition or test.')
+products=[];evidence=[a,b]
+for name,slug,sku,v,ah,kg in [('U27-36XP','u27-36xp','1008847',38.4,50,18.7),('U27-24V88XP','u27-24v88xp','91000006',25.6,88,20.1),('U27-12XP','u27-12xp','1008773',12.8,144,19.2),('U1-24RT','u1-24rt','1008898',25.6,23,6.4),('U24-12XP','u24-12xp','1008956',12.8,129,16.3)]:
+ src=ev(root+'valence-product/'+slug,'Exact manufacturer SKU and nominal electrical ratings. Marketing 12/24/36 V labels distinguished from nominal 12.8/25.6/38.4 V. Conflicting dimensional fields and pending certifications not asserted.')
+ evidence.append(src);products.append(p(name,'Lithium iron phosphate battery module.',src,life='commercial',typ='product',sector='energy_storage',sub='batteries',roles=['developer'],attributes={'manufacturer_sku':sku,'chemistry':'lithium_iron_phosphate','nominal_voltage_v':v,'capacity_ah':ah,'mass_kg':kg},evidence=[src,a,b]))
+for name,slug,desc in [('Valence RT Battery Discharge Indicator','rt-battery-discharge-indicator','State-of-charge and fault display for RT battery modules.'),('Valence Diagnostic Toolkit','diagnostic-toolkit','Battery monitoring software and communications adapter kit.')]:
+ src=ev(root+'valence-product/'+slug,'Current Valence battery-system accessory offered by manufacturer.')
+ evidence.append(src);products.append(p(name,desc,src,life='commercial',typ='product',sector='energy_storage',sub='batteries'))
+c=ev(root+'valence/home','Valence systems offered with Lithion XB battery management system; association as commercial partner, not invented original developer.')
+evidence.append(c);products.append(p('Lithion XB BMS','Battery management system incorporated into current Valence systems.',c,life='commercial',typ='product',sector='energy_storage',sub='batteries',roles=['commercial_partner']))
+co=dict(company_id='cmp_2b03ae6c-ada3-4678-b2d4-9241285f49e0',products=products,evidence=evidence,status='partial',coverage_note='All seven current Valence selector items plus associated Lithion XB BMS reviewed. Exact SKU, nominal voltage, amp-hour and mass fields captured for five modules. No conflicting dimensions copied or pending certificates claimed complete. Partial: older U1/U24/U27 XP/RT generations, U-BMS predecessor, archived datasheet inventory and historical legal-entity manufacturing roles remain. HomeGrid/Core/Charger brands not assumed original Valence products; stackable-module heading not an extra SKU.')
+(out/'batch-0342.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

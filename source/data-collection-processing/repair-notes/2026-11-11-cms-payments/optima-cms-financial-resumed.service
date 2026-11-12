@@ -1,0 +1,13 @@
+[Unit]
+Description=Bounded CMS financial files refresh and Athena verification
+After=network-online.target
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B cms_payments_resumed.py --mode financial --config config/cms-financial-controller.json
+Slice=optima-financial.slice
+MemoryMax=402653184
+MemorySwapMax=0
+CPUQuota=20%
+TimeoutStartSec=360

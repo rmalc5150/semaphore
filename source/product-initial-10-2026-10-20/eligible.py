@@ -1,0 +1,3 @@
+from pathlib import Path
+exec(Path('/home/ec2-user/product-initial-10-2026-10-20/populate.py').read_text().split("assert run('SELECT COUNT(*) FROM tracking.products')")[0])
+print(run("SELECT COUNT(*) FROM tracking.companies WHERE review_status='verified' AND archived_at IS NULL AND JSON_OVERLAPS(sector_ids,JSON_ARRAY('biotech','robotics','semiconductors','energy_storage')); SELECT company_id,canonical_name,website_url,sector_ids FROM tracking.companies WHERE review_status='verified' AND archived_at IS NULL AND JSON_OVERLAPS(sector_ids,JSON_ARRAY('biotech','robotics','semiconductors','energy_storage')) ORDER BY company_id LIMIT 8;"))

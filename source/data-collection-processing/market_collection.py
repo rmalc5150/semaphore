@@ -72,9 +72,16 @@ def spec(universe,taxonomy,source,start,end,mode,scope):
     return task_spec(source,'market_records',mode,instant(start),instant(end),scope,VERSION,universe,taxonomy)
 
 
-def collect_eodhd(store,settings,universe,taxonomy,symbol,start,end,mode,client,candidates=(),refresh=False):
+def collect_eodhd(store,settings,universe,taxonomy,symbol,start,end,mode,client,candidates=(),refresh=False,symbol_mapping=None):
     require(start<end and (end-start).days<=366,'market_window_must_be_bounded_to_one_year')
     scope={'symbol':symbol,'kinds':['prices','dividends','splits'],'candidate_listing_ids':sorted(candidates),'end_policy':'exclusive'}
+    from market_symbol_mappings import segments, validate as validate_mapping
+    if symbol_mapping:
+        validate_mapping(symbol_mapping, symbol, candidates)
+    requests = segments(symbol, start, end, symbol_mapping)
+    mapped = any(request_symbol != symbol for request_symbol, _, _ in requests)
+    if mapped:
+        scope['reviewed_symbol_mapping'] = symbol_mapping
     try: run=CollectionRun.start(store,spec(universe,taxonomy,'eodhd_market',start,end,mode,scope),universe,taxonomy,settings,resume=not refresh,refresh=refresh)
     except AlreadyComplete as exc: return {'status':'complete','manifest':str(exc),'already_complete':True}
     evidence=EvidenceClient(store,'eodhd_market')
@@ -83,29 +90,37 @@ def collect_eodhd(store,settings,universe,taxonomy,symbol,start,end,mode,client,
         offset=int(run.cursor or 0)
         while not run.exhausted and offset<len(jobs):
             kind,path=jobs[offset]; evidence.evidence=[]
-            data,raw,url=client.get(path+'/'+quote(symbol,safe=''),{'from':str(start),'to':str(end-timedelta(days=1)),'order':'a'})
-            require(isinstance(data,list),'market_response_not_list'); evidence.save(raw,url)
-            rows=[normalize(r,kind,start,end) for r in data]
-            dates=[r['date'] for r in rows];require(len(dates)==len(set(dates)),'market_duplicate_date_requires_review')
-            # An empty price history is not evidence that a listing had no sessions.
-            if kind == 'prices' and not rows:
-                # Empty windows may precede listing or follow the last available
-                # quote. Preserve a bounded source-history probe for diagnosis,
-                # while keeping this window incomplete rather than inventing prices.
-                probe_end = datetime.now(timezone.utc).date()
-                history, raw_history, history_url = client.get(path+'/'+quote(symbol,safe=''),
-                    {'from': str(historical_start()), 'to': str(probe_end-timedelta(days=1)), 'order': 'a'})
-                require(isinstance(history, list), 'market_response_not_list')
-                evidence.save(raw_history, history_url)
-                dates = sorted(date.fromisoformat(r['date']).isoformat() for r in history)
-                diagnostics = {'symbol': symbol, 'window_start': str(start), 'window_end_exclusive': str(end),
-                    'provider_first_price': dates[0] if dates else None,
-                    'provider_last_price': dates[-1] if dates else None,
-                    'observed_price_rows': len(dates), 'evidence': evidence.evidence,
-                    'coverage': 'Provider availability only; does not prove listing dates or absence of trading.'}
-                write_json(store, run.state['manifest_prefix']+'/price-availability.json', diagnostics)
-                raise SourceIssue('market_empty_price_window_unverified', True, diagnostics)
-            records=[record(run,symbol,kind,r,url,evidence.evidence,candidates) for r in rows]
+            records = []
+            for request_symbol, segment_start, segment_end in requests:
+                evidence.evidence = []
+                data,raw,url=client.get(path+'/'+quote(request_symbol,safe=''),{'from':str(segment_start),'to':str(segment_end-timedelta(days=1)),'order':'a'})
+                require(isinstance(data,list),'market_response_not_list'); evidence.save(raw,url)
+                rows=[normalize(r,kind,segment_start,segment_end) for r in data]
+                dates=[r['date'] for r in rows];require(len(dates)==len(set(dates)),'market_duplicate_date_requires_review')
+                # An empty price history is not evidence that a listing had no sessions.
+                if kind == 'prices' and not rows:
+                    # Empty windows may precede listing or follow the last available
+                    # quote. Preserve a bounded source-history probe for diagnosis,
+                    # while keeping this window incomplete rather than inventing prices.
+                    probe_end = datetime.now(timezone.utc).date()
+                    history, raw_history, history_url = client.get(path+'/'+quote(request_symbol,safe=''),
+                        {'from': str(historical_start()), 'to': str(probe_end-timedelta(days=1)), 'order': 'a'})
+                    require(isinstance(history, list), 'market_response_not_list')
+                    evidence.save(raw_history, history_url)
+                    dates = sorted(date.fromisoformat(r['date']).isoformat() for r in history)
+                    diagnostics = {'symbol': symbol, 'provider_symbol': request_symbol, 'window_start': str(segment_start), 'window_end_exclusive': str(segment_end),
+                        'provider_first_price': dates[0] if dates else None,
+                        'provider_last_price': dates[-1] if dates else None,
+                        'observed_price_rows': len(dates), 'evidence': evidence.evidence,
+                        'coverage': 'Provider availability only; does not prove listing dates or absence of trading.'}
+                    write_json(store, run.state['manifest_prefix']+'/price-availability.json', diagnostics)
+                    raise SourceIssue('market_empty_price_window_unverified', True, diagnostics)
+                for row in rows:
+                    result = record(run,symbol,kind,row,url,evidence.evidence,candidates)
+                    if mapped:
+                        result['payload'].update(provider_symbol=request_symbol, symbol_mapping=symbol_mapping)
+                        result = seal_record(result)
+                    records.append(result)
             offset+=1;run.commit_page(records,next_cursor=str(offset) if offset<len(jobs) else None,exhausted=offset==len(jobs))
         return {'status':'complete','records':run.state['record_count'],'manifest':run.finish('complete',expected_records=run.state['record_count'])}
     except (Exception,KeyboardInterrupt) as exc: return finish_error(run,exc,evidence.evidence)

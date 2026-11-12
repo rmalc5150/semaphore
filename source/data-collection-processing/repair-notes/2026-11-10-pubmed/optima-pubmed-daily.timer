@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily PubMed topics with bounded hourly continuation
+[Timer]
+OnBootSec=180
+OnCalendar=*-*-* 08:10:00 Europe/Madrid
+OnUnitInactiveSec=3600
+Persistent=true
+Unit=optima-pubmed-daily.service
+[Install]
+WantedBy=timers.target

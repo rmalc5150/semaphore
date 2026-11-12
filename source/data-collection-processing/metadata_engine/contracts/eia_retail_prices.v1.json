@@ -1,0 +1,10 @@
+{
+  "source_key": "eia_retail_prices",
+  "contract_version": "1.0.0",
+  "adapter": "time_series",
+  "adapter_version": "1.0.0",
+  "record_kind": "measurement",
+  "source_record_id_basis": "documented_composite",
+  "license_policy_id": "public-eia-v1",
+  "raw_requirements": {"version": "1.0.0", "minimum_completeness": "complete", "required_artifact_kinds": ["provider_record", "source_dataset_file"], "forbidden_shortcuts": ["abstract_only", "index_only", "title_date_only", "third_party_metadata_only"]}
+}

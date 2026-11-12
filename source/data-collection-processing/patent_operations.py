@@ -84,7 +84,8 @@ class PatentOperations(Operations):
         if mode == 'daily' and self.config.get('daily_partition_strategy') == 'hourly-v1':
             return patent.collect_uspto_partitioned(self.store, self.settings, self.universe, self.taxonomy,
                 start, end, page_size=self.config['page_size'], max_pages=self.config['max_pages'],
-                refresh=refresh, client=self.client, rules=self.rules)
+                refresh=refresh, client=self.client, rules=self.rules,
+                eager_split=self.config.get('daily_partition_eager_split',False))
         return patent.collect_uspto(self.store, self.settings, self.universe, self.taxonomy,
             start, end, mode, page_size=self.config["page_size"], max_pages=self.config["max_pages"],
             refresh=refresh or self.force_refresh, client=self.client, rules=self.rules)

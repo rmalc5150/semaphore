@@ -1,0 +1,14 @@
+from research_helpers import *
+base='https://www.soitec.com/home/products/product-platforms/'
+a=ev(base+'rf-soi','Current manufacturer names four RF substrate families: RFeSI, RFeSI lite, mmWeSI and HR-SOI.')
+b=ev(base+'poi','Current manufacturer specifies LT6-MHB, LT6-LB, LN6, LT8-MHB and LT8-LB products; generic POI umbrella not additionally duplicated.')
+products=[];evidence=[a,b]
+for name,desc in [('Connect RFeSI','Trap-rich RF silicon-on-insulator substrate.'),('Connect RFeSI lite','Simplified trap-rich RF substrate.'),('Connect mmWeSI','Millimeter-wave optimized RF substrate.'),('Connect HR-SOI','High-resistivity RF silicon-on-insulator substrate.')]:
+ products.append(p('Soitec '+name,desc,a,'commercial',roles=['developer','manufacturer'],typ='product',sector='semiconductors',sub='materials_and_packaging'))
+for name in ['LT6-MHB','LT6-LB','LN6','LT8-MHB','LT8-LB']:
+ products.append(p('Soitec Connect POI '+name,'Coded piezoelectric-on-insulator wafer product for RF filtering.',b,'commercial',roles=['developer','manufacturer'],typ='product',sector='semiconductors',sub='materials_and_packaging'))
+for slug,name,desc in [('fd-soi','FD-SOI','Fully depleted silicon-on-insulator substrates.'),('rf-gan','RF-GaN','Gallium nitride heteroepitaxial substrate family for RF devices.'),('powersoi','Power-SOI','Silicon-on-insulator wafer family for integrated power circuits.'),('smartsic','SmartSiC','Engineered silicon carbide wafer family for power electronics.'),('photonics-soi','Photonics-SOI','Silicon-on-insulator substrate family for integrated photonics.'),('imager-soi','Imager-SOI','Engineered substrates for image sensor fabrication.'),('pd-soi','PD-SOI','Partially depleted silicon-on-insulator substrates.'),('mems-soi','MEMS-SOI','Engineered substrates for microelectromechanical sensor fabrication.')]:
+ e=ev(base+slug,'Current manufacturer catalogue identifies '+name+' substrate family. Undisclosed wafer grades not fabricated as model numbers.')
+ evidence.append(e);products.append(p('Soitec '+name,desc,e,'commercial',roles=['developer','manufacturer'],typ='product',sector='semiconductors',sub='materials_and_packaging'))
+co=dict(company_id='cmp_0dc75967-ff20-4076-807b-41a75875c3e3',products=products,evidence=evidence,status='partial',coverage_note='Seventeen explicitly named or coded current semiconductor substrate families/products recorded. RF-SOI and POI umbrellas not duplicated alongside named constituent products; FD-SOI automotive/connect markets grouped as same material family. Partial: finer wafer-grade splits, Smart Cut/Smart Stacking licensed technologies, legacy III-V/epitaxy products and recent SmartSiC production status need further review. Material vendors not attributed customer finished chips or batteries.')
+(out/'batch-0238.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

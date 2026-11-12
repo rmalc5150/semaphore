@@ -24,6 +24,37 @@ class CohortTests(unittest.TestCase):
             {'Key':'data/'+key} for key in manifests]}]
         result=daily.manifest_keys(store,SimpleNamespace(s3_prefix='data',s3_bucket='bucket'),u,t)
         self.assertEqual(result,[relative+'refresh/final.json',relative+'resumed/final.json'])
+    def test_latest_inventory_requires_complete_matching_configuration(self):
+        u={'version':'u'};t={'version':'t'}
+        manifest={'status':'complete','exhausted':True,'task':{'source':'eodhd','dataset':'listing_inventory',
+          'universe_hash':digest(u),'taxonomy_hash':digest(t)}}
+        store=Mock();store.get.side_effect=[SimpleNamespace(body=b'{"manifest":"new-inventory"}'),
+          SimpleNamespace(body=json.dumps(manifest).encode())]
+        self.assertEqual(daily.current_inventory(store,u,t),'new-inventory')
+        manifest['status']='partial'
+        store.get.side_effect=[SimpleNamespace(body=b'{"manifest":"new-inventory"}'),
+          SimpleNamespace(body=json.dumps(manifest).encode())]
+        with self.assertRaisesRegex(ValueError,'not_complete'):
+            daily.current_inventory(store,u,t)
+
+    def test_completed_roster_requires_a_committed_exact_count(self):
+        import eodhd_batch as batch
+        task={'source':'eodhd','dataset':'company_profiles','universe_hash':'u','taxonomy_hash':'t',
+              'scope':{'symbols':['TEST.US']}}
+        key='profiles/final.json'
+        manifest={'task':task,'task_id':'task_'+digest(task),'status':'complete','exhausted':True,
+                  'record_count':1,'expected_records':1,'pages':[{'record_count':1}]}
+        head={'task':task,'terminal_history':[key]}
+        store=Mock();store.get.side_effect=lambda name:SimpleNamespace(body=json.dumps(manifest if name==key else head).encode())
+        _,symbols=batch.committed_profile_symbols(store,key,{'task':task})
+        self.assertEqual(symbols,{'TEST.US'})
+        head['terminal_history']=[]
+        with self.assertRaisesRegex(daily.SourceIssue,'not_committed'):
+            batch.committed_profile_symbols(store,key,{'task':task})
+        head['terminal_history']=[key];manifest['record_count']=2
+        with self.assertRaisesRegex(daily.SourceIssue,'roster_count'):
+            batch.committed_profile_symbols(store,key,{'task':task})
+
     def setUp(self):
         t=tempfile.TemporaryDirectory();self.addCleanup(t.cleanup);self.root=Path(t.name)
         self.day=datetime.now(timezone.utc).date().isoformat()

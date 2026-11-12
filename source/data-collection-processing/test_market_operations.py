@@ -9,6 +9,14 @@ from regulatory_collection import SourceIssue
 from research_contract import ROOT,load_json
 
 class RunnerTests(unittest.TestCase):
+    def test_daily_only_does_not_execute_history(self):
+        calls=[]
+        def collect(*args):
+            calls.append(args[7]);return {'status':'complete','manifest':'daily'}
+        with patch('market_operations.collect_eodhd',side_effect=collect),patch('market_operations.enqueue'):
+            self.runner.run(None,date(2026,9,27),lanes=('daily',))
+        self.assertTrue(calls)
+        self.assertEqual(set(calls),{'daily'})
     def test_empty_closed_daily_month_does_not_block_current_month(self):
         self.runner.symbols = {'A.US': ['listing-a']}
         key = self.runner.prefix + '/daily.json'
@@ -61,6 +69,7 @@ class RunnerTests(unittest.TestCase):
         t=tempfile.TemporaryDirectory();self.addCleanup(t.cleanup)
         self.settings=StorageSettings(local_root=t.name);self.store=self.settings.store()
         config=load_json(ROOT/'config/market-operations.json')
+        config['historical_start']='2021-01-01'  # These fixtures cover retained 2021 windows.
         self.runner=MarketOperations(self.store,self.settings,config,load_json(ROOT/'config/company-universe.v0.3.json'),load_json(ROOT/'config/sectors.v1.json'))
         self.runner.symbols={'A.US':['listing-a'],'B.US':['listing-b']}
     def test_failure_isolated_and_no_advance_or_publication(self):

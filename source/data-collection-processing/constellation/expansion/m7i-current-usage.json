@@ -1,0 +1,16 @@
+{
+  "sample_at_utc": "2026-10-26T15:52:26.245028+00:00",
+  "sample_seconds": 10.000105304000044,
+  "worker_cpu_cores": 0.6746444957235992,
+  "worker_cpu_percent_of_4": 16.86611239308998,
+  "host_cpu_busy_percent": 17.407592407592407,
+  "worker_memory_gib": 2.4422760009765625,
+  "worker_memory_limit_gib": 13.0,
+  "cpu_max": "400000 100000",
+  "host_memory_gib": 15.337028503417969,
+  "host_available_memory_gib": 12.495475769042969,
+  "active_workers": 15,
+  "configured_workers": 15,
+  "sample_at_madrid": "2026-10-26T16:52:26.245028+01:00",
+  "worker_memory_percent_of_limit": 18.786738469050484
+}

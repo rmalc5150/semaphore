@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue source-isolated FDA capture
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=120
+Persistent=true
+Unit=optima-fda-reviewed-capture.service
+[Install]
+WantedBy=timers.target

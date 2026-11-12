@@ -1,5 +1,5 @@
 {
-  "start": "2021-01-01",
+  "start": "2016-01-01",
   "end_exclusive": "2026-10-15",
   "storage_config": "config/collection-storage.s3.json",
   "max_articles_per_invocation": 10,

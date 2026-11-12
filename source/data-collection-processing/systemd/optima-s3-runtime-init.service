@@ -1,0 +1,10 @@
+[Unit]
+Description=Prepare RAM workspace for S3-backed capture
+Before=timers.target
+[Service]
+Type=oneshot
+User=ec2-user
+ExecStart=/usr/bin/mkdir -p /dev/shm/optima-s3/locks
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+from research_helpers import *
+a=ev('https://www.sec.gov/Archives/edgar/data/703901/000105291809000128/vpro10ksbmar1609.htm','Historical issuer filing identifies licensed recombinant-protein manufacturing technologies. Not current approved Viropro-branded medicines.')
+b=ev('https://www.sec.gov/Archives/edgar/data/703901/000109690612000168/vpro10q20110331.htm','Issuer identifies Intas Rituxan-biosimilar manufacturing-process agreement; contemporary royalty prospects are historical, not confirmed current sales.')
+c=ev('https://www.prnewswire.com/news-releases/viropro-announces-results-of-strategic-review-and-plan-for-restructuring-300029286.html','Company February 2015 release reports Alpha Biologics receivership and investment write-off. No inference of ongoing commercial manufacturing.')
+products=[]
+for protein in ['interferon alpha','interleukin-2','erythropoietin','G-CSF','GM-CSF']:
+ products.append(p('Viropro '+protein+' production technology','Historically licensed recombinant-protein manufacturing process; current licence status unresolved.',a,roles=['licensee'],typ='technology',sub='industrial_biotechnology'))
+products.append(p('Viropro Intas rituximab biosimilar production process','Historical contracted manufacturing-process development for Intas; not the Rituxan originator brand.',b,roles=['developer'],typ='technology',sub='industrial_biotechnology'))
+co=dict(company_id='cmp_0f2d2956-7720-48a7-b271-a5e890735593',products=products,evidence=[a,b,c],status='partial',coverage_note='Historical biomanufacturing technologies recorded with unknown lifecycle. Partial: current operating status, licensing expiry/termination and 2013 Oncobiologics candidate identities need reconciliation. Proposed NovaRx acquisition not assumed consummated; reference-product originator brands not attributed to Viropro. Alpha receivership not treated as evidence every related candidate ceased globally.')
+(out/'batch-0241.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

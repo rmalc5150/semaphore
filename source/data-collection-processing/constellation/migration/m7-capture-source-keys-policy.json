@@ -1,0 +1,27 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "secretsmanager:GetSecretValue",
+      "Resource": [
+        "arn:aws:secretsmanager:us-east-1:059416028963:secret:FDA-Data-vYfqjf",
+        "arn:aws:secretsmanager:us-east-1:059416028963:secret:FDA-Enforcement-xu3Kv7",
+        "arn:aws:secretsmanager:us-east-1:059416028963:secret:EDINET-kL3v4d",
+        "arn:aws:secretsmanager:us-east-1:059416028963:secret:EIA-vCjlZh",
+        "arn:aws:secretsmanager:us-east-1:059416028963:secret:EODHD-Zg9HZF",
+        "arn:aws:secretsmanager:us-east-1:059416028963:secret:USPTO-CwTvy4"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "research-data/constellation-backfill/*"
+        }
+      }
+    }
+  ]
+}

@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 import argparse
 import fcntl
 import json
+import os
 from pathlib import Path
 
 from collection_operations import load_stored
@@ -52,6 +53,19 @@ def owner_for(task):
     return None
 
 
+def record_failure(store, stage, identity, exc):
+    failure = {'status': 'failed', 'stage': stage, 'identity': identity,
+               'error_type': type(exc).__name__, 'message': str(exc)[:500], 'at': now()}
+    # Journald remains a fallback if the evidence store itself is unavailable.
+    print(json.dumps(failure), flush=True)
+    try:
+        write_json(store, 'operations/research-publication/failures/' + digest(failure) + '.json', failure)
+    except Exception as logging_error:
+        print(json.dumps({'stage': 'failure_log_unavailable', 'identity': identity,
+                          'error_type': type(logging_error).__name__}), flush=True)
+    return failure
+
+
 def discover(store, settings, owners=None):
     """Use committed heads; partial refreshes cannot replace successful releases."""
     counts = dict.fromkeys(GROUPS, 0)
@@ -91,14 +105,38 @@ def discover(store, settings, owners=None):
     else:
         keys = [key for key in list_keys(store, settings, 'checkpoints/' if hasattr(store, 'root') else 'checkpoints/task_')
                 if key.startswith('checkpoints/task_') and key.endswith('/head.json')]
-    # Only reads overlap. Queue mutations retain conditional-write ownership.
+    def isolated_inspect(key):
+        try:
+            return inspect(key)
+        except Exception as exc:
+            record_failure(store, 'discovery', key, exc)
+            return None
+    # Queue mutations retain conditional-write ownership.
     with ThreadPoolExecutor(max_workers=4) as pool:
-        for candidate in pool.map(inspect, keys):
+        for candidate in pool.map(isolated_inspect, keys):
             if candidate:
                 owner, key, item, token = candidate
-                write_json(store, key, item, token)
-                counts[owner] += 1
+                try:
+                    write_json(store, key, item, token)
+                    counts[owner] += 1
+                except Exception as exc:
+                    record_failure(store, 'enqueue', key, exc)
     return counts
+
+
+def bridge_nmpa_queue(store,settings,limit=100):
+    count=0
+    for key in list_keys(store,settings,'constellation-backfill/specialist-publication-queue/nmpa-resumed/'):
+        if count>=limit:break
+        try:
+            record=json.loads(store.get(key).body)
+            if record.get('source')!='nmpa_trials' or record.get('dataset')!='research_records':raise ValueError('nmpa_queue_scope_mismatch')
+            target='operations/regulatory/publication-queue/'+record['window_id']+'.json';prior=store.get(target)
+            if prior:
+                if json.loads(prior.body)['manifests']!=record['manifests']:raise ValueError('nmpa_queue_manifest_conflict')
+            else:write_json(store,target,record);count+=1
+        except Exception as error:record_failure(store,'nmpa_queue_bridge',key,error)
+    return count
 
 
 def prepare_for(module):
@@ -111,7 +149,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--max-windows', type=int, default=2)
     parser.add_argument('--owners', nargs='+', choices=sorted(GROUPS), help='Publish only selected source groups')
+    parser.add_argument('--skip-discovery', action='store_true', help='Drain existing reviewed queues without a checkpoint inventory scan')
     args = parser.parse_args()
+    if os.environ.get('OPTIMA_S3_RUNTIME')=='1'and ROOT==Path('/home/ec2-user/data-collection-processing'):
+        # Old composite capture runners may still call this after their payload
+        # started. Their durable queues are served by the installed m7 publisher.
+        print(json.dumps({'status':'deferred','reason':'publication_runs_on_m7','owners':args.owners,'controller':'constellation.m7_research_publication_dispatch'}),flush=True)
+        return 2
     if not 1 <= args.max_windows <= 24:
         parser.error('max-windows must be between 1 and 24 per source group')
     with (ROOT / '.research-athena.lock').open('a') as lock:
@@ -121,15 +165,24 @@ def main():
             return 2
         settings = StorageSettings.load(ROOT / 'config/collection-storage.s3.json')
         store = settings.store()
-        print(json.dumps({'discovered': discover(store, settings, args.owners)}), flush=True)
+        if not args.skip_discovery:
+            try:
+                if not args.owners or 'regulatory'in args.owners:print(json.dumps({'nmpa_queued':bridge_nmpa_queue(store,settings)}),flush=True)
+                print(json.dumps({'discovered': discover(store, settings, args.owners)}), flush=True)
+            except Exception as exc:
+                record_failure(store, 'discovery_inventory', 'checkpoint_listing', exc)
+                # Existing committed publication queues remain independently usable.
         results = {}
         for owner, (filename, module) in GROUPS.items():
             if args.owners and owner not in args.owners:
                 continue
-            config = load_json(ROOT / 'config' / filename)
-            config.pop('source_manifests', None)
-            results[owner] = publish_pending(store, settings, owner, config, prepare_for(module),
-                ROOT / 'research-window-build' / owner, args.max_windows)
+            try:
+                config = load_json(ROOT / 'config' / filename)
+                config.pop('source_manifests', None)
+                results[owner] = publish_pending(store, settings, owner, config, prepare_for(module),
+                    ROOT / 'research-window-build' / owner, args.max_windows)
+            except Exception as exc:
+                results[owner] = record_failure(store, 'publication_group', owner, exc)
         print(json.dumps(results), flush=True)
         return int(any(result['status'] == 'failed' for result in results.values()))
 

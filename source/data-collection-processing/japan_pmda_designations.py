@@ -12,7 +12,6 @@ import sys
 from datetime import date
 from urllib.request import Request, urlopen
 
-from pypdf import PdfReader
 from clinicaltrials_studies import parse_date, period_bounds
 
 SOURCE_URL = "https://www.pmda.go.jp/files/000235895.pdf"
@@ -20,10 +19,7 @@ S3_PREFIX = "s3://processed-059416028963-us-east-1-an/regulatory-designations/ja
 USER_AGENT = "pmda-sakigake-designations/1.0"
 
 
-def japanese_date(value: str) -> date:
-    era, year, month, day = re.fullmatch(r"([HRS])(\d+)\.(\d+)\.(\d+)", value).groups()
-    base = {"H": 1988, "R": 2018, "S": 1925}[era]
-    return date(base + int(year), int(month), int(day))
+from metadata_engine.pmda_tables import japanese_date,parse_pdf
 
 
 def fetch_records() -> list[dict[str, str]]:
@@ -31,21 +27,6 @@ def fetch_records() -> list[dict[str, str]]:
     with urlopen(request, timeout=120) as response:
         return parse_pdf(response.read())
 
-
-def parse_pdf(raw: bytes) -> list[dict[str, str]]:
-    reader = PdfReader(io.BytesIO(raw))
-    text = "\n".join(page.extract_text() or "" for page in reader.pages)
-    pattern = re.compile(r"(?m)^\s*(\d+)\s+([HRS]\d+\.\d+\.\d+)\s*")
-    matches = list(pattern.finditer(text))
-    records = []
-    for index, match in enumerate(matches):
-        block = text[match.end():matches[index + 1].start() if index + 1 < len(matches) else len(text)]
-        lines = [re.sub(r"\s+", " ", line).strip() for line in block.splitlines() if line.strip()]
-        records.append({"listNumber": match.group(1), "designationDate": japanese_date(match.group(2)).isoformat(),
-                        "designationDateNative": match.group(2), "recordText": " ".join(lines)})
-    if not records:
-        raise RuntimeError("no SAKIGAKE records could be parsed from PMDA PDF")
-    return records
 
 
 def upload(payload: dict, key: str) -> str:

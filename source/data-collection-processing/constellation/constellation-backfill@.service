@@ -1,0 +1,35 @@
+[Unit]
+Description=Constellation isolated historical worker %i
+After=network-online.target
+Wants=network-online.target
+RequiresMountsFor=/opt/constellation
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/opt/constellation
+ExecStart=/opt/constellation/.venv/bin/python -B -m constellation.worker
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PYTHONUNBUFFERED=1
+Environment=AWS_DEFAULT_REGION=us-east-1
+Environment=CONSTELLATION_ROLE=worker
+Environment=ARROW_NUM_THREADS=1
+Restart=on-failure
+RestartSec=15
+KillSignal=SIGINT
+TimeoutStopSec=180
+Slice=constellation-workers.slice
+MemoryHigh=320M
+MemoryMax=384M
+MemorySwapMax=0
+CPUQuota=200%
+TasksMax=64
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/constellation/tmp
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

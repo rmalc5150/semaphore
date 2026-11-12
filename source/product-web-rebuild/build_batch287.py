@@ -1,0 +1,5 @@
+from research_helpers import *
+a=ev('https://aberabio.com/projects/','Read remaining current project-page sections: early OMV tuberculosis and chlamydia programmes, separately from pneumococcus, influenza and coronavirus. No human clinical stage asserted.')
+products=[p('Abera mucosal tuberculosis vaccine','Early OMV-based tuberculosis vaccine research programme.',a,'research'),p('Abera mucosal chlamydia vaccine','Exploratory OMV-based chlamydia vaccine programme.',a,'research')]
+co=dict(company_id='cmp_23fa05ba-8d24-4779-8855-5c85ed53e079',products=products,evidence=[a],status='partial',coverage_note='Added two further distinct early pathogen programmes from remaining project page. Current public project portfolio totals five vaccine programmes plus BERA platform. Partial: legacy programmes and undisclosed partner assets; exact clinical start/authorization remains unconfirmed. Individual antigen features and administration formats not separate product records.')
+(out/'batch-0287.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

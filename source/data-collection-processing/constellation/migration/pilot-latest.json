@@ -1,0 +1,16 @@
+{
+  "job_id": "99f2aa2ba0e09aab8f1d7d998d9829cef3d029a92009c3673a49ee9469820f3e",
+  "worker_id": "ip-172-31-44-35.ec2.internal:legacy:31722",
+  "status": "succeeded",
+  "result": {
+    "exit_code": 2,
+    "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/99f2aa2ba0e09aab8f1d7d998d9829cef3d029a92009c3673a49ee9469820f3e/b0eb4eb3ae694fb294ea35f64e54aaa4.log",
+    "legacy_unit": "constellation-core-migration-probe.service",
+    "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+    "execution_kind": "legacy_invocation",
+    "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-migration-probe.service",
+    "coverage_status": "not_audited",
+    "checkpoint_verified": true
+  },
+  "checked_at": "2026-10-26T07:08:32.271269+00:00"
+}

@@ -25,6 +25,15 @@ class Response:
 
 
 class DecodoScrapingApiTests(unittest.TestCase):
+    def test_truncated_response_is_retryable_without_leaking_partial_body(self):
+        from http.client import IncompleteRead
+        response=Response({})
+        response.read=Mock(side_effect=IncompleteRead(b'private-provider-body',100))
+        with self.assertRaises(decodo_scraping_api.ScrapeError) as error:
+            decodo_scraping_api.scrape('https://example.test','secret',opener=Mock(return_value=response))
+        self.assertTrue(error.exception.retryable)
+        self.assertEqual(str(error.exception),'scrape_transport')
+
     def test_gateway_failure_does_not_expose_response_body(self):
         opener = Mock(side_effect=HTTPError("https://example.test", 503, "error", {}, io.BytesIO(b"secret-body")))
         with self.assertRaises(decodo_scraping_api.ScrapeError) as error:

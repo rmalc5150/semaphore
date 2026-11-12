@@ -1,0 +1,13 @@
+[Unit]
+Description=FDA industry reference capture using existing controller credential access
+After=network-online.target
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B fda_review_capture.py --sources fda_product_codes --universe config/crossref-resumed-universe.json
+Slice=optima-financial.slice
+MemoryMax=268435456
+MemorySwapMax=0
+CPUQuota=20%
+TimeoutStartSec=150

@@ -1,0 +1,1172 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "FAS Open Data Services",
+    "description": "<h1>ESR, GATS and PSD Data APIs</h1>"
+  },
+  "host": "apps.fas.usda.gov",
+  "basePath": "/OpenData",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/api/esr/regions": {
+      "get": {
+        "tags": [
+          "ESR Data API - United States Weekly Export Sales of Agricultural Commodity Data"
+        ],
+        "summary": "Returns a set of records with Region Codes and Region Names.\r\nUse it to associate Region Name with Country records obtained by querying Country end point",
+        "operationId": "ESRData_GetRegions",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/esr/countries": {
+      "get": {
+        "tags": [
+          "ESR Data API - United States Weekly Export Sales of Agricultural Commodity Data"
+        ],
+        "summary": "Returns a set of records with Countries and their corresponding Regions Codes the Country belongs to.\r\nUse it to associate Country Name with Commodity Data records obtained by querying Commodity Data End point",
+        "operationId": "ESRData_GetCountries",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/esr/commodities": {
+      "get": {
+        "tags": [
+          "ESR Data API - United States Weekly Export Sales of Agricultural Commodity Data"
+        ],
+        "summary": "Returns a set of records with Commodity Information.\r\nUse it to associate Commodity Name with Commodity Data records obtained by querying Commodity Data End point",
+        "operationId": "ESRData_GetCommodities",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/esr/unitsOfMeasure": {
+      "get": {
+        "tags": [
+          "ESR Data API - United States Weekly Export Sales of Agricultural Commodity Data"
+        ],
+        "summary": "Returns a set of records with Units of Measure Information.\r\nUse it to associate Unit Of Measure Name with Commodity Data redords obtained by querying Commodity Data End point",
+        "operationId": "ESRData_GetUnitsOfMeasure",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/esr/datareleasedates": {
+      "get": {
+        "tags": [
+          "ESR Data API - United States Weekly Export Sales of Agricultural Commodity Data"
+        ],
+        "summary": "Returns a set of records with the date of the last release of ESR Commodity Export Data.\r\nPlease note that there could be revision on the Export numbers for multiple years on a given commodity, and so this API endpoint returns\r\nset of records containing data release dates at a commodity level\r\nUse this information to query for only the Export data that has changed since last invocation of this API End point",
+        "operationId": "ESRData_GetDataReleaseInfo",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/esr/exports/commodityCode/{commodityCode}/allCountries/marketYear/{marketYear}": {
+      "get": {
+        "tags": [
+          "ESR Data API - United States Weekly Export Sales of Agricultural Commodity Data"
+        ],
+        "summary": "Given Commodity Code (Ex: 104 for Wheat - White ) and MarketYear (Ex: 2017) this API End point will return\r\na list of US Export records of White Wheat to all applicable countries from USA for the given Market Year.\r\nPlease see DataReleaseDates end point to get a list of all Commodities and the corresponding Market Year data.",
+        "operationId": "ESRData_GetAllCountriesData",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "commodityCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "marketYear",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/esr/exports/commodityCode/{commodityCode}/countryCode/{countryCode}/marketYear/{marketYear}": {
+      "get": {
+        "tags": [
+          "ESR Data API - United States Weekly Export Sales of Agricultural Commodity Data"
+        ],
+        "summary": "Given Commodity Code (Ex: 104 for Wheat - White ), Country Code (Ex:1220 for Canada) and MarketYear (Ex: 2017) this API End point will return\r\na list of US Export records of White Wheat to Canada from USA for the give Market Year.\r\nPlease see DataReleaseDates end point to get a list of all Commodities and the corresponding Market Year data.",
+        "operationId": "ESRData_GetCountryData",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "commodityCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "countryCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "marketYear",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/census/data/exports/dataReleaseDates": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Returns a set of records with the date of the last release of Census Export Data.\r\nUse this information to query for only those Census Export data records that have changed since last invocation of this API End point",
+        "operationId": "GATSData_GetCensusExportDataReleaseInfo",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/census/data/imports/dataReleaseDates": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Returns a set of records with the date of the last release of Census Import Data.\r\nUse this information to query for only the Census Import data that has changed since last invocation of this API End point",
+        "operationId": "GATSData_GetCensusImportDataReleaseInfo",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/UNTrade/data/exports/dataReleaseDates": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Returns a set of records with the date of the last release of UN Trade Export Data.\r\nUse this information to query for only the UN Trade Export data that has changed since last invocation of this API End point",
+        "operationId": "GATSData_GetUNTradeExportDataReleaseInfo",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/UNTrade/data/imports/dataReleaseDates": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Returns a set of records with the date of the last release of UN Trade Import Data.\r\nUse this information to query for only the UN Trade Import data that has changed since last invocation of this API End point",
+        "operationId": "GATSData_GetUNTradeImportDataReleaseInfo",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/regions": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Returns a set of records with Region Codes and Region Names.\r\nUse it to associate Region Name with Country records obtained by querying Country end point",
+        "operationId": "GATSData_GetRegions",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/countries": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Returns a set of records with Countries and their corresponding Regions Codes the Country belongs to.\r\nUse records from Regions end point to get the names of the corresponding region in Country records",
+        "operationId": "GATSData_GetCountries",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/commodities": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Returns a set of records with Commodity Information.\r\nCommodity record contains HS10 Code and Census and FAS Unit Of Measure IDS. Please see UnitsOfMeasure end point for Units of measure description.",
+        "operationId": "GATSData_GetCommodities",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/HS6Commodities": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Returns a list of Commodities classified at a broader level of classification, at the HS6 Level, as opposed to HS10 Level.\r\nUse this to correlate the Import, Export and Re-export data records obtained by querying UN Trade Data.",
+        "operationId": "GATSData_GetHS6Commodities",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/unitsOfMeasure": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Returns a set of records with Units of Measure.\r\nUse this to match against Units Of Measure IDs in the Import and Export records to get the name of the Unit of Measure",
+        "operationId": "GATSData_GetUnitsOfMeasure",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/customsDistricts": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Returns a set of records with US Customs Districts, the point of Entry and Exit for the Commodity Imports and Exports.\r\nFor Ex, Total imports from China into USA could come in from multiple US Customs Districts for a given year.",
+        "operationId": "GATSData_GetCustomsDistricts",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/censusImports/partnerCode/{partnerCode}/year/{year}/month/{month}": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Given Partner Code (Ex: CH for China) and YearMonth (Ex: 201001 for Year 2010 Month January) this API End point will return\r\na list of records of Imports into USA as reported by US Census Bureau for the given year month combination.\r\nPlease see Countries end point to get a list of all 2 character country codes",
+        "operationId": "GATSData_GetCensusImport",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "partnerCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/censusExports/partnerCode/{partnerCode}/year/{year}/month/{month}": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Given Partner Code (Ex: CH for China) and Year and Month (Ex: 2010 for Year 2010, 01 for January) this API End point will return\r\na list of records of Exports out of USA as reported by US Census Bureau for the given year month combination.\r\nCensus reports data on a monthly basis with corrections applied once a year.\r\nPlease see Countries end point to get a list of all 2 character country codes",
+        "operationId": "GATSData_GetCensusExports",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "partnerCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/censusReExports/partnerCode/{partnerCode}/year/{year}/month/{month}": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Given Partner Code(Ex: CH for China) and Year and Month (Ex: 2010 for Year 2010, 01 for January) this API End point will return\r\na list of records of Re-expors out of USA as reported by US Census Bureau for the given year month combination.\r\nCensus reports data on a monthly basis with corrections applied once a year.\r\nPlease see Countries end point to get a list of all 2 character country codes",
+        "operationId": "GATSData_GetCensusReExports",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "partnerCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/customsDistrictExports/partnerCode/{partnerCode}/year/{year}/month/{month}": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Given Partner Code(Ex: CH for China) and Year and Month (Ex: 2010 for Year 2010, 01 for January) this API End point will return\r\na list of records of Exports from USA through US Customs Districts as reported by US Census Bureau for the given year month combination.\r\nCensus reports data on a monthly basis with corrections applied once a year.\r\nPlease see Countries end point to get a list of all 2 character country codes, and CustomsDistricts end point for all US Customs Districts",
+        "operationId": "GATSData_GetCustomsDistrictsExports",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "partnerCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/customsDistrictImports/partnerCode/{partnerCode}/year/{year}/month/{month}": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Given Partner Code(Ex: CH for China) and Year and Month (Ex: 2010 for Year 2010, 01 for January) this API End point will return\r\na list of records of Imports into USA through US Customs Districts as reported by US Census Bureau for the given year month combination.\r\nCensus reports data on a monthly basis with corrections applied once a year.\r\nPlease see Countries end point to get a list of all 2 character country codes, and CustomsDistricts end point for all US Customs Districts",
+        "operationId": "GATSData_GetCustomsDistrictsImports",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "partnerCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/customsDistrictReExports/partnerCode/{partnerCode}/year/{year}/month/{month}": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Given Partner Code(Ex: CH for China) and Year and Month (Ex: 2010 for Year 2010, 01 for January) this API End point will return\r\na list of records of Re-Exports from USA through US Customs Districts as reported by US Census Bureau for the given year month combination.\r\nCensus reports data on a monthly basis with corrections applied once a year.\r\nPlease see Countries end point to get a list of all 2 character country codes, and CustomsDistricts end point for all US Customs Districts.\r\nRe-Exports are all imported commodities from few countries into USA, that are ultimately exported out to other countries from USA",
+        "operationId": "GATSData_GetCustomsDistrictsReExports",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "partnerCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/UNTradeImports/reporterCode/{reporterCode}/year/{year}": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Given Reporter Code (Ex IN for India), and Import Year (for ex, 2010), this API End point returns\r\na list of records of Commodity Import data as reported by UN COMTrade for a given year.\r\nUN COMTrade reports data on a yearly basis at a HS6 Code Level.",
+        "operationId": "GATSData_GetUNTradeImports",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "reporterCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/UNTradeExports/reporterCode/{reporterCode}/year/{year}": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Given Reporter Code (Ex IN for India), and Export Year (for ex, 2010), this API End point returns\r\na list of records of Commodity Export data as reported by UN COMTrade for a given year.\r\nUN COMTrade reports data on a yearly basis at a HS6 Code Level.",
+        "operationId": "GATSData_GetUNTradeExports",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "reporterCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gats/UNTradeReExports/reporterCode/{reporterCode}/year/{year}": {
+      "get": {
+        "tags": [
+          "GATS Data API - US Census and UN ComTrade Import Export & Re-Export Data"
+        ],
+        "summary": "Given Reporter Code (Ex IN for India), and Export Year (for ex, 2010), this API End point returns\r\na list of records of Commodity Re-Export data as reported by UN COMTrade for a given year.\r\nUN COMTrade reports data on a yearly basis at a HS6 Code Level.",
+        "operationId": "GATSData_GetUNTradeReExports",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "reporterCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/psd/commodity/{commodityCode}/dataReleaseDates": {
+      "get": {
+        "tags": [
+          "PSD Data API - Production, Supply and Distribution Forecast Data of World Agricultural Commodities"
+        ],
+        "summary": "Returns a set of records with the date of the last release of PSD Commodity Forecast Data.\r\nPlease note that there could be revision on the forecast numbers for multiple years on a given commodity, and so this API endpoint returns\r\nset of records containing data release dates at a commodity level\r\nUse this information to query for only the PSD Forecast data that has changed since last invocation of this API End point",
+        "operationId": "PSDData_GetDataReleaseInfo",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "commodityCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/psd/commodity/{commodityCode}/country/all/year/{marketYear}": {
+      "get": {
+        "tags": [
+          "PSD Data API - Production, Supply and Distribution Forecast Data of World Agricultural Commodities"
+        ],
+        "summary": "Returns a set of records with Forecast number for a given Commodity Code (Ex, 0440000 for Corn) and a given Market Year (Ex, 2017) for \r\nall applicable countries. PSD Database has data for most commodities since year 1960.\r\nPlease see Commodities end point to get a list of all PSD Commodities with corresponding Commodity Code.",
+        "operationId": "PSDData_GetCommodityDataByYear",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "commodityCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "marketYear",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/psd/commodity/{commodityCode}/country/{countryCode}/year/{marketYear}": {
+      "get": {
+        "tags": [
+          "PSD Data API - Production, Supply and Distribution Forecast Data of World Agricultural Commodities"
+        ],
+        "summary": " Returns a set of records with Forecast number for a given Commodity Code (Ex, 0440000 for Corn) and a given Market Year (Ex, 2017) for \r\na given Country (Ex, BR for Brazil). PSD Database has data for most commodities since year 1960.\r\nPlease see Commodities end point to get a list of all PSD Commodities with corresponding Commodity Code, and Countries end point for a list of all countries\r\nwith corresponding Country Code",
+        "operationId": "PSDData_GetCountryCommodityDataByYear",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "commodityCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "countryCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "marketYear",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/psd/commodity/{commodityCode}/world/year/{marketYear}": {
+      "get": {
+        "tags": [
+          "PSD Data API - Production, Supply and Distribution Forecast Data of World Agricultural Commodities"
+        ],
+        "summary": " Returns a set of records with Forecast number for a given Commodity Code (Ex, 0440000 for Corn) and a given Market Year (Ex, 2017) for \r\nthe world.Data from all applicable countries are aggregated together for reporting it at the World Level.\r\nPSD Database has data for most commodities since year 1960.\r\nPlease see Commodities end point to get a list of all PSD Commodities with corresponding Commodity Code.",
+        "operationId": "PSDData_GetWorldCommodityDataByYear",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "commodityCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "marketYear",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/psd/regions": {
+      "get": {
+        "tags": [
+          "PSD Data API - Production, Supply and Distribution Forecast Data of World Agricultural Commodities"
+        ],
+        "summary": "Returns a set of records with data for the Regions as classified in PSD System. \r\nThis data could be used to correlate the Region Name based on region code in the Data returned by Countries End Point",
+        "operationId": "PSDData_GetRegions",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/psd/countries": {
+      "get": {
+        "tags": [
+          "PSD Data API - Production, Supply and Distribution Forecast Data of World Agricultural Commodities"
+        ],
+        "summary": "Returns a set of records with data for Countries and the corresponding Region Code the Country belongs to.\r\nThis data could be used to correlate the Country Name based on country code in the data returned by other end points returning Commodity Forecasts.",
+        "operationId": "PSDData_GetCountries",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/psd/commodities": {
+      "get": {
+        "tags": [
+          "PSD Data API - Production, Supply and Distribution Forecast Data of World Agricultural Commodities"
+        ],
+        "summary": "Returns a set of records with data for Commodities with the corresponding Commodity Code. \r\nThis data could be used to correlate the Commodity Name based on the Commodity Code in the data returned by other end points returning Commodity Forecasts.",
+        "operationId": "PSDData_GetCommodities",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/psd/unitsOfMeasure": {
+      "get": {
+        "tags": [
+          "PSD Data API - Production, Supply and Distribution Forecast Data of World Agricultural Commodities"
+        ],
+        "summary": "Returns a set of records with data for Units Of Measure with the corresponding Units Of Measure Id. \r\nThis data could be used to correlate the Unit of Measure Name based on the Id in the data returned by other end points returning Commodity Forecasts.",
+        "operationId": "PSDData_GetUnitsOfMeasure",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/psd/commodityAttributes": {
+      "get": {
+        "tags": [
+          "PSD Data API - Production, Supply and Distribution Forecast Data of World Agricultural Commodities"
+        ],
+        "summary": " Returns a set of records with data for Commodity Attribute Names with the corresponding Attribute Id. \r\nThis data could be used to correlate theAttribute Name based on the Id in the data returned by other end points returning Commodity Forecasts.\r\nPSD database tracks Commodity Forecast numbers across multiple attributes broadly classified under \"Production\", \"Supply\" and \"Sistribution\" categories.",
+        "operationId": "PSDData_GetCommodityAttributes",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "API Key Authentication",
+      "name": "API_KEY",
+      "in": "header"
+    }
+  }
+}

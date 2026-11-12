@@ -1,0 +1,8 @@
+[Unit]
+Description=Continue whole-catalogue MHRA product documents
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=120
+Unit=optima-mhra-products.service
+[Install]
+WantedBy=timers.target

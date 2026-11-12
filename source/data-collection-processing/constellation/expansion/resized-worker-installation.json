@@ -1,0 +1,19 @@
+{
+  "command_id": "e7acd46c-40fe-42f6-a355-a512b73ecc38",
+  "bundle_sha256": "7451355d82127d85a5ef73255f7f0c55b5762b2d450286d163c00d7672ec720e",
+  "plan": {
+    "worker_instance_type": "m7i.large",
+    "raw_workers": 5,
+    "legacy_workers": 6,
+    "public_workers": 4,
+    "total_workers": 15,
+    "cpu_capacity": 2,
+    "memory_max_gib": 6,
+    "memory_high_gib": 5,
+    "sum_individual_memory_max_mib": 13184,
+    "limits_installation_pending": true,
+    "allow_shared_memory_oversubscription": true,
+    "admission_memory_high_gib": 4.5
+  },
+  "historical_queue_still_paused": true
+}

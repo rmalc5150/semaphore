@@ -1,0 +1,894 @@
+openapi: 3.0.1
+info:
+  title: ePing
+  description: Returns SPS and TBT notifications that are in the ePing website. Allows external applications/systems to search for notifications programatically.
+  version: '1.0'
+servers:
+  - url: https://api.wto.org/eping
+paths:
+  /notifications/search:
+    get:
+      tags:
+        - Notifications
+      summary: Search Notifications
+      description: Searches TBT and SPS notifications in ePing
+      operationId: search-notifications
+      parameters:
+        - name: language
+          in: query
+          description: 'Language of the notifications you are requesting (1 - English, 2 - French, 3 - Spanish)'
+          required: true
+          schema:
+            enum:
+              - '1'
+              - '2'
+              - '3'
+            type: string
+            default: '1'
+        - name: domainIds
+          in: query
+          description: 'Domain of the notification you want to retrieve, either 1 - TBT, 2 - SPS. Not specifying the domainIds will return notifications for both TBT and SPS'
+          schema:
+            enum:
+              - 1
+              - 2
+            type: int
+        - name: documentSymbol
+          in: query
+          description: 'Search for a particular document symbol. Specifying "USA/1234" (without the quotes) will return all notifications where the document symbol contains "USA/1234" (e.g. G/TBT/N/USA/1234, G/SPS/N/USA/1234, G/SPS/N/USA/1234/Add.1, etc.)'
+          schema:
+            type: string
+        - name: distributionDateFrom
+          in: query
+          description: 'Search for notifications which are issued on or after the date specified in this parameter. yyyy-MM-dd format. Specifying 2022-08-01 will return notifications that were issued on or after 8 August 8, 2022.'
+          schema:
+            type: date
+        - name: distributionDateTo
+          in: query
+          description: 'Search for notifications which are issued on or before the date specified in this parameter. yyyy-MM-dd format. Specifying "2022-08-01" will return notifications that were issued on or before 8 August 8, 2022.'
+          schema:
+            type: date
+        - name: countryIds
+          in: query
+          description: Search for notifications issued by a particular Member. See members API for list of Country Ids (use value field)
+          schema:
+            type: array of string
+        - name: hs
+          in: query
+          description: "Search for notifications related to specified HS Codes. To search for multiple HS Codes, submit comma-separated values of HS Codes (e.g. 0102,0103,etc.). When combined with \"ics\" parameter, system performs an \"OR\" condition (e.g. &hs=01,02&ics=01.030,01.040 will return notifications related to HS 01 OR HS 02 OR ICS 01.030 OR ICS 01.040)\n\n"
+          schema:
+            type: string
+        - name: ics
+          in: query
+          description: "Search for notifications related to specified ICS Codes. To search for multiple ICS Codes, submit comma-separated values of ICS Codes (e.g. 0102,0103,etc.). When combined with \"hs\" parameter, system performs an \"OR\" condition (e.g. &hs=01,02&ics=01.030,01.040 will return notifications related to HS 01 OR HS 02 OR ICS 01.030 OR ICS 01.040)\n\n"
+          schema:
+            type: string
+        - name: freeText
+          in: query
+          description: Search for any term related to a notification.
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number of the notifications you want to retrieve. Default value is 1.
+          schema:
+            type: int
+        - name: pageSize
+          in: query
+          description: Number of notifications to be retrieved per call. Default value is 20. Maximum value is 100.
+          schema:
+            type: int
+      responses:
+        '400':
+          description: Invalid parameters were passed.
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/searchResult'
+              example:
+                items:
+                  - id: '19877'
+                    area: TBT
+                    notificationType: Regular notification
+                    distributionDate: '2016-11-29T00:00:00.0000000+00:00'
+                    commentDeadlineDate: 
+                    documentSymbol: ' G/TBT/N/USA/1234'
+                    documentSymbolOrdered: ' G/TBT/N/USA/00001234'
+                    notifyingMember: United States of America
+                    notifyingMemberCode: C840
+                    title: 'Pesticide Use on Crops Grown for Seed (4 pages, in English)'
+                    description: '&lt;span style="line-height:107%;font-family:''Calibri'',sans-serif;font-size:11pt;"&gt;Establishes provisions governing the use of pesticides on crops grown for seed.&lt;/span&gt;'
+                    productsFreeText: Pesticide use
+                    hsCodes: [ ]
+                    icsCodes:
+                      - id: 894
+                        code: '65.020'
+                        name: 65.020 - Farming and forestry
+                      - id: 920
+                        code: '65.100'
+                        name: 65.100 - Pesticides and other agrochemicals
+                    keywords: [ ]
+                    spsKeywords: [ ]
+                    objectives:
+                      - id: 8
+                        name: Prevention of deceptive practices and consumer protection (TBT)
+                      - id: 11
+                        name: Protection of the environment (TBT)
+                    hsCodeText: ''
+                    icsCodeText: '65.020, 65.100'
+                    countriesAffected: [ ]
+                    specificRegionsOrCountries: 
+                    allTradingPartners: 
+                    codexAlimentariusCommision: 
+                    worldOrganizationForAnimalHealth: 
+                    internationalPlantProtectionConvention: 
+                    notRelevant: 
+                    conformStandardYes: 
+                    conformStandardNo: 
+                    conformStandardNA: 
+                    tradeFacilitatingMeasure: 
+                    technicalRegulation: false
+                    technicalRegulationUrgent: false
+                    conformityAssessmentProcedure: false
+                    conformityAssessmentProcedureUrgent: false
+                    technicalRegulationLocalGovernment: true
+                    conformityAssessmentProcedureLocalGovernment: false
+                    articleOther: false
+                    dolLink: G\TBTN16\USA1234.pdf
+                    notifiedDocumentLink: https://members.wto.org/crnattachments/2016/TBT/USA/16_4900_00_e.pdf
+                    notificationFormatId: '10'
+                    version: 
+                    affectedRegionsOrCountries: 
+                  - id: '49418'
+                    area: SPS
+                    notificationType: Addendum to Regular Notification
+                    distributionDate: '2006-09-22T00:00:00.0000000+00:00'
+                    commentDeadlineDate: 
+                    documentSymbol: ' G/SPS/N/USA/1234/Add.1'
+                    documentSymbolOrdered: ' G/SPS/N/USA/00001234/Add.00000001'
+                    notifyingMember: United States of America
+                    notifyingMemberCode: C840
+                    title: 
+                    description: 
+                    productsFreeText: 
+                    hsCodes: [ ]
+                    icsCodes: [ ]
+                    keywords:
+                      - id: 29
+                        name: Food safety
+                      - id: 38
+                        name: Human health
+                      - id: 56
+                        name: Pesticides
+                      - id: 60
+                        name: Plant health
+                      - id: 45
+                        name: Maximum residue limits (MRLs)
+                    spsKeywords:
+                      - id: 29
+                        name: Food safety
+                      - id: 38
+                        name: Human health
+                      - id: 56
+                        name: Pesticides
+                      - id: 60
+                        name: Plant health
+                      - id: 45
+                        name: Maximum residue limits (MRLs)
+                    objectives: [ ]
+                    hsCodeText: ''
+                    icsCodeText: ''
+                    countriesAffected: [ ]
+                    specificRegionsOrCountries: 
+                    allTradingPartners: 
+                    codexAlimentariusCommision: 
+                    worldOrganizationForAnimalHealth: 
+                    internationalPlantProtectionConvention: 
+                    notRelevant: 
+                    conformStandardYes: 
+                    conformStandardNo: 
+                    conformStandardNA: 
+                    tradeFacilitatingMeasure: 
+                    technicalRegulation: 
+                    technicalRegulationUrgent: 
+                    conformityAssessmentProcedure: 
+                    conformityAssessmentProcedureUrgent: 
+                    technicalRegulationLocalGovernment: 
+                    conformityAssessmentProcedureLocalGovernment: 
+                    articleOther: 
+                    dolLink: G\SPS\NUSA1234A1.pdf
+                    notifiedDocumentLink: ''
+                    notificationFormatId: '17'
+                    version: 
+                    affectedRegionsOrCountries: 
+                  - id: '40826'
+                    area: SPS
+                    notificationType: Regular notification
+                    distributionDate: '2006-02-24T00:00:00.0000000+00:00'
+                    commentDeadlineDate: 
+                    documentSymbol: ' G/SPS/N/USA/1234'
+                    documentSymbolOrdered: ' G/SPS/N/USA/00001234'
+                    notifyingMember: United States of America
+                    notifyingMemberCode: C840
+                    title: 'Notice.  Notice of Filing of a Pesticide Petition for the Establishment of a Regulation for the Residues of the Fungicide Epoxiconazole in or on Coffee Beans (Available in English, 2 pages).'
+                    description: 'This notice announces the initial filing of a pesticide petition proposing the establishment of a regulation for residues of the fungicide epoxiconazole, (2RS, 3SR)-3-(2-chlorophenyl)-2-(4-fluorophenyl)-2-[(1H-1, 2, 4-triazol-1-yl) methyl] oxirane in or on coffee beans.'
+                    productsFreeText: Coffee Beans.
+                    hsCodes: [ ]
+                    icsCodes: [ ]
+                    keywords:
+                      - id: 38
+                        name: Human health
+                      - id: 56
+                        name: Pesticides
+                      - id: 29
+                        name: Food safety
+                      - id: 60
+                        name: Plant health
+                      - id: 45
+                        name: Maximum residue limits (MRLs)
+                    spsKeywords:
+                      - id: 38
+                        name: Human health
+                      - id: 56
+                        name: Pesticides
+                      - id: 29
+                        name: Food safety
+                      - id: 60
+                        name: Plant health
+                      - id: 45
+                        name: Maximum residue limits (MRLs)
+                    objectives: [ ]
+                    hsCodeText: ''
+                    icsCodeText: ''
+                    countriesAffected: [ ]
+                    specificRegionsOrCountries: 
+                    allTradingPartners: 
+                    codexAlimentariusCommision: false
+                    worldOrganizationForAnimalHealth: false
+                    internationalPlantProtectionConvention: false
+                    notRelevant: false
+                    conformStandardYes: false
+                    conformStandardNo: false
+                    conformStandardNA: true
+                    tradeFacilitatingMeasure: false
+                    technicalRegulation: 
+                    technicalRegulationUrgent: 
+                    conformityAssessmentProcedure: 
+                    conformityAssessmentProcedureUrgent: 
+                    technicalRegulationLocalGovernment: 
+                    conformityAssessmentProcedureLocalGovernment: 
+                    articleOther: 
+                    dolLink: G\SPS\NUSA1234.pdf
+                    notifiedDocumentLink: ''
+                    notificationFormatId: '1'
+                    version: 
+                    affectedRegionsOrCountries: 
+                  - id: '53665'
+                    area: TBT
+                    notificationType: Addendum to Regular Notification
+                    distributionDate: '2018-01-09T00:00:00.0000000+00:00'
+                    commentDeadlineDate: 
+                    documentSymbol: ' G/TBT/N/USA/1234/Add.2'
+                    documentSymbolOrdered: ' G/TBT/N/USA/00001234/Add.00000002'
+                    notifyingMember: United States of America
+                    notifyingMemberCode: C840
+                    title: "<p style=\"margin:2px !important;\">TITLE: Pesticide Use on Crops Grown for Seed <br />AGENCY: State Department of Agriculture, Seed Division, State of Nevada <br />ACTION: Adopted rule <br />SUMMARY:  Adopts various changes relating to pesticide use on crops grown for seed.</p>\r\n<p style=\"margin:2px !important;\">Effective 19 December 2017</p>\r\n<p style=\"margin:2px !important;\">Vol. 240, Nevada Register of Administrative Regulations 20 December 2017: <br /><a href=\"https://www.leg.state.nv.us/Register/2016Register/R156-16NI.pdf\" target=\"_blank\" rel=\"noopener\">https://www.leg.state.nv.us/Register/2016Register/R156-16NI.pdf</a></p>\r\n<p style=\"margin:2px !important;\"><a href=\"https://www.leg.state.nv.us/Register/2016Register/R156-16AP.pdf\" target=\"_blank\" rel=\"noopener\">https://www.leg.state.nv.us/Register/2016Register/R156-16AP.pdf </a></p>"
+                    description: 
+                    productsFreeText: Pesticide use
+                    hsCodes: [ ]
+                    icsCodes:
+                      - id: 894
+                        code: '65.020'
+                        name: 65.020 - Farming and forestry
+                      - id: 894
+                        code: '65.020'
+                        name: 65.020 - Farming and forestry
+                      - id: 920
+                        code: '65.100'
+                        name: 65.100 - Pesticides and other agrochemicals
+                      - id: 920
+                        code: '65.100'
+                        name: 65.100 - Pesticides and other agrochemicals
+                    keywords: [ ]
+                    spsKeywords: [ ]
+                    objectives:
+                      - id: 8
+                        name: Prevention of deceptive practices and consumer protection (TBT)
+                      - id: 11
+                        name: Protection of the environment (TBT)
+                    hsCodeText: ''
+                    icsCodeText: '65.020, 65.100'
+                    countriesAffected: [ ]
+                    specificRegionsOrCountries: 
+                    allTradingPartners: 
+                    codexAlimentariusCommision: 
+                    worldOrganizationForAnimalHealth: 
+                    internationalPlantProtectionConvention: 
+                    notRelevant: 
+                    conformStandardYes: 
+                    conformStandardNo: 
+                    conformStandardNA: 
+                    tradeFacilitatingMeasure: 
+                    technicalRegulation: false
+                    technicalRegulationUrgent: false
+                    conformityAssessmentProcedure: false
+                    conformityAssessmentProcedureUrgent: false
+                    technicalRegulationLocalGovernment: true
+                    conformityAssessmentProcedureLocalGovernment: false
+                    articleOther: false
+                    dolLink: G\TBTN16\USA1234A2.DOCX
+                    notifiedDocumentLink: 'https://members.wto.org/crnattachments/2018/TBT/USA/18_0184_00_e.pdf,https://members.wto.org/crnattachments/2018/TBT/USA/18_0184_01_e.pdf'
+                    notificationFormatId: '14'
+                    version: 
+                    affectedRegionsOrCountries: 
+                  - id: '52268'
+                    area: TBT
+                    notificationType: Addendum to Regular Notification
+                    distributionDate: '2017-09-19T00:00:00.0000000+00:00'
+                    commentDeadlineDate: 
+                    documentSymbol: ' G/TBT/N/USA/1234/Add.1'
+                    documentSymbolOrdered: ' G/TBT/N/USA/00001234/Add.00000001'
+                    notifyingMember: United States of America
+                    notifyingMemberCode: C840
+                    title: "<p style=\"margin:2px !important;\">TITLE: Pesticide Use on Crops Grown for Seed</p>\r\n<p style=\"margin:2px !important;\">AGENCY: State Department of Agriculture, Seed Division, State of Nevada</p>\r\n<p style=\"margin:2px !important;\">ACTION: Proposed rule<br />SUMMARY: Makes various changes relating to pesticide use on crops grown for seed.</p>\r\n<p style=\"margin:2px !important;\">Vol. 237, Nevada Register of Administrative Regulations 11 September 2017:<a href=\"https://www.leg.state.nv.us/Register/2016Register/R156-16P.pdf\" target=\"_blank\" rel=\"noopener\"><br />https://www.leg.state.nv.us/Register/2016Register/R156-16P.pdf</a></p>\r\n<p style=\"margin:2px !important;\"><span style=\"font-face: Verdana;\"><span lang=\"EN-GB\">For information and comments please contact:<br />James R Barbee, Director <br />Department of Agriculture <br />405 S 21st St, Sparks, NV 89431 <br />Telephone: 775-353-3601 <br />Fax 775-353-3661</span></span></p>"
+                    description: 
+                    productsFreeText: Pesticide use
+                    hsCodes: [ ]
+                    icsCodes:
+                      - id: 894
+                        code: '65.020'
+                        name: 65.020 - Farming and forestry
+                      - id: 894
+                        code: '65.020'
+                        name: 65.020 - Farming and forestry
+                      - id: 920
+                        code: '65.100'
+                        name: 65.100 - Pesticides and other agrochemicals
+                      - id: 920
+                        code: '65.100'
+                        name: 65.100 - Pesticides and other agrochemicals
+                    keywords: [ ]
+                    spsKeywords: [ ]
+                    objectives:
+                      - id: 11
+                        name: Protection of the environment (TBT)
+                      - id: 8
+                        name: Prevention of deceptive practices and consumer protection (TBT)
+                    hsCodeText: ''
+                    icsCodeText: '65.020, 65.100'
+                    countriesAffected: [ ]
+                    specificRegionsOrCountries: 
+                    allTradingPartners: 
+                    codexAlimentariusCommision: 
+                    worldOrganizationForAnimalHealth: 
+                    internationalPlantProtectionConvention: 
+                    notRelevant: 
+                    conformStandardYes: 
+                    conformStandardNo: 
+                    conformStandardNA: 
+                    tradeFacilitatingMeasure: 
+                    technicalRegulation: false
+                    technicalRegulationUrgent: false
+                    conformityAssessmentProcedure: false
+                    conformityAssessmentProcedureUrgent: false
+                    technicalRegulationLocalGovernment: true
+                    conformityAssessmentProcedureLocalGovernment: false
+                    articleOther: false
+                    dolLink: G\TBTN16\USA1234A1.DOCX
+                    notifiedDocumentLink: https://members.wto.org/crnattachments/2017/TBT/USA/17_4109_00_e.pdf
+                    notificationFormatId: '14'
+                    version: 
+                    affectedRegionsOrCountries: 
+                currentPage: 1
+                pageSize: 20
+                totalCount: 5
+  /members:
+    get:
+      tags:
+        - Members
+      summary: Members
+      description: Returns the list of WTO Members
+      operationId: members
+      parameters:
+        - name: language
+          in: query
+          description: 'Language of the notifications you are requesting (1 - English, 2 - French, 3 - Spanish)'
+          required: true
+          schema:
+            enum:
+              - '1'
+              - '2'
+              - '3'
+            type: string
+            default: '1'
+      responses:
+        '200':
+          description: ''
+components:
+  schemas:
+    searchResult:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            required:
+              - id
+              - area
+              - notificationType
+              - distributionDate
+              - proposedAdoptionDate
+              - proposedEntryIntoForceDate
+              - publicationDate
+              - commentDeadlineDate
+              - documentSymbol
+              - documentSymbolOrdered
+              - notifyingMember
+              - notifyingMemberCode
+              - title
+              - description
+              - productsFreeText
+              - hsCodes
+              - icsCodes
+              - keywords
+              - spsKeywords
+              - objectives
+              - hsCodeText
+              - icsCodeText
+              - countriesAffected
+              - specificRegionsOrCountries
+              - allTradingPartners
+              - codexAlimentariusCommision
+              - worldOrganizationForAnimalHealth
+              - internationalPlantProtectionConvention
+              - notRelevant
+              - conformStandardYes
+              - conformStandardNo
+              - conformStandardNA
+              - tradeFacilitatingMeasure
+              - technicalRegulation
+              - technicalRegulationUrgent
+              - conformityAssessmentProcedure
+              - conformityAssessmentProcedureUrgent
+              - technicalRegulationLocalGovernment
+              - conformityAssessmentProcedureLocalGovernment
+              - articleOther
+              - dolLink
+              - notifiedDocumentLink
+              - notificationFormatId
+              - version
+              - affectedRegionsOrCountries
+            type: object
+            properties:
+              id:
+                type: string
+                description: The identifier of the notification
+              area:
+                type: string
+              notificationType:
+                type: string
+              distributionDate:
+                type: string
+              commentDeadlineDate: { }
+              documentSymbol:
+                type: string
+              documentSymbolOrdered:
+                type: string
+              notifyingMember:
+                type: string
+              notifyingMemberCode:
+                type: string
+              title:
+                type: string
+              description:
+                type: string
+              productsFreeText:
+                type: string
+              hsCodes:
+                type: array
+              icsCodes:
+                type: array
+                items:
+                  required:
+                    - id
+                    - code
+                    - name
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    code:
+                      type: string
+                    name:
+                      type: string
+              keywords:
+                type: array
+              spsKeywords:
+                type: array
+              objectives:
+                type: array
+                items:
+                  required:
+                    - id
+                    - name
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+              hsCodeText:
+                type: string
+              icsCodeText:
+                type: string
+              countriesAffected:
+                type: array
+              specificRegionsOrCountries: { }
+              allTradingPartners: { }
+              codexAlimentariusCommision: { }
+              worldOrganizationForAnimalHealth: { }
+              internationalPlantProtectionConvention: { }
+              notRelevant: { }
+              conformStandardYes: { }
+              conformStandardNo: { }
+              conformStandardNA: { }
+              tradeFacilitatingMeasure: { }
+              technicalRegulation:
+                type: boolean
+              technicalRegulationUrgent:
+                type: boolean
+              conformityAssessmentProcedure:
+                type: boolean
+              conformityAssessmentProcedureUrgent:
+                type: boolean
+              technicalRegulationLocalGovernment:
+                type: boolean
+              conformityAssessmentProcedureLocalGovernment:
+                type: boolean
+              articleOther:
+                type: boolean
+              dolLink:
+                type: string
+              notifiedDocumentLink:
+                type: string
+              notificationFormatId:
+                type: string
+              version: { }
+              affectedRegionsOrCountries: { }
+              proposedAdoptionDate:
+                type: string
+              proposedEntryIntoForceDate:
+                type: string
+              publicationDate:
+                type: string
+              relevantDocumentTitle:
+                type: string
+              conformStandardRecommendation:
+                type: string
+              proposedAdoptionDateText:
+                type: string
+              proposedAdoptionDateToBeDetermined:
+                type: boolean
+              proposedEntryIntoForceDateText:
+                type: string
+              proposedEntryIntoForceFromAdoption6Months:
+                type: boolean
+              proposedEntryIntoForceDateToBeDetermined:
+                type: boolean
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+        totalCount:
+          type: integer
+      example:
+        items:
+          - id: '19877'
+            area: TBT
+            notificationType: Regular notification
+            distributionDate: '2016-11-29T00:00:00Z'
+            commentDeadlineDate: 
+            documentSymbol: ' G/TBT/N/USA/1234'
+            documentSymbolOrdered: ' G/TBT/N/USA/00001234'
+            notifyingMember: United States of America
+            notifyingMemberCode: C840
+            title: 'Pesticide Use on Crops Grown for Seed (4 pages, in English)'
+            description: '&lt;span style="line-height:107%;font-family:''Calibri'',sans-serif;font-size:11pt;"&gt;Establishes provisions governing the use of pesticides on crops grown for seed.&lt;/span&gt;'
+            productsFreeText: Pesticide use
+            hsCodes: [ ]
+            icsCodes:
+              - id: 894
+                code: '65.020'
+                name: 65.020 - Farming and forestry
+              - id: 920
+                code: '65.100'
+                name: 65.100 - Pesticides and other agrochemicals
+            keywords: [ ]
+            spsKeywords: [ ]
+            objectives:
+              - id: 8
+                name: Prevention of deceptive practices and consumer protection (TBT)
+              - id: 11
+                name: Protection of the environment (TBT)
+            hsCodeText: ''
+            icsCodeText: '65.020, 65.100'
+            countriesAffected: [ ]
+            specificRegionsOrCountries: 
+            allTradingPartners: 
+            codexAlimentariusCommision: 
+            worldOrganizationForAnimalHealth: 
+            internationalPlantProtectionConvention: 
+            notRelevant: 
+            conformStandardYes: 
+            conformStandardNo: 
+            conformStandardNA: 
+            tradeFacilitatingMeasure: 
+            technicalRegulation: false
+            technicalRegulationUrgent: false
+            conformityAssessmentProcedure: false
+            conformityAssessmentProcedureUrgent: false
+            technicalRegulationLocalGovernment: true
+            conformityAssessmentProcedureLocalGovernment: false
+            articleOther: false
+            dolLink: G\TBTN16\USA1234.pdf
+            notifiedDocumentLink: https://members.wto.org/crnattachments/2016/TBT/USA/16_4900_00_e.pdf
+            notificationFormatId: '10'
+            version: 
+            affectedRegionsOrCountries: 
+          - id: '49418'
+            area: SPS
+            notificationType: Addendum to Regular Notification
+            distributionDate: '2006-09-22T00:00:00Z'
+            commentDeadlineDate: 
+            documentSymbol: ' G/SPS/N/USA/1234/Add.1'
+            documentSymbolOrdered: ' G/SPS/N/USA/00001234/Add.00000001'
+            notifyingMember: United States of America
+            notifyingMemberCode: C840
+            title: 
+            description: 
+            productsFreeText: 
+            hsCodes: [ ]
+            icsCodes: [ ]
+            keywords:
+              - id: 29
+                name: Food safety
+              - id: 38
+                name: Human health
+              - id: 56
+                name: Pesticides
+              - id: 60
+                name: Plant health
+              - id: 45
+                name: Maximum residue limits (MRLs)
+            spsKeywords:
+              - id: 29
+                name: Food safety
+              - id: 38
+                name: Human health
+              - id: 56
+                name: Pesticides
+              - id: 60
+                name: Plant health
+              - id: 45
+                name: Maximum residue limits (MRLs)
+            objectives: [ ]
+            hsCodeText: ''
+            icsCodeText: ''
+            countriesAffected: [ ]
+            specificRegionsOrCountries: 
+            allTradingPartners: 
+            codexAlimentariusCommision: 
+            worldOrganizationForAnimalHealth: 
+            internationalPlantProtectionConvention: 
+            notRelevant: 
+            conformStandardYes: 
+            conformStandardNo: 
+            conformStandardNA: 
+            tradeFacilitatingMeasure: 
+            technicalRegulation: 
+            technicalRegulationUrgent: 
+            conformityAssessmentProcedure: 
+            conformityAssessmentProcedureUrgent: 
+            technicalRegulationLocalGovernment: 
+            conformityAssessmentProcedureLocalGovernment: 
+            articleOther: 
+            dolLink: G\SPS\NUSA1234A1.pdf
+            notifiedDocumentLink: ''
+            notificationFormatId: '17'
+            version: 
+            affectedRegionsOrCountries: 
+          - id: '40826'
+            area: SPS
+            notificationType: Regular notification
+            distributionDate: '2006-02-24T00:00:00Z'
+            commentDeadlineDate: 
+            documentSymbol: ' G/SPS/N/USA/1234'
+            documentSymbolOrdered: ' G/SPS/N/USA/00001234'
+            notifyingMember: United States of America
+            notifyingMemberCode: C840
+            title: 'Notice.  Notice of Filing of a Pesticide Petition for the Establishment of a Regulation for the Residues of the Fungicide Epoxiconazole in or on Coffee Beans (Available in English, 2 pages).'
+            description: 'This notice announces the initial filing of a pesticide petition proposing the establishment of a regulation for residues of the fungicide epoxiconazole, (2RS, 3SR)-3-(2-chlorophenyl)-2-(4-fluorophenyl)-2-[(1H-1, 2, 4-triazol-1-yl) methyl] oxirane in or on coffee beans.'
+            productsFreeText: Coffee Beans.
+            hsCodes: [ ]
+            icsCodes: [ ]
+            keywords:
+              - id: 38
+                name: Human health
+              - id: 56
+                name: Pesticides
+              - id: 29
+                name: Food safety
+              - id: 60
+                name: Plant health
+              - id: 45
+                name: Maximum residue limits (MRLs)
+            spsKeywords:
+              - id: 38
+                name: Human health
+              - id: 56
+                name: Pesticides
+              - id: 29
+                name: Food safety
+              - id: 60
+                name: Plant health
+              - id: 45
+                name: Maximum residue limits (MRLs)
+            objectives: [ ]
+            hsCodeText: ''
+            icsCodeText: ''
+            countriesAffected: [ ]
+            specificRegionsOrCountries: 
+            allTradingPartners: 
+            codexAlimentariusCommision: false
+            worldOrganizationForAnimalHealth: false
+            internationalPlantProtectionConvention: false
+            notRelevant: false
+            conformStandardYes: false
+            conformStandardNo: false
+            conformStandardNA: true
+            tradeFacilitatingMeasure: false
+            technicalRegulation: 
+            technicalRegulationUrgent: 
+            conformityAssessmentProcedure: 
+            conformityAssessmentProcedureUrgent: 
+            technicalRegulationLocalGovernment: 
+            conformityAssessmentProcedureLocalGovernment: 
+            articleOther: 
+            dolLink: G\SPS\NUSA1234.pdf
+            notifiedDocumentLink: ''
+            notificationFormatId: '1'
+            version: 
+            affectedRegionsOrCountries: 
+          - id: '53665'
+            area: TBT
+            notificationType: Addendum to Regular Notification
+            distributionDate: '2018-01-09T00:00:00Z'
+            commentDeadlineDate: 
+            documentSymbol: ' G/TBT/N/USA/1234/Add.2'
+            documentSymbolOrdered: ' G/TBT/N/USA/00001234/Add.00000002'
+            notifyingMember: United States of America
+            notifyingMemberCode: C840
+            title: "<p style=\"margin:2px !important;\">TITLE: Pesticide Use on Crops Grown for Seed <br />AGENCY: State Department of Agriculture, Seed Division, State of Nevada <br />ACTION: Adopted rule <br />SUMMARY:  Adopts various changes relating to pesticide use on crops grown for seed.</p>\r\n<p style=\"margin:2px !important;\">Effective 19 December 2017</p>\r\n<p style=\"margin:2px !important;\">Vol. 240, Nevada Register of Administrative Regulations 20 December 2017: <br /><a href=\"https://www.leg.state.nv.us/Register/2016Register/R156-16NI.pdf\" target=\"_blank\" rel=\"noopener\">https://www.leg.state.nv.us/Register/2016Register/R156-16NI.pdf</a></p>\r\n<p style=\"margin:2px !important;\"><a href=\"https://www.leg.state.nv.us/Register/2016Register/R156-16AP.pdf\" target=\"_blank\" rel=\"noopener\">https://www.leg.state.nv.us/Register/2016Register/R156-16AP.pdf </a></p>"
+            description: 
+            productsFreeText: Pesticide use
+            hsCodes: [ ]
+            icsCodes:
+              - id: 894
+                code: '65.020'
+                name: 65.020 - Farming and forestry
+              - id: 894
+                code: '65.020'
+                name: 65.020 - Farming and forestry
+              - id: 920
+                code: '65.100'
+                name: 65.100 - Pesticides and other agrochemicals
+              - id: 920
+                code: '65.100'
+                name: 65.100 - Pesticides and other agrochemicals
+            keywords: [ ]
+            spsKeywords: [ ]
+            objectives:
+              - id: 8
+                name: Prevention of deceptive practices and consumer protection (TBT)
+              - id: 11
+                name: Protection of the environment (TBT)
+            hsCodeText: ''
+            icsCodeText: '65.020, 65.100'
+            countriesAffected: [ ]
+            specificRegionsOrCountries: 
+            allTradingPartners: 
+            codexAlimentariusCommision: 
+            worldOrganizationForAnimalHealth: 
+            internationalPlantProtectionConvention: 
+            notRelevant: 
+            conformStandardYes: 
+            conformStandardNo: 
+            conformStandardNA: 
+            tradeFacilitatingMeasure: 
+            technicalRegulation: false
+            technicalRegulationUrgent: false
+            conformityAssessmentProcedure: false
+            conformityAssessmentProcedureUrgent: false
+            technicalRegulationLocalGovernment: true
+            conformityAssessmentProcedureLocalGovernment: false
+            articleOther: false
+            dolLink: G\TBTN16\USA1234A2.DOCX
+            notifiedDocumentLink: 'https://members.wto.org/crnattachments/2018/TBT/USA/18_0184_00_e.pdf,https://members.wto.org/crnattachments/2018/TBT/USA/18_0184_01_e.pdf'
+            notificationFormatId: '14'
+            version: 
+            affectedRegionsOrCountries: 
+          - id: '52268'
+            area: TBT
+            notificationType: Addendum to Regular Notification
+            distributionDate: '2017-09-19T00:00:00Z'
+            commentDeadlineDate: 
+            documentSymbol: ' G/TBT/N/USA/1234/Add.1'
+            documentSymbolOrdered: ' G/TBT/N/USA/00001234/Add.00000001'
+            notifyingMember: United States of America
+            notifyingMemberCode: C840
+            title: "<p style=\"margin:2px !important;\">TITLE: Pesticide Use on Crops Grown for Seed</p>\r\n<p style=\"margin:2px !important;\">AGENCY: State Department of Agriculture, Seed Division, State of Nevada</p>\r\n<p style=\"margin:2px !important;\">ACTION: Proposed rule<br />SUMMARY: Makes various changes relating to pesticide use on crops grown for seed.</p>\r\n<p style=\"margin:2px !important;\">Vol. 237, Nevada Register of Administrative Regulations 11 September 2017:<a href=\"https://www.leg.state.nv.us/Register/2016Register/R156-16P.pdf\" target=\"_blank\" rel=\"noopener\"><br />https://www.leg.state.nv.us/Register/2016Register/R156-16P.pdf</a></p>\r\n<p style=\"margin:2px !important;\"><span style=\"font-face: Verdana;\"><span lang=\"EN-GB\">For information and comments please contact:<br />James R Barbee, Director <br />Department of Agriculture <br />405 S 21st St, Sparks, NV 89431 <br />Telephone: 775-353-3601 <br />Fax 775-353-3661</span></span></p>"
+            description: 
+            productsFreeText: Pesticide use
+            hsCodes: [ ]
+            icsCodes:
+              - id: 894
+                code: '65.020'
+                name: 65.020 - Farming and forestry
+              - id: 894
+                code: '65.020'
+                name: 65.020 - Farming and forestry
+              - id: 920
+                code: '65.100'
+                name: 65.100 - Pesticides and other agrochemicals
+              - id: 920
+                code: '65.100'
+                name: 65.100 - Pesticides and other agrochemicals
+            keywords: [ ]
+            spsKeywords: [ ]
+            objectives:
+              - id: 11
+                name: Protection of the environment (TBT)
+              - id: 8
+                name: Prevention of deceptive practices and consumer protection (TBT)
+            hsCodeText: ''
+            icsCodeText: '65.020, 65.100'
+            countriesAffected: [ ]
+            specificRegionsOrCountries: 
+            allTradingPartners: 
+            codexAlimentariusCommision: 
+            worldOrganizationForAnimalHealth: 
+            internationalPlantProtectionConvention: 
+            notRelevant: 
+            conformStandardYes: 
+            conformStandardNo: 
+            conformStandardNA: 
+            tradeFacilitatingMeasure: 
+            technicalRegulation: false
+            technicalRegulationUrgent: false
+            conformityAssessmentProcedure: false
+            conformityAssessmentProcedureUrgent: false
+            technicalRegulationLocalGovernment: true
+            conformityAssessmentProcedureLocalGovernment: false
+            articleOther: false
+            dolLink: G\TBTN16\USA1234A1.DOCX
+            notifiedDocumentLink: https://members.wto.org/crnattachments/2017/TBT/USA/17_4109_00_e.pdf
+            notificationFormatId: '14'
+            version: 
+            affectedRegionsOrCountries: 
+        currentPage: 1
+        pageSize: 20
+        totalCount: 5
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

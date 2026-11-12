@@ -1,0 +1,1 @@
+SELECT record_json FROM optima_collected_data.batch_verification_records WHERE source='uspto_odp' AND dataset='patent_office_actions' AND batch_group='93413bbbac2bc2c73003cb421b2a01183e6826aea8193edcf972575f6c352f2d' AND json_extract_scalar(record_json,'$.payload.data.application_number')='16545140';

@@ -11,6 +11,68 @@ from regulatory_collection import SourceIssue
 
 
 class ContentTests(DisclosureTests):
+    def test_hkex_extended_column_width_preserves_values_and_formulas(self):
+        import zipfile
+        from openpyxl import Workbook
+        workbook = Workbook()
+        workbook.active.append(['Detailed disclosure of issued shares', 123456, '=B1+1'])
+        original = io.BytesIO(); workbook.save(original); workbook.close()
+        extended = io.BytesIO()
+        with zipfile.ZipFile(original) as source, zipfile.ZipFile(extended, 'w') as target:
+            for member in source.infolist():
+                body = source.read(member)
+                if member.filename == 'xl/worksheets/sheet1.xml':
+                    body = body.replace(b'<sheetFormatPr ', b'<sheetFormatPr defaultColWidthPt="64" ')
+                target.writestr(member, body)
+        raw = extended.getvalue()
+        artifact = content.extract(raw, {'source':'hkex_news'})
+        self.assertIn('B1=123456', artifact['text'])
+        self.assertIn('C1==B1+1', artifact['text'])
+        self.assertEqual(artifact['extraction']['ignored_presentation_attributes'],
+            [{'member':'xl/worksheets/sheet1.xml','attribute':'defaultColWidthPt'}])
+        self.assertEqual(raw, extended.getvalue())
+
+    def test_hkex_incorrect_dimension_preserves_all_cells(self):
+        import zipfile
+        from openpyxl import Workbook
+        workbook = Workbook()
+        workbook.active.append(['Detailed disclosure of issued shares', 123456, '=B1+1'])
+        original = io.BytesIO(); workbook.save(original); workbook.close()
+        extended = io.BytesIO()
+        with zipfile.ZipFile(original) as source, zipfile.ZipFile(extended, 'w') as target:
+            for member in source.infolist():
+                body = source.read(member)
+                if member.filename == 'xl/worksheets/sheet1.xml':
+                    body = body.replace(b'ref="A1:C1"', b'ref="A1"')
+                target.writestr(member, body)
+        artifact = content.extract(extended.getvalue(), {'source':'hkex_news'})
+        self.assertIn('B1=123456', artifact['text'])
+        self.assertIn('C1==B1+1', artifact['text'])
+        self.assertEqual(artifact['extraction']['ignored_presentation_attributes'],
+            [{'member':'xl/worksheets/sheet1.xml','attribute':'dimension.ref'}])
+
+    def test_hkex_spreadsheet_preserves_cells_sheets_and_formulas(self):
+        from openpyxl import Workbook
+        workbook = Workbook()
+        workbook.active.title = 'Capital changes'
+        workbook.active.append(['Issued shares', 123456, '=B1+1'])
+        workbook.create_sheet('Notes').append(['Detailed explanatory disclosure for shareholders.'])
+        raw = io.BytesIO(); workbook.save(raw); workbook.close()
+        artifact = content.extract(raw.getvalue(), {'source':'hkex_news'})
+        self.assertEqual(artifact['extraction']['format'], 'xlsx')
+        self.assertEqual(len(artifact['documents']), 2)
+        self.assertIn('B1=123456', artifact['text'])
+        self.assertIn('C1==B1+1', artifact['text'])
+        self.assertEqual(artifact['documents'][1]['sheet_name'], 'Notes')
+        self.assertTrue(artifact['chunks'])
+
+    def test_hkex_unknown_zip_is_not_misdecoded_as_text(self):
+        import zipfile
+        raw = io.BytesIO()
+        with zipfile.ZipFile(raw, 'w') as z: z.writestr('other.txt', 'not a workbook')
+        with self.assertRaisesRegex(SourceIssue, 'disclosure_unsupported_zip'):
+            content.extract(raw.getvalue(), {'source':'hkex_news'})
+
     def test_8k_form_without_supporting_passage_is_not_a_press_release(self):
         parent = {'payload': {'form': '8-K', 'data': {'text': 'A director resigned from the board effective today.'}}}
         self.assertEqual(d.candidate('press-releases', parent), [])

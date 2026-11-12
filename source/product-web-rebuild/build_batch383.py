@@ -1,0 +1,7 @@
+from research_helpers import *
+a=ev('https://www.macom.com/products/optical/laser-and-modulator-drivers/pam','Current production-site table: all 34 explicit PAM driver identifiers reviewed; staging-site search results not used as canonical catalogue.')
+models='MAOM-005808 MAOM-025408 MALD-39076 MAOM-005408-DIE MAOM-003110-DIE MAOM-005413 MAOM-011144-DIF MALD-38030 MALD-40435 MALD-39225 MAOM-05408L MALD-40225 MALD-40227 MAOM-010404 MAOM-002422-DIE MAOM-002322-DIE MAOM-005420-DIE MAOM-022404 MAOM-005324 MALD-39437 MALD-39077 MAOM-011112 MAOM-005321 MALD-39435 MALD-38029 MALD-38032 MAOM-005429 MALD-38795 MALD-39071 MALD-38482 MAOM-003119 MAOM-002326 MAOM-005421 MAOM-005424'.split()
+products=[p('MACOM '+name,'Optical driver.',a,life='commercial',typ='product',sector='semiconductors',sub='chip_design',roles=['developer']) for name in models]
+co=dict(company_id='cmp_2febb457-b6e4-4447-b43a-77040292440f',products=products,evidence=[a],status='partial',coverage_note='All 34 exact PAM optical-driver identifiers from current public production catalogue recorded; no additional staging-site-only entries. Partial: NRZ/coherent drivers, receivers, photodiodes/lasers, RF/power chips, foundry platforms, legacy acquired portfolios and individual technical/availability metadata require review.')
+assert len(products)==34
+(out/'batch-0383.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

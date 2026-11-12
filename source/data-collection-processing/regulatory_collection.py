@@ -50,7 +50,7 @@ class EvidenceClient:
         self.evidence.append({"key": key, "sha256": checksum, "source_url": url, "retrieved_at": now()})
         return raw
 
-    def get(self, url, params=None, body=None, api_key=None, no_matches=False):
+    def get(self, url, params=None, body=None, api_key=None, no_matches=False, api_key_parameter="api_key", persist=True):
         is_fda = urlsplit(url).hostname == 'api.fda.gov'
         opener = self.opener
         if is_fda:
@@ -61,7 +61,7 @@ class EvidenceClient:
         public_url = url + ("?" + urlencode(params) if params else "")
         request_params = dict(params or {})
         if api_key and not is_fda:
-            request_params["api_key"] = api_key
+            request_params[api_key_parameter] = api_key
         request_url = url + ("?" + urlencode(request_params) if request_params else "")
         headers = {"User-Agent": "Optima Holdings support@optima-holdings.com", "Accept-Encoding": "identity"}
         if is_fda:
@@ -77,6 +77,8 @@ class EvidenceClient:
             self.sleep(max(0, 0.3 - (time.monotonic() - self.last_request)))
             self.last_request = time.monotonic()
             try:
+                from constellation.shared_limits import admit
+                admit(url)
                 with opener(Request(request_url, data=canonical_json(body) if body is not None else None,
                                          headers=headers), timeout=60) as response:
                     raw = response.read(64 * 1024 * 1024 + 1)
@@ -84,8 +86,23 @@ class EvidenceClient:
                     length = response.headers.get("Content-Length")
                     require(length is None or int(length) == len(raw), "truncated_response")
                     media = response.headers.get("Content-Type", "application/octet-stream")
-                return self.save(raw, public_url, media)
+                return self.save(raw, public_url, media) if persist else raw
             except HTTPError as exc:
+                if (exc.code == 400 and urlsplit(url).hostname == 'clinicaltrials.gov'
+                        and urlsplit(url).path == '/api/v2/studies' and (params or {}).get('pageToken')):
+                    error = exc.read(65536)
+                    if b'The data have probably changed while you were paginating' in error:
+                        self.save(error, public_url, 'text/plain')
+                        raise SourceIssue('source_changed_during_pagination', True,
+                            {'provider_reason': 'invalidated_pagination_token'}) from None
+                if (exc.code == 422 and urlsplit(url).hostname == 'api.github.com'
+                        and urlsplit(url).path.endswith('/releases')):
+                    error = exc.read(65536)
+                    if b'Only the first 1000 results are available' in error:
+                        self.save(error, public_url, 'application/json')
+                        raise SourceIssue('github_release_archive_cap', True,
+                            {'source_url': public_url, 'available_results': 1000,
+                             'coverage': 'Older releases remain unverified; do not mark the archive complete.'}) from None
                 if no_matches and exc.code == 404:
                     error = exc.read()
                     if b"No matches found" in error:
@@ -156,6 +173,8 @@ class EvidenceClient:
             require(not any(s in text.lower() for s in ("滑动验证码", "验证码", "request has been blocked", "<title>405</title>")), "source_verification_required")
             tables = re.findall(r"<table\b[^>]*>", text, re.I)
             ready = any(table_class in table for table in tables) if table_class else bool(tables)
+            if ready and host in ('www.chictr.org.cn','chictr.org.cn') and pending_validator is not None:
+                ready=bool(pending_validator(text))
             if ready:
                 return text
             if attempt == 3:
@@ -197,7 +216,14 @@ def normalize(item, run, matcher, evidence, observed_at):
         "title": item.get("title"), "company_names": item.get("company_names", []),
         "candidate_company_ids": candidates, "candidate_sector_ids": sectors,
         "company_match_basis": "unverified_name", "date_basis": item["date_basis"],
-        "coverage_note": item.get("coverage_note"), "source_evidence": evidence}
+        "coverage_note": item.get("coverage_note"),
+        # A page receipt can cover many records, but a substantive artifact must
+        # be tied to the individual record that relies on it.  Collectors may
+        # therefore narrow the page-level evidence for a particular item.
+        "source_evidence": item.get("source_evidence", evidence)}
+    for field in ('action_date_status', 'window_membership', 'reported_composite_identity'):
+        if field in item:
+            payload[field] = item[field]
     return seal_record({"document_type": "collected_record", "schema_version": "1.0",
         "source": run.spec["source"], "dataset": run.spec["dataset"], "source_record_id": item["id"],
         "source_record_id_basis": item.get("identity_basis", "provider"), "source_url": item["url"],
@@ -218,6 +244,8 @@ def collect(store, settings, universe, taxonomy, source, start, end, mode, adapt
     matcher = CompanyMatcher(universe, sectors)
     scope = {"selection": selection, "sectors": sorted(set(sectors)), "page_size": page_size,
              "date_basis": adapter.date_basis, "coverage": adapter.coverage}
+    if getattr(adapter, "version", None):
+        scope["adapter_version"] = adapter.version
     if getattr(adapter, "registry_ids", ()):
         scope["registry_ids"] = list(adapter.registry_ids)
     spec = task_spec(adapter.source, "research_records", mode, instant(start), instant(end), scope, VERSION, universe, taxonomy)

@@ -1,0 +1,5 @@
+from research_helpers import *
+a=ev('https://www.ramsayhealth.com/','Current group site describes hospital, clinic and clinical-service operations.')
+b=ev('https://www.northshoreprivate.com.au/Our-Services/Robotic-Program','Group hospital identifies use of third-party da Vinci, Stryker Mako and Mazor X SE surgical robots. Operating purchased equipment is not product development, manufacture or commercial distribution.')
+co=dict(company_id='cmp_1a3c5819-06bc-4795-ade3-6b1658aab310',products=[],evidence=[a,b],status='complete',coverage_note='Completed public sector/product screen. No company-developed, manufactured, owned/licensed or distributed qualifying products identified. Hospital/clinical services and operation of third-party surgical robots excluded from manufacturer/product registry relationships. Routine use of medicines or batteries does not confer product ownership. Company eligibility and sector flags unchanged.')
+(out/'batch-0256.json').write_text(json.dumps({'companies':[co]},indent=2));print(0)

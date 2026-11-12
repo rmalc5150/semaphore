@@ -61,13 +61,21 @@ def build():
     today = datetime.now(timezone.utc).date()
     windows = universe_windows(raw, 'daily', date.fromisoformat(raw['daily_origin']), today, 3)
     daily_keys = []
+    closed_ends = {}
     for window in windows:
         runner = Operations(None, settings, raw, load(window['universe']), load(raw['taxonomy']))
-        daily_keys.extend(runner.prefix+'/daily/'+source+'/progress-'+str(window['origin'])+'.json' for source in raw['sources'])
+        scoped_keys = [runner.prefix+'/daily/'+source+'/progress-'+str(window['origin'])+'.json' for source in raw['sources']]
+        daily_keys.extend(scoped_keys)
+        if window['end'] < today:
+            closed_ends.update({key: str(window['end']) for key in scoped_keys})
     keys('collection-daily', daily_keys)
+    jobs['optima-collection-daily.service']['progress_end_exclusive'] = closed_ends
+    for unit in ('collection-daily', 'news-collection'):
+        jobs['optima-'+unit+'.service']['checkpoint_progress'] = True
     universe, taxonomy = load('config/company-universe.v0.3.json'), load('config/sectors.v1.json')
     conference_keys = []
-    for mode, origin in [('daily', '2026-09-23'), ('historical', '2021-01-01')]:
+    from historical_policy import historical_start
+    for mode, origin in [('daily', '2026-09-23'), ('historical', historical_start().isoformat())]:
         identity = digest({'version': CONFERENCE_VERSION, 'daily_filter': 'update', 'universe': digest(universe),
                            'taxonomy': digest(taxonomy), 'mode': mode, 'origin': origin})
         conference_keys.append('operations/conferences/progress/'+identity+'.json')

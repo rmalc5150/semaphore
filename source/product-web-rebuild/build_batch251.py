@@ -1,0 +1,7 @@
+from research_helpers import *
+a=ev('https://ir.renovorx.com/news-events/press-releases/detail/87/renovorx-closes-11-1-million-private-placement-providing','Historical issuer defines RenovoGem as investigational gemcitabine drug-device combination, distinct from device-only RenovoCath clearance.')
+b=ev('https://renovorx.com/','Current company footer confirms ongoing IND trial of RenovoCath-delivered gemcitabine for locally advanced pancreatic cancer; no medicine approval inferred.')
+c=ev('https://renovorx.com/renovocath/','Current dual-balloon catheter page reviewed. Mechanical catheter is not a robot; device clearance is not approval of the investigational oncology combination.')
+products=[p('RenovoGem','Investigational targeted gemcitabine drug-device combination for pancreatic cancer.',a,'development',evidence=[a,b])]
+co=dict(company_id='cmp_1926dbf8-e7d3-4fb8-8d22-2e9e7005cefe',products=products,evidence=[a,b,c],status='partial',coverage_note='Named oncology drug-device combination recorded with ongoing IND-study evidence. Partial: current RenovoGem naming/strategy, other specifically named therapeutic combinations and legacy candidates need review. TAMP mechanism not duplicated as second identical therapy; generic gemcitabine not asserted as company-owned molecule. Device-only RenovoCath is a nonrobotic catheter and outside current four-sector product scope when sold alone.')
+(out/'batch-0251.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

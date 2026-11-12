@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-10-26T07:36:03.969620+00:00",
+  "control": {
+    "singleton": 1,
+    "enabled": true,
+    "pilot_job_ids": [],
+    "stop_after_epoch": 1794720993
+  },
+  "historical_worker": "i-06241bd1c4e91c2fc",
+  "daily_and_control_host": "i-070bab0b09f794629",
+  "pool": {
+    "raw_workers": 4,
+    "legacy_workers": 4,
+    "cpu_capacity": 16,
+    "memory_max_gib": 28
+  }
+}

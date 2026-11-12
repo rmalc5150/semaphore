@@ -1,0 +1,1192 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "identity",
+    "what_happened",
+    "timing",
+    "entities",
+    "classifications",
+    "sources",
+    "specialist_routes",
+    "related_events",
+    "review",
+    "eligibility",
+    "lineage"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.2-draft"
+    },
+    "identity": {
+      "$ref": "#/definitions/identity"
+    },
+    "what_happened": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title",
+        "summary",
+        "claims"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*(?:\\.[a-z][a-z0-9_]*)+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/claim"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "occurred_at",
+        "effective_at",
+        "first_observed_at",
+        "version_created_at"
+      ],
+      "properties": {
+        "occurred_at": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/temporal"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "effective_at": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/temporal"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "first_observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "version_created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entity"
+      },
+      "minItems": 0
+    },
+    "classifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/classification"
+      },
+      "minItems": 0
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/source"
+      },
+      "minItems": 1
+    },
+    "specialist_routes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/route"
+      },
+      "minItems": 0
+    },
+    "related_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "event_id",
+          "relationship",
+          "reason",
+          "evidence_ids"
+        ],
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "relationship": {
+            "enum": [
+              "follow_up",
+              "corrects",
+              "supersedes",
+              "contradicts",
+              "same_development"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        }
+      },
+      "minItems": 0
+    },
+    "review": {
+      "$ref": "#/definitions/review"
+    },
+    "eligibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operational_replay",
+        "historical_reconstruction"
+      ],
+      "properties": {
+        "operational_replay": {
+          "$ref": "#/definitions/eligibility_decision"
+        },
+        "historical_reconstruction": {
+          "$ref": "#/definitions/eligibility_decision"
+        }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "extractor_version",
+        "registry_snapshot_ref",
+        "input_manifest_refs",
+        "legacy_version_refs"
+      ],
+      "properties": {
+        "extractor_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "registry_snapshot_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/artifact"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "input_manifest_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/artifact"
+          },
+          "minItems": 0
+        },
+        "legacy_version_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      }
+    }
+  },
+  "description": "Discussion draft for event records. It does not replace the pilot schema or enable production. Validation of structure is separate from factual, identity and point-in-time review.",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Evidence-backed event — discussion draft",
+  "definitions": {
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_version_id",
+        "event_sequence",
+        "environment",
+        "state",
+        "supersedes_version_id",
+        "change_reason",
+        "matching_keys"
+      ],
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "pattern": "^(?:evt_[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}|test_evt_[a-f0-9]{64})$"
+        },
+        "event_version_id": {
+          "type": "string",
+          "pattern": "^evv_[a-f0-9]{64}$"
+        },
+        "event_sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "environment": {
+          "enum": [
+            "test",
+            "production"
+          ]
+        },
+        "state": {
+          "enum": [
+            "candidate",
+            "accepted",
+            "disputed",
+            "retracted",
+            "superseded"
+          ]
+        },
+        "supersedes_version_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^evv_[a-f0-9]{64}$"
+        },
+        "change_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "matching_keys": {
+          "type": "array",
+          "description": "Source/semantic keys that nominate the same development. They do not replace the stable event ID or authorize uncertain merges.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "namespace",
+              "value",
+              "basis"
+            ],
+            "properties": {
+              "namespace": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "basis": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "environment": {
+                "const": "production"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "event_id": {
+                "pattern": "^evt_"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_sequence": {
+                "minimum": 2
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "supersedes_version_id": {
+                "type": "string"
+              },
+              "change_reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uri",
+        "sha256"
+      ],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Immutable object URI or content-addressed reference."
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "temporal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "precision",
+        "source_timezone"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "precision": {
+          "enum": [
+            "year",
+            "month",
+            "day",
+            "second",
+            "millisecond",
+            "microsecond"
+          ]
+        },
+        "source_timezone": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "description": "Preserve actual source precision. Unknown dates are null, never inferred from retrieval time.",
+      "oneOf": [
+        {
+          "properties": {
+            "precision": {
+              "const": "year"
+            },
+            "value": {
+              "pattern": "^[0-9]{4}$"
+            }
+          }
+        },
+        {
+          "properties": {
+            "precision": {
+              "const": "month"
+            },
+            "value": {
+              "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+            }
+          }
+        },
+        {
+          "properties": {
+            "precision": {
+              "const": "day"
+            },
+            "value": {
+              "format": "date"
+            }
+          }
+        },
+        {
+          "properties": {
+            "precision": {
+              "enum": [
+                "second",
+                "millisecond",
+                "microsecond"
+              ]
+            },
+            "value": {
+              "format": "date-time",
+              "pattern": "(?:Z|[+-][0-9]{2}:[0-9]{2})$"
+            }
+          }
+        }
+      ]
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim_id",
+        "text",
+        "status",
+        "evidence_ids"
+      ],
+      "properties": {
+        "claim_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "reported",
+            "corroborated",
+            "disputed",
+            "withdrawn"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entity_id",
+        "entity_type",
+        "reported_name",
+        "role",
+        "review_status",
+        "evidence_ids"
+      ],
+      "properties": {
+        "entity_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "entity_type": {
+          "enum": [
+            "company",
+            "product",
+            "person",
+            "listing",
+            "institution",
+            "project",
+            "trial"
+          ]
+        },
+        "reported_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Actor, affected party, inventor, applicant, owner, employer, mentioned party, etc.; controlled role registry to follow."
+        },
+        "review_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "rejected"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "anyOf": [
+        {
+          "properties": {
+            "entity_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "properties": {
+            "reported_name": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sector_id",
+        "subsector_id",
+        "taxonomy_version",
+        "review_status",
+        "basis",
+        "confidence",
+        "evidence_ids"
+      ],
+      "properties": {
+        "sector_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subsector_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "taxonomy_version": {
+          "const": "1.0.0"
+        },
+        "review_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "rejected"
+          ]
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Null until a defined/calibrated scoring policy supplies a value."
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "sector_id": {
+              "const": "biotech"
+            },
+            "subsector_id": {
+              "enum": [
+                null,
+                "therapeutics",
+                "diagnostics",
+                "research_tools",
+                "industrial_biotechnology"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "sector_id": {
+              "const": "robotics"
+            },
+            "subsector_id": {
+              "enum": [
+                null,
+                "industrial_robotics",
+                "service_robotics",
+                "medical_robotics",
+                "autonomy_and_components"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "sector_id": {
+              "const": "semiconductors"
+            },
+            "subsector_id": {
+              "enum": [
+                null,
+                "chip_design",
+                "chip_manufacturing",
+                "semiconductor_equipment",
+                "materials_and_packaging"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "sector_id": {
+              "const": "energy_storage"
+            },
+            "subsector_id": {
+              "enum": [
+                null,
+                "batteries",
+                "supercapacitors",
+                "thermal_storage",
+                "mechanical_storage",
+                "hydrogen_storage"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "source_name",
+        "provider_key",
+        "dataset",
+        "source_record_id",
+        "record_id",
+        "observation_id",
+        "url",
+        "origin_type",
+        "origin_group_id",
+        "stance",
+        "available_at",
+        "availability_basis",
+        "availability_evidence",
+        "ingested_at",
+        "supporting_fields",
+        "artifact_refs"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Readable provider name; do not require planning source codes."
+        },
+        "provider_key": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Actual collector namespace used for machine joins."
+        },
+        "dataset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_record_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "record_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "observation_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "origin_type": {
+          "enum": [
+            "primary",
+            "aggregator",
+            "derived",
+            "unknown"
+          ]
+        },
+        "origin_group_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "description": "Shared original-reporting/document lineage; null when unestablished."
+        },
+        "stance": {
+          "enum": [
+            "supports",
+            "contradicts",
+            "context"
+          ]
+        },
+        "available_at": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/temporal"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "availability_basis": {
+          "enum": [
+            "unknown",
+            "source_publication",
+            "source_revision",
+            "archive_evidence",
+            "provider_metadata"
+          ]
+        },
+        "availability_evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reference",
+              "note"
+            ],
+            "properties": {
+              "reference": {
+                "type": "string",
+                "minLength": 1
+              },
+              "note": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "minItems": 0
+        },
+        "ingested_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "supporting_fields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "locator",
+              "value"
+            ],
+            "properties": {
+              "locator": {
+                "type": "string",
+                "minLength": 1,
+                "description": "JSON path, page/paragraph, claim number or other exact source location."
+              },
+              "value": {}
+            }
+          },
+          "minItems": 1
+        },
+        "artifact_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/artifact"
+          },
+          "minItems": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "available_at": {
+                "type": "null"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "availability_basis": {
+                "const": "unknown"
+              },
+              "availability_evidence": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "availability_basis": {
+                "not": {
+                  "const": "unknown"
+                }
+              },
+              "availability_evidence": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "specialist_id",
+        "domain",
+        "status",
+        "reason",
+        "evidence_ids",
+        "entity_ids",
+        "routing_policy_version",
+        "relevance_weight"
+      ],
+      "properties": {
+        "specialist_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Readable proposed domain now; actual specialist layer ID required for approved dispatch."
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "approved",
+            "rejected"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "routing_policy_version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "relevance_weight": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Null until a defined/calibrated scoring policy supplies a value."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "approved"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "specialist_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "routing_policy_version": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reviewer",
+        "reviewed_at",
+        "reason",
+        "issues"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "approved",
+            "rejected",
+            "needs_evidence"
+          ]
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "reviewed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "approved",
+                  "rejected"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "reviewer": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reviewed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "eligibility_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "eligible_at",
+        "reason"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "unassessed",
+            "ineligible",
+            "eligible"
+          ]
+        },
+        "eligible_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "eligible"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "eligible_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "eligible_at": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "identity": {
+            "properties": {
+              "state": {
+                "const": "accepted"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "properties": {
+              "status": {
+                "const": "approved"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "identity": {
+            "properties": {
+              "state": {
+                "const": "candidate"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "eligibility": {
+            "properties": {
+              "operational_replay": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "unassessed",
+                      "ineligible"
+                    ]
+                  }
+                }
+              },
+              "historical_reconstruction": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "unassessed",
+                      "ineligible"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

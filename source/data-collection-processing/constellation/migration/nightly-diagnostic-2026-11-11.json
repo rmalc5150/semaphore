@@ -1,0 +1,429 @@
+{
+  "date": "2026-11-11",
+  "scope": "Nightly post-migration diagnostic",
+  "sources": {
+    "enabled": 91,
+    "automatically_stopped": 61,
+    "owner_paused": 5,
+    "access_layers": 4,
+    "restricted": [
+      {
+        "source_key": "500_global_portfolio_and_cohorts",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "antler_early_stage_portfolio",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "arxiv",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:full_text"
+      },
+      {
+        "source_key": "biorxiv_medrxiv_preprints",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:full_text"
+      },
+      {
+        "source_key": "bluesky_search",
+        "state": "owner_paused",
+        "last_reason": null
+      },
+      {
+        "source_key": "brazil_abve_electric_vehicle_registrations",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "brazil_anm_sigmine_and_cadastro_mineiro",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "brazil_capes_theses_and_dissertations",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "brazil_fapesp_pipe_and_grants",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "canada_cda_amc_cadth_reimbursement_reviews",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "chile_sma_snifa_environmental_compliance",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "china_miit_electronics_and_battery_statistics",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "china_mofcom_export_controls",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "china_nbs_industrial_production",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "china_nea_power_statistics",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "china_nhsa_reimbursement_and_procurement",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "climate_trace_industrial_assets_and_activity",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "cninfo_mainland_china_company_disclosures",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "cpsc_recalls",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "datacite_dissertations_datasets_software_and_usage",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:full_text"
+      },
+      {
+        "source_key": "decodo_shared_web_retrieval_access_layer",
+        "state": "access_layer",
+        "last_reason": null
+      },
+      {
+        "source_key": "disclosure_candidates",
+        "state": "access_layer",
+        "last_reason": null
+      },
+      {
+        "source_key": "disclosure_documents",
+        "state": "access_layer",
+        "last_reason": null
+      },
+      {
+        "source_key": "doe_storage_benchmarks",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "doe_storage_documents",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "doe_storage_funding",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "doe_storage_program",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "eia_generator_index",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "ember_electricity_demand_and_generation",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "england_nhsbsa_prescribing_data",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "epo_ops_patent_legal_events",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "europe_pmc",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:full_text"
+      },
+      {
+        "source_key": "european_environment_agency_industrial_facilities",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "eurostat_comext_goods_trade",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "fda_dd_inspections_classifications",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "federal_register",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "federal_register_documents",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "france_assurance_maladie_open_medic",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "france_has_medicine_assessment_opinions",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "france_theses_fr_doctoral_theses",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "germany_g_ba_drug_benefit_assessments",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "github_sdk",
+        "state": "owner_paused",
+        "last_reason": null
+      },
+      {
+        "source_key": "global_energy_monitor_asset_and_ownership_api",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "hugging_face_hub_models_and_datasets",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "iea_global_ev_data_explorer_and_outlook",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "iea_pvps_solar_deployment_reports",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "imf_portwatch_shipping_activity",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "indonesia_esdm_and_geological_agency_mineral_statistics",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "international_federation_of_robotics_world_robotics",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "japan_mhlw_ndb_open_data",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "marketaux",
+        "state": "owner_paused",
+        "last_reason": null
+      },
+      {
+        "source_key": "mlperf_results",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "nice_technology_appraisals",
+        "state": "owner_paused",
+        "last_reason": null
+      },
+      {
+        "source_key": "nsf_awards",
+        "state": "raw_stopped",
+        "last_reason": "provider_request_projects_subset_of_raw_fields"
+      },
+      {
+        "source_key": "openaire_graph_projects_and_research_products",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:full_text"
+      },
+      {
+        "source_key": "peru_minem_mining_bulletins_and_yearbooks",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "reddit",
+        "state": "owner_paused",
+        "last_reason": null
+      },
+      {
+        "source_key": "S65",
+        "state": "access_layer",
+        "last_reason": null
+      },
+      {
+        "source_key": "sia_wsts_public_semiconductor_sales",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "south_korea_fss_opendart",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:primary_document"
+      },
+      {
+        "source_key": "taiwan_twse_mops_issuer_and_revenue_archives",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:primary_document"
+      },
+      {
+        "source_key": "techstars_portfolio_and_cohorts",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "un_comtrade",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "us_census_international_trade_api",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "usda_fas_production_supply_and_distribution",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "usgs_minerals",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "wefunder_and_republic_crowdfunding_campaigns",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      },
+      {
+        "source_key": "wto_eping_sps_tbt_notifications",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "wto_quantitative_restrictions_api",
+        "state": "raw_stopped",
+        "last_reason": "missing_verified_raw_artifacts:provider_record"
+      },
+      {
+        "source_key": "y_combinator_company_directory_and_cohorts",
+        "state": "raw_stopped",
+        "last_reason": "public_capture_is_discovery_page_only"
+      }
+    ]
+  },
+  "hosts": {
+    "t3": {
+      "type": "t3.medium",
+      "memory_mib": 3835,
+      "available_mib_observed": 283,
+      "data_slice_max_bytes": 2000000000,
+      "data_slice_high_bytes": 1700000000,
+      "cpu_busy_sample_percent": [
+        40,
+        54
+      ],
+      "constraint": "Low available memory; collection services serialize behind supervisor/runtime locks"
+    },
+    "m7": {
+      "type": "m7i.large",
+      "memory_mib": 7779,
+      "available_mib_observed": 2362,
+      "cpu_busy_sample_percent": [
+        99,
+        100
+      ],
+      "worker_memory_max_bytes": 7260185395,
+      "worker_memory_high_bytes": 6526009344,
+      "worker_cpu_cores_limit": 2
+    },
+    "database": {
+      "type": "db.t4g.micro",
+      "cpu_percent_5minute_average": 11.16,
+      "freeable_memory_mib": 97.18,
+      "cpu_credits": 287.23,
+      "connections_average": 10.8,
+      "observation": "Large metadata summary queries time out. Bounded job and recent-acceptance queries work."
+    }
+  },
+  "repairs": [
+    "Granted worker s3:GetBucketLocation on the data bucket; confirmed from m7",
+    "Restored authoritative universe configs with checksum verification",
+    "Restarted specialist, CMS and news publishers",
+    "Bounded metadata publication scan to 32 candidates per source with keyset continuation",
+    "Reduced gap audit scope to exclude succeeded raw jobs, fixed SQL placeholder, extended timeout to 20 minutes; audit still running",
+    "Autostop checks now skip busy lifecycle lock; historical queue activity replaces permanent executor daemon activity",
+    "Granted and verified EIA published-generator archive access",
+    "Archived and requeued 31 checkpointed historical jobs: EMA 23, EDINET 1, EIA 2, Hugging Face 3, TED 2"
+  ],
+  "verified": {
+    "cms_windows": 2,
+    "news_windows": 2,
+    "federal_register_history": {"succeeded":30,"running":1,"pending":111},
+    "remaining_history_after_requeue": {"expected_blocked":9,"unexplained_ema_attempt_budget":6,"news_collection_error":1,"retained_diagnostics":2},
+    "metadata_recent_accepted_sources": [
+      "eia_battery_generators",
+      "people_rss",
+      "sec_edgar"
+    ],
+    "metadata_controller_published_batches": 5,
+    "new_kernel_oom_last30min": false,
+    "tests": [
+      "38 metadata tests passed",
+      "23 gap/autostop tests passed"
+    ]
+  },
+  "limitations": [
+    "Full current queue counts unavailable due diagnostic query timeouts",
+    "The 61 automatic metadata stops are not deliberate owner pauses; most need missing provider/full-text/primary documents or discovery-only captures repaired",
+    "Existing t3 collection backlog remains serialized",
+    "Gap audit completion not yet verified"
+  ]
+}

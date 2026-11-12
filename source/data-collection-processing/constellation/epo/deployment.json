@@ -1,0 +1,34 @@
+{
+  "command_id": "c6e0372b-e03c-49a8-b215-4433e08bc1c0",
+  "files": {
+    "epo_ops.py": {
+      "key": "research-data/constellation-backfill/deployments/epo-6bb307f63c4546ab2920982c07450424914bb9f76229056ff1f31eebdfd25a1f/epo_ops.py",
+      "sha256": "6bb307f63c4546ab2920982c07450424914bb9f76229056ff1f31eebdfd25a1f"
+    },
+    "additional_source_apis.py": {
+      "key": "research-data/constellation-backfill/deployments/epo-20c06b3a46cc00857903b42ebac1ee144b5ee4dce361d8a4107fc4fe5a71ea3b/additional_source_apis.py",
+      "sha256": "20c06b3a46cc00857903b42ebac1ee144b5ee4dce361d8a4107fc4fe5a71ea3b"
+    },
+    "additional_source_plan.py": {
+      "key": "research-data/constellation-backfill/deployments/epo-09e7b977af4a3a327f9e31414317a3f64338a42d67dea575b2b4689bea481764/additional_source_plan.py",
+      "sha256": "09e7b977af4a3a327f9e31414317a3f64338a42d67dea575b2b4689bea481764"
+    },
+    "specialist_inputs.py": {
+      "key": "research-data/constellation-backfill/deployments/epo-cb9362043f3227b55cd0d2b9284ee6fc3e7eb3cc8826cf28e0d2acca2dc8c33b/specialist_inputs.py",
+      "sha256": "cb9362043f3227b55cd0d2b9284ee6fc3e7eb3cc8826cf28e0d2acca2dc8c33b"
+    },
+    "constellation/epo/bootstrap.py": {
+      "key": "research-data/constellation-backfill/deployments/epo-96e62ee8ce8b6f53332e432c080d9624817d7bee4bb43d2906e9d84fc20e9553/constellation/epo/bootstrap.py",
+      "sha256": "96e62ee8ce8b6f53332e432c080d9624817d7bee4bb43d2906e9d84fc20e9553"
+    },
+    "config/constellation-specialist-historical.json": {
+      "key": "research-data/constellation-backfill/deployments/epo-34dce0e65a8f18556ca1edafecb8af7ef86890cf729dc6623b1c13b50aa0eb56/config/constellation-specialist-historical.json",
+      "sha256": "34dce0e65a8f18556ca1edafecb8af7ef86890cf729dc6623b1c13b50aa0eb56"
+    },
+    "config/constellation-legacy-routes.json": {
+      "key": "research-data/constellation-backfill/deployments/epo-2f519483d7f2cf918515febbcc345ae5c39d0eccacd0290aaf3742ba653753c6/config/constellation-legacy-routes.json",
+      "sha256": "2f519483d7f2cf918515febbcc345ae5c39d0eccacd0290aaf3742ba653753c6"
+    }
+  },
+  "unit": "constellation-specialist-epo_ops_patent_legal_events.service"
+}

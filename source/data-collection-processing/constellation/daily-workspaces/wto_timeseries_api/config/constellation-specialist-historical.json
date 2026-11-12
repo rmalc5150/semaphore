@@ -1,0 +1,6098 @@
+{
+  "version": "1.0",
+  "historical_start": "2016-01-01",
+  "daily_checks": "daily; upstream annual/monthly data retained at native cadence",
+  "sources": [
+    {
+      "source_id": "S36",
+      "source": "nih_reporter",
+      "adapter": "nih",
+      "api": "https://api.reporter.nih.gov/v2/projects/search",
+      "enabled": true,
+      "historical": true,
+      "topics": [
+        "vaccine",
+        "gene therapy",
+        "immunotherapy"
+      ]
+    },
+    {
+      "source_id": "S42",
+      "source": "ted_notices",
+      "adapter": "ted",
+      "api": "https://api.ted.europa.eu/v3/notices/search",
+      "enabled": true,
+      "historical": true,
+      "cpv": [
+        "31712300",
+        "42997300",
+        "31440000",
+        "33100000"
+      ],
+      "fields": [
+        "publication-number",
+        "publication-date",
+        "notice-title",
+        "classification-cpv",
+        "buyer-name"
+      ]
+    },
+    {
+      "source_id": "S59",
+      "source": "bls_wages",
+      "adapter": "bls",
+      "api": "https://api.bls.gov/publicAPI/v2/timeseries/data/",
+      "enabled": true,
+      "historical": true,
+      "series": [
+        {
+          "id": "CES3000000003",
+          "unit": "USD/hour, manufacturing average hourly earnings, seasonally adjusted"
+        }
+      ]
+    },
+    {
+      "source_id": "S51",
+      "source": "federal_register",
+      "adapter": "federal_register",
+      "api": "https://www.federalregister.gov/api/v1/documents.json",
+      "enabled": true,
+      "historical": true,
+      "topics": [
+        "semiconductor",
+        "battery",
+        "robotics",
+        "clinical trial"
+      ]
+    },
+    {
+      "source_id": "S28",
+      "source": "europe_pmc",
+      "adapter": "epmc",
+      "api": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+      "enabled": true,
+      "historical": true,
+      "topics": [
+        "vaccine AND clinical trial",
+        "gene therapy AND clinical trial",
+        "immunotherapy AND clinical trial"
+      ]
+    },
+    {
+      "source_id": "S43",
+      "source": "usa_spending",
+      "adapter": "usaspending",
+      "api": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+      "enabled": true,
+      "historical": true,
+      "fields": [
+        "Award ID",
+        "Recipient Name",
+        "Award Amount",
+        "Awarding Agency",
+        "Awarding Sub Agency",
+        "Start Date",
+        "End Date",
+        "Description",
+        "generated_internal_id"
+      ]
+    },
+    {
+      "source_id": "S53",
+      "source": "usgs_minerals",
+      "adapter": "pdf",
+      "api": "https://pubs.usgs.gov/periodicals/mcs{year}/mcs{year}-{mineral}.pdf",
+      "enabled": true,
+      "historical": true,
+      "minerals": [
+        "lithium",
+        "cobalt",
+        "nickel",
+        "graphite"
+      ]
+    },
+    {
+      "source_id": "S52",
+      "source": "trade_screening",
+      "adapter": "csl",
+      "api": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.json",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "current consolidated US screening lists only; no historical sanctions status or legal interpretation"
+    },
+    {
+      "source_id": "S34",
+      "source": "cms_payments_catalog",
+      "adapter": "cms_catalog",
+      "api": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "dataset editions and download identities only; recipient/payment rows are a separate pending filtered query integration"
+    },
+    {
+      "source_id": "S46",
+      "source": "github_sdk",
+      "adapter": "github",
+      "api": "https://api.github.com",
+      "enabled": false,
+      "historical": false,
+      "repositories": [
+        "intel/llvm",
+        "NVIDIA/TensorRT",
+        "ros2/ros2",
+        "UniversalRobots/Universal_Robots_ROS2_Driver",
+        "ROBOTIS-GIT/DynamixelSDK"
+      ]
+    },
+    {
+      "source_id": "S68",
+      "source": "ror_institutions",
+      "adapter": "ror",
+      "api": "https://api.ror.org/v2/organizations",
+      "enabled": true,
+      "historical": false,
+      "institutions": [
+        "National Institutes of Health",
+        "Harvard University",
+        "University of Oxford",
+        "Stanford University"
+      ]
+    },
+    {
+      "source_id": "S57",
+      "source": "caiso_prices",
+      "adapter": "caiso",
+      "api": "https://oasis.caiso.com/oasisapi/SingleZip",
+      "enabled": true,
+      "historical": true,
+      "nodes": [
+        "TH_NP15_GEN-APND",
+        "TH_SP15_GEN-APND"
+      ]
+    },
+    {
+      "source_id": "S56",
+      "source": "eia_generator_index",
+      "adapter": "eia_index",
+      "api": "https://www.eia.gov/electricity/data/eia860m/",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "validated archive workbooks, period/schema/status/capacity summaries and provenance links to existing battery rows; no duplicate generator capture"
+    },
+    {
+      "source_id": "S56",
+      "source": "eia_battery_generators",
+      "adapter": "eia_xlsx",
+      "api": "https://www.eia.gov/electricity/data/eia860m/",
+      "enabled": true,
+      "historical": true,
+      "archives": [
+        {
+          "period": "2026-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/xls/august_generator2026.xlsx"
+        },
+        {
+          "period": "2026-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2026.xlsx"
+        },
+        {
+          "period": "2026-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2026.xlsx"
+        },
+        {
+          "period": "2026-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2026.xlsx"
+        },
+        {
+          "period": "2026-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2026.xlsx"
+        },
+        {
+          "period": "2026-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2026.xlsx"
+        },
+        {
+          "period": "2026-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2026.xlsx"
+        },
+        {
+          "period": "2026-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2026.xlsx"
+        },
+        {
+          "period": "2025-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2025.xlsx"
+        },
+        {
+          "period": "2025-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2025.xlsx"
+        },
+        {
+          "period": "2025-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2025.xlsx"
+        },
+        {
+          "period": "2025-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2025.xlsx"
+        },
+        {
+          "period": "2025-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2025.xlsx"
+        },
+        {
+          "period": "2025-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2025.xlsx"
+        },
+        {
+          "period": "2025-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2025.xlsx"
+        },
+        {
+          "period": "2025-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2025.xlsx"
+        },
+        {
+          "period": "2025-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2025.xlsx"
+        },
+        {
+          "period": "2025-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2025.xlsx"
+        },
+        {
+          "period": "2025-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2025.xlsx"
+        },
+        {
+          "period": "2025-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2025.xlsx"
+        },
+        {
+          "period": "2024-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2024.xlsx"
+        },
+        {
+          "period": "2024-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2024.xlsx"
+        },
+        {
+          "period": "2024-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2024.xlsx"
+        },
+        {
+          "period": "2024-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2024.xlsx"
+        },
+        {
+          "period": "2024-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2024.xlsx"
+        },
+        {
+          "period": "2024-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2024.xlsx"
+        },
+        {
+          "period": "2024-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2024.xlsx"
+        },
+        {
+          "period": "2024-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2024.xlsx"
+        },
+        {
+          "period": "2024-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2024.xlsx"
+        },
+        {
+          "period": "2024-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2024.xlsx"
+        },
+        {
+          "period": "2024-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2024.xlsx"
+        },
+        {
+          "period": "2024-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2024.xlsx"
+        },
+        {
+          "period": "2023-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2023.xlsx"
+        },
+        {
+          "period": "2023-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2023.xlsx"
+        },
+        {
+          "period": "2023-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2023.xlsx"
+        },
+        {
+          "period": "2023-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2023.xlsx"
+        },
+        {
+          "period": "2023-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2023.xlsx"
+        },
+        {
+          "period": "2023-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2023.xlsx"
+        },
+        {
+          "period": "2023-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2023.xlsx"
+        },
+        {
+          "period": "2023-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2023.xlsx"
+        },
+        {
+          "period": "2023-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2023.xlsx"
+        },
+        {
+          "period": "2023-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2023.xlsx"
+        },
+        {
+          "period": "2023-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2023.xlsx"
+        },
+        {
+          "period": "2023-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2023.xlsx"
+        },
+        {
+          "period": "2022-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2022.xlsx"
+        },
+        {
+          "period": "2022-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2022.xlsx"
+        },
+        {
+          "period": "2022-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2022.xlsx"
+        },
+        {
+          "period": "2022-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2022.xlsx"
+        },
+        {
+          "period": "2022-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2022.xlsx"
+        },
+        {
+          "period": "2022-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2022.xlsx"
+        },
+        {
+          "period": "2022-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2022.xlsx"
+        },
+        {
+          "period": "2022-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2022.xlsx"
+        },
+        {
+          "period": "2022-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2022.xlsx"
+        },
+        {
+          "period": "2022-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2022.xlsx"
+        },
+        {
+          "period": "2022-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2022.xlsx"
+        },
+        {
+          "period": "2022-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2022.xlsx"
+        },
+        {
+          "period": "2021-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2021.xlsx"
+        },
+        {
+          "period": "2021-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2021.xlsx"
+        },
+        {
+          "period": "2021-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2021.xlsx"
+        },
+        {
+          "period": "2021-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2021.xlsx"
+        },
+        {
+          "period": "2021-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2021.xlsx"
+        },
+        {
+          "period": "2021-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2021.xlsx"
+        },
+        {
+          "period": "2021-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2021.xlsx"
+        },
+        {
+          "period": "2021-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2021.xlsx"
+        },
+        {
+          "period": "2021-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2021.xlsx"
+        },
+        {
+          "period": "2021-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2021.xlsx"
+        },
+        {
+          "period": "2021-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2021.xlsx"
+        },
+        {
+          "period": "2021-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2021.xlsx"
+        },
+        {
+          "period": "2020-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2020.xlsx"
+        },
+        {
+          "period": "2020-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2020.xlsx"
+        },
+        {
+          "period": "2020-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2020.xlsx"
+        },
+        {
+          "period": "2020-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2020.xlsx"
+        },
+        {
+          "period": "2020-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2020.xlsx"
+        },
+        {
+          "period": "2020-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2020.xlsx"
+        },
+        {
+          "period": "2020-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2020.xlsx"
+        },
+        {
+          "period": "2020-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2020.xlsx"
+        },
+        {
+          "period": "2020-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2020.xlsx"
+        },
+        {
+          "period": "2020-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2020.xlsx"
+        },
+        {
+          "period": "2020-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2020.xlsx"
+        },
+        {
+          "period": "2020-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2020.xlsx"
+        },
+        {
+          "period": "2019-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2019.xlsx"
+        },
+        {
+          "period": "2019-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2019.xlsx"
+        },
+        {
+          "period": "2019-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2019.xlsx"
+        },
+        {
+          "period": "2019-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2019.xlsx"
+        },
+        {
+          "period": "2019-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2019.xlsx"
+        },
+        {
+          "period": "2019-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2019.xlsx"
+        },
+        {
+          "period": "2019-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2019.xlsx"
+        },
+        {
+          "period": "2019-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2019.xlsx"
+        },
+        {
+          "period": "2019-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2019.xlsx"
+        },
+        {
+          "period": "2019-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2019.xlsx"
+        },
+        {
+          "period": "2019-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2019.xlsx"
+        },
+        {
+          "period": "2019-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2019.xlsx"
+        },
+        {
+          "period": "2018-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2018.xlsx"
+        },
+        {
+          "period": "2018-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2018.xlsx"
+        },
+        {
+          "period": "2018-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2018.xlsx"
+        },
+        {
+          "period": "2018-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2018.xlsx"
+        },
+        {
+          "period": "2018-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2018.xlsx"
+        },
+        {
+          "period": "2018-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2018.xlsx"
+        },
+        {
+          "period": "2018-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2018.xlsx"
+        },
+        {
+          "period": "2018-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2018.xlsx"
+        },
+        {
+          "period": "2018-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2018.xlsx"
+        },
+        {
+          "period": "2018-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2018.xlsx"
+        },
+        {
+          "period": "2018-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2018.xlsx"
+        },
+        {
+          "period": "2018-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2018.xlsx"
+        },
+        {
+          "period": "2017-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2017.xlsx"
+        },
+        {
+          "period": "2017-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2017.xlsx"
+        },
+        {
+          "period": "2017-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2017.xlsx"
+        },
+        {
+          "period": "2017-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2017.xlsx"
+        },
+        {
+          "period": "2017-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2017.xlsx"
+        },
+        {
+          "period": "2017-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2017.xlsx"
+        },
+        {
+          "period": "2017-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2017.xlsx"
+        },
+        {
+          "period": "2017-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2017.xlsx"
+        },
+        {
+          "period": "2017-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2017.xlsx"
+        },
+        {
+          "period": "2017-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2017.xlsx"
+        },
+        {
+          "period": "2017-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2017.xlsx"
+        },
+        {
+          "period": "2017-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2017.xlsx"
+        },
+        {
+          "period": "2016-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2016.xlsx"
+        },
+        {
+          "period": "2016-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2016.xlsx"
+        },
+        {
+          "period": "2016-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2016.xlsx"
+        },
+        {
+          "period": "2016-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2016.xlsx"
+        },
+        {
+          "period": "2016-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2016.xlsx"
+        },
+        {
+          "period": "2016-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2016.xlsx"
+        },
+        {
+          "period": "2016-06",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/june_generator2016.xlsx"
+        },
+        {
+          "period": "2016-05",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/may_generator2016.xlsx"
+        },
+        {
+          "period": "2016-04",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/april_generator2016.xlsx"
+        },
+        {
+          "period": "2016-03",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/march_generator2016.xlsx"
+        },
+        {
+          "period": "2016-02",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/february_generator2016.xlsx"
+        },
+        {
+          "period": "2016-01",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/january_generator2016.xlsx"
+        },
+        {
+          "period": "2015-12",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/december_generator2015.xlsx"
+        },
+        {
+          "period": "2015-11",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/november_generator2015.xlsx"
+        },
+        {
+          "period": "2015-10",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/october_generator2015.xlsx"
+        },
+        {
+          "period": "2015-09",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/september_generator2015.xlsx"
+        },
+        {
+          "period": "2015-08",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/august_generator2015.xlsx"
+        },
+        {
+          "period": "2015-07",
+          "url": "https://www.eia.gov/electricity/data/eia860m/archive/xls/july_generator2015.xlsx"
+        }
+      ]
+    },
+    {
+      "source_id": "S55",
+      "source": "doe_storage_program",
+      "adapter": "doe_storage",
+      "api": "https://www.energy.gov/oe/energy-storage",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "DOE storage document discovery; linked original reports, technical evidence and funding/project statements are extracted by the dedicated post-capture worker; not exhaustive historical vintages."
+    },
+    {
+      "source_id": "S47",
+      "source": "nist_robotics_methods",
+      "adapter": "nist_robotics",
+      "api": "https://www.nist.gov/el/robotics",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "Original NIST landing HTML with parsed text and relevant links; downstream evidence retrieval and RDS product matching have independent checkpoints. Not a robot performance leaderboard."
+    },
+    {
+      "source_id": "S32",
+      "source": "cms_coverage",
+      "adapter": "cms_coverage",
+      "api": "https://api.coverage.cms.gov/v1/reports/",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S28",
+      "source": "europe_pmc_fulltext",
+      "adapter": "epmc_fulltext",
+      "enabled": false,
+      "historical": false,
+      "api": "parent document links",
+      "coverage_note": "parent-discovered versioned documents only"
+    },
+    {
+      "source_id": "S32",
+      "source": "cms_coverage_documents",
+      "adapter": "cms_document",
+      "enabled": false,
+      "historical": false,
+      "api": "parent document links",
+      "coverage_note": "parent-discovered versioned documents only"
+    },
+    {
+      "source_id": "S48",
+      "source": "mlperf_results",
+      "adapter": "mlperf",
+      "api": "https://github.com/mlcommons",
+      "enabled": true,
+      "historical": true,
+      "repositories": [
+        "mlcommons/inference_results_v1.0",
+        "mlcommons/inference_results_v1.1",
+        "mlcommons/inference_results_v2.0",
+        "mlcommons/inference_results_v2.1",
+        "mlcommons/inference_results_v3.0",
+        "mlcommons/inference_results_v3.1",
+        "mlcommons/inference_results_v4.0",
+        "mlcommons/inference_results_v4.1",
+        "mlcommons/inference_results_v5.0",
+        "mlcommons/inference_results_v5.1",
+        "mlcommons/inference_results_v6.0",
+        "mlcommons/inference_results_v6.1"
+      ]
+    },
+    {
+      "source_id": "S08",
+      "source": "sec_companyfacts",
+      "adapter": "sec_companyfacts",
+      "api": "https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S20",
+      "source": "drugsfda_applications",
+      "adapter": "drugsfda",
+      "api": "https://api.fda.gov/drug/drugsfda.json",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S21",
+      "source": "ema_medicines",
+      "adapter": "ema_json",
+      "api": "https://www.ema.europa.eu/en/documents/report/medicines-output-medicines_json-report_en.json",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S27",
+      "source": "pubmed_abstracts",
+      "adapter": "pubmed",
+      "api": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+      "topics": [
+        "vaccine AND clinical trial",
+        "gene therapy AND clinical trial",
+        "immunotherapy AND clinical trial"
+      ],
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S24",
+      "source": "canada_noc",
+      "adapter": "canada_noc",
+      "api": "https://health-products.canada.ca/api/notice-of-compliance/noticeofcompliancemain/",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S50",
+      "source": "cpsc_recalls",
+      "adapter": "cpsc",
+      "api": "https://www.saferproducts.gov/RestWebServices/Recall",
+      "enabled": true,
+      "historical": true
+    },
+    {
+      "source_id": "S01",
+      "source": "gleif_legal_entities",
+      "adapter": "gleif",
+      "api": "https://api.gleif.org/api/v1/lei-records/",
+      "historical": false,
+      "enabled": true
+    },
+    {
+      "source_id": "S40",
+      "source": "uspto_assignment_histories",
+      "adapter": "uspto_assignments",
+      "api": "https://api.uspto.gov/api/v1/patent/applications/",
+      "historical": true,
+      "applications": [
+        "18220162",
+        "18680477",
+        "18715784",
+        "18739089",
+        "18784595",
+        "18900035",
+        "18909005",
+        "18915271"
+      ],
+      "enabled": true
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_dd_inspections_classifications",
+      "adapter": "fda_dashboard",
+      "api": "https://api-datadashboard.fda.gov/v1/inspections_classifications",
+      "enabled": true,
+      "historical": true,
+      "date_field": "InspectionEndDate",
+      "coverage_note": "FDA public inspections_classifications by InspectionEndDate; all returned entities pending issuer/FEI mapping; current revisions, not historical vintages or original 483 documents",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_dd_inspections_citations",
+      "adapter": "fda_dashboard",
+      "api": "https://api-datadashboard.fda.gov/v1/inspections_citations",
+      "enabled": true,
+      "historical": true,
+      "date_field": "InspectionEndDate",
+      "coverage_note": "FDA public inspections_citations by InspectionEndDate; all returned entities pending issuer/FEI mapping; current revisions, not historical vintages or original 483 documents",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_dd_compliance_actions",
+      "adapter": "fda_dashboard",
+      "api": "https://api-datadashboard.fda.gov/v1/compliance_actions",
+      "enabled": true,
+      "historical": true,
+      "date_field": "ActionTakenDate",
+      "coverage_note": "FDA public compliance_actions by ActionTakenDate; all returned entities pending issuer/FEI mapping; current revisions, not historical vintages or original 483 documents",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_dd_import_refusals",
+      "adapter": "fda_dashboard",
+      "api": "https://api-datadashboard.fda.gov/v1/import_refusals",
+      "enabled": true,
+      "historical": true,
+      "date_field": "RefusalDate",
+      "coverage_note": "FDA public import_refusals by RefusalDate; all returned entities pending issuer/FEI mapping; current revisions, not historical vintages or original 483 documents",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_ires_recalls",
+      "adapter": "fda_enforcement",
+      "api": "https://www.accessdata.fda.gov/rest/iresapi/recalls/",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Public recall records selected by current event modification date; not complete recall-initiation history or historical vintages; reconcile openFDA overlap",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S35",
+      "source": "fda_product_codes",
+      "adapter": "fda_productcodes",
+      "api": "https://www.accessdata.fda.gov/rest/pcbapi/v1/industry/",
+      "enabled": true,
+      "historical": false,
+      "coverage_note": "Current industry-code reference only",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S10",
+      "source": "edinet_filings",
+      "adapter": "edinet",
+      "api": "https://api.edinet-fsa.go.jp/api/v2/documents.json",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Daily filing inventory plus all advertised original reports, Japanese text and XBRL/CSV extraction, and reviewed-identifier or candidate entity matching; source gaps explicit",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S56",
+      "source": "eia_retail_prices",
+      "adapter": "eia_api",
+      "api": "https://api.eia.gov/v2/electricity/retail-sales/data/",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "US all-sector monthly retail price, sales, revenue and customers with provider units, current-vintage MoM/YoY baselines and revision context; not wholesale prices or site tariffs",
+      "execution_lane": "authenticated"
+    },
+    {
+      "source_id": "S41",
+      "source": "sam_gov_opportunities",
+      "adapter": "sam_gov",
+      "api": "https://api.sam.gov/opportunities/v2/search",
+      "enabled": true,
+      "historical": true,
+      "execution_lane": "authenticated",
+      "coverage_note": "US federal published opportunity search, all categories; latest available notice versions retrieved now, not historical vintages. Posted-date windows exhausted only within API-visible scope; zero old results do not establish archive completeness. Original descriptions/attachments and reviewed company/product joins remain separate; solicitations are not awards."
+    },
+    {
+      "source_id": "S51",
+      "source": "federal_register_documents",
+      "adapter": "fr_enrichment",
+      "enabled": false,
+      "historical": false,
+      "api": "parent-discovered full-notice and official PDF retrieval",
+      "coverage_note": "Full notice, published PDF and source-located policy/chemical/use provisions; confidential identities and product applicability remain unresolved."
+    },
+    {
+      "source_id": "S52",
+      "source": "trade_screening_enriched",
+      "adapter": "post_capture_screening",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated S52 post-capture worker retrieves authority evidence and matches RDS companies/products; explicit gaps and review status retained."
+    },
+    {
+      "source_id": "S55",
+      "source": "doe_storage_documents",
+      "adapter": "doe_post_capture",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated S55 worker; source-attributed extraction, explicit quality/scope gaps and unresolved entity relationships retained."
+    },
+    {
+      "source_id": "S55",
+      "source": "doe_storage_benchmarks",
+      "adapter": "doe_post_capture",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated S55 worker; source-attributed extraction, explicit quality/scope gaps and unresolved entity relationships retained."
+    },
+    {
+      "source_id": "S55",
+      "source": "doe_storage_funding",
+      "adapter": "doe_post_capture",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated S55 worker; source-attributed extraction, explicit quality/scope gaps and unresolved entity relationships retained."
+    },
+    {
+      "source_id": "S57",
+      "source": "caiso_archive_inventory",
+      "adapter": "caiso_post_capture",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated S57 interval/provenance/indicator/project-context worker. Archive vintages and market scope explicit; no realized-revenue inference."
+    },
+    {
+      "source_id": "S57",
+      "source": "caiso_price_intervals",
+      "adapter": "caiso_post_capture",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated S57 interval/provenance/indicator/project-context worker. Archive vintages and market scope explicit; no realized-revenue inference."
+    },
+    {
+      "source_id": "S57",
+      "source": "caiso_ancillary_prices",
+      "adapter": "caiso_post_capture",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated S57 interval/provenance/indicator/project-context worker. Archive vintages and market scope explicit; no realized-revenue inference."
+    },
+    {
+      "source_id": "S57",
+      "source": "caiso_storage_indicators",
+      "adapter": "caiso_post_capture",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated S57 interval/provenance/indicator/project-context worker. Archive vintages and market scope explicit; no realized-revenue inference."
+    },
+    {
+      "source_id": "S57",
+      "source": "caiso_project_exposure",
+      "adapter": "caiso_post_capture",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated S57 interval/provenance/indicator/project-context worker. Archive vintages and market scope explicit; no realized-revenue inference."
+    },
+    {
+      "source_id": "S68",
+      "source": "grant_institutions",
+      "adapter": "grant_enrichment_worker",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated post-NIH-capture grant pipeline; no independent scheduler collection"
+    },
+    {
+      "source_id": "S68",
+      "source": "grant_institution_links",
+      "adapter": "grant_enrichment_worker",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated post-NIH-capture grant pipeline; no independent scheduler collection"
+    },
+    {
+      "source_id": "S68",
+      "source": "nih_grant_facts",
+      "adapter": "grant_enrichment_worker",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated post-NIH-capture grant pipeline; no independent scheduler collection"
+    },
+    {
+      "source_id": "S68",
+      "source": "nih_grant_lifecycles",
+      "adapter": "grant_enrichment_worker",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated post-NIH-capture grant pipeline; no independent scheduler collection"
+    },
+    {
+      "source_id": "S68",
+      "source": "grant_entity_connections",
+      "adapter": "grant_enrichment_worker",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated post-NIH-capture grant pipeline; no independent scheduler collection"
+    },
+    {
+      "source_id": "S68",
+      "source": "nih_grant_publications",
+      "adapter": "grant_enrichment_worker",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated post-NIH-capture grant pipeline; no independent scheduler collection"
+    },
+    {
+      "source_id": "S64",
+      "source": "bluesky_company_accounts",
+      "adapter": "bluesky_company_worker",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated daily RDS company author-feed worker; observed publication events, not independently verified claims"
+    },
+    {
+      "source_id": "S64",
+      "source": "bluesky_company_posts",
+      "adapter": "bluesky_company_worker",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated daily RDS company author-feed worker; observed publication events, not independently verified claims"
+    },
+    {
+      "source_id": "S64",
+      "source": "bluesky_company_events",
+      "adapter": "bluesky_company_worker",
+      "enabled": false,
+      "historical": false,
+      "coverage_note": "Dedicated daily RDS company author-feed worker; observed publication events, not independently verified claims"
+    },
+    {
+      "source_id": "C066",
+      "source": "fred_alfred_series_and_vintages",
+      "adapter": "additional_fred",
+      "api": "https://api.stlouisfed.org/fred/series/observations",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Selected macroeconomic series with all available ALFRED realtime intervals since 2016, fixed realtime cutoff; observation periods and vintage intervals are distinct. Initial scope is the configured series list, not the full FRED catalog.",
+      "scopes": [
+        {
+          "series_id": "GDP"
+        },
+        {
+          "series_id": "GDPC1"
+        },
+        {
+          "series_id": "INDPRO"
+        },
+        {
+          "series_id": "UNRATE"
+        },
+        {
+          "series_id": "CPIAUCSL"
+        },
+        {
+          "series_id": "CPILFESL"
+        },
+        {
+          "series_id": "PCEPI"
+        },
+        {
+          "series_id": "PCEPILFE"
+        },
+        {
+          "series_id": "FEDFUNDS"
+        },
+        {
+          "series_id": "DGS10"
+        },
+        {
+          "series_id": "DGS2"
+        },
+        {
+          "series_id": "T10Y2Y"
+        },
+        {
+          "series_id": "PAYEMS"
+        },
+        {
+          "series_id": "ICSA"
+        },
+        {
+          "series_id": "HOUST"
+        },
+        {
+          "series_id": "PERMIT"
+        },
+        {
+          "series_id": "RSAFS"
+        },
+        {
+          "series_id": "DTWEXBGS"
+        },
+        {
+          "series_id": "M2SL"
+        },
+        {
+          "series_id": "BAA"
+        },
+        {
+          "series_id": "DCOILWTICO"
+        },
+        {
+          "series_id": "VIXCLS"
+        }
+      ]
+    },
+    {
+      "source_id": "C076",
+      "source": "nasa_power_weather_and_solar_resource",
+      "adapter": "additional_nasa",
+      "api": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Daily temperature, corrected precipitation and solar radiation for eight named regional reference locations. Current reanalysis retrieval, not original forecast vintages or plant-specific exposure.",
+      "scopes": [
+        {
+          "location": "Phoenix",
+          "latitude": 33.4484,
+          "longitude": -112.074
+        },
+        {
+          "location": "Berlin",
+          "latitude": 52.52,
+          "longitude": 13.405
+        },
+        {
+          "location": "Delhi",
+          "latitude": 28.6139,
+          "longitude": 77.209
+        },
+        {
+          "location": "Shanghai",
+          "latitude": 31.2304,
+          "longitude": 121.4737
+        },
+        {
+          "location": "SaoPaulo",
+          "latitude": -23.5505,
+          "longitude": -46.6333
+        },
+        {
+          "location": "Johannesburg",
+          "latitude": -26.2041,
+          "longitude": 28.0473
+        },
+        {
+          "location": "Sydney",
+          "latitude": -33.8688,
+          "longitude": 151.2093
+        },
+        {
+          "location": "Tokyo",
+          "latitude": 35.6762,
+          "longitude": 139.6503
+        }
+      ]
+    },
+    {
+      "source_id": "C098",
+      "source": "south_korea_fss_opendart",
+      "adapter": "additional_dart",
+      "api": "https://opendart.fss.or.kr/api/list.json",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "All-company monthly filing index including corrections, date and receipt identifiers since 2016; original report downloads and financial-statement extraction are separate."
+    },
+    {
+      "source_id": "C143",
+      "source": "datacite_dissertations_datasets_software_and_usage",
+      "adapter": "additional_datacite",
+      "api": "https://api.datacite.org/dois",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "DOI metadata for dataset, software and dissertation resource-type filters, partitioned by DOI creation month; publication dates, usage and revisions remain distinct; no linked content downloaded."
+    },
+    {
+      "source_id": "C145",
+      "source": "biorxiv_medrxiv_preprints",
+      "adapter": "additional_biorxiv",
+      "api": "https://api.biorxiv.org/details",
+      "full_text_hosts": [
+        "www.biorxiv.org",
+        "www.medrxiv.org"
+      ],
+      "full_text_per_page": 20,
+      "raw_content_revision": "raw-v2",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "bioRxiv and medRxiv preprint metadata by posting month and version, with the matching versioned first-party PDF retained for every emitted record; initial dates before service operation can have empty queries, not proof of historical public availability."
+    },
+    {
+      "source_id": "C147",
+      "source": "zenodo_research_artifacts_and_usage",
+      "adapter": "additional_zenodo",
+      "api": "https://zenodo.org/api/records",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Public research artifact metadata by publication month, preserving source precision and identifiers. Ten-thousand-result scopes remain blocked for splitting; files and usage vintages are separate."
+    },
+    {
+      "source_id": "C156",
+      "source": "hugging_face_hub_models_and_datasets",
+      "adapter": "additional_huggingface",
+      "api": "https://huggingface.co/api",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Public model and dataset repository metadata sorted by creation, with dated and undated source fields retained. Current metadata only; no gated content, model weights or private repositories are downloaded."
+    },
+    {
+      "source_id": "C074",
+      "source": "epo_ops_patent_legal_events",
+      "adapter": "additional_epo",
+      "api": "https://ops.epo.org/3.2/",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Applicant-name and existing-alias candidate discovery for the enabled company universe, including pre-2016 patents; current INPADOC legal histories retain gazette dates since 2016 and undated events. Gazette, effective, created and exchanged dates remain distinct. Applicant links are unreviewed; aliases/subsidiaries and provider omissions can leave gaps. This is not original historical vintages or a calendar-completeness certification. Daily discovery overlaps seven days; known patents rotate through bounded refresh shards.",
+      "scopes": [
+        {
+          "applicant": "MODERNA, INC.",
+          "applicant_aliases": [
+            "MODERNA, INC.",
+            "Moderna",
+            "Moderna Inc.",
+            "Moderna Therapeutics, Inc",
+            "Moderna, Inc.",
+            "ModernaTX, Inc."
+          ],
+          "company_id": "cmp_c088e562-cf66-4021-8d55-2ca4630525ac"
+        },
+        {
+          "applicant": "BioNTech SE",
+          "applicant_aliases": [
+            "BioNTech",
+            "BioNTech RNA Pharmaceuticals GmbH",
+            "BioNTech SE"
+          ],
+          "company_id": "cmp_372861ed-214d-4fa7-912d-3376d572bf1a"
+        },
+        {
+          "applicant": "CRISPR Therapeutics",
+          "applicant_aliases": [
+            "CRISPR Therapeutics",
+            "CRISPR Therapeutics AG"
+          ],
+          "company_id": "cmp_f21ec7e1-b45b-45d3-87ed-70f852ab84ae"
+        },
+        {
+          "applicant": "Intellia Therapeutics",
+          "applicant_aliases": [
+            "Intellia Therapeutics",
+            "Intellia Therapeutics, Inc."
+          ],
+          "company_id": "cmp_327881e9-6005-4032-9756-3890e6e01983"
+        },
+        {
+          "applicant": "Beam Therapeutics",
+          "applicant_aliases": [
+            "Beam Therapeutics",
+            "Beam Therapeutics Inc."
+          ],
+          "company_id": "cmp_ac263133-7258-4a5b-af1c-4ac2f48b2f47"
+        },
+        {
+          "applicant": "Symbotic",
+          "applicant_aliases": [
+            "Symbotic",
+            "Symbotic Inc.",
+            "Symbotic LLC"
+          ],
+          "company_id": "cmp_647f72bb-a482-4968-b5df-f9bede86bb76"
+        },
+        {
+          "applicant": "Intuitive Surgical",
+          "applicant_aliases": [
+            "Intuitive Surgical",
+            "Intuitive Surgical Operations, Inc.",
+            "Intuitive Surgical, Inc."
+          ],
+          "company_id": "cmp_fb66112f-1f8f-47dc-80bc-e76a12fdadf3"
+        },
+        {
+          "applicant": "iRobot",
+          "applicant_aliases": [
+            "iRobot",
+            "iRobot Corporation"
+          ],
+          "company_id": "cmp_7a54ae03-bb1a-43b9-8957-f6e529306d6c"
+        },
+        {
+          "applicant": "ABB Robotics",
+          "applicant_aliases": [
+            "ABB Robotics",
+            "ABB Robotics GmbH",
+            "ABB Schweiz AG"
+          ],
+          "company_id": "cmp_dea9aff3-47c6-49f7-a4bd-7e47f8bd872e"
+        },
+        {
+          "applicant": "FANUC",
+          "applicant_aliases": [
+            "FANUC",
+            "FANUC Corporation",
+            "Fanuc Ltd"
+          ],
+          "company_id": "cmp_b1c3647d-7b08-4f3f-b104-3b9f39a662a9"
+        },
+        {
+          "applicant": "NVIDIA",
+          "applicant_aliases": [
+            "NVIDIA",
+            "NVIDIA Corporation"
+          ],
+          "company_id": "cmp_7360aeee-5536-4bf6-91ea-5f11aaf96890"
+        },
+        {
+          "applicant": "AMD",
+          "applicant_aliases": [
+            "AMD",
+            "Advanced Micro Devices, Inc."
+          ],
+          "company_id": "cmp_7d4ee117-9f2e-4904-89ed-38daf038a08b"
+        },
+        {
+          "applicant": "TSMC",
+          "applicant_aliases": [
+            "TSMC",
+            "Taiwan Semiconductor Manufacturing Company, Ltd."
+          ],
+          "company_id": "cmp_9db5ad87-8fdd-407e-916d-f294ef7b8d7c"
+        },
+        {
+          "applicant": "ASML Holding N.V.",
+          "applicant_aliases": [
+            "ASM Lithography Holding N",
+            "ASML",
+            "ASML Holding N.V.",
+            "ASML Netherlands B.V."
+          ],
+          "company_id": "cmp_f7fd53f5-0ef5-402d-8109-bdeb3f210055"
+        },
+        {
+          "applicant": "Arm",
+          "applicant_aliases": [
+            "ARM Ltd.",
+            "Arm",
+            "Arm Limited"
+          ],
+          "company_id": "cmp_70db5b73-895f-442e-931b-dd3c4c9ddc8c"
+        },
+        {
+          "applicant": "QuantumScape",
+          "applicant_aliases": [
+            "QuantumScape",
+            "QuantumScape Corporation"
+          ],
+          "company_id": "cmp_e9a86e6b-4588-4078-8be3-27f6af52ea3d"
+        },
+        {
+          "applicant": "Solid Power",
+          "applicant_aliases": [
+            "Solid Power",
+            "Solid Power, Inc."
+          ],
+          "company_id": "cmp_2966acf5-2f02-4428-8426-dedaefe79093"
+        },
+        {
+          "applicant": "SES AI",
+          "applicant_aliases": [
+            "SES AI",
+            "SES AI Corporation",
+            "SolidEnergy Systems LLC"
+          ],
+          "company_id": "cmp_01ae4161-fa59-48a7-913a-e3fb86edc2b5"
+        },
+        {
+          "applicant": "Amprius Technologies",
+          "applicant_aliases": [
+            "Amprius Technologies",
+            "Amprius, Inc."
+          ],
+          "company_id": "cmp_b162bef5-3d97-4b6e-a1fd-c20ec11fb83b"
+        },
+        {
+          "applicant": "Form Energy",
+          "applicant_aliases": [
+            "Form Energy",
+            "Form Energy, Inc."
+          ],
+          "company_id": "cmp_4dfdabb1-f259-4a81-bc06-d017e31fa7c7"
+        },
+        {
+          "applicant": "China Baoan Group Co Ltd",
+          "applicant_aliases": [
+            "China Baoan Group Co Ltd"
+          ],
+          "company_id": "cmp_d8e29bfd-16fd-44a9-b332-44401f51211a"
+        },
+        {
+          "applicant": "Konka Group Co Ltd",
+          "applicant_aliases": [
+            "Konka Group Co Ltd",
+            "Shenzhen Konka Electronic Co"
+          ],
+          "company_id": "cmp_74c2339e-7150-4fe1-9a5e-1883dac4ca5c"
+        },
+        {
+          "applicant": "Digital China Group Co Ltd",
+          "applicant_aliases": [
+            "Digital China Group Co Ltd",
+            "Shenzhen Shenxin Taifeng Group Co"
+          ],
+          "company_id": "cmp_e2e97afd-ded6-4822-91b9-25bd01f5418d"
+        },
+        {
+          "applicant": "Shenzhen Desay Battery Technology Co Ltd",
+          "applicant_aliases": [
+            "Shenzhen Desay Battery Technology Co Ltd",
+            "Shenzhen Worldsun Enterprise Co"
+          ],
+          "company_id": "cmp_bb7e569e-1e0d-484b-ba71-0cdccdef0ae9"
+        },
+        {
+          "applicant": "Shenzhen Wongtee International Enterprise Co Ltd",
+          "applicant_aliases": [
+            "Shenzhen International Enterprise Co",
+            "Shenzhen Wongtee International Enterprise Co Ltd"
+          ],
+          "company_id": "cmp_67a89221-6cbd-40c6-a3bf-26db4834f3e3"
+        },
+        {
+          "applicant": "Samyang Holdings",
+          "applicant_aliases": [
+            "Samyang Holdings"
+          ],
+          "company_id": "cmp_ee8c191c-e317-441d-8848-513f588d0638"
+        },
+        {
+          "applicant": "Samyang Holdings Corp",
+          "applicant_aliases": [
+            "Samyang Holdings Corp"
+          ],
+          "company_id": "cmp_fc541292-9c58-4236-8903-e12faa10c3af"
+        },
+        {
+          "applicant": "TCL Corp",
+          "applicant_aliases": [
+            "TCL Corp",
+            "TCL Corporation"
+          ],
+          "company_id": "cmp_f9fb23ae-f6e6-45e0-8b8b-ff5f90de0358"
+        },
+        {
+          "applicant": "Doosan Corp.",
+          "applicant_aliases": [
+            "Doosan Corp.",
+            "OB Beer, Ltd"
+          ],
+          "company_id": "cmp_08aea8c7-d1ed-46ce-90fd-d7c146ac7199"
+        },
+        {
+          "applicant": "Doosan Pref Shs",
+          "applicant_aliases": [
+            "Doosan Pref Shs",
+            "OB Beer, Ltd"
+          ],
+          "company_id": "cmp_7dde01d4-f4a0-43b6-b369-583e766e363d"
+        },
+        {
+          "applicant": "Doosan Co Ltd",
+          "applicant_aliases": [
+            "Doosan Co Ltd",
+            "OB Beer, Ltd"
+          ],
+          "company_id": "cmp_887144d5-6aec-49bd-8309-7aee1f251493"
+        },
+        {
+          "applicant": "Hankook Tire Worldwide",
+          "applicant_aliases": [
+            "Hankook Technology Group Co",
+            "Hankook Tire Worldwide"
+          ],
+          "company_id": "cmp_d06c708e-2221-4c1c-8e53-fed60135bf0c"
+        },
+        {
+          "applicant": "Midea Group Co Ltd",
+          "applicant_aliases": [
+            "Midea Group Co Ltd"
+          ],
+          "company_id": "cmp_0da224ec-0987-4bc1-a48e-3840e7400824"
+        },
+        {
+          "applicant": "Tunghsu Optoelectronic Technology Co Ltd",
+          "applicant_aliases": [
+            "Shijiazhuang Baoshi Electronic Glass Co",
+            "Tunghsu Optoelectronic Technology Co Ltd"
+          ],
+          "company_id": "cmp_f4018336-e1a5-457d-9509-dffc6b9f33ad"
+        },
+        {
+          "applicant": "Jiangsu Youli Investment Holding Co Ltd",
+          "applicant_aliases": [
+            "Jiangsu Youli Investment Holding Co",
+            "Jiangsu Youli Investment Holding Co Ltd"
+          ],
+          "company_id": "cmp_ec397282-9f91-4964-9c76-a84d4102c0b6"
+        },
+        {
+          "applicant": "SK Hynix Inc",
+          "applicant_aliases": [
+            "Hynix Semiconductor Inc",
+            "SK Hynix Inc"
+          ],
+          "company_id": "cmp_a1509151-c680-4d8f-af1b-f48fa75106fc"
+        },
+        {
+          "applicant": "Infotmic Co. Ltd",
+          "applicant_aliases": [
+            "Infotmic Co. Ltd"
+          ],
+          "company_id": "cmp_67c6c740-df64-4e01-aecf-c3ac8d08e1ff"
+        },
+        {
+          "applicant": "Inventera Inc.",
+          "applicant_aliases": [
+            "Inventera Inc."
+          ],
+          "company_id": "cmp_3b9dbba4-0aee-438c-9b78-c72aa137dda2"
+        },
+        {
+          "applicant": "Willowglen MSC Bhd",
+          "applicant_aliases": [
+            "Willowglen MSC Bhd"
+          ],
+          "company_id": "cmp_713ceff5-a057-40e0-aa89-b50add725b42"
+        },
+        {
+          "applicant": "Hwacheon Mac",
+          "applicant_aliases": [
+            "Hwacheon Mac"
+          ],
+          "company_id": "cmp_2b080528-a8b5-44b2-abfe-13de9a9d5d25"
+        },
+        {
+          "applicant": "Hanwha",
+          "applicant_aliases": [
+            "Hanwha",
+            "Korea Explosives Corp"
+          ],
+          "company_id": "cmp_d1c7792e-f930-4662-ba33-233ce31cef10"
+        },
+        {
+          "applicant": "Hanwha Corp. Pfd. Series 1",
+          "applicant_aliases": [
+            "Hanwha Corp. Pfd. Series 1",
+            "Korea Explosives Corp"
+          ],
+          "company_id": "cmp_09d2fa8e-dff2-48c8-b797-eef6560c34c1"
+        },
+        {
+          "applicant": "Hanwha Corp Preferred",
+          "applicant_aliases": [
+            "Hanwha Corp Preferred",
+            "Korea Explosives Corp"
+          ],
+          "company_id": "cmp_77a9b59d-01ec-403f-80a8-dc4d64546e32"
+        },
+        {
+          "applicant": "S & Sys Co.,Ltd.",
+          "applicant_aliases": [
+            "S & Sys Co.,Ltd."
+          ],
+          "company_id": "cmp_c001cce1-353b-4061-99bf-e2e7036ea503"
+        },
+        {
+          "applicant": "Guangdong Kaiping Chunhui Ltd",
+          "applicant_aliases": [
+            "Guangdong Kaiping Chunhui Co",
+            "Guangdong Kaiping Chunhui Ltd"
+          ],
+          "company_id": "cmp_74f27a91-9b53-44e9-885a-ddb79473bd91"
+        },
+        {
+          "applicant": "Ningxia Zhongyin Cashmere Co Ltd",
+          "applicant_aliases": [
+            "Ningxia Zhongyin Cashmere Co Ltd"
+          ],
+          "company_id": "cmp_b237f58e-ca16-407a-b6dc-d63c8b8cc433"
+        },
+        {
+          "applicant": "DB HiTek Co Ltd",
+          "applicant_aliases": [
+            "DB HiTek Co Ltd",
+            "Dongbu HiTek Co"
+          ],
+          "company_id": "cmp_e813e317-de03-4b7a-9c2d-044b0a088854"
+        },
+        {
+          "applicant": "DB HiTek Co Ltd Pref",
+          "applicant_aliases": [
+            "DB HiTek Co Ltd Pref",
+            "Dongbu HiTek Co"
+          ],
+          "company_id": "cmp_018536dc-c4bc-4f17-9a40-8fe9dab79193"
+        },
+        {
+          "applicant": "Aimed Bio",
+          "applicant_aliases": [
+            "Aimed Bio"
+          ],
+          "company_id": "cmp_7dbf8f62-698e-4a81-b1bd-e544ad371896"
+        },
+        {
+          "applicant": "Gs Global",
+          "applicant_aliases": [
+            "Gs Global"
+          ],
+          "company_id": "cmp_08491ed5-f18b-4909-a20a-164e86308600"
+        },
+        {
+          "applicant": "HUTCHMED (CHINA) LIMITED",
+          "applicant_aliases": [
+            "HUTCHMED (CHINA) LIMITED",
+            "HUTCHMED China Ltd",
+            "Hutchison China MediTech Limited"
+          ],
+          "company_id": "cmp_f2bac9cd-264c-4b14-b4fd-7db79eea6802"
+        },
+        {
+          "applicant": "Kumyang",
+          "applicant_aliases": [
+            "Gumbuk Chemical Industrial Company",
+            "Kumyang"
+          ],
+          "company_id": "cmp_9cf162f5-b61c-4c54-900d-70435826b6da"
+        },
+        {
+          "applicant": "Green Optics Co., Ltd.",
+          "applicant_aliases": [
+            "Green Optics Co., Ltd."
+          ],
+          "company_id": "cmp_8e61ca52-5c3e-4ed1-badb-1fbd167b72ba"
+        },
+        {
+          "applicant": "Semi Total Solution Inc.",
+          "applicant_aliases": [
+            "Semi Total Solution Inc."
+          ],
+          "company_id": "cmp_07888068-3cd9-40a1-a729-608ac0e88e49"
+        },
+        {
+          "applicant": "YBS International Bhd",
+          "applicant_aliases": [
+            "LNG Resources Berhad",
+            "YBS International Bhd"
+          ],
+          "company_id": "cmp_24d0ddf0-23f4-42d5-a87d-b4c9be2899de"
+        },
+        {
+          "applicant": "Nova MSC Bhd",
+          "applicant_aliases": [
+            "Nova MSC Bhd"
+          ],
+          "company_id": "cmp_4687acb9-e7ef-440a-924d-b771a6da8b47"
+        },
+        {
+          "applicant": "Artroniq Berhad",
+          "applicant_aliases": [
+            "Artroniq Berhad"
+          ],
+          "company_id": "cmp_26e8e380-4a58-4d32-a6ee-6201c5452a06"
+        },
+        {
+          "applicant": "Gold Peak Industries Holdings Ltd",
+          "applicant_aliases": [
+            "Gold Peak Industries (Holdings) Limited",
+            "Gold Peak Industries Holdings Ltd"
+          ],
+          "company_id": "cmp_b6ccce89-ed82-4d17-8ae5-3b0d9fbf30a9"
+        },
+        {
+          "applicant": "Dongjin Semichem Co. Ltd",
+          "applicant_aliases": [
+            "Dongjin Semichem Co. Ltd"
+          ],
+          "company_id": "cmp_99358906-cb9b-4f18-b3f9-5994b32a8522"
+        },
+        {
+          "applicant": "PJ Electronics Co. Ltd",
+          "applicant_aliases": [
+            "PJ Electronics Co. Ltd",
+            "PJ Industry Co"
+          ],
+          "company_id": "cmp_dc34a834-9611-4835-8cb3-7127138b3ab5"
+        },
+        {
+          "applicant": "Bosung Power Technology Co. Ltd",
+          "applicant_aliases": [
+            "Bosung Electric Co",
+            "Bosung Power Technology Co. Ltd"
+          ],
+          "company_id": "cmp_52a20669-85a5-40ab-ae05-de9d16b41821"
+        },
+        {
+          "applicant": "MQ Technology Bhd",
+          "applicant_aliases": [
+            "MQ Technology Bhd"
+          ],
+          "company_id": "cmp_1373c800-7d3c-4f49-a34a-49f3bf2ccf8d"
+        },
+        {
+          "applicant": "Polus BioPharm Inc",
+          "applicant_aliases": [
+            "Amnis Co",
+            "Polus BioPharm Inc"
+          ],
+          "company_id": "cmp_50e39ea5-fee9-4ec5-b684-fce671b2f1b3"
+        },
+        {
+          "applicant": "SMCore.Inc",
+          "applicant_aliases": [
+            "SMCore.Inc",
+            "Shin-Heung Machine Co"
+          ],
+          "company_id": "cmp_a86f85d9-693d-4729-b6cd-de92a59f6e94"
+        },
+        {
+          "applicant": "Kanaph Therapeutics Inc.",
+          "applicant_aliases": [
+            "Kanaph Therapeutics Inc."
+          ],
+          "company_id": "cmp_4957867f-33cb-4f1e-8129-8615d281783c"
+        },
+        {
+          "applicant": "China Electronics Corporation Holdings Co Ltd",
+          "applicant_aliases": [
+            "China Electronics Corporation Holdings Co Ltd"
+          ],
+          "company_id": "cmp_f82e853f-5a9e-4c6e-abbc-768b0f37f69e"
+        },
+        {
+          "applicant": "Elsoft Research Bhd",
+          "applicant_aliases": [
+            "Elsoft Research Bhd"
+          ],
+          "company_id": "cmp_f7d35a64-3b3f-4c3a-8e83-8004b1f0742a"
+        },
+        {
+          "applicant": "ViTrox Corporation Bhd",
+          "applicant_aliases": [
+            "ViTrox Corporation Bhd"
+          ],
+          "company_id": "cmp_0bf7007a-802b-43ee-9846-410e72dd0b40"
+        },
+        {
+          "applicant": "South Manganese Investment Limited",
+          "applicant_aliases": [
+            "CITIC Dameng Holdings Limited",
+            "South Manganese Investment Limited"
+          ],
+          "company_id": "cmp_b06291ca-b21e-47ec-9561-4142830e84fd"
+        },
+        {
+          "applicant": "SOUTH MANGAN.INV. HD-05",
+          "applicant_aliases": [
+            "CITIC Dameng Holdings Limited",
+            "SOUTH MANGAN.INV. HD-05"
+          ],
+          "company_id": "cmp_f7fcfc36-ec98-4a6a-9133-52a8a0caeabd"
+        },
+        {
+          "applicant": "Genetec Technology Bhd",
+          "applicant_aliases": [
+            "Genetec Technology Bhd"
+          ],
+          "company_id": "cmp_f86133f9-67d4-4fc5-817a-755ee33c90a0"
+        },
+        {
+          "applicant": "Sichuan Expressway Co Ltd",
+          "applicant_aliases": [
+            "Sichuan Expressway Co Ltd"
+          ],
+          "company_id": "cmp_bb15d82a-1b18-45f6-b237-4105aca8e7f2"
+        },
+        {
+          "applicant": "MMS Ventures Bhd",
+          "applicant_aliases": [
+            "MMS Ventures Bhd"
+          ],
+          "company_id": "cmp_d6d3ab50-3006-4466-a741-f85b21cd86ad"
+        },
+        {
+          "applicant": "Trive Property Group Bhd",
+          "applicant_aliases": [
+            "ETI Tech Corporation Berhad",
+            "Trive Property Group Bhd"
+          ],
+          "company_id": "cmp_30453aa3-7d8c-493b-8c83-71e07347551c"
+        },
+        {
+          "applicant": "THELMA Therapeutics Co. Ltd",
+          "applicant_aliases": [
+            "Medipartner Biotechnology",
+            "THELMA Therapeutics Co. Ltd"
+          ],
+          "company_id": "cmp_43add0a9-336b-4c91-ba95-24b937e3aa44"
+        },
+        {
+          "applicant": "HYUNDAI FEED Inc",
+          "applicant_aliases": [
+            "CANARIABIO Inc",
+            "HYUNDAI FEED Inc"
+          ],
+          "company_id": "cmp_02755bc2-a931-4154-865c-5051a602a694"
+        },
+        {
+          "applicant": "Kwang Myung El",
+          "applicant_aliases": [
+            "Kwang Myung El"
+          ],
+          "company_id": "cmp_9821dcf4-7d97-4b04-8cf2-48caf80655f9"
+        },
+        {
+          "applicant": "Silver Grant International Industries Ltd",
+          "applicant_aliases": [
+            "Silver Grant International Industries Limited",
+            "Silver Grant International Industries Ltd"
+          ],
+          "company_id": "cmp_c4188bae-0549-4966-b0a1-2a242d066826"
+        },
+        {
+          "applicant": "GEELY AUTOMOBILE HOLDINGS LIMITED",
+          "applicant_aliases": [
+            "GEELY AUTOMOBILE HOLDINGS LIMITED",
+            "Geely Automobile Holdings Ltd"
+          ],
+          "company_id": "cmp_f4bd4aa9-c4a9-4379-b8dc-7fc4701acdf9"
+        },
+        {
+          "applicant": "Johnson Electric Holdings Limited",
+          "applicant_aliases": [
+            "Johnson Electric Holdings Limited",
+            "Johnson Electric Holdings Ltd"
+          ],
+          "company_id": "cmp_72360ce2-979e-48f9-8ecb-f03d8340c49c"
+        },
+        {
+          "applicant": "Beijing Jingcheng Machinery Electric Co Ltd",
+          "applicant_aliases": [
+            "Beijing Jingcheng Machinery Electric Co Ltd",
+            "Beiren Printing Machinery Holding Company Limited"
+          ],
+          "company_id": "cmp_3312dcdb-819f-4817-a3cb-d180fb7a954b"
+        },
+        {
+          "applicant": "Honghua Group Ltd",
+          "applicant_aliases": [
+            "Honghua Group Ltd"
+          ],
+          "company_id": "cmp_b152dfed-7561-48a5-91ed-ec6817963a4c"
+        },
+        {
+          "applicant": "\u682a\u5f0f\u4f1a\u793e\u5800\u5834\u88fd\u4f5c\u6240",
+          "applicant_aliases": [
+            "HORIBA Ltd",
+            "\u682a\u5f0f\u4f1a\u793e\u5800\u5834\u88fd\u4f5c\u6240"
+          ],
+          "company_id": "cmp_fb52c87f-bf63-4b03-82aa-4db28ffc83c6"
+        },
+        {
+          "applicant": "Medpace Holdings, Inc.",
+          "applicant_aliases": [
+            "Medpace Holdings Inc",
+            "Medpace Holdings, Inc."
+          ],
+          "company_id": "cmp_006e8abf-0c25-4df8-83cb-f37d6c92601c"
+        },
+        {
+          "applicant": "CellCube Energy Storage Systems Inc",
+          "applicant_aliases": [
+            "CellCube Energy Storage Systems Inc",
+            "Stina Resources Ltd"
+          ],
+          "company_id": "cmp_a67b2557-a1de-451e-ae57-9222eb4d926a"
+        },
+        {
+          "applicant": "First Shanghai Investments Ltd",
+          "applicant_aliases": [
+            "First Shanghai Investments Ltd"
+          ],
+          "company_id": "cmp_776f94bd-eaf5-4e83-ba22-1090ded91206"
+        },
+        {
+          "applicant": "Raymond Industrial Ltd",
+          "applicant_aliases": [
+            "Raymond Industrial Ltd"
+          ],
+          "company_id": "cmp_73e6003f-7856-4f8f-a195-24c766eedf4a"
+        },
+        {
+          "applicant": "Hankook Atlasbx Co.Ltd",
+          "applicant_aliases": [
+            "ATLASBX Co",
+            "Hankook Atlasbx Co.Ltd"
+          ],
+          "company_id": "cmp_93170b45-4c3e-43c8-bd1b-3a9c5c87f8a8"
+        },
+        {
+          "applicant": "QPL International Holdings Ltd",
+          "applicant_aliases": [
+            "QPL International Holdings Ltd"
+          ],
+          "company_id": "cmp_2d39d384-17cb-4729-aa56-4fd63046c1df"
+        },
+        {
+          "applicant": "HKC International Holdings Ltd",
+          "applicant_aliases": [
+            "HKC International Holdings Ltd"
+          ],
+          "company_id": "cmp_03467ccd-3c71-49e3-8e3d-0f66c5ea7254"
+        },
+        {
+          "applicant": "Citic Pacific",
+          "applicant_aliases": [
+            "CITIC Pacific Limited",
+            "Citic Pacific"
+          ],
+          "company_id": "cmp_b0b47dc6-fa52-4300-8046-bf0d0369df08"
+        },
+        {
+          "applicant": "BYD Electronic International Co Ltd",
+          "applicant_aliases": [
+            "BYD Electronic International Co Ltd"
+          ],
+          "company_id": "cmp_243c0a4d-365b-4a76-9799-1854763259ac"
+        },
+        {
+          "applicant": "Midea Group Co., Ltd.",
+          "applicant_aliases": [
+            "Midea Group Co., Ltd."
+          ],
+          "company_id": "cmp_cf672401-5bb6-4fe9-b186-1ce3d22a118d"
+        },
+        {
+          "applicant": "Green Cross Cell Corporation",
+          "applicant_aliases": [
+            "Green Cross Cell Corporation"
+          ],
+          "company_id": "cmp_6a4a72d0-e53d-4f18-964f-9254c0961d85"
+        },
+        {
+          "applicant": "BYON Co. Ltd",
+          "applicant_aliases": [
+            "BYON Co. Ltd",
+            "Polyvision Co"
+          ],
+          "company_id": "cmp_1766ca8f-db5d-4a0d-ba02-3d6176ee38f7"
+        },
+        {
+          "applicant": "Cornerstone Networks Co. Ltd",
+          "applicant_aliases": [
+            "Cornerstone Networks Co. Ltd",
+            "ED Co"
+          ],
+          "company_id": "cmp_bebec447-bd51-42fc-bc7b-ffbdd9ea9303"
+        },
+        {
+          "applicant": "Asia Energy Logistics Group Ltd",
+          "applicant_aliases": [
+            "Asia Energy Logistics Group Ltd"
+          ],
+          "company_id": "cmp_875727df-e2d5-4945-89b6-11a65d66e060"
+        },
+        {
+          "applicant": "A-Frontier Co.Ltd",
+          "applicant_aliases": [
+            "A-Frontier Co",
+            "A-Frontier Co.Ltd"
+          ],
+          "company_id": "cmp_2fbc02f9-1e76-4a91-b75a-190bc5d80d31"
+        },
+        {
+          "applicant": "Sino ICT Holdings Ltd",
+          "applicant_aliases": [
+            "Sino ICT Holdings Ltd",
+            "Unisplendour Technology (Holdings) Limited"
+          ],
+          "company_id": "cmp_8bc612a5-b70e-4afe-970b-b91840002262"
+        },
+        {
+          "applicant": "China Best Group Holding Ltd",
+          "applicant_aliases": [
+            "China Best Group Holding Limited",
+            "China Best Group Holding Ltd"
+          ],
+          "company_id": "cmp_5c5273a5-e46f-4afd-9de2-a12f9f1a28fa"
+        },
+        {
+          "applicant": "China Petroleum & Chemical Corp Class H",
+          "applicant_aliases": [
+            "China Petroleum & Chemical Corp Class H"
+          ],
+          "company_id": "cmp_7a560a74-0b12-4c50-8384-0f4ac3e5055e"
+        },
+        {
+          "applicant": "AIBIT Co. Ltd",
+          "applicant_aliases": [
+            "AIBIT Co. Ltd",
+            "Foxbrain Co"
+          ],
+          "company_id": "cmp_3c927064-b6d6-4b25-ac62-41bedc72c178"
+        },
+        {
+          "applicant": "Innovative Pharmaceutical Biotech Ltd",
+          "applicant_aliases": [
+            "Innovative Pharmaceutical Biotech Limited",
+            "Innovative Pharmaceutical Biotech Ltd"
+          ],
+          "company_id": "cmp_60565fb4-7503-402b-8302-4dcd1663e3b1"
+        },
+        {
+          "applicant": "Cogobuy Group",
+          "applicant_aliases": [
+            "Cogobuy Group"
+          ],
+          "company_id": "cmp_b814ba74-61f0-462b-9d15-020d03e8d22a"
+        },
+        {
+          "applicant": "Gemvaxzio Co. Ltd",
+          "applicant_aliases": [
+            "Gemvaxzio Co",
+            "Gemvaxzio Co. Ltd"
+          ],
+          "company_id": "cmp_3e64515f-1602-49ee-b32b-adda8fcc8915"
+        },
+        {
+          "applicant": "MINTH GROUP LIMITED",
+          "applicant_aliases": [
+            "MINTH GROUP LIMITED",
+            "Minth Group Ltd"
+          ],
+          "company_id": "cmp_4f4cd727-b047-4c4d-aab3-3ca5bad6d0c8"
+        },
+        {
+          "applicant": "HLB Power Co. Ltd",
+          "applicant_aliases": [
+            "HLB Power Co",
+            "HLB Power Co. Ltd"
+          ],
+          "company_id": "cmp_93b2bc85-79aa-4679-86fa-34f027cc7d3b"
+        },
+        {
+          "applicant": "Korea Materials & Analysis Corp",
+          "applicant_aliases": [
+            "Korea Materials & Analysis Corp"
+          ],
+          "company_id": "cmp_fb03f12c-7d68-4680-9c6d-8d85d094f7a4"
+        },
+        {
+          "applicant": "Tianda Pharmaceuticals Ltd",
+          "applicant_aliases": [
+            "Tianda Holdings Limited",
+            "Tianda Pharmaceuticals Ltd"
+          ],
+          "company_id": "cmp_78e30a47-837e-4cbb-b44e-d7fe76b1d347"
+        },
+        {
+          "applicant": "Cellumed Co. Ltd",
+          "applicant_aliases": [
+            "Cellumed Co. Ltd",
+            "Korea Bone Bank Co"
+          ],
+          "company_id": "cmp_da9b07ce-e312-4a80-ae6b-a206cbb9cf08"
+        },
+        {
+          "applicant": "INVIVO THERAPEU.DL-00001",
+          "applicant_aliases": [
+            "INVIVO THERAPEU.DL-00001"
+          ],
+          "company_id": "cmp_1f3cbdcb-53ce-4b33-b156-2481fec75a10"
+        },
+        {
+          "applicant": "InVivo Therapeutics Holdings Corp",
+          "applicant_aliases": [
+            "InVivo Therapeutics Holdings Corp"
+          ],
+          "company_id": "cmp_0d382d7e-dabe-4062-b54e-987cdf7f68ea"
+        },
+        {
+          "applicant": "Personalis, Inc.",
+          "applicant_aliases": [
+            "PERSONALIS INC. DL-001",
+            "Personalis, Inc."
+          ],
+          "company_id": "cmp_a3715118-45ea-4d37-88eb-89793f33e345"
+        },
+        {
+          "applicant": "OmniVision Integrated Circuits Group, Inc.",
+          "applicant_aliases": [
+            "OmniVision Integrated Circuits Group, Inc.",
+            "Shanghai Will Semiconductor Co"
+          ],
+          "company_id": "cmp_38c4f61a-a924-4fe6-923d-6c63ee8e5b5c"
+        },
+        {
+          "applicant": "Grand Pharmaceutical Group Limited",
+          "applicant_aliases": [
+            "China Grand Pharmaceutical and Healthcare Holdings Limited",
+            "China Grand Pharmaceutical and Healthcare Holdings Ltd",
+            "Grand Pharmaceutical Group Limited"
+          ],
+          "company_id": "cmp_308f788c-527d-49ba-9a22-cfbfd840e8dc"
+        },
+        {
+          "applicant": "Applied Development Holdings Ltd",
+          "applicant_aliases": [
+            "Applied Development Holdings Limited",
+            "Applied Development Holdings Ltd"
+          ],
+          "company_id": "cmp_54a1176d-dccd-47b7-90a1-72bb4313e32e"
+        },
+        {
+          "applicant": "ASM Pacific Technology Ltd",
+          "applicant_aliases": [
+            "ASM Pacific Technology Limited",
+            "ASM Pacific Technology Ltd"
+          ],
+          "company_id": "cmp_033f0810-900a-4910-aee2-45167b6aa68c"
+        },
+        {
+          "applicant": "China Ruifeng Renewable Energy Holdings Ltd",
+          "applicant_aliases": [
+            "China Ruifeng Galaxy Renewable Energy Holdings Limited",
+            "China Ruifeng Renewable Energy Holdings Ltd"
+          ],
+          "company_id": "cmp_50330a5f-0849-42e6-8d1d-43d929cf5acc"
+        },
+        {
+          "applicant": "Advanced Digital Chips Inc",
+          "applicant_aliases": [
+            "Advanced Digital Chips Inc",
+            "Asia Design Corporation"
+          ],
+          "company_id": "cmp_5db36acc-6215-4869-96df-1134cb81dbe2"
+        },
+        {
+          "applicant": "LK Technology Holdings Ltd",
+          "applicant_aliases": [
+            "LK Technology Holdings Ltd"
+          ],
+          "company_id": "cmp_f9f1e814-e6a6-4867-8e94-a62d5c131d03"
+        },
+        {
+          "applicant": "Daisho Microline Holdings Ltd",
+          "applicant_aliases": [
+            "Daisho Microline Holdings Limited",
+            "Daisho Microline Holdings Ltd"
+          ],
+          "company_id": "cmp_f66de955-9445-4eb6-9f47-ed9b6bbe5562"
+        },
+        {
+          "applicant": "Endurance RP Ltd",
+          "applicant_aliases": [
+            "Endurance RP Limited",
+            "Endurance RP Ltd"
+          ],
+          "company_id": "cmp_b1377f33-e3c1-402e-a634-0e42733a610f"
+        },
+        {
+          "applicant": "SKC solmics Co. Ltd",
+          "applicant_aliases": [
+            "SKC solmics Co. Ltd"
+          ],
+          "company_id": "cmp_6e8e3370-e963-4360-978d-d2faa9a06e2a"
+        },
+        {
+          "applicant": "SunKing Power Electronics Group Ltd",
+          "applicant_aliases": [
+            "Sun",
+            "SunKing Power Electronics Group Ltd"
+          ],
+          "company_id": "cmp_2e57ecf2-c846-45c1-8efc-4fdc7dcddc50"
+        },
+        {
+          "applicant": "China Conch Venture Hldgs Ltd",
+          "applicant_aliases": [
+            "China Conch Venture Hldgs Ltd"
+          ],
+          "company_id": "cmp_3725770f-1027-41de-a7f9-95ee24fd77b0"
+        },
+        {
+          "applicant": "VIVORYON THERAPEUTICS",
+          "applicant_aliases": [
+            "VIVORYON THERAPEUTICS"
+          ],
+          "company_id": "cmp_73333308-26d7-44cb-8c0d-8a5bbd674370"
+        },
+        {
+          "applicant": "Vivoryon Therapeutics N.V.",
+          "applicant_aliases": [
+            "Vivoryon Therapeutics N.V."
+          ],
+          "company_id": "cmp_6cb1a8db-e2dc-403f-82cd-6072cb628166"
+        },
+        {
+          "applicant": "Axera Semiconductor Co Ltd",
+          "applicant_aliases": [
+            "Axera Semiconductor Co Ltd"
+          ],
+          "company_id": "cmp_19d3b800-ccf4-48cc-866c-183ce4949f92"
+        },
+        {
+          "applicant": "China Nuclear Energy Technology Corp Ltd",
+          "applicant_aliases": [
+            "China Nuclear Energy Technology Corp Ltd",
+            "China Nuclear Industry 23 International Corporation Limited"
+          ],
+          "company_id": "cmp_b14a1ddb-220b-4bca-a040-98b4c10a0b01"
+        },
+        {
+          "applicant": "TLi Inc",
+          "applicant_aliases": [
+            "TLi Inc"
+          ],
+          "company_id": "cmp_086ab55f-76c1-4c38-b987-6843f52cf0c1"
+        },
+        {
+          "applicant": "Sany Heavy Equipment International Holdings Company Limited",
+          "applicant_aliases": [
+            "Sany Heavy Equipment International Holdings Co Ltd",
+            "Sany Heavy Equipment International Holdings Company Limited"
+          ],
+          "company_id": "cmp_26e3f25c-0696-40c7-bd0b-2556a8716476"
+        },
+        {
+          "applicant": "FIBOCOM",
+          "applicant_aliases": [
+            "FIBOCOM"
+          ],
+          "company_id": "cmp_94f5a8e3-0ac9-4342-a29e-38edd1610d7e"
+        },
+        {
+          "applicant": "IDG Energy Investment Ltd",
+          "applicant_aliases": [
+            "IDG Energy Investment Limited",
+            "IDG Energy Investment Ltd"
+          ],
+          "company_id": "cmp_431257ba-1ee8-47fe-beab-d3873d994b56"
+        },
+        {
+          "applicant": "Finetex EnE Inc",
+          "applicant_aliases": [
+            "EnESystem, Inc",
+            "Finetex EnE Inc"
+          ],
+          "company_id": "cmp_63061468-918e-43b1-9583-441b4a1dd575"
+        },
+        {
+          "applicant": "REPT BATTERO Energy Co Ltd",
+          "applicant_aliases": [
+            "REPT BATTERO Energy Co Ltd",
+            "REPT Energy Co"
+          ],
+          "company_id": "cmp_b4641718-7192-4e45-95cb-71df4df89852"
+        },
+        {
+          "applicant": "ANKER INNOVATIONS TECHNOLOGY CO., LTD. - H SHARES",
+          "applicant_aliases": [
+            "ANKER INNOVATIONS TECHNOLOGY CO., LTD. - H SHARES"
+          ],
+          "company_id": "cmp_6eecad5c-af08-484f-b7ca-0c6efa6e23d4"
+        },
+        {
+          "applicant": "Uni-Bio Science Group Ltd",
+          "applicant_aliases": [
+            "Uni-Bio Science Group Ltd"
+          ],
+          "company_id": "cmp_6c0ecf85-b83d-4d53-a3fe-29c06b401a0e"
+        },
+        {
+          "applicant": "MATERIALISE",
+          "applicant_aliases": [
+            "MATERIALISE",
+            "Materialise NV"
+          ],
+          "company_id": "cmp_887d4190-083c-4b9d-87d1-4f9a3268d0b8"
+        },
+        {
+          "applicant": "Evergrande Health Industry Group Ltd",
+          "applicant_aliases": [
+            "Evergrande Health Industry Group Limited",
+            "Evergrande Health Industry Group Ltd"
+          ],
+          "company_id": "cmp_777981fc-90fc-4033-abb3-e85b25811d20"
+        },
+        {
+          "applicant": "Comtec Solar Systems Group Ltd",
+          "applicant_aliases": [
+            "Comtec Solar Systems Group Ltd"
+          ],
+          "company_id": "cmp_15812ce9-8170-4791-b385-5eb011ca0637"
+        },
+        {
+          "applicant": "Singamas Container Holdings Ltd",
+          "applicant_aliases": [
+            "Singamas Container Holdings Ltd"
+          ],
+          "company_id": "cmp_3d88555c-a614-4f3c-b72f-ecb282c773e4"
+        },
+        {
+          "applicant": "ANNOVIS BIO, INC.",
+          "applicant_aliases": [
+            "ANNOVIS BIO INC. DL-0001",
+            "ANNOVIS BIO, INC."
+          ],
+          "company_id": "cmp_8994a086-c347-4a81-a75f-ed060cb256ab"
+        },
+        {
+          "applicant": "MIRUM PHARMAC. DL-0001",
+          "applicant_aliases": [
+            "MIRUM PHARMAC. DL-0001"
+          ],
+          "company_id": "cmp_3f639cf2-ae1c-4573-b14f-c6d5be96bf13"
+        },
+        {
+          "applicant": "SHANG.FOS.PHARM.GR.H YC 1",
+          "applicant_aliases": [
+            "SHANG.FOS.PHARM.GR.H YC 1"
+          ],
+          "company_id": "cmp_968c22f2-e436-455f-aefc-adee10ed9ac6"
+        },
+        {
+          "applicant": "Shanghai Fosun Pharmaceutical (Group) Co. Ltd",
+          "applicant_aliases": [
+            "Shanghai Fosun Pharmaceutical (Group) Co. Ltd"
+          ],
+          "company_id": "cmp_00be3af2-17ec-492b-95f3-ad8814f0b197"
+        },
+        {
+          "applicant": "Skye Bioscience, Inc.",
+          "applicant_aliases": [
+            "Emerald Bioscience Inc",
+            "Skye Bioscience, Inc."
+          ],
+          "company_id": "cmp_0191a38e-1612-471d-b8f7-4390dfd5df85"
+        },
+        {
+          "applicant": "Nio Inc Class A ADR",
+          "applicant_aliases": [
+            "NextEV Inc",
+            "Nio Inc Class A ADR"
+          ],
+          "company_id": "cmp_95e6a5d0-2863-47cf-94ad-d43172f0a53f"
+        },
+        {
+          "applicant": "SANOFI",
+          "applicant_aliases": [
+            "SANOFI",
+            "Sanofi",
+            "Sanofi-Aventis"
+          ],
+          "company_id": "cmp_e391d99e-8238-484e-9a7c-0b02b38b80fb"
+        },
+        {
+          "applicant": "Novavax Inc.",
+          "applicant_aliases": [
+            "Novavax Inc."
+          ],
+          "company_id": "cmp_9a16f874-90ed-4650-8fdb-f6ef36da4d62"
+        },
+        {
+          "applicant": "Acceleron Pharma Inc",
+          "applicant_aliases": [
+            "Acceleron Pharma Inc",
+            "Phoenix Pharma, Inc"
+          ],
+          "company_id": "cmp_09428f8a-169b-49dd-ac29-635d0ff6e160"
+        },
+        {
+          "applicant": "Inovio Pharmaceuticals, Inc.",
+          "applicant_aliases": [
+            "Inovio Pharmaceuticals, Inc."
+          ],
+          "company_id": "cmp_213144f4-8cf9-43a3-a153-32ac5221718a"
+        },
+        {
+          "applicant": "EQUILLIUM, INC.",
+          "applicant_aliases": [
+            "Attenuate Biopharmaceuticals, Inc",
+            "EQUILLIUM, INC.",
+            "Equillium, Inc."
+          ],
+          "company_id": "cmp_cfb82007-fe61-43c2-9d1e-2d33da4e0c7f"
+        },
+        {
+          "applicant": "ASTRAZENECA PLC",
+          "applicant_aliases": [
+            "ASTRAZENECA PLC",
+            "AstraZeneca PLC",
+            "AstraZeneca PLC ADR",
+            "Zeneca Group PLC"
+          ],
+          "company_id": "cmp_44c97761-58e9-4b0f-846a-951329b55d60"
+        },
+        {
+          "applicant": "SunRun Inc.",
+          "applicant_aliases": [
+            "SunRun Inc."
+          ],
+          "company_id": "cmp_8f14cdbb-2c71-4651-8ac2-dd2a1b5bacdf"
+        },
+        {
+          "applicant": "BELLUS Health Inc.",
+          "applicant_aliases": [
+            "BELLUS Health Inc."
+          ],
+          "company_id": "cmp_012cf558-2a46-4bab-8e11-e5a43b56a9e3"
+        },
+        {
+          "applicant": "VIATRIS INC.",
+          "applicant_aliases": [
+            "VIATRIS INC.",
+            "Viatris Inc."
+          ],
+          "company_id": "cmp_e30ba052-1b1a-446e-9d25-f877d166ebc1"
+        },
+        {
+          "applicant": "Soligenix, Inc.",
+          "applicant_aliases": [
+            "DOR BioPharma, Inc",
+            "Soligenix, Inc."
+          ],
+          "company_id": "cmp_e0f7e544-0932-4b4d-a733-40ee39e6486d"
+        },
+        {
+          "applicant": "CureVac N.V.",
+          "applicant_aliases": [
+            "CureVac N.V."
+          ],
+          "company_id": "cmp_ea855f93-70f1-4ac7-876f-a8c534ac09e6"
+        },
+        {
+          "applicant": "ENTECH SE EO-2",
+          "applicant_aliases": [
+            "ENTECH SE EO-2"
+          ],
+          "company_id": "cmp_30e72cb8-1273-4a33-b3a6-9e82284294c2"
+        },
+        {
+          "applicant": "Air Water Inc",
+          "applicant_aliases": [
+            "Air Water Inc"
+          ],
+          "company_id": "cmp_025f475a-84dd-41f0-b313-335bf3d567a4"
+        },
+        {
+          "applicant": "WiMi Hologram Cloud Inc.",
+          "applicant_aliases": [
+            "WIMI HOLOGR.CLD B ADR/2",
+            "WiMi Hologram Cloud Inc."
+          ],
+          "company_id": "cmp_e4d86baa-ce90-41c4-a9b6-bfc49dccbeb0"
+        },
+        {
+          "applicant": "BAPCOR LTD.",
+          "applicant_aliases": [
+            "BAPCOR LTD.",
+            "Burson Group Limited"
+          ],
+          "company_id": "cmp_eb634330-c64b-45e1-a91e-a4ba532654df"
+        },
+        {
+          "applicant": "Atreca Inc.",
+          "applicant_aliases": [
+            "Atreca Inc."
+          ],
+          "company_id": "cmp_0210e41f-3614-484d-879a-d24384cc1458"
+        },
+        {
+          "applicant": "COLOSSUS MINERALS",
+          "applicant_aliases": [
+            "COLOSSUS MINERALS"
+          ],
+          "company_id": "cmp_f0e1ab31-15e8-499c-8621-11132922a020"
+        },
+        {
+          "applicant": "Catalent Inc",
+          "applicant_aliases": [
+            "Catalent Inc"
+          ],
+          "company_id": "cmp_941eeda9-7900-44fd-9e0a-651e4b8e6143"
+        },
+        {
+          "applicant": "Quantum Genomics S.A.S.",
+          "applicant_aliases": [
+            "Quantum Genomics S.A.S."
+          ],
+          "company_id": "cmp_26971a37-415a-44c0-b8ee-00822c6174b6"
+        },
+        {
+          "applicant": "Biophytis",
+          "applicant_aliases": [
+            "Biophytis"
+          ],
+          "company_id": "cmp_fa50fd22-c1b2-427a-ac0e-89f068f5ff25"
+        },
+        {
+          "applicant": "Biofrontera AG",
+          "applicant_aliases": [
+            "Biofrontera AG"
+          ],
+          "company_id": "cmp_7bf3fe78-64cb-40c0-880f-abac97ad8750"
+        },
+        {
+          "applicant": "Formosa Plastics Corp",
+          "applicant_aliases": [
+            "Formosa Plastics Corp"
+          ],
+          "company_id": "cmp_6d2caa5d-0eca-4698-8167-322b92c7f194"
+        },
+        {
+          "applicant": "Sun Yad Construction Co Ltd",
+          "applicant_aliases": [
+            "Sun Yad Construction Co Ltd"
+          ],
+          "company_id": "cmp_21bc9579-af30-40d4-981e-77009f76080c"
+        },
+        {
+          "applicant": "Nan Yang Dyeing & Finishing Co Ltd",
+          "applicant_aliases": [
+            "Nan Yang Dyeing & Finishing Co Ltd"
+          ],
+          "company_id": "cmp_39539dd4-2ef8-4dc9-85d5-a0c14250782a"
+        },
+        {
+          "applicant": "1414 Degrees Ltd",
+          "applicant_aliases": [
+            "1414 Degrees Ltd",
+            "Latent Heat Storage Pty Ltd"
+          ],
+          "company_id": "cmp_cbf965cc-c61e-4d7f-beb5-44820d69bfdd"
+        },
+        {
+          "applicant": "Chime Ball Technology Co Ltd",
+          "applicant_aliases": [
+            "Chime Ball Technology Co Ltd"
+          ],
+          "company_id": "cmp_04aa5e82-8551-48da-adae-1c9e026ec2dc"
+        },
+        {
+          "applicant": "LCY Chemical Corp.",
+          "applicant_aliases": [
+            "LCY Chemical Corp.",
+            "Lee Chang Yuan Chemical Industry Corporation"
+          ],
+          "company_id": "cmp_ad9aab24-c473-4dc1-8f4f-0554f573ab31"
+        },
+        {
+          "applicant": "Pihsiang Machinery Mfg. Co. L",
+          "applicant_aliases": [
+            "Pihsiang Machinery Mfg. Co. L"
+          ],
+          "company_id": "cmp_29ef82d4-60f5-4870-9afd-8b34319f0765"
+        },
+        {
+          "applicant": "SYN-Tech Chem & Pharm Co Ltd",
+          "applicant_aliases": [
+            "SYN-Tech Chem & Pharm Co Ltd"
+          ],
+          "company_id": "cmp_72be1874-e24d-430d-a960-3fd5b23a23ef"
+        },
+        {
+          "applicant": "Solar Applied Materials Technology",
+          "applicant_aliases": [
+            "Solar Applied Materials Technology",
+            "Solar Chemical Co"
+          ],
+          "company_id": "cmp_d163bb9f-0af7-4104-8f7e-9e2a43f28aa8"
+        },
+        {
+          "applicant": "Jintex Corporation Ltd",
+          "applicant_aliases": [
+            "Jintex Corporation Ltd"
+          ],
+          "company_id": "cmp_d8181e29-6f68-4834-a502-d2c38a608727"
+        },
+        {
+          "applicant": "Adalta Ltd",
+          "applicant_aliases": [
+            "Adalta Ltd"
+          ],
+          "company_id": "cmp_112a793c-a9ab-4af4-a20d-8067d943d2ea"
+        },
+        {
+          "applicant": "Algorae Pharmaceuticals Ltd",
+          "applicant_aliases": [
+            "Algorae Pharmaceuticals Ltd",
+            "Living Cell Technologies Limited"
+          ],
+          "company_id": "cmp_1239d87c-f0c0-4cc5-abb0-5536c8aba72f"
+        },
+        {
+          "applicant": "COVESTRO V AG",
+          "applicant_aliases": [
+            "COVESTRO V AG"
+          ],
+          "company_id": "cmp_432949d0-3edb-4d82-b171-4b4efe8678d0"
+        },
+        {
+          "applicant": "Covestro AG",
+          "applicant_aliases": [
+            "Covestro AG"
+          ],
+          "company_id": "cmp_45f646a2-342a-4696-9694-d47926fad9fe"
+        },
+        {
+          "applicant": "Adaptive Biotechnologies Corporation",
+          "applicant_aliases": [
+            "Adaptive Biotechnologies Corporation",
+            "Adaptive TCR Corporation"
+          ],
+          "company_id": "cmp_77326753-5bb7-4bf9-a8cb-977730f04083"
+        },
+        {
+          "applicant": "SCHOTT Pharma AG & Co. KGaA",
+          "applicant_aliases": [
+            "SCHOTT Pharma AG & Co. KGaA"
+          ],
+          "company_id": "cmp_288af8e1-6969-49dc-ac4e-26093656dcb2"
+        },
+        {
+          "applicant": "BROADCOM INC.",
+          "applicant_aliases": [
+            "BROADCOM INC.",
+            "Broadcom Inc."
+          ],
+          "company_id": "cmp_7416f49e-7a9a-4fb6-9041-324f451b69b0"
+        },
+        {
+          "applicant": "CTI Traffic Industries Co Ltd",
+          "applicant_aliases": [
+            "CTI Traffic Industries Co Ltd"
+          ],
+          "company_id": "cmp_e561dcee-f70c-4657-a3ea-1b3b08b2d7f7"
+        },
+        {
+          "applicant": "Advanced Semiconductor Engineering",
+          "applicant_aliases": [
+            "Advanced Semiconductor Engineering"
+          ],
+          "company_id": "cmp_021d187b-c7e6-4911-b870-5b3aba804b09"
+        },
+        {
+          "applicant": "Siliconware Precision Industries Co",
+          "applicant_aliases": [
+            "Siliconware Precision Industries Co"
+          ],
+          "company_id": "cmp_55cfbb3f-4827-492e-bcd3-f8ef38d3fd0f"
+        },
+        {
+          "applicant": "RALEC ELECTRONIC TWD10",
+          "applicant_aliases": [
+            "RALEC ELECTRONIC TWD10"
+          ],
+          "company_id": "cmp_34b5691e-59cd-43aa-8e92-1bf373ad3626"
+        },
+        {
+          "applicant": "ENNOSTAR Inc",
+          "applicant_aliases": [
+            "ENNOSTAR Inc"
+          ],
+          "company_id": "cmp_295cd40f-e4dc-4d71-a07b-1068339f0bd7"
+        },
+        {
+          "applicant": "Redhorse",
+          "applicant_aliases": [
+            "Redhorse"
+          ],
+          "company_id": "cmp_7f9b3447-7c93-4725-9cf4-1392ab012566"
+        },
+        {
+          "applicant": "HCA Healthcare Inc",
+          "applicant_aliases": [
+            "HCA Healthcare Inc",
+            "HCA Holdings, Inc"
+          ],
+          "company_id": "cmp_a59775a9-1e8b-4026-8384-5c6939cca340"
+        },
+        {
+          "applicant": "2cureX AB",
+          "applicant_aliases": [
+            "2cureX AB"
+          ],
+          "company_id": "cmp_bc51c5a5-2f22-41fa-8eec-b49ab652f37b"
+        },
+        {
+          "applicant": "ERGOMED GROUP LIMITED",
+          "applicant_aliases": [
+            "ERGOMED GROUP LIMITED",
+            "Ergomed",
+            "Ergomed Clinical Research Limited"
+          ],
+          "company_id": "cmp_ca62d19b-97a9-4e24-b070-127e79ba2dc8"
+        },
+        {
+          "applicant": "2G Energy AG",
+          "applicant_aliases": [
+            "2G Energy AG"
+          ],
+          "company_id": "cmp_fbcd6f30-ce6f-436e-a20b-258214b65ba9"
+        },
+        {
+          "applicant": "QORVO",
+          "applicant_aliases": [
+            "QORVO"
+          ],
+          "company_id": "cmp_a77fbc6d-8199-4b66-8798-145c901b2aa7"
+        },
+        {
+          "applicant": "Genesis Photonics Inc",
+          "applicant_aliases": [
+            "Genesis Photonics Inc"
+          ],
+          "company_id": "cmp_4f4a180b-077b-416a-978f-a9f82c4b896a"
+        },
+        {
+          "applicant": "GIGA SOLUTION TECH TWD10",
+          "applicant_aliases": [
+            "GIGA SOLUTION TECH TWD10"
+          ],
+          "company_id": "cmp_8ba8b189-fbf6-4517-91ac-1b73d976ce9e"
+        },
+        {
+          "applicant": "SAN CHIH Semiconductor Inc. Ltd",
+          "applicant_aliases": [
+            "SAN CHIH Semiconductor Inc. Ltd"
+          ],
+          "company_id": "cmp_09307656-79a4-4939-a46c-e0d20fb29816"
+        },
+        {
+          "applicant": "Raydium Semiconductor Corporation",
+          "applicant_aliases": [
+            "Raydium Semiconductor Corporation"
+          ],
+          "company_id": "cmp_0eaa757c-2f84-419d-a5c0-fe5b23549a2e"
+        },
+        {
+          "applicant": "Lextar Electronics Corporation",
+          "applicant_aliases": [
+            "Lextar Electronics Corporation"
+          ],
+          "company_id": "cmp_e7b7f44c-ec06-4da4-8247-e8c428d63b46"
+        },
+        {
+          "applicant": "Thai Energy Storage Technology Public Company Limited",
+          "applicant_aliases": [
+            "Hitachi Chemical Storage Battery (Thailand) Public Company Limited",
+            "Thai Energy Storage Technology Public Company Limited"
+          ],
+          "company_id": "cmp_b9e20af8-d985-46c7-8b45-697e4254b233"
+        },
+        {
+          "applicant": "Genovate Biotechnology Co Ltd",
+          "applicant_aliases": [
+            "Genovate Biotechnology Co Ltd"
+          ],
+          "company_id": "cmp_72ae4cd5-6fb3-4e2f-8cca-d0d127c73d3c"
+        },
+        {
+          "applicant": "TCM Biotech International Corp.",
+          "applicant_aliases": [
+            "TCM Biotech International Corp."
+          ],
+          "company_id": "cmp_f1400497-c3e2-45cd-bf33-d4e7edb33ae3"
+        },
+        {
+          "applicant": "Genomics BioSci & Tech. Co.Ltd.",
+          "applicant_aliases": [
+            "Genomics BioSci & Tech. Co.Ltd."
+          ],
+          "company_id": "cmp_ab5ae081-0c4d-4606-af69-3972c94c9eb3"
+        },
+        {
+          "applicant": "Hengs Technology Co., Ltd.",
+          "applicant_aliases": [
+            "Hengs Technology Co., Ltd."
+          ],
+          "company_id": "cmp_3f9d55b1-d996-4934-917f-61bbdfd6d0b4"
+        },
+        {
+          "applicant": "Win Win Precision Technology Co. Ltd",
+          "applicant_aliases": [
+            "Win Win Precision Technology Co. Ltd"
+          ],
+          "company_id": "cmp_a0f78cb0-2b02-4bb6-b325-f4337c7ab52f"
+        },
+        {
+          "applicant": "ABBVIE INC.",
+          "applicant_aliases": [
+            "ABBVIE INC.",
+            "AbbVie Inc"
+          ],
+          "company_id": "cmp_0cdb6047-c8a1-4e38-8f6f-418db27d2eed"
+        },
+        {
+          "applicant": "Organovo Holdings Inc",
+          "applicant_aliases": [
+            "Organovo Holdings Inc"
+          ],
+          "company_id": "cmp_28fb3cd4-1d11-4fb1-afc9-3ba3dc1288d0"
+        },
+        {
+          "applicant": "XPhyto Therapeutics Corp",
+          "applicant_aliases": [
+            "XPhyto Therapeutics Corp"
+          ],
+          "company_id": "cmp_2062e27a-26e0-4fbf-87dd-f1ae301c1771"
+        },
+        {
+          "applicant": "Amita Technologies Inc.",
+          "applicant_aliases": [
+            "Amita Technologies Inc."
+          ],
+          "company_id": "cmp_8dbcd1ab-d9ab-4fda-9e73-616474bae40d"
+        },
+        {
+          "applicant": "Lite-On Semiconductor Corp",
+          "applicant_aliases": [
+            "Lite-On Semiconductor Corp"
+          ],
+          "company_id": "cmp_b306888b-842e-4013-9120-db5840fbad61"
+        },
+        {
+          "applicant": "CureVac NV",
+          "applicant_aliases": [
+            "CureVac NV"
+          ],
+          "company_id": "cmp_7c6099cb-a0c6-4bc6-8ba7-3210473343ef"
+        },
+        {
+          "applicant": "GUARDANT HEALTH, INC.",
+          "applicant_aliases": [
+            "GUARDANT HEALTH, INC.",
+            "Guardant Health Inc."
+          ],
+          "company_id": "cmp_5c5b9a77-3452-4aeb-871c-61ce04a257d3"
+        },
+        {
+          "applicant": "Sichuan Road & Bridge Group Co Ltd",
+          "applicant_aliases": [
+            "Sichuan Road & Bridge Group Co Ltd"
+          ],
+          "company_id": "cmp_ac9aee7c-6814-4040-8de6-08d5d288eb4e"
+        },
+        {
+          "applicant": "Citychamp Dartong Co Ltd",
+          "applicant_aliases": [
+            "Citychamp Dartong Co",
+            "Citychamp Dartong Co Ltd"
+          ],
+          "company_id": "cmp_d7f1626a-abde-42af-8630-d02e60772606"
+        },
+        {
+          "applicant": "Phenix Optical Co Ltd",
+          "applicant_aliases": [
+            "Phenix Optical Co Ltd"
+          ],
+          "company_id": "cmp_f01dda63-347f-405f-85c1-6bc0973a9445"
+        },
+        {
+          "applicant": "Jiangsu Boxin Investing & Holdings Co Ltd",
+          "applicant_aliases": [
+            "Jiangsu Boxin Investing & Holdings Co Ltd"
+          ],
+          "company_id": "cmp_5c4af79e-b657-4bbd-86e2-f3c28b66afea"
+        },
+        {
+          "applicant": "MeiDu Energy Corporation",
+          "applicant_aliases": [
+            "MeiDu Energy Corporation"
+          ],
+          "company_id": "cmp_2cf2c07e-8120-44ac-b185-aa608228d841"
+        },
+        {
+          "applicant": "Jiangsu Wuzhong Industrial Co Ltd",
+          "applicant_aliases": [
+            "Jiangsu Wuzhong Industrial Co Ltd"
+          ],
+          "company_id": "cmp_4a66690d-46b0-4895-a1b1-84069b835637"
+        },
+        {
+          "applicant": "AVIC Capital Co Ltd",
+          "applicant_aliases": [
+            "AVIC Capital Co Ltd"
+          ],
+          "company_id": "cmp_4a1d26e6-1d07-429e-8811-46bc26f5c955"
+        },
+        {
+          "applicant": "Advanced Microelectronic Products,Inc.",
+          "applicant_aliases": [
+            "Advanced Microelectronic Products,Inc."
+          ],
+          "company_id": "cmp_dd6b24c0-f966-4341-b1c8-fbc2d2827289"
+        },
+        {
+          "applicant": "Yield Microelectronics Corp.",
+          "applicant_aliases": [
+            "Yield Microelectronics Corp."
+          ],
+          "company_id": "cmp_29dfa192-fe25-42e4-a28e-ee04d630c043"
+        },
+        {
+          "applicant": "Yield Microelectronics",
+          "applicant_aliases": [
+            "Yield Microelectronics"
+          ],
+          "company_id": "cmp_c7a60b70-c675-4a52-8297-98b2e5133039"
+        },
+        {
+          "applicant": "PharmaEssentia",
+          "applicant_aliases": [
+            "PharmaEssentia"
+          ],
+          "company_id": "cmp_aac9e15c-bd89-4d26-a79e-e0e92a2c3865"
+        },
+        {
+          "applicant": "Pharmally International Holding Company Limited",
+          "applicant_aliases": [
+            "Pharmally International Holding Company Limited"
+          ],
+          "company_id": "cmp_1a445a1d-5a68-4a42-b149-83fbae5ce906"
+        },
+        {
+          "applicant": "EirGenix",
+          "applicant_aliases": [
+            "EirGenix"
+          ],
+          "company_id": "cmp_5c4965a7-4053-40e7-8dc1-ebd432965271"
+        },
+        {
+          "applicant": "VisEra Technologies Company Ltd.",
+          "applicant_aliases": [
+            "VisEra Technologies Company Ltd."
+          ],
+          "company_id": "cmp_70cceddd-e631-4005-bf69-32fad42e1c2f"
+        },
+        {
+          "applicant": "Caliway Biopharmaceuticals Co. Ltd.",
+          "applicant_aliases": [
+            "Caliway Biopharmaceuticals Co. Ltd."
+          ],
+          "company_id": "cmp_60c4daf8-546c-402c-90c5-313b632c3f74"
+        },
+        {
+          "applicant": "DUPONT DE NEMOURS, INC.",
+          "applicant_aliases": [
+            "DUPONT DE NEMOURS INC. ON",
+            "DUPONT DE NEMOURS, INC.",
+            "DowDuPont Inc"
+          ],
+          "company_id": "cmp_1421a511-970f-4210-9cba-2694eb19a55b"
+        },
+        {
+          "applicant": "Merck & Co. Inc",
+          "applicant_aliases": [
+            "Merck & Co. Inc",
+            "Merck & Company Inc"
+          ],
+          "company_id": "cmp_be731941-f211-41e6-94f4-f4bf4ea999b2"
+        },
+        {
+          "applicant": "Alfen N.V.",
+          "applicant_aliases": [
+            "Alfen N.V."
+          ],
+          "company_id": "cmp_e5ef4e56-664a-42af-9c54-dcc83cd7017e"
+        },
+        {
+          "applicant": "Praise Victor Industrial Co., Ltd.",
+          "applicant_aliases": [
+            "Praise Victor Industrial Co., Ltd."
+          ],
+          "company_id": "cmp_ec136e41-ea73-4b39-9b00-7eefcccbfaca"
+        },
+        {
+          "applicant": "General Motors Company",
+          "applicant_aliases": [
+            "General Motors Company"
+          ],
+          "company_id": "cmp_5d11fb0d-3b9c-471c-a1d3-484b2bf95f6d"
+        },
+        {
+          "applicant": "AGILENT TECHNOLOGIES, INC.",
+          "applicant_aliases": [
+            "AGILENT TECHNOLOGIES, INC.",
+            "Agilent Technologies Inc"
+          ],
+          "company_id": "cmp_3d6fd1b0-d5e6-4230-b32d-2c6a693e789e"
+        },
+        {
+          "applicant": "Analog Devices, Inc.",
+          "applicant_aliases": [
+            "Analog Devices, Inc."
+          ],
+          "company_id": "cmp_63a97049-be7b-4cfd-b8fb-8cbc2b8145fd"
+        },
+        {
+          "applicant": "Agilent Technologies Inc.",
+          "applicant_aliases": [
+            "Agilent Technologies Inc."
+          ],
+          "company_id": "cmp_640941b2-33dd-4ce4-b855-649b887305ee"
+        },
+        {
+          "applicant": "Albemarle Corporation",
+          "applicant_aliases": [
+            "Albemarle Corporation"
+          ],
+          "company_id": "cmp_4dea629d-62ae-48f3-b190-7dbe99798019"
+        },
+        {
+          "applicant": "AMETEK, Inc.",
+          "applicant_aliases": [
+            "AMETEK, Inc."
+          ],
+          "company_id": "cmp_039853ed-a393-48d0-ba35-f2ed97441915"
+        },
+        {
+          "applicant": "Applied Materials, Inc.",
+          "applicant_aliases": [
+            "Applied Materials, Inc."
+          ],
+          "company_id": "cmp_eb5b4d57-7d53-4c52-b508-48bb316a4330"
+        },
+        {
+          "applicant": "argenx SE",
+          "applicant_aliases": [
+            "argenx SE"
+          ],
+          "company_id": "cmp_594bf12a-dc68-4a4f-b206-f96c14ae955d"
+        },
+        {
+          "applicant": "Ascendis Pharma A/S",
+          "applicant_aliases": [
+            "Ascendis Pharma A/S"
+          ],
+          "company_id": "cmp_703224ae-e2a5-4cd6-8cf5-772e10775051"
+        },
+        {
+          "applicant": "AstraZeneca PLC",
+          "applicant_aliases": [
+            "AstraZeneca PLC",
+            "Zeneca Group PLC"
+          ],
+          "company_id": "cmp_b5ed589e-6cbe-4209-ad04-1e6bf9399302"
+        },
+        {
+          "applicant": "Ambarella, Inc.",
+          "applicant_aliases": [
+            "Ambarella, Inc."
+          ],
+          "company_id": "cmp_f5f8ad63-df56-4702-b612-9bf1f759673a"
+        },
+        {
+          "applicant": "Arrowhead Pharmaceuticals, Inc.",
+          "applicant_aliases": [
+            "Arrowhead Pharmaceuticals, Inc."
+          ],
+          "company_id": "cmp_b74b4e48-a33e-4d93-b8df-38a413fe256d"
+        },
+        {
+          "applicant": "Azenta, Inc.",
+          "applicant_aliases": [
+            "Azenta, Inc.",
+            "Brooks Automation, Inc"
+          ],
+          "company_id": "cmp_502a0bf6-e66e-4663-b032-a2cf086c4888"
+        },
+        {
+          "applicant": "ADVANCED ACCELERATOR APPLICATIONS",
+          "applicant_aliases": [
+            "ADVANCED ACCELERATOR APPLICATIONS",
+            "Advanced Accelerator Applications S.A"
+          ],
+          "company_id": "cmp_3483f1be-9397-4355-bb64-affe3d396ea3"
+        },
+        {
+          "applicant": "AAC Clyde Space AB (publ)",
+          "applicant_aliases": [
+            "AAC Clyde Space AB (publ)"
+          ],
+          "company_id": "cmp_672d7344-2963-4ec3-9422-7396cb9d96f8"
+        },
+        {
+          "applicant": "AAC Technologies Holdings Inc",
+          "applicant_aliases": [
+            "AAC Acoustic Technologies Holdings Inc",
+            "AAC Technologies Holdings Inc"
+          ],
+          "company_id": "cmp_6ae65fdd-3f40-4387-97a5-6cb49fb9dfa0"
+        },
+        {
+          "applicant": "Aadi Bioscience Inc",
+          "applicant_aliases": [
+            "Aadi Bioscience Inc"
+          ],
+          "company_id": "cmp_b265ca6d-79db-4cad-9d6d-34202fc6dd1d"
+        },
+        {
+          "applicant": "Aumann AG",
+          "applicant_aliases": [
+            "Aumann AG"
+          ],
+          "company_id": "cmp_653d842c-a895-4277-bf35-24d1cdfb1fa4"
+        },
+        {
+          "applicant": "America Great Health",
+          "applicant_aliases": [
+            "America Great Health",
+            "Crown Marketing"
+          ],
+          "company_id": "cmp_f6e13093-8313-462a-9552-b390a69d271f"
+        },
+        {
+          "applicant": "ADVANCE AUTO PARTS INC",
+          "applicant_aliases": [
+            "ADVANCE AUTO PARTS INC",
+            "Advance Auto Parts Inc"
+          ],
+          "company_id": "cmp_cf6b4e71-6e3d-412c-8cfc-6aa97d2dcc94"
+        },
+        {
+          "applicant": "Ascentage Pharma Group International",
+          "applicant_aliases": [
+            "Ascentage Pharma Group International"
+          ],
+          "company_id": "cmp_337fc8c6-5801-4319-bb26-11e8b5cf12bf"
+        },
+        {
+          "applicant": "Ascentage Pharma Group International American Depository Shares When Issued",
+          "applicant_aliases": [
+            "Ascentage Pharma Group International American Depository Shares When Issued"
+          ],
+          "company_id": "cmp_4f782702-0d3e-4636-bcbe-1fcce64dfb21"
+        },
+        {
+          "applicant": "Aardvark Therapeutics, Inc. Common Stock",
+          "applicant_aliases": [
+            "Aardvark Therapeutics, Inc. Common Stock"
+          ],
+          "company_id": "cmp_55701d17-45e1-4673-b18c-8eb6b9e6dcf4"
+        },
+        {
+          "applicant": "Advanced Analogic Technologies Incorp.",
+          "applicant_aliases": [
+            "Advanced Analogic Technologies Incorp."
+          ],
+          "company_id": "cmp_d88f12f1-5539-4fd3-8e37-43889b760ee2"
+        },
+        {
+          "applicant": "ABIVAX Soci\u00e9t\u00e9 Anonyme",
+          "applicant_aliases": [
+            "ABIVAX Soci\u00e9t\u00e9 Anonyme"
+          ],
+          "company_id": "cmp_05c7e0b8-47d5-41bb-b419-97e899478bd9"
+        },
+        {
+          "applicant": "AMERICAN BATTERY TECHNOLOGY Co",
+          "applicant_aliases": [
+            "AMERICAN BATTERY TECHNOLOGY Co",
+            "American Battery Metals Corporation",
+            "American Battery Technology Company Common Stock"
+          ],
+          "company_id": "cmp_4b16c383-a4e3-43a7-a8a7-1d9d0af4cae6"
+        },
+        {
+          "applicant": "ABB Ltd U",
+          "applicant_aliases": [
+            "ABB Ltd U"
+          ],
+          "company_id": "cmp_72ce6725-8538-4e2e-a46c-b6edfddac262"
+        },
+        {
+          "applicant": "AB-BIOTICS S.A.",
+          "applicant_aliases": [
+            "AB-BIOTICS S.A.",
+            "AB-Biotics S.A."
+          ],
+          "company_id": "cmp_2a284247-6b9b-43e1-8fb8-bd6ee1620a50"
+        },
+        {
+          "applicant": "ABB Ltd",
+          "applicant_aliases": [
+            "ABB Ltd"
+          ],
+          "company_id": "cmp_57f8753c-1ce5-4037-b095-98c2a993f7ad"
+        },
+        {
+          "applicant": "AbbVie Inc",
+          "applicant_aliases": [
+            "AbbVie Inc"
+          ],
+          "company_id": "cmp_025174a6-a68e-4124-8258-0e4eb378f3fb"
+        },
+        {
+          "applicant": "AbbVie Inc. CDR",
+          "applicant_aliases": [
+            "AbbVie Inc. CDR"
+          ],
+          "company_id": "cmp_17bf42df-f2d5-425d-8fff-bbc894e72690"
+        },
+        {
+          "applicant": "AbbVie Inc",
+          "applicant_aliases": [
+            "AbbVie Inc"
+          ],
+          "company_id": "cmp_b2388880-fa41-4653-b039-5a438883a225"
+        },
+        {
+          "applicant": "AbbVie Inc.",
+          "applicant_aliases": [
+            "AbbVie Inc."
+          ],
+          "company_id": "cmp_08764f54-1f0b-4cac-bd13-5751c6b6507c"
+        },
+        {
+          "applicant": "AbbVie Inc.",
+          "applicant_aliases": [
+            "AbbVie Inc."
+          ],
+          "company_id": "cmp_dd83f8eb-3ec1-4d40-a118-c4f75aca8f36"
+        },
+        {
+          "applicant": "AbbVie Inc.",
+          "applicant_aliases": [
+            "AbbVie Inc."
+          ],
+          "company_id": "cmp_932085ef-c3ec-41e9-8297-f46988ae85ef"
+        },
+        {
+          "applicant": "AbCellera Biologics Inc.",
+          "applicant_aliases": [
+            "AbCellera Biologics Inc.",
+            "Abcellera Biologics\u00a0Inc"
+          ],
+          "company_id": "cmp_6339ddaa-8b9d-4231-9dcd-853db987bbef"
+        },
+        {
+          "applicant": "AB Dynamics plc",
+          "applicant_aliases": [
+            "AB Dynamics plc"
+          ],
+          "company_id": "cmp_877460be-b096-4e87-a526-34738f84348f"
+        },
+        {
+          "applicant": "ABEONA THERAPEUTICS INC.",
+          "applicant_aliases": [
+            "ABEONA THERAPEUTICS INC.",
+            "Abeona Therapeutics Inc",
+            "PlasmaTech Biopharmaceuticals, Inc"
+          ],
+          "company_id": "cmp_ff0207e8-f854-4396-a129-19b94e7793c0"
+        },
+        {
+          "applicant": "Abera Bioscience AB",
+          "applicant_aliases": [
+            "Abera Bioscience AB"
+          ],
+          "company_id": "cmp_5689b104-d438-4ce3-b300-218adca2e81b"
+        },
+        {
+          "applicant": "Alfen N.V.",
+          "applicant_aliases": [
+            "Alfen N.V."
+          ],
+          "company_id": "cmp_043125a1-80be-462c-9106-6306d2c66096"
+        },
+        {
+          "applicant": "ABBOTT LABORATORIES",
+          "applicant_aliases": [
+            "ABBOTT LABORATORIES",
+            "Abbott Alkaloidal Company",
+            "Abbott Laboratories"
+          ],
+          "company_id": "cmp_7e393b30-d399-4277-88f7-98119ac1fbba"
+        },
+        {
+          "applicant": "AbL Diagnostics SA",
+          "applicant_aliases": [
+            "ABL Diagnostics Soci\u00e9t\u00e9 anonyme",
+            "AbL Diagnostics SA"
+          ],
+          "company_id": "cmp_20ddfb1a-d18b-4bd5-8084-b0908a5ed177"
+        },
+        {
+          "applicant": "Abliva AB",
+          "applicant_aliases": [
+            "Abliva AB",
+            "NeuroVive Pharmaceutical AB (publ)"
+          ],
+          "company_id": "cmp_b0692159-9cc2-4626-a61a-7dd5aaf531bf"
+        },
+        {
+          "applicant": "Abionyx Pharma SA",
+          "applicant_aliases": [
+            "Abionyx Pharma SA",
+            "Cerenis Therapeutics Holding SA"
+          ],
+          "company_id": "cmp_cf92c597-968f-460b-9a76-de7d6f0555f5"
+        },
+        {
+          "applicant": "Arctic Bioscience AS",
+          "applicant_aliases": [
+            "Arctic Bioscience AS"
+          ],
+          "company_id": "cmp_bd2d1da7-ac21-4c53-8bd7-9c4aeb587fb4"
+        },
+        {
+          "applicant": "Abbott Laboratories",
+          "applicant_aliases": [
+            "Abbott Alkaloidal Company",
+            "Abbott Laboratories"
+          ],
+          "company_id": "cmp_557b3938-a80c-4551-a71d-e851af08d606"
+        },
+        {
+          "applicant": "Abbott Laboratories",
+          "applicant_aliases": [
+            "Abbott Laboratories"
+          ],
+          "company_id": "cmp_f32a5b99-4c6a-4386-ae78-fa54743aa7b3"
+        },
+        {
+          "applicant": "Abbott Laboratories",
+          "applicant_aliases": [
+            "Abbott Laboratories"
+          ],
+          "company_id": "cmp_5a5faf81-83a3-4e33-b0df-ffe9d9a85ecc"
+        },
+        {
+          "applicant": "Abbott Laboratories",
+          "applicant_aliases": [
+            "Abbott Alkaloidal Company",
+            "Abbott Laboratories"
+          ],
+          "company_id": "cmp_4b5c5b95-8901-43da-82f5-117429ae53c4"
+        },
+        {
+          "applicant": "Abivax SA",
+          "applicant_aliases": [
+            "Abivax SA"
+          ],
+          "company_id": "cmp_b72a955e-badb-4968-89d2-4bdac43ff258"
+        },
+        {
+          "applicant": "Ascelia Pharma AB",
+          "applicant_aliases": [
+            "Ascelia Pharma AB",
+            "Ascelia Pharma AB (publ)"
+          ],
+          "company_id": "cmp_2b5a9606-9ce8-4eef-a2e0-4b24b5947b86"
+        },
+        {
+          "applicant": "Australian Primary Hemp Limited",
+          "applicant_aliases": [
+            "Australian Primary Hemp Limited"
+          ],
+          "company_id": "cmp_c4083157-0cf8-4699-be8f-9750ec81f264"
+        },
+        {
+          "applicant": "ACCENTURE PLC CEDEAR EACH 75 RE",
+          "applicant_aliases": [
+            "ACCENTURE PLC CEDEAR EACH 75 RE"
+          ],
+          "company_id": "cmp_5975b244-adb1-4789-98bf-740665c2f69b"
+        },
+        {
+          "applicant": "ACCENTURE FINANCE LIMITED",
+          "applicant_aliases": [
+            "ACCENTURE FINANCE LIMITED",
+            "Accenture plc"
+          ],
+          "company_id": "cmp_54ce8aff-5cfb-4f57-b7d0-7b04419617e5"
+        },
+        {
+          "applicant": "Alpha Cognition Inc",
+          "applicant_aliases": [
+            "Alpha Cognition Inc",
+            "Crystal Bridge Enterprises Inc"
+          ],
+          "company_id": "cmp_ac7eeb06-d6ed-4e8d-90e5-66f8cd698d6c"
+        },
+        {
+          "applicant": "AcouSort AB",
+          "applicant_aliases": [
+            "AcouSort AB"
+          ],
+          "company_id": "cmp_b6635f98-fe2f-4258-9436-70d9d8e383df"
+        },
+        {
+          "applicant": "ACACIA PHARMA GROUP PLC",
+          "applicant_aliases": [
+            "ACACIA PHARMA GROUP PLC",
+            "Acacia Pharma Group PLC"
+          ],
+          "company_id": "cmp_2faefef0-9bc1-4b76-87f7-9153a2f4dc06"
+        },
+        {
+          "applicant": "Acasti Pharma Inc",
+          "applicant_aliases": [
+            "Acasti Pharma Inc"
+          ],
+          "company_id": "cmp_c3f634a9-7810-4b8e-84de-9422f4f12edf"
+        },
+        {
+          "applicant": "Active Biotech AB BTA",
+          "applicant_aliases": [
+            "Active Biotech AB BTA"
+          ],
+          "company_id": "cmp_9ca57513-d7d6-4d81-905a-52aeb46ea6cf"
+        },
+        {
+          "applicant": "Active Biotech AB (publ)",
+          "applicant_aliases": [
+            "Active Biotech AB",
+            "Active Biotech AB (publ)"
+          ],
+          "company_id": "cmp_9497de30-0570-486b-97ab-77e50adbf842"
+        },
+        {
+          "applicant": "Acuvi AB",
+          "applicant_aliases": [
+            "Acuvi AB",
+            "PiezoMotor Uppsala AB (publ)"
+          ],
+          "company_id": "cmp_e528b3c0-b353-47c7-b53b-0e2c9be8b6cf"
+        },
+        {
+          "applicant": "Actinogen Medical Ltd",
+          "applicant_aliases": [
+            "Actinogen Limited",
+            "Actinogen Medical Ltd"
+          ],
+          "company_id": "cmp_5d5a5ff1-d948-48aa-9ff5-fe70b44e31e6"
+        },
+        {
+          "applicant": "Addtech AB",
+          "applicant_aliases": [
+            "Addtech AB",
+            "Addtech AB (publ.)"
+          ],
+          "company_id": "cmp_a2343220-fa2b-4c68-9f8a-6713a647ff1c"
+        },
+        {
+          "applicant": "ADDvise Group AB (publ)",
+          "applicant_aliases": [
+            "ADDvise Group AB (publ)",
+            "ADDvise Group AB A",
+            "ADDvise Group B",
+            "ADDvise Lab Solutions AB (publ)"
+          ],
+          "company_id": "cmp_ca7261ee-1748-4cc6-b326-396e7e14dd07"
+        },
+        {
+          "applicant": "ADDvise Group AB BTA B",
+          "applicant_aliases": [
+            "ADDvise Group AB BTA B",
+            "ADDvise Lab Solutions AB (publ)"
+          ],
+          "company_id": "cmp_009af408-467a-40fd-9f80-a8382771023b"
+        },
+        {
+          "applicant": "ADL Bionatur Solutions S.A",
+          "applicant_aliases": [
+            "ADL Bionatur Solutions S.A"
+          ],
+          "company_id": "cmp_eb956774-d09a-4105-bc07-71889fc2617e"
+        },
+        {
+          "applicant": "Anteotech Ltd",
+          "applicant_aliases": [
+            "Anteo Diagnostics Limited",
+            "Anteotech Ltd"
+          ],
+          "company_id": "cmp_8089c3dc-18df-476a-89cc-1e9f1b6c39a1"
+        },
+        {
+          "applicant": "Adocia",
+          "applicant_aliases": [
+            "Adocia"
+          ],
+          "company_id": "cmp_63cc68aa-fad1-473c-a852-59de3445744b"
+        },
+        {
+          "applicant": "Advantest Corporation",
+          "applicant_aliases": [
+            "Advantest Corporation",
+            "Takeda Riken Kogyo Co"
+          ],
+          "company_id": "cmp_80dabfb5-fb10-4164-b470-07ad31380d73"
+        },
+        {
+          "applicant": "Advantest Corporation",
+          "applicant_aliases": [
+            "Advantest Corporation",
+            "Takeda Riken Kogyo Co"
+          ],
+          "company_id": "cmp_d10ba14b-9e50-400b-bc32-c6b19070d07c"
+        },
+        {
+          "applicant": "Addex Therapeutics Ltd",
+          "applicant_aliases": [
+            "Addex Pharmaceuticals Ltd",
+            "Addex Therapeutics Ltd"
+          ],
+          "company_id": "cmp_9e515412-5abe-4d38-9831-80bb3890e2a6"
+        },
+        {
+          "applicant": "Aegirbio AB",
+          "applicant_aliases": [
+            "Aegirbio AB"
+          ],
+          "company_id": "cmp_3549e4a9-1d18-4dfd-a5b3-ee0cbc4cc8f9"
+        },
+        {
+          "applicant": "Allied Electronics Corporation Limited",
+          "applicant_aliases": [
+            "Allied Electronics Corporation Limited",
+            "Allied Electronics Corporation Ltd"
+          ],
+          "company_id": "cmp_8b982469-59e3-4fda-bdce-a3b53d5c87e7"
+        },
+        {
+          "applicant": "Aelis Farma SA",
+          "applicant_aliases": [
+            "Aelis Farma SA"
+          ],
+          "company_id": "cmp_a3fa1158-0de4-4937-aad4-f006d0faa893"
+        },
+        {
+          "applicant": "Aerowash AB Series B",
+          "applicant_aliases": [
+            "Aerowash AB Series B"
+          ],
+          "company_id": "cmp_d4e9e1d3-4934-4034-8397-8297e8468f8f"
+        },
+        {
+          "applicant": "AES Gener SA",
+          "applicant_aliases": [
+            "AES Gener S",
+            "AES Gener SA"
+          ],
+          "company_id": "cmp_a7fc30f1-c995-4194-8f5b-e8efc60ac70b"
+        },
+        {
+          "applicant": "AES Andes S.A",
+          "applicant_aliases": [
+            "AES Andes S.A",
+            "AES Gener S"
+          ],
+          "company_id": "cmp_6f2a6824-98b7-4da3-b338-3a1b29e37e90"
+        },
+        {
+          "applicant": "AETERNA ZENTARIS INC.",
+          "applicant_aliases": [
+            "AETERNA ZENTARIS INC.",
+            "Aeterna Zentaris Inc"
+          ],
+          "company_id": "cmp_05f3ff06-1220-4b1e-a674-a474ff3006d5"
+        },
+        {
+          "applicant": "AGL ENERGY LIMITED",
+          "applicant_aliases": [
+            "AGL ENERGY LIMITED",
+            "AGL Energy Ltd"
+          ],
+          "company_id": "cmp_c9742c85-6847-4e60-95ae-00ce72fc07dc"
+        },
+        {
+          "applicant": "Apiam Animal Health Ltd",
+          "applicant_aliases": [
+            "Apiam Animal Health Ltd"
+          ],
+          "company_id": "cmp_769416f3-539a-4055-88d9-967a7b89f853"
+        },
+        {
+          "applicant": "AIRTIFICIAL INTELLIGENCE STRUCTURES SA",
+          "applicant_aliases": [
+            "AIRTIFICIAL INTELLIGENCE STRUCTURES SA",
+            "Airtificial Intelligence Structures SA",
+            "Inypsa, Informes y Proyectos, S"
+          ],
+          "company_id": "cmp_a0bc23ce-dff0-44af-884f-fcfcebb21601"
+        },
+        {
+          "applicant": "Air Liquide SA",
+          "applicant_aliases": [
+            "Air Liquide SA"
+          ],
+          "company_id": "cmp_67622fa0-14eb-4b93-a1d8-2cdba1e9730f"
+        },
+        {
+          "applicant": "NetraMark Holdings Inc.",
+          "applicant_aliases": [
+            "NetraMark Holdings Inc.",
+            "Nurosene Health Inc"
+          ],
+          "company_id": "cmp_348699f4-12f1-433f-9861-6b301c378f6a"
+        },
+        {
+          "applicant": "Adcock Ingram Holdings Limited",
+          "applicant_aliases": [
+            "Adcock Ingram Holdings Limited"
+          ],
+          "company_id": "cmp_387057c2-d52e-4f63-9fbd-588cecd5bb3a"
+        },
+        {
+          "applicant": "Aker BioMarine AS",
+          "applicant_aliases": [
+            "Aker BioMarine AS"
+          ],
+          "company_id": "cmp_73547df6-5685-41ba-9219-63b2d0d337de"
+        },
+        {
+          "applicant": "Akumin Inc",
+          "applicant_aliases": [
+            "Akumin Inc"
+          ],
+          "company_id": "cmp_d48a6f2f-3180-45d2-883f-b4a7af2fb7bd"
+        },
+        {
+          "applicant": "Astera Labs, Inc.",
+          "applicant_aliases": [
+            "Astera Labs, Inc."
+          ],
+          "company_id": "cmp_8ce39184-2b22-47eb-9b70-9240f5f7ca0b"
+        },
+        {
+          "applicant": "Acticor Biotech SAS",
+          "applicant_aliases": [
+            "Acticor Biotech SAS"
+          ],
+          "company_id": "cmp_42bb4a85-9f3d-4550-951f-9917c383bc83"
+        },
+        {
+          "applicant": "Boa Concept SA",
+          "applicant_aliases": [
+            "Boa Concept SA"
+          ],
+          "company_id": "cmp_a94fb62c-d8dd-4c32-ab6a-e35beabeaed6"
+        },
+        {
+          "applicant": "Biophytis S.A.",
+          "applicant_aliases": [
+            "Biophytis S.A."
+          ],
+          "company_id": "cmp_52842da0-de42-4e42-8790-55f89b7daba2"
+        },
+        {
+          "applicant": "Cellectis",
+          "applicant_aliases": [
+            "Cellectis"
+          ],
+          "company_id": "cmp_2283535a-790a-42a1-a46d-dd351a652b45"
+        },
+        {
+          "applicant": "Cybergun SA",
+          "applicant_aliases": [
+            "Cybergun SA",
+            "Les 3 Pyl\u00f4nes"
+          ],
+          "company_id": "cmp_f603529e-9dfa-4400-a2ca-57dc5e3fed61"
+        },
+        {
+          "applicant": "Deinove",
+          "applicant_aliases": [
+            "Deinove"
+          ],
+          "company_id": "cmp_7a2850ad-5e45-4507-a4a7-5ee77b99baff"
+        },
+        {
+          "applicant": "Alelion Energy Systems AB",
+          "applicant_aliases": [
+            "Alelion Energy Systems AB"
+          ],
+          "company_id": "cmp_71e4c34b-3566-4d40-bd38-9b8ecf24e324"
+        },
+        {
+          "applicant": "Alfen Beheer BV",
+          "applicant_aliases": [
+            "Alfen Beheer BV"
+          ],
+          "company_id": "cmp_f7cecb3f-c24a-4cac-a143-be73fc03c5e4"
+        },
+        {
+          "applicant": "ALK-ABELL\u00d3 A/S",
+          "applicant_aliases": [
+            "ALK-ABELL\u00d3 A/S",
+            "ALK-Abell\u00f3 A/S"
+          ],
+          "company_id": "cmp_9f62876c-af44-46d5-908d-0099bfe269cc"
+        },
+        {
+          "applicant": "Allarity Therapeutics A/S",
+          "applicant_aliases": [
+            "Allarity Therapeutics A/S"
+          ],
+          "company_id": "cmp_82903926-d759-4fc3-8eb5-13f98e63ddba"
+        },
+        {
+          "applicant": "ALMIRALL S.A.",
+          "applicant_aliases": [
+            "ALMIRALL S.A.",
+            "Almirall S.A.",
+            "Laboratorios Almirall, S"
+          ],
+          "company_id": "cmp_36f29af5-9378-4ffe-bdf9-37bbcf57a7dc"
+        },
+        {
+          "applicant": "ALT Telecom Public Company Limited",
+          "applicant_aliases": [
+            "ALT Telecom Public Company Limited"
+          ],
+          "company_id": "cmp_eeeefc33-2462-49c8-b53b-5c41f6437240"
+        },
+        {
+          "applicant": "Alvotech SDB",
+          "applicant_aliases": [
+            "Alvotech SDB"
+          ],
+          "company_id": "cmp_0c8e687a-0da8-42fb-a27d-9cb8713e1096"
+        },
+        {
+          "applicant": "Alzinova AB",
+          "applicant_aliases": [
+            "Alzinova AB"
+          ],
+          "company_id": "cmp_b642fa37-ecd5-4fa1-bda2-9c8ab48ab57c"
+        },
+        {
+          "applicant": "AlzeCure Pharma AB",
+          "applicant_aliases": [
+            "AlzeCure Pharma",
+            "AlzeCure Pharma AB"
+          ],
+          "company_id": "cmp_c13369bf-d23f-477b-b11d-df66cb5b0f8c"
+        },
+        {
+          "applicant": "Applied Materials Inc",
+          "applicant_aliases": [
+            "Applied Materials Inc"
+          ],
+          "company_id": "cmp_cf64836a-9fe4-45e2-8399-0eebc28fdb4c"
+        },
+        {
+          "applicant": "AMG Critical Materials N.V.",
+          "applicant_aliases": [
+            "AMG Advanced Metallurgical Group N",
+            "AMG Critical Materials N.V."
+          ],
+          "company_id": "cmp_5d96f25c-0cd0-45e9-82cc-7d9397e40972"
+        },
+        {
+          "applicant": "Amniotics AB",
+          "applicant_aliases": [
+            "Amniotics AB"
+          ],
+          "company_id": "cmp_8b4d0256-8892-4fd9-b2a5-e7ac00034cd1"
+        },
+        {
+          "applicant": "AMR Asia Public Company Limited",
+          "applicant_aliases": [
+            "AMR Asia Public Company Limited"
+          ],
+          "company_id": "cmp_5b43d652-c3af-4a98-be21-077ecda2d54e"
+        },
+        {
+          "applicant": "Ams AG",
+          "applicant_aliases": [
+            "Ams AG"
+          ],
+          "company_id": "cmp_4443b3ab-4fc8-4c93-ac7a-75cca4487017"
+        },
+        {
+          "applicant": "AMS OSRAM AG",
+          "applicant_aliases": [
+            "AMS OSRAM AG"
+          ],
+          "company_id": "cmp_f6251919-5625-4b62-8181-0313ec649ee7"
+        },
+        {
+          "applicant": "American Manganese Inc",
+          "applicant_aliases": [
+            "American Manganese Inc"
+          ],
+          "company_id": "cmp_f8027f25-7217-4919-bdfd-223acbbd8536"
+        },
+        {
+          "applicant": "Agricola Nacional S.A.C.I.",
+          "applicant_aliases": [
+            "Agricola Nacional S.A.C.I."
+          ],
+          "company_id": "cmp_48cff411-3fcb-430c-94a6-6ed579cad697"
+        },
+        {
+          "applicant": "Annexin Pharmaceuticals AB (publ)",
+          "applicant_aliases": [
+            "Annexin Pharmaceuticals AB",
+            "Annexin Pharmaceuticals AB (publ)"
+          ],
+          "company_id": "cmp_11e30235-2172-4f33-be93-cb642aec9d9c"
+        },
+        {
+          "applicant": "APS Energia Sp\u00f3\u0142ka Akcyjna",
+          "applicant_aliases": [
+            "APS Energia S.A.",
+            "APS Energia Sp\u00f3\u0142ka Akcyjna"
+          ],
+          "company_id": "cmp_33e0cf5c-6171-47ad-83d1-ad1617082962"
+        },
+        {
+          "applicant": "Appili Therapeutics Inc",
+          "applicant_aliases": [
+            "Appili Therapeutics Inc"
+          ],
+          "company_id": "cmp_c86cb9bd-addf-418c-8495-057a8b94693f"
+        },
+        {
+          "applicant": "Applicad Public Company Limited",
+          "applicant_aliases": [
+            "Applicad Public Company Limited"
+          ],
+          "company_id": "cmp_8a86581a-1f76-44b9-b263-e5b97b659e1f"
+        },
+        {
+          "applicant": "AUTO PARTNER SP\u00d3\u0141KA AKCYJNA",
+          "applicant_aliases": [
+            "AUTO PARTNER SP\u00d3\u0141KA AKCYJNA",
+            "Auto Partner SA"
+          ],
+          "company_id": "cmp_87d8664b-ee8e-4476-9875-8bb26e012abf"
+        },
+        {
+          "applicant": "Aptose Biosciences Inc",
+          "applicant_aliases": [
+            "Aptose Biosciences Inc",
+            "Lorus Therapeutics Inc"
+          ],
+          "company_id": "cmp_41d8ac40-2027-403f-82f0-a7887cef71d7"
+        },
+        {
+          "applicant": "Aptahem AB",
+          "applicant_aliases": [
+            "Aptahem AB"
+          ],
+          "company_id": "cmp_a0b74477-6bcb-463b-a65e-bf3e21c895fc"
+        },
+        {
+          "applicant": "Arian Resources Corp.",
+          "applicant_aliases": [
+            "Arian Resources Corp.",
+            "RSI International Systems Inc"
+          ],
+          "company_id": "cmp_0e3fcb29-fc9f-4e5f-930d-b62c857075a9"
+        },
+        {
+          "applicant": "Arcoma Aktiebolag",
+          "applicant_aliases": [
+            "Arcoma AB",
+            "Arcoma Aktiebolag"
+          ],
+          "company_id": "cmp_97d700fe-e29d-41a3-9530-5cc4d48b4f48"
+        },
+        {
+          "applicant": "argenx SE",
+          "applicant_aliases": [
+            "Argen-X",
+            "argenx SE"
+          ],
+          "company_id": "cmp_0ea48fd1-3e09-46bc-9ad2-6198ed6fce2a"
+        },
+        {
+          "applicant": "ARM HOLDINGS PLC CEDEAR EACH 27",
+          "applicant_aliases": [
+            "ARM HOLDINGS PLC CEDEAR EACH 27"
+          ],
+          "company_id": "cmp_8c022095-5884-4567-aa5d-fc42fa67a3df"
+        },
+        {
+          "applicant": "Arteche Lantegi Elkartea SA",
+          "applicant_aliases": [
+            "Arteche Lantegi Elkartea SA"
+          ],
+          "company_id": "cmp_ecad96bb-934e-4008-a1ec-920a770bf7f9"
+        },
+        {
+          "applicant": "Asarina Pharma AB (publ)",
+          "applicant_aliases": [
+            "Asarina Pharma AB (publ)",
+            "Umecrine Mood AB"
+          ],
+          "company_id": "cmp_111a587c-4674-4563-af42-09b827bca9e6"
+        },
+        {
+          "applicant": "ASIT Biotech S.A",
+          "applicant_aliases": [
+            "ASIT Biotech S.A"
+          ],
+          "company_id": "cmp_4154fd38-deb0-49ba-8fd8-71dd77dc4694"
+        },
+        {
+          "applicant": "ASM International N.V.",
+          "applicant_aliases": [
+            "ASM International N.V.",
+            "ASM International NV",
+            "Advanced Semiconductor Materials International NV"
+          ],
+          "company_id": "cmp_46bdb13f-0b3e-4d23-a3f8-750e10b07064"
+        },
+        {
+          "applicant": "ATLAS COPCO AKTIEBOLAG",
+          "applicant_aliases": [
+            "ATLAS COPCO AKTIEBOLAG",
+            "Atlas Copco AB Series A",
+            "Atlas Copco AB Series B"
+          ],
+          "company_id": "cmp_9d727709-420f-4094-a378-37a35e513241"
+        },
+        {
+          "applicant": "Atlas Copco AB",
+          "applicant_aliases": [
+            "Atlas Copco AB"
+          ],
+          "company_id": "cmp_66aed954-6d29-4391-b547-171313a4758a"
+        },
+        {
+          "applicant": "ATENDE SP\u00d3\u0141KA AKCYJNA",
+          "applicant_aliases": [
+            "ATENDE SP\u00d3\u0141KA AKCYJNA",
+            "ATM Systemy Informatyczne S",
+            "Atende S.A."
+          ],
+          "company_id": "cmp_877aff1b-e4a4-40f0-87f3-9839444c8dc4"
+        },
+        {
+          "applicant": "Antibe Therapeutics Inc.",
+          "applicant_aliases": [
+            "Antibe Therapeutics Inc."
+          ],
+          "company_id": "cmp_d79e7d76-6cfb-4d3d-95af-a92db04f9df1"
+        },
+        {
+          "applicant": "Actelion Ltd",
+          "applicant_aliases": [
+            "Actelion Ltd"
+          ],
+          "company_id": "cmp_e1e51bc9-1ed8-408f-abfe-89112bc73d8b"
+        },
+        {
+          "applicant": "Actelion Ltd",
+          "applicant_aliases": [
+            "Actelion Ltd"
+          ],
+          "company_id": "cmp_79f1ff8d-7116-4641-a395-8f7d7fc1f1b8"
+        },
+        {
+          "applicant": "Alligator Bioscience BTU",
+          "applicant_aliases": [
+            "Alligator Bioscience BTU"
+          ],
+          "company_id": "cmp_441e1974-01a7-4705-a178-6f5ba9386c95"
+        },
+        {
+          "applicant": "Alligator Bioscience AB",
+          "applicant_aliases": [
+            "Alligator Bioscience AB"
+          ],
+          "company_id": "cmp_7b25daa4-0a00-4ad1-9e64-731742b8a9b9"
+        },
+        {
+          "applicant": "ATRYS HEALTH, S.A.",
+          "applicant_aliases": [
+            "ATRYS HEALTH, S.A.",
+            "Althia Health, S",
+            "Atrys Health SL"
+          ],
+          "company_id": "cmp_213d4659-cee3-4354-b65f-02caf70c96bb"
+        },
+        {
+          "applicant": "AT & S Austria Technologie & Systemtechnik Aktiengesellschaft",
+          "applicant_aliases": [
+            "AT & S Austria Technologie & Systemtechnik Aktiengesellschaft"
+          ],
+          "company_id": "cmp_63e9a5c5-b32e-4344-ae1a-23363ee3509c"
+        },
+        {
+          "applicant": "Aurinia Pharmaceuticals Inc",
+          "applicant_aliases": [
+            "Aurinia Pharmaceuticals Inc"
+          ],
+          "company_id": "cmp_87c5e1e5-16eb-42ef-99cd-89cead3b4578"
+        },
+        {
+          "applicant": "Astra Otoparts Tbk",
+          "applicant_aliases": [
+            "Astra Otoparts Tbk",
+            "PT Astra Dian Lestari"
+          ],
+          "company_id": "cmp_4bdd39ee-50e0-46ea-8853-a2557baee150"
+        },
+        {
+          "applicant": "AutoStore Holdings Ltd",
+          "applicant_aliases": [
+            "AutoStore Holdings Ltd",
+            "AutoStore NewCo Ltd"
+          ],
+          "company_id": "cmp_5470f43c-2077-4a4f-9a54-4d461a3675f1"
+        },
+        {
+          "applicant": "Avicanna\u00a0Inc",
+          "applicant_aliases": [
+            "Avicanna\u00a0Inc"
+          ],
+          "company_id": "cmp_b1fecc1f-dd55-4520-a881-16f439b1fcee"
+        },
+        {
+          "applicant": "Broadcom CDR (CAD Hedged)",
+          "applicant_aliases": [
+            "Broadcom CDR (CAD Hedged)"
+          ],
+          "company_id": "cmp_982a9364-0486-4840-8d83-e1ea951b6224"
+        },
+        {
+          "applicant": "Broadcom Inc",
+          "applicant_aliases": [
+            "Broadcom Inc"
+          ],
+          "company_id": "cmp_3a4ba0ac-7978-4b0c-bb4a-6949d143d1e0"
+        },
+        {
+          "applicant": "Awakn Life Sciences Corp",
+          "applicant_aliases": [
+            "Awakn Life Sciences Corp"
+          ],
+          "company_id": "cmp_de0fa78b-53ef-496a-a2ef-30e345210ea8"
+        },
+        {
+          "applicant": "AZO",
+          "applicant_aliases": [
+            "AZO"
+          ],
+          "company_id": "cmp_ea978204-a754-4eae-8efc-89c31b632ae0"
+        },
+        {
+          "applicant": "AutoZone CDR (CAD Hedged)",
+          "applicant_aliases": [
+            "AutoZone CDR (CAD Hedged)"
+          ],
+          "company_id": "cmp_9d73ac23-8b60-49d9-aaa7-af151df9912c"
+        },
+        {
+          "applicant": "ARCTICZYMES TECHNOLOGIES ASA",
+          "applicant_aliases": [
+            "ARCTICZYMES TECHNOLOGIES ASA",
+            "Arcticzymes Technologies ASA",
+            "Biotec Pharmacon ASA"
+          ],
+          "company_id": "cmp_2d5456a5-cc54-4f2f-9cf6-a8aaf7eae7d7"
+        },
+        {
+          "applicant": "Becton Dickinson and Company",
+          "applicant_aliases": [
+            "Becton Dickinson and Company"
+          ],
+          "company_id": "cmp_0dde498e-485f-4ec9-a01b-e59ea32b0fa9"
+        },
+        {
+          "applicant": "Bruker Corporation",
+          "applicant_aliases": [
+            "Bruker Corporation"
+          ],
+          "company_id": "cmp_1975bd33-7a56-4961-82ab-fb267106a6a1"
+        },
+        {
+          "applicant": "BenevolentAI SA",
+          "applicant_aliases": [
+            "BenevolentAI SA"
+          ],
+          "company_id": "cmp_a49923eb-32e1-4b0b-b7c0-d1f8e22d8c6f"
+        },
+        {
+          "applicant": "BACHEM HOLDING AG",
+          "applicant_aliases": [
+            "BACHEM HOLDING AG",
+            "Bachem Holding AG"
+          ],
+          "company_id": "cmp_9302a96e-bfd1-45ec-9ba3-30df3b42b2fc"
+        },
+        {
+          "applicant": "Barramundi Group Ltd",
+          "applicant_aliases": [
+            "Barramundi Group Ltd"
+          ],
+          "company_id": "cmp_eea32915-4016-4c75-8332-0bc30c30f9ff"
+        },
+        {
+          "applicant": "BASF SE",
+          "applicant_aliases": [
+            "BASF SE"
+          ],
+          "company_id": "cmp_7f4984ca-616c-4b85-bc99-74b918f8c9c2"
+        },
+        {
+          "applicant": "BASF SE",
+          "applicant_aliases": [
+            "BASF SE"
+          ],
+          "company_id": "cmp_1f842b03-e3c1-4c6c-b40d-9a946a4e7fa8"
+        },
+        {
+          "applicant": "Hitachi Chemical Storage Battery (Thailand) Public Company Limited",
+          "applicant_aliases": [
+            "Hitachi Chemical Storage Battery (Thailand) Public Company Limited",
+            "Thai Storage Battery Public Company Limited"
+          ],
+          "company_id": "cmp_6b9b5dd5-3a6a-45a0-a72a-726e1859cf05"
+        },
+        {
+          "applicant": "Hitachi Chemical Storage Battery (Thailand) Public Company Limited",
+          "applicant_aliases": [
+            "Hitachi Chemical Storage Battery (Thailand) Public Company Limited",
+            "Thai Storage Battery Public Company Limited"
+          ],
+          "company_id": "cmp_11c4e37f-f715-48f3-a76b-f3e9232332c6"
+        },
+        {
+          "applicant": "BAVARIAN NORDIC A/S",
+          "applicant_aliases": [
+            "BAVARIAN NORDIC A/S",
+            "Bavarian Nordic"
+          ],
+          "company_id": "cmp_19f821ef-5683-4c33-bd3a-9f869a0206aa"
+        },
+        {
+          "applicant": "Bayer AG",
+          "applicant_aliases": [
+            "Bayer AG"
+          ],
+          "company_id": "cmp_ee231d1f-6267-46e3-8413-187c7f5b1f43"
+        },
+        {
+          "applicant": "Bayer Aktiengesellschaft",
+          "applicant_aliases": [
+            "Bayer Aktiengesellschaft"
+          ],
+          "company_id": "cmp_3c83671b-dc30-4893-a290-f7cbf164d6b4"
+        },
+        {
+          "applicant": "BIOCARTIS GROUP",
+          "applicant_aliases": [
+            "BIOCARTIS GROUP",
+            "Biocartis Group NV"
+          ],
+          "company_id": "cmp_783073de-979f-40b4-860d-95ce357f4a8c"
+        },
+        {
+          "applicant": "BCPG Public Company Limited",
+          "applicant_aliases": [
+            "BCPG Public Company Limited"
+          ],
+          "company_id": "cmp_b9422669-940c-4b5f-ad94-ffdf1eaa352b"
+        },
+        {
+          "applicant": "Bioceltix S.A.",
+          "applicant_aliases": [
+            "Bioceltix S.A."
+          ],
+          "company_id": "cmp_cc800644-f522-4a8b-8b5d-e33e274df715"
+        },
+        {
+          "applicant": "Bangkok Dusit Medical Services Public Company Limited",
+          "applicant_aliases": [
+            "Bangkok Dusit Medical Services Public Company Limited"
+          ],
+          "company_id": "cmp_3f9cc348-ebe7-4d00-9a97-24dbb5f417ad"
+        },
+        {
+          "applicant": "BE Semiconductor Industries N.V.",
+          "applicant_aliases": [
+            "BE Semiconductor Industries N.V.",
+            "BE Semiconductor Industries NV"
+          ],
+          "company_id": "cmp_7b897eae-0a2e-4e42-b941-e83e61c1da75"
+        },
+        {
+          "applicant": "Bergenbio ASA",
+          "applicant_aliases": [
+            "Bergenbio ASA"
+          ],
+          "company_id": "cmp_8aa76cd6-cc4d-424a-b842-3a7fafcb8f6a"
+        },
+        {
+          "applicant": "Bumrungrad Hospital Public Company Limited",
+          "applicant_aliases": [
+            "Bumrungrad Hospital Public Company Limited"
+          ],
+          "company_id": "cmp_387d181c-ab13-4a13-90b2-109dc8aec7af"
+        },
+        {
+          "applicant": "Biogen Inc",
+          "applicant_aliases": [
+            "Biogen Inc"
+          ],
+          "company_id": "cmp_2a6b46ab-7b50-41ab-afb5-52eec9195ee8"
+        },
+        {
+          "applicant": "Biotest Aktiengesellschaft",
+          "applicant_aliases": [
+            "Biotest Aktiengesellschaft",
+            "Biotest Serum-Institut GmbH"
+          ],
+          "company_id": "cmp_d8b8f51f-90d3-4b99-9825-3facbc751796"
+        },
+        {
+          "applicant": "BIOSEARCH, S.A.",
+          "applicant_aliases": [
+            "BIOSEARCH, S.A.",
+            "Biosearch S.A"
+          ],
+          "company_id": "cmp_d5eba4f5-33bc-4f2d-926c-aa3e1ed623d2"
+        },
+        {
+          "applicant": "BIOTON SP\u00d3\u0141KA AKCYJNA",
+          "applicant_aliases": [
+            "BIOTON SP\u00d3\u0141KA AKCYJNA",
+            "Bioton S.A."
+          ],
+          "company_id": "cmp_94ee093e-e19c-415c-8dc3-94faaadf8b0e"
+        },
+        {
+          "applicant": "Biotest AG Vorzugsaktien (VZ)",
+          "applicant_aliases": [
+            "Biotest AG Vorzugsaktien (VZ)",
+            "Biotest Serum-Institut GmbH"
+          ],
+          "company_id": "cmp_a13a5275-4324-4799-b9b0-23ad0cfc425f"
+        },
+        {
+          "applicant": "Biohit Oyj B",
+          "applicant_aliases": [
+            "Biohit Oyj B"
+          ],
+          "company_id": "cmp_10924071-1453-425e-ac39-013cf22f0c88"
+        },
+        {
+          "applicant": "Bionor Pharma ASA",
+          "applicant_aliases": [
+            "Bionor Pharma ASA",
+            "Nutri Pharma ASA"
+          ],
+          "company_id": "cmp_0efe0937-7e06-47f3-b60e-f5c15f61ba0c"
+        },
+        {
+          "applicant": "BioSenic",
+          "applicant_aliases": [
+            "BioSenic",
+            "BioSenic S.A."
+          ],
+          "company_id": "cmp_8090197e-8347-4651-b702-2add6886b842"
+        },
+        {
+          "applicant": "Bioversys AG",
+          "applicant_aliases": [
+            "Bioversys AG"
+          ],
+          "company_id": "cmp_b71819fc-b5d5-48e9-a2fc-37338b32ca7c"
+        },
+        {
+          "applicant": "Biomedlub",
+          "applicant_aliases": [
+            "BIOMED-LUBLIN Wytw\u00f3rnia Surowic i Szczepionek S",
+            "Biomedlub"
+          ],
+          "company_id": "cmp_4991d1c8-565a-4314-ba25-ea0f19399d0e"
+        },
+        {
+          "applicant": "Bristol-Myers Squibb Company",
+          "applicant_aliases": [
+            "Bristol-Myers Company",
+            "Bristol-Myers Squibb Company"
+          ],
+          "company_id": "cmp_14406670-4386-45d4-a5a7-fdbb0d4acbf1"
+        },
+        {
+          "applicant": "Borregaard ASA",
+          "applicant_aliases": [
+            "Borregaard ASA"
+          ],
+          "company_id": "cmp_b1db3d22-d86b-4981-aea7-2775b328e877"
+        },
+        {
+          "applicant": "Basilea Pharmaceutica AG, Allschwil",
+          "applicant_aliases": [
+            "Basilea Pharmaceutica AG",
+            "Basilea Pharmaceutica AG, Allschwil"
+          ],
+          "company_id": "cmp_79f8f7a6-969e-4f0f-94dd-10ab35a75996"
+        },
+        {
+          "applicant": "BYD Company Limited",
+          "applicant_aliases": [
+            "BYD Company Limited"
+          ],
+          "company_id": "cmp_9df10bbf-3e9e-4d07-89c4-7ec0d99315f3"
+        },
+        {
+          "applicant": "Canon Inc",
+          "applicant_aliases": [
+            "Canon Inc"
+          ],
+          "company_id": "cmp_5b720cf1-08a1-4761-b3b6-dac4a99eaf67"
+        },
+        {
+          "applicant": "CAMPINE",
+          "applicant_aliases": [
+            "CAMPINE",
+            "Campine",
+            "Compagnie M\u00e9tallurgique de la Campine SA"
+          ],
+          "company_id": "cmp_7bd90f52-9ec6-443a-96ea-00a29e67542c"
+        },
+        {
+          "applicant": "Canatu Oyj A",
+          "applicant_aliases": [
+            "Canatu Oyj A"
+          ],
+          "company_id": "cmp_b067058f-1278-42b0-9642-dab9a703c2e4"
+        },
+        {
+          "applicant": "Cemat A/S",
+          "applicant_aliases": [
+            "Cemat A/S",
+            "Topsil Semiconductor Materials A/S"
+          ],
+          "company_id": "cmp_7f19a277-6057-407e-89af-19bfb3eca518"
+        },
+        {
+          "applicant": "ChemoMetec A/S",
+          "applicant_aliases": [
+            "ChemoMetec A/S"
+          ],
+          "company_id": "cmp_f9d25ab4-e272-45f8-a5aa-a570d38555d7"
+        },
+        {
+          "applicant": "The Cooper Companies Inc.",
+          "applicant_aliases": [
+            "The Cooper Companies Inc."
+          ],
+          "company_id": "cmp_f14a0475-87e7-4d14-aee5-e32e13ff8f7e"
+        },
+        {
+          "applicant": "Corre Energy BV",
+          "applicant_aliases": [
+            "Corre Energy BV"
+          ],
+          "company_id": "cmp_836309a8-930b-4452-9162-d3fb3d07995c"
+        },
+        {
+          "applicant": "Comet Holding AG",
+          "applicant_aliases": [
+            "Comet Holding AG"
+          ],
+          "company_id": "cmp_30bbda26-96da-4c4f-9b70-9468f664c918"
+        },
+        {
+          "applicant": "Circio Holding ASA",
+          "applicant_aliases": [
+            "Circio Holding ASA",
+            "Targovax ASA"
+          ],
+          "company_id": "cmp_6f89d2bc-9393-449f-89ae-48c622d4d9a7"
+        },
+        {
+          "applicant": "CELYAD ONCOLOGY",
+          "applicant_aliases": [
+            "CELYAD ONCOLOGY",
+            "Celyad SA"
+          ],
+          "company_id": "cmp_7659053b-9460-47eb-a74b-36fa9f06c7a1"
+        },
+        {
+          "applicant": "D\u00e4twyler Holding AG",
+          "applicant_aliases": [
+            "Daetwyl I",
+            "D\u00e4twyler Holding AG"
+          ],
+          "company_id": "cmp_b0385ce2-c5f4-483a-9083-32a060ef28f6"
+        },
+        {
+          "applicant": "Dataproces Group A/S",
+          "applicant_aliases": [
+            "Dataproces Group A/S"
+          ],
+          "company_id": "cmp_8f1d54d4-48bb-4cee-bc71-ccddadf9ff22"
+        },
+        {
+          "applicant": "Dupont De Nemours Inc DRC",
+          "applicant_aliases": [
+            "DowDuPont Inc",
+            "Dupont De Nemours Inc DRC"
+          ],
+          "company_id": "cmp_49574af9-3913-4c01-b3bd-09bdf9bd60b4"
+        },
+        {
+          "applicant": "Du Pont (e.i.) De Nemours",
+          "applicant_aliases": [
+            "DowDuPont Inc",
+            "Du Pont (e.i.) De Nemours"
+          ],
+          "company_id": "cmp_e78fb818-ee07-481d-b823-86699c0d362d"
+        },
+        {
+          "applicant": "Delta Technologies Nyrt",
+          "applicant_aliases": [
+            "Delta Technologies Nyrt"
+          ],
+          "company_id": "cmp_edd38258-9b75-4d22-8939-15a1aecd3b46"
+        },
+        {
+          "applicant": "DKSH HOLDING AG",
+          "applicant_aliases": [
+            "DKSH HOLDING AG",
+            "DKSH Holding AG"
+          ],
+          "company_id": "cmp_3ee9396d-619b-4187-ad57-7adee6598694"
+        },
+        {
+          "applicant": "Ebusco Holding BV",
+          "applicant_aliases": [
+            "Ebusco Holding BV"
+          ],
+          "company_id": "cmp_6da482fa-fca1-4c44-abb0-2a9a276ec9cb"
+        },
+        {
+          "applicant": "EUROESPES, S.A.",
+          "applicant_aliases": [
+            "EUROESPES, S.A.",
+            "Euroespes S.A."
+          ],
+          "company_id": "cmp_494403dd-fcdf-4c98-b143-db3041eaa330"
+        },
+        {
+          "applicant": "ENDESA SA",
+          "applicant_aliases": [
+            "ENDESA SA",
+            "Empresa Nacional de Electricidad, S",
+            "Endesa SA"
+          ],
+          "company_id": "cmp_a78e54d3-f18c-4f46-8382-a0fd013f9c03"
+        },
+        {
+          "applicant": "Elvalhalcor Hellenic Copper and Aluminium Industry S.A",
+          "applicant_aliases": [
+            "Elvalhalcor Hellenic Copper and Aluminium Industry S.A"
+          ],
+          "company_id": "cmp_1b16e27b-19c8-4773-9ca5-3bba976fca2c"
+        },
+        {
+          "applicant": "Endurance Motive S.A.",
+          "applicant_aliases": [
+            "Endurance Motive S.A."
+          ],
+          "company_id": "cmp_d4ae65fc-fc32-415a-b5dd-012a629b2d6f"
+        },
+        {
+          "applicant": "Ensurge Micropower ASA",
+          "applicant_aliases": [
+            "Ensurge Micropower ASA",
+            "Thin Film Electronics ASA"
+          ],
+          "company_id": "cmp_d907544c-b3d6-433d-9c17-8d5aa8e2565e"
+        },
+        {
+          "applicant": "E.ON SE",
+          "applicant_aliases": [
+            "E.ON SE"
+          ],
+          "company_id": "cmp_ac3208fb-65f5-464c-9cdc-0bbd0925efe9"
+        },
+        {
+          "applicant": "E.ON SE",
+          "applicant_aliases": [
+            "E.ON SE"
+          ],
+          "company_id": "cmp_48bea28f-6904-434e-9d80-8033a1d877df"
+        },
+        {
+          "applicant": "Enersense International Oyj",
+          "applicant_aliases": [
+            "Enersense International Oyj"
+          ],
+          "company_id": "cmp_d08f1b3c-2b04-44bd-a95c-27b7a9f1ca9f"
+        },
+        {
+          "applicant": "Ennogie Solar Group A/S",
+          "applicant_aliases": [
+            "Ennogie Solar Group A/S"
+          ],
+          "company_id": "cmp_3fd5221f-9da9-4566-b9b2-ffcd25bce459"
+        },
+        {
+          "applicant": "Esperite N.V",
+          "applicant_aliases": [
+            "Cryo-Save Group N",
+            "Esperite N.V"
+          ],
+          "company_id": "cmp_fbaa331a-dfcf-4dc8-8349-027568b6c5bc"
+        },
+        {
+          "applicant": "FIT Biotech Oy",
+          "applicant_aliases": [
+            "FIT Biotech Oy"
+          ],
+          "company_id": "cmp_188218e9-a70c-4936-9b70-c705d491e63c"
+        },
+        {
+          "applicant": "SA FLORIDIENNE NV",
+          "applicant_aliases": [
+            "Floridienne",
+            "SA FLORIDIENNE NV"
+          ],
+          "company_id": "cmp_d9a853f7-b719-4a9c-bace-8a3111d0e37a"
+        },
+        {
+          "applicant": "Feintool International Holding AG",
+          "applicant_aliases": [
+            "Feintool International Holding",
+            "Feintool International Holding AG"
+          ],
+          "company_id": "cmp_bed9d975-d1b2-4b92-875c-f99b29123fe4"
+        },
+        {
+          "applicant": "Carlo Gavazzi Holding AG",
+          "applicant_aliases": [
+            "Carlo Gavazzi Holding AG"
+          ],
+          "company_id": "cmp_8b25636e-2736-460a-8fa4-ca499ce09ae6"
+        },
+        {
+          "applicant": "Gilead Sciences, Inc.",
+          "applicant_aliases": [
+            "Gilead Sciences, Inc."
+          ],
+          "company_id": "cmp_392b2a2c-56a7-4340-9ba3-84fb88566a43"
+        },
+        {
+          "applicant": "Lakefront Biotherapeutics NV",
+          "applicant_aliases": [
+            "Galapagos N.V.",
+            "Galapagos NV",
+            "LAKEFRONT BIOTHERAPEUTICS NV",
+            "Lakefront Biotherapeutics NV"
+          ],
+          "company_id": "cmp_f02324f8-5ba6-4fd4-8137-9069ae03965b"
+        },
+        {
+          "applicant": "Corning Inc",
+          "applicant_aliases": [
+            "Corning Glass Works",
+            "Corning Inc"
+          ],
+          "company_id": "cmp_95780dbd-e2e6-4300-befd-c1b17be39482"
+        },
+        {
+          "applicant": "GENMAB A/S",
+          "applicant_aliases": [
+            "GENMAB A/S",
+            "Genmab A/S"
+          ],
+          "company_id": "cmp_d4f286b8-69e4-4866-b9ea-1585c259f997"
+        },
+        {
+          "applicant": "GRENERGY RENOVABLES SA",
+          "applicant_aliases": [
+            "GRENERGY RENOVABLES SA",
+            "Grenergy Renovables S.A"
+          ],
+          "company_id": "cmp_098e08dc-537a-400c-967e-94d7764c11d0"
+        },
+        {
+          "applicant": "GRIFOLS S.A.",
+          "applicant_aliases": [
+            "GRIFOLS S.A.",
+            "Grifols S.A."
+          ],
+          "company_id": "cmp_711c9625-2ded-4de3-9016-9a3647fd08c3"
+        },
+        {
+          "applicant": "Greencoat Renewables PLC",
+          "applicant_aliases": [
+            "Greencoat Renewables PLC"
+          ],
+          "company_id": "cmp_23e12c7c-2252-4d8d-a9d0-9909f1ee6492"
+        },
+        {
+          "applicant": "Draper Esprit plc",
+          "applicant_aliases": [
+            "Draper Esprit plc"
+          ],
+          "company_id": "cmp_c8f073df-c565-4972-932d-7afcb2825106"
+        },
+        {
+          "applicant": "FD Technologies PLC",
+          "applicant_aliases": [
+            "FD Technologies PLC",
+            "First Derivatives plc"
+          ],
+          "company_id": "cmp_82b29835-3aec-43e0-8a53-dc33e2004566"
+        },
+        {
+          "applicant": "HOLALUZ-CLIDOM S.A.",
+          "applicant_aliases": [
+            "Clidom Energy, S",
+            "HOLALUZ-CLIDOM S.A.",
+            "Holaluz-Clidom S.A"
+          ],
+          "company_id": "cmp_2dfe85f4-0bb0-45a4-9a5d-7a8806752ff5"
+        },
+        {
+          "applicant": "Honeywell Technologies CDR",
+          "applicant_aliases": [
+            "Honeywell Technologies CDR"
+          ],
+          "company_id": "cmp_5269f583-c9e5-42e5-844a-c8d016fce79a"
+        },
+        {
+          "applicant": "Herantis Pharma Oyj",
+          "applicant_aliases": [
+            "Herantis Pharma Oyj"
+          ],
+          "company_id": "cmp_ec131ad9-b180-4ff8-8c42-172264a2ec45"
+        },
+        {
+          "applicant": "Hyloris Developmentsen\u00a0Sa",
+          "applicant_aliases": [
+            "Hyloris Developmentsen\u00a0Sa"
+          ],
+          "company_id": "cmp_c18eee1c-dff3-4381-8b32-9aa9da6807a0"
+        },
+        {
+          "applicant": "INTEL CORPORATION",
+          "applicant_aliases": [
+            "INTEL CORP",
+            "INTEL CORPORATION",
+            "Intel Corp. CEDEAR"
+          ],
+          "company_id": "cmp_941186c7-c0c0-4c75-8a41-41be65d86af2"
+        },
+        {
+          "applicant": "Intracom Holdings S.A.",
+          "applicant_aliases": [
+            "Intracom Holdings S.A."
+          ],
+          "company_id": "cmp_dcd969ec-cee5-45fe-9527-9ae90f3da396"
+        },
+        {
+          "applicant": "INTUITIVE SURGICAL INC",
+          "applicant_aliases": [
+            "INTUITIVE SURGICAL INC",
+            "Intuitive Surgical Inc"
+          ],
+          "company_id": "cmp_4d77ef02-e327-454a-ba5c-8ca08eee3eef"
+        },
+        {
+          "applicant": "Johnson & Johnson Co DRC",
+          "applicant_aliases": [
+            "Johnson & Johnson Co DRC"
+          ],
+          "company_id": "cmp_4f50b2d2-5184-409a-a57d-5a48762b03d9"
+        },
+        {
+          "applicant": "Johnson & Johnson CDR",
+          "applicant_aliases": [
+            "Johnson & Johnson CDR"
+          ],
+          "company_id": "cmp_23becf8c-8908-418e-b2db-f9bc58fb33af"
+        },
+        {
+          "applicant": "Kiadis Pharma N.V",
+          "applicant_aliases": [
+            "Kiadis Pharma N.V"
+          ],
+          "company_id": "cmp_94428612-4198-4650-ab12-5f67e4e297e4"
+        },
+        {
+          "applicant": "Kinarus Therapeutics Holding AG",
+          "applicant_aliases": [
+            "Kinarus Therapeutics Holding AG"
+          ],
+          "company_id": "cmp_5c4a8401-7142-4bbe-8a33-bbcddea48b99"
+        },
+        {
+          "applicant": "Marinomed Biotech AG",
+          "applicant_aliases": [
+            "Marinomed Biotech AG",
+            "Marinomed Biotechnologie GmbH"
+          ],
+          "company_id": "cmp_2e6e8384-b008-42b0-8c6a-2c1cd81eef9f"
+        },
+        {
+          "applicant": "MDxHealth",
+          "applicant_aliases": [
+            "MDxHealth",
+            "Mdxhealth",
+            "OncoMethylome Sciences SA"
+          ],
+          "company_id": "cmp_8d8a9688-5d40-49d4-adef-ae9df5d6ae7e"
+        },
+        {
+          "applicant": "MELEXIS",
+          "applicant_aliases": [
+            "MELEXIS",
+            "Melexis NV"
+          ],
+          "company_id": "cmp_32153cee-3fda-4e2d-a43e-62397c941799"
+        },
+        {
+          "applicant": "Mind Medicine\u00a0Inc",
+          "applicant_aliases": [
+            "Mind Medicine\u00a0Inc"
+          ],
+          "company_id": "cmp_4e1929ae-988a-4d0b-8c44-812fa0966a51"
+        },
+        {
+          "applicant": "3M CDR (CAD Hedged)",
+          "applicant_aliases": [
+            "3M CDR (CAD Hedged)"
+          ],
+          "company_id": "cmp_c77ebd1c-8c5c-4d41-be14-10bfb1f8cfd4"
+        },
+        {
+          "applicant": "MATERIALISE NV",
+          "applicant_aliases": [
+            "MATERIALISE NV"
+          ],
+          "company_id": "cmp_d624b8d2-fe24-4e9f-99e4-526e03eabcc1"
+        },
+        {
+          "applicant": "Mydecine Innovations Group Inc",
+          "applicant_aliases": [
+            "Mydecine Innovations Group Inc",
+            "NewLeaf Brands Inc"
+          ],
+          "company_id": "cmp_dbc0efe4-6642-4cac-b529-b19925a3508f"
+        },
+        {
+          "applicant": "Neuron Bio S.A",
+          "applicant_aliases": [
+            "Neuron Bio S.A"
+          ],
+          "company_id": "cmp_733afd21-9f34-4228-a7b3-05bf032bea9a"
+        },
+        {
+          "applicant": "PT Nipress Tbk",
+          "applicant_aliases": [
+            "PT Nipress Tbk"
+          ],
+          "company_id": "cmp_e48b240a-caff-4856-bf31-4f13fe6fba79"
+        },
+        {
+          "applicant": "NVIDIA CORP",
+          "applicant_aliases": [
+            "NVIDIA CORP",
+            "NVIDIA Corporation"
+          ],
+          "company_id": "cmp_4d0ec359-6153-4a72-8dcb-3b16e45dac1c"
+        },
+        {
+          "applicant": "NVS",
+          "applicant_aliases": [
+            "NVS"
+          ],
+          "company_id": "cmp_30367c43-3898-4576-a480-8a75f4d426b3"
+        },
+        {
+          "applicant": "Ovoca Gold PLC",
+          "applicant_aliases": [
+            "Ovoca Gold PLC",
+            "Ovoca Gold plc"
+          ],
+          "company_id": "cmp_4e3bb02b-e2cd-4920-b956-51c360d80926"
+        },
+        {
+          "applicant": "Oxurion",
+          "applicant_aliases": [
+            "Oxurion",
+            "Oxurion NV",
+            "ThromboGenics NV"
+          ],
+          "company_id": "cmp_79d3d7bb-9683-461f-b77c-62d66ce26fca"
+        },
+        {
+          "applicant": "Photon Energy N.V.",
+          "applicant_aliases": [
+            "Photon Energy N.V."
+          ],
+          "company_id": "cmp_601bfc42-c646-4118-9492-bacab8f2c42f"
+        },
+        {
+          "applicant": "Pharming Group NV",
+          "applicant_aliases": [
+            "Pharming Group NV"
+          ],
+          "company_id": "cmp_24c61598-84ca-4730-9fcf-5cd93946cb95"
+        },
+        {
+          "applicant": "Plaisio Computers S.A",
+          "applicant_aliases": [
+            "Plaisio Computers S.A"
+          ],
+          "company_id": "cmp_0bf9f6ed-31bc-49b2-bf8a-05d925ecab77"
+        },
+        {
+          "applicant": "Trinitan Metals and Minerals",
+          "applicant_aliases": [
+            "Trinitan Metals and Minerals"
+          ],
+          "company_id": "cmp_0495482c-6786-4b5b-ad9d-c4aad510c5e3"
+        },
+        {
+          "applicant": "POLYTEC Holding AG",
+          "applicant_aliases": [
+            "POLYTEC Holding AG",
+            "Polytec Holding AG"
+          ],
+          "company_id": "cmp_3e0368e7-f020-4490-8db0-6e572e3c8aa7"
+        },
+        {
+          "applicant": "Qualcomm Inc. CEDEAR",
+          "applicant_aliases": [
+            "Qualcomm Inc. CEDEAR"
+          ],
+          "company_id": "cmp_4553f921-d90c-4388-b6df-f8ac22f26cdc"
+        },
+        {
+          "applicant": "Quest For Growth - Pricaf",
+          "applicant_aliases": [
+            "Quest For Growth - Pricaf"
+          ],
+          "company_id": "cmp_06f83ff9-ff75-4dd2-9711-13db3a627017"
+        },
+        {
+          "applicant": "QuantumScape Corp",
+          "applicant_aliases": [
+            "QuantumScape Corp",
+            "QuantumScape Corporation Class A Common Stock"
+          ],
+          "company_id": "cmp_f3a2a166-221a-40dd-81c0-545eea1b60ed"
+        },
+        {
+          "applicant": "Rosenbauer International AG",
+          "applicant_aliases": [
+            "Rosenbauer International AG"
+          ],
+          "company_id": "cmp_9c0af4c1-4f90-40e7-81da-b675b9c42e7f"
+        },
+        {
+          "applicant": "SANOCHEMIA Pharmazeutika AG",
+          "applicant_aliases": [
+            "SANOCHEMIA Pharmazeutika AG"
+          ],
+          "company_id": "cmp_8f8f4dad-e111-440f-9f14-4da97cea928b"
+        },
+        {
+          "applicant": "PowerBank Corporation",
+          "applicant_aliases": [
+            "PowerBank Corporation",
+            "SolarBank Corporation"
+          ],
+          "company_id": "cmp_4b980845-b3e5-435e-b596-edfc5f0ea2aa"
+        },
+        {
+          "applicant": "VERBUND AG",
+          "applicant_aliases": [
+            "VERBUND AG"
+          ],
+          "company_id": "cmp_caa142ba-d101-4365-96e8-1c5d82e88e20"
+        },
+        {
+          "applicant": "VERBUND AG",
+          "applicant_aliases": [
+            "VERBUND AG"
+          ],
+          "company_id": "cmp_e29938a3-ee7d-49a7-9f22-73414f5dcc93"
+        },
+        {
+          "applicant": "Valneva SE",
+          "applicant_aliases": [
+            "Valneva SE"
+          ],
+          "company_id": "cmp_77182600-2045-4c3f-87fe-d14964728cec"
+        },
+        {
+          "applicant": "Volkswagen AG",
+          "applicant_aliases": [
+            "Volkswagen AG"
+          ],
+          "company_id": "cmp_f3ff3278-23c7-40cd-a19a-b73ba4f79501"
+        },
+        {
+          "applicant": "(\uc8fc)\uc5d8\uc9c0\uc5d0\ub108\uc9c0\uc194\ub8e8\uc158",
+          "applicant_aliases": [
+            "(\uc8fc)\uc5d8\uc9c0\uc5d0\ub108\uc9c0\uc194\ub8e8\uc158",
+            "LG ENERGY SOLUTION LTD",
+            "LG Energy Solution, Ltd."
+          ],
+          "company_id": "cmp_748e0d14-b440-460f-80f8-e857c94025e3"
+        },
+        {
+          "applicant": "APPLIED MATERIALS, INC.",
+          "applicant_aliases": [
+            "APPLIED MATERIALS INC",
+            "APPLIED MATERIALS, INC."
+          ],
+          "company_id": "cmp_310fd881-0d46-4f29-b78a-2818bbc8082b"
+        },
+        {
+          "applicant": "insitro",
+          "applicant_aliases": [
+            "insitro"
+          ],
+          "company_id": "cmp_dcdf8ef1-e1ab-49c8-a087-f75c3a82e147"
+        },
+        {
+          "applicant": "Agility Robotics",
+          "applicant_aliases": [
+            "Agility Robotics"
+          ],
+          "company_id": "cmp_0b597289-74c6-4d87-a621-65520dae23a8"
+        },
+        {
+          "applicant": "Lightmatter",
+          "applicant_aliases": [
+            "Lightmatter"
+          ],
+          "company_id": "cmp_d061e03b-53c3-4dbe-8610-1ac7e8d84751"
+        },
+        {
+          "applicant": "Antora Energy",
+          "applicant_aliases": [
+            "Antora Energy"
+          ],
+          "company_id": "cmp_06e09f40-58ae-4391-8817-21636e986401"
+        }
+      ]
+    },
+    {
+      "source_id": "C051",
+      "source": "un_comtrade",
+      "adapter": "additional_comtrade",
+      "api": "https://comtradeapi.un.org/data/v1/get/C/A/HS",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Keyed annual imports and exports for the existing five reporters and four battery/mineral HS6 commodities; world partner totals. Initial scope, not all trade flows.",
+      "scopes": [
+        {
+          "query": {
+            "reporterCode": 842,
+            "cmdCode": "850760",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 842,
+          "commodity": "850760",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 842,
+            "cmdCode": "850760",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 842,
+          "commodity": "850760",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 842,
+            "cmdCode": "260400",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 842,
+          "commodity": "260400",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 842,
+            "cmdCode": "260400",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 842,
+          "commodity": "260400",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 842,
+            "cmdCode": "282520",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 842,
+          "commodity": "282520",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 842,
+            "cmdCode": "282520",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 842,
+          "commodity": "282520",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 842,
+            "cmdCode": "250410",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 842,
+          "commodity": "250410",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 842,
+            "cmdCode": "250410",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 842,
+          "commodity": "250410",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 156,
+            "cmdCode": "850760",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 156,
+          "commodity": "850760",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 156,
+            "cmdCode": "850760",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 156,
+          "commodity": "850760",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 156,
+            "cmdCode": "260400",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 156,
+          "commodity": "260400",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 156,
+            "cmdCode": "260400",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 156,
+          "commodity": "260400",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 156,
+            "cmdCode": "282520",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 156,
+          "commodity": "282520",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 156,
+            "cmdCode": "282520",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 156,
+          "commodity": "282520",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 156,
+            "cmdCode": "250410",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 156,
+          "commodity": "250410",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 156,
+            "cmdCode": "250410",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 156,
+          "commodity": "250410",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 276,
+            "cmdCode": "850760",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 276,
+          "commodity": "850760",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 276,
+            "cmdCode": "850760",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 276,
+          "commodity": "850760",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 276,
+            "cmdCode": "260400",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 276,
+          "commodity": "260400",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 276,
+            "cmdCode": "260400",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 276,
+          "commodity": "260400",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 276,
+            "cmdCode": "282520",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 276,
+          "commodity": "282520",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 276,
+            "cmdCode": "282520",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 276,
+          "commodity": "282520",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 276,
+            "cmdCode": "250410",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 276,
+          "commodity": "250410",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 276,
+            "cmdCode": "250410",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 276,
+          "commodity": "250410",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 392,
+            "cmdCode": "850760",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 392,
+          "commodity": "850760",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 392,
+            "cmdCode": "850760",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 392,
+          "commodity": "850760",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 392,
+            "cmdCode": "260400",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 392,
+          "commodity": "260400",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 392,
+            "cmdCode": "260400",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 392,
+          "commodity": "260400",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 392,
+            "cmdCode": "282520",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 392,
+          "commodity": "282520",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 392,
+            "cmdCode": "282520",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 392,
+          "commodity": "282520",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 392,
+            "cmdCode": "250410",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 392,
+          "commodity": "250410",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 392,
+            "cmdCode": "250410",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 392,
+          "commodity": "250410",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 410,
+            "cmdCode": "850760",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 410,
+          "commodity": "850760",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 410,
+            "cmdCode": "850760",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 410,
+          "commodity": "850760",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 410,
+            "cmdCode": "260400",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 410,
+          "commodity": "260400",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 410,
+            "cmdCode": "260400",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 410,
+          "commodity": "260400",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 410,
+            "cmdCode": "282520",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 410,
+          "commodity": "282520",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 410,
+            "cmdCode": "282520",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 410,
+          "commodity": "282520",
+          "flow": "X"
+        },
+        {
+          "query": {
+            "reporterCode": 410,
+            "cmdCode": "250410",
+            "flowCode": "M",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 410,
+          "commodity": "250410",
+          "flow": "M"
+        },
+        {
+          "query": {
+            "reporterCode": 410,
+            "cmdCode": "250410",
+            "flowCode": "X",
+            "partnerCode": 0,
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0
+          },
+          "reporter": 410,
+          "commodity": "250410",
+          "flow": "X"
+        }
+      ]
+    },
+    {
+      "source_id": "C070",
+      "source": "ember_electricity_demand_and_generation",
+      "adapter": "additional_ember",
+      "api": "https://api.ember-energy.org/v1",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "All available geography rows for monthly electricity generation and demand, since 2016; current released data, Ember CC-BY-4.0. Missing months are not inferred as zeros.",
+      "scopes": [
+        {
+          "dataset": "electricity-generation"
+        },
+        {
+          "dataset": "electricity-demand"
+        }
+      ]
+    },
+    {
+      "source_id": "C071",
+      "source": "wto_timeseries_api",
+      "adapter": "additional_wto_timeseries",
+      "api": "https://api.wto.org/timeseries/v1/data",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "All currently catalogued indicators, all reporting economies, provider default partner/product scopes, by year since 2016; current vintages and explicit pagination. Not all bilateral/product combinations.",
+      "scopes": [
+        {
+          "indicator": "TP_A_0010"
+        },
+        {
+          "indicator": "TP_A_0160"
+        },
+        {
+          "indicator": "TP_A_0430"
+        },
+        {
+          "indicator": "TP_A_0030"
+        },
+        {
+          "indicator": "TP_A_0170"
+        },
+        {
+          "indicator": "TP_A_0440"
+        },
+        {
+          "indicator": "HS_A_0010"
+        },
+        {
+          "indicator": "HS_A_0020"
+        },
+        {
+          "indicator": "HS_A_0030"
+        },
+        {
+          "indicator": "HS_A_0040"
+        },
+        {
+          "indicator": "HS_A_0050"
+        },
+        {
+          "indicator": "HS_P_0070"
+        },
+        {
+          "indicator": "TP_B_0090",
+          "no_time_dimension": true
+        },
+        {
+          "indicator": "TP_B_0180",
+          "no_time_dimension": true
+        },
+        {
+          "indicator": "TP_B_0380",
+          "no_time_dimension": true
+        },
+        {
+          "indicator": "TP_B_0020",
+          "no_time_dimension": true
+        },
+        {
+          "indicator": "TP_B_0390",
+          "no_time_dimension": true
+        },
+        {
+          "indicator": "ITS_MTV_AX"
+        },
+        {
+          "indicator": "ITS_MTV_AM"
+        },
+        {
+          "indicator": "ITS_MTV_QX"
+        },
+        {
+          "indicator": "ITS_MTV_QM"
+        },
+        {
+          "indicator": "ITS_MTV_MX"
+        },
+        {
+          "indicator": "ITS_MTV_MM"
+        },
+        {
+          "indicator": "ITS_MTP_AX"
+        },
+        {
+          "indicator": "ITS_MTP_AM"
+        },
+        {
+          "indicator": "ITS_MTP_AXV"
+        },
+        {
+          "indicator": "ITS_MTP_AMV"
+        },
+        {
+          "indicator": "ITS_MTP_AUVX"
+        },
+        {
+          "indicator": "ITS_MTP_AUVM"
+        },
+        {
+          "indicator": "ITS_MTP_AXF"
+        },
+        {
+          "indicator": "ITS_MTP_AMF"
+        },
+        {
+          "indicator": "ITS_MTP_AXVF"
+        },
+        {
+          "indicator": "ITS_MTP_AMVF"
+        },
+        {
+          "indicator": "ITS_MTP_AUVXF"
+        },
+        {
+          "indicator": "ITS_MTP_AUVMF"
+        },
+        {
+          "indicator": "ITS_MTP_AXVG"
+        },
+        {
+          "indicator": "ITS_MTP_AMVG"
+        },
+        {
+          "indicator": "ITS_MTP_QXV"
+        },
+        {
+          "indicator": "ITS_MTP_QMV"
+        },
+        {
+          "indicator": "ITS_MTP_QXVSA"
+        },
+        {
+          "indicator": "ITS_MTP_QMVSA"
+        },
+        {
+          "indicator": "ITS_MTP_MXP"
+        },
+        {
+          "indicator": "ITS_MTP_MMP"
+        },
+        {
+          "indicator": "ITS_MTP_MXPM"
+        },
+        {
+          "indicator": "ITS_MTP_MMPM"
+        },
+        {
+          "indicator": "ITS_CS_AX6"
+        },
+        {
+          "indicator": "ITS_CS_AM6"
+        },
+        {
+          "indicator": "ITS_CS_AX5"
+        },
+        {
+          "indicator": "ITS_CS_AM5"
+        },
+        {
+          "indicator": "ITS_CS_QX"
+        },
+        {
+          "indicator": "ITS_CS_QM"
+        },
+        {
+          "indicator": "ITS_CS_MX"
+        },
+        {
+          "indicator": "ITS_CS_MM"
+        },
+        {
+          "indicator": "BAT_BV_X"
+        },
+        {
+          "indicator": "BAT_BV_M"
+        }
+      ]
+    },
+    {
+      "source_id": "C072",
+      "source": "wto_quantitative_restrictions_api",
+      "adapter": "additional_wto_qr",
+      "api": "https://api.wto.org/qrs",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Notifications submitted since 2016 and restriction records entering into force since 2016. Current records, not historical database snapshots or a complete inventory of older restrictions still in force.",
+      "scopes": [
+        {
+          "url": "https://api.wto.org/qrs/notifications",
+          "resource": "notifications",
+          "year_parameter": "notification_year"
+        },
+        {
+          "url": "https://api.wto.org/qrs/qrs",
+          "resource": "qrs",
+          "year_parameter": "year_of_entry_into_force"
+        }
+      ]
+    },
+    {
+      "source_id": "C073",
+      "source": "wto_eping_sps_tbt_notifications",
+      "adapter": "additional_wto_eping",
+      "api": "https://api.wto.org/eping/notifications/search",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "English SPS/TBT notification metadata, all notifying members, distribution-date partitions since 2016; includes addenda and revisions, no attached document downloads.",
+      "scopes": [
+        {}
+      ]
+    },
+    {
+      "source_id": "C075",
+      "source": "copernicus_era5_era5_land",
+      "adapter": "additional_copernicus",
+      "api": "https://cds.climate.copernicus.eu/api/retrieve/v1",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "ERA5 and ERA5-Land hourly 2m temperature and precipitation, eight named regional reference cells since 2016. Raw NetCDF archives with checksums; structured weather extraction pending. Current reanalysis, not original forecast vintages. Dataset licence acceptance required.",
+      "scopes": [
+        {
+          "dataset": "reanalysis-era5-single-levels",
+          "location": "Phoenix",
+          "area": [
+            33.6984,
+            -112.324,
+            33.1984,
+            -111.824
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-single-levels",
+          "location": "Berlin",
+          "area": [
+            52.77,
+            13.155,
+            52.27,
+            13.655
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-single-levels",
+          "location": "Delhi",
+          "area": [
+            28.8639,
+            76.959,
+            28.3639,
+            77.459
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-single-levels",
+          "location": "Shanghai",
+          "area": [
+            31.4804,
+            121.2237,
+            30.9804,
+            121.7237
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-single-levels",
+          "location": "SaoPaulo",
+          "area": [
+            -23.3005,
+            -46.8833,
+            -23.8005,
+            -46.3833
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-single-levels",
+          "location": "Johannesburg",
+          "area": [
+            -25.9541,
+            27.7973,
+            -26.4541,
+            28.2973
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-single-levels",
+          "location": "Sydney",
+          "area": [
+            -33.6188,
+            150.9593,
+            -34.1188,
+            151.4593
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-single-levels",
+          "location": "Tokyo",
+          "area": [
+            35.9262,
+            139.4003,
+            35.4262,
+            139.9003
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-land",
+          "location": "Phoenix",
+          "area": [
+            33.6984,
+            -112.324,
+            33.1984,
+            -111.824
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-land",
+          "location": "Berlin",
+          "area": [
+            52.77,
+            13.155,
+            52.27,
+            13.655
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-land",
+          "location": "Delhi",
+          "area": [
+            28.8639,
+            76.959,
+            28.3639,
+            77.459
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-land",
+          "location": "Shanghai",
+          "area": [
+            31.4804,
+            121.2237,
+            30.9804,
+            121.7237
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-land",
+          "location": "SaoPaulo",
+          "area": [
+            -23.3005,
+            -46.8833,
+            -23.8005,
+            -46.3833
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-land",
+          "location": "Johannesburg",
+          "area": [
+            -25.9541,
+            27.7973,
+            -26.4541,
+            28.2973
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-land",
+          "location": "Sydney",
+          "area": [
+            -33.6188,
+            150.9593,
+            -34.1188,
+            151.4593
+          ]
+        },
+        {
+          "dataset": "reanalysis-era5-land",
+          "location": "Tokyo",
+          "area": [
+            35.9262,
+            139.4003,
+            35.4262,
+            139.9003
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": "C118",
+      "source": "us_census_international_trade_api",
+      "adapter": "additional_census",
+      "api": "https://api.census.gov/data/timeseries/intltrade",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Monthly US imports and exports for TOTAL and four battery/mineral HS6 commodities across all partner codes since 2016; current releases, not original vintages. Country totals and commodity totals remain distinct.",
+      "scopes": [
+        {
+          "direction": "imports",
+          "commodity": "TOTAL"
+        },
+        {
+          "direction": "imports",
+          "commodity": "850760"
+        },
+        {
+          "direction": "imports",
+          "commodity": "260400"
+        },
+        {
+          "direction": "imports",
+          "commodity": "282520"
+        },
+        {
+          "direction": "imports",
+          "commodity": "250410"
+        },
+        {
+          "direction": "exports",
+          "commodity": "TOTAL"
+        },
+        {
+          "direction": "exports",
+          "commodity": "850760"
+        },
+        {
+          "direction": "exports",
+          "commodity": "260400"
+        },
+        {
+          "direction": "exports",
+          "commodity": "282520"
+        },
+        {
+          "direction": "exports",
+          "commodity": "250410"
+        }
+      ]
+    },
+    {
+      "source_id": "C125",
+      "source": "usda_fas_production_supply_and_distribution",
+      "adapter": "additional_usda",
+      "api": "https://apps.fas.usda.gov/OpenData/api/psd/commodity/{commodity}/country/all/year/{year}",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Current PSD forecasts/estimates for corn, wheat, rice, soybeans and cotton, all countries, market years since 2016. Market year differs from release date; historical forecast vintages not supplied by this route.",
+      "scopes": [
+        {
+          "commodity": "0440000"
+        },
+        {
+          "commodity": "0410000"
+        },
+        {
+          "commodity": "0422110"
+        },
+        {
+          "commodity": "2222000"
+        },
+        {
+          "commodity": "2631000"
+        }
+      ]
+    }
+  ],
+  "backfill_end_exclusive": "2026-10-26"
+}

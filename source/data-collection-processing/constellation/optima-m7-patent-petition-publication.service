@@ -1,0 +1,27 @@
+[Unit]
+Description=Optima m7 bounded patent petition publication pilot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/opt/constellation/publication-pilot/source
+ExecStart=/opt/constellation/legacy-venv/bin/python -B m7_patent_petition_publication.py
+Environment=AWS_DEFAULT_REGION=us-east-1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=ARROW_NUM_THREADS=1
+MemoryHigh=2200M
+MemoryMax=3G
+MemorySwapMax=0
+CPUQuota=150%
+TasksMax=128
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/constellation/publication-pilot/build
+PrivateTmp=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

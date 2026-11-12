@@ -1,0 +1,27 @@
+{
+  "job_id": "nmpa-enrichment-backfill-2026-10-16",
+  "storage_config": "config/collection-storage.s3.json",
+  "universe": "config/company-universe.v0.5.json",
+  "taxonomy": "config/sectors.v1.json",
+  "inventory_checkpoint": "checkpoints/task_73efc21074adbccdb83d911ac01371e919c54a5c07f8c863950ecaf3b7c3a025/head.json",
+  "window_start": "2021-01-01T00:00:00Z",
+  "scope_end": "2026-10-16T10:54:36.455090Z",
+  "max_batches_per_invocation": 1000,
+  "max_trials_per_invocation": 20,
+  "max_provider_requests_per_day": 8000,
+  "max_attempts": 3,
+  "retry_minutes": 60,
+  "revisit_days": 14,
+  "priority_ids": [
+    "CTR20231998",
+    "CTR20242640"
+  ],
+  "scope_note": "Enrich all observed trial IDs from the existing NMPA inventory as the baseline scan progresses. Reuse original saved detail HTML, fetch current official details, and reconcile known IDs after baseline completion. Registry-wide listing totals are not trial events. Only shared non-empty substantive fields generate observed-change events, with both observation times and evidence. Explicit source dates retain their source labels. Completion email waits for the baseline inventory to finish, all committed inventory batches to be consumed, every discovered trial to be processed or marked as a gap, and enriched output to be verified in Athena. Listing movement means this is observed-inventory coverage, not a frozen global registry or reconstructed historical versions.",
+  "seed": {
+    "bucket": "data-collection-059416028963-us-east-1-an",
+    "key": "research-data/constellation-backfill/deployments/nmpa-resumed-20261110/265ac6116e27277153ad4b0fe0fa8198123a649a096bbba6e16f6d7c6bf5cbba/backfill-seed.sqlite3",
+    "sha256": "265ac6116e27277153ad4b0fe0fa8198123a649a096bbba6e16f6d7c6bf5cbba",
+    "bytes": 201261056
+  },
+  "seed_inventory_pages": 1460
+}

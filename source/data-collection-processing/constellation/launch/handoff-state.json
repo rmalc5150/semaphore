@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-10-26T07:57:21.075601+00:00",
+  "collection_enabled": true,
+  "active": [
+    {
+      "source_key": "legacy:constellation-core-fda-historical.service",
+      "active": 1
+    },
+    {
+      "source_key": "legacy:constellation-core-sec-historical.service",
+      "active": 1
+    },
+    {
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "active": 1
+    },
+    {
+      "source_key": "nsf_awards",
+      "active": 2
+    },
+    {
+      "source_key": "legacy:constellation-core-clinicaltrials-historical.service",
+      "active": 1
+    },
+    {
+      "source_key": "arxiv",
+      "active": 2
+    }
+  ],
+  "raw_succeeded": [
+    {
+      "source_key": "usgs_earthquakes",
+      "succeeded": 400
+    },
+    {
+      "source_key": "nsf_awards",
+      "succeeded": 96
+    },
+    {
+      "source_key": "arxiv",
+      "succeeded": 33
+    }
+  ],
+  "arxiv_serialization": {
+    "arxiv_connection_owner": 34120
+  }
+}

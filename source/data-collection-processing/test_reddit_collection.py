@@ -7,6 +7,41 @@ def post(name='one',body='example',author='sample',kind='t3'):
  return {'kind':kind,'data':{'id':name,'name':kind+'_'+name,'author':author,'created_utc':NOW-3600,'selftext':body,'body':body,'subreddit':'biotech','title':'Title','score':2,'num_comments':0,'permalink':'/r/biotech/comments/'+name}}
 
 class RedditTests(unittest.TestCase):
+ def test_one_broken_info_record_does_not_block_other_revalidation(self):
+  records={}
+  for name in ('bad','good'):
+   row=normalize(post(name),'biotech','daily',NOW);row['verified_utc']=NOW-50000;records[row['record_id']]=row
+  api=Mock();api.get.side_effect=[APIError('reddit_http_500'),APIError('reddit_http_500'),{'data':{'children':[post('good')]}}]
+  gaps=revalidate(api,records,NOW)
+  self.assertEqual(gaps,[{'record_id':'t3_bad','reason':'reddit_http_500'}])
+  self.assertEqual(records['t3_bad']['verified_utc'],NOW-50000)
+  self.assertEqual(records['t3_good']['verified_utc'],NOW)
+
+ def test_transient_retries_consume_budget_and_preserve_access_errors(self):
+  import io
+  from urllib.error import HTTPError
+  from reddit_collection import Reddit
+  api=Reddit.__new__(Reddit);api.calls=0;api.remaining=None;api.config={'max_requests_per_run':3};api.opener=Mock()
+  response=Mock();response.headers={};response.read.return_value=b'{"ok":true}'
+  context=Mock();context.__enter__=Mock(return_value=response);context.__exit__=Mock(return_value=False)
+  api.opener.open.side_effect=[HTTPError('https://example.com',500,'error',{},io.BytesIO()),context]
+  with patch('reddit_collection.time.sleep'):
+   self.assertEqual(api._request(Mock(full_url='https://example.com')), {'ok':True})
+  self.assertEqual(api.calls,2)
+  api.opener.open.side_effect=HTTPError('https://example.com',403,'denied',{},io.BytesIO())
+  with patch('reddit_collection.time.sleep'), self.assertRaisesRegex(APIError,'reddit_http_403'): api._request(Mock(full_url='https://example.com'))
+  self.assertEqual(api.calls,3)
+  with self.assertRaisesRegex(APIError,'request_budget'): api._request(Mock(full_url='https://example.com'))
+
+ def test_server_failure_retry_is_bounded(self):
+  import io
+  from urllib.error import HTTPError
+  from reddit_collection import Reddit
+  api=Reddit.__new__(Reddit);api.calls=0;api.remaining=None;api.config={'max_requests_per_run':10};api.opener=Mock()
+  api.opener.open.side_effect=[HTTPError('https://example.com',500,'error',{},io.BytesIO()) for _ in range(3)]
+  with patch('reddit_collection.time.sleep'),self.assertRaisesRegex(APIError,'reddit_http_500'):api._request(Mock(full_url='https://example.com'))
+  self.assertEqual(api.calls,3)
+
  def test_deleted_content_not_retained(self):
   for child in (post(body='[deleted]'),post(author='[deleted]'),post(body='[removed]')):
    self.assertIsNone(normalize(child,'biotech','daily',NOW))

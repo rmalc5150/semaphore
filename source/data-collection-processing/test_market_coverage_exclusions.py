@@ -19,6 +19,7 @@ class ExclusionTests(unittest.TestCase):
         temp = tempfile.TemporaryDirectory(); self.addCleanup(temp.cleanup)
         self.settings = StorageSettings(local_root=temp.name); self.store = self.settings.store()
         config = load_json(ROOT/'config/market-operations.json')
+        config['historical_start'] = '2021-01-01'  # Pin the reviewed fixture intervals.
         self.runner = MarketOperations(self.store, self.settings, config,
             load_json(ROOT/'config/company-universe.v0.3.json'), load_json(ROOT/'config/sectors.v1.json'))
         self.runner.symbols = {'A.US': ['listing-a']}

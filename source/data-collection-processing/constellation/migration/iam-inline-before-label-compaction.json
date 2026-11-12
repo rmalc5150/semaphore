@@ -1,0 +1,391 @@
+{
+  "AthenaOutputBucketLocation": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": "s3:GetBucketLocation",
+        "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an"
+      }
+    ]
+  },
+  "constellation-additional-source-keys": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "ReadOwnerProvidedAdditionalSourceKeys",
+        "Effect": "Allow",
+        "Action": "secretsmanager:GetSecretValue",
+        "Resource": "arn:aws:secretsmanager:us-east-1:059416028963:secret:dataSourceAPIkeys-PSTzff"
+      }
+    ]
+  },
+  "constellation-backfill": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "secretsmanager:GetSecretValue"
+        ],
+        "Resource": "arn:aws:secretsmanager:us-east-1:059416028963:secret:constellation/backfill/worker-ktYtxF"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource": "arn:aws:logs:us-east-1:059416028963:log-group:/constellation/backfill:*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/s3-runtime/snapshots/migration-seed/config/company-universe.v0.2.json",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/s3-runtime/snapshots/migration-seed/config/company-universe.v0.3.json",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/s3-runtime/snapshots/migration-seed/config/company-universe.v0.5.json"
+        ]
+      }
+    ]
+  },
+  "constellation-disclosure-checkpoints": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "DisclosureRuntimeCheckpoints",
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/s11-content/daily/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/s11-content/historical/*"
+        ]
+      }
+    ]
+  },
+  "constellation-fda-source-key": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "ReadFDAKeyForHistoricalCollection",
+        "Effect": "Allow",
+        "Action": "secretsmanager:GetSecretValue",
+        "Resource": "arn:aws:secretsmanager:us-east-1:059416028963:secret:FDA-0WM7up"
+      }
+    ]
+  },
+  "constellation-finlight-fulltext-cache": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "FinlightContentCacheAndPublisherBudgets",
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/fulltext/content/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/fulltext/publisher-budgets/*"
+        ]
+      }
+    ]
+  },
+  "constellation-finlight-source-key": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": "secretsmanager:DescribeSecret",
+        "Resource": "arn:aws:secretsmanager:us-east-1:059416028963:secret:newKeys-vCsrBG"
+      }
+    ]
+  },
+  "constellation-legacy-artifacts": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "ExistingCollectionArtifacts",
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/raw/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/checkpoints/task_*/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/checkpoints/watermarks/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/manifests/collection_runs/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/manifests/configurations/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/source_documents/*"
+        ]
+      },
+      {
+        "Sid": "HistoricalProgressAndQueues",
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/streams/*/historical/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/conferences/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/scheduler/historical.json",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/scheduler/authenticated-historical.json",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/discovered-jobs/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/executions/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/budgets/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/finlight-backfill/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/automation/*/*/historical.json",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/automation/*/attempts/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/publication-queue/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/market/automation/*/historical.json",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/market/publication-queue/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/patents/*"
+        ]
+      },
+      {
+        "Sid": "ReadSharedProgressForDependencies",
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/market/automation/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/automation/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/*"
+        ]
+      },
+      {
+        "Sid": "ListCollectionIndexes",
+        "Effect": "Allow",
+        "Action": [
+          "s3:ListBucket"
+        ],
+        "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an",
+        "Condition": {
+          "StringLike": {
+            "s3:prefix": [
+              "research-data/checkpoints/*",
+              "research-data/manifests/*",
+              "research-data/raw/*",
+              "research-data/operations/*"
+            ]
+          }
+        }
+      },
+      {
+        "Sid": "ProtectOriginalRuntimePointer",
+        "Effect": "Deny",
+        "Action": [
+          "s3:PutObject",
+          "s3:DeleteObject"
+        ],
+        "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/s3-runtime/*"
+      },
+      {
+        "Sid": "USGSEnrichmentArtifacts",
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/usgs-minerals/directories/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/usgs-minerals/report-heads/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/usgs-minerals/reports/*"
+        ]
+      },
+      {
+        "Sid": "BLSLaborEnrichmentArtifacts",
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/bls-labor/joins-cache/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/bls-labor/observed/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/bls-labor/versions/*"
+        ]
+      }
+    ]
+  },
+  "constellation-public-decodo": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "ExistingDecodoAccessForPublicCollection",
+        "Effect": "Allow",
+        "Action": "secretsmanager:GetSecretValue",
+        "Resource": "arn:aws:secretsmanager:us-east-1:059416028963:secret:proxies-fkWzVV"
+      }
+    ]
+  },
+  "constellation-rss-content-cache": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/fulltext/people_rss/content/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/fulltext/people_rss/decodo-budgets/*"
+        ]
+      }
+    ]
+  },
+  "constellation-specific-historical-sources": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "SpecificHistoricalSourceCredentials",
+        "Effect": "Allow",
+        "Action": "secretsmanager:GetSecretValue",
+        "Resource": [
+          "arn:aws:secretsmanager:us-east-1:059416028963:secret:FDA-Data-vYfqjf",
+          "arn:aws:secretsmanager:us-east-1:059416028963:secret:FDA-Enforcement-xu3Kv7",
+          "arn:aws:secretsmanager:us-east-1:059416028963:secret:EDINET-kL3v4d",
+          "arn:aws:secretsmanager:us-east-1:059416028963:secret:EIA-vCjlZh"
+        ]
+      },
+      {
+        "Sid": "ListPrivateHistoricalIndexes",
+        "Effect": "Allow",
+        "Action": "s3:ListBucket",
+        "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an",
+        "Condition": {
+          "StringLike": {
+            "s3:prefix": "research-data/constellation-backfill/*"
+          }
+        }
+      }
+    ]
+  },
+  "EiaPublishedGeneratorArchives": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/eia/published-generator-archives/*"
+      }
+    ]
+  },
+  "M7CommittedAthena": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/athena-committed/*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": "s3:ListBucket",
+        "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an",
+        "Condition": {
+          "StringLike": {
+            "s3:prefix": "research-data/athena-committed/*"
+          }
+        }
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "glue:UpdateTable",
+          "glue:GetPartitions",
+          "glue:BatchGetPartition"
+        ],
+        "Resource": [
+          "arn:aws:glue:us-east-1:059416028963:catalog",
+          "arn:aws:glue:us-east-1:059416028963:database/optima_collected_data",
+          "arn:aws:glue:us-east-1:059416028963:table/optima_collected_data/*"
+        ]
+      }
+    ]
+  },
+  "M7DailyStreamProgress": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/streams/*/daily/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/attempts/*",
+          "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/reports/*"
+        ]
+      }
+    ]
+  },
+  "metadata-engine-worker-secret": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": "secretsmanager:GetSecretValue",
+        "Resource": "arn:aws:secretsmanager:us-east-1:059416028963:secret:metadata-engine/worker-odI39C"
+      }
+    ]
+  },
+  "S3additionalPermissions": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "WriteImmutableAuditDeployment",
+        "Effect": "Allow",
+        "Action": "s3:PutObject",
+        "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/status/raw-source-audit/deployments/*",
+        "Condition": {
+          "StringEquals": {
+            "s3:x-amz-server-side-encryption": "AES256"
+          }
+        }
+      },
+      {
+        "Sid": "ReadAuditReceiptsOnly",
+        "Effect": "Allow",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/status/raw-source-audit/payload-validation/*"
+      },
+      {
+        "Sid": "RunAuditOnlyOnWorker",
+        "Effect": "Allow",
+        "Action": [
+          "ssm:SendCommand",
+          "ssm:GetCommandInvocation"
+        ],
+        "Resource": [
+          "arn:aws:ec2:us-east-1:059416028963:instance/i-06241bd1c4e91c2fc",
+          "arn:aws:ssm:us-east-1::document/AWS-RunShellScript"
+        ]
+      }
+    ]
+  }
+}

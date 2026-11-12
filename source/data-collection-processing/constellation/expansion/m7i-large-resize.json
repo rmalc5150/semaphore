@@ -1,0 +1,90 @@
+{
+  "pause_at": "2026-10-26T15:56:36.015702+00:00",
+  "stop_workers_command_id": "cc0fc7df-b08b-4932-85d0-0fd99dc0f515",
+  "previous_control": {
+    "singleton": 1,
+    "enabled": true,
+    "pilot_job_ids": [],
+    "stop_after_epoch": 1794720993
+  },
+  "target_type": "m7i.large",
+  "drain_command_id": "e7891ceb-1a21-4a9e-8990-961eeed863a4",
+  "safe_stop_command_id": "dd27c847-177e-4697-a18f-2a185157220d",
+  "safe_stop_proof": {
+    "safe_to_stop": true,
+    "inactive_workers": 17,
+    "pending_checkpoints": 0,
+    "uncommitted_files": 0
+  },
+  "stop_requested": true,
+  "resized_at": "2026-10-26T16:00:17.716720+00:00",
+  "resize_verified": true,
+  "start_requested": true,
+  "resumed_at": "2026-10-26T16:03:35.370934+00:00",
+  "resumed_epoch": 1793030615.3709483,
+  "installation": {
+    "verified": true,
+    "active_enabled_workers": 15,
+    "cpu_capacity": 2,
+    "memory_max_gib": 6,
+    "sum_individual_memory_max_mib": 13184,
+    "instance_type": "m7i.large"
+  },
+  "baseline": [
+    {
+      "status": "pending",
+      "n": 8462
+    },
+    {
+      "status": "succeeded",
+      "n": 4822
+    },
+    {
+      "status": "retryable_failed",
+      "n": 10
+    },
+    {
+      "status": "blocked",
+      "n": 55
+    }
+  ],
+  "worker_pool": {
+    "worker_instance_type": "m7i.large",
+    "raw_workers": 5,
+    "legacy_workers": 6,
+    "public_workers": 4,
+    "total_workers": 15,
+    "cpu_capacity": 2,
+    "memory_max_gib": 6,
+    "memory_high_gib": 5,
+    "sum_individual_memory_max_mib": 13184,
+    "limits_installation_pending": false,
+    "allow_shared_memory_oversubscription": true,
+    "admission_memory_high_gib": 4.5
+  },
+  "usage_command_id": "67f63614-6df3-4708-a461-57d0dbd1382d",
+  "verified_raw_manifest": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/jobs/bb6b800b50635359c0403a1160e86a571e324f6f70ca8144d309d8a796fb9a99/attempts/3bda260ecc4f4445aa7c2c946546618c/manifest.json",
+  "verified_raw_records": 719,
+  "verified_at": "2026-10-26T16:04:54.307831+00:00",
+  "usage": {
+    "active_workers": 15,
+    "cpu_cores": 1.2117340850782354,
+    "cpu_percent_of_2": 60.58670425391177,
+    "worker_ram_gib": 2.147247314453125,
+    "worker_memory_max_gib": 6.0,
+    "memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+    "cpu_max": "200000 100000"
+  },
+  "progress": [
+    {
+      "status": "running",
+      "n": 10
+    },
+    {
+      "status": "succeeded",
+      "n": 38
+    }
+  ],
+  "daily_timers_active": 36,
+  "tests_passed": 71
+}

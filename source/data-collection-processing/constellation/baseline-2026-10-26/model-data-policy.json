@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "approved_on": "2026-09-24",
+  "model_start_date": "2021-01-01",
+  "start_inclusive": true,
+  "scope": "HMM and TFT model datasets; intended prediction-date floor, not proof of training readiness",
+  "coverage_required": "Verify source and feature coverage for every selected training period; unavailable history remains an explicit gap.",
+  "availability_required": "Each feature must have evidence that its information was available at the prediction cutoff. Current observations and entity snapshots cannot be backdated.",
+  "prior_evidence_policy": "Retain earlier evidence where needed for valid lookbacks or relationship history; the model start does not delete raw or curated data.",
+  "enforcement_status": "Policy recorded; model dataset preparation and enforcement are not yet implemented."
+}

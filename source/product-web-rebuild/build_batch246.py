@@ -1,0 +1,5 @@
+from research_helpers import *
+a=ev('https://www.sec.gov/Archives/edgar/vprr/1300/13002833.pdf','RemeGenix issuer filing identifies MoBA therapeutics and NoMAD discovery platform, licensed from Albert Einstein College of Medicine. Not unrelated RemeGen or REGiMMUNE.')
+products=[p('RemeGenix MoBA','Historical investigational neurodegenerative-disease therapeutic programme.',a,roles=['licensee']),p('RemeGenix NoMAD','Historical animal-model drug-discovery platform.',a,roles=['licensee'],typ='technology',sub='research_tools')]
+co=dict(company_id='cmp_1429d9e3-647b-4a4e-9ac3-9416aeb1e7c7',products=products,evidence=[a],status='partial',coverage_note='Two historically disclosed licensed assets recorded, current lifecycle unknown. Partial: current operating status, licence continuity and exact MoBA candidate identities need review. No attribution of RemeGen RC-series oncology/immunology products or REGiMMUNE RGI candidates to RemeGenix. Historical intended development is not current clinical activity or approval.')
+(out/'batch-0246.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

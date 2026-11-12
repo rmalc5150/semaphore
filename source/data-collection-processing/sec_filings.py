@@ -31,6 +31,11 @@ NY = ZoneInfo("America/New_York")
 HEADER = "CIK|Company Name|Form Type|Date Filed|Filename"
 PATH_RE = re.compile(r"^edgar/data/[0-9]+/(?:[0-9]{18}/)?([0-9]{10}-[0-9]{2}-[0-9]{6})\.txt$")
 MAX_INDEX_BYTES = 128 * 1024 * 1024
+# Verified SEC EDGAR calendar, https://www.sec.gov/submit-filings/filer-support-resources/edgar-calendar
+# Explicit dates keep unknown closures conservative; exchange calendars differ.
+EDGAR_CLOSURES = frozenset(date.fromisoformat(day) for day in (
+    "2026-01-01", "2026-01-19", "2026-02-16", "2026-05-25", "2026-06-19",
+    "2026-07-03", "2026-09-07", "2026-10-12", "2026-11-11", "2026-11-26", "2026-12-25"))
 
 
 class SourceError(RuntimeError):
@@ -81,6 +86,8 @@ class SECClient:
             try:
                 request = Request(index_url(year, quarter), headers={"User-Agent": self.agent,
                     "Accept": "text/plain", "Accept-Encoding": "identity"})
+                from constellation.shared_limits import admit
+                admit(index_url(year, quarter))
                 with self.opener(request, timeout=90) as response:
                     raw = response.read(MAX_INDEX_BYTES + 1)
                     declared = response.headers.get("Content-Length")
@@ -153,7 +160,7 @@ def parse_index(raw, year, quarter, consume=None):
         except ValueError as exc:
             raise SourceError("index_row_malformed") from exc
         match = PATH_RE.fullmatch(filename)
-        if not company or not form or not match or quarter_of(filed_date) != (year, quarter) or filed_date > received:
+        if not form or not match or quarter_of(filed_date) != (year, quarter) or filed_date > received:
             raise SourceError("index_row_malformed")
         identity = (cik, company, form, filed, filename)
         # Publication validates the entire index but need not retain its rows.
@@ -164,6 +171,8 @@ def parse_index(raw, year, quarter, consume=None):
         seen.add(seen_identity)
         row = {"cik": cik, "company_name": company, "form": form, "filing_date": filed,
                "filename": filename, "accession_number": match.group(1), "index_line": number}
+        if not company:
+            row["source_field_gaps"] = ["company_name"]
         if consume:
             consume(row)
         else:
@@ -172,10 +181,10 @@ def parse_index(raw, year, quarter, consume=None):
 
 
 def assert_coverage(received, start, end):
-    # Known weekend gaps are empty; unknown weekday gaps remain partial.
+    # Confirmed EDGAR closures are empty; unknown weekday gaps remain partial.
     day = max(start, received + timedelta(days=1))
     while day < end:
-        if day.weekday() < 5:
+        if day.weekday() < 5 and day not in EDGAR_CLOSURES:
             raise SourceError("index_coverage_incomplete")
         day += timedelta(days=1)
 
@@ -297,10 +306,10 @@ def source_snapshot(run, client, year, quarter, cache):
             cache.clear()
             raw = client.fetch(year, quarter)
             retrieved_at = now()
-            rows, received = parse_index(raw, year, quarter)
             checksum = hashlib.sha256(raw).hexdigest()
             key = f"source_documents/sec_edgar/year={year}/quarter={quarter}/{checksum}.idx"
             write_checked(run.store, key, raw, content_type="text/plain")
+            rows, received = parse_index(raw, year, quarter)
             snapshot = {"source_url": index_url(year, quarter), "key": key, "sha256": checksum,
                 "retrieved_at": retrieved_at, "last_data_received": received.isoformat(),
                 "year": year, "quarter": quarter, "index_rows": len(rows)}

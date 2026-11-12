@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily product search capture from current RDS products
+
+[Timer]
+OnCalendar=*-*-* 12:00:00 Europe/Madrid
+RandomizedDelaySec=300
+Persistent=true
+Unit=optima-product-search-daily.service
+
+[Install]
+WantedBy=timers.target

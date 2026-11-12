@@ -37,6 +37,27 @@ class ArchiveTests(unittest.TestCase):
         self.assertEqual(load_json(root / 'release.json')['files']['source_observations']['rows'], 1)
         self.assertTrue(collect(self.store, self.settings, key)['already_complete'])
 
+    def test_discovery_retains_pending_until_consumed(self):
+        from personnel_archive import discover_batch
+        from collection_storage import write_json
+        manifest, _ = self.parent()
+        key, state, token = discover_batch(self.store, self.settings, 'historical', 1)
+        self.assertEqual(len(state['pending']), 1)
+        self.assertEqual(state['pending'][0][2], manifest)
+        with patch('personnel_archive.list_keys', side_effect=AssertionError('must resume pending')):
+            self.assertEqual(discover_batch(self.store,self.settings,'historical',1)[1]['pending'], state['pending'])
+        state['pending']=[];write_json(self.store,key,state,token)
+
+    def test_discovery_scans_only_bounded_page_and_resumes(self):
+        from personnel_archive import discover_batch
+        from collection_storage import write_json
+        for name in ['a','b','c']:
+            write_json(self.store,'checkpoints/task_'+name+'/head.json',{'status':'partial'})
+        _, first, _ = discover_batch(self.store,self.settings,'daily',2)
+        self.assertEqual(first['after'],'checkpoints/task_b/head.json')
+        _, last, _ = discover_batch(self.store,self.settings,'daily',2)
+        self.assertEqual(last['after'],'')
+
     def test_corrupt_source_rejected(self):
         key, evidence_key = self.parent()
         obj = self.store.get(evidence_key)

@@ -1,0 +1,15 @@
+{
+  "source_key": "sec_edgar",
+  "contract_version": "1.0.0",
+  "adapter": "filings_xbrl",
+  "adapter_version": "1.0.0",
+  "record_kind": "filing",
+  "source_record_id_basis": "provider",
+  "license_policy_id": "public-sec-edgar-v1",
+  "raw_requirements": {
+    "version": "1.0.0",
+    "minimum_completeness": "complete",
+    "required_artifact_kinds": ["provider_record", "primary_document"],
+    "forbidden_shortcuts": ["abstract_only", "index_only", "title_date_only", "third_party_metadata_only"]
+  }
+}

@@ -1,0 +1,38 @@
+[Unit]
+Description=Constellation public historical artifact worker %i
+After=network-online.target constellation-legacy-runtime-init.service
+Requires=constellation-legacy-runtime-init.service
+RequiresMountsFor=/opt/constellation
+
+[Service]
+User=ec2-user
+WorkingDirectory=/opt/constellation
+Environment=CONSTELLATION_ROLE=worker
+Environment=CONSTELLATION_EXECUTOR_KIND=public
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=CONSTELLATION_SHARED_HTTP_LIMITS=1
+Environment=AWS_DEFAULT_REGION=us-east-1
+Environment=ARROW_NUM_THREADS=1
+ExecStart=/opt/constellation/.venv/bin/python -B -m constellation.legacy_worker
+Restart=always
+RestartSec=10
+Slice=constellation-workers.slice
+CPUAccounting=true
+MemoryAccounting=true
+MemoryHigh=448M
+MemoryMax=512M
+MemorySwapMax=0
+TimeoutStopSec=240
+KillSignal=SIGTERM
+KillMode=mixed
+Nice=10
+TasksMax=128
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/dev/shm/constellation-legacy /opt/constellation/tmp
+PrivateTmp=false
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

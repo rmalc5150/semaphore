@@ -192,6 +192,19 @@ class PatentCollectionTests(unittest.TestCase):
         self.assertTrue(any('T01:45:00 TO 2025-01-06T02:00:00}' in q for q in queries))
         self.assertEqual(len({r['source_record_id'] for r in self.records(result)}), 6)
 
+    def test_eager_split_recovers_drift_within_the_same_bounded_pass(self):
+        rows=[odp('16123456',updated='2025-01-06T00:00:00'),
+              odp('16123457',updated='2025-01-06T01:05:00'),
+              odp('16123458',updated='2025-01-06T01:45:00')]
+        client=self.partition_client(rows)
+        self.partitioned(client,page_size=1,max_pages=2)
+        rows.append(odp('16123459',updated='2025-01-06T01:46:00'))
+        before=len(client.calls)
+        result=self.partitioned(client,page_size=1,max_pages=40,eager_split=True)
+        self.assertEqual((result['status'],result['records']),('complete',4))
+        self.assertLessEqual(len(client.calls)-before,40)
+        self.assertEqual(sum('T00:00:00 TO' in q['q']for q in client.calls),1)
+
     def test_partition_ignored_filter_never_commits(self):
         result = self.partitioned(FakeODP(self.store, [odp()]), max_pages=30)
         self.assertEqual(result['reason'], 'source_ignored_partition_filter')

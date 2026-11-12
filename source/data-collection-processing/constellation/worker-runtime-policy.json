@@ -1,0 +1,39 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "Resource": "arn:aws:secretsmanager:us-east-1:059416028963:secret:constellation/backfill/worker-ktYtxF"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:us-east-1:059416028963:log-group:/constellation/backfill:*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/s3-runtime/snapshots/migration-seed/config/company-universe.v0.2.json",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/s3-runtime/snapshots/migration-seed/config/company-universe.v0.3.json",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/s3-runtime/snapshots/migration-seed/config/company-universe.v0.5.json"
+      ]
+    }
+  ]
+}

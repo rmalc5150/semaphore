@@ -1,0 +1,11 @@
+[Unit]
+Description=Resume S59 BLS labor enrichment until committed data is verified and emailed
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+RandomizedDelaySec=30
+Unit=optima-bls-enrichment-backfill.service
+
+[Install]
+WantedBy=timers.target

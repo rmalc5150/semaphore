@@ -1,0 +1,7 @@
+from research_helpers import *
+a=ev('https://www.resverlogix.com/','Current issuer identifies apabetalone as lead clinical asset for cardiovascular and post-COVID conditions.')
+b=ev('https://www.resverlogix.com/investors/news.html?article=745','September 2026 issuer confirms continued lead candidate research and publications, not new approval or trial initiation.')
+c=ev('https://www.resverlogix.com/upload/media_element/320/df821eeba83b/aif_resverlogix_corp_2023_12_31_-final_for_sedar.pdf','Annual information form confirms RVX-208 alias and distinguishes completed, ready and planned indication trials; same molecule not repeated by study.')
+products=[p('Apabetalone','BET bromodomain inhibitor clinical candidate for cardiovascular and other chronic disease indications; no marketed approval inferred from breakthrough designation.',a,'development',aliases=['RVX-208'],evidence=[a,b,c])]
+co=dict(company_id='cmp_0fc9543e-9fd1-45d1-b43b-7b94aea525b0',products=products,evidence=[a,b,c],status='partial',coverage_note='Current named lead and RVX-208 alias recorded. Partial: historical RVX-297 and epigenetic library allocation to Zenith spinout, older non-epigenetic programs and current trial status require further primary evidence. Zenith-funded compounds not automatically assigned to current Resverlogix; indication trials not duplicate products.')
+(out/'batch-0236.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

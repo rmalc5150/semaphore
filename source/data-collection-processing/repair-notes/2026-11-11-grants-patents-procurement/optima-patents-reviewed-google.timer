@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue optima-patents-reviewed-google
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=900
+Persistent=true
+Unit=optima-patents-reviewed-google.service
+[Install]
+WantedBy=timers.target

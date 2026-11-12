@@ -1,0 +1,9 @@
+[Unit]
+Description=Capture current PMDA SAKIGAKE list daily
+[Timer]
+OnBootSec=180
+OnCalendar=*-*-* 07:45:00 Europe/Madrid
+Persistent=true
+Unit=optima-pmda-designations-daily.service
+[Install]
+WantedBy=timers.target

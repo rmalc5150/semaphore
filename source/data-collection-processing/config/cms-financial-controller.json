@@ -1,0 +1,18 @@
+{
+  "job_id": "cms-financial-backfill-2026-10-16",
+  "region": "us-east-1",
+  "storage_config": "config/collection-storage.s3.json",
+  "inventory_file": "config/cms-financial-resumed-editions.json",
+  "inventory_digest": "c722f269687908f894dabf78686f1b5cff41383584c1824b7fb4a76b47a0d36e",
+  "first_payment_year": 2021,
+  "max_seconds": 150,
+  "seconds_per_edition": 45,
+  "chunk_rows": 5000,
+  "athena_database": "optima_collected_data",
+  "email_topic_arn": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email",
+  "email_recipient": "randall@optima-holdings.com",
+  "scope_note": "Pinned official currently published detailed General, Research and Ownership Open Payments CSV editions for program years 2021-2025 (15 files), plus current annual Medicare Part B, Part D and Medicaid Spending by Drug files (rolling 2020-2024 values) and current Medicare quarterly Part B/Part D files (2026 Q1). These are retrieved editions, not historical publication vintages or all claims/all payer spending. Retain all rows and fields including suppression markers. Daily catalog discovery adds future editions; completion email covers all 20 pinned files with exact Athena row counts, archived raw size checks and SHA256 receipts. No automatic company/person/product resolution or product-level payment allocation.",
+  "state_file": "/home/ec2-user/data-collection-processing/state/cms-financial/registry.sqlite3",
+  "notify_on_completion": false,
+  "status_file": "/home/ec2-user/data-collection-processing/repair-notes/2026-11-11-cms-payments/financial-status-latest.json"
+}

@@ -1,0 +1,6 @@
+{
+  "function": "optima-collection-watchdog",
+  "version": "1",
+  "code_sha256": "CEadBJpLBNSHKf1ZK1TMCC4cQlbUjmGlRd9fi9v6S78=",
+  "change": "Shared-workspace prosecution queue grace; current collector scopes and checkpoint-progress settings. Watchdog code and notification routing unchanged."
+}

@@ -1,0 +1,86 @@
+{
+  "checked_at": "2026-10-26T05:43:34.005610+00:00",
+  "results": [
+    {
+      "source_key": "usgs_earthquakes",
+      "spec": {
+        "source_key": "usgs_earthquakes",
+        "dataset": "earthquake_events",
+        "geography": "global",
+        "start": "2016-01-04",
+        "end": "2016-01-05",
+        "edition": "current_retrieval",
+        "extractor_version": "constellation-raw-v1",
+        "parameters": {}
+      },
+      "http_status": 200,
+      "request_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2016-01-04&endtime=2016-01-04T23%3A59%3A59.999&limit=1000&offset=1&orderby=time-asc&nodata=204",
+      "retrieved_at": "2026-10-26T05:43:33.369076+00:00",
+      "raw": {
+        "uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/probes/usgs_earthquakes/2026-10-26T05-43-33.369076+00-00/raw",
+        "sha256": "4931e80dd2d29dca1a43f8ebdfe678a8144e4388d85e1f68d84c5f62486545c4",
+        "bytes": 245607
+      },
+      "historical_complete": false,
+      "documentation": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "status": "validated_sample",
+      "records": 340,
+      "more_pages": false,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/probes/usgs_earthquakes/2026-10-26T05-43-33.369076+00-00/receipt.json"
+    },
+    {
+      "source_key": "nsf_awards",
+      "spec": {
+        "source_key": "nsf_awards",
+        "dataset": "research_awards",
+        "geography": "global",
+        "start": "2016-01-04",
+        "end": "2016-01-05",
+        "edition": "current_retrieval",
+        "extractor_version": "constellation-raw-v1",
+        "parameters": {}
+      },
+      "http_status": 200,
+      "request_url": "https://api.nsf.gov/services/v1/awards.json?dateStart=01%2F04%2F2016&dateEnd=01%2F04%2F2016&rpp=25&offset=1&printFields=id%2Ctitle%2CabstractText%2Cdate%2CstartDate%2CexpDate%2CawardeeName%2CawardeeCountryCode%2CawardeeStateCode%2CfundsObligatedAmt%2Cagency",
+      "retrieved_at": "2026-10-26T05:43:33.705099+00:00",
+      "raw": {
+        "uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/probes/nsf_awards/2026-10-26T05-43-33.705099+00-00/raw",
+        "sha256": "e331d23767478adef9ee2a9437a2bcf89d279a23f1088652f7e548f2f84fdbe8",
+        "bytes": 313156
+      },
+      "historical_complete": false,
+      "documentation": "https://resources.research.gov/common/webapi/awardapisearch-v1.htm",
+      "status": "validated_sample",
+      "records": 18,
+      "more_pages": false,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/probes/nsf_awards/2026-10-26T05-43-33.705099+00-00/receipt.json"
+    },
+    {
+      "source_key": "arxiv",
+      "spec": {
+        "source_key": "arxiv",
+        "dataset": "preprint_metadata",
+        "geography": "global",
+        "start": "2016-01-04",
+        "end": "2016-01-05",
+        "edition": "current_retrieval",
+        "extractor_version": "constellation-raw-v1",
+        "parameters": {}
+      },
+      "http_status": 200,
+      "request_url": "https://export.arxiv.org/api/query?search_query=submittedDate%3A%5B201601040000+TO+201601042359%5D&start=0&max_results=100&sortBy=submittedDate&sortOrder=ascending",
+      "retrieved_at": "2026-10-26T05:43:33.851700+00:00",
+      "raw": {
+        "uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/probes/arxiv/2026-10-26T05-43-33.851700+00-00/raw",
+        "sha256": "ae8d4325d242b57f5d1d79a3b3db57c03035c61dd45a764ec9757f2f05f1ed64",
+        "bytes": 235692
+      },
+      "historical_complete": false,
+      "documentation": "https://info.arxiv.org/help/api/user-manual.html",
+      "status": "validated_sample",
+      "records": 100,
+      "more_pages": true,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/probes/arxiv/2026-10-26T05-43-33.851700+00-00/receipt.json"
+    }
+  ]
+}

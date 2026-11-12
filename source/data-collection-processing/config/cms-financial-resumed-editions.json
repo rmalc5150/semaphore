@@ -1,0 +1,267 @@
+[
+  {
+    "source": "cms_drug_spending",
+    "dataset_id": "https://data.cms.gov/data-api/v1/dataset/76a714ad-3a2c-43ac-b76d-9dadf8f7d890/data-viewer",
+    "category": "annual",
+    "title": "Medicare Part B Spending by Drug : 2024-01-01",
+    "modified": "2026-06-25",
+    "url": "https://data.cms.gov/sites/default/files/2026-06/6616fc91-eb70-404c-9f27-1448e47a3a73/DSD_PTB_RY26_P06_V10_DYT24_HCPCS-%20260602.csv",
+    "dictionary": "https://data.cms.gov/data-api/v1/dataset/f48ced88-541a-4c51-947b-149197e5eaf3/dictionary",
+    "temporal": [
+      {
+        "@type": "PeriodOfTime",
+        "startDate": "2024-01-01",
+        "endDate": "2024-12-31"
+      }
+    ],
+    "edition_id": "8833e12290ebd6f4d191ad2f3eeccbf18288bd4ede9a0dcb5885d0324c6165cd"
+  },
+  {
+    "source": "cms_drug_spending",
+    "dataset_id": "https://data.cms.gov/data-api/v1/dataset/7e0b4365-fd63-4a29-8f5e-e0ac9f66a81b/data-viewer",
+    "category": "annual",
+    "title": "Medicare Part D Spending by Drug : 2024-01-01",
+    "modified": "2026-06-25",
+    "url": "https://data.cms.gov/sites/default/files/2026-06/98218f98-166c-4723-8438-c344a4ef96a6/DSD_PTD_RY26_P04_V10_DY24_BGM.csv",
+    "dictionary": "https://data.cms.gov/data-api/v1/dataset/da5ff50b-e5da-42de-b68b-6cfac1f64f35/dictionary",
+    "temporal": [
+      {
+        "@type": "PeriodOfTime",
+        "startDate": "2024-01-01",
+        "endDate": "2024-12-31"
+      }
+    ],
+    "edition_id": "b6042c1020a29c2d4e8dfddc96d31daa3c486aeeae96c7f4218f59fefdd250e4"
+  },
+  {
+    "source": "cms_drug_spending",
+    "dataset_id": "https://data.cms.gov/data-api/v1/dataset/be64fce3-e835-4589-b46b-024198e524a6/data-viewer",
+    "category": "annual",
+    "title": "Medicaid Spending by Drug : 2024-01-01",
+    "modified": "2026-06-25",
+    "url": "https://data.cms.gov/sites/default/files/2026-06/ae1c5e06-957d-42dd-b783-e7fe598c01c9/DSD_MCD_RY26_P06_V20_D24_BGM.csv",
+    "dictionary": "https://data.cms.gov/data-api/v1/dataset/98aa468b-130b-4c3d-897a-552a94f85750/dictionary",
+    "temporal": [
+      {
+        "@type": "PeriodOfTime",
+        "startDate": "2024-01-01",
+        "endDate": "2024-12-31"
+      }
+    ],
+    "edition_id": "fd59847d83f1c3afdb46968162d2f08449e865a7d0cacd2cad67460097e543d8"
+  },
+  {
+    "source": "cms_drug_spending",
+    "dataset_id": "https://data.cms.gov/data-api/v1/dataset/bf6a5b3b-31ee-4abb-b1ad-2607a1e7510a/data-viewer",
+    "category": "quarterly",
+    "title": "Medicare Quarterly Part B Spending by Drug : 2026-01-01",
+    "modified": "2026-07-23",
+    "url": "https://data.cms.gov/sites/default/files/2026-07/6d9e955a-d199-42cf-9f73-7e0d93c33b3e/qddptb_r2603_p06_v10_dqt2601_260722.csv",
+    "dictionary": "https://data.cms.gov/data-api/v1/dataset/5cb9fd56-2358-4a7a-b21e-05f3ea93ec12/dictionary",
+    "temporal": [
+      {
+        "@type": "PeriodOfTime",
+        "startDate": "2026-01-01",
+        "endDate": "2026-03-31"
+      }
+    ],
+    "edition_id": "5179241a79a8e5b6fff3ebe1ac9d64a752662069334f2a7805267603c7e69ac6"
+  },
+  {
+    "source": "cms_drug_spending",
+    "dataset_id": "https://data.cms.gov/data-api/v1/dataset/4ff7c618-4e40-483a-b390-c8a58c94fa15/data-viewer",
+    "category": "quarterly",
+    "title": "Medicare Quarterly Part D Spending by Drug : 2026-01-01",
+    "modified": "2026-07-23",
+    "url": "https://data.cms.gov/sites/default/files/2026-07/QDD_PTD_RQ2603_P01_V10_DQT2601_20260708.csv",
+    "dictionary": "https://data.cms.gov/data-api/v1/dataset/43ed210a-bf5d-49ba-baa4-5713a5a5ded1/dictionary",
+    "temporal": [
+      {
+        "@type": "PeriodOfTime",
+        "startDate": "2026-01-01",
+        "endDate": "2026-03-31"
+      }
+    ],
+    "edition_id": "6f674b8535b05c2bf4eb0d3d2a1bf43a6726378c977f49d89d5b44a3c94571dc"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "b0c03b8d-06df-58f2-8ce2-4daeffee147e",
+    "category": "ownership",
+    "program_year": 2021,
+    "title": "2021 Ownership Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2021_P06302026_06032026/OP_DTL_OWNRSHP_PGYR2021_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/0b7b03cb-835c-50c4-abbb-5a311eb91858",
+    "temporal": "2021-01-01/2021-12-31",
+    "edition_id": "986313a52f9c72406bfec3f7d81f161fa0b1eafb48ff2030c80f842df6c62fce"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "37792388-800f-427a-9e02-b11601454eeb",
+    "category": "ownership",
+    "program_year": 2022,
+    "title": "2022 Ownership Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2022_P06302026_06032026/OP_DTL_OWNRSHP_PGYR2022_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/0b7b03cb-835c-50c4-abbb-5a311eb91858",
+    "temporal": "2022-01-01/2022-12-31",
+    "edition_id": "dde08faff6765cf171009b258f05644a7a7543d56fe012d685f8b2fd2d29d81b"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "ac0bc85c-02e3-45d9-89e8-2ff43da85df7",
+    "category": "ownership",
+    "program_year": 2023,
+    "title": "2023 Ownership Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2023_P06302026_06032026/OP_DTL_OWNRSHP_PGYR2023_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/0b7b03cb-835c-50c4-abbb-5a311eb91858",
+    "temporal": "2023-01-01/2023-12-31",
+    "edition_id": "e0e06d11807e93e5c88014015c9a7c91814664ecb2bc1b3fa97c0b1e875e1a10"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "9ac4f7f8-b6e4-4d80-8410-4aba7e71dd02",
+    "category": "ownership",
+    "program_year": 2024,
+    "title": "2024 Ownership Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2024_P06302026_06032026/OP_DTL_OWNRSHP_PGYR2024_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/0b7b03cb-835c-50c4-abbb-5a311eb91858",
+    "temporal": "2024-01-01/2024-12-31",
+    "edition_id": "56981740532c89dc43edd87b77e7af255f97429e3f5eaf63fceec33ae6c0a027"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "800aed1b-20ed-4d19-b0c9-dcd10f197ffc",
+    "category": "ownership",
+    "program_year": 2025,
+    "title": "2025 Ownership Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2025_P06302026_06032026/OP_DTL_OWNRSHP_PGYR2025_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/0b7b03cb-835c-50c4-abbb-5a311eb91858",
+    "temporal": "2025-01-01/2025-12-31",
+    "edition_id": "0f40012640b52dfac7053dca613ef1d860d76cf1f5620a297f06f5247d289787"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "0380bbeb-aea1-58b6-b708-829f92a48202",
+    "category": "general",
+    "program_year": 2021,
+    "title": "2021 General Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2021_P06302026_06032026/OP_DTL_GNRL_PGYR2021_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/71ec19df-f5ef-5b99-b43b-e566e22670b7",
+    "temporal": "2021-01-01/2021-12-31",
+    "edition_id": "71c80fac8a982d454d9e8495381991c1598375ad8bdc18182ec0a6eb999937d6"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "ce1d28dd-0094-5060-a036-580329439600",
+    "category": "research",
+    "program_year": 2021,
+    "title": "2021 Research Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2021_P06302026_06032026/OP_DTL_RSRCH_PGYR2021_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/618ebb0f-b9c8-5efd-a374-bd8e7665d5f8",
+    "temporal": "2021-01-01/2021-12-31",
+    "edition_id": "5184a4c2955d7924caa220a36da2b7a01ec8355525bc2fe55783feccce865dc7"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "df01c2f8-dc1f-4e79-96cb-8208beaf143c",
+    "category": "general",
+    "program_year": 2022,
+    "title": "2022 General Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2022_P06302026_06032026/OP_DTL_GNRL_PGYR2022_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/71ec19df-f5ef-5b99-b43b-e566e22670b7",
+    "temporal": "2022-01-01/2022-12-31",
+    "edition_id": "4f05f8335ec7cc6c52f60184cf4a59bb14c320d39754cf51fa894a40c35cb4d7"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "fdc3c773-018a-412c-8a81-d7b8a13a037b",
+    "category": "research",
+    "program_year": 2022,
+    "title": "2022 Research Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2022_P06302026_06032026/OP_DTL_RSRCH_PGYR2022_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/618ebb0f-b9c8-5efd-a374-bd8e7665d5f8",
+    "temporal": "2022-01-01/2022-12-31",
+    "edition_id": "c2623d170cd0f77bfb141c3ab995373aed43759a16e7854db0af0057373478e0"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "fb3a65aa-c901-4a38-a813-b04b00dfa2a9",
+    "category": "general",
+    "program_year": 2023,
+    "title": "2023 General Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2023_P06302026_06032026/OP_DTL_GNRL_PGYR2023_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/71ec19df-f5ef-5b99-b43b-e566e22670b7",
+    "temporal": "2023-01-01/2023-12-31",
+    "edition_id": "81454f611a5c8bd27eeb453aac55ba14a98f187c489235eabf00b50b8a18d4a2"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "ec9521bf-9d97-4603-814c-f4132d34bc4f",
+    "category": "research",
+    "program_year": 2023,
+    "title": "2023 Research Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2023_P06302026_06032026/OP_DTL_RSRCH_PGYR2023_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/618ebb0f-b9c8-5efd-a374-bd8e7665d5f8",
+    "temporal": "2023-01-01/2023-12-31",
+    "edition_id": "5b0d59d2c8a1b6ccf606f83392deb0c9f5cba603d99dae893e45a3b03da4f494"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "e6b17c6a-2534-4207-a4a1-6746a14911ff",
+    "category": "general",
+    "program_year": 2024,
+    "title": "2024 General Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2024_P06302026_06032026/OP_DTL_GNRL_PGYR2024_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/71ec19df-f5ef-5b99-b43b-e566e22670b7",
+    "temporal": "2024-01-01/2024-12-31",
+    "edition_id": "0e7fcf00bcee1bbc55a3526c19df9903c84e090794bc088f874f566abcc8bc50"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "2f15cb85-8887-4dcc-a318-1f8ec1d815b3",
+    "category": "research",
+    "program_year": 2024,
+    "title": "2024 Research Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2024_P06302026_06032026/OP_DTL_RSRCH_PGYR2024_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/618ebb0f-b9c8-5efd-a374-bd8e7665d5f8",
+    "temporal": "2024-01-01/2024-12-31",
+    "edition_id": "ca56f85e3a284dae54ddd7a186e7ba8f016be9667b89d3921a11d74951e81167"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "fb0b1734-1410-429d-92f6-3f4b35218e5e",
+    "category": "general",
+    "program_year": 2025,
+    "title": "2025 General Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2025_P06302026_06032026/OP_DTL_GNRL_PGYR2025_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/71ec19df-f5ef-5b99-b43b-e566e22670b7",
+    "temporal": "2025-01-01/2025-12-31",
+    "edition_id": "e498c85722c5e04dbbe794286955c143b62b093a716a7e0886c8e1eb9d7f29e5"
+  },
+  {
+    "source": "cms_open_payments",
+    "dataset_id": "f0d1de67-6852-4093-a036-c9328c256a05",
+    "category": "research",
+    "program_year": 2025,
+    "title": "2025 Research Payment Data",
+    "modified": "2026-06-30",
+    "url": "https://download.cms.gov/openpayments/PGYR2025_P06302026_06032026/OP_DTL_RSRCH_PGYR2025_P06302026_06032026.csv",
+    "dictionary": "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/618ebb0f-b9c8-5efd-a374-bd8e7665d5f8",
+    "temporal": "2025-01-01/2025-12-31",
+    "edition_id": "20bc9efd094dc978a3f442fb85355e86f5c71582b3ca9b726b1f820c8c7ca8ff"
+  }
+]

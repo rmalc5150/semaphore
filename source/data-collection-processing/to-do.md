@@ -30,7 +30,7 @@ New capture expansion: [68-source API/capture checklist](reports/specialist-expa
 - [ ] Resolve zero accepted products and 388 pending company identities; establish dated trial/device/chip/project/site/person joins.
 - [ ] Obtain required licensed/private inputs and complete specialist field extraction; metadata/discovery pages do not satisfy measurement requirements.
 
-Use the [updated 67-source list and checks](reports/weekly-readiness-2026-10-09/data-sources-and-checks.md),
+Use the [updated 67-source list and checks](ENTITY_DISCOVERY_ROLLOUT_PLAN.md#source-acceptance),
 [readiness report](reports/weekly-readiness-2026-10-09/readiness-report.md) and
 [source acceptance records](reports/weekly-readiness-2026-10-09/source-acceptance-records.json).
 Daily tasks below remain open where their full acceptance conditions are unfinished.

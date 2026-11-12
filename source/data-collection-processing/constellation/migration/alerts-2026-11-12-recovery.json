@@ -1,0 +1,1290 @@
+{
+  "active": {
+    "optima-collection-daily.service:prerequisite_incomplete": {
+      "code": "prerequisite_incomplete",
+      "detail": "prerequisite_incomplete",
+      "evidence_at": "2026-11-12T11:21:12.598067Z",
+      "first_seen": "2026-10-26T08:35:38.874580Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-collection-daily.service"
+    },
+    "optima-market-collection.service:market_empty_price_window_unverified": {
+      "code": "market_empty_price_window_unverified",
+      "detail": "Empty price windows remain unverified outside the 52 reviewed window exclusions.",
+      "evidence_at": "2026-10-21T22:05:04Z",
+      "first_seen": "2026-10-26T08:35:38.874580Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-market-collection.service"
+    },
+    "optima-market-collection.service:unresolved_market_coverage": {
+      "code": "unresolved_market_coverage",
+      "detail": "Unresolved coverage: daily: 175 symbols; historical: 202 symbols. 52 windows excluded with reviewed evidence.",
+      "evidence_at": "2026-11-12T11:09:57.150542Z",
+      "first_seen": "2026-10-26T08:35:38.874580Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-market-collection.service"
+    },
+    "optima-patents-daily.service:progress_stalled": {
+      "code": "progress_stalled",
+      "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+      "evidence_at": "2026-11-12T10:35:38.762182Z",
+      "first_seen": "2026-11-11T03:05:38.918154Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-patents-daily.service"
+    },
+    "optima-patents-daily.service:source_changed_refresh_required": {
+      "code": "source_changed_refresh_required",
+      "detail": "source_changed_refresh_required",
+      "evidence_at": "2026-11-12T10:56:48Z",
+      "first_seen": "2026-11-12T11:02:45.425943Z",
+      "last_notified": {},
+      "last_seen": "2026-11-12T11:35:38.548739Z",
+      "severity": "low",
+      "unit": "optima-patents-daily.service"
+    }
+  },
+  "checked_at": "2026-11-12T11:35:38.548739Z",
+  "email_digest": {
+    "incidents": {
+      "optima-authenticated-daily.service:progress_stalled": {
+        "first_observed_at": "2026-11-11T13:35:38.844475Z",
+        "incident": {
+          "code": "progress_stalled",
+          "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+          "evidence_at": "2026-11-11T15:05:39.195262Z",
+          "first_seen": "2026-11-11T13:35:38.844475Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T15:05:39.195262Z",
+          "severity": "low",
+          "unit": "optima-authenticated-daily.service"
+        },
+        "last_observed_at": "2026-11-11T15:35:38.664521Z",
+        "status": "recovered"
+      },
+      "optima-authenticated-daily.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 78 minutes.",
+          "evidence_at": "2026-11-12T10:35:38.762182Z",
+          "first_seen": "2026-11-12T10:05:38.667661Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-authenticated-daily.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-authenticated-daily.service:service_failed": {
+        "first_observed_at": "2026-11-11T19:05:38.803701Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "systemd result: signal",
+          "evidence_at": "2026-11-11T19:35:38.922427Z",
+          "first_seen": "2026-11-11T19:05:38.803701Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T22:35:38.660997Z",
+          "severity": "low",
+          "unit": "optima-authenticated-daily.service"
+        },
+        "last_observed_at": "2026-11-11T23:05:39.208822Z",
+        "status": "recovered"
+      },
+      "optima-chictr-daily.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T15:35:38.664521Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 444 minutes.",
+          "evidence_at": "2026-11-11T16:05:39.179286Z",
+          "first_seen": "2026-11-11T15:35:38.664521Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T16:05:39.179286Z",
+          "severity": "low",
+          "unit": "optima-chictr-daily.service"
+        },
+        "last_observed_at": "2026-11-11T16:35:39.452811Z",
+        "status": "recovered"
+      },
+      "optima-cms-catalog-publication.service:missed_run": {
+        "first_observed_at": "2026-11-12T08:56:19.285356Z",
+        "incident": {
+          "code": "missed_run",
+          "detail": "No invocation within the configured schedule and queue grace period.",
+          "evidence_at": "2026-11-12T08:56:19.285356Z",
+          "first_seen": "2026-11-12T08:56:19.285356Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:56:19.285356Z",
+          "severity": "low",
+          "unit": "optima-cms-catalog-publication.service"
+        },
+        "last_observed_at": "2026-11-12T09:05:38.816774Z",
+        "status": "recovered"
+      },
+      "optima-cms-coverage-publication.service:missed_run": {
+        "first_observed_at": "2026-11-12T11:12:32.779883Z",
+        "incident": {
+          "code": "missed_run",
+          "detail": "No invocation within the configured schedule and queue grace period.",
+          "evidence_at": "2026-11-12T11:12:32.779883Z",
+          "first_seen": "2026-11-12T11:12:32.779883Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:12:32.779883Z",
+          "severity": "low",
+          "unit": "optima-cms-coverage-publication.service"
+        },
+        "last_observed_at": "2026-11-12T11:22:31.695744Z",
+        "status": "recovered"
+      },
+      "optima-cms-financial-resumed.service:oom_kill": {
+        "first_observed_at": "2026-11-12T08:56:19.285356Z",
+        "incident": {
+          "code": "oom_kill",
+          "detail": "optima-cms-financial-resumed.service: Failed with result 'oom-kill'.",
+          "evidence_at": "2026-11-12T08:41:19.887950Z",
+          "first_seen": "2026-11-12T08:56:19.285356Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:56:19.285356Z",
+          "severity": "high",
+          "unit": "optima-cms-financial-resumed.service"
+        },
+        "last_observed_at": "2026-11-12T09:05:38.816774Z",
+        "status": "recovered"
+      },
+      "optima-cms-financial-resumed.service:service_failed": {
+        "first_observed_at": "2026-11-12T08:56:19.285356Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-cms-financial-resumed.service: Failed with result 'timeout'.",
+          "evidence_at": "2026-11-12T08:32:47.649128Z",
+          "first_seen": "2026-11-12T08:56:19.285356Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:56:19.285356Z",
+          "severity": "low",
+          "unit": "optima-cms-financial-resumed.service"
+        },
+        "last_observed_at": "2026-11-12T09:05:38.816774Z",
+        "status": "recovered"
+      },
+      "optima-collection-daily.service:hkex_original_empty_or_oversize": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "hkex_original_empty_or_oversize",
+          "detail": "hkex_original_empty_or_oversize",
+          "evidence_at": "2026-11-12T08:53:28.481170Z",
+          "first_seen": "2026-11-10T11:35:38.965661Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:05:38.667661Z",
+          "severity": "low",
+          "unit": "optima-collection-daily.service"
+        },
+        "last_observed_at": "2026-11-12T10:35:38.762182Z",
+        "status": "recovered"
+      },
+      "optima-collection-daily.service:index_coverage_incomplete": {
+        "first_observed_at": "2026-11-12T10:35:38.762182Z",
+        "incident": {
+          "code": "index_coverage_incomplete",
+          "detail": "index_coverage_incomplete",
+          "evidence_at": "2026-11-12T10:30:40.113847Z",
+          "first_seen": "2026-11-12T10:35:38.762182Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:05:38.848238Z",
+          "severity": "low",
+          "unit": "optima-collection-daily.service"
+        },
+        "last_observed_at": "2026-11-12T11:12:32.779883Z",
+        "status": "recovered"
+      },
+      "optima-collection-daily.service:mhra_attachment_missing": {
+        "first_observed_at": "2026-11-12T10:35:38.762182Z",
+        "incident": {
+          "code": "mhra_attachment_missing",
+          "detail": "mhra_attachment_missing",
+          "evidence_at": "2026-11-12T10:30:40.113847Z",
+          "first_seen": "2026-11-12T10:35:38.762182Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:05:38.848238Z",
+          "severity": "low",
+          "unit": "optima-collection-daily.service"
+        },
+        "last_observed_at": "2026-11-12T11:12:32.779883Z",
+        "status": "recovered"
+      },
+      "optima-collection-daily.service:oom_kill": {
+        "first_observed_at": "2026-11-11T16:35:39.452811Z",
+        "incident": {
+          "code": "oom_kill",
+          "detail": "optima-collection-daily.service: Failed with result 'oom-kill'.",
+          "evidence_at": "2026-11-11T16:14:39.122426Z",
+          "first_seen": "2026-11-11T16:35:39.452811Z",
+          "last_notified": {
+            "sms": "2026-11-12T05:35:38.734649Z"
+          },
+          "last_seen": "2026-11-12T08:35:38.869785Z",
+          "severity": "high",
+          "unit": "optima-collection-daily.service"
+        },
+        "last_observed_at": "2026-11-12T08:56:19.285356Z",
+        "status": "recovered"
+      },
+      "optima-collection-daily.service:prerequisite_incomplete": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "prerequisite_incomplete",
+          "detail": "prerequisite_incomplete",
+          "evidence_at": "2026-11-12T11:21:12.598067Z",
+          "first_seen": "2026-10-26T08:35:38.874580Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:35:38.548739Z",
+          "severity": "low",
+          "unit": "optima-collection-daily.service"
+        },
+        "last_observed_at": "2026-11-12T11:35:38.548739Z",
+        "status": "open"
+      },
+      "optima-collection-daily.service:progress_stalled": {
+        "first_observed_at": "2026-11-12T00:05:39.130891Z",
+        "incident": {
+          "code": "progress_stalled",
+          "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+          "evidence_at": "2026-11-12T08:35:38.869785Z",
+          "first_seen": "2026-11-12T00:05:39.130891Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:35:38.869785Z",
+          "severity": "low",
+          "unit": "optima-collection-daily.service"
+        },
+        "last_observed_at": "2026-11-12T08:56:19.285356Z",
+        "status": "recovered"
+      },
+      "optima-collection-daily.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T15:05:39.195262Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 612 minutes.",
+          "evidence_at": "2026-11-12T08:35:38.869785Z",
+          "first_seen": "2026-11-12T05:05:38.897809Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:35:38.869785Z",
+          "severity": "low",
+          "unit": "optima-collection-daily.service"
+        },
+        "last_observed_at": "2026-11-12T08:56:19.285356Z",
+        "status": "recovered"
+      },
+      "optima-collection-daily.service:service_failed": {
+        "first_observed_at": "2026-11-11T16:35:39.452811Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-m7-aux-collection-daily.service: Failed with result 'exit-code'.",
+          "evidence_at": "2026-11-12T08:34:10.470530Z",
+          "first_seen": "2026-11-11T16:35:39.452811Z",
+          "last_notified": {
+            "sms": "2026-11-12T05:35:38.734649Z"
+          },
+          "last_seen": "2026-11-12T08:56:19.285356Z",
+          "severity": "low",
+          "unit": "optima-collection-daily.service"
+        },
+        "last_observed_at": "2026-11-12T09:05:38.816774Z",
+        "status": "recovered"
+      },
+      "optima-committed-athena.service:missed_run": {
+        "first_observed_at": "2026-11-12T09:05:38.816774Z",
+        "incident": {
+          "code": "missed_run",
+          "detail": "No invocation within the configured schedule and queue grace period.",
+          "evidence_at": "2026-11-12T09:05:38.816774Z",
+          "first_seen": "2026-11-12T09:05:38.816774Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T09:05:38.816774Z",
+          "severity": "low",
+          "unit": "optima-committed-athena.service"
+        },
+        "last_observed_at": "2026-11-12T09:18:52.898933Z",
+        "status": "recovered"
+      },
+      "optima-committed-athena.service:oom_kill": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "oom_kill",
+          "detail": "optima-committed-athena.service: Failed with result 'oom-kill'.",
+          "evidence_at": "2026-11-11T19:12:34.103187Z",
+          "first_seen": "2026-11-11T11:35:38.950107Z",
+          "last_notified": {
+            "sms": "2026-11-12T06:35:38.878385Z"
+          },
+          "last_seen": "2026-11-12T08:56:19.285356Z",
+          "severity": "high",
+          "unit": "optima-committed-athena.service"
+        },
+        "last_observed_at": "2026-11-12T09:05:38.816774Z",
+        "status": "recovered"
+      },
+      "optima-committed-athena.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 55 minutes.",
+          "evidence_at": "2026-11-12T08:35:38.869785Z",
+          "first_seen": "2026-11-12T08:35:38.869785Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:35:38.869785Z",
+          "severity": "low",
+          "unit": "optima-committed-athena.service"
+        },
+        "last_observed_at": "2026-11-12T08:56:19.285356Z",
+        "status": "recovered"
+      },
+      "optima-committed-athena.service:service_failed": {
+        "first_observed_at": "2026-11-11T19:05:38.803701Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "systemd result: oom-kill",
+          "evidence_at": "2026-11-11T19:35:38.922427Z",
+          "first_seen": "2026-11-11T19:05:38.803701Z",
+          "last_notified": {
+            "sms": "2026-11-12T08:05:39.445768Z"
+          },
+          "last_seen": "2026-11-12T08:56:19.285356Z",
+          "severity": "high",
+          "unit": "optima-committed-athena.service"
+        },
+        "last_observed_at": "2026-11-12T09:05:38.816774Z",
+        "status": "recovered"
+      },
+      "optima-daily-health-audit.service:daily_audit_missing_or_stale": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "daily_audit_missing_or_stale",
+          "detail": "Fresh daily S3/Athena audit is missing or older than 26 hours.",
+          "evidence_at": "2026-11-11T15:05:39.195262Z",
+          "first_seen": "2026-11-11T11:35:38.950107Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T15:05:39.195262Z",
+          "severity": "low",
+          "unit": "optima-daily-health-audit.service"
+        },
+        "last_observed_at": "2026-11-11T15:35:38.664521Z",
+        "status": "recovered"
+      },
+      "optima-daily-health-audit.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 78 minutes.",
+          "evidence_at": "2026-11-12T10:35:38.762182Z",
+          "first_seen": "2026-11-12T10:05:38.667661Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-daily-health-audit.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-daily-health-audit.service:service_failed": {
+        "first_observed_at": "2026-11-12T09:05:38.816774Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-daily-health-audit.service: Failed with result 'signal'.",
+          "evidence_at": "2026-11-12T09:00:40.121205Z",
+          "first_seen": "2026-11-12T09:05:38.816774Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:05:38.848238Z",
+          "severity": "low",
+          "unit": "optima-daily-health-audit.service"
+        },
+        "last_observed_at": "2026-11-12T11:12:32.779883Z",
+        "status": "recovered"
+      },
+      "optima-eodhd-profiles.service:queue_timeout": {
+        "first_observed_at": "2026-11-12T02:35:38.852298Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 715 minutes.",
+          "evidence_at": "2026-11-12T07:35:38.541481Z",
+          "first_seen": "2026-11-12T02:35:38.852298Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T07:35:38.541481Z",
+          "severity": "low",
+          "unit": "optima-eodhd-profiles.service"
+        },
+        "last_observed_at": "2026-11-12T08:05:39.445768Z",
+        "status": "recovered"
+      },
+      "optima-eodhd-profiles.service:service_failed": {
+        "first_observed_at": "2026-11-11T19:05:38.803701Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-eodhd-profiles.service: Failed with result 'signal'.",
+          "evidence_at": "2026-11-12T09:16:23.634331Z",
+          "first_seen": "2026-11-11T19:05:38.803701Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:05:38.848238Z",
+          "severity": "low",
+          "unit": "optima-eodhd-profiles.service"
+        },
+        "last_observed_at": "2026-11-12T11:12:32.779883Z",
+        "status": "recovered"
+      },
+      "optima-fda-product-codes-capture.service:service_failed": {
+        "first_observed_at": "2026-11-12T08:56:19.285356Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-fda-product-codes-capture.service: Failed with result 'timeout'.",
+          "evidence_at": "2026-11-12T08:32:18.148078Z",
+          "first_seen": "2026-11-12T08:56:19.285356Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:56:19.285356Z",
+          "severity": "low",
+          "unit": "optima-fda-product-codes-capture.service"
+        },
+        "last_observed_at": "2026-11-12T09:05:38.816774Z",
+        "status": "recovered"
+      },
+      "optima-fda-reviewed-publication.service:missed_run": {
+        "first_observed_at": "2026-11-12T11:12:32.779883Z",
+        "incident": {
+          "code": "missed_run",
+          "detail": "No invocation within the configured schedule and queue grace period.",
+          "evidence_at": "2026-11-12T11:12:32.779883Z",
+          "first_seen": "2026-11-12T11:12:32.779883Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:12:32.779883Z",
+          "severity": "low",
+          "unit": "optima-fda-reviewed-publication.service"
+        },
+        "last_observed_at": "2026-11-12T11:22:31.695744Z",
+        "status": "recovered"
+      },
+      "optima-market-collection.service:market_empty_price_window_unverified": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "market_empty_price_window_unverified",
+          "detail": "Empty price windows remain unverified outside the 52 reviewed window exclusions.",
+          "evidence_at": "2026-10-21T22:05:04Z",
+          "first_seen": "2026-10-26T08:35:38.874580Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:35:38.548739Z",
+          "severity": "low",
+          "unit": "optima-market-collection.service"
+        },
+        "last_observed_at": "2026-11-12T11:35:38.548739Z",
+        "status": "open"
+      },
+      "optima-market-collection.service:progress_stalled": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "progress_stalled",
+          "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+          "evidence_at": "2026-11-11T22:35:38.660997Z",
+          "first_seen": "2026-11-11T05:05:39.661239Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T22:35:38.660997Z",
+          "severity": "low",
+          "unit": "optima-market-collection.service"
+        },
+        "last_observed_at": "2026-11-11T23:05:39.208822Z",
+        "status": "recovered"
+      },
+      "optima-market-collection.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T18:35:38.726721Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 594 minutes.",
+          "evidence_at": "2026-11-12T09:05:38.816774Z",
+          "first_seen": "2026-11-12T06:05:38.827101Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T09:05:38.816774Z",
+          "severity": "low",
+          "unit": "optima-market-collection.service"
+        },
+        "last_observed_at": "2026-11-12T09:18:52.898933Z",
+        "status": "recovered"
+      },
+      "optima-market-collection.service:service_failed": {
+        "first_observed_at": "2026-11-11T19:05:38.803701Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-market-collection.service: Failed with result 'signal'.",
+          "evidence_at": "2026-11-12T09:16:23.638849Z",
+          "first_seen": "2026-11-12T09:18:52.898933Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:05:38.848238Z",
+          "severity": "low",
+          "unit": "optima-market-collection.service"
+        },
+        "last_observed_at": "2026-11-12T11:12:32.779883Z",
+        "status": "recovered"
+      },
+      "optima-market-collection.service:unresolved_market_coverage": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "unresolved_market_coverage",
+          "detail": "Unresolved coverage: daily: 175 symbols; historical: 202 symbols. 52 windows excluded with reviewed evidence.",
+          "evidence_at": "2026-11-12T11:09:57.150542Z",
+          "first_seen": "2026-10-26T08:35:38.874580Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:35:38.548739Z",
+          "severity": "low",
+          "unit": "optima-market-collection.service"
+        },
+        "last_observed_at": "2026-11-12T11:35:38.548739Z",
+        "status": "open"
+      },
+      "optima-market-publication.service:progress_stalled": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "progress_stalled",
+          "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+          "evidence_at": "2026-11-11T22:35:38.660997Z",
+          "first_seen": "2026-11-11T12:35:38.623207Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T22:35:38.660997Z",
+          "severity": "low",
+          "unit": "optima-market-publication.service"
+        },
+        "last_observed_at": "2026-11-11T23:05:39.208822Z",
+        "status": "recovered"
+      },
+      "optima-market-publication.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T18:35:38.726721Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 399 minutes.",
+          "evidence_at": "2026-11-11T18:35:38.726721Z",
+          "first_seen": "2026-11-11T18:35:38.726721Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T18:35:38.726721Z",
+          "severity": "low",
+          "unit": "optima-market-publication.service"
+        },
+        "last_observed_at": "2026-11-11T19:05:38.803701Z",
+        "status": "recovered"
+      },
+      "optima-market-publication.service:service_failed": {
+        "first_observed_at": "2026-11-11T19:05:38.803701Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-market-publication.service: Failed with result 'exit-code'.",
+          "evidence_at": "2026-11-11T22:18:29.104230Z",
+          "first_seen": "2026-11-11T19:05:38.803701Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T22:35:38.660997Z",
+          "severity": "low",
+          "unit": "optima-market-publication.service"
+        },
+        "last_observed_at": "2026-11-11T23:05:39.208822Z",
+        "status": "recovered"
+      },
+      "optima-news-collection.service:news_source_changed_refresh_required": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "news_source_changed_refresh_required",
+          "detail": "news_source_changed_refresh_required",
+          "evidence_at": "2026-11-10T08:19:58Z",
+          "first_seen": "2026-11-10T00:05:39.517172Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-news-collection.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-news-collection.service:progress_stalled": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "progress_stalled",
+          "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+          "evidence_at": "2026-11-12T10:35:38.762182Z",
+          "first_seen": "2026-11-10T07:35:39.104358Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-news-collection.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-news-collection.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T16:35:39.452811Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 593 minutes.",
+          "evidence_at": "2026-11-12T09:05:38.816774Z",
+          "first_seen": "2026-11-12T06:05:38.827101Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T09:05:38.816774Z",
+          "severity": "low",
+          "unit": "optima-news-collection.service"
+        },
+        "last_observed_at": "2026-11-12T09:18:52.898933Z",
+        "status": "recovered"
+      },
+      "optima-news-collection.service:service_failed": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-news-collection.service: Failed with result 'signal'.",
+          "evidence_at": "2026-11-11T18:50:24.228755Z",
+          "first_seen": "2026-11-10T00:05:39.517172Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-news-collection.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-news-publication.service:progress_stalled": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "progress_stalled",
+          "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+          "evidence_at": "2026-11-11T22:35:38.660997Z",
+          "first_seen": "2026-11-11T12:35:38.623207Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T22:35:38.660997Z",
+          "severity": "low",
+          "unit": "optima-news-publication.service"
+        },
+        "last_observed_at": "2026-11-11T23:05:39.208822Z",
+        "status": "recovered"
+      },
+      "optima-news-publication.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T18:35:38.726721Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 398 minutes.",
+          "evidence_at": "2026-11-11T18:35:38.726721Z",
+          "first_seen": "2026-11-11T18:35:38.726721Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T18:35:38.726721Z",
+          "severity": "low",
+          "unit": "optima-news-publication.service"
+        },
+        "last_observed_at": "2026-11-11T19:05:38.803701Z",
+        "status": "recovered"
+      },
+      "optima-news-publication.service:service_failed": {
+        "first_observed_at": "2026-11-11T19:05:38.803701Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-m7-aux-news-publication.service: Failed with result 'signal'.",
+          "evidence_at": "2026-11-12T08:33:34.326108Z",
+          "first_seen": "2026-11-12T08:56:19.285356Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:56:19.285356Z",
+          "severity": "low",
+          "unit": "optima-news-publication.service"
+        },
+        "last_observed_at": "2026-11-12T09:05:38.816774Z",
+        "status": "recovered"
+      },
+      "optima-patents-daily.service:progress_stalled": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "progress_stalled",
+          "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+          "evidence_at": "2026-11-12T10:35:38.762182Z",
+          "first_seen": "2026-11-11T03:05:38.918154Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:35:38.548739Z",
+          "severity": "low",
+          "unit": "optima-patents-daily.service"
+        },
+        "last_observed_at": "2026-11-12T11:35:38.548739Z",
+        "status": "open"
+      },
+      "optima-patents-daily.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T16:35:39.452811Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 695 minutes.",
+          "evidence_at": "2026-11-12T07:05:38.806176Z",
+          "first_seen": "2026-11-12T02:05:38.796965Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T07:05:38.806176Z",
+          "severity": "low",
+          "unit": "optima-patents-daily.service"
+        },
+        "last_observed_at": "2026-11-12T07:35:38.541481Z",
+        "status": "recovered"
+      },
+      "optima-patents-daily.service:service_failed": {
+        "first_observed_at": "2026-11-11T17:05:38.820780Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-patents-daily.service: Failed with result 'signal'.",
+          "evidence_at": "2026-11-11T18:50:24.275752Z",
+          "first_seen": "2026-11-11T17:05:38.820780Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-patents-daily.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-patents-daily.service:source_changed_refresh_required": {
+        "first_observed_at": "2026-11-12T11:02:45.425943Z",
+        "incident": {
+          "code": "source_changed_refresh_required",
+          "detail": "source_changed_refresh_required",
+          "evidence_at": "2026-11-12T10:56:48Z",
+          "first_seen": "2026-11-12T11:02:45.425943Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:35:38.548739Z",
+          "severity": "low",
+          "unit": "optima-patents-daily.service"
+        },
+        "last_observed_at": "2026-11-12T11:35:38.548739Z",
+        "status": "open"
+      },
+      "optima-patents-global-monitor.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 78 minutes.",
+          "evidence_at": "2026-11-12T10:35:38.762182Z",
+          "first_seen": "2026-11-12T10:05:38.667661Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-patents-global-monitor.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-patents-prosecution-publication.service:missed_run": {
+        "first_observed_at": "2026-11-12T09:05:38.816774Z",
+        "incident": {
+          "code": "missed_run",
+          "detail": "No invocation within the configured schedule and queue grace period.",
+          "evidence_at": "2026-11-12T09:05:38.816774Z",
+          "first_seen": "2026-11-12T09:05:38.816774Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T09:05:38.816774Z",
+          "severity": "low",
+          "unit": "optima-patents-prosecution-publication.service"
+        },
+        "last_observed_at": "2026-11-12T09:18:52.898933Z",
+        "status": "recovered"
+      },
+      "optima-patents-prosecution-publication.service:progress_stalled": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "progress_stalled",
+          "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+          "evidence_at": "2026-11-12T10:35:38.762182Z",
+          "first_seen": "2026-11-12T05:05:38.897809Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-patents-prosecution-publication.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-patents-prosecution-publication.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 575 minutes.",
+          "evidence_at": "2026-11-12T08:35:38.869785Z",
+          "first_seen": "2026-11-11T23:35:38.880040Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:35:38.869785Z",
+          "severity": "low",
+          "unit": "optima-patents-prosecution-publication.service"
+        },
+        "last_observed_at": "2026-11-12T08:56:19.285356Z",
+        "status": "recovered"
+      },
+      "optima-patents-prosecution-publication.service:service_failed": {
+        "first_observed_at": "2026-11-11T19:05:38.803701Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-patents-prosecution-publication.service: Failed with result 'signal'.",
+          "evidence_at": "2026-11-11T18:50:24.269384Z",
+          "first_seen": "2026-11-11T19:05:38.803701Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-patents-prosecution-publication.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-patents-prosecution.service:progress_stalled": {
+        "first_observed_at": "2026-11-12T00:35:38.825838Z",
+        "incident": {
+          "code": "progress_stalled",
+          "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+          "evidence_at": "2026-11-12T10:35:38.762182Z",
+          "first_seen": "2026-11-12T00:35:38.825838Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-patents-prosecution.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-patents-prosecution.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T13:05:38.630718Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 30 minutes.",
+          "evidence_at": "2026-11-12T11:28:19.210908Z",
+          "first_seen": "2026-11-12T11:28:19.210908Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T11:28:19.210908Z",
+          "severity": "low",
+          "unit": "optima-patents-prosecution.service"
+        },
+        "last_observed_at": "2026-11-12T11:32:48.130219Z",
+        "status": "recovered"
+      },
+      "optima-patents-prosecution.service:service_failed": {
+        "first_observed_at": "2026-11-11T19:05:38.803701Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-patents-prosecution.service: Failed with result 'signal'.",
+          "evidence_at": "2026-11-12T09:00:40.051049Z",
+          "first_seen": "2026-11-11T19:05:38.803701Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-patents-prosecution.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-patents-prosecution.service:source_changed_refresh_required": {
+        "first_observed_at": "2026-11-11T00:05:38.881756Z",
+        "incident": {
+          "code": "source_changed_refresh_required",
+          "detail": "source_changed_refresh_required",
+          "evidence_at": "2026-11-10T23:47:22.135835Z",
+          "first_seen": "2026-11-11T00:05:38.881756Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T12:05:38.771109Z",
+          "severity": "low",
+          "unit": "optima-patents-prosecution.service"
+        },
+        "last_observed_at": "2026-11-11T12:35:38.623207Z",
+        "status": "recovered"
+      },
+      "optima-people-collection.service:execution_timeout": {
+        "first_observed_at": "2026-11-11T18:35:38.726721Z",
+        "incident": {
+          "code": "execution_timeout",
+          "detail": "Payload has run for 533 minutes.",
+          "evidence_at": "2026-11-12T08:05:39.445768Z",
+          "first_seen": "2026-11-12T00:35:38.825838Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:05:39.445768Z",
+          "severity": "low",
+          "unit": "optima-people-collection.service"
+        },
+        "last_observed_at": "2026-11-12T08:35:38.869785Z",
+        "status": "recovered"
+      },
+      "optima-people-collection.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 89 minutes.",
+          "evidence_at": "2026-11-12T10:35:38.762182Z",
+          "first_seen": "2026-11-12T10:05:38.667661Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-people-collection.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-people-collection.service:service_failed": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-people-collection.service: Failed with result 'timeout'.",
+          "evidence_at": "2026-11-12T08:19:11.459875Z",
+          "first_seen": "2026-11-11T19:05:38.803701Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-people-collection.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-research-publication.service:FileNotFoundError": {
+        "first_observed_at": "2026-11-12T08:56:19.285356Z",
+        "incident": {
+          "code": "FileNotFoundError",
+          "detail": "FileNotFoundError",
+          "evidence_at": "2026-11-12T08:55:15.454936Z",
+          "first_seen": "2026-11-12T08:56:19.285356Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T09:05:38.816774Z",
+          "severity": "low",
+          "unit": "optima-research-publication.service"
+        },
+        "last_observed_at": "2026-11-12T09:18:52.898933Z",
+        "status": "recovered"
+      },
+      "optima-research-publication.service:execution_timeout": {
+        "first_observed_at": "2026-11-11T14:35:38.553026Z",
+        "incident": {
+          "code": "execution_timeout",
+          "detail": "Payload has run for 79 minutes.",
+          "evidence_at": "2026-11-11T14:35:38.553026Z",
+          "first_seen": "2026-11-11T14:35:38.553026Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T14:35:38.553026Z",
+          "severity": "low",
+          "unit": "optima-research-publication.service"
+        },
+        "last_observed_at": "2026-11-11T15:05:39.195262Z",
+        "status": "recovered"
+      },
+      "optima-research-publication.service:oom_kill": {
+        "first_observed_at": "2026-11-11T20:35:39.062744Z",
+        "incident": {
+          "code": "oom_kill",
+          "detail": "optima-research-publication.service: Failed with result 'oom-kill'.",
+          "evidence_at": "2026-11-11T20:11:01.194626Z",
+          "first_seen": "2026-11-11T20:35:39.062744Z",
+          "last_notified": {
+            "sms": "2026-11-11T20:35:39.062744Z"
+          },
+          "last_seen": "2026-11-11T22:35:38.660997Z",
+          "severity": "high",
+          "unit": "optima-research-publication.service"
+        },
+        "last_observed_at": "2026-11-11T23:05:39.208822Z",
+        "status": "recovered"
+      },
+      "optima-research-publication.service:progress_stalled": {
+        "first_observed_at": "2026-11-11T14:05:39.068907Z",
+        "incident": {
+          "code": "progress_stalled",
+          "detail": "Outstanding work with no committed progress beyond the job-specific threshold.",
+          "evidence_at": "2026-11-11T22:35:38.660997Z",
+          "first_seen": "2026-11-11T14:05:39.068907Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T22:35:38.660997Z",
+          "severity": "low",
+          "unit": "optima-research-publication.service"
+        },
+        "last_observed_at": "2026-11-11T23:05:39.208822Z",
+        "status": "recovered"
+      },
+      "optima-research-publication.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 678 minutes.",
+          "evidence_at": "2026-11-11T13:05:38.630718Z",
+          "first_seen": "2026-11-11T08:35:38.634109Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T13:05:38.630718Z",
+          "severity": "low",
+          "unit": "optima-research-publication.service"
+        },
+        "last_observed_at": "2026-11-11T13:35:38.844475Z",
+        "status": "recovered"
+      },
+      "optima-research-publication.service:service_failed": {
+        "first_observed_at": "2026-11-11T15:05:39.195262Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "systemd result: exit-code",
+          "evidence_at": "2026-11-12T09:05:38.816774Z",
+          "first_seen": "2026-11-12T08:56:19.285356Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T09:05:38.816774Z",
+          "severity": "low",
+          "unit": "optima-research-publication.service"
+        },
+        "last_observed_at": "2026-11-12T09:18:52.898933Z",
+        "status": "recovered"
+      },
+      "optima-specialist-daily.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 701 minutes.",
+          "evidence_at": "2026-11-12T07:35:38.541481Z",
+          "first_seen": "2026-11-12T02:35:38.852298Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T07:35:38.541481Z",
+          "severity": "low",
+          "unit": "optima-specialist-daily.service"
+        },
+        "last_observed_at": "2026-11-12T08:05:39.445768Z",
+        "status": "recovered"
+      },
+      "optima-specialist-daily.service:service_failed": {
+        "first_observed_at": "2026-11-11T19:05:38.803701Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "systemd result: signal",
+          "evidence_at": "2026-11-11T19:35:38.922427Z",
+          "first_seen": "2026-11-11T19:05:38.803701Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T10:35:38.762182Z",
+          "severity": "low",
+          "unit": "optima-specialist-daily.service"
+        },
+        "last_observed_at": "2026-11-12T11:02:45.425943Z",
+        "status": "recovered"
+      },
+      "optima-specialist-publication.service:missed_run": {
+        "first_observed_at": "2026-11-12T08:56:19.285356Z",
+        "incident": {
+          "code": "missed_run",
+          "detail": "No invocation within the configured schedule and queue grace period.",
+          "evidence_at": "2026-11-12T09:05:38.816774Z",
+          "first_seen": "2026-11-12T08:56:19.285356Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T09:05:38.816774Z",
+          "severity": "low",
+          "unit": "optima-specialist-publication.service"
+        },
+        "last_observed_at": "2026-11-12T09:18:52.898933Z",
+        "status": "recovered"
+      },
+      "optima-specialist-publication.service:queue_timeout": {
+        "first_observed_at": "2026-11-11T12:35:38.623207Z",
+        "incident": {
+          "code": "queue_timeout",
+          "detail": "Waiting for shared collection lock for 175 minutes.",
+          "evidence_at": "2026-11-11T22:05:38.879877Z",
+          "first_seen": "2026-11-11T20:05:38.861214Z",
+          "last_notified": {},
+          "last_seen": "2026-11-11T22:05:38.879877Z",
+          "severity": "low",
+          "unit": "optima-specialist-publication.service"
+        },
+        "last_observed_at": "2026-11-11T22:35:38.660997Z",
+        "status": "recovered"
+      },
+      "optima-specialist-publication.service:service_failed": {
+        "first_observed_at": "2026-11-11T19:05:38.803701Z",
+        "incident": {
+          "code": "service_failed",
+          "detail": "optima-m7-aux-specialist-publication.service: Failed with result 'signal'.",
+          "evidence_at": "2026-11-12T08:38:06.490632Z",
+          "first_seen": "2026-11-12T08:56:19.285356Z",
+          "last_notified": {},
+          "last_seen": "2026-11-12T08:56:19.285356Z",
+          "severity": "low",
+          "unit": "optima-specialist-publication.service"
+        },
+        "last_observed_at": "2026-11-12T09:05:38.816774Z",
+        "status": "recovered"
+      }
+    },
+    "last_sent_at": "2026-11-11T12:05:38.771109Z",
+    "period_started_at": "2026-11-11T12:05:38.771109Z"
+  },
+  "expired_files_deleted": 0,
+  "health_checked_at": "2026-11-12T11:32:15.314355Z",
+  "notification_errors": [],
+  "notification_topics_configured": true,
+  "notifications_enabled": true,
+  "observations": {
+    "optima-authenticated-daily.service": {
+      "last_change": 1794481365.425943,
+      "last_verified_at": "2026-11-12T10:59:27Z",
+      "token": "da97913c70926bd97e401c95db2da7b8a77288ee95d4522c686392de90381181"
+    },
+    "optima-authenticated-historical.service": {
+      "last_change": 1792971338.889767,
+      "last_verified_at": "2026-10-25T23:25:43Z",
+      "token": "2c32511adf72381fa8cf38c92fc0b02186b67678af1145d5aa9262908597c03b"
+    },
+    "optima-chictr-daily.service": {
+      "last_change": 1794481365.425943,
+      "last_verified_at": "2026-11-12T10:31:34Z",
+      "token": "b6671ae88caf997a1c9fdb212e9d64e1e5899b1256c682af820de4847a8c70c0"
+    },
+    "optima-cms-catalog-publication.service": {
+      "last_change": 1794473779.285356,
+      "last_verified_at": null,
+      "token": null
+    },
+    "optima-cms-coverage-publication.service": {
+      "last_change": 1794482899.210908,
+      "last_verified_at": "2026-11-12T11:27:56.654312Z",
+      "token": "931785a6568a967c1c72f084a1c37353cfb4787ca9a434c2cb9b8dce5611f93a"
+    },
+    "optima-cms-financial-resumed.service": {
+      "last_change": 1794475132.898933,
+      "last_verified_at": "2026-11-12T09:02:54Z",
+      "token": "f880ffc0b3139a19564c930f87105d1ce8262fc1f8eb135bd9c4af34880d60fd"
+    },
+    "optima-collection-daily.service": {
+      "last_change": 1794482551.695744,
+      "last_verified_at": "2026-11-12T11:21:11Z",
+      "token": "b3c9eeca96c9f65356c999701e1c8ae1d25a4cb0a14e821ae282d95e9cfce990"
+    },
+    "optima-committed-athena.service": {
+      "last_change": 1794481365.425943,
+      "last_verified_at": "2026-11-12T10:43:09Z",
+      "token": "735f50e64470e7aaab200f1034a8a25679c5bb2dd6974a84a6e515b4363f345e"
+    },
+    "optima-conference-collection.service": {
+      "last_change": 1794279939.056416,
+      "last_verified_at": "2026-11-10T02:35:42.141218Z",
+      "token": "92cedde638d2013fde0e09c74db05e914a626f3eead80b38a6ebf22592621e16"
+    },
+    "optima-conference-publication.service": {
+      "last_change": 1794279939.056416,
+      "last_verified_at": "2026-11-10T02:50:34.619285Z",
+      "token": "11b00f95fac43df2191bd6923e9094486de39a64217566f115e57261e2e68826"
+    },
+    "optima-core-historical.service": {
+      "last_change": 1792983938.950746,
+      "last_verified_at": "2026-10-26T02:55:36Z",
+      "token": "8d86878ea1d2590c762ea4950f9422db67543f6a52be573a0019c2ba34767d29"
+    },
+    "optima-crossref-publication-resumed.service": {
+      "last_change": 1794482899.210908,
+      "last_verified_at": "2026-11-12T11:25:07.610842Z",
+      "token": "e8f5f1faaae63a6c8efa42f37bc2db3a29834b61a351ea525633a0575eef63ee"
+    },
+    "optima-daily-health-audit.service": {
+      "last_change": 1792006538.79322,
+      "last_verified_at": null,
+      "token": null
+    },
+    "optima-eodhd-profiles.service": {
+      "last_change": 1794481952.779883,
+      "last_verified_at": "2026-11-12T11:03:25.821523Z",
+      "token": "6c59b0fa1bdaa7fddf60ef0fa1a03987879807abb57cddeb3f6adb4ed4dd4d72"
+    },
+    "optima-fda-product-codes-capture.service": {
+      "last_change": 1794473779.285356,
+      "last_verified_at": "2026-11-12T00:07:34.968421Z",
+      "token": "ed4489352989050d7ffe0c3fb54976d243737fc9dd4013a88a0aa5c2f4445692"
+    },
+    "optima-fda-reviewed-publication.service": {
+      "last_change": 1794473779.285356,
+      "last_verified_at": null,
+      "token": null
+    },
+    "optima-market-collection.service": {
+      "last_change": 1794481952.779883,
+      "last_verified_at": "2026-11-12T11:09:35.042428Z",
+      "token": "57ffed0ba05057f692ab3e7630b896442fba7f8e2cfa69c7fc66c99dd827587a"
+    },
+    "optima-market-publication.service": {
+      "last_change": 1794482551.695744,
+      "last_verified_at": "2026-11-12T11:20:10.333458Z",
+      "token": "4eaa1e16475bf84e37177e4d476a04c076f777b1b005cf1c68187175dea16ff9"
+    },
+    "optima-news-collection.service": {
+      "last_change": 1794483168.130219,
+      "last_verified_at": "2026-11-12T11:27:57Z",
+      "token": "e10a3c38ad53eb4453fab723d4e9109dee46bea3b9b94a37b60129caa4cd03ea"
+    },
+    "optima-news-publication.service": {
+      "last_change": 1794483168.130219,
+      "last_verified_at": "2026-11-12T11:29:41.974550Z",
+      "token": "1b9cbb80f6bf2bc306049777f2a2eef3f6c5f3108670a7b5f6ea3d68f96bb832"
+    },
+    "optima-nmpa-inventory.service": {
+      "last_change": 1792922738.743472,
+      "last_verified_at": "2026-10-25T09:30:35Z",
+      "token": "3a658126616649a9416e2256041bd6fd3f6efa95c21f59ecac66df727f553a9a"
+    },
+    "optima-patents-backfill.service": {
+      "last_change": 1791810339.215623,
+      "last_verified_at": "2026-10-12T12:31:55.709275Z",
+      "token": "3f635f80df2936dfdaa61e81a64fb7dcf82201134c60dd7c1936f1b0e76bf24d"
+    },
+    "optima-patents-daily.service": {
+      "last_change": 1794481365.425943,
+      "last_verified_at": "2026-11-11T22:51:31Z",
+      "token": "1d4381df3b3d49bb6c05270056d4744ebd6b677ad6efb2930641adb6b56a0611"
+    },
+    "optima-patents-global-monitor.service": {
+      "last_change": 1794481365.425943,
+      "last_verified_at": "2026-11-12T10:58:34.372274Z",
+      "token": "bacbf4e72653b8d07f4dd9a750c524cbd2534805111c89b0dfc050ac4ce4ad95"
+    },
+    "optima-patents-prosecution-publication.service": {
+      "last_change": 1794481952.779883,
+      "last_verified_at": "2026-11-12T11:06:26.820700Z",
+      "token": "305274a4069519a9b2e0c38a3e0edbb223e8e41c0dfe827db5d8fd1c9bccfa73"
+    },
+    "optima-patents-prosecution.service": {
+      "last_change": 1794481365.425943,
+      "last_verified_at": "2026-11-12T10:57:29Z",
+      "token": "a2a98220a7aa4cd1308737b3e35633cfd3cfea074ef3a80fa5518895f235b418"
+    },
+    "optima-patents-publication.service": {
+      "last_change": 1791819339.00762,
+      "last_verified_at": "2026-10-12T15:29:40.909679Z",
+      "token": "079e7a65f64b25806c9c913a9e0cb0da4d55f5ee2645ab4443f962c3f46e9014"
+    },
+    "optima-people-collection.service": {
+      "last_change": 1794481365.425943,
+      "last_verified_at": "2026-11-12T10:53:13.348237Z",
+      "token": "8e5fb7ec13a1453350255afb7d215c4ffd3f836bfa36f8cdb31b94735c50338c"
+    },
+    "optima-reddit-collection.service": {
+      "last_change": 1791797738.900742,
+      "last_verified_at": null,
+      "token": null
+    },
+    "optima-research-publication.service": {
+      "last_change": 1794481952.779883,
+      "last_verified_at": "2026-11-12T11:06:06.401232Z",
+      "token": "631360ff28548cbba15a61dde05e122a47c3ffe9c72b86192c0d99daf26d305d"
+    },
+    "optima-search-capture.service": {
+      "last_change": 1793975739.617535,
+      "last_verified_at": "2026-11-06T14:13:48.417097+00:00",
+      "token": "11c35be940896ce1b8f645091b9c5fdb932591d20ba4ca4f7b5b8b77a406813e"
+    },
+    "optima-social-daily.service": {
+      "last_change": 1792586139.476861,
+      "last_verified_at": "2026-10-21T12:18:20.003794Z",
+      "token": "75fec48196b8ded39791033098116cf9ad242f50afe1ec7681d6fe57837bee36"
+    },
+    "optima-specialist-daily.service": {
+      "last_change": 1794483168.130219,
+      "last_verified_at": "2026-11-12T11:31:46Z",
+      "token": "a9e7c0a8fa96d599474f3dec7d07706d2d48529bf7374f85d2bdb05121af0aa8"
+    },
+    "optima-specialist-historical.service": {
+      "last_change": 1792987539.251673,
+      "last_verified_at": "2026-10-26T03:57:23Z",
+      "token": "d9f43f41824cc6d0386c248c4f63f2c12a53efe83e4e7e97c1ab969651a2f254"
+    },
+    "optima-specialist-publication.service": {
+      "last_change": 1794482899.210908,
+      "last_verified_at": "2026-11-12T11:27:56.654312Z",
+      "token": "931785a6568a967c1c72f084a1c37353cfb4787ca9a434c2cb9b8dce5611f93a"
+    }
+  },
+  "pending_recoveries": [],
+  "schema_version": 1
+}

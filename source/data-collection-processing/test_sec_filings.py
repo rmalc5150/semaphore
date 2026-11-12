@@ -51,6 +51,14 @@ class SECTests(unittest.TestCase):
         return [json.loads(line) for page in manifest["pages"] for batch in page["batches"]
                 for line in self.store.get(batch["key"]).body.splitlines()]
 
+    def test_missing_publisher_company_name_preserves_filing_and_field_gap(self):
+        raw=b"Last Data Received: March 31, 2016\n"+sec.HEADER.encode()+b"\n1593547||485BPOS|2016-02-26|edgar/data/1593547/0001135428-16-001124.txt\n"
+        rows,_=sec.parse_index(raw,2016,1)
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]['company_name'],'')
+        self.assertEqual(rows[0]['source_field_gaps'],['company_name'])
+        self.assertEqual(rows[0]['accession_number'],'0001135428-16-001124')
+
     def test_parser_and_accession_grouping_preserve_cofilers(self):
         rows, received = sec.parse_index(self.raw, 2024, 2)
         self.assertEqual(received, date(2024, 6, 28))
@@ -161,6 +169,13 @@ class SECTests(unittest.TestCase):
         sec.assert_coverage(date(2024, 6, 28), date(2024, 6, 29), date(2024, 7, 1))
         with self.assertRaises(sec.SourceError):
             sec.assert_coverage(date(2024, 6, 27), date(2024, 6, 28), date(2024, 6, 29))
+
+    def test_verified_edgar_closure_does_not_require_a_new_index(self):
+        sec.assert_coverage(date(2026, 11, 10), date(2026, 11, 11), date(2026, 11, 12))
+        with self.assertRaises(sec.SourceError):
+            sec.assert_coverage(date(2026, 11, 10), date(2026, 11, 11), date(2026, 11, 13))
+        with self.assertRaises(sec.SourceError):
+            sec.assert_coverage(date(2027, 11, 10), date(2027, 11, 11), date(2027, 11, 12))
 
     def test_incomplete_coverage_with_no_pages_fetches_a_new_snapshot(self):
         lines = self.raw.decode().splitlines()

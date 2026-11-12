@@ -1,0 +1,10 @@
+from research_helpers import *
+a=ev('https://www.spilglobal.com/zh-TW/IC_Packaging','Current SPIL catalogue enumerates laminate, leadframe, wafer-level, stacked-die and multi-package families.')
+products=[]
+for n in ['PBGA','EDHS-PBGA','TFBGA','VFBGA','LGA','FCBGA','FCCSP','LQFP','TQFP','E-pad LQFP','E-pad TQFP','QFN','WLCSP','Stacked Die','Multi-Package BGA']:
+ products.append(p('SPIL '+n,'Semiconductor '+n+' packaging family offered by Siliconware Precision Industries.',a,life='commercial',roles=['manufacturer'],typ='product',sector='semiconductors',sub='materials_and_packaging'))
+sources=[a]
+for n,path,desc in [('2.5D/3D TSV integration','25D3DwithTSV','Silicon interposer and vertical die integration packaging technology.'),('System in Package technology','SysteminPackageSiP','Technology integrating semiconductor devices and optional passive components into a package.'),('FanOut-WLP technology','FanOutWLP','Fan-out wafer-level packaging technology with redistributed interconnects.'),('Antenna in Package technology','AntennainPackageAiP','Integrated antenna, semiconductor and passive-component packaging technology.')]:
+ src=ev('https://www.spilglobal.com/zh-TW/TechnologyData/'+path,'Official SPIL technology page reviewed; third-party test instruments not attributed as SPIL products.');sources.append(src);products.append(p('SPIL '+n,desc,src,typ='technology',sector='semiconductors',sub='materials_and_packaging'))
+co=dict(company_id='cmp_35aad5ab-1644-45e6-937a-fce3ee8ca4ec',products=products,evidence=sources,status='partial',coverage_note='Fifteen packaging product families plus four named advanced technology platforms. Company-qualified standard package names distinguish vendor offerings. Partial: detailed pin-count/body-size variants, named fan-out subplatforms visible only in diagrams, PoP/bumping process families, legacy catalogues and current technology lifecycle require review. Packaging services not invented as equipment; third-party Anritsu/FormFactor instruments excluded.')
+(out/'batch-0438.json').write_text(json.dumps({'companies':[co]},indent=2));print(len(products))

@@ -1,0 +1,16 @@
+{
+  "Dataset": [{"IndicatorCategoryCode":"ITS_MTV","IndicatorCode":"ITS_MTV_AX","ReportingEconomyCode":"533","PartnerEconomyCode":"000","ProductOrSectorClassificationCode":"SITC3","ProductOrSectorCode":"AG","PeriodCode":"A","FrequencyCode":"A","UnitCode":"USM","Year":2016,"ValueFlagCode":null,"Value":48.0},{"IndicatorCategoryCode":"ITS_MTV","IndicatorCode":"ITS_MTV_AX","ReportingEconomyCode":"478","PartnerEconomyCode":"000","ProductOrSectorClassificationCode":"SITC3","ProductOrSectorCode":"AG","PeriodCode":"A","FrequencyCode":"A","UnitCode":"USM","Year":2016,"ValueFlagCode":null,"Value":629.0},{"IndicatorCategoryCode":"ITS_MTV","IndicatorCode":"ITS_MTV_AX","ReportingEconomyCode":"540","PartnerEconomyCode":"000","ProductOrSectorClassificationCode":"SITC3","ProductOrSectorCode":"AG","PeriodCode":"A","FrequencyCode":"A","UnitCode":"USM","Year":2016,"ValueFlagCode":"E","Value":10.0}],
+  "Summary": [{
+  "QueryParameters": "?i=ITS_MTV_AX&r=all&p=default&ps=2016&pc=default&fmt=json&mode=codes&max=3&off=0&head=M&lang=1&meta=true",
+  "DataSet": [
+    {
+      "Name": "Data",
+      "Count": 3,
+      "TotalCount": 3274
+    }
+  ],
+  "Started": "2026-10-27T09:45:46.6356214+01:00",
+  "Finished": "2026-10-27T09:45:47.1430336+01:00",
+  "DurationSeconds": 0.5
+}]
+}

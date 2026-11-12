@@ -1,0 +1,14 @@
+{
+  "command_id": "52e9a788-fc1a-4fe3-a1eb-0ca467c025fd",
+  "sha256": "4d9deb52c7fcf9323b51dbae133e0842dd336e58740acbbdaffee4192ebc1962",
+  "raw_workers": 5,
+  "raw_memory_max_mib": 384,
+  "legacy_workers": 8,
+  "legacy_memory_max_mib": 1536,
+  "public_workers": 4,
+  "public_memory_max_mib": 512,
+  "total_workers": 17,
+  "sum_individual_memory_max_mib": 16256,
+  "aggregate_memory_max_mib": 16384,
+  "aggregate_cpu_limit": 16
+}

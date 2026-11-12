@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-10-26T19:51:25.950697+00:00",
+  "credential_fields": [
+    "EPO-consumer",
+    "EPO-consumer-secret"
+  ],
+  "values_logged": false,
+  "collection_enabled": false,
+  "fields_present": true,
+  "oauth_http_status": 200,
+  "oauth_token_issued": true,
+  "legal_probe_http_status": 200,
+  "legal_probe_reference": "EP1000000",
+  "legal_probe_bytes": 77589,
+  "legal_probe_xml_root": "{http://ops.epo.org}world-patent-data",
+  "legal_event_nodes": 0
+}

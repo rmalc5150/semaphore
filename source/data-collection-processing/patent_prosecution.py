@@ -158,7 +158,11 @@ class Client:
                         return {'count': 0, 'petitionDecisionDataBag': [],
                             'response': {'numFound': 0, 'start': offset, 'docs': []}}
                 if exc.code not in {429, 500, 502, 503, 504}:
-                    raise SourceIssue(f'source_http_{exc.code}') from None
+                    # Identify the failing endpoint without persisting API keys,
+                    # response bodies or signed download query strings.
+                    raise SourceIssue(f'source_http_{exc.code}', diagnostics={
+                        'host': parts.hostname, 'path': parts.path,
+                        'http_status': exc.code, 'operation': 'document' if pdf else 'metadata'}) from None
                 try:
                     delay = max(2 ** attempt, float(exc.headers.get('Retry-After', '0')))
                 except (ValueError, AttributeError):
@@ -280,6 +284,26 @@ def enrich(client, dataset, row, data):
             require(obj is not None and hashlib.sha256(obj.body).hexdigest() == doc['sha256'], 'corrupt_cached_document')
         client.evidence.extend(saved['source_evidence'])
         return {**saved, 'first_observed_at': first_observed}
+    exceptions = load_json(ROOT / 'config/patent-document-exceptions.json')
+    require(exceptions.get('schema_version') == 1, 'invalid_document_exceptions')
+    matches = [e for e in exceptions['exceptions'] if e.get('status') == 'active'
+               and e.get('dataset') == dataset and e.get('application_number') == data['application_number']
+               and (not e.get('official_document_id') or e['official_document_id'] == data['official_document_id'])]
+    require(len(matches) <= 1, 'ambiguous_document_exception')
+    if matches:
+        decision = matches[0]
+        raw = canonical_json(decision)
+        proof_key = 'source_documents/uspto_document_exceptions/' + hashlib.sha256(raw).hexdigest()
+        write_checked(client.store, proof_key, raw)
+        proof = {'key': proof_key, 'sha256': hashlib.sha256(raw).hexdigest(),
+                 'bytes': len(raw), 'url': 'urn:optima:uspto-document-exception:' + hashlib.sha256(raw).hexdigest(),
+                 'evidence_type': 'owner_authorized_exception'}
+        state = {'status': 'excluded_by_owner', 'documents': saved.get('documents', []) if saved else [],
+                 'source_evidence': (saved.get('source_evidence', []) if saved else []) + [proof],
+                 'document_exception': decision, 'updated_at': now(), 'first_observed_at': first_observed}
+        write_json(client.store, key, state, stored.token if stored else None)
+        client.evidence.extend(state['source_evidence'])
+        return state
     before = len(client.evidence)
     successful = {d['document_id']: d for d in saved.get('documents', [])} if saved else {}
     evidence = saved.get('source_evidence', []) if saved else []
@@ -314,6 +338,7 @@ def envelope(dataset, data, downloads, run, evidence):
     observed = now()
     data = {**data, 'document_retrieval_status': downloads['status'], 'documents': downloads['documents'],
         'first_observed_at': downloads.get('first_observed_at', downloads['updated_at']),
+        'document_exception': downloads.get('document_exception'),
         'capture_at': observed, 'public_availability': None, 'availability_evidence': []}
     return seal_record({'document_type': 'collected_record', 'schema_version': '1.0',
         'source': 'uspto_odp', 'dataset': dataset, 'source_record_id': data['source_document_id'],
@@ -325,7 +350,7 @@ def envelope(dataset, data, downloads, run, evidence):
         'ingested_at': observed, 'availability_basis': 'unknown', 'availability_evidence': [], 'run_id': run.run_id,
         'payload': {'record_type': 'patent_prosecution_document', 'contract_version': '1.0', 'data': data,
             'source_evidence': evidence, 'date_basis': run.spec['scope']['date_basis'],
-            'review_required': True, 'coverage_note': run.spec['scope']['coverage']}})
+            'review_required': True, 'coverage_note': run.spec['scope']['coverage'] + (' Document access excluded by owner; metadata only, not proof of PDF coverage.' if downloads.get('document_exception') else '')}})
 
 
 def collect(store, settings, universe, taxonomy, dataset, start, end, mode='historical',
@@ -390,7 +415,13 @@ def collect(store, settings, universe, taxonomy, dataset, start, end, mode='hist
     except SourceIssue as exc:
         # Failed downloads are durable in their task receipts. The source page
         # remains uncommitted so successful downloads are reused on retry.
-        return outcome(run, 'partial', exc.code)
+        if exc.diagnostics:
+            write_json(store, run.state['manifest_prefix'] + '/failure.json',
+                       {'reason': exc.code, 'diagnostics': exc.diagnostics})
+        result = outcome(run, 'partial', exc.code)
+        if exc.diagnostics:
+            result['diagnostics'] = exc.diagnostics
+        return result
     except Exception:
         if not run.closed:
             run.finish('failed', 'collection_failed')

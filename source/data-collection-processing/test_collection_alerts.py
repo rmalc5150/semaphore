@@ -155,6 +155,10 @@ class EvaluationTests(unittest.TestCase):
 
     def test_page_limit_is_expected_but_stalled_backlog_still_alerts(self):
         self.assertFalse(outcome_issues({'status': 'partial', 'reason': 'page_limit'}))
+        for reason in ('record_limit', 'page_budget'):
+            self.assertFalse(outcome_issues({'status': 'partial', 'reason': reason}))
+            self.assertTrue(outcome_issues({'status': 'failed', 'reason': reason}))
+        self.assertTrue(outcome_issues({'status': 'partial', 'reason': 'nih_result_cap_split_scope_required'}))
         prior = {'observations': {UNIT: {'token': 'one', 'last_change': NOW-50000}}}
         snapshot = health(progress={'token': 'one', 'pending': True, 'last_verified_at': stamp(NOW-50000)})
         self.assertIn(UNIT+':progress_stalled', evaluate(snapshot, prior, CONFIG, NOW)[0])
@@ -166,6 +170,13 @@ class EvaluationTests(unittest.TestCase):
         self.assertIn(UNIT+':progress_stalled', alerts)
         progress['pending'] = False
         self.assertFalse(evaluate(health(progress=progress), prior, CONFIG, NOW)[0])
+
+    def test_old_stall_needs_verified_complete_scope_to_recover(self):
+        key = UNIT+':progress_stalled'
+        prior={'active':{key:{'unit':UNIT,'code':'progress_stalled','severity':'low','evidence_at':stamp(NOW-10)}}}
+        self.assertIn(key,evaluate(health(),prior,CONFIG,NOW)[0])
+        resolved=health(progress_scope_complete={'checkpoint':'p','manifest':'m','checked_at':stamp(NOW)})
+        self.assertNotIn(key,evaluate(resolved,prior,CONFIG,NOW)[0])
 
     def test_daily_quota_gets_reset_grace(self):
         prior = {'observations': {UNIT: {'token': 'one', 'last_change': NOW-50000}}}
@@ -180,6 +191,20 @@ class DeliveryTests(unittest.TestCase):
     def setUp(self):
         self.s3, self.sns = FakeS3(), FakeSNS()
         self.watch = Watchdog(self.s3, self.sns, copy.deepcopy(CONFIG))
+
+    def test_digest_long_subject_preserves_body_and_uses_safe_sns_subject(self):
+        self.watch.config['email_digest_seconds'] = 86400
+        title = 'Optima overview: ' + 'x' * 160 + '\nmore'
+        body = title + '\nFull historical details'
+        prior = {'email_digest': {'period_started_at': stamp(NOW-86401), 'incidents': {}}}
+        with patch('monitoring_overview.overview', return_value=(title, body)):
+            digest, errors = self.watch.email_digest(prior, {}, [], NOW, True)
+        self.assertEqual(errors, [])
+        message = self.sns.messages[0]
+        self.assertLess(len(message['Subject']), 100)
+        self.assertNotIn('\n', message['Subject'])
+        self.assertIn(body, message['Message'])
+        self.assertEqual(digest['last_sent_at'], stamp(NOW))
 
     def test_high_routes_both_and_deduplicates(self):
         self.watch.run(NOW)  # missing host
