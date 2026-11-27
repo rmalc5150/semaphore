@@ -3,6 +3,32 @@ from datetime import date,timedelta
 
 def scopes(source,start,end,mode):
     if mode not in ('historical','daily'):return
+    if source['adapter']=='additional_nhsbsa':
+        if mode=='daily':
+            yield end-timedelta(days=1),end,{'url':source['api'],'release_selection':'latest_available'},source['coverage_note']
+        else:
+            current=start.replace(day=1)
+            while current<end:
+                stop=min(date(current.year+(current.month==12),current.month%12+1,1),end)
+                yield current,stop,{'url':source['api'],'period':current.strftime('%Y%m')},source['coverage_note']
+                current=stop
+        return
+    if source['adapter']=='additional_portwatch':
+        start=max(start,date(2019,1,1))
+        if mode=='daily':end-=timedelta(days=7);start=max(start,end-timedelta(days=7))
+        while start<end:
+            stop=min(start+timedelta(days=1),end)
+            yield start,stop,{'url':source['api'],'data_start':start.isoformat(),'data_end':stop.isoformat()},source['coverage_note']
+            start=stop
+        return
+    if source['adapter']=='additional_unido':
+        if mode=='daily':start=max(start,date(end.year-1,1,1))
+        for year in range(start.year,end.year+1):
+            a=max(start,date(year,1,1));b=min(end,date(year+1,1,1))
+            if a>=b:continue
+            for dataset in ('IIP','INDSTAT/4'):
+                yield a,b,{'url':source['api'],'dataset':dataset,'data_start':a.isoformat(),'data_end':b.isoformat()},source['coverage_note']
+        return
     if source['adapter'] in {'additional_'+k for k in ('ember','wto_timeseries','wto_qr','wto_eping','census','usda','comtrade','copernicus')}:
         yield from credential_scopes(source,start,end,mode)
         return

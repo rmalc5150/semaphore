@@ -82,7 +82,7 @@ def expand(record, client, s3, bucket):
     """Return (record, optional native-provider envelope) pairs and gap receipt."""
     refs = record.get('payload',{}).get('source_evidence',[])
     primary = next((r for r in refs if r.get('source_url') == record['source_url']),None)
-    from metadata_engine.evidence import object_bytes
+    from metadata_engine.evidence import object_bytes,OversizedArtifact
     if primary is None:
         # Earlier metadata-only captures can be repaired by retrieving the exact
         # original URL already identified by their official HKEX listing.
@@ -96,7 +96,12 @@ def expand(record, client, s3, bucket):
     else:
         key = primary['key']
         if not key.startswith('research-data/'):key='research-data/'+key
-        raw = object_bytes(s3,bucket,key,expected=primary['sha256'])
+        try:raw = object_bytes(s3,bucket,key,expected=primary['sha256'])
+        except OversizedArtifact:
+            from metadata_engine.streaming import evidence
+            artifact=evidence(record,primary,{'allowed_hosts':['www1.hkexnews.hk']},s3,bucket,'primary_document')
+            if artifact['validation']['format']!='pdf':raise OriginalError('hkex_large_office_validator_required')
+            return [(record,None)],None
     if not language_notice(raw):
         return [(record,None)], None
     receipt = resolve_notice(record,raw,client)

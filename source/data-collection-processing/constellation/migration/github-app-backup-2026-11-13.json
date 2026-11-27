@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-11-13T11:13:57.482449+00:00",
+  "app_id": 5743112,
+  "app_slug": "optima-ec2-backup",
+  "app_owner": "rmalc5150",
+  "private_key_secret_arn": "arn:aws:secretsmanager:us-east-1:059416028963:secret:githubAPP-FbiTEW",
+  "app_authentication": "verified",
+  "configured_permissions": {
+    "contents": "write",
+    "metadata": "read"
+  },
+  "installation_count": 0,
+  "repository_installation_probe": "HTTP 404 at /repos/rmalc5150/semaphore/installation",
+  "target_repository": "rmalc5150/semaphore",
+  "backup_branch": "ec2-code-backup",
+  "code_prepared": true,
+  "tests_passed": 8,
+  "production_authentication_switched": false,
+  "actual_push_verified": false,
+  "pending_action": "Confirm the browser is signed in as app owner rmalc5150. If it is, contact GitHub Support about account installation eligibility and public-profile 404. An account restriction is a hypothesis, not a confirmed cause. App authentication is valid; production remains unchanged.",
+  "owner_reported_installation_error": "No accounts available. You have no accounts available for installation.",
+  "public_owner_profile_api_status": 404,
+  "public_repository_api_status": 404
+}

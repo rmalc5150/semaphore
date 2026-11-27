@@ -1,7 +1,7 @@
 """Verify PubMed citation/abstract records without claiming article full text."""
 import hashlib,re,xml.etree.ElementTree as ET
 from urllib.parse import urlsplit,parse_qs
-from metadata_engine.pubmed_enrichment import enrich
+from raw_parsers.pubmed_enrichment import enrich
 class ProviderError(ValueError):pass
 _cache_identity=None
 _cache_body=None

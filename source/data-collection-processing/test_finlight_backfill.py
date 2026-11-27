@@ -21,6 +21,7 @@ class ArchiveTests(unittest.TestCase):
         self.runner = NewsOperations(self.store, self.settings, load_json(ROOT/'config/news-operations.json'))
         control, self.config, self.prefix = archive.setup()
         self.control = {**control, 'start': '2021-01-01', 'end_exclusive': '2021-01-02', 'notify_when_verified': True}
+        self.control.pop('earlier_archive', None)
         self.patch = patch.object(archive, 'setup', return_value=(self.control, self.config, self.prefix))
         self.patch.start(); self.addCleanup(self.patch.stop)
         self.sns = Mock(); self.sns.publish.return_value = {'MessageId': 'sent'}
@@ -87,6 +88,26 @@ class ArchiveTests(unittest.TestCase):
         with patch.object(self.runner,'window',return_value={'status':'partial','reason':'page_limit'}):
             result=archive.collect_archive(self.runner,'fake')
         self.assertEqual(result['next_date'],'2021-01-01')
+
+    def test_earlier_archive_reuses_the_primary_checkpoint_and_splits_budget(self):
+        self.control['earlier_archive'] = {'start': '2016-01-01', 'history_evidence': 'verified-2016'}
+        earlier = archive.earlier_archive(self.control, self.config)
+        self.assertNotEqual(earlier[2], self.prefix)
+        self.assertEqual(earlier[0]['end_exclusive'], '2021-01-01')
+        self.assertEqual(earlier[1]['providers']['finlight']['history_start'], '2016-01-01')
+        self.assertEqual(self.config['providers']['finlight']['history_start'], '2021-01-01')
+        write_json(self.store, self.prefix+'/collection.json', {'next_date': '2021-01-02'})
+        with patch.object(self.runner, 'window', return_value={'status':'complete'}) as window:
+            result = archive.collect_archive(self.runner, 'fake')
+        self.assertEqual(result['next_date'], '2021-01-02')
+        self.assertEqual(result['earlier_archive']['next_date'], '2016-01-05')
+        self.assertEqual(window.call_count, 4)
+
+    def test_earlier_incomplete_range_blocks_completion_notification(self):
+        self.ready()
+        self.control['earlier_archive'] = {'start': '2016-01-01', 'history_evidence': 'verified-2016'}
+        self.assertEqual(self.check()['status'], 'incomplete')
+        self.sns.publish.assert_not_called()
 
     def test_send_failure_can_retry(self):
         self.ready(); self.sns.publish.side_effect=RuntimeError('unavailable')

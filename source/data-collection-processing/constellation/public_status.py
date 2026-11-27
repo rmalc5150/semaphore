@@ -10,6 +10,10 @@ from public_source_capture import PREFIX,read_json,put,encode
 ROOT=Path(__file__).resolve().parents[1]
 DESTINATION=ROOT.parent/'public-source-rollout-2026-10-26.md'
 
+def state_key(source,mode):
+    revision=source.get('raw_content_revision')
+    return PREFIX+'/states/'+mode+'/'+source['source']+(('/'+revision)if revision else'')+'.json'
+
 def artifact_summary(state):
     if state is None:return 'waiting for first attempt'
     documents=sum(r.get('kind')=='public_document' for r in state.get('done',{}).values())
@@ -27,7 +31,7 @@ def main():
     native=[s for s in json.loads((ROOT/'constellation/expansion/new-adapters.json').read_text()) if s['adapter'] not in ('fred','dart')]
     keys=[]
     for source in sources:
-        for mode in ('daily','historical'):keys.append(PREFIX+'/states/'+mode+'/'+source['source']+'.json')
+        for mode in ('daily','historical'):keys.append(state_key(source,mode))
     for source in native:
         keys.extend(['research-data/constellation-backfill/daily-api-schedulers/'+source['source']+'/daily.json','research-data/constellation-backfill/specialist-schedulers/constellation-specialist-'+source['source']+'.service/historical.json'])
     def fetch(key):return key,read_json(c.s3,key)[0]
@@ -43,7 +47,7 @@ def main():
     at=datetime.now(ZoneInfo('Europe/Madrid')).strftime('%Y-%m-%d %H:%M:%S %Z')
     rows=[]
     for source in sources:
-        daily=states[PREFIX+'/states/daily/'+source['source']+'.json'];historical=states[PREFIX+'/states/historical/'+source['source']+'.json']
+        daily=states[state_key(source,'daily')];historical=states[state_key(source,'historical')]
         errors=sorted({r['reason'] for d in (daily,historical) if d for r in d.get('failures',{}).values()})
         rows.append({'catalog_entry':source['catalog_entry'],'source':source['source'],'name':source['name'],'daily':daily,'historical':historical,'errors':errors,'scope_note':source['scope_note'],'enabled':source.get('enabled',True)})
     captured=sum(bool((r['daily'] or {}).get('done') or (r['historical'] or {}).get('done')) for r in rows)

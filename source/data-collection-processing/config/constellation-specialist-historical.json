@@ -1255,7 +1255,10 @@
       "api": "https://opendart.fss.or.kr/api/list.json",
       "enabled": true,
       "historical": true,
-      "coverage_note": "All-company monthly filing index including corrections, date and receipt identifiers since 2016; original report downloads and financial-statement extraction are separate."
+      "coverage_note": "Complete OpenDART filing-index rows paired with original XML ZIPs; receipt identities and all provider fields retained. Whole months require exhausted pagination; no XBRL fact extraction or original historical vintage asserted.",
+      "raw_content_revision": "original-documents-20261118",
+      "execution_lane": "default",
+      "original_document_bridge_end_exclusive": "2026-11-27"
     },
     {
       "source_id": "C143",
@@ -6095,6 +6098,44 @@
           "commodity": "2631000"
         }
       ]
+    },
+    {
+      "source_id": "C069",
+      "source": "imf_portwatch_shipping_activity",
+      "adapter": "additional_portwatch",
+      "api": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Ports_Data/FeatureServer/0/query",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Native provider port/day attributes from 2019; estimated shipping activity, current revisions, seven-day publication lag; no pre-2019 history or customs shipment claim."
+    },
+    {
+      "source_id": "C067",
+      "source": "unido_iip_and_indstat",
+      "adapter": "additional_unido",
+      "api": "https://stat.unido.org/portal/dataset/getData",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "Native IIP and INDSTAT4 current measurements by dynamically discovered country, variable, activity and period; annual scopes since 2016, daily revisits last two years; catalogue pages are not measurements."
+    },
+    {
+      "source_id": "C080",
+      "source": "england_nhsbsa_prescribing_data",
+      "adapter": "additional_nhsbsa",
+      "api": "https://opendata.nhsbsa.net/api/3/action/datastore_search",
+      "enabled": true,
+      "historical": true,
+      "coverage_note": "All native monthly English Prescribing Data fields; current SNOMED catalogue preferred, retired catalogue retained for older releases. Bounded pages; full months require exhausted pagination. Current release selected dynamically; no patient-level records."
+    },
+    {
+      "source_id": "C092",
+      "source": "cninfo_mainland_china_company_disclosures",
+      "adapter": "additional_cninfo",
+      "api": "https://www.cninfo.com.cn/new/hisAnnouncement/query",
+      "enabled": true,
+      "historical": true,
+      "raw_content_revision": "original-documents-20261118",
+      "coverage_note": "Complete CNINFO announcement-index rows paired with original PDF filings, receipt identity and native China publication day; monthly bounded query scopes from 2016 and recent daily windows. No XBRL facts, complete market coverage or original historical vintages inferred.",
+      "execution_lane": "default"
     }
   ],
   "backfill_end_exclusive": "2026-10-26"

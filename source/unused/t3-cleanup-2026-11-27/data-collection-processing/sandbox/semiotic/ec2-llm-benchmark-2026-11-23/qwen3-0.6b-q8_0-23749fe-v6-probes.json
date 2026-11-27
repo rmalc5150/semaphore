@@ -1,0 +1,56 @@
+{
+  "model": "qwen3-0.6b-q8_0-23749fe",
+  "prompt_version": "semiotic-language-v6",
+  "input_graph_sha256": "825653ad9c7e242f18ce53e913d02ce42ab8b0ae75c6cf40a4174495503fbdf7",
+  "finished_at": "2026-11-23T15:51:30.819618+00:00",
+  "request_timeout_seconds": 90,
+  "cases": [
+    {
+      "chunk_id": "factory",
+      "expected": {
+        "region": "Germany",
+        "sector": "isic_C"
+      },
+      "error": "ValueError",
+      "seconds": 23.781
+    },
+    {
+      "chunk_id": "insurance",
+      "expected": {
+        "region": "German",
+        "sector": "isic_L"
+      },
+      "error": "ValueError",
+      "seconds": 16.813
+    },
+    {
+      "chunk_id": "spanish",
+      "expected": {
+        "region": "España",
+        "sector": "isic_C"
+      },
+      "error": "ValueError",
+      "seconds": 16.764
+    },
+    {
+      "chunk_id": "no_geography",
+      "expected": {
+        "region": null,
+        "sector": "isic_L"
+      },
+      "error": "ValueError",
+      "seconds": 14.909
+    }
+  ],
+  "summary": {
+    "attempted": 4,
+    "returned": 0,
+    "with_evidence_linked_triples": 0,
+    "with_evidence_linked_tone": 0,
+    "rejected_annotations": 0,
+    "gold_region_matches": 0,
+    "gold_sector_matches": 0,
+    "gold_cases": 4,
+    "median_seconds": 16.788
+  }
+}

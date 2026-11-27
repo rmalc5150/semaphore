@@ -1,0 +1,7 @@
+SUPERSEDED — do not send this base64/PDF-output support request.
+
+The owner reports that Decodo support confirmed that base64 output is not offered. The tested JSON scraping route failed strict original-PDF reconstruction and remains disabled. No further base64 request or replacement Web Data API key is needed.
+
+Next engineering route: direct original downloads, an authorised provider archive/mirror where available, or a separately verified binary-preserving proxy connection if existing account access permits it. A proxy is an untested alternative, not a proven medRxiv solution. No additional purchase or paid trial is authorised by this note.
+
+The original draft is retained in support-follow-up.superseded.txt for the audit trail. See README.md for current findings.

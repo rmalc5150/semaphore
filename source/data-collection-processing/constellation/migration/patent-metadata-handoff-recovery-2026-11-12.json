@@ -1,0 +1,10 @@
+{
+  "manifest": "manifests/collection_runs/source=uspto_odp/dataset=patent_records/run_f8a0533a-b6b5-471c-a2cf-a590d6e8da66/final.json",
+  "finished_at": "2026-11-12T14:20:28.201693Z",
+  "record_count": 9150,
+  "new_batches": 4,
+  "notice": "constellation-backfill/metadata-engine/runtime-v2/intake/2026-11-12/0c6a4e60b59e3c02d706830034bf618ced770ba6b582e48f7c37c7c8e1e21d82.json",
+  "previous_timeout_notice": "constellation-backfill/metadata-engine/runtime-v2/intake/2026-11-12/15f4232b9e15baea1cb2d169f1e0256bef77acf4f2dd9f8d61600518a0da12a2.json",
+  "duration_seconds": 47.1,
+  "outcome": "source page limit retained; unit exit 0 and metadata handoff persisted"
+}

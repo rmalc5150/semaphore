@@ -30,6 +30,11 @@ class Originals(unittest.TestCase):
   with patch('hkex_originals.Text',side_effect=AssertionError('PDF bytes must not be parsed as HTML')):
    self.assertFalse(language_notice(body))
    self.assertEqual(validate_original(body,self.zh_url())['format'],'pdf')
+ def test_original_download_and_validation_limits_agree(self):
+  import hkex_originals
+  self.assertEqual(hkex_originals.MAX_ORIGINAL_BYTES,128*1024*1024)
+  body=b'%PDF-1.7\n'+b' '*(65*1024*1024)+b'\n%%EOF'
+  self.assertEqual(validate_original(body,self.zh_url())['format'],'pdf')
  def zh_url(self):return d.urljoin(d.HKEX_API,self.zh['FILE_LINK'])
  def test_download_limit_and_empty_body_still_fail_with_measured_diagnostics(self):
   with patch('hkex_originals.MAX_ORIGINAL_BYTES',100):

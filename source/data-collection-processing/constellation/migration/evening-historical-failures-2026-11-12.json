@@ -1,0 +1,899 @@
+{
+  "control": {
+    "singleton": 1,
+    "enabled": true,
+    "pilot_job_ids": [],
+    "stop_after_epoch": 1794720993
+  },
+  "failures": [
+    {
+      "job_id": "920cc63c846442b7a95f6fd3c554ab007e5e28456bba4a5aa4bdfa88127512b2",
+      "source_key": "__lease_check__",
+      "status": "blocked",
+      "attempts": 2,
+      "next_attempt_at": 1792993432,
+      "lease_until": 0,
+      "result_json": {
+        "reason": "synthetic_lease_check_no_provider_calls",
+        "coverage_status": "not_yet_audited"
+      }
+    },
+    {
+      "job_id": "230da726f61cd521e1e90739fa2fded39336a8ec15792a4bfcf2f9af2191c82e",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794491670,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/230da726f61cd521e1e90739fa2fded39336a8ec15792a4bfcf2f9af2191c82e/c2e7e315c0f14228bb59748c1ffb6fb6.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "755770fd3e2e1c36e01fd6542aea14fac008f7e69906b36ee413e818c85070ae",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "blocked",
+      "attempts": 3,
+      "next_attempt_at": 1793405242,
+      "lease_until": 1793408497,
+      "result_json": {
+        "reason": "attempt_budget_exhausted",
+        "coverage_status": "partial"
+      }
+    },
+    {
+      "job_id": "4ab3231cbd5d35b59982aa8cc4245553b27961b9771efe428dbc54f6925d0cea",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "blocked",
+      "attempts": 3,
+      "next_attempt_at": 1793394372,
+      "lease_until": 1793395863,
+      "result_json": {
+        "reason": "attempt_budget_exhausted",
+        "coverage_status": "partial"
+      }
+    },
+    {
+      "job_id": "1639fde4d24ff6b49bffa9fdba180b7db67f589d83ea75960f31678221b1ea89",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "blocked",
+      "attempts": 3,
+      "next_attempt_at": 0,
+      "lease_until": 1793371349,
+      "result_json": {
+        "reason": "attempt_budget_exhausted",
+        "coverage_status": "partial"
+      }
+    },
+    {
+      "job_id": "832774819c7c21c9026750cfcd3f78edbad028d7d31f3f421573c121a3f1e69d",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "blocked",
+      "attempts": 3,
+      "next_attempt_at": 1793308229,
+      "lease_until": 1793309610,
+      "result_json": {
+        "reason": "attempt_budget_exhausted",
+        "coverage_status": "partial"
+      }
+    },
+    {
+      "job_id": "35e8665c54ea060ce3496983ab9fa88a46af999c9f0858aff9975d96b897334b",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "blocked",
+      "attempts": 3,
+      "next_attempt_at": 1793248811,
+      "lease_until": 1793251172,
+      "result_json": {
+        "reason": "attempt_budget_exhausted",
+        "coverage_status": "partial"
+      }
+    },
+    {
+      "job_id": "cdeaccca40d98b163c5df810c524acfe2cd185ca77f8d7385ecb9e9a9dda6637",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "blocked",
+      "attempts": 3,
+      "next_attempt_at": 1793181986,
+      "lease_until": 1793183874,
+      "result_json": {
+        "reason": "attempt_budget_exhausted",
+        "coverage_status": "partial"
+      }
+    },
+    {
+      "job_id": "933a0e1398728778dc7e68f40d20baffd4b70fd502d57a9c504e3f8ddd3752aa",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794502589,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 2,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/933a0e1398728778dc7e68f40d20baffd4b70fd502d57a9c504e3f8ddd3752aa/a2272e5fdc73436da7eadf76038fdfea.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2024-03-01",
+            "scope": "ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope",
+            "start": "2024-02-01",
+            "reason": "interrupted",
+            "status": "partial",
+            "updated_at": 1794502288.9859838,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/95174f26-26d8-4930-b644-064e7f2f2207.json"
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "59ce4ddbab3779d9ae7b61b40263e5feb5a1da4625c48e84ff65fdd97630b655",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794498975,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/59ce4ddbab3779d9ae7b61b40263e5feb5a1da4625c48e84ff65fdd97630b655/20d248ba59da42c1a3ad1958d43f7ca4.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "4276cfedd7fe3212e145eb48e119f70aa146c89bb26ec7075ed16db20bffb39b",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794495275,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 2,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/4276cfedd7fe3212e145eb48e119f70aa146c89bb26ec7075ed16db20bffb39b/4d4d2f7b08ee4e7b861865edc0f5d38a.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2024-02-01",
+            "scope": "ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope",
+            "start": "2024-01-01",
+            "reason": "interrupted",
+            "status": "partial",
+            "updated_at": 1794494975.14163,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/bd87ca1e-7e1c-4669-9d30-16b6e8350b2d.json"
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "95282906073f76c20e2753b1df8d833f8c177a1de3f217fc0fa684fb6391c25a",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 2,
+      "next_attempt_at": 1794439985,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 2,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/95282906073f76c20e2753b1df8d833f8c177a1de3f217fc0fa684fb6391c25a/a2b604bd612d46bfa6a4eaf9b2a5cc0d.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2023-06-01",
+            "scope": "ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope",
+            "start": "2023-05-01",
+            "reason": "interrupted",
+            "status": "partial",
+            "updated_at": 1794438785.5890524,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/249c966b-5aa0-452e-b7b1-84787216bf71.json"
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "d8a853aca35319525ae40d7154c8c0b133d348111687314d91c7e6126d4bdbd9",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794487974,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 2,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/d8a853aca35319525ae40d7154c8c0b133d348111687314d91c7e6126d4bdbd9/bf8e5e6fa05a42c494c0dd24c7559149.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2024-01-01",
+            "scope": "ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope",
+            "start": "2023-12-01",
+            "reason": "interrupted",
+            "status": "partial",
+            "updated_at": 1794487674.2810535,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/adaa9ffc-a759-4c0a-89cd-1b8a2ee77dc8.json"
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "90ba21238a47f0a94b33cf2ba3dd3dece176ac208e9f744705e5d3a1207ee29d",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794484365,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/90ba21238a47f0a94b33cf2ba3dd3dece176ac208e9f744705e5d3a1207ee29d/38bc714287a94f71a484f91e43605ef0.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "c2da9350f3b385ac54959f150093e05582d083a4122bbed1c109a0c4420f1bfc",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794469754,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/c2da9350f3b385ac54959f150093e05582d083a4122bbed1c109a0c4420f1bfc/9a36cb929f6c4d0aa52d5fe81e5da082.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "24985e1239eb45f8e05bdb2e45e6f6b0fabceee3ad56a67a7c784939998feb91",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794442780,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/24985e1239eb45f8e05bdb2e45e6f6b0fabceee3ad56a67a7c784939998feb91/458809b5d04c45a088e42becec349aac.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "2f905a80293d8ef4e45ffa6e7043bb0e70ed4bf6fa02e49d1d83eacfa329d59b",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794446387,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 2,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/2f905a80293d8ef4e45ffa6e7043bb0e70ed4bf6fa02e49d1d83eacfa329d59b/a1515a40fe36433fa9bfb2e192e0b8ff.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2023-07-01",
+            "scope": "ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope",
+            "start": "2023-06-01",
+            "reason": "interrupted",
+            "status": "partial",
+            "updated_at": 1794446087.5341694,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/ddfb3fe1-eafb-4b00-bb08-606f316f75ec.json"
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "5af5c180e2871d68d8b2f9654b280a948ab5430f2f08bdf129435a41e6319ac6",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794451462,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 2,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/5af5c180e2871d68d8b2f9654b280a948ab5430f2f08bdf129435a41e6319ac6/1bd0ef8f84ab4cf493cc506a5c174c4a.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2023-08-01",
+            "scope": "ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope",
+            "start": "2023-07-01",
+            "reason": "collection_error",
+            "status": "failed",
+            "updated_at": 1794451162.826332,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/77744426-388d-42b1-96a1-f9d13f1c6a8b.json"
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "724a3a40d5956e7092db0326ffa18682267f9092780e2442f8a190ce14746315",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794455155,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/724a3a40d5956e7092db0326ffa18682267f9092780e2442f8a190ce14746315/a085ed2c0c6b452abe0316dbbec614d1.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "79488f4f1c2613cb3c762fba17f7ccb543ce1970ff7a2784f28bec76d55cb69b",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794458760,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 2,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/79488f4f1c2613cb3c762fba17f7ccb543ce1970ff7a2784f28bec76d55cb69b/42929fc0aeda45f9a5475d54d529dd4e.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2023-09-01",
+            "scope": "ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope",
+            "start": "2023-08-01",
+            "reason": "interrupted",
+            "status": "partial",
+            "updated_at": 1794458460.0479314,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/61ea8a60-cac5-406c-a70f-0fd4b26bed25.json"
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "7ea33a5d82bb8d9bec937844160f86f490b9afdae245f6787cecb1c80eb5145a",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794462453,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/7ea33a5d82bb8d9bec937844160f86f490b9afdae245f6787cecb1c80eb5145a/11a212d7ef1d4641947b480204df84e2.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "a7955764e182cf9c7a9c50ffc1e05a0e0eee4428da3f2c29792276a446ea7b4d",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794466061,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 2,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/a7955764e182cf9c7a9c50ffc1e05a0e0eee4428da3f2c29792276a446ea7b4d/60264c3bbb7747588ca8a2aa0e491727.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2023-10-01",
+            "scope": "ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope",
+            "start": "2023-09-01",
+            "reason": "collection_error",
+            "status": "failed",
+            "updated_at": 1794465761.1705272,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/56158ba4-d444-4396-a6d7-87c6b7def44a.json"
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "1970f6d165a32af3f3cc32f2df2a23477feb6e63349b2d5a5946c58258558a60",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794473359,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 2,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/1970f6d165a32af3f3cc32f2df2a23477feb6e63349b2d5a5946c58258558a60/e7ce787dd0f44e8fbf3ba926e3f00870.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2023-11-01",
+            "scope": "ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope",
+            "start": "2023-10-01",
+            "reason": "interrupted",
+            "status": "partial",
+            "updated_at": 1794473058.910118,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/39f08f53-3ae7-46c6-ba66-36d644ad34bb.json"
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "58c6400a073b26861835dda5cde2eccb9888e71217aef99edb58e1a0f1a2eb6e",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794477058,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/58c6400a073b26861835dda5cde2eccb9888e71217aef99edb58e1a0f1a2eb6e/73eb81cbf5154ec7b8369bd200f72c0e.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "746c6f10d90a28bb7ab7494ffa1b66a7733402b1050649e1d7f2d3fc6139a3f3",
+      "source_key": "legacy:constellation-core-ema-historical.service",
+      "status": "retryable_failed",
+      "attempts": 1,
+      "next_attempt_at": 1794480669,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 2,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/746c6f10d90a28bb7ab7494ffa1b66a7733402b1050649e1d7f2d3fc6139a3f3/d09464fb244e44e6a8df84812dbcbaed.log",
+        "legacy_unit": "constellation-core-ema-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-ema-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2023-12-01",
+            "scope": "ema|935af362e43726fe97e95f4c6848b591ce8083c6cdf1ec5843bef67f9ae9d53f|configured_legacy_scope",
+            "start": "2023-11-01",
+            "reason": "interrupted",
+            "status": "partial",
+            "updated_at": 1794480369.2210042,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-core-ema-historical.service/reports/dac3c9fc-4933-45ce-9e51-a08bf7a2b8cd.json"
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "019cb09a86b6c30591703120f7964666dbcb8782a74d220696f4cd9cace859ab",
+      "source_key": "legacy:constellation-core-migration-probe.service",
+      "status": "blocked",
+      "attempts": 3,
+      "next_attempt_at": 0,
+      "lease_until": 0,
+      "result_json": {
+        "note": "Bootstrap/verifier diagnostic, not provider availability evidence.",
+        "reason": "superseded_executor_diagnostic",
+        "prior_result": {
+          "exit_code": 1,
+          "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/019cb09a86b6c30591703120f7964666dbcb8782a74d220696f4cd9cace859ab/6eb9111575bb4fcda1ac8082e712e796.log",
+          "legacy_unit": "constellation-core-migration-probe.service",
+          "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+          "execution_kind": "legacy_invocation",
+          "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-core-migration-probe.service",
+          "coverage_status": "not_audited",
+          "checkpoint_verified": true
+        },
+        "coverage_status": "not_audited",
+        "superseded_by_job_id": "99f2aa2ba0e09aab8f1d7d998d9829cef3d029a92009c3673a49ee9469820f3e"
+      }
+    },
+    {
+      "job_id": "063c6dc151faa8d15a374d08d05cd2cde13fb959038f938522401db2a5e8aa06",
+      "source_key": "legacy:constellation-specialist-edinet_filings.service",
+      "status": "retryable_failed",
+      "attempts": 2,
+      "next_attempt_at": 1794482787,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/063c6dc151faa8d15a374d08d05cd2cde13fb959038f938522401db2a5e8aa06/f2d8915760e3468a880ffd3f28b8d16f.log",
+        "legacy_unit": "constellation-specialist-edinet_filings.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-edinet_filings.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "45fcc3dfcdaa4dea271ce1fc0ab6739583373af8122155d90ff917b6e5b3867f",
+      "source_key": "legacy:constellation-specialist-edinet_filings.service",
+      "status": "retryable_failed",
+      "attempts": 2,
+      "next_attempt_at": 1794493598,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/45fcc3dfcdaa4dea271ce1fc0ab6739583373af8122155d90ff917b6e5b3867f/3aa4618b9f804f3f971e8ad76df98836.log",
+        "legacy_unit": "constellation-specialist-edinet_filings.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-edinet_filings.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "30da892e43829181caa7f259a0a2c58c1d35a6aeabc4406c0dae00e4b38ac210",
+      "source_key": "legacy:constellation-specialist-edinet_filings.service",
+      "status": "retryable_failed",
+      "attempts": 2,
+      "next_attempt_at": 1794491682,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/30da892e43829181caa7f259a0a2c58c1d35a6aeabc4406c0dae00e4b38ac210/1d50be8d83124c85a1aa2c9496a2c6f9.log",
+        "legacy_unit": "constellation-specialist-edinet_filings.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-edinet_filings.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "b88a73867c744680373e90b5a7ae772aa5129f36fbdbc70f0bef222069aff1c5",
+      "source_key": "legacy:constellation-specialist-edinet_filings.service",
+      "status": "retryable_failed",
+      "attempts": 2,
+      "next_attempt_at": 1794478933,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 0,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/b88a73867c744680373e90b5a7ae772aa5129f36fbdbc70f0bef222069aff1c5/e96285b7b31e43e788ec46c6e52365bf.log",
+        "legacy_unit": "constellation-specialist-edinet_filings.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-edinet_filings.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [
+          {
+            "end": "2025-04-26",
+            "scope": "edinet_filings|S10|specialist_historical|712f7a31f2024ecd4022ddca",
+            "start": "2025-04-25",
+            "reason": null,
+            "status": "partial",
+            "updated_at": 1794477732.8878524,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-edinet_filings.service/executions/8e9463db6aa9a9742cbda7d78961f3c4e0257161abd6ad3328e4d9731a30cd9c.json",
+            "scope_version": 2
+          },
+          {
+            "end": "2025-04-29",
+            "scope": "edinet_filings|S10|specialist_historical|712f7a31f2024ecd4022ddca",
+            "start": "2025-04-28",
+            "reason": null,
+            "status": "partial",
+            "updated_at": 1794477732.887867,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-edinet_filings.service/executions/8e9463db6aa9a9742cbda7d78961f3c4e0257161abd6ad3328e4d9731a30cd9c.json",
+            "scope_version": 2
+          },
+          {
+            "end": "2025-05-01",
+            "scope": "edinet_filings|S10|specialist_historical|712f7a31f2024ecd4022ddca",
+            "start": "2025-04-30",
+            "reason": null,
+            "status": "partial",
+            "updated_at": 1794477732.8878777,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-edinet_filings.service/executions/8e9463db6aa9a9742cbda7d78961f3c4e0257161abd6ad3328e4d9731a30cd9c.json",
+            "scope_version": 2
+          },
+          {
+            "end": "2025-05-02",
+            "scope": "edinet_filings|S10|specialist_historical|712f7a31f2024ecd4022ddca",
+            "start": "2025-05-01",
+            "reason": null,
+            "status": "partial",
+            "updated_at": 1794477732.887887,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-edinet_filings.service/executions/8e9463db6aa9a9742cbda7d78961f3c4e0257161abd6ad3328e4d9731a30cd9c.json",
+            "scope_version": 2
+          },
+          {
+            "end": "2025-05-03",
+            "scope": "edinet_filings|S10|specialist_historical|712f7a31f2024ecd4022ddca",
+            "start": "2025-05-02",
+            "reason": null,
+            "status": "partial",
+            "updated_at": 1794477732.8878968,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-edinet_filings.service/executions/8e9463db6aa9a9742cbda7d78961f3c4e0257161abd6ad3328e4d9731a30cd9c.json",
+            "scope_version": 2
+          },
+          {
+            "end": "2025-05-08",
+            "scope": "edinet_filings|S10|specialist_historical|712f7a31f2024ecd4022ddca",
+            "start": "2025-05-07",
+            "reason": null,
+            "status": "partial",
+            "updated_at": 1794477732.8879066,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-edinet_filings.service/executions/8e9463db6aa9a9742cbda7d78961f3c4e0257161abd6ad3328e4d9731a30cd9c.json",
+            "scope_version": 2
+          },
+          {
+            "end": "2025-05-09",
+            "scope": "edinet_filings|S10|specialist_historical|712f7a31f2024ecd4022ddca",
+            "start": "2025-05-08",
+            "reason": null,
+            "status": "partial",
+            "updated_at": 1794477732.887916,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-edinet_filings.service/executions/8e9463db6aa9a9742cbda7d78961f3c4e0257161abd6ad3328e4d9731a30cd9c.json",
+            "scope_version": 2
+          },
+          {
+            "end": "2025-05-10",
+            "scope": "edinet_filings|S10|specialist_historical|712f7a31f2024ecd4022ddca",
+            "start": "2025-05-09",
+            "reason": "interrupted",
+            "status": "partial",
+            "updated_at": 1794477732.887926,
+            "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-operation-receipts/constellation-specialist-edinet_filings.service/executions/8e9463db6aa9a9742cbda7d78961f3c4e0257161abd6ad3328e4d9731a30cd9c.json",
+            "scope_version": 2
+          }
+        ],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "3099dbbc80717baea4f90831776e8911da679348a2d4e6ee5ebcb62f500a5d80",
+      "source_key": "legacy:constellation-specialist-edinet_filings.service",
+      "status": "retryable_failed",
+      "attempts": 2,
+      "next_attempt_at": 1794489692,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/3099dbbc80717baea4f90831776e8911da679348a2d4e6ee5ebcb62f500a5d80/286fa71b2512495e906c168611db17ba.log",
+        "legacy_unit": "constellation-specialist-edinet_filings.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-edinet_filings.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "215bdd328f46f14631651a3eb26be148aeb0207ee7f052e58de8f4333c4b2ab1",
+      "source_key": "legacy:constellation-specialist-edinet_filings.service",
+      "status": "retryable_failed",
+      "attempts": 2,
+      "next_attempt_at": 1794485378,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/215bdd328f46f14631651a3eb26be148aeb0207ee7f052e58de8f4333c4b2ab1/ae919f6888264267a96cea638f6a39b7.log",
+        "legacy_unit": "constellation-specialist-edinet_filings.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-edinet_filings.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "0514b1dbc884add426eb3dceb0ac7b5a4729eb39e72e6f3ce9ff082c16be8310",
+      "source_key": "legacy:constellation-specialist-edinet_filings.service",
+      "status": "retryable_failed",
+      "attempts": 2,
+      "next_attempt_at": 1794480864,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 137,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/0514b1dbc884add426eb3dceb0ac7b5a4729eb39e72e6f3ce9ff082c16be8310/baadc85a4c5543eebd3c799e9895b491.log",
+        "legacy_unit": "constellation-specialist-edinet_filings.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-edinet_filings.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "5c790d16cb0324a1d4184213440180ce386968969400dd029db840eb249bf91a",
+      "source_key": "legacy:constellation-specialist-hugging_face_hub_models_and_datasets.service",
+      "status": "retryable_failed",
+      "attempts": 2,
+      "next_attempt_at": 1794498252,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 130,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/5c790d16cb0324a1d4184213440180ce386968969400dd029db840eb249bf91a/e18ac8713f8b4abb96c640beacc7caf4.log",
+        "legacy_unit": "constellation-specialist-hugging_face_hub_models_and_datasets.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-hugging_face_hub_models_and_datasets.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "447f5d8505e4bdc191714d02a5f73e8174507fbf75bc6a66e00b527350a8e1df",
+      "source_key": "legacy:constellation-specialist-hugging_face_hub_models_and_datasets.service",
+      "status": "retryable_failed",
+      "attempts": 2,
+      "next_attempt_at": 1794500100,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 130,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/447f5d8505e4bdc191714d02a5f73e8174507fbf75bc6a66e00b527350a8e1df/efa0f14397584b4cbc6ce6a7ff9509a0.log",
+        "legacy_unit": "constellation-specialist-hugging_face_hub_models_and_datasets.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-hugging_face_hub_models_and_datasets.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "b62ea356af6415f62d1e1a62befa75f4815a63d6955ae0b00260753318c3f670",
+      "source_key": "legacy:constellation-specialist-hugging_face_hub_models_and_datasets.service",
+      "status": "blocked",
+      "attempts": 3,
+      "next_attempt_at": 1794506055,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 130,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/b62ea356af6415f62d1e1a62befa75f4815a63d6955ae0b00260753318c3f670/2ead72dced864a34914cdc41aff13499.log",
+        "legacy_unit": "constellation-specialist-hugging_face_hub_models_and_datasets.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-hugging_face_hub_models_and_datasets.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "a00b7e3a72711fb33577cb9b1be6cf6cc1a6891c382e8d895ae53f2c934566b8",
+      "source_key": "legacy:constellation-specialist-hugging_face_hub_models_and_datasets.service",
+      "status": "blocked",
+      "attempts": 3,
+      "next_attempt_at": 1794508091,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 130,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/a00b7e3a72711fb33577cb9b1be6cf6cc1a6891c382e8d895ae53f2c934566b8/47921ffca0744cd183b6e16b36f334fc.log",
+        "legacy_unit": "constellation-specialist-hugging_face_hub_models_and_datasets.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/constellation-specialist-hugging_face_hub_models_and_datasets.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    },
+    {
+      "job_id": "2bd8da7d973f58eb8e257dcdbbfc66a1df61dedb5b191a36539462eed11100b1",
+      "source_key": "legacy:optima-news-collection-historical.service",
+      "status": "blocked",
+      "attempts": 3,
+      "next_attempt_at": 1794246710,
+      "lease_until": 0,
+      "result_json": {
+        "exit_code": 1,
+        "report_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/legacy-reports/2bd8da7d973f58eb8e257dcdbbfc66a1df61dedb5b191a36539462eed11100b1/9024d70cd1f24ef4a4b2bb9d2342f843.log",
+        "legacy_unit": "optima-news-collection-historical.service",
+        "coverage_note": "A checkpointed bounded invocation is not complete historical source coverage.",
+        "route_drained": false,
+        "execution_kind": "legacy_invocation",
+        "runtime_prefix": "research-data/constellation-backfill/legacy-runtime/optima-news-collection-historical.service",
+        "coverage_status": "not_audited",
+        "coverage_windows": [],
+        "checkpoint_verified": true
+      }
+    }
+  ]
+}

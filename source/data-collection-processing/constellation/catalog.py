@@ -3,6 +3,8 @@ import json
 import re
 from pathlib import Path
 
+from market_source_register import OWNER_REMOVED
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -22,11 +24,13 @@ def build():
     rows = []
     for number, name in entries:
         n = int(number)
+        if n in OWNER_REMOVED:
+            continue
         old = existing.get(n)
         source = old[0] if old else re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')
         # These durable keys belong to distinct publishers, not catalog row numbers.
         source = {77: 'usgs_earthquakes', 79: 'arxiv', 151: 'nsf_awards'}.get(n, source)
-        paused = n in {12, 44, 59, 61}
+        paused = n in {44, 59, 61}
         route = n in {9, 10, 60, 81}
         rows.append({'catalog_entry': n, 'catalog_name': name, 'source_key': source,
             'datasets': old[1] if old else [],
@@ -42,7 +46,7 @@ def build():
             'license': None, 'commercial_ml_rights': 'not_audited',
             'last_audited_at': None, 'historical_complete': False,
             'missing_reason': 'operator_paused' if paused else 'not_yet_audited'})
-    return {'schema_version': 1, 'catalog_entries': 158,
+    return {'schema_version': 1, 'catalog_entries': len(rows),
         'scope_note': 'Catalog rows are not a count of independent publishers or working integrations.',
         'sources': rows}
 

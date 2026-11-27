@@ -1,0 +1,48 @@
+{
+  "manifest": "manifests/collection_runs/source=edinet_filings/dataset=specialist_inputs/run_488bfcf5-7e91-4ef5-91e6-06332a7ebf60/final.json",
+  "finished_at": "2026-11-12T13:47:16.354677Z",
+  "record_count_before": 142,
+  "record_count_after": 143,
+  "doc_id": "S100Z97F",
+  "formats": [
+    {
+      "kind": "1",
+      "source_bytes": 1076037,
+      "text_characters": 9005071,
+      "files": []
+    },
+    {
+      "kind": "2",
+      "source_bytes": 1807353,
+      "text_characters": 860274,
+      "files": [
+        {
+          "format": "pdf",
+          "extractor": "poppler-pdftotext",
+          "pages": 336
+        }
+      ]
+    },
+    {
+      "kind": "3",
+      "source_bytes": 429332,
+      "text_characters": 22021,
+      "files": [
+        {
+          "format": "pdf",
+          "extractor": "poppler-pdftotext",
+          "pages": 19
+        }
+      ]
+    },
+    {
+      "kind": "5",
+      "source_bytes": 146251,
+      "text_characters": 320547,
+      "files": []
+    }
+  ],
+  "cpu_seconds": 13.3,
+  "sampled_memory_max_bytes": 110551040,
+  "sampling_note": "Maximum of ten five-second samples, not a measured lifetime peak."
+}

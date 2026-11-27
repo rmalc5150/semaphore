@@ -1,0 +1,151 @@
+  Review (16 November 2026): **reviewed** — 1 complete published sample rows. Corrected the provider download host, catalogue/document classification and fresh public download-link resolution. Verified the complete 2025 Open Medic ZIP, checksum and every member CRC. Daily and historical capture are active. SQL rows represent validated original annual dataset files; individual medicine/cost-row extraction is a separate downstream step. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [ ] **91. Japan MHLW NDB Open Data** (`japan_mhlw_ndb_open_data`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=japan_mhlw_ndb_open_data/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'japan_mhlw_ndb_open_data' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **92. CNINFO mainland-China company disclosures** (`cninfo_mainland_china_company_disclosures`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=cninfo_mainland_china_company_disclosures/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Archives the provider filing record plus original primary document; extracts filing identity, provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'cninfo_mainland_china_company_disclosures' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **93. China NBS industrial production** (`china_nbs_industrial_production`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=china_nbs_industrial_production/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_nbs_industrial_production' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **94. China MIIT electronics and battery statistics** (`china_miit_electronics_and_battery_statistics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=china_miit_electronics_and_battery_statistics/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_miit_electronics_and_battery_statistics' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: yes
+
+- [ ] **95. China NEA power statistics** (`china_nea_power_statistics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=china_nea_power_statistics/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 5 failed attempt(s).  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_nea_power_statistics' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: yes
+
+- [ ] **96. China NHSA reimbursement and procurement** (`china_nhsa_reimbursement_and_procurement`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=china_nhsa_reimbursement_and_procurement/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_nhsa_reimbursement_and_procurement' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **97. China MOFCOM export controls** (`china_mofcom_export_controls`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=china_mofcom_export_controls/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_mofcom_export_controls' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **98. South Korea FSS OpenDART** (`south_korea_fss_opendart`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=south_korea_fss_opendart/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:primary_document`  
+  Recorded raw-data errors: `missing_verified_raw_artifacts:primary_document` across 4 failed attempt(s).  
+  Current raw processing: Archives the provider filing record plus original primary document; extracts filing identity, provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'south_korea_fss_opendart' GROUP BY source_key;`
+
+  RM: yes
+  SQL: no
+
+- [ ] **99. South Korea KOSIS statistical OpenAPI** (`south_korea_kosis_statistical_openapi`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=south_korea_kosis_statistical_openapi/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'south_korea_kosis_statistical_openapi' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **100. Taiwan TWSE/MOPS issuer and revenue archives** (`taiwan_twse_mops_issuer_and_revenue_archives`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=taiwan_twse_mops_issuer_and_revenue_archives/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:primary_document`  
+  Recorded raw-data errors: `missing_verified_raw_artifacts:primary_document` across 2 failed attempt(s).  
+  Current raw processing: Archives the provider filing record plus original primary document; extracts filing identity, provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'taiwan_twse_mops_issuer_and_revenue_archives' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **101. Taiwan customs trade statistics** (`taiwan_customs_trade_statistics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=taiwan_customs_trade_statistics/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'taiwan_customs_trade_statistics' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **102. India IBM mineral production** (`india_ibm_mineral_production`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=india_ibm_mineral_production/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'india_ibm_mineral_production' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **103. Indonesia ESDM and Geological Agency mineral statistics** (`indonesia_esdm_and_geological_agency_mineral_statistics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=indonesia_esdm_and_geological_agency_mineral_statistics/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record`; `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'indonesia_esdm_and_geological_agency_mineral_statistics' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: yes
+
+- [ ] **104. Brazil ANM mineral yearbook** (`brazil_anm_mineral_yearbook`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=brazil_anm_mineral_yearbook/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_anm_mineral_yearbook' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **105. Brazil ANM CFEM mining royalties** (`brazil_anm_cfem_mining_royalties`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=brazil_anm_cfem_mining_royalties/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_anm_cfem_mining_royalties' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: yes

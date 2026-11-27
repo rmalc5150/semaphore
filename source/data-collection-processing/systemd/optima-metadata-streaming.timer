@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue oversized metadata artifacts independently
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=15s
+AccuracySec=1s
+Unit=optima-metadata-streaming.service
+[Install]
+WantedBy=timers.target

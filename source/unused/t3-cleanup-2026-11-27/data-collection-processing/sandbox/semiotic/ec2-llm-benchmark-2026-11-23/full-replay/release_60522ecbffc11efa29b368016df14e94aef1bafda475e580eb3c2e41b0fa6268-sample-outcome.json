@@ -1,0 +1,45 @@
+{
+  "archive_extraction_status": {
+    "extracted": 38,
+    "no_text_extracted": 62
+  },
+  "graph": "results/full-replay/releases/release_60522ecbffc11efa29b368016df14e94aef1bafda475e580eb3c2e41b0fa6268/graph.json",
+  "industry_grouped_observations": 0,
+  "release_id": "release_60522ecbffc11efa29b368016df14e94aef1bafda475e580eb3c2e41b0fa6268",
+  "sample_sha256": "534c5af1ca18d5e8eea8ba192997f90da63ae1a8b1675aee1babe4dbe61b5da2",
+  "source_counts": {
+    "arxiv": 4,
+    "google_patents_bigquery": 31,
+    "nasa_power_weather_and_solar_resource": 31,
+    "nist_robotics_methods": 1,
+    "ted_notices": 1,
+    "usa_spending": 1,
+    "usgs_earthquakes": 31
+  },
+  "table_counts": {
+    "bindings": 0,
+    "chunks": 80,
+    "claims": 43,
+    "edges": 0,
+    "entities": 0,
+    "event_versions": 0,
+    "evidence_units": 274,
+    "industry_groups": 0,
+    "language_candidates": 34,
+    "language_failures": 46,
+    "measurements": 93,
+    "mentions": 0,
+    "numerical_tables": 0,
+    "observation_geography": 100,
+    "observation_profiles": 100,
+    "observations": 100,
+    "publication_inputs": 100,
+    "raw_extraction": 100,
+    "sector_attributions": 34,
+    "sector_coverage": 316,
+    "sector_source_codes": 0,
+    "similarity_groups": 0,
+    "subject_frequency": 35,
+    "token_frequency": 226
+  }
+}

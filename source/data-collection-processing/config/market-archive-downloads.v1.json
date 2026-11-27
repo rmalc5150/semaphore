@@ -1,0 +1,1074 @@
+{
+  "version": 1,
+  "downloads": [
+    {
+      "id": 192,
+      "key": "eurostat-prodcom-de-semiconductors-2016",
+      "dataset": "sold_production",
+      "url": "https://ec.europa.eu/eurostat/api/comext/dissemination/sdmx/2.1/data/DS-059358/A.DE.26111100+26111200+26112120+26112150+26112180+26112220+26112240+26112260+26112280+26113003+26113006+26113023+26113027+26113034+26113054+26113065+26113067+26113080+26113091+26113094+26114010+26114040+26114070+26114090+26115020+26115050.PRODVAL?startPeriod=2016&endPeriod=2016&format=SDMX-CSV",
+      "format": "csv",
+      "year": 2016,
+      "scope": "Eurostat DS-059358 2016 German semiconductor production value in the current release. Includes individually validated PRODCOM codes. TIME_PERIOD is the reporting year.",
+      "hosts": [
+        "ec.europa.eu"
+      ],
+      "fields": [
+        "DATAFLOW",
+        "LAST UPDATE",
+        "freq",
+        "reporter",
+        "product",
+        "indicators",
+        "TIME_PERIOD",
+        "OBS_VALUE"
+      ],
+      "row_filter": [
+        "TIME_PERIOD",
+        "^2016$"
+      ],
+      "max_mb": 2,
+      "max_rows": 500
+    },
+    {
+      "id": 179,
+      "key": "cmf-ifrs-issuer-txt-2016",
+      "dataset": "issuer_ifrs",
+      "url": "https://www.cmfchile.cl/institucional/estadisticas/ver_archivo.php?inicio=201603&termino=201612",
+      "format": "cmf_ifrs",
+      "year": 2016,
+      "scope": "Official quarterly issuer IFRS statement TXT for 2016. The reference period is separate from the official archive index update of 28 January 2017. Bank statistics and contemporaneous filing releases are separate scopes.",
+      "hosts": [
+        "www.cmfchile.cl"
+      ],
+      "max_mb": 24,
+      "max_rows": 150000
+    },
+    {
+      "id": 174,
+      "key": "companies-house-arm-tm01-2016",
+      "dataset": "filing_documents",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/02548782/filing-history/MzEzODk5MzkzNmFkaXF6a2N4/document?format=pdf&download=0",
+      "filing_index_url": "https://find-and-update.company-information.service.gov.uk/company/02548782/filing-history?page=6",
+      "filing_form": "TM01",
+      "company_number": "02548782",
+      "format": "pdf",
+      "year": 2016,
+      "scope": "Official Companies House PDF for a 2016 ARM filing. The original scanned PDF and the matching public register row are retained together.",
+      "hosts": [
+        "find-and-update.company-information.service.gov.uk",
+        "s3.eu-west-2.amazonaws.com"
+      ],
+      "day_field": "filing_date",
+      "id_fields": [
+        "company_number",
+        "filing_date",
+        "form"
+      ],
+      "max_mb": 2
+    },
+    {
+      "id": 161,
+      "key": "wayback-intel-2016",
+      "dataset": "provider_data",
+      "url": "https://web.archive.org/web/20160601234329id_/http://www.intel.fr/content/www/fr/fr/homepage.html",
+      "format": "html",
+      "year": 2016,
+      "scope": "Exact June 2016 historical Intel France company homepage replay.",
+      "hosts": [
+        "web.archive.org"
+      ],
+      "text_pattern": "intel",
+      "xpath": "//main|//body",
+      "max_mb": 5
+    },
+    {
+      "id": 168,
+      "key": "stack-overflow-survey-2016",
+      "dataset": "provider_data",
+      "url": "https://media.githubusercontent.com/media/StackExchange/Survey/main/packages/archive/2016/results.csv",
+      "format": "csv",
+      "year": 2016,
+      "scope": "2016 original Stack Overflow public survey. Published native respondent rows for selected country, occupation, experience and technology questions.",
+      "hosts": [
+        "media.githubusercontent.com"
+      ],
+      "id_fields": [
+        ""
+      ],
+      "max_rows": 70000,
+      "max_mb": 90,
+      "columns": [
+        "",
+        "country",
+        "age_range",
+        "gender",
+        "occupation",
+        "experience_range",
+        "salary_range",
+        "tech_do",
+        "tech_want"
+      ],
+      "fields": [
+        "country",
+        "occupation",
+        "tech_do"
+      ]
+    },
+    {
+      "id": 172,
+      "key": "ripe-ris-rrc00-2016-01-01",
+      "dataset": "ripe_ris",
+      "url": "https://data.ris.ripe.net/rrc00/2016.01/bview.20160101.0000.gz",
+      "format": "mrt",
+      "year": 2016,
+      "scope": "First January 2016 Route Information Service snapshot for rrc00. Aggregate native MRT counts by message type and subtype.",
+      "hosts": [
+        "data.ris.ripe.net"
+      ],
+      "max_mb": 48,
+      "day_field": "day"
+    },
+    {
+      "id": 172,
+      "key": "routeviews-oregon-2016-01-01",
+      "dataset": "routeviews",
+      "url": "https://archive.routeviews.org/bgpdata/2016.01/RIBS/rib.20160101.0000.bz2",
+      "format": "mrt",
+      "year": 2016,
+      "scope": "January 2016 RouteViews Oregon snapshot. Aggregate native MRT counts by message type and subtype.",
+      "hosts": [
+        "archive.routeviews.org"
+      ],
+      "max_mb": 150,
+      "day_field": "day"
+    },
+    {
+      "id": 173,
+      "key": "wikidata-2016-entity-revision",
+      "dataset": "provider_data",
+      "url": "https://www.wikidata.org/w/api.php?action=query&prop=revisions&titles=Q182477&rvstart=2016-12-31T23:59:59Z&rvlimit=1&rvprop=ids%7Ctimestamp%7Ccontent&rvslots=main&format=json",
+      "format": "json",
+      "year": 2016,
+      "scope": "One complete Wikidata entity revision published on or before the end of 2016 for the selected entity.",
+      "hosts": [
+        "www.wikidata.org"
+      ],
+      "path": [
+        "query",
+        "pages",
+        "181572",
+        "revisions"
+      ],
+      "fields": [
+        "revid",
+        "timestamp",
+        "slots.main.*"
+      ],
+      "max_mb": 5
+    },
+    {
+      "id": 193,
+      "key": "bds-national-2016",
+      "dataset": "provider_data",
+      "url": "https://www2.census.gov/programs-surveys/bds/tables/time-series/2023/bds2023.csv",
+      "format": "csv",
+      "year": 2016,
+      "scope": "Census national Business Dynamics Statistics for 2016 from the 2023 retrospective release.",
+      "hosts": [
+        "www2.census.gov"
+      ],
+      "fields": [
+        "year",
+        "firms",
+        "job_creation",
+        "job_destruction"
+      ],
+      "row_filter": [
+        "year",
+        "^2016$"
+      ]
+    },
+    {
+      "id": 193,
+      "key": "bds-st-2016",
+      "dataset": "provider_data",
+      "url": "https://www2.census.gov/programs-surveys/bds/tables/time-series/2023/bds2023_st.csv",
+      "format": "csv",
+      "year": 2016,
+      "scope": "Census 2016 Business Dynamics Statistics at state grain, from the 2023 vintage.",
+      "hosts": [
+        "www2.census.gov"
+      ],
+      "fields": [
+        "year",
+        "firms",
+        "job_creation",
+        "job_destruction"
+      ],
+      "row_filter": [
+        "year",
+        "^2016$"
+      ]
+    },
+    {
+      "id": 193,
+      "key": "bds-naics-2016",
+      "dataset": "provider_data",
+      "url": "https://www2.census.gov/programs-surveys/bds/tables/time-series/2023/bds2023_naics3.csv",
+      "format": "csv",
+      "year": 2016,
+      "scope": "Census 2016 Business Dynamics Statistics at NAICS industry grain, from the 2023 vintage.",
+      "hosts": [
+        "www2.census.gov"
+      ],
+      "fields": [
+        "year",
+        "firms",
+        "job_creation",
+        "job_destruction"
+      ],
+      "row_filter": [
+        "year",
+        "^2016$"
+      ]
+    },
+    {
+      "id": 197,
+      "key": "epa-tri-ca-2016",
+      "dataset": "provider_data",
+      "url": "https://www3.epa.gov/tri/na_archive/2016/CA_2016_v15.zip",
+      "format": "zip_csv",
+      "year": 2016,
+      "scope": "2016 EPA historical-vintage TRI Basic Plus facility/chemical release and waste-management summary for CA. Other table types remain in the ZIP.",
+      "hosts": [
+        "www3.epa.gov"
+      ],
+      "member_regex": "(?:^|/)[A-Z]{2}_1_2016_v15\\.txt$",
+      "delimiter": "\t",
+      "encoding": "cp1252",
+      "max_rows": 35000
+    },
+    {
+      "id": 197,
+      "key": "epa-tri-tx-2016",
+      "dataset": "provider_data",
+      "url": "https://www3.epa.gov/tri/na_archive/2016/TX_2016_v15.zip",
+      "format": "zip_csv",
+      "year": 2016,
+      "scope": "2016 EPA historical-vintage TRI Basic Plus facility/chemical release and waste-management summary for TX. Other table types remain in the ZIP.",
+      "hosts": [
+        "www3.epa.gov"
+      ],
+      "member_regex": "(?:^|/)[A-Z]{2}_1_2016_v15\\.txt$",
+      "delimiter": "\t",
+      "encoding": "cp1252",
+      "max_rows": 35000
+    },
+    {
+      "id": 197,
+      "key": "epa-tri-ny-2016",
+      "dataset": "provider_data",
+      "url": "https://www3.epa.gov/tri/na_archive/2016/NY_2016_v15.zip",
+      "format": "zip_csv",
+      "year": 2016,
+      "scope": "2016 EPA historical-vintage TRI Basic Plus facility/chemical release and waste-management summary for NY. Other table types remain in the ZIP.",
+      "hosts": [
+        "www3.epa.gov"
+      ],
+      "member_regex": "(?:^|/)[A-Z]{2}_1_2016_v15\\.txt$",
+      "delimiter": "\t",
+      "encoding": "cp1252",
+      "max_rows": 35000
+    },
+    {
+      "id": 202,
+      "key": "irena-capacity-stats-2026",
+      "dataset": "provider_data",
+      "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2026/Mar/IRENA_DAT_RE_Capacity_Statistics_2026.pdf",
+      "format": "pdf",
+      "year": 2026,
+      "scope": "Official 2026 IRENA renewable capacity statistical tables covering 2016–2025. Native page layout and text retained.",
+      "hosts": [
+        "www.irena.org"
+      ],
+      "text_pattern": "capacity statistics|renewable capacity",
+      "max_pages": 200
+    },
+    {
+      "id": 206,
+      "key": "oica-world-production-2024",
+      "dataset": "provider_data",
+      "url": "https://oica.net/wp-content/uploads/2025/11/By-country.pdf",
+      "format": "pdf",
+      "year": 2024,
+      "scope": "OICA official 2024 world motor-vehicle production by country. Published tabular report as extracted page text.",
+      "hosts": [
+        "oica.net"
+      ],
+      "text_pattern": "production|motor vehicle",
+      "max_mb": 15
+    },
+    {
+      "id": 206,
+      "key": "oica-world-production-2016",
+      "dataset": "provider_data",
+      "url": "https://www.oica.net/wp-content/uploads/Total-2016.pdf",
+      "format": "pdf",
+      "year": 2016,
+      "scope": "Official OICA 2016 world motor vehicle production by country.",
+      "hosts": [
+        "oica.net",
+        "www.oica.net"
+      ],
+      "text_pattern": "world motor vehicle production",
+      "max_mb": 15
+    },
+    {
+      "id": 208,
+      "key": "oecd-icio-2016",
+      "dataset": "icio",
+      "url": "https://webfs-sti.oecd.org/files/STI-PIE/ICIO/2026/2015-2019_SML.zip",
+      "format": "zip_csv",
+      "year": 2016,
+      "scope": "OECD small ICIO retrospective edition, 2016 matrix only. First 600 native origin-sector rows and all published destination columns.",
+      "hosts": [
+        "webfs-sti.oecd.org"
+      ],
+      "member_regex": "2016[^/]*\\.csv$",
+      "max_rows": 600,
+      "max_mb": 190
+    },
+    {
+      "id": 208,
+      "key": "oecd-tiva-japan-2016",
+      "dataset": "tiva",
+      "url": "https://sdmx.oecd.org/sti-public/rest/data/OECD.STI.PIE,DSD_TIVA_MAINSH@DF_MAINSH,1.1/EXGR_DVA.JPN._T...A?startPeriod=2016&endPeriod=2016&dimensionAtObservation=AllDimensions",
+      "format": "csv",
+      "year": 2016,
+      "scope": "Japan OECD TiVA domestic value added in gross exports, 2016. One official edition-specific series.",
+      "hosts": [
+        "sdmx.oecd.org"
+      ],
+      "fields": [
+        "TIME_PERIOD",
+        "OBS_VALUE"
+      ],
+      "accept": "text/csv",
+      "max_mb": 12
+    },
+    {
+      "id": 216,
+      "key": "cellar-2016-gdpr",
+      "dataset": "law",
+      "url": "https://publications.europa.eu/resource/cellar/3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006/rdf/object/full",
+      "format": "xml",
+      "year": 2016,
+      "scope": "Official EU law CELLAR RDF graph for the 2016 English GDPR expression. Legislative history and legal text require distinct extraction.",
+      "hosts": [
+        "publications.europa.eu"
+      ],
+      "element_path": "./{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Description",
+      "max_mb": 12
+    },
+    {
+      "id": 218,
+      "key": "wto-ds456-2016",
+      "dataset": "provider_data",
+      "url": "https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds456_e.htm",
+      "format": "html",
+      "year": 2016,
+      "scope": "Official WTO case history for DS456 solar cells and modules, including the 2016 dispute decision.",
+      "hosts": [
+        "www.wto.org"
+      ],
+      "text_pattern": "solar cells|solar modules",
+      "xpath": "//main|//body",
+      "max_mb": 8
+    },
+    {
+      "id": 219,
+      "key": "us-lda-filings-2016",
+      "dataset": "registrations_and_reports",
+      "url": "https://lda.gov/api/v1/filings/?filing_year=2016&page_size=100",
+      "format": "json",
+      "year": 2016,
+      "scope": "First 100 public 2016 Lobbying Disclosure Act filings records from the current API. Additional pages remain separate.",
+      "hosts": [
+        "lda.gov"
+      ],
+      "path": [
+        "results"
+      ],
+      "fields": [
+        "filing_uuid",
+        "filing_year",
+        "filing_type"
+      ],
+      "id_fields": [
+        "filing_uuid"
+      ]
+    },
+    {
+      "id": 219,
+      "key": "us-lda-contributions-2016",
+      "dataset": "contributions",
+      "url": "https://lda.gov/api/v1/contributions/?filing_year=2016&page_size=100",
+      "format": "json",
+      "year": 2016,
+      "scope": "First 100 public 2016 Lobbying Disclosure Act contributions records from the current API. Additional pages remain separate.",
+      "hosts": [
+        "lda.gov"
+      ],
+      "path": [
+        "results"
+      ],
+      "fields": [
+        "filing_uuid",
+        "filing_year",
+        "filing_type"
+      ],
+      "id_fields": [
+        "filing_uuid"
+      ]
+    },
+    {
+      "id": 227,
+      "key": "uspto-case-files-2016",
+      "dataset": "case_files",
+      "url": "https://data.uspto.gov/ui/datasets/products/files/TRCFECO2/2016/csv.zip",
+      "format": "zip_csv",
+      "year": 2016,
+      "scope": "Official USPTO 2016 trademark case files dataset.",
+      "hosts": [
+        "data.uspto.gov"
+      ],
+      "member_regex": "case_file[^/]*\\.csv$",
+      "max_rows": 12000,
+      "max_mb": 120
+    },
+    {
+      "id": 239,
+      "key": "nhis-2016-adult",
+      "dataset": "nhis",
+      "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHIS/2016/samadultcsv.zip",
+      "format": "zip_csv",
+      "year": 2016,
+      "scope": "2016 NHIS official sample-adult public-use CSV. Preserve selected native survey variables and sample weights.",
+      "hosts": [
+        "ftp.cdc.gov"
+      ],
+      "member_regex": "samadult[^/]*\\.csv$",
+      "fields": [
+        "HHX",
+        "FMX",
+        "FPX",
+        "WTFA_SA"
+      ],
+      "columns": [
+        "HHX",
+        "FMX",
+        "FPX",
+        "WTFA_SA",
+        "SEX",
+        "AGE_P",
+        "REGION",
+        "HYPEV",
+        "DIBEV1"
+      ],
+      "max_rows": 35000
+    },
+    {
+      "id": 239,
+      "key": "brfss-2016-national",
+      "dataset": "brfss",
+      "url": "https://www.cdc.gov/brfss/annual_data/2016/files/LLCP2016XPT.zip",
+      "format": "zip_xpt",
+      "year": 2016,
+      "scope": "2016 CDC BRFSS national public-use XPT. Bounded first 25,000 native response rows, with geography, general health and survey weights.",
+      "hosts": [
+        "www.cdc.gov"
+      ],
+      "member_regex": "LLCP2016.*\\.XPT\\s*$",
+      "columns": [
+        "_STATE",
+        "SEQNO",
+        "_LLCPWT",
+        "GENHLTH",
+        "SEX",
+        "_AGEG5YR",
+        "DIABETE3"
+      ],
+      "id_fields": [
+        "SEQNO"
+      ],
+      "max_rows": 25000,
+      "max_mb": 100
+    },
+    {
+      "id": 245,
+      "key": "who-wuenic-input-2026",
+      "dataset": "wuenic",
+      "url": "https://cdn.who.int/media/docs/default-source/immunization/wuenic_input_to_pdf.xlsx?sfvrsn=a067f2ad_33&download=true",
+      "format": "xlsx",
+      "year": 2026,
+      "scope": "WHO immunization estimates input workbook. Native worksheet evidence for public coverage reporting, with version and workbook coordinates retained.",
+      "hosts": [
+        "cdn.who.int"
+      ],
+      "max_rows": 15000
+    },
+    {
+      "id": 247,
+      "key": "ecdc-ears-net-2016",
+      "dataset": "ears_net",
+      "url": "https://www.ecdc.europa.eu/sites/default/files/documents/AMR-surveillance-Europe-2016.pdf",
+      "format": "pdf",
+      "year": 2016,
+      "scope": "ECDC published 2016 EARS-Net antimicrobial-resistance surveillance edition. Parsed only public report and aggregate tables.",
+      "hosts": [
+        "www.ecdc.europa.eu"
+      ],
+      "text_pattern": "antimicrobial resistance|EARS.Net",
+      "max_pages": 200,
+      "max_mb": 130
+    },
+    {
+      "id": 247,
+      "key": "ecdc-esac-net-2016",
+      "dataset": "esac_net",
+      "url": "https://www.ecdc.europa.eu/sites/default/files/documents/AER_for_2016-AMC.pdf",
+      "format": "pdf",
+      "year": 2016,
+      "scope": "ECDC published 2016 ESAC-Net antimicrobial consumption annual surveillance edition.",
+      "hosts": [
+        "www.ecdc.europa.eu"
+      ],
+      "text_pattern": "antimicrobial consumption|ESAC.Net",
+      "max_pages": 120
+    },
+    {
+      "id": 250,
+      "key": "sec-13g-nvidia-2016",
+      "dataset": "schedule_13g",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/0000932471-16-011864.txt",
+      "format": "sec",
+      "year": 2016,
+      "scope": "Complete SEC Schedule 13G or amendment original. Parsed filing identity and document list. No trade or holding-change inference.",
+      "hosts": [
+        "www.sec.gov"
+      ],
+      "day_field": "filed_date",
+      "max_mb": 16
+    },
+    {
+      "id": 257,
+      "key": "commons-register-160111",
+      "dataset": "legacy_register",
+      "url": "https://publications.parliament.uk/pa/cm/cmregmem/160111/160111.pdf",
+      "format": "pdf",
+      "year": 2016,
+      "scope": "Official Commons Member financial-interests register published in 2016. Parsed register text by page. Positions and declarations retain source wording.",
+      "hosts": [
+        "publications.parliament.uk"
+      ],
+      "decodo": true,
+      "text_pattern": "register of members|registrable|financial interests",
+      "max_pages": 350
+    },
+    {
+      "id": 257,
+      "key": "commons-register-160418",
+      "dataset": "legacy_register",
+      "url": "https://publications.parliament.uk/pa/cm/cmregmem/160418/160418.pdf",
+      "format": "pdf",
+      "year": 2016,
+      "scope": "Official Commons Member financial-interests register published in 2016. Parsed register text by page. Positions and declarations retain source wording.",
+      "hosts": [
+        "publications.parliament.uk"
+      ],
+      "decodo": true,
+      "text_pattern": "register of members|registrable|financial interests",
+      "max_pages": 350
+    },
+    {
+      "id": 257,
+      "key": "commons-register-160516",
+      "dataset": "legacy_register",
+      "url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/160516.pdf",
+      "format": "pdf",
+      "year": 2016,
+      "scope": "Official Commons Member financial-interests register published in 2016. Parsed register text by page. Positions and declarations retain source wording.",
+      "hosts": [
+        "publications.parliament.uk"
+      ],
+      "decodo": true,
+      "text_pattern": "register of members|registrable|financial interests",
+      "max_pages": 350
+    },
+    {
+      "id": 267,
+      "key": "meti-latest-industry-workbook",
+      "dataset": "machinery",
+      "url": "https://www.meti.go.jp/statistics/tyo/seidou/result/ichiran/resourceData/08_seidou/nenpo/2025/h2daa2025k.xlsx",
+      "format": "xlsx",
+      "year": 2025,
+      "scope": "Official 2025 METI current production statistics yearbook. Selected industry rows by native published label.",
+      "hosts": [
+        "www.meti.go.jp"
+      ],
+      "row_pattern": "機械|machinery|machine",
+      "max_rows": 8000
+    },
+    {
+      "id": 181,
+      "key": "eu-comp-antitrust-2016",
+      "dataset": "provider_data",
+      "url": "https://compcases-open-data-portal-files-prod.s3.eu-west-1.amazonaws.com/case-data-AT.json",
+      "format": "json",
+      "year": 2016,
+      "scope": "DG Competition open export of antitrust and cartel cases whose last decision is dated in 2016. Native publication metadata retained.",
+      "hosts": [
+        "compcases-open-data-portal-files-prod.s3.eu-west-1.amazonaws.com"
+      ],
+      "dict_values": true,
+      "fields": [
+        "metadata",
+        "provider_key"
+      ],
+      "row_filter": [
+        "metadata.caseLastDecisionDate",
+        "2016"
+      ],
+      "id_fields": [
+        "provider_key"
+      ]
+    },
+    {
+      "id": 186,
+      "key": "cci-antitrust-order-2016",
+      "dataset": "provider_data",
+      "url": "https://cci.gov.in/images/caseorders/en/160820161652431825.pdf",
+      "format": "pdf",
+      "year": 2016,
+      "scope": "A published Competition Commission of India case order selected from its 2016 archive. Text extraction by original page.",
+      "hosts": [
+        "cci.gov.in",
+        "www.cci.gov.in"
+      ],
+      "text_pattern": "competition commission of india",
+      "max_mb": 30
+    },
+    {
+      "id": 199,
+      "key": "eea-ets-2005-2025",
+      "dataset": "provider_data",
+      "url": "https://sdi.eea.europa.eu/datashare/s/aZ7Ti5HkRGEbF62/download",
+      "format": "zip_excel",
+      "year": 2025,
+      "scope": "2026 EEA revised edition of EU ETS verified emissions and allowances. Public Union Registry data archive covering 2005–2025.",
+      "hosts": [
+        "sdi.eea.europa.eu"
+      ],
+      "member_regex": "CITL_cube_final[^/]*\\.xlsx$",
+      "max_mb": 25,
+      "max_rows": 35000
+    },
+    {
+      "id": 237,
+      "key": "cdc-flusurv-rates-2024-25",
+      "dataset": "provider_data",
+      "url": "https://data.cdc.gov/resource/kvib-3txy.json?$where=surveillance_network%20%3D%20%27FluSurv-NET%27%20AND%20season%20%3D%20%272024-25%27%20AND%20state%20%3D%20%27Overall%27&$limit=200",
+      "format": "json",
+      "year": 2024,
+      "scope": "CDC RESP-NET 2024–25 FluSurv-NET overall geography, up to 200 public released rate and clinical rows.",
+      "hosts": [
+        "data.cdc.gov"
+      ],
+      "fields": [
+        "surveillance_network",
+        "season",
+        "data_type"
+      ],
+      "max_rows": 200
+    },
+    {
+      "id": 246,
+      "key": "ecdc-pertussis-2016",
+      "dataset": "annual_reports",
+      "url": "https://www.ecdc.europa.eu/sites/default/files/documents/AER-for-2016-pertussis.pdf",
+      "format": "pdf",
+      "year": 2016,
+      "scope": "Official ECDC 2016 annual epidemiological report for pertussis. Aggregate national notifications and surveillance tables.",
+      "hosts": [
+        "www.ecdc.europa.eu"
+      ],
+      "text_pattern": "pertussis|epidemiological report",
+      "max_mb": 15
+    },
+    {
+      "id": 250,
+      "key": "sec-13d-2016",
+      "dataset": "schedule_13d",
+      "url": "https://www.sec.gov/Archives/edgar/data/1325740/0001193125-16-461852.txt",
+      "format": "sec",
+      "year": 2016,
+      "scope": "Complete official SEC Schedule 13D or amendment original. Filing metadata and original document references.",
+      "hosts": [
+        "www.sec.gov"
+      ],
+      "day_field": "filed_date",
+      "max_mb": 16
+    },
+    {
+      "id": 267,
+      "key": "meti-machinery-2016",
+      "dataset": "machinery",
+      "url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=2&statInfId=000031444279",
+      "format": "pdf",
+      "year": 2016,
+      "scope": "2016 official Japan METI machinery production yearbook. Published tables retained in original order as extracted page text.",
+      "hosts": [
+        "www.e-stat.go.jp"
+      ],
+      "text_pattern": "機械|生産動態|machinery",
+      "max_pages": 260,
+      "max_mb": 20
+    },
+    {
+      "id": 271,
+      "key": "mhlw-pharma-2016",
+      "dataset": "provider_data",
+      "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000031754375&fileKind=0",
+      "format": "xls",
+      "year": 2016,
+      "scope": "MHLW 2016 Pharmaceutical Industry Production Dynamics official survey table. Values retain Japanese source layout and pre-2019 method.",
+      "hosts": [
+        "www.e-stat.go.jp"
+      ],
+      "max_rows": 25000,
+      "max_mb": 32
+    },
+    {
+      "id": 257,
+      "key": "commons-2016-abbott_diane",
+      "dataset": "legacy_register",
+      "url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/abbott_diane.htm",
+      "format": "html",
+      "year": 2016,
+      "scope": "Original public member-level May 2016 Commons financial interests register entry. Decodo rendering preserves the public page when direct browser retrieval fails.",
+      "hosts": [
+        "publications.parliament.uk"
+      ],
+      "decodo": true,
+      "text_pattern": "register of members|registrable|financial interests",
+      "max_mb": 3
+    },
+    {
+      "id": 257,
+      "key": "commons-2016-abrahams_debbie",
+      "dataset": "legacy_register",
+      "url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/abrahams_debbie.htm",
+      "format": "html",
+      "year": 2016,
+      "scope": "Original public member-level May 2016 Commons financial interests register entry. Decodo rendering preserves the public page when direct browser retrieval fails.",
+      "hosts": [
+        "publications.parliament.uk"
+      ],
+      "decodo": true,
+      "text_pattern": "register of members|registrable|financial interests",
+      "max_mb": 3
+    },
+    {
+      "id": 257,
+      "key": "commons-2016-aldous_peter",
+      "dataset": "legacy_register",
+      "url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/aldous_peter.htm",
+      "format": "html",
+      "year": 2016,
+      "scope": "Original public member-level May 2016 Commons financial interests register entry. Decodo rendering preserves the public page when direct browser retrieval fails.",
+      "hosts": [
+        "publications.parliament.uk"
+      ],
+      "decodo": true,
+      "text_pattern": "register of members|registrable|financial interests",
+      "max_mb": 3
+    },
+    {
+      "id": 257,
+      "key": "commons-2016-alexander_heidi",
+      "dataset": "legacy_register",
+      "url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/alexander_heidi.htm",
+      "format": "html",
+      "year": 2016,
+      "scope": "Original public member-level May 2016 Commons financial interests register entry. Decodo rendering preserves the public page when direct browser retrieval fails.",
+      "hosts": [
+        "publications.parliament.uk"
+      ],
+      "decodo": true,
+      "text_pattern": "register of members|registrable|financial interests",
+      "max_mb": 3
+    },
+    {
+      "id": 257,
+      "key": "commons-2016-anderson_david",
+      "dataset": "legacy_register",
+      "url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/anderson_david.htm",
+      "format": "html",
+      "year": 2016,
+      "scope": "Original public member-level May 2016 Commons financial interests register entry. Decodo rendering preserves the public page when direct browser retrieval fails.",
+      "hosts": [
+        "publications.parliament.uk"
+      ],
+      "decodo": true,
+      "text_pattern": "register of members|registrable|financial interests",
+      "max_mb": 3
+    },
+    {
+      "id": 257,
+      "key": "commons-2016-baker_steve",
+      "dataset": "legacy_register",
+      "url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/baker_steve.htm",
+      "format": "html",
+      "year": 2016,
+      "scope": "Original public member-level May 2016 Commons financial interests register entry. Decodo rendering preserves the public page when direct browser retrieval fails.",
+      "hosts": [
+        "publications.parliament.uk"
+      ],
+      "decodo": true,
+      "text_pattern": "register of members|registrable|financial interests",
+      "max_mb": 3
+    },
+    {
+      "id": 247,
+      "key": "ecdc-esac-net-tables-2016",
+      "dataset": "esac_net",
+      "url": "https://www.ecdc.europa.eu/sites/default/files/documents/Tables_2016.zip",
+      "format": "zip_excel",
+      "year": 2016,
+      "scope": "Official ECDC 2016 antimicrobial consumption tables from the ESAC-Net report supplement. Preserve worksheet coordinates and printed units.",
+      "hosts": [
+        "www.ecdc.europa.eu"
+      ],
+      "member_regex": "Tables_2016/2016_data_Table_[^/]*\\.xlsx$",
+      "max_members": 50,
+      "max_rows": 13000,
+      "max_mb": 8
+    },
+    {
+      "id": 203,
+      "key": "bts-t100-monthly-summary-2016",
+      "dataset": "provider_data",
+      "url": "https://data.bts.gov/resource/jqx4-4iha.json?$where=year%3D%272016%27&$limit=25",
+      "format": "json",
+      "year": 2016,
+      "scope": "Official T-100 monthly domestic and international traffic summary for 2016. Carrier and origin/destination segment rows remain separate.",
+      "hosts": [
+        "data.bts.gov"
+      ],
+      "fields": [
+        "id",
+        "year",
+        "month",
+        "domestic_departures",
+        "domestic_passengers",
+        "domestic_seats"
+      ],
+      "id_fields": [
+        "id"
+      ],
+      "max_mb": 6
+    },
+    {
+      "id": 267,
+      "key": "meti-2016-industrial_robots",
+      "dataset": "industrial_robots",
+      "url": "https://www.e-stat.go.jp/dbview?sid=0003194168",
+      "format": "html",
+      "year": 2016,
+      "scope": "Official 2016 Japanese e-Stat production/shipment/inventory table page for the selected machinery category. Text and table values retained as displayed.",
+      "hosts": [
+        "www.e-stat.go.jp"
+      ],
+      "text_pattern": "ロボット",
+      "xpath": "//main",
+      "max_mb": 8,
+      "table_xpath": "//main//table//tr"
+    },
+    {
+      "id": 267,
+      "key": "meti-2016-semiconductor_equipment",
+      "dataset": "semiconductor_equipment",
+      "url": "https://www.e-stat.go.jp/dbview?sid=0003194185",
+      "format": "html",
+      "year": 2016,
+      "scope": "Official 2016 Japanese e-Stat production/shipment/inventory table page for the selected machinery category. Text and table values retained as displayed.",
+      "hosts": [
+        "www.e-stat.go.jp"
+      ],
+      "text_pattern": "半導体",
+      "xpath": "//main",
+      "max_mb": 8,
+      "table_xpath": "//main//table//tr"
+    },
+    {
+      "id": 166,
+      "key": "google-trends-2016-semiconductors",
+      "dataset": "provider_data",
+      "year": 2016,
+      "format": "google_trends_csv",
+      "manual_only": true,
+      "manual_content_type": "text/csv",
+      "url": "https://trends.google.com/trends/explore?date=2016-01-01+2016-12-31&q=semiconductors",
+      "term": "semiconductors",
+      "day_field": "week_start",
+      "id_fields": [
+        "week_start"
+      ],
+      "max_mb": 1,
+      "scope": "Google Trends Explore weekly worldwide interest for semiconductors, all categories, requested January through December 2016. This series was exported separately with its own 0 to 100 scale. Search property and original export timestamp are not recorded in the CSV."
+    },
+    {
+      "id": 166,
+      "key": "google-trends-2016-industrial-robots",
+      "dataset": "provider_data",
+      "year": 2016,
+      "format": "google_trends_csv",
+      "manual_only": true,
+      "manual_content_type": "text/csv",
+      "url": "https://trends.google.com/trends/explore?date=2016-01-01+2016-12-31&q=industrial+robots",
+      "term": "industrial robots",
+      "day_field": "week_start",
+      "id_fields": [
+        "week_start"
+      ],
+      "max_mb": 1,
+      "scope": "Google Trends Explore weekly worldwide interest for industrial robots, all categories, requested January through December 2016. This series was exported separately with its own 0 to 100 scale. Search property and original export timestamp are not recorded in the CSV."
+    },
+    {
+      "id": 166,
+      "key": "google-trends-2016-solar-energy",
+      "dataset": "provider_data",
+      "year": 2016,
+      "format": "google_trends_csv",
+      "manual_only": true,
+      "manual_content_type": "text/csv",
+      "url": "https://trends.google.com/trends/explore?date=2016-01-01+2016-12-31&q=solar+energy",
+      "term": "solar energy",
+      "day_field": "week_start",
+      "id_fields": [
+        "week_start"
+      ],
+      "max_mb": 1,
+      "scope": "Google Trends Explore weekly worldwide interest for solar energy, all categories, requested January through December 2016. This series was exported separately with its own 0 to 100 scale. Search property and original export timestamp are not recorded in the CSV."
+    },
+    {
+      "id": 166,
+      "key": "google-trends-2016-biotechnology",
+      "dataset": "provider_data",
+      "year": 2016,
+      "format": "google_trends_csv",
+      "manual_only": true,
+      "manual_content_type": "text/csv",
+      "url": "https://trends.google.com/trends/explore?date=2016-01-01+2016-12-31&q=biotechnology",
+      "term": "biotechnology",
+      "day_field": "week_start",
+      "id_fields": [
+        "week_start"
+      ],
+      "max_mb": 1,
+      "scope": "Google Trends Explore weekly worldwide interest for biotechnology, all categories, requested January through December 2016. This series was exported separately with its own 0 to 100 scale. Search property and original export timestamp are not recorded in the CSV."
+    },
+    {
+      "id": 166,
+      "key": "google-trends-2017-2020-semiconductors",
+      "dataset": "provider_data",
+      "year": 2017,
+      "format": "google_trends_csv",
+      "manual_only": true,
+      "manual_content_type": "text/csv",
+      "url": "https://trends.google.com/trends/explore?date=2017-01-01+2020-12-31&q=semiconductors",
+      "term": "semiconductors",
+      "day_field": "week_start",
+      "id_fields": [
+        "week_start"
+      ],
+      "max_mb": 1,
+      "scope": "Google Trends Explore weekly worldwide interest for semiconductors, all categories. The supplied CSV covers week starts 2017-01-01 through 2020-12-27. Scores retain the independent normalization of this export. The CSV omits the search property and original export timestamp.",
+      "end_year": 2020
+    },
+    {
+      "id": 166,
+      "key": "google-trends-2017-2020-industrial-robots",
+      "dataset": "provider_data",
+      "year": 2017,
+      "format": "google_trends_csv",
+      "manual_only": true,
+      "manual_content_type": "text/csv",
+      "url": "https://trends.google.com/trends/explore?date=2017-01-01+2020-12-31&q=industrial+robots",
+      "term": "industrial robots",
+      "day_field": "week_start",
+      "id_fields": [
+        "week_start"
+      ],
+      "max_mb": 1,
+      "scope": "Google Trends Explore weekly worldwide interest for industrial robots, all categories. The supplied CSV covers week starts 2017-01-01 through 2020-12-27. Scores retain the independent normalization of this export. The CSV omits the search property and original export timestamp.",
+      "end_year": 2020
+    },
+    {
+      "id": 166,
+      "key": "google-trends-2017-2020-solar-energy",
+      "dataset": "provider_data",
+      "year": 2017,
+      "format": "google_trends_csv",
+      "manual_only": true,
+      "manual_content_type": "text/csv",
+      "url": "https://trends.google.com/trends/explore?date=2017-01-01+2020-12-31&q=solar+energy",
+      "term": "solar energy",
+      "day_field": "week_start",
+      "id_fields": [
+        "week_start"
+      ],
+      "max_mb": 1,
+      "scope": "Google Trends Explore weekly worldwide interest for solar energy, all categories. The supplied CSV covers week starts 2017-01-01 through 2020-12-27. Scores retain the independent normalization of this export. The CSV omits the search property and original export timestamp.",
+      "end_year": 2020
+    },
+    {
+      "id": 166,
+      "key": "google-trends-2017-2020-biotechnology",
+      "dataset": "provider_data",
+      "year": 2017,
+      "format": "google_trends_csv",
+      "manual_only": true,
+      "manual_content_type": "text/csv",
+      "url": "https://trends.google.com/trends/explore?date=2017-01-01+2020-12-31&q=biotechnology",
+      "term": "biotechnology",
+      "day_field": "week_start",
+      "id_fields": [
+        "week_start"
+      ],
+      "max_mb": 1,
+      "scope": "Google Trends Explore weekly worldwide interest for biotechnology, all categories. The supplied CSV covers week starts 2017-01-01 through 2020-12-27. Scores retain the independent normalization of this export. The CSV omits the search property and original export timestamp.",
+      "end_year": 2020
+    },
+    {
+      "id": 200,
+      "key": "entsoe-fr-actual-total-load-2016-01",
+      "dataset": "provider_data",
+      "year": 2016,
+      "format": "entsoe_load_xml",
+      "manual_only": true,
+      "manual_content_type": "application/xml",
+      "url": "https://web-api.tp.entsoe.eu/api?documentType=A65&processType=A16&outBiddingZone_Domain=10YFR-RTE------C&periodStart=201512312300&periodEnd=201601312300",
+      "bidding_zone": "10YFR-RTE------C",
+      "timestamp_field": "interval_start",
+      "window_start": "2015-12-31T23:00:00Z",
+      "window_end_exclusive": "2016-01-31T23:00:00Z",
+      "id_fields": [
+        "bidding_zone",
+        "interval_start"
+      ],
+      "max_mb": 4,
+      "scope": "France actual total load in megawatts for January 2016 local time. Native ENTSO-E blocks use the provider XML intervals and curve definition. The archive response generation date is distinct from the first historical publication."
+    }
+  ]
+}

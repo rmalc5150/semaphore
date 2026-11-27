@@ -10,6 +10,7 @@ import tarfile
 
 import boto3
 from constellation.control import Control
+from raw_parsers.release import source_paths as raw_parser_paths
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -25,6 +26,9 @@ def dependencies(scripts):
         for node in ast.walk(ast.parse(body)):
             modules=[a.name for a in node.names] if isinstance(node,ast.Import) else [node.module or ''] if isinstance(node,ast.ImportFrom) else []
             for module in modules:
+                if module.split('.')[0] == 'raw_parsers':
+                    pending.extend(n for n in raw_parser_paths() if n not in result)
+                    continue
                 candidate=module.split('.')[0]+'.py'
                 if (ROOT/candidate).is_file() and candidate not in result:pending.append(candidate)
     return result

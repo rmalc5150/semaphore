@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "catalog_entries": 158,
+  "catalog_entries": 269,
   "scope_note": "Catalog rows are not a count of independent publishers or working integrations.",
   "sources": [
     {
@@ -308,34 +308,6 @@
       "last_audited_at": null,
       "historical_complete": false,
       "missing_reason": "not_yet_audited",
-      "execution_targets": {
-        "historical": "i-06241bd1c4e91c2fc",
-        "daily": "i-070bab0b09f794629",
-        "control": "i-070bab0b09f794629"
-      },
-      "execution_target_note": "Placement target; implementation and route readiness are separately gated."
-    },
-    {
-      "catalog_entry": 12,
-      "catalog_name": "Marketaux news (paused)",
-      "source_key": "marketaux",
-      "datasets": [
-        "news_articles"
-      ],
-      "lineage": "existing",
-      "evidence_role": "publisher",
-      "readiness": "paused",
-      "collector_status": "existing_route_requires_migration_audit",
-      "historical_start_target": "2016-01-01",
-      "verified_earliest_observation": null,
-      "verified_earliest_publication": null,
-      "historical_vintage_support": "not_audited",
-      "historical_evidence_tier": "E",
-      "license": null,
-      "commercial_ml_rights": "not_audited",
-      "last_audited_at": null,
-      "historical_complete": false,
-      "missing_reason": "operator_paused",
       "execution_targets": {
         "historical": "i-06241bd1c4e91c2fc",
         "daily": "i-070bab0b09f794629",
@@ -2697,32 +2669,6 @@
       "execution_target_note": "Placement target; implementation and route readiness are separately gated."
     },
     {
-      "catalog_entry": 99,
-      "catalog_name": "South Korea KOSIS statistical OpenAPI",
-      "source_key": "south_korea_kosis_statistical_openapi",
-      "datasets": [],
-      "lineage": "additional",
-      "evidence_role": "publisher",
-      "readiness": "conditional",
-      "collector_status": "not_implemented",
-      "historical_start_target": "2016-01-01",
-      "verified_earliest_observation": null,
-      "verified_earliest_publication": null,
-      "historical_vintage_support": "not_audited",
-      "historical_evidence_tier": null,
-      "license": null,
-      "commercial_ml_rights": "not_audited",
-      "last_audited_at": null,
-      "historical_complete": false,
-      "missing_reason": "not_yet_audited",
-      "execution_targets": {
-        "historical": "i-06241bd1c4e91c2fc",
-        "daily": "i-070bab0b09f794629",
-        "control": "i-070bab0b09f794629"
-      },
-      "execution_target_note": "Placement target; implementation and route readiness are separately gated."
-    },
-    {
       "catalog_entry": 100,
       "catalog_name": "Taiwan TWSE/MOPS issuer and revenue archives",
       "source_key": "taiwan_twse_mops_issuer_and_revenue_archives",
@@ -4257,6 +4203,1920 @@
         "control": "i-070bab0b09f794629"
       },
       "execution_target_note": "Placement target; implementation and route readiness are separately gated."
+    },
+    {
+      "catalog_entry": 159,
+      "catalog_name": "GDELT 2.0 Events, Mentions and Global Knowledge Graph",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "events",
+        "mentions",
+        "knowledge_graph"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        11
+      ],
+      "source_key": "market_source_159"
+    },
+    {
+      "catalog_entry": 160,
+      "catalog_name": "Common Crawl historical web captures",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_160"
+    },
+    {
+      "catalog_entry": 161,
+      "catalog_name": "Internet Archive Wayback Machine",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_161"
+    },
+    {
+      "catalog_entry": 162,
+      "catalog_name": "Wikimedia per-article pageviews",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_162"
+    },
+    {
+      "catalog_entry": 163,
+      "catalog_name": "Statcounter Global Stats",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_163"
+    },
+    {
+      "catalog_entry": 164,
+      "catalog_name": "GH Archive hourly GitHub event history",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "github_events"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        44
+      ],
+      "source_key": "market_source_164"
+    },
+    {
+      "catalog_entry": 165,
+      "catalog_name": "HTTP Archive",
+      "collector_status": "owner_paused",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "operator_paused",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_165"
+    },
+    {
+      "catalog_entry": 166,
+      "catalog_name": "Google Trends Explore historical search interest",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_166"
+    },
+    {
+      "catalog_entry": 167,
+      "catalog_name": "Stack Exchange / Stack Overflow posts and revision history",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "posts",
+        "revisions"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_167"
+    },
+    {
+      "catalog_entry": 168,
+      "catalog_name": "Stack Overflow Developer Survey annual microdata",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_168"
+    },
+    {
+      "catalog_entry": 169,
+      "catalog_name": "Hacker News public stories and comments",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_169"
+    },
+    {
+      "catalog_entry": 170,
+      "catalog_name": "NIST National Vulnerability Database (CVE/CPE)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "cve",
+        "cpe"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_170"
+    },
+    {
+      "catalog_entry": 171,
+      "catalog_name": "IETF Internet-Drafts and RFC archive",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "rfc",
+        "internet_drafts"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_171"
+    },
+    {
+      "catalog_entry": 172,
+      "catalog_name": "RIPE RIS and RouteViews routing archives",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "ripe_ris",
+        "routeviews"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_172"
+    },
+    {
+      "catalog_entry": 173,
+      "catalog_name": "Wikidata historical entities and revisions",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_173"
+    },
+    {
+      "catalog_entry": 174,
+      "catalog_name": "UK Companies House filing history and document API",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "filing_index",
+        "filing_documents"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        1
+      ],
+      "source_key": "market_source_174"
+    },
+    {
+      "catalog_entry": 175,
+      "catalog_name": "France INSEE SIRENE historical legal-unit and establishment files",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "legal_units",
+        "establishments"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_175"
+    },
+    {
+      "catalog_entry": 176,
+      "catalog_name": "France BODACC commercial notices",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_176"
+    },
+    {
+      "catalog_entry": 177,
+      "catalog_name": "Spain BOE BORME commercial-register notices",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        1
+      ],
+      "source_key": "market_source_177"
+    },
+    {
+      "catalog_entry": 178,
+      "catalog_name": "Brazil CVM corporate financial filings: DFP and ITR",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "dfp",
+        "itr"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_178"
+    },
+    {
+      "catalog_entry": 179,
+      "catalog_name": "Chile CMF issuer IFRS financial archives and bank API",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "issuer_ifrs",
+        "bank_statistics"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_179"
+    },
+    {
+      "catalog_entry": 180,
+      "catalog_name": "Canada SEDAR+ and legacy public-filing archive",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "sedar_plus",
+        "legacy_sedar"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_180"
+    },
+    {
+      "catalog_entry": 181,
+      "catalog_name": "European Commission competition case data",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_181"
+    },
+    {
+      "catalog_entry": 182,
+      "catalog_name": "UK CMA cases, market investigations and merger decisions",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_182"
+    },
+    {
+      "catalog_entry": 183,
+      "catalog_name": "US FTC cases and proceedings",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_183"
+    },
+    {
+      "catalog_entry": 184,
+      "catalog_name": "US DOJ Antitrust case filings",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_184"
+    },
+    {
+      "catalog_entry": 185,
+      "catalog_name": "Brazil CADE public antitrust and merger proceedings",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_185"
+    },
+    {
+      "catalog_entry": 186,
+      "catalog_name": "India Competition Commission antitrust and combination orders",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_186"
+    },
+    {
+      "catalog_entry": 187,
+      "catalog_name": "South African Competition Tribunal decided cases",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_187"
+    },
+    {
+      "catalog_entry": 188,
+      "catalog_name": "CourtListener case law and RECAP federal filings",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "opinions",
+        "recap"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_188"
+    },
+    {
+      "catalog_entry": 189,
+      "catalog_name": "EU Safety Gate / RAPEX dangerous non-food product alerts",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_189"
+    },
+    {
+      "catalog_entry": 190,
+      "catalog_name": "India SEBI enforcement orders and proceedings",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_190"
+    },
+    {
+      "catalog_entry": 192,
+      "catalog_name": "Eurostat PRODCOM industrial production by product",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_192"
+    },
+    {
+      "catalog_entry": 193,
+      "catalog_name": "US Census Business Dynamics Statistics (BDS)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_193"
+    },
+    {
+      "catalog_entry": 194,
+      "catalog_name": "US Census Business Formation Statistics (BFS)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_194"
+    },
+    {
+      "catalog_entry": 195,
+      "catalog_name": "BLS Quarterly Census of Employment and Wages (QCEW): employment and establishments",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_195"
+    },
+    {
+      "catalog_entry": 196,
+      "catalog_name": "OSHA inspections, citations and violations",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "inspections",
+        "citations"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_196"
+    },
+    {
+      "catalog_entry": 197,
+      "catalog_name": "EPA Toxics Release Inventory (TRI)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_197"
+    },
+    {
+      "catalog_entry": 198,
+      "catalog_name": "EPA Greenhouse Gas Reporting Program (GHGRP)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        120,
+        124
+      ],
+      "source_key": "market_source_198"
+    },
+    {
+      "catalog_entry": 199,
+      "catalog_name": "EU ETS Union Registry verified emissions and allowances",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_199"
+    },
+    {
+      "catalog_entry": 200,
+      "catalog_name": "ENTSO-E Transparency Platform",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_200"
+    },
+    {
+      "catalog_entry": 201,
+      "catalog_name": "JODI Oil and Gas world databases",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "oil",
+        "gas"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_201"
+    },
+    {
+      "catalog_entry": 202,
+      "catalog_name": "IRENA renewable capacity and generation statistics",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_202"
+    },
+    {
+      "catalog_entry": 203,
+      "catalog_name": "BTS TranStats T-100 airline traffic and capacity",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_203"
+    },
+    {
+      "catalog_entry": 204,
+      "catalog_name": "CFTC Commitments of Traders (COT)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "disaggregated_futures",
+        "disaggregated_combined",
+        "financial_futures",
+        "financial_combined",
+        "legacy_futures",
+        "legacy_combined"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_204"
+    },
+    {
+      "catalog_entry": 205,
+      "catalog_name": "FDIC BankFind financials and Summary of Deposits",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "financials",
+        "deposits"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_205"
+    },
+    {
+      "catalog_entry": 206,
+      "catalog_name": "OICA vehicle production statistics",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_206"
+    },
+    {
+      "catalog_entry": 207,
+      "catalog_name": "UK DfT/DVLA vehicle licensing by make and model",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_207"
+    },
+    {
+      "catalog_entry": 208,
+      "catalog_name": "OECD Inter-Country Input-Output (ICIO) and Trade in Value Added (TiVA)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "icio",
+        "tiva"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_208"
+    },
+    {
+      "catalog_entry": 209,
+      "catalog_name": "Brazil IBGE SIDRA PIM-PF industrial production",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_209"
+    },
+    {
+      "catalog_entry": 210,
+      "catalog_name": "US Census Building Permits Survey",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_210"
+    },
+    {
+      "catalog_entry": 211,
+      "catalog_name": "World Bank Private Participation in Infrastructure (PPI)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_211"
+    },
+    {
+      "catalog_entry": 212,
+      "catalog_name": "IMF Direct Investment Positions by Counterpart Economy (formerly CDIS)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_212"
+    },
+    {
+      "catalog_entry": 213,
+      "catalog_name": "FAO GIEWS Food Price Monitoring and Analysis (FPMA)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_213"
+    },
+    {
+      "catalog_entry": 214,
+      "catalog_name": "EU Clinical Trials Register / EudraCT legacy trials",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        15,
+        16
+      ],
+      "source_key": "market_source_214"
+    },
+    {
+      "catalog_entry": 215,
+      "catalog_name": "World Bank WITS / UNCTAD TRAINS tariffs",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_215"
+    },
+    {
+      "catalog_entry": 216,
+      "catalog_name": "EUR-Lex / CELLAR EU law and legislative history",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "law",
+        "legislative_history"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_216"
+    },
+    {
+      "catalog_entry": 217,
+      "catalog_name": "Regulations.gov dockets, supporting documents and public comments",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "dockets",
+        "documents",
+        "comments"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        48
+      ],
+      "source_key": "market_source_217"
+    },
+    {
+      "catalog_entry": 218,
+      "catalog_name": "WTO dispute settlement cases and documents",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_218"
+    },
+    {
+      "catalog_entry": 219,
+      "catalog_name": "US Lobbying Disclosure Act registrations and reports",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "registrations_and_reports",
+        "contributions"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_219"
+    },
+    {
+      "catalog_entry": 220,
+      "catalog_name": "World Bank Projects & Operations and linked contract awards",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "projects",
+        "contracts"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_220"
+    },
+    {
+      "catalog_entry": 221,
+      "catalog_name": "AidData China's Global Loans and Grants",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_221"
+    },
+    {
+      "catalog_entry": 222,
+      "catalog_name": "OECD Creditor Reporting System (CRS) development finance",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_222"
+    },
+    {
+      "catalog_entry": 223,
+      "catalog_name": "NASA Black Marble / VIIRS nighttime lights",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_223"
+    },
+    {
+      "catalog_entry": 224,
+      "catalog_name": "USGS Landsat historical imagery",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_224"
+    },
+    {
+      "catalog_entry": 225,
+      "catalog_name": "Copernicus Sentinel-1 and Sentinel-2 imagery",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "sentinel_1",
+        "sentinel_2"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_225"
+    },
+    {
+      "catalog_entry": 226,
+      "catalog_name": "ChileCompra Mercado Público procurement and purchase orders",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "procurements",
+        "orders"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_226"
+    },
+    {
+      "catalog_entry": 227,
+      "catalog_name": "USPTO Trademark Case Files and TSDR/bulk updates",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "case_files",
+        "tsdr"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        40
+      ],
+      "source_key": "market_source_227"
+    },
+    {
+      "catalog_entry": 228,
+      "catalog_name": "US FCC Equipment Authorization System grants and exhibits",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "grants",
+        "exhibits"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_228"
+    },
+    {
+      "catalog_entry": 229,
+      "catalog_name": "npm package download counts and release metadata",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "downloads",
+        "release_metadata"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_229"
+    },
+    {
+      "catalog_entry": 230,
+      "catalog_name": "ITU DataHub ICT indicators",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_230"
+    },
+    {
+      "catalog_entry": 231,
+      "catalog_name": "PyPI package download logs",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "downloads",
+        "release_metadata"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_231"
+    },
+    {
+      "catalog_entry": 232,
+      "catalog_name": "Global Trade Alert",
+      "collector_status": "excluded_from_collection",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "Global Trade Alert licensed commercial data and API route",
+      "readiness": "excluded_payment_required",
+      "related_catalog_entries": [],
+      "source_key": "market_source_232"
+    },
+    {
+      "catalog_entry": 233,
+      "catalog_name": "CDC WONDER / NVSS mortality",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "underlying_cause",
+        "multiple_cause"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_233"
+    },
+    {
+      "catalog_entry": 234,
+      "catalog_name": "CDC NNDSS / MMWR notifiable-disease tables",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_234"
+    },
+    {
+      "catalog_entry": 235,
+      "catalog_name": "CDC FluView / ILINet / influenza laboratory surveillance",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "ilinet",
+        "lab_surveillance"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_235"
+    },
+    {
+      "catalog_entry": 236,
+      "catalog_name": "CDC NREVSS RSV laboratory surveillance",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "rsv_archive_2010_2020",
+        "rsv_current"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_236"
+    },
+    {
+      "catalog_entry": 237,
+      "catalog_name": "CDC FluSurv-NET influenza hospitalizations",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_237"
+    },
+    {
+      "catalog_entry": 238,
+      "catalog_name": "CDC NHANES public-use survey/examination/laboratory data",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "demographics",
+        "exam",
+        "lab",
+        "questionnaire"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_238"
+    },
+    {
+      "catalog_entry": 239,
+      "catalog_name": "CDC NHIS and BRFSS population-health surveys",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "nhis",
+        "brfss"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_239"
+    },
+    {
+      "catalog_entry": 240,
+      "catalog_name": "CDC/NCI U.S. Cancer Statistics and NCI SEER",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "uscs",
+        "seer"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_240"
+    },
+    {
+      "catalog_entry": 241,
+      "catalog_name": "CDC ACIP recommendations and MMWR policy archive",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_241"
+    },
+    {
+      "catalog_entry": 242,
+      "catalog_name": "WHO Global Health Observatory and disease-program downloads",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_242"
+    },
+    {
+      "catalog_entry": 243,
+      "catalog_name": "WHO FluNet and FluID",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "flunet",
+        "fluid"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_243"
+    },
+    {
+      "catalog_entry": 244,
+      "catalog_name": "WHO Disease Outbreak News",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_244"
+    },
+    {
+      "catalog_entry": 245,
+      "catalog_name": "WHO/UNICEF immunization coverage (WUENIC/JRF)",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "wuenic",
+        "jrf"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_245"
+    },
+    {
+      "catalog_entry": 246,
+      "catalog_name": "ECDC Surveillance Atlas and Annual Epidemiological Reports",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "surveillance_atlas",
+        "annual_reports"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_246"
+    },
+    {
+      "catalog_entry": 247,
+      "catalog_name": "ECDC EARS-Net resistance and ESAC-Net antimicrobial consumption",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "ears_net",
+        "esac_net"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_247"
+    },
+    {
+      "catalog_entry": 248,
+      "catalog_name": "CDC/FDA Vaccine Adverse Event Reporting System (VAERS) public data",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "reports",
+        "vaccines",
+        "symptoms"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_248"
+    },
+    {
+      "catalog_entry": 249,
+      "catalog_name": "US SEC Forms 3, 4 and 5 insider holdings and transactions",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "insider_bulk",
+        "insider_filings"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_extension",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        5
+      ],
+      "source_key": "market_source_249"
+    },
+    {
+      "catalog_entry": 250,
+      "catalog_name": "US SEC Schedules 13D and 13G beneficial-ownership disclosures",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "schedule_13d",
+        "schedule_13g"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_extension",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        5
+      ],
+      "source_key": "market_source_250"
+    },
+    {
+      "catalog_entry": 251,
+      "catalog_name": "US SEC Form 13F institutional holdings",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "holdings_bulk",
+        "holdings_filings"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_extension",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        5
+      ],
+      "source_key": "market_source_251"
+    },
+    {
+      "catalog_entry": 252,
+      "catalog_name": "Hong Kong HKEX Disclosure of Interests: directors, CEOs and substantial shareholders",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "legacy_interests",
+        "current_interests"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_extension",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        4,
+        7
+      ],
+      "source_key": "market_source_252"
+    },
+    {
+      "catalog_entry": 253,
+      "catalog_name": "Canada SEDI insider transaction and holdings reports",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data",
+        "issuer_events"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_253"
+    },
+    {
+      "catalog_entry": 254,
+      "catalog_name": "UK FCA National Storage Mechanism: PDMR and related-person dealings",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_254"
+    },
+    {
+      "catalog_entry": 255,
+      "catalog_name": "Spain CNMV directors, managers and closely associated-person transactions",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "legacy_transactions",
+        "current_transactions"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_255"
+    },
+    {
+      "catalog_entry": 256,
+      "catalog_name": "Norges Bank Investment Management Government Pension Fund Global holdings",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_256"
+    },
+    {
+      "catalog_entry": 257,
+      "catalog_name": "UK House of Commons Register of Members’ Financial Interests",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "legacy_register",
+        "current_register"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_257"
+    },
+    {
+      "catalog_entry": 258,
+      "catalog_name": "US House financial disclosures and Periodic Transaction Reports",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_258"
+    },
+    {
+      "catalog_entry": 259,
+      "catalog_name": "US Senate eFD financial disclosures and Periodic Transaction Reports",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_259"
+    },
+    {
+      "catalog_entry": 260,
+      "catalog_name": "US Office of Government Ethics Forms 278e and 278-T executive disclosures",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_260"
+    },
+    {
+      "catalog_entry": 261,
+      "catalog_name": "France HATVP public interests and asset declarations",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_261"
+    },
+    {
+      "catalog_entry": 262,
+      "catalog_name": "Australia ASX Appendix 3X, 3Y and 3Z director-interest notices",
+      "collector_status": "excluded_from_collection",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "ASX commercial automated market announcements subscription route",
+      "readiness": "excluded_payment_required",
+      "related_catalog_entries": [],
+      "source_key": "market_source_262"
+    },
+    {
+      "catalog_entry": 263,
+      "catalog_name": "France AMF BDIF directors’ and related-person transaction declarations",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [],
+      "source_key": "market_source_263"
+    },
+    {
+      "catalog_entry": 264,
+      "catalog_name": "EIA Form EIA-923 plant generation, fuel receipts, consumption and stocks",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "final",
+        "preliminary"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_extension",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        54
+      ],
+      "source_key": "market_source_264"
+    },
+    {
+      "catalog_entry": 265,
+      "catalog_name": "NRC daily power-reactor status reports",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        54
+      ],
+      "source_key": "market_source_265"
+    },
+    {
+      "catalog_entry": 266,
+      "catalog_name": "FERC Electric Quarterly Reports (EQR) wholesale electricity contracts and transactions",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "quarterly_transactions",
+        "contracts"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        56
+      ],
+      "source_key": "market_source_266"
+    },
+    {
+      "catalog_entry": 267,
+      "catalog_name": "Japan METI Current Production Statistics: semiconductor equipment, industrial robots and machinery",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "semiconductor_equipment",
+        "industrial_robots",
+        "machinery"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        82,
+        83,
+        84
+      ],
+      "source_key": "market_source_267"
+    },
+    {
+      "catalog_entry": 268,
+      "catalog_name": "Japan Robot Association (JARA) public quarterly and annual industrial-robot statistics",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "quarterly",
+        "annual"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        84
+      ],
+      "source_key": "market_source_268"
+    },
+    {
+      "catalog_entry": 269,
+      "catalog_name": "Japan Machine Tool Builders’ Association (JMTBA) public monthly machine-tool orders",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        83
+      ],
+      "source_key": "market_source_269"
+    },
+    {
+      "catalog_entry": 270,
+      "catalog_name": "A3 / former RIA public North American robot-order and shipment releases",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "orders",
+        "shipments"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        84
+      ],
+      "source_key": "market_source_270"
+    },
+    {
+      "catalog_entry": 271,
+      "catalog_name": "Japan MHLW Pharmaceutical Industry Production Statistics",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_extension",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        91
+      ],
+      "source_key": "market_source_271"
+    },
+    {
+      "catalog_entry": 272,
+      "catalog_name": "Lawrence Berkeley National Laboratory Queued Up interconnection project dataset",
+      "collector_status": "see_market_source_status",
+      "datasets": [
+        "provider_data"
+      ],
+      "evidence_role": "publisher",
+      "historical_complete": false,
+      "historical_start_target": "2016-01-01",
+      "lineage": "workbook_addition",
+      "missing_reason": "see_market_source_status",
+      "readiness": "evidence_gated",
+      "related_catalog_entries": [
+        54
+      ],
+      "source_key": "market_source_272"
     }
   ]
 }

@@ -1,0 +1,344 @@
+{
+  "brazil_capes_theses_and_dissertations": [
+    {
+      "job_id": "4af558c268a2b5bcb51f11fcfa255308ced3bbf9dfa779b5bfbc4ca959d2e4ee",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/4af558c268a2b5bcb51f11fcfa255308ced3bbf9dfa779b5bfbc4ca959d2e4ee/f6385906-e7cf-4d79-8319-4bf8c54527f9.json"
+    },
+    {
+      "job_id": "e788d20df1dd65119fdff9cdddfd3bf117515588c49c4760f272ef85f1c1f86c",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/e788d20df1dd65119fdff9cdddfd3bf117515588c49c4760f272ef85f1c1f86c/f6385906-e7cf-4d79-8319-4bf8c54527f9.json"
+    },
+    {
+      "job_id": "7ac530d6bbff683cd15729ce4160caed7979b02b7d6b920f669c2a50e6f0c572",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/7ac530d6bbff683cd15729ce4160caed7979b02b7d6b920f669c2a50e6f0c572/f6385906-e7cf-4d79-8319-4bf8c54527f9.json"
+    },
+    {
+      "job_id": "e239563fdaf804c3c089c4af7d18b1385747b478c7e35ac526317626f0567ae3",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/e239563fdaf804c3c089c4af7d18b1385747b478c7e35ac526317626f0567ae3/f6385906-e7cf-4d79-8319-4bf8c54527f9.json"
+    },
+    {
+      "job_id": "fc72448db2baed4cdb12cba04059f893a46e919e3b539a80f7988953e174cef0",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/fc72448db2baed4cdb12cba04059f893a46e919e3b539a80f7988953e174cef0/f6385906-e7cf-4d79-8319-4bf8c54527f9.json"
+    },
+    {
+      "job_id": "dba06b71089b607d624495610bb5d8fde4c5f57b24f8cfa33fd01e418d39da98",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/dba06b71089b607d624495610bb5d8fde4c5f57b24f8cfa33fd01e418d39da98/f6385906-e7cf-4d79-8319-4bf8c54527f9.json"
+    },
+    {
+      "job_id": "1f49cf0f025d3d6daac2707c45c08cf7ef28cb39a3969ddc38eca437377db08f",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/1f49cf0f025d3d6daac2707c45c08cf7ef28cb39a3969ddc38eca437377db08f/f6385906-e7cf-4d79-8319-4bf8c54527f9.json"
+    },
+    {
+      "job_id": "b28237f56ec786a812ae313af819c0f694f9a35a74c09d4e775f1b6b43176157",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/b28237f56ec786a812ae313af819c0f694f9a35a74c09d4e775f1b6b43176157/f6385906-e7cf-4d79-8319-4bf8c54527f9.json"
+    }
+  ],
+  "antler_early_stage_portfolio": [],
+  "finlight": [],
+  "market_source_197": [],
+  "market_source_209": [
+    {
+      "job_id": "bc27b018dca7887ee539609407824b3f7381199787f793697c282480eae2d653",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/bc27b018dca7887ee539609407824b3f7381199787f793697c282480eae2d653/f2081025-6543-4890-88d1-593e4c3d9cf3.json"
+    }
+  ],
+  "nmpa_trials": [],
+  "international_federation_of_robotics_world_robotics": [
+    {
+      "job_id": "64f6c65a9de14b7fd4b5dcaaa6edf132a3211da8189df8ac55ea555fbce14046",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/64f6c65a9de14b7fd4b5dcaaa6edf132a3211da8189df8ac55ea555fbce14046/683b430b-70bd-4f06-8781-92c9f2e9e9b9.json"
+    },
+    {
+      "job_id": "30bad7517ac0cd39a2a81cc1ac43aaf75a7e3064d8208a94fb02414207bb0f09",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/30bad7517ac0cd39a2a81cc1ac43aaf75a7e3064d8208a94fb02414207bb0f09/fb7bb099-80c4-4331-8ece-f800eb53cc9d.json"
+    },
+    {
+      "job_id": "319d6a64f53de3fd710bf3af3166d05516b252acd932f7ecc5b77a88820f7a6f",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/319d6a64f53de3fd710bf3af3166d05516b252acd932f7ecc5b77a88820f7a6f/f9410f48-943b-4b7a-b5a1-fde9d55561a6.json"
+    },
+    {
+      "job_id": "cc293ec5cb918f000b6265e055b920b96b12d522e860819418498d915339cdfd",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/cc293ec5cb918f000b6265e055b920b96b12d522e860819418498d915339cdfd/63f3ff3c-8f07-4a0d-bd28-aea63a353cdc.json"
+    },
+    {
+      "job_id": "7f9c6fa48d43c2356c94f7d3a5cf551928e02f810c6e2f4806bd45578a220cf2",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/7f9c6fa48d43c2356c94f7d3a5cf551928e02f810c6e2f4806bd45578a220cf2/1d17494b-3dfa-4248-8f86-8697d0b62678.json"
+    },
+    {
+      "job_id": "3ed87fed64f00c3864b150dc4e50b86499e9df8d9c0b1cb1af0b3dfa7bcd11e9",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/3ed87fed64f00c3864b150dc4e50b86499e9df8d9c0b1cb1af0b3dfa7bcd11e9/bb223a9a-9b9d-45dd-b042-79eb917bdece.json"
+    },
+    {
+      "job_id": "dd1a395ac6cd47293f3721524cc69e35e4aba3f918bfe88db15015173b108965",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/dd1a395ac6cd47293f3721524cc69e35e4aba3f918bfe88db15015173b108965/689e0f24-63ea-4e06-a74d-5436181e18e2.json"
+    },
+    {
+      "job_id": "def150b05c77b0009adcb4b83ed7fd2e39797b71af00e9b1ad26fe6ed0637204",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/def150b05c77b0009adcb4b83ed7fd2e39797b71af00e9b1ad26fe6ed0637204/4aeab18b-fb81-432b-b450-a8a5b5471caf.json"
+    }
+  ],
+  "china_miit_electronics_and_battery_statistics": [
+    {
+      "job_id": "a009f5200f9e6e2c0d96d254262eb68a0b9128fca78d6be7f6a51b0b6cdc7355",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/a009f5200f9e6e2c0d96d254262eb68a0b9128fca78d6be7f6a51b0b6cdc7355/dba9d26a-df86-4aa4-b344-29981a903a75.json"
+    },
+    {
+      "job_id": "62a678d70af14f07091d40083b76a8afc3425ba699a57acb21ad628e6eed6b92",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/62a678d70af14f07091d40083b76a8afc3425ba699a57acb21ad628e6eed6b92/9cfe933e-8591-412f-80ce-cabca54a1976.json"
+    },
+    {
+      "job_id": "b01cde4009f1f2c5c8c803164bed8b8ed3aa3daf3953e2707636c7abc6b7ac1f",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/b01cde4009f1f2c5c8c803164bed8b8ed3aa3daf3953e2707636c7abc6b7ac1f/365edcf0-8014-419f-a829-c74abf39fb4b.json"
+    },
+    {
+      "job_id": "f8b54541aa44a73d8fff9609aca2b0e99771d0f5927b8998be40a45d06ad9cf7",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/f8b54541aa44a73d8fff9609aca2b0e99771d0f5927b8998be40a45d06ad9cf7/1bdf8119-7842-46e0-9c24-b7772650ea70.json"
+    }
+  ],
+  "market_source_201": [
+    {
+      "job_id": "1bf732bde8cb46c00fa870593c2584f70aea07da3b24d3ccba9e7d246c147171",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/1bf732bde8cb46c00fa870593c2584f70aea07da3b24d3ccba9e7d246c147171/b9c6bb4b-0f68-47ab-a465-819d94f00e0d.json"
+    },
+    {
+      "job_id": "3ed1e7a0f352be0f3b0910446f806d9b483f57ad05db1a27f8958eb8a9da6397",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/3ed1e7a0f352be0f3b0910446f806d9b483f57ad05db1a27f8958eb8a9da6397/b9c6bb4b-0f68-47ab-a465-819d94f00e0d.json"
+    }
+  ],
+  "fred_alfred_series_and_vintages": [
+    {
+      "job_id": "3506a22f5d5f468ae699f0df147e88ef29c0f51018455670307bec3ab40c0ee1",
+      "output_rows": 4,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/3506a22f5d5f468ae699f0df147e88ef29c0f51018455670307bec3ab40c0ee1/2162a096-e06b-4175-8515-816f6564f092.json"
+    },
+    {
+      "job_id": "765c4126901777d43a7a1105a432c4e52ac1a22eaa14ac34fcacbce0c175b177",
+      "output_rows": 5,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/765c4126901777d43a7a1105a432c4e52ac1a22eaa14ac34fcacbce0c175b177/7ebde796-bbe7-4c2a-838c-5895c1766674.json"
+    },
+    {
+      "job_id": "a139d3f38713173b5df6282a709e95178f6dc9477b54d7a22b2c087d905fbefd",
+      "output_rows": 5,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/a139d3f38713173b5df6282a709e95178f6dc9477b54d7a22b2c087d905fbefd/00bfc5b0-adcf-4baa-985c-6d549dd76b12.json"
+    },
+    {
+      "job_id": "1fec0f0b03c20cf27e59b81097aa6ea791e564f0296482cd75682b3b692944cc",
+      "output_rows": 5,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/1fec0f0b03c20cf27e59b81097aa6ea791e564f0296482cd75682b3b692944cc/83cad252-da78-4357-ada0-7ab9fbf30657.json"
+    },
+    {
+      "job_id": "2396381381b43090fe373ce7b8a867be6832365b8ac5b3b5d4380359e8b93075",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/2396381381b43090fe373ce7b8a867be6832365b8ac5b3b5d4380359e8b93075/d586e1b9-5228-4f99-9416-022363013b54.json"
+    },
+    {
+      "job_id": "ef24c43db7a871f33f99497ffe23de0a448b4c17c195018ac20e17cd145a73c0",
+      "output_rows": 4,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/ef24c43db7a871f33f99497ffe23de0a448b4c17c195018ac20e17cd145a73c0/5da4b9f7-2e32-4e69-821d-1372f1eded9c.json"
+    },
+    {
+      "job_id": "fb182b5688e9d7cde9d07b5598e907886b19f90357fd7de150ecfa28f50b7c56",
+      "output_rows": 4,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/fb182b5688e9d7cde9d07b5598e907886b19f90357fd7de150ecfa28f50b7c56/5da4b9f7-2e32-4e69-821d-1372f1eded9c.json"
+    },
+    {
+      "job_id": "23b7afdec170dcfb6537ee387e7e85377deca60b80b865be230fcb509500d86b",
+      "output_rows": 2,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/23b7afdec170dcfb6537ee387e7e85377deca60b80b865be230fcb509500d86b/071d05b2-d2fe-49ca-9d26-34e84c64041e.json"
+    }
+  ],
+  "market_source_199": [],
+  "market_source_198": [
+    {
+      "job_id": "436ddfd95e998ab1d6ea6b1864a5484822127de15708bb337ea0f4a116bbd04e",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/436ddfd95e998ab1d6ea6b1864a5484822127de15708bb337ea0f4a116bbd04e/04d0954b-9023-4601-a9b5-7c9b781f3bcb.json"
+    }
+  ],
+  "iea_pvps_solar_deployment_reports": [
+    {
+      "job_id": "097490d181b4848ccbbbbc8428e18367457563a9d26186b8132d0f843e599059",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/097490d181b4848ccbbbbc8428e18367457563a9d26186b8132d0f843e599059/49dd38d0-9a72-4b4f-89f7-df22954f31fd.json"
+    },
+    {
+      "job_id": "b2e469e294bf4f8871e89c688607fa0f16427ca2fa2492ae5e50f9669053e32e",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/b2e469e294bf4f8871e89c688607fa0f16427ca2fa2492ae5e50f9669053e32e/e3718532-e4f8-455a-8fb5-8009cce6a122.json"
+    },
+    {
+      "job_id": "4b0fcf8883b02e83fc69df1a5bba7f4b9735a99b4f572df0b307c30ecc6bd3aa",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/4b0fcf8883b02e83fc69df1a5bba7f4b9735a99b4f572df0b307c30ecc6bd3aa/2dd8effa-b9f0-44ed-b39d-62c2f4e2bf87.json"
+    },
+    {
+      "job_id": "10121e1471b3f7a05af379bab64869b0d930dc36b729243aed9dae2ca9aac925",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/10121e1471b3f7a05af379bab64869b0d930dc36b729243aed9dae2ca9aac925/3d82e19e-bc1c-474d-ac64-8900b20bc110.json"
+    },
+    {
+      "job_id": "7b7ccd4dad8e9ed9f9425c49e59ad0978589ad8a7f178e6299d413a45bde6c68",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/7b7ccd4dad8e9ed9f9425c49e59ad0978589ad8a7f178e6299d413a45bde6c68/54712569-6ee7-49a4-8183-1a8bc743e8e6.json"
+    },
+    {
+      "job_id": "567e23f279f969790ce1e83effc36abfb806c8fa5053bdaf2479a464e35b554f",
+      "output_rows": 2,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/567e23f279f969790ce1e83effc36abfb806c8fa5053bdaf2479a464e35b554f/29c1ab29-440b-4366-98fa-524bed9088d5.json"
+    },
+    {
+      "job_id": "28008b8d87735c7f344fe34cd3ab10d6da0bb014f1cdfa2282d17c430f6eba81",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/28008b8d87735c7f344fe34cd3ab10d6da0bb014f1cdfa2282d17c430f6eba81/cdf2cb80-155f-4d38-bcad-dffa571d41c9.json"
+    },
+    {
+      "job_id": "adf1f258c1d2aa5eb6aecf73d232cd98096117add15006c392a3d86a6ee93c42",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/adf1f258c1d2aa5eb6aecf73d232cd98096117add15006c392a3d86a6ee93c42/cdf2cb80-155f-4d38-bcad-dffa571d41c9.json"
+    }
+  ],
+  "cms_coverage_documents": [],
+  "climate_trace_industrial_assets_and_activity": [
+    {
+      "job_id": "412d16073a29e610c51febfa9c4bba023a79e7eb41f29897fa8670dad1c26b00",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/412d16073a29e610c51febfa9c4bba023a79e7eb41f29897fa8670dad1c26b00/00beda8d-6b15-461b-8249-aaf133cdb852.json"
+    },
+    {
+      "job_id": "695ae097f09789bb212eb048db32c30a97ef12812c0cc1fe5653b23aaed63964",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/695ae097f09789bb212eb048db32c30a97ef12812c0cc1fe5653b23aaed63964/f7513afb-212e-47b0-ab29-36dc6b59939d.json"
+    },
+    {
+      "job_id": "7667fe381e6118b3bc46d84348c8d16118db766bb4b5f73ab09c18fe7754e03c",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/7667fe381e6118b3bc46d84348c8d16118db766bb4b5f73ab09c18fe7754e03c/93981f57-ebfe-4ed0-b001-c052c7b71eb9.json"
+    },
+    {
+      "job_id": "f3e637faa61a5530ed1c88d9b5dc548c524d0176fe7a117b21ebb10d4a22f2f0",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/f3e637faa61a5530ed1c88d9b5dc548c524d0176fe7a117b21ebb10d4a22f2f0/f56f2cee-082b-4bd9-9a4c-9aabf6662eee.json"
+    },
+    {
+      "job_id": "52e293acf53231481d6c6bca8177fe8ae662370749bb8541000b4d209fa985d5",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/52e293acf53231481d6c6bca8177fe8ae662370749bb8541000b4d209fa985d5/f56f2cee-082b-4bd9-9a4c-9aabf6662eee.json"
+    }
+  ],
+  "taiwan_twse_mops_issuer_and_revenue_archives": [
+    {
+      "job_id": "83b765d9c2ce3b6dc066cc6dafad726e34831ef63a7fee43b262231457a7fa36",
+      "output_rows": 13,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/83b765d9c2ce3b6dc066cc6dafad726e34831ef63a7fee43b262231457a7fa36/c683808a-3293-44ed-bd3a-93920e9fd075.json"
+    },
+    {
+      "job_id": "caac5e325d4414f75585060d450874deaff5cdb8d6de785d923db48f7ab5028b",
+      "output_rows": 32,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/caac5e325d4414f75585060d450874deaff5cdb8d6de785d923db48f7ab5028b/c683808a-3293-44ed-bd3a-93920e9fd075.json"
+    },
+    {
+      "job_id": "c803d55a7df8d9f8058bf90aa8f0f633d0271aa804176ab3b26bc36e2e8653a0",
+      "output_rows": 32,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/c803d55a7df8d9f8058bf90aa8f0f633d0271aa804176ab3b26bc36e2e8653a0/c683808a-3293-44ed-bd3a-93920e9fd075.json"
+    },
+    {
+      "job_id": "df7c441949a58063118a83c6b52802b04a2bb789e90c10d47927f9a5dbca389e",
+      "output_rows": 32,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/df7c441949a58063118a83c6b52802b04a2bb789e90c10d47927f9a5dbca389e/c683808a-3293-44ed-bd3a-93920e9fd075.json"
+    },
+    {
+      "job_id": "68a6331ab3a6b9e177627f1f298a356fa4666dc2282fe982d191e68ddc40bb39",
+      "output_rows": 32,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/68a6331ab3a6b9e177627f1f298a356fa4666dc2282fe982d191e68ddc40bb39/c683808a-3293-44ed-bd3a-93920e9fd075.json"
+    },
+    {
+      "job_id": "27e21eca133c3dc3ba619e93bf02ace1a8391e3de6230d0963202052a6d8d87f",
+      "output_rows": 32,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/27e21eca133c3dc3ba619e93bf02ace1a8391e3de6230d0963202052a6d8d87f/c683808a-3293-44ed-bd3a-93920e9fd075.json"
+    },
+    {
+      "job_id": "297fb7eb13979a719a654dc144897f51eb8a14e44f19fa91db5a9596aaca1b5b",
+      "output_rows": 32,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/297fb7eb13979a719a654dc144897f51eb8a14e44f19fa91db5a9596aaca1b5b/c683808a-3293-44ed-bd3a-93920e9fd075.json"
+    },
+    {
+      "job_id": "f12eb8a56af4d8dc1671e5d26efb28fcf6e4156d7ac30ac2a8671ec4e11f184a",
+      "output_rows": 32,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/f12eb8a56af4d8dc1671e5d26efb28fcf6e4156d7ac30ac2a8671ec4e11f184a/c683808a-3293-44ed-bd3a-93920e9fd075.json"
+    }
+  ],
+  "wto_quantitative_restrictions_api": [
+    {
+      "job_id": "6b9f42181fbf23dfb67776cec8906c4a24d50e1da06d2d9c6a62b9b23ba66acc",
+      "output_rows": 11,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/6b9f42181fbf23dfb67776cec8906c4a24d50e1da06d2d9c6a62b9b23ba66acc/3ac9eb19-5964-4f9b-9216-306e39159c38.json"
+    },
+    {
+      "job_id": "2724e8db9bcb0a08d4cbeeb6d01c0fc8895ed66400f78aae090e11a3c02323b5",
+      "output_rows": 7,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/2724e8db9bcb0a08d4cbeeb6d01c0fc8895ed66400f78aae090e11a3c02323b5/3ac9eb19-5964-4f9b-9216-306e39159c38.json"
+    },
+    {
+      "job_id": "27146278eac3c939ebbe26403bce58c0fd558019bd891093d9959bc9dd5c660a",
+      "output_rows": 18,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/27146278eac3c939ebbe26403bce58c0fd558019bd891093d9959bc9dd5c660a/3ac9eb19-5964-4f9b-9216-306e39159c38.json"
+    },
+    {
+      "job_id": "a42068138dc06f0d0905d4bef0d5fd40fc66a5befba535eda0cb95c2cc554e9a",
+      "output_rows": 18,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/a42068138dc06f0d0905d4bef0d5fd40fc66a5befba535eda0cb95c2cc554e9a/3ac9eb19-5964-4f9b-9216-306e39159c38.json"
+    },
+    {
+      "job_id": "1f1353bb9c240a68713995af49054e676444655e8e11fbe7c24ed4b9724d735d",
+      "output_rows": 19,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/1f1353bb9c240a68713995af49054e676444655e8e11fbe7c24ed4b9724d735d/3ac9eb19-5964-4f9b-9216-306e39159c38.json"
+    },
+    {
+      "job_id": "3e6b29e2e30db5e8582c90fd5c4f7948c6e7be9d1da74071b82a9ff4ca46ace5",
+      "output_rows": 30,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/3e6b29e2e30db5e8582c90fd5c4f7948c6e7be9d1da74071b82a9ff4ca46ace5/3ac9eb19-5964-4f9b-9216-306e39159c38.json"
+    },
+    {
+      "job_id": "9a7721609563e284f463aef4018f63a57e88a7a80070eeed76495cfe48eac3e3",
+      "output_rows": 32,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/9a7721609563e284f463aef4018f63a57e88a7a80070eeed76495cfe48eac3e3/3ac9eb19-5964-4f9b-9216-306e39159c38.json"
+    },
+    {
+      "job_id": "517e3c6cfce71243e96d6f4a79993ec3d82fb63c61f5b9b79a1e1b36659f2b3c",
+      "output_rows": 32,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/517e3c6cfce71243e96d6f4a79993ec3d82fb63c61f5b9b79a1e1b36659f2b3c/3ac9eb19-5964-4f9b-9216-306e39159c38.json"
+    }
+  ],
+  "market_source_171": [
+    {
+      "job_id": "cf5c5d05cb9680b9d833419ff130abd7e44fee9c70a993f16336039665c2d9b5",
+      "output_rows": 1,
+      "receipt_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/publication/cf5c5d05cb9680b9d833419ff130abd7e44fee9c70a993f16336039665c2d9b5/c4a189f5-b494-4b0d-88a9-a8aa3aff828d.json"
+    }
+  ],
+  "market_source_253": [],
+  "fda_ires_recalls": []
+}

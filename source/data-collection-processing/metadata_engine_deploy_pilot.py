@@ -12,6 +12,7 @@ import tempfile
 from pathlib import Path
 
 import boto3
+from raw_parsers.release import source_paths as raw_parser_paths
 
 ROOT = Path(__file__).resolve().parent
 BUCKET = "data-collection-059416028963-us-east-1-an"
@@ -21,6 +22,7 @@ WORKER = "i-06241bd1c4e91c2fc"
 def main():
     names = ["test_metadata_engine.py", "test_metadata_sec_documents.py", "metadata_engine_sec_document_pilot.py"]
     names += [str(p.relative_to(ROOT)) for p in sorted((ROOT / "metadata_engine").rglob("*")) if p.is_file() and "__pycache__" not in p.parts]
+    names += raw_parser_paths()
     session = boto3.Session(region_name="us-east-1")
     with tempfile.TemporaryDirectory(prefix="metadata-sec-pilot-") as directory:
         package = Path(directory) / "release.tgz"

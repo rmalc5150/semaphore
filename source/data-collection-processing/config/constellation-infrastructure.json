@@ -31,7 +31,7 @@
   "worker_pool": {
     "raw_workers": 5,
     "legacy_workers": 6,
-    "cpu_capacity": 2,
+    "cpu_capacity": 4,
     "memory_max_gib": 6,
     "public_workers": 4,
     "raw_memory_max_mib": 384,
@@ -44,14 +44,14 @@
     "admission_memory_high_gib": 4.5
   },
   "daily_collection_enabled": true,
-  "worker_instance_type": "m7i.large",
+  "worker_instance_type": "m6a.xlarge",
   "worker_resize_plan": {
-    "worker_instance_type": "m7i.large",
+    "worker_instance_type": "m6a.xlarge",
     "raw_workers": 5,
     "legacy_workers": 6,
     "public_workers": 4,
     "total_workers": 15,
-    "cpu_capacity": 2,
+    "cpu_capacity": 4,
     "memory_max_gib": 6,
     "memory_high_gib": 5,
     "sum_individual_memory_max_mib": 13184,

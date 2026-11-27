@@ -1,0 +1,37 @@
+{
+  "ImageId": "ami-01edba92f9036f76e",
+  "InstanceType": "m7i.xlarge",
+  "MetadataOptions": {
+    "HttpTokens": "required",
+    "HttpEndpoint": "enabled",
+    "HttpPutResponseHopLimit": 1
+  },
+  "BlockDeviceMappings": [
+    {
+      "DeviceName": "/dev/xvda",
+      "Ebs": {
+        "VolumeSize": 100,
+        "VolumeType": "gp3",
+        "Encrypted": true,
+        "DeleteOnTermination": true
+      }
+    }
+  ],
+  "TagSpecifications": [
+    {
+      "ResourceType": "instance",
+      "Tags": [
+        {"Key": "Name", "Value": "optima-semiotic-worker"},
+        {"Key": "Project", "Value": "semiotic-engine"},
+        {"Key": "Environment", "Value": "sandbox"}
+      ]
+    },
+    {
+      "ResourceType": "volume",
+      "Tags": [
+        {"Key": "Project", "Value": "semiotic-engine"},
+        {"Key": "Environment", "Value": "sandbox"}
+      ]
+    }
+  ]
+}

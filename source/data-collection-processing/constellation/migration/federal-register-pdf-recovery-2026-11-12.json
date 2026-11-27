@@ -1,0 +1,9 @@
+{
+  "manifest": "manifests/collection_runs/source=federal_register_documents/dataset=specialist_inputs/run_ca810585-e93c-48ac-ac7f-18a6d5276400/final.json",
+  "finished_at": "2026-11-12T14:04:40.272809Z",
+  "document_number": "2026-22743",
+  "official_pdf_status": "downloaded",
+  "official_pdf_bytes": 120719355,
+  "official_pdf_sha256": "5ef19da65eed42de3b1f77a4064b719077238173c0931e166c794ba4ac7076fa",
+  "artifact_gaps": []
+}

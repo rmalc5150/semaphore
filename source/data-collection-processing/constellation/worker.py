@@ -9,7 +9,6 @@ import threading
 import time
 import uuid
 
-from botocore.exceptions import ClientError
 import requests
 
 from constellation.control import Control, TERMINAL, canonical, job_id
@@ -24,22 +23,9 @@ def emit(event, **fields):
 
 
 def put_verified(control, key, body, content_type):
+    from constellation.s3_integrity import put_immutable_checked
     sha = hashlib.sha256(body).hexdigest()
-    try:
-        control.s3.put_object(Bucket=control.config['bucket'], Key=key, Body=body,
-            ContentType=content_type, ServerSideEncryption='AES256', IfNoneMatch='*', Metadata={'sha256': sha})
-    except ClientError as exc:
-        if exc.response['Error']['Code'] not in {'PreconditionFailed', '412'}:
-            raise
-    response = control.s3.get_object(Bucket=control.config['bucket'], Key=key)
-    try:
-        remote = hashlib.sha256()
-        for chunk in response['Body'].iter_chunks(1024 * 1024):
-            remote.update(chunk)
-        if remote.hexdigest() != sha:
-            raise ValueError('S3 readback checksum mismatch')
-    finally:
-        response['Body'].close()
+    put_immutable_checked(control.s3, control.config['bucket'], key, body, content_type, sha)
     return {'uri': 's3://' + control.config['bucket'] + '/' + key, 'sha256': sha, 'bytes': len(body)}
 
 

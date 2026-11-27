@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "copernicus_era5_era5_land",
+    "imf_portwatch_shipping_activity"
+  ],
+  "staged_at": 1795697548.7472184,
+  "instance_id": "i-08311762628a9830f",
+  "phase": "active",
+  "tested_at": "2026-11-26T12:59:25.593653+00:00",
+  "verification": {
+    "imf_portwatch_shipping_activity": {
+      "scheduler_etag": "\"e750f6b5f26f7d11a1598f71d845da23\"",
+      "scheduler_updated_at": "2026-11-26T12:57:36.415071Z",
+      "provider_retry_after": "2026-11-25T13:41:55.050258Z",
+      "verified_window": "2023-11-01",
+      "records": 2071,
+      "pages": 3,
+      "manifest": "manifests/collection_runs/source=imf_portwatch_shipping_activity/dataset=specialist_inputs/run_360b2fdb-0abe-44fe-bcbd-d066f51a6eaf/final.json"
+    },
+    "copernicus_era5_era5_land": {
+      "scheduler_etag": "\"129b9468be34f906ad7c2790c820e8c0\"",
+      "scheduler_updated_at": "2026-11-25T13:40:22.132825Z",
+      "provider_retry_after": "2026-11-26T13:40:22.132805Z"
+    }
+  }
+}

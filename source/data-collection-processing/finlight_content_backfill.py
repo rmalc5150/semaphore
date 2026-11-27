@@ -121,9 +121,12 @@ def archive_ready(store, config):
     if config.get('provider') == 'marketaux':
         from marketaux_content_backfill import archive_ready as ready
         return ready(store, config)
-    from finlight_backfill import setup
+    from finlight_backfill import earlier_archive, range_complete, setup
     from news_operations import NewsOperations
-    control, _, prefix = setup()
+    control, discovery, prefix = setup()
+    earlier = earlier_archive(control, discovery)
+    if earlier and not all(range_complete(store, earlier, stage) for stage in ('collection', 'publication')):
+        return False
     collected, _ = load_stored(store, prefix + '/collection.json')
     published, _ = load_stored(store, prefix + '/publication.json')
     settings = StorageSettings.load(ROOT / config['storage_config'])

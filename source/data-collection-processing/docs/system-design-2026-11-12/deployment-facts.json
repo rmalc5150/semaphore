@@ -1,6 +1,6 @@
 {
   "verified_date": "2026-11-12",
-  "display_timestamp": "12 November 2026 \u00b7 14:03 CET",
+  "display_timestamp": "12 November 2026 \u00b7 14:28 CET",
   "display_timezone": "Europe/Madrid",
   "aws_region": "us-east-1",
   "scope": "Current Optima collection, processing, metadata, publication and monitoring deployment on the two identified EC2 hosts; model stages explicitly separated.",
@@ -54,7 +54,9 @@
     "simultaneous_payloads": 1,
     "unit_memory_max_bytes": 2147483648,
     "slice_cpu_quota_percent": 100,
-    "shared_pool_admission_bytes": 4831838208
+    "shared_pool_admission_bytes": 4831838208,
+    "edinet_memory_max_bytes": 2684354560,
+    "edinet_admission_bytes": 4294967296
   },
   "metadata_batch_limits": {
     "lanes": 2,
@@ -102,7 +104,7 @@
     {
       "component": "Bounded migrated capture pool",
       "execution": "m7",
-      "details": "EDINET documents; FDA inspection classifications; EIA retail; EODHD profiles; patents daily and prosecution; assignment daily and historical; Federal Register document enrichment; NIST daily. Serialized under a 2 GiB child-unit limit, one CPU quota and 4.5 GiB shared-pool admission threshold; durable state and shared provider pacing retained."
+      "details": "EDINET documents; FDA inspection classifications; EIA retail; EODHD profiles; patents daily and prosecution; assignment daily and historical; Federal Register document enrichment; NIST daily. Serialized under 2 GiB child-unit limits (EDINET 2.5 GiB), one CPU quota and 4.5 GiB shared-pool admission threshold (EDINET 4 GiB); durable state and shared provider pacing retained."
     },
     {
       "component": "EODHD inventory and CMS financial",

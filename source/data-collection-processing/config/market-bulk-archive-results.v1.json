@@ -1,0 +1,767 @@
+{
+  "226": {
+    "source": "market_source_226",
+    "records": 3906438,
+    "tables": {
+      "orders": 3906438
+    },
+    "database": "optima_chilecompra_archive",
+    "archives": [
+      {
+        "source": "market_source_226",
+        "file": "FuerzasArmadas.7z",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_226/archives/supplied/39c5003b6612b83ef96eed74ab49183052ebba33ea4d4d970a3f9a2ff71afaa2",
+        "sha256": "39c5003b6612b83ef96eed74ab49183052ebba33ea4d4d970a3f9a2ff71afaa2",
+        "bytes": 11988792,
+        "retained_at": "2026-11-23T13:43:57.107631+00:00",
+        "source_url": "https://datos-abiertos.chilecompra.cl/descargas/ordenes-y-licitaciones",
+        "window_id": "65101db3ea7d7c78621ae387d308d791ba213d75eabb773b0fa39c3d6d2a1cba",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/65101db3ea7d7c78621ae387d308d791ba213d75eabb773b0fa39c3d6d2a1cba/release.json",
+        "members": [
+          {
+            "member": "11OCConvenioMarco.csv",
+            "rows": 184081,
+            "file": "orders/11OCConvenioMarco.parquet",
+            "sha256": "bc50c362649746222356a8ca661cd137e236ba47a99c9c549bc4410899470a14",
+            "first_observation": "2016-01-01",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/65101db3ea7d7c78621ae387d308d791ba213d75eabb773b0fa39c3d6d2a1cba/orders/11OCConvenioMarco.parquet"
+          },
+          {
+            "member": "11OCLicitacion.csv",
+            "rows": 72756,
+            "file": "orders/11OCLicitacion.parquet",
+            "sha256": "5523de348d580c22c6f6f3e7f4bdc945979e765dcd6b1f6aeff9f1a856853a99",
+            "first_observation": "2016-01-01",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/65101db3ea7d7c78621ae387d308d791ba213d75eabb773b0fa39c3d6d2a1cba/orders/11OCLicitacion.parquet"
+          },
+          {
+            "member": "11OCTratoDirecto.csv",
+            "rows": 47322,
+            "file": "orders/11OCTratoDirecto.parquet",
+            "sha256": "28c33eb8d6a0b48719df230d980ed05732b3722d614e952bfa9c4b7a46f054c3",
+            "first_observation": "2016-01-02",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/65101db3ea7d7c78621ae387d308d791ba213d75eabb773b0fa39c3d6d2a1cba/orders/11OCTratoDirecto.parquet"
+          }
+        ],
+        "query_id": "0b9dbb1f-393b-4a60-910c-d71872cc6bb0"
+      },
+      {
+        "source": "market_source_226",
+        "file": "FuerzasArmadas (1).7z",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_226/archives/supplied/4dd30b07eecb009b7b99e1f3bbd2d9bad076d79f5516bb6897d1b48833cbda3d",
+        "sha256": "4dd30b07eecb009b7b99e1f3bbd2d9bad076d79f5516bb6897d1b48833cbda3d",
+        "bytes": 12826338,
+        "retained_at": "2026-11-23T13:43:57.661692+00:00",
+        "source_url": "https://datos-abiertos.chilecompra.cl/descargas/ordenes-y-licitaciones",
+        "window_id": "5e403028d673c748952b4be0488619ff34cdb32da8b5e24744183df96dbe1826",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/5e403028d673c748952b4be0488619ff34cdb32da8b5e24744183df96dbe1826/release.json",
+        "members": [
+          {
+            "member": "11OCConvenioMarco.csv",
+            "rows": 182086,
+            "file": "orders/11OCConvenioMarco.parquet",
+            "sha256": "35515c1d07ba696335385ba1261c06ee021378cf8fb633f3e1a3efb1ad3bd33c",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/5e403028d673c748952b4be0488619ff34cdb32da8b5e24744183df96dbe1826/orders/11OCConvenioMarco.parquet"
+          },
+          {
+            "member": "11OCLicitacion.csv",
+            "rows": 80639,
+            "file": "orders/11OCLicitacion.parquet",
+            "sha256": "93a0d87a8a1a4f533a5e1c8fbe1aa35466f0741a1af0e6322d4c465bd25425d0",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/5e403028d673c748952b4be0488619ff34cdb32da8b5e24744183df96dbe1826/orders/11OCLicitacion.parquet"
+          },
+          {
+            "member": "11OCTratoDirecto.csv",
+            "rows": 51258,
+            "file": "orders/11OCTratoDirecto.parquet",
+            "sha256": "f094cf8a47f459d29491f2e81107d92a326d155e890a09e49a1f9685663f33b4",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/5e403028d673c748952b4be0488619ff34cdb32da8b5e24744183df96dbe1826/orders/11OCTratoDirecto.parquet"
+          }
+        ],
+        "query_id": "175fd713-e077-40cf-967c-f580fa007b31"
+      },
+      {
+        "source": "market_source_226",
+        "file": "GobCentralUniversidades.7z",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_226/archives/supplied/fda80c7a482286877dbad978c5e4c4a22fd43b847bd60e6442a78595c2ee07aa",
+        "sha256": "fda80c7a482286877dbad978c5e4c4a22fd43b847bd60e6442a78595c2ee07aa",
+        "bytes": 30313523,
+        "retained_at": "2026-11-23T13:43:58.565596+00:00",
+        "source_url": "https://datos-abiertos.chilecompra.cl/descargas/ordenes-y-licitaciones",
+        "window_id": "feb694205fd8e45830c8ff2822f8c651e2180803bd530de63237dee036957b55",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/feb694205fd8e45830c8ff2822f8c651e2180803bd530de63237dee036957b55/release.json",
+        "members": [
+          {
+            "member": "12OCConvenioMarco.csv",
+            "rows": 543461,
+            "file": "orders/12OCConvenioMarco.parquet",
+            "sha256": "aca9d568604f4c7f76cc770bbdb567e7c2708e8722165ec497c056f91bd7af74",
+            "first_observation": "2016-01-01",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/feb694205fd8e45830c8ff2822f8c651e2180803bd530de63237dee036957b55/orders/12OCConvenioMarco.parquet"
+          },
+          {
+            "member": "12OCLicitacion.csv",
+            "rows": 99868,
+            "file": "orders/12OCLicitacion.parquet",
+            "sha256": "f5ed1c3a8095e195df29bd9b15fd93ca54e50d6da59b81b4e5c2a52d7f798ed2",
+            "first_observation": "2016-01-01",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/feb694205fd8e45830c8ff2822f8c651e2180803bd530de63237dee036957b55/orders/12OCLicitacion.parquet"
+          },
+          {
+            "member": "12OCTratoDirecto.csv",
+            "rows": 47233,
+            "file": "orders/12OCTratoDirecto.parquet",
+            "sha256": "f6453616930ad17c8571bf295c178d87fdd79ae7e6c6bd3d6fbf3876c7a6de5b",
+            "first_observation": "2016-01-02",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/feb694205fd8e45830c8ff2822f8c651e2180803bd530de63237dee036957b55/orders/12OCTratoDirecto.parquet"
+          }
+        ],
+        "query_id": "7664735d-d165-47f9-896a-5f1a0bf14ae2"
+      },
+      {
+        "source": "market_source_226",
+        "file": "GobCentralUniversidades (1).7z",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_226/archives/supplied/f64d99779eccb71aed0f468c1b1c860c10c42370fe4ce6f06e3fb1df53d9692c",
+        "sha256": "f64d99779eccb71aed0f468c1b1c860c10c42370fe4ce6f06e3fb1df53d9692c",
+        "bytes": 38483603,
+        "retained_at": "2026-11-23T13:43:59.642973+00:00",
+        "source_url": "https://datos-abiertos.chilecompra.cl/descargas/ordenes-y-licitaciones",
+        "window_id": "6342183cff7d7b3418828a182f0080f15bf6fc98629ea4a27b2790960db15355",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/6342183cff7d7b3418828a182f0080f15bf6fc98629ea4a27b2790960db15355/release.json",
+        "members": [
+          {
+            "member": "12OCConvenioMarco.csv",
+            "rows": 664692,
+            "file": "orders/12OCConvenioMarco.parquet",
+            "sha256": "84a46180c8df2ad579a6103ad390b5bd89c0a0b616200885771bc544b82ecd72",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-31",
+            "rows_without_parsed_date": 0,
+            "rows_without_order_id": 1,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/6342183cff7d7b3418828a182f0080f15bf6fc98629ea4a27b2790960db15355/orders/12OCConvenioMarco.parquet"
+          },
+          {
+            "member": "12OCLicitacion.csv",
+            "rows": 110318,
+            "file": "orders/12OCLicitacion.parquet",
+            "sha256": "f2a84450c458549b92c235c03ec78f15f0f95c7199064891e3f56c7b0ecfac79",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/6342183cff7d7b3418828a182f0080f15bf6fc98629ea4a27b2790960db15355/orders/12OCLicitacion.parquet"
+          },
+          {
+            "member": "12OCTratoDirecto.csv",
+            "rows": 56983,
+            "file": "orders/12OCTratoDirecto.parquet",
+            "sha256": "173660d843a380d5ed6a0c4334b6dd4c14463d40b0a199dce8942fd1d40fba82",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/6342183cff7d7b3418828a182f0080f15bf6fc98629ea4a27b2790960db15355/orders/12OCTratoDirecto.parquet"
+          }
+        ],
+        "query_id": "262a6acc-e6ac-439f-9051-5782b9bed88a"
+      },
+      {
+        "source": "market_source_226",
+        "file": "LegislativoJudicial.7z",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_226/archives/supplied/706c322d6d8042dd5f4d7ef98feb4886eb0fc2767caeee60fc149416b8eadca0",
+        "sha256": "706c322d6d8042dd5f4d7ef98feb4886eb0fc2767caeee60fc149416b8eadca0",
+        "bytes": 1658879,
+        "retained_at": "2026-11-23T13:43:58.668044+00:00",
+        "source_url": "https://datos-abiertos.chilecompra.cl/descargas/ordenes-y-licitaciones",
+        "window_id": "18afe03aec65d39e675bc2e0b4a7139f96a05bc368ba476e3b12b89374d03294",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/18afe03aec65d39e675bc2e0b4a7139f96a05bc368ba476e3b12b89374d03294/release.json",
+        "members": [
+          {
+            "member": "13OCConvenioMarco.csv",
+            "rows": 29981,
+            "file": "orders/13OCConvenioMarco.parquet",
+            "sha256": "0c3d07eb8c2f8e163e647ca81b3f746b8c8d55d30593af03230f82108bb2e0b3",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/18afe03aec65d39e675bc2e0b4a7139f96a05bc368ba476e3b12b89374d03294/orders/13OCConvenioMarco.parquet"
+          },
+          {
+            "member": "13OCLicitacion.csv",
+            "rows": 1189,
+            "file": "orders/13OCLicitacion.parquet",
+            "sha256": "798260b1b4019b828d4a5d4f235f550c424668d833f4223bd5ba4f4b49aa559e",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/18afe03aec65d39e675bc2e0b4a7139f96a05bc368ba476e3b12b89374d03294/orders/13OCLicitacion.parquet"
+          },
+          {
+            "member": "13OCTratoDirecto.csv",
+            "rows": 2307,
+            "file": "orders/13OCTratoDirecto.parquet",
+            "sha256": "005cbde1ca1162fe7aedefd5b4b2f716f238e44dc1affad741ae3b2aef3d662c",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/18afe03aec65d39e675bc2e0b4a7139f96a05bc368ba476e3b12b89374d03294/orders/13OCTratoDirecto.parquet"
+          }
+        ],
+        "query_id": "7a322523-6084-404d-a664-73dbb235c5eb"
+      },
+      {
+        "source": "market_source_226",
+        "file": "LegislativoJudicial (1).7z",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_226/archives/supplied/9fec385da6ecae9bef99cbb7133154463f27ab7839853d22c6720dc6da9136e3",
+        "sha256": "9fec385da6ecae9bef99cbb7133154463f27ab7839853d22c6720dc6da9136e3",
+        "bytes": 1307218,
+        "retained_at": "2026-11-23T13:43:58.769656+00:00",
+        "source_url": "https://datos-abiertos.chilecompra.cl/descargas/ordenes-y-licitaciones",
+        "window_id": "dd76e6850d0bfdab16780df2b8362339aec42fe902f19366bbcf4076dbf1ce7e",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/dd76e6850d0bfdab16780df2b8362339aec42fe902f19366bbcf4076dbf1ce7e/release.json",
+        "members": [
+          {
+            "member": "13OCConvenioMarco.csv",
+            "rows": 24115,
+            "file": "orders/13OCConvenioMarco.parquet",
+            "sha256": "50b5ffd0b633ccfd66c6cf1887a186e65b747f7299003555c33a48c69b03680e",
+            "first_observation": "2016-01-04",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/dd76e6850d0bfdab16780df2b8362339aec42fe902f19366bbcf4076dbf1ce7e/orders/13OCConvenioMarco.parquet"
+          },
+          {
+            "member": "13OCLicitacion.csv",
+            "rows": 841,
+            "file": "orders/13OCLicitacion.parquet",
+            "sha256": "f477f29ffbc1b8ec23c985fb530088fda86a388a9d4136540941482d557ecb9b",
+            "first_observation": "2016-01-05",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/dd76e6850d0bfdab16780df2b8362339aec42fe902f19366bbcf4076dbf1ce7e/orders/13OCLicitacion.parquet"
+          },
+          {
+            "member": "13OCTratoDirecto.csv",
+            "rows": 2092,
+            "file": "orders/13OCTratoDirecto.parquet",
+            "sha256": "d97ed092f21470c07ccf358ed64316bcb19dd7a83671c386c93a514b5b670657",
+            "first_observation": "2016-01-04",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/dd76e6850d0bfdab16780df2b8362339aec42fe902f19366bbcf4076dbf1ce7e/orders/13OCTratoDirecto.parquet"
+          }
+        ],
+        "query_id": "36f3136f-87ea-4d69-8473-6421dbd2a596"
+      },
+      {
+        "source": "market_source_226",
+        "file": "Salud.7z",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_226/archives/supplied/6adb7ad8b94b49acc2c538820172e37db7f106cbb9cf4bd2e5842beaf901d720",
+        "sha256": "6adb7ad8b94b49acc2c538820172e37db7f106cbb9cf4bd2e5842beaf901d720",
+        "bytes": 35837087,
+        "retained_at": "2026-11-23T13:44:00.751732+00:00",
+        "source_url": "https://datos-abiertos.chilecompra.cl/descargas/ordenes-y-licitaciones",
+        "window_id": "06b24ccba29fc49bbbd1b7fc8867c271b70d16ebc4afd7cf7cd08c5211a3e30d",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/06b24ccba29fc49bbbd1b7fc8867c271b70d16ebc4afd7cf7cd08c5211a3e30d/release.json",
+        "members": [
+          {
+            "member": "17OCConvenioMarco.csv",
+            "rows": 261129,
+            "file": "orders/17OCConvenioMarco.parquet",
+            "sha256": "f629634e3227e72f7810aed08b62fcbaa303cc234ce8cc1dc78f3432c151bd20",
+            "first_observation": "2016-01-02",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/06b24ccba29fc49bbbd1b7fc8867c271b70d16ebc4afd7cf7cd08c5211a3e30d/orders/17OCConvenioMarco.parquet"
+          },
+          {
+            "member": "17OCLicitacion.csv",
+            "rows": 445105,
+            "file": "orders/17OCLicitacion.parquet",
+            "sha256": "c6de44419a5ac3080df57f62a8276f6acd8607fe196d079a0140c128d9f80fb8",
+            "first_observation": "2016-01-02",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/06b24ccba29fc49bbbd1b7fc8867c271b70d16ebc4afd7cf7cd08c5211a3e30d/orders/17OCLicitacion.parquet"
+          },
+          {
+            "member": "17OCTratoDirecto.csv",
+            "rows": 135869,
+            "file": "orders/17OCTratoDirecto.parquet",
+            "sha256": "1bd2279c7aba7d8a49b49f1fd6c3c52be98b193dabc5ef26a53149f461d39ab7",
+            "first_observation": "2016-01-01",
+            "last_observation": "2016-06-30",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/06b24ccba29fc49bbbd1b7fc8867c271b70d16ebc4afd7cf7cd08c5211a3e30d/orders/17OCTratoDirecto.parquet"
+          }
+        ],
+        "query_id": "e3101c42-8da0-4542-bd8b-3fd699ec8cc7"
+      },
+      {
+        "source": "market_source_226",
+        "file": "Salud (1).7z",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_226/archives/supplied/65fcdb94febf533263be7b7e3459f26cc6a3e9ff6935e1a1d1c8a735a4d5cbf3",
+        "sha256": "65fcdb94febf533263be7b7e3459f26cc6a3e9ff6935e1a1d1c8a735a4d5cbf3",
+        "bytes": 37528928,
+        "retained_at": "2026-11-23T13:44:01.556865+00:00",
+        "source_url": "https://datos-abiertos.chilecompra.cl/descargas/ordenes-y-licitaciones",
+        "window_id": "6bdf8bd95777f483f34feb5b9a5bfbd2e57cdf56953eaf8c1df6987b637c5eaf",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/6bdf8bd95777f483f34feb5b9a5bfbd2e57cdf56953eaf8c1df6987b637c5eaf/release.json",
+        "members": [
+          {
+            "member": "17OCConvenioMarco.csv",
+            "rows": 281958,
+            "file": "orders/17OCConvenioMarco.parquet",
+            "sha256": "f08ba43fda56e9621de730f4e3e3535664d31f8c23108e0fdf7a7e56c773ac2d",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/6bdf8bd95777f483f34feb5b9a5bfbd2e57cdf56953eaf8c1df6987b637c5eaf/orders/17OCConvenioMarco.parquet"
+          },
+          {
+            "member": "17OCLicitacion.csv",
+            "rows": 443076,
+            "file": "orders/17OCLicitacion.parquet",
+            "sha256": "c74eeaf51a472b6732ccf2e904559180cc74fd5e77556397a4bed42e7c7a182b",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/6bdf8bd95777f483f34feb5b9a5bfbd2e57cdf56953eaf8c1df6987b637c5eaf/orders/17OCLicitacion.parquet"
+          },
+          {
+            "member": "17OCTratoDirecto.csv",
+            "rows": 138079,
+            "file": "orders/17OCTratoDirecto.parquet",
+            "sha256": "7a2650732e7c84e304b3bdf057a43323ab2cf5011e742c45a1d4b5a93e248ada",
+            "first_observation": "2016-07-01",
+            "last_observation": "2016-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/chilecompra-archive/6bdf8bd95777f483f34feb5b9a5bfbd2e57cdf56953eaf8c1df6987b637c5eaf/orders/17OCTratoDirecto.parquet"
+          }
+        ],
+        "query_id": "57c379d5-8c49-4b0b-beac-1c1a4172c23b"
+      }
+    ],
+    "parquet_files": 24,
+    "first_observation": "2016-01-01",
+    "last_observation": "2016-12-31",
+    "query_id": "99374ff6-bfe9-45d6-a280-306edf6fb69a",
+    "first_publication": null
+  },
+  "248": {
+    "source": "market_source_248",
+    "records": 5070038,
+    "tables": {
+      "reports": 1471004,
+      "symptoms": 1922666,
+      "vaccines": 1676368
+    },
+    "database": "optima_vaers_archive",
+    "archives": [
+      {
+        "source": "market_source_248",
+        "file": "2016VAERSData.zip",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_248/archives/2016/66e87dc043db8ef7e3c9936904152eb63657920c3c3efbfce14c0f01b9d2d762",
+        "sha256": "66e87dc043db8ef7e3c9936904152eb63657920c3c3efbfce14c0f01b9d2d762",
+        "bytes": 8802212,
+        "retained_at": "2026-11-23T13:43:49.883405+00:00",
+        "source_url": "https://vaers.hhs.gov/data/datasets.html",
+        "window_id": "27ff75145b00c43b3b0b9e7f8df02064cba6c35410e66ae76f4e842c135d7625",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/27ff75145b00c43b3b0b9e7f8df02064cba6c35410e66ae76f4e842c135d7625/release.json",
+        "members": [
+          {
+            "member": "2016VAERSDATA.csv",
+            "rows": 50812,
+            "file": "reports/2016VAERSDATA.parquet",
+            "sha256": "c7754fd03e20d34aa308addbcc2ecd83988298a8ed884f90aae8a4b5615fd522",
+            "first_observation": "2016-01-01",
+            "last_observation": "2016-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/27ff75145b00c43b3b0b9e7f8df02064cba6c35410e66ae76f4e842c135d7625/reports/2016VAERSDATA.parquet"
+          },
+          {
+            "member": "2016VAERSSYMPTOMS.csv",
+            "rows": 58626,
+            "file": "symptoms/2016VAERSSYMPTOMS.parquet",
+            "sha256": "799feb6a7cf13c6468ce15c1ff99455c66a3041c649616ed542f4b87aca19d62",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/27ff75145b00c43b3b0b9e7f8df02064cba6c35410e66ae76f4e842c135d7625/symptoms/2016VAERSSYMPTOMS.parquet"
+          },
+          {
+            "member": "2016VAERSVAX.csv",
+            "rows": 67693,
+            "file": "vaccines/2016VAERSVAX.parquet",
+            "sha256": "946ad78b83af30941f76c16332177640501b6793f2ff61ba323acb7ea4ac1d59",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/27ff75145b00c43b3b0b9e7f8df02064cba6c35410e66ae76f4e842c135d7625/vaccines/2016VAERSVAX.parquet"
+          }
+        ],
+        "query_id": "ae3fd434-3778-4876-8a98-f7c229a36623"
+      },
+      {
+        "source": "market_source_248",
+        "file": "2017VAERSData.zip",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_248/archives/2017/801567ed3454cf7711b1538a1f4955c56c7746785cc66163360ff87709ddc993",
+        "sha256": "801567ed3454cf7711b1538a1f4955c56c7746785cc66163360ff87709ddc993",
+        "bytes": 8731399,
+        "retained_at": "2026-11-23T13:43:50.021272+00:00",
+        "source_url": "https://vaers.hhs.gov/data/datasets.html",
+        "window_id": "243b4747baf88f6f9a63c6a6fece886a6fe267ecd5869cd5e21ea5eb1f799432",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/243b4747baf88f6f9a63c6a6fece886a6fe267ecd5869cd5e21ea5eb1f799432/release.json",
+        "members": [
+          {
+            "member": "2017VAERSDATA.csv",
+            "rows": 43830,
+            "file": "reports/2017VAERSDATA.parquet",
+            "sha256": "521b009dd0f46e8140bf17b7b39d99e4b3ac6f4e6b2cd7e3ed4697f59e8a967b",
+            "first_observation": "2017-01-01",
+            "last_observation": "2017-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/243b4747baf88f6f9a63c6a6fece886a6fe267ecd5869cd5e21ea5eb1f799432/reports/2017VAERSDATA.parquet"
+          },
+          {
+            "member": "2017VAERSSYMPTOMS.csv",
+            "rows": 51841,
+            "file": "symptoms/2017VAERSSYMPTOMS.parquet",
+            "sha256": "7777a2146bc6798f2dbc792ab1306b5fed5c2c2e64cb88087e6f839711c28e5b",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/243b4747baf88f6f9a63c6a6fece886a6fe267ecd5869cd5e21ea5eb1f799432/symptoms/2017VAERSSYMPTOMS.parquet"
+          },
+          {
+            "member": "2017VAERSVAX.csv",
+            "rows": 60660,
+            "file": "vaccines/2017VAERSVAX.parquet",
+            "sha256": "6fb4c32107179fe6e925ca5d8b286df026c49831113f4244e950cb710034ae69",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/243b4747baf88f6f9a63c6a6fece886a6fe267ecd5869cd5e21ea5eb1f799432/vaccines/2017VAERSVAX.parquet"
+          }
+        ],
+        "query_id": "10051d36-1973-43fc-96f4-8144324baebc"
+      },
+      {
+        "source": "market_source_248",
+        "file": "2018VAERSData.zip",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_248/archives/2018/6ca2fd17d95cc101fad8fb617507a9181114bdb3775181dcfc7b45724d1df123",
+        "sha256": "6ca2fd17d95cc101fad8fb617507a9181114bdb3775181dcfc7b45724d1df123",
+        "bytes": 11420876,
+        "retained_at": "2026-11-23T13:43:50.004724+00:00",
+        "source_url": "https://vaers.hhs.gov/data/datasets.html",
+        "window_id": "e535566315c6d0c100056086eaab616737848dd45111ba497233bf069da81fcb",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/e535566315c6d0c100056086eaab616737848dd45111ba497233bf069da81fcb/release.json",
+        "members": [
+          {
+            "member": "2018VAERSDATA.csv",
+            "rows": 51886,
+            "file": "reports/2018VAERSDATA.parquet",
+            "sha256": "8b4b5074e8e4dc81108a2040020276600bb2162a280e826605670eaedb9a2c07",
+            "first_observation": "2018-01-01",
+            "last_observation": "2018-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/e535566315c6d0c100056086eaab616737848dd45111ba497233bf069da81fcb/reports/2018VAERSDATA.parquet"
+          },
+          {
+            "member": "2018VAERSSYMPTOMS.csv",
+            "rows": 63818,
+            "file": "symptoms/2018VAERSSYMPTOMS.parquet",
+            "sha256": "d44b1133b1e346036e9286a7adca5c3d88353d5b4e04af0e4bd489aa914cd7bc",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/e535566315c6d0c100056086eaab616737848dd45111ba497233bf069da81fcb/symptoms/2018VAERSSYMPTOMS.parquet"
+          },
+          {
+            "member": "2018VAERSVAX.csv",
+            "rows": 65806,
+            "file": "vaccines/2018VAERSVAX.parquet",
+            "sha256": "f2bffec46970d9723ffc18ef5f2e4ea4e229b52bfe8bf0a962c2c805d3a88d4a",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/e535566315c6d0c100056086eaab616737848dd45111ba497233bf069da81fcb/vaccines/2018VAERSVAX.parquet"
+          }
+        ],
+        "query_id": "c9c35df3-8930-483e-a97c-db67fffadb88"
+      },
+      {
+        "source": "market_source_248",
+        "file": "2019VAERSData.zip",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_248/archives/2019/6d4d8400f1adb5eddbea2d866723e9dce97a84419f476e4a97c07c5030e36a78",
+        "sha256": "6d4d8400f1adb5eddbea2d866723e9dce97a84419f476e4a97c07c5030e36a78",
+        "bytes": 12329662,
+        "retained_at": "2026-11-23T13:43:50.575612+00:00",
+        "source_url": "https://vaers.hhs.gov/data/datasets.html",
+        "window_id": "33d45b3fc13aff02a249736af2a441eb4d9ba2ff4484a943b79a753ccb090343",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/33d45b3fc13aff02a249736af2a441eb4d9ba2ff4484a943b79a753ccb090343/release.json",
+        "members": [
+          {
+            "member": "2019VAERSDATA.csv",
+            "rows": 50742,
+            "file": "reports/2019VAERSDATA.parquet",
+            "sha256": "d1bb03885d5ae0357e15d378131a80ed6540b5183d4312bf0498bd9c652a7171",
+            "first_observation": "2019-01-01",
+            "last_observation": "2019-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/33d45b3fc13aff02a249736af2a441eb4d9ba2ff4484a943b79a753ccb090343/reports/2019VAERSDATA.parquet"
+          },
+          {
+            "member": "2019VAERSSYMPTOMS.csv",
+            "rows": 63330,
+            "file": "symptoms/2019VAERSSYMPTOMS.parquet",
+            "sha256": "60f07885f0353e591d5c9d81cb059fb95d50d756468a1a08452effa990615f1a",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/33d45b3fc13aff02a249736af2a441eb4d9ba2ff4484a943b79a753ccb090343/symptoms/2019VAERSSYMPTOMS.parquet"
+          },
+          {
+            "member": "2019VAERSVAX.csv",
+            "rows": 64285,
+            "file": "vaccines/2019VAERSVAX.parquet",
+            "sha256": "2455380c951b0e75bc0e2d47847cbf9bd73f93f3b1f95b87ae8a8e3bfee22790",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/33d45b3fc13aff02a249736af2a441eb4d9ba2ff4484a943b79a753ccb090343/vaccines/2019VAERSVAX.parquet"
+          }
+        ],
+        "query_id": "355fc7f1-1c17-47ba-a559-3614be964dca"
+      },
+      {
+        "source": "market_source_248",
+        "file": "2020VAERSData.zip",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_248/archives/2020/755805eb9a64b96144de9faeae650219208fbfb74a34155bb600e7d38a901379",
+        "sha256": "755805eb9a64b96144de9faeae650219208fbfb74a34155bb600e7d38a901379",
+        "bytes": 12068165,
+        "retained_at": "2026-11-23T13:43:50.700936+00:00",
+        "source_url": "https://vaers.hhs.gov/data/datasets.html",
+        "window_id": "e25feedcba03c561eba3c8f4fafcc85e09793635eca8dfcc9cad697d6c66870c",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/e25feedcba03c561eba3c8f4fafcc85e09793635eca8dfcc9cad697d6c66870c/release.json",
+        "members": [
+          {
+            "member": "2020VAERSDATA.csv",
+            "rows": 51004,
+            "file": "reports/2020VAERSDATA.parquet",
+            "sha256": "28e27335bd502afb9c0707b96b9962a134a47869cceaef2d75e83a250a648c4a",
+            "first_observation": "2020-01-01",
+            "last_observation": "2020-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/e25feedcba03c561eba3c8f4fafcc85e09793635eca8dfcc9cad697d6c66870c/reports/2020VAERSDATA.parquet"
+          },
+          {
+            "member": "2020VAERSSYMPTOMS.csv",
+            "rows": 62887,
+            "file": "symptoms/2020VAERSSYMPTOMS.parquet",
+            "sha256": "8180709c46a145558b4111d87d7a5fb2c4728fff3eba6a66da59ccb0d26f8f66",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/e25feedcba03c561eba3c8f4fafcc85e09793635eca8dfcc9cad697d6c66870c/symptoms/2020VAERSSYMPTOMS.parquet"
+          },
+          {
+            "member": "2020VAERSVAX.csv",
+            "rows": 61323,
+            "file": "vaccines/2020VAERSVAX.parquet",
+            "sha256": "2a1914428353b48f34447b094e0483a6d69c8acd09722501686454ead00efc89",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/e25feedcba03c561eba3c8f4fafcc85e09793635eca8dfcc9cad697d6c66870c/vaccines/2020VAERSVAX.parquet"
+          }
+        ],
+        "query_id": "53342755-ee29-40ce-acf9-b61b83f5ec0b"
+      },
+      {
+        "source": "market_source_248",
+        "file": "2021VAERSData.zip",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_248/archives/2021/2591c056d94bfb27f442064a8e228eab834ca28699a4edb1c67f9a9b9b1ca940",
+        "sha256": "2591c056d94bfb27f442064a8e228eab834ca28699a4edb1c67f9a9b9b1ca940",
+        "bytes": 180005434,
+        "retained_at": "2026-11-23T13:44:02.031699+00:00",
+        "source_url": "https://vaers.hhs.gov/data/datasets.html",
+        "window_id": "1f2fd0853fdfe28b55da1dc0f36c2edf8ed71c6b55b3e490081e4ceee90055cc",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/1f2fd0853fdfe28b55da1dc0f36c2edf8ed71c6b55b3e490081e4ceee90055cc/release.json",
+        "members": [
+          {
+            "member": "2021VAERSDATA.csv",
+            "rows": 768704,
+            "file": "reports/2021VAERSDATA.parquet",
+            "sha256": "a1b83eb7fb402a1fea56e077d53aed55eb61527334e1a0734b5c81aad35529fa",
+            "first_observation": "2021-01-01",
+            "last_observation": "2021-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/1f2fd0853fdfe28b55da1dc0f36c2edf8ed71c6b55b3e490081e4ceee90055cc/reports/2021VAERSDATA.parquet"
+          },
+          {
+            "member": "2021VAERSSYMPTOMS.csv",
+            "rows": 1030201,
+            "file": "symptoms/2021VAERSSYMPTOMS.parquet",
+            "sha256": "f3020e5cbbb47a55f00f971ac1f15143d6def96b62295e8b3a2b05de409a0298",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/1f2fd0853fdfe28b55da1dc0f36c2edf8ed71c6b55b3e490081e4ceee90055cc/symptoms/2021VAERSSYMPTOMS.parquet"
+          },
+          {
+            "member": "2021VAERSVAX.csv",
+            "rows": 813432,
+            "file": "vaccines/2021VAERSVAX.parquet",
+            "sha256": "ec00b564789afbf591653703571867ff22997176107f97d08de2c16bbfef9ec9",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/1f2fd0853fdfe28b55da1dc0f36c2edf8ed71c6b55b3e490081e4ceee90055cc/vaccines/2021VAERSVAX.parquet"
+          }
+        ],
+        "query_id": "fffa36cd-1980-48e6-b61a-7feb043c7439"
+      },
+      {
+        "source": "market_source_248",
+        "file": "2022VAERSData.zip",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_248/archives/2022/ea74911efe7cd26e4a2763e891491c057112fdb78aa0dd61fca6e6b3858edc28",
+        "sha256": "ea74911efe7cd26e4a2763e891491c057112fdb78aa0dd61fca6e6b3858edc28",
+        "bytes": 66338246,
+        "retained_at": "2026-11-23T13:43:56.790236+00:00",
+        "source_url": "https://vaers.hhs.gov/data/datasets.html",
+        "window_id": "fb453eace4af66e7ec7e6689deb3d18c591467bdf1916d7624a94e28526243ff",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/fb453eace4af66e7ec7e6689deb3d18c591467bdf1916d7624a94e28526243ff/release.json",
+        "members": [
+          {
+            "member": "2022VAERSDATA.csv",
+            "rows": 251978,
+            "file": "reports/2022VAERSDATA.parquet",
+            "sha256": "5db1dcdb8537ac9f945156b95d311200fa080d0b1963f8b287f26eb46e888283",
+            "first_observation": "2022-01-01",
+            "last_observation": "2022-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/fb453eace4af66e7ec7e6689deb3d18c591467bdf1916d7624a94e28526243ff/reports/2022VAERSDATA.parquet"
+          },
+          {
+            "member": "2022VAERSSYMPTOMS.csv",
+            "rows": 337679,
+            "file": "symptoms/2022VAERSSYMPTOMS.parquet",
+            "sha256": "023eb810d0bc74607b4687a3b291c6790d3b7d3fbbb88392be89918dbb7f6f3b",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/fb453eace4af66e7ec7e6689deb3d18c591467bdf1916d7624a94e28526243ff/symptoms/2022VAERSSYMPTOMS.parquet"
+          },
+          {
+            "member": "2022VAERSVAX.csv",
+            "rows": 289247,
+            "file": "vaccines/2022VAERSVAX.parquet",
+            "sha256": "77a220c709443c52e7cbbe3f788b5c03adb7648234505d9f0182b13cb78631f6",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/fb453eace4af66e7ec7e6689deb3d18c591467bdf1916d7624a94e28526243ff/vaccines/2022VAERSVAX.parquet"
+          }
+        ],
+        "query_id": "a20124cf-8ebc-46af-ae4a-57a476f4bc35"
+      },
+      {
+        "source": "market_source_248",
+        "file": "2023VAERSData.zip",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_248/archives/2023/680c319ea4bc0497a57091f19ea2c58a905d85de4007b906d8141ffc82192d58",
+        "sha256": "680c319ea4bc0497a57091f19ea2c58a905d85de4007b906d8141ffc82192d58",
+        "bytes": 26357021,
+        "retained_at": "2026-11-23T13:43:53.141564+00:00",
+        "source_url": "https://vaers.hhs.gov/data/datasets.html",
+        "window_id": "25e611d976caa25a81fc778ff62c5bb4e3f87efaae7c77e3b77c8a13d9b0c96a",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/25e611d976caa25a81fc778ff62c5bb4e3f87efaae7c77e3b77c8a13d9b0c96a/release.json",
+        "members": [
+          {
+            "member": "2023VAERSDATA.csv",
+            "rows": 108356,
+            "file": "reports/2023VAERSDATA.parquet",
+            "sha256": "06260767f87878b12bf362ea90c9e2b8ba837725d45a0a92509cd236f9d49d45",
+            "first_observation": "2023-01-01",
+            "last_observation": "2023-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/25e611d976caa25a81fc778ff62c5bb4e3f87efaae7c77e3b77c8a13d9b0c96a/reports/2023VAERSDATA.parquet"
+          },
+          {
+            "member": "2023VAERSSYMPTOMS.csv",
+            "rows": 139908,
+            "file": "symptoms/2023VAERSSYMPTOMS.parquet",
+            "sha256": "eb51d575b58a2925ecadb417c893d67ba175ff6bbe8fc77af2719174e0370dec",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/25e611d976caa25a81fc778ff62c5bb4e3f87efaae7c77e3b77c8a13d9b0c96a/symptoms/2023VAERSSYMPTOMS.parquet"
+          },
+          {
+            "member": "2023VAERSVAX.csv",
+            "rows": 131158,
+            "file": "vaccines/2023VAERSVAX.parquet",
+            "sha256": "06cef92ba1e74db7af70c03c818f448cced2fdee70d587739c6bc82a40c7a477",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/25e611d976caa25a81fc778ff62c5bb4e3f87efaae7c77e3b77c8a13d9b0c96a/vaccines/2023VAERSVAX.parquet"
+          }
+        ],
+        "query_id": "1b6c1338-5dd6-4484-91b0-0c22d95117db"
+      },
+      {
+        "source": "market_source_248",
+        "file": "2024VAERSData.zip",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_248/archives/2024/eacdcecd1ef476dd76a7cceccf8c8e2105f89eaa04302d0de33ff6357fc35b8e",
+        "sha256": "eacdcecd1ef476dd76a7cceccf8c8e2105f89eaa04302d0de33ff6357fc35b8e",
+        "bytes": 13924119,
+        "retained_at": "2026-11-23T13:43:54.698703+00:00",
+        "source_url": "https://vaers.hhs.gov/data/datasets.html",
+        "window_id": "bc8d4c59b59f34d07e3c0a7fa9431863a6ac0af21e297a02454d3163e03947f4",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/bc8d4c59b59f34d07e3c0a7fa9431863a6ac0af21e297a02454d3163e03947f4/release.json",
+        "members": [
+          {
+            "member": "2024VAERSDATA.csv",
+            "rows": 52888,
+            "file": "reports/2024VAERSDATA.parquet",
+            "sha256": "a640c484f9d92465b3d536285df88c31aace1f342cad17973a36f776a97d5cfb",
+            "first_observation": "2024-01-01",
+            "last_observation": "2024-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/bc8d4c59b59f34d07e3c0a7fa9431863a6ac0af21e297a02454d3163e03947f4/reports/2024VAERSDATA.parquet"
+          },
+          {
+            "member": "2024VAERSSYMPTOMS.csv",
+            "rows": 65334,
+            "file": "symptoms/2024VAERSSYMPTOMS.parquet",
+            "sha256": "db22c369116a37cc7363e7cab34708952893f2c3d6f961f5ff711370d4126bd1",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/bc8d4c59b59f34d07e3c0a7fa9431863a6ac0af21e297a02454d3163e03947f4/symptoms/2024VAERSSYMPTOMS.parquet"
+          },
+          {
+            "member": "2024VAERSVAX.csv",
+            "rows": 68648,
+            "file": "vaccines/2024VAERSVAX.parquet",
+            "sha256": "bcae870600c3d4c1cee4cbb1dd3d1d9e774d463852568b948112a1d15dfda160",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/bc8d4c59b59f34d07e3c0a7fa9431863a6ac0af21e297a02454d3163e03947f4/vaccines/2024VAERSVAX.parquet"
+          }
+        ],
+        "query_id": "601d0799-b0ac-4a34-b8b7-eb8b634a2fe3"
+      },
+      {
+        "source": "market_source_248",
+        "file": "2025VAERSData.zip",
+        "archive_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_248/archives/2025/3f0f1e04a7d285b0417490877f37f10bf8c4d1d26a8930c919cfd8a1c8923560",
+        "sha256": "3f0f1e04a7d285b0417490877f37f10bf8c4d1d26a8930c919cfd8a1c8923560",
+        "bytes": 11029537,
+        "retained_at": "2026-11-23T13:43:55.989922+00:00",
+        "source_url": "https://vaers.hhs.gov/data/datasets.html",
+        "window_id": "f0d8c32fc0dce281b59a422e661b23cb19d7cef36eb76c0bc4505d74711ab81b",
+        "manifest_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/f0d8c32fc0dce281b59a422e661b23cb19d7cef36eb76c0bc4505d74711ab81b/release.json",
+        "members": [
+          {
+            "member": "2025VAERSDATA.csv",
+            "rows": 40804,
+            "file": "reports/2025VAERSDATA.parquet",
+            "sha256": "afde53b741e854c20488a7ef50cbf84220844c6319ea2cdbe46df294be9cac53",
+            "first_observation": "2025-01-01",
+            "last_observation": "2025-12-31",
+            "rows_without_parsed_date": 0,
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/f0d8c32fc0dce281b59a422e661b23cb19d7cef36eb76c0bc4505d74711ab81b/reports/2025VAERSDATA.parquet"
+          },
+          {
+            "member": "2025VAERSSYMPTOMS.csv",
+            "rows": 49042,
+            "file": "symptoms/2025VAERSSYMPTOMS.parquet",
+            "sha256": "efb89d75a17379eaa420aca9ea4216419154bda4ab5e784dce97cf9ee7386747",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/f0d8c32fc0dce281b59a422e661b23cb19d7cef36eb76c0bc4505d74711ab81b/symptoms/2025VAERSSYMPTOMS.parquet"
+          },
+          {
+            "member": "2025VAERSVAX.csv",
+            "rows": 54116,
+            "file": "vaccines/2025VAERSVAX.parquet",
+            "sha256": "342a10059e3b1b9358b072091da2f373a45c73150a01bbd18a6174c31618cfb7",
+            "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/curated/vaers-archive/f0d8c32fc0dce281b59a422e661b23cb19d7cef36eb76c0bc4505d74711ab81b/vaccines/2025VAERSVAX.parquet"
+          }
+        ],
+        "query_id": "e2abbb6b-9e75-44b9-9966-6ef2472bf7a9"
+      }
+    ],
+    "parquet_files": 30,
+    "first_observation": "2016-01-01",
+    "last_observation": "2025-12-31",
+    "query_id": "3caf2e48-9469-4dd5-8cbe-3a6a39ef6ee7",
+    "first_publication": null
+  }
+}

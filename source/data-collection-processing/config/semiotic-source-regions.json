@@ -1,0 +1,74 @@
+{
+  "arxiv": {
+    "region": "US",
+    "source_type": "preprint_repository",
+    "reference": "https://tech.cornell.edu/arxiv/"
+  },
+  "doe_storage_program": {
+    "region": "US",
+    "source_type": "government_energy_program",
+    "industry_publisher": "U.S. Department of Energy",
+    "industry_context": "energy storage",
+    "industry_profile_version": "1.0.0",
+    "isic_fallback": {"code": "84", "topic": "energy storage", "reference": "https://www.energy.gov/oe/energy-storage-rdd"},
+    "reference": "https://www.energy.gov/oe/energy-storage-rdd"
+  },
+  "doe_storage_documents": {
+    "region": "US",
+    "source_type": "government_energy_program",
+    "industry_publisher": "U.S. Department of Energy",
+    "industry_context": "energy storage",
+    "industry_profile_version": "1.0.0",
+    "isic_fallback": {"code": "84", "topic": "energy storage", "reference": "https://www.energy.gov/oe/energy-storage-rdd"},
+    "reference": "https://www.energy.gov/oe/energy-storage-rdd"
+  },
+  "google_patents_bigquery": {
+    "region": "US",
+    "source_type": "patent_data_aggregator",
+    "reference": "https://policies.google.com/terms?hl=en",
+    "service_reference": "https://cloud.google.com/blog/topics/public-datasets/google-patents-public-datasets-connecting-public-paid-and-private-patent-data"
+  },
+  "nasa_power_weather_and_solar_resource": {
+    "region": "US",
+    "source_type": "government_environmental_data_service",
+    "reference": "https://power.larc.nasa.gov/docs/team/"
+  },
+  "nist_robotics_methods": {
+    "region": "US",
+    "source_type": "government_standards_and_research_publisher",
+    "reference": "https://www.nist.gov/contact"
+  },
+  "sec_edgar": {
+    "region": "US",
+    "source_type": "regulator_filing_repository",
+    "industry_context": "corporate and financial disclosures",
+    "industry_profile_version": "1.0.0",
+    "isic_fallback": {"code": "84", "topic": "corporate and financial disclosures", "reference": "https://www.sec.gov/edgar"},
+    "reference": "https://www.sec.gov/edgar"
+  },
+  "south_korea_fss_opendart": {
+    "region": "KR",
+    "source_type": "regulator_filing_repository",
+    "industry_publisher": "Financial Supervisory Service",
+    "industry_context": "corporate and financial disclosures",
+    "industry_profile_version": "1.0.0",
+    "isic_fallback": {"code": "84", "topic": "corporate and financial disclosures", "reference": "https://engopendart.fss.or.kr/intro/main.do"},
+    "reference": "https://engopendart.fss.or.kr/intro/main.do"
+  },
+  "ted_notices": {
+    "region": "LU",
+    "source_type": "supranational_procurement_portal",
+    "reference": "https://op.europa.eu/en/web/about-us/contact-us",
+    "service_reference": "https://ted.europa.eu/en/about-ted"
+  },
+  "usa_spending": {
+    "region": "US",
+    "source_type": "government_spending_portal",
+    "reference": "https://www.usaspending.gov/federal-spending-guide"
+  },
+  "usgs_earthquakes": {
+    "region": "US",
+    "source_type": "government_geoscience_data_service",
+    "reference": "https://www.usgs.gov/programs/earthquake-hazards/connect/locations"
+  }
+}

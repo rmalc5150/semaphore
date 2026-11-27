@@ -31,9 +31,6 @@
 11. Finlight news  
     **Source:** `finlight`. **Saved dataset(s):** `news_articles`.
 
-12. Marketaux news — **paused**  
-    **Source:** `marketaux`. **Saved dataset(s):** `news_articles`.
-
 13. People-related RSS feeds  
     **Source:** `people_rss`. **Saved dataset(s):** `people_source_records`.
 
@@ -294,9 +291,6 @@
 
 98. South Korea FSS OpenDART — **registered; access and collector pending**  
     **Source:** `south_korea_fss_opendart`. **Historical target:** 2016-01-01; coverage not yet audited.
-
-99. South Korea KOSIS statistical OpenAPI — **registered; access and collector pending**  
-    **Source:** `south_korea_kosis_statistical_openapi`. **Historical target:** 2016-01-01; coverage not yet audited.
 
 100. Taiwan TWSE/MOPS issuer and revenue archives — **registered; access and collector pending**  
     **Source:** `taiwan_twse_mops_issuer_and_revenue_archives`. **Historical target:** 2016-01-01; coverage not yet audited.

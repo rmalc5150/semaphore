@@ -5,11 +5,15 @@ One inventory entry per committed page; credentials never enter stored URLs.
 from datetime import datetime
 from html.parser import HTMLParser
 import csv
+import gc
 import hashlib
 import io
 import json
 from pathlib import PurePosixPath
 import re
+import shutil
+import subprocess
+import tempfile
 import time
 import unicodedata
 from urllib.error import HTTPError
@@ -81,6 +85,8 @@ def download(client, doc_id, kind):
     try:
         time.sleep(max(0, 1 - (time.monotonic() - client.last_request)))
         client.last_request = time.monotonic()
+        from constellation.shared_limits import admit
+        admit(API)
         with build_opener(NoRedirect()).open(Request(public + '&' + urlencode({'Subscription-Key': key}),
                 headers={'User-Agent': 'Optima/1.0 (support@optima-holdings.com)', 'Accept-Encoding': 'identity'}), timeout=60) as response:
             raw = response.read(64 * 1024 * 1024 + 1)
@@ -140,10 +146,33 @@ def extract_file(raw, filename):
         if reader.is_encrypted:
             # EDINET PDFs can set editing permissions while allowing an empty open password.
             require(bool(reader.decrypt('')), 'edinet_pdf_open_password_required')
-        pages = [{'page': i + 1, 'text': repair_japanese(p.extract_text() or '')} for i, p in enumerate(reader.pages)]
+        converter = shutil.which('pdftotext')
+        if converter:
+            # PyPDF expands some CID font-width ranges into enormous mappings.
+            # Poppler keeps that parsing outside this Python object graph.
+            with tempfile.TemporaryDirectory(prefix='edinet-pdf-') as directory:
+                from pathlib import Path
+                source=Path(directory)/'source.pdf';target=Path(directory)/'text.txt'
+                source.write_bytes(raw)
+                try:
+                    result=subprocess.run([converter,'-enc','UTF-8','-layout',str(source),str(target)],
+                                          stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=120)
+                except subprocess.TimeoutExpired:
+                    raise SourceIssue('edinet_pdf_text_timeout',True) from None
+                require(result.returncode==0 and target.exists(),'edinet_pdf_text_extraction_failed')
+                require(target.stat().st_size<=64*1024*1024,'edinet_pdf_text_too_large')
+                text=target.read_text(encoding='utf-8');parts=text.split('\f')
+                if parts and parts[-1]=='':parts.pop()
+                require(len(parts)==len(reader.pages),'edinet_pdf_page_count_mismatch')
+                pages=[{'page':i+1,'text':repair_japanese(text)}for i,text in enumerate(parts)]
+            extractor='poppler-pdftotext'
+        else:
+            pages = [{'page': i + 1, 'text': repair_japanese(p.extract_text() or '')} for i, p in enumerate(reader.pages)]
+            extractor='pypdf'
         return {'file': filename, 'format': 'pdf', 'pages': pages,
             'text': '\n'.join(p['text'] for p in pages),
-            'skipped_pages': [p['page'] for p in pages if not p['text'].strip()], 'ocr_performed': False}
+            'skipped_pages': [p['page'] for p in pages if not p['text'].strip()], 'ocr_performed': False,
+            'extractor':extractor}
     if suffix not in ('.htm', '.html', '.xhtml', '.xbrl', '.xml', '.csv', '.txt'):
         return {'file': filename, 'format': 'binary', 'status': 'preserved_no_text_extractor'}
     text, encoding = decode_text(raw)
@@ -241,8 +270,16 @@ def record(run, raw_row, client, listing_evidence, matcher, downloader=download)
         raw = downloader(client, row['docID'], kind)
         refs = list(client.evidence[before:])
         require(len(refs) == 1, 'edinet_document_evidence_missing')
+        print(json.dumps({'stage':'edinet_document_extraction','doc_id':row['docID'],
+                          'kind':kind,'bytes':len(raw)}),flush=True)
         extracted = extract(raw, kind)
-        packed = (json.dumps(extracted, ensure_ascii=False, sort_keys=True) + '\n').encode('utf-8')
+        # Avoid materializing the entire Unicode JSON string alongside its
+        # UTF-8 copy and the extracted document graph.
+        output = io.BytesIO()
+        for piece in json.JSONEncoder(ensure_ascii=False, sort_keys=True).iterencode(extracted):
+            output.write(piece.encode('utf-8'))
+        output.write(b'\n')
+        packed = output.getvalue()
         checksum = hashlib.sha256(packed).hexdigest()
         key = 'source_documents/edinet_filings_extracted/' + checksum
         from collection_storage import write_checked
@@ -253,6 +290,10 @@ def record(run, raw_row, client, listing_evidence, matcher, downloader=download)
             'extraction': {'status': 'extracted' if extracted['text_characters'] else 'no_extractable_text',
                 'source_evidence': [extracted_ref], 'text_characters': extracted['text_characters'],
                 'xbrl_facts': extracted['xbrl_facts'], 'textless_pdf_pages': extracted['textless_pdf_pages'], 'ocr_performed': False}})
+        # Formats are independent. Retaining the prior extraction while
+        # building the next one can double peak memory; PDF readers also cycle.
+        del raw, extracted, packed, output
+        gc.collect()
     chars = sum(d['extraction']['text_characters'] for d in documents)
     capture_status = 'captured' if documents else 'source_unavailable' if unavailable else 'no_advertised_documents'
     payload = {'source_id': 'S10', 'data': row, 'scope': run.spec['scope']['parameters'], 'coverage_note': COVERAGE,
@@ -297,6 +338,17 @@ def collect(job, store, settings, universe, taxonomy, page_budget, client=None, 
             snapshot_sha = cursor['snapshot_sha256']
         else:
             data = requester(client, 'edinet', API + '/documents.json', {'date': job['parameters']['date'], 'type': 2})
+            from reviewed_source_gaps import reviewed_edinet_expiry
+            expired=reviewed_edinet_expiry(job,data.get('metadata',{}).get('status'))
+            if expired and run.state['record_count']==0:
+                require(bool(client.evidence),'edinet_expiry_evidence_missing')
+                key='operations/specialists/reviewed-gaps/'+digest({'job':job,'decision':expired})+'.json'
+                if store.get(key) is None:
+                    write_json(store,key,{'status':'accepted_unavailable','job':job,'decision':expired,
+                        'source_evidence':list(client.evidence),'recorded_at':now()})
+                return {'status':'accepted_unavailable','reason':expired['reason'],'records':0,
+                    'manifest':run.finish('failed',expired['reason']),
+                    'gap_decision':expired,'gap_receipt':key}
             require(str(data.get('metadata', {}).get('status')) == '200', 'edinet_api_status')
             rows = data.get('results')
             count = data.get('metadata', {}).get('resultset', {}).get('count')

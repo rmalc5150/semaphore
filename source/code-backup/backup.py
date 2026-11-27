@@ -16,13 +16,19 @@ STATE = Path(os.environ.get('CODE_BACKUP_STATE_DIR', '/dev/shm/optima-s3/work/tm
 REPO = STATE / 'repository'
 REMOTE = 'git@github.com:rmalc5150/semaphore.git'
 BRANCH = 'ec2-code-backup'
+SSH_KEY = ROOT / '.ssh/semaphore_backup_20261113'
 EXTENSIONS = {'.py', '.sh', '.bash', '.sql', '.md', '.txt', '.json', '.yaml', '.yml', '.toml', '.ini', '.cfg', '.service', '.timer', '.socket', '.js', '.ts', '.tsx', '.jsx', '.html', '.css', '.scss', '.rs', '.go', '.java', '.c', '.h', '.cpp', '.ipynb', '.r', '.tf', '.hcl'}
 NAMES = {'Dockerfile', 'Makefile', 'Procfile', 'LICENSE', 'Pipfile', 'poetry.lock', 'uv.lock', 'package-lock.json', '.gitignore', '.dockerignore'}
 SKIP = {'node_modules', '__pycache__', 'venv', 'env', 'dist', 'build', 'target', 'reports', 'certs', 'site-packages', 'mlperf-evidence-cache', 'ted-package-cache'}
-# Generated operational inventory; the source that recreates it is backed up.
+# Generated or downloaded artifacts; the source that recreates them is backed up.
 GENERATED = {Path('data-collection-processing/constellation/expansion/public-status.json'),
-             Path('data-collection-processing/constellation/status/current-source-evidence.json')}
-GENERATED_DIRS = {Path('data-collection-processing/constellation/status')}
+             Path('data-collection-processing/constellation/status/current-source-evidence.json'),
+             # Downloaded by hybrid-assets/stage.py.
+             Path('data-collection-processing/sandbox/semiotic/hybrid-assets/assets/e5/tokenizer.json')}
+GENERATED_DIRS = {Path('data-collection-processing/constellation/status'),
+                  # Local pip install targets, not project source.
+                  Path('data-collection-processing/sandbox/semiotic/hybrid-assets/nlp'),
+                  Path('data-collection-processing/sandbox/semiotic/hybrid-assets/packages')}
 SECRET = re.compile(r'-----BEGIN (?:RSA |OPENSSH |EC |DSA )?PRIVATE KEY-----|\b(?:AKIA|ASIA)[A-Z0-9]{16}\b|\bgh[pousr]_[A-Za-z0-9]{20,}|\bgithub_pat_[A-Za-z0-9_]{20,}|(?<![A-Za-z0-9_-])sk-[A-Za-z0-9_-]{24,}|(?i:(?:password|passwd|api[_-]?key|secret[_-]?key|access[_-]?token)\s*[=:]\s*[\"\x27])[^\"\x27\n]{12,}[\"\x27]')
 
 def run(*args, **kwargs):
@@ -41,7 +47,7 @@ def collect():
                 continue
             if relative.parts[0]=='product-web-rebuild' and path.suffix.lower() in {'.json','.jsonl','.txt','.xml','.csv','.html'} and name not in {'package.json','package-lock.json','tsconfig.json','requirements.txt','index.html'}:
                 continue
-            if path.relative_to(ROOT) in GENERATED:
+            if relative in GENERATED:
                 continue
             if name.startswith(('company-universe.v', 'company-id-registry.', 'company-admission-ledger.')) or name in {'bls-release-vintages.json', 'bls-release-bootstrap.json', 'source-schedule-inventory.json', 'patent_pilot_companies.json', 'china-verification-status.json'}:
                 continue
@@ -63,6 +69,7 @@ def collect():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--dry-run', action='store_true', help='check and list selected files without Git or network access')
+    parser.add_argument('--auth-config', type=Path, help='GitHub App configuration (defaults to github-app.json when present)')
     args = parser.parse_args()
     STATE.mkdir(parents=True, exist_ok=True, mode=0o700)
     with (STATE / 'lock').open('w') as lock:
@@ -73,13 +80,26 @@ def main():
                 print(path)
             print(f'{len(files)} files; {sum(len(data) for _, data, _ in files):,} bytes')
             return
-        os.environ.setdefault('GIT_SSH_COMMAND', f'ssh -F /dev/null -i {ROOT}/.ssh/semaphore_backup -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=15')
+        os.environ.setdefault('GIT_SSH_COMMAND', f'ssh -F /dev/null -i {SSH_KEY} -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=15')
+        config_path = args.auth_config or Path(__file__).with_name('github-app.json')
+        app = None
+        if args.auth_config or config_path.exists():
+            from github_app_auth import GitHubApp
+            app = GitHubApp(json.loads(config_path.read_text()))
+            if app.repository != 'rmalc5150/semaphore':
+                raise RuntimeError('App backup target differs from the authorized repository')
+            app.token()  # Validate installation and scope before touching the Git snapshot.
+        remote = app.remote if app else REMOTE
         if not (REPO / '.git').exists():
             REPO.mkdir(parents=True, exist_ok=True)
             run('git', 'init', '-b', BRANCH, str(REPO))
-            run('git', '-C', str(REPO), 'remote', 'add', 'origin', REMOTE)
+            run('git', '-C', str(REPO), 'remote', 'add', 'origin', remote)
         def git(*commands, **kwargs):
+            if app:
+                kwargs['env'] = app.environment()
+                return run('git', '-c', 'credential.helper=', '-c', 'http.extraHeader=', '-C', str(REPO), *commands, **kwargs)
             return run('git', '-C', str(REPO), *commands, **kwargs)
+        git('remote', 'set-url', 'origin', remote)
         git('config', 'user.name', 'EC2 Code Backup')
         git('config', 'user.email', 'ec2-backup@localhost')
         # Check remote access before modifying the local snapshot.
@@ -105,6 +125,18 @@ def main():
         elif changed != 0:
             raise RuntimeError('Cannot inspect staged changes')
         git('push', 'origin', f'HEAD:refs/heads/{BRANCH}')
+        local = git('rev-parse', 'HEAD', stdout=subprocess.PIPE, text=True).stdout.strip()
+        refs = git('ls-remote', '--heads', 'origin', f'refs/heads/{BRANCH}', stdout=subprocess.PIPE, text=True).stdout.split()
+        if len(refs) != 2 or refs[0] != local or refs[1] != 'refs/heads/' + BRANCH:
+            raise RuntimeError('Remote backup branch does not match the local committed snapshot')
+        receipt = {'checked_at': datetime.now(timezone.utc).isoformat(), 'status': 'verified',
+                   'repository': 'rmalc5150/semaphore', 'branch': BRANCH, 'commit': local,
+                   'files': len(files), 'source_bytes': sum(len(data) for _, data, _ in files),
+                   'authentication': 'github_app' if app else 'ssh',
+                   'app_id': app.app_id if app else None,
+                   'installation_id': app.installation_id if app else None}
+        (STATE / 'last-success.json').write_text(json.dumps(receipt, indent=2) + '\n')
+        print(json.dumps(receipt), flush=True)
         print(f'Backup verified and pushed: {len(files)} files on {BRANCH}')
 
 if __name__ == '__main__':

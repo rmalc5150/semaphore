@@ -1,4 +1,5 @@
 """Finite Finlight archive with receipt-verified downgrade notification."""
+from copy import deepcopy
 from datetime import date, timedelta
 import hashlib
 import json
@@ -12,22 +13,59 @@ from research_contract import ROOT, digest, load_json
 def setup():
     control = load_json(ROOT / 'config/finlight-backfill.json')
     config = load_json(ROOT / control['collection_config'])
+    return archive_range(control, config)
+
+
+def archive_range(control, config):
     identity = digest({'collection': config, 'start': control['start'], 'end': control['end_exclusive'],
                        'universe': digest(load_json(ROOT / config['universe'])),
                        'taxonomy': digest(load_json(ROOT / config['taxonomy']))})
     return control, config, 'operations/news/finlight-backfill/' + identity
 
 
+def earlier_archive(control, config):
+    earlier = control.get('earlier_archive')
+    if not earlier:
+        return None
+    start, evidence = earlier['start'], earlier['history_evidence']
+    if date.fromisoformat(start) >= date.fromisoformat(control['start']) or not evidence:
+        raise ValueError('invalid earlier Finlight archive scope')
+    config = deepcopy(config)
+    config['providers']['finlight'].update(history_start=start, history_evidence=evidence)
+    return archive_range({**control, 'start': start, 'end_exclusive': control['start'],
+                          'notify_when_verified': False}, config)
+
+
 def collect_archive(runner, api_key):
-    control, config, prefix = setup()
+    primary = setup()
+    control, config, _ = primary
     if not control['enabled']:
         return {'status': 'disabled'}
+    earlier = earlier_archive(control, config)
+    if not earlier:
+        return collect_range(runner, api_key, primary)
+    ranges = (primary, earlier)
+    active = sum(not range_complete(runner.store, archive, 'collection') for archive in ranges)
+    results = [collect_range(runner, api_key, archive, max(active, 1)) for archive in ranges]
+    return {**results[0], 'earlier_archive': results[1]}
+
+
+def range_complete(store, archive, stage):
+    control, _, prefix = archive
+    state, _ = load_stored(store, prefix + '/' + stage + '.json')
+    return bool(state and state['next_date'] >= control['end_exclusive'])
+
+
+def collect_range(runner, api_key, archive, budget_divisor=1):
+    control, config, prefix = archive
     key = prefix + '/collection.json'
     state, token = load_stored(runner.store, key)
     state = state or {'next_date': control['start']}
+    if state['next_date'] >= control['end_exclusive']:
+        return state
     client = NewsClient(runner.store, 'finlight', api_key,
-                        control['max_requests_per_day'], control['max_requests_per_invocation'])
-    for _ in range(control['max_days_per_invocation']):
+                        control['max_requests_per_day'], control['max_requests_per_invocation'] // budget_divisor)
+    for _ in range(control['max_days_per_invocation'] // budget_divisor):
         day = date.fromisoformat(state['next_date'])
         if day >= date.fromisoformat(control['end_exclusive']):
             break
@@ -47,9 +85,21 @@ def check_completion(runner, sns, email_topic, today=None):
     Called under the news publication lock; retries send failures next cycle.
     SNS acceptance followed by a failed state write can cause a duplicate email.
     """
-    control, config, prefix = setup()
+    primary = setup()
+    control, config, _ = primary
     if not control['enabled']:
         return {'status': 'disabled'}
+    earlier = earlier_archive(control, config)
+    if not earlier:
+        return check_range_completion(runner, sns, email_topic, today, primary)
+    earlier_state = check_range_completion(runner, sns, email_topic, today, earlier)
+    earlier_ready = range_complete(runner.store, earlier, 'publication')
+    primary_state = check_range_completion(runner, sns, email_topic, today, primary, earlier_ready)
+    return {**primary_state, 'earlier_archive': earlier_state}
+
+
+def check_range_completion(runner, sns, email_topic, today, archive, prior_ready=True):
+    control, config, prefix = archive
     key = prefix + '/publication.json'
     state, token = load_stored(runner.store, key)
     state = state or {'next_date': control['start']}
@@ -100,7 +150,7 @@ def check_completion(runner, sns, email_topic, today=None):
         token = write_json(runner.store, key, state, token)
     today = today or date.fromisoformat(now()[:10])
     daily, _ = load_stored(runner.store, runner.prefix + '/finlight/daily.json')
-    ready = (state['next_date'] >= control['end_exclusive'] and collection
+    ready = (prior_ready and state['next_date'] >= control['end_exclusive'] and collection
              and collection['next_date'] >= control['end_exclusive'] and daily
              and daily['next_date'] >= str(today))
     state['status'] = 'ready_to_downgrade' if ready else 'incomplete'

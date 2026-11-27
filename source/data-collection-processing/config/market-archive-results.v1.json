@@ -1,0 +1,1399 @@
+{
+  "stack-overflow-survey-2016": {
+    "id": 168,
+    "source": "market_source_168",
+    "dataset": "provider_data",
+    "scope": "2016 original Stack Overflow public survey. Published native respondent rows for selected country, occupation, experience and technology questions.",
+    "records": 56030,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_168/provider_data/2016/8d7d0682039a0d5f5a59794def3271648e8cc36f6a85ed9e65d34a3a3ecc5cff",
+      "sha256": "8d7d0682039a0d5f5a59794def3271648e8cc36f6a85ed9e65d34a3a3ecc5cff",
+      "source_url": "https://media.githubusercontent.com/media/StackExchange/Survey/main/packages/archive/2016/results.csv",
+      "retrieved_at": "2026-11-21T15:14:50.505821+00:00",
+      "bytes": 69821589,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_168/dataset=provider_data/run_dcfcffb3-1f82-46e2-8b85-12a026b0ce83/final.json"
+  },
+  "routeviews-oregon-2016-01-01": {
+    "id": 172,
+    "source": "market_source_172",
+    "dataset": "routeviews",
+    "scope": "January 2016 RouteViews Oregon snapshot. Aggregate native MRT counts by message type and subtype.",
+    "records": 2,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_172/routeviews/2016/76703c578f5b45cf0cff61bd160fdafac6815a17f0050b07324ed26b8925c1c4",
+      "sha256": "76703c578f5b45cf0cff61bd160fdafac6815a17f0050b07324ed26b8925c1c4",
+      "source_url": "https://archive.routeviews.org/bgpdata/2016.01/RIBS/rib.20160101.0000.bz2",
+      "retrieved_at": "2026-11-21T15:17:39.648860+00:00",
+      "bytes": 94622613,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_172/dataset=routeviews/run_8049b9ff-9eb7-4d6b-ab87-7f0e5c2c8b9d/final.json"
+  },
+  "bds-national-2016": {
+    "id": 193,
+    "source": "market_source_193",
+    "dataset": "provider_data",
+    "scope": "Census national Business Dynamics Statistics for 2016 from the 2023 retrospective release.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_193/provider_data/2016/1278adb3a89d6d16950f8bdd0097de2dd9545934bd3f969bb86fa6057b430978",
+      "sha256": "1278adb3a89d6d16950f8bdd0097de2dd9545934bd3f969bb86fa6057b430978",
+      "source_url": "https://www2.census.gov/programs-surveys/bds/tables/time-series/2023/bds2023.csv",
+      "retrieved_at": "2026-11-21T15:14:20.388615+00:00",
+      "bytes": 9038,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_193/dataset=provider_data/run_6ce5a1e5-5fd4-4498-9d1b-b0bb86140ff3/final.json"
+  },
+  "bds-st-2016": {
+    "id": 193,
+    "source": "market_source_193",
+    "dataset": "provider_data",
+    "scope": "Census 2016 Business Dynamics Statistics at state grain, from the 2023 vintage.",
+    "records": 51,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_193/provider_data/2016/9e0c86610ee685c2f7c8c4dec60bd213177cd8644fe539e5f66457efc8ef603c",
+      "sha256": "9e0c86610ee685c2f7c8c4dec60bd213177cd8644fe539e5f66457efc8ef603c",
+      "source_url": "https://www2.census.gov/programs-surveys/bds/tables/time-series/2023/bds2023_st.csv",
+      "retrieved_at": "2026-11-21T15:14:20.631647+00:00",
+      "bytes": 377485,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_193/dataset=provider_data/run_2f6bf5ee-dfa5-4f58-a504-0f91cdb1541a/final.json"
+  },
+  "bds-naics-2016": {
+    "id": 193,
+    "dataset": "provider_data",
+    "scope": "Census 2016 Business Dynamics Statistics at NAICS industry grain, from the 2023 vintage.",
+    "url": "https://www2.census.gov/programs-surveys/bds/tables/time-series/2023/bds2023_naics3.csv",
+    "error": "provider_http_404"
+  },
+  "wikidata-2016-entity-revision": {
+    "id": 173,
+    "source": "market_source_173",
+    "dataset": "provider_data",
+    "scope": "One complete Wikidata entity revision published on or before the end of 2016 for the selected entity.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_173/provider_data/2016/acf86397b6c2ab2572935f28c7494de4671b0e9485c9553630092e518fb692bc",
+      "sha256": "acf86397b6c2ab2572935f28c7494de4671b0e9485c9553630092e518fb692bc",
+      "source_url": "https://www.wikidata.org/w/api.php?action=query&prop=revisions&titles=Q182477&rvstart=2016-12-31T23:59:59Z&rvlimit=1&rvprop=ids%7Ctimestamp%7Ccontent&rvslots=main&format=json",
+      "retrieved_at": "2026-11-21T15:10:33.785549+00:00",
+      "bytes": 29741,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_173/dataset=provider_data/run_37a97b54-87c4-4988-8491-42cf2056c79a/final.json"
+  },
+  "wayback-intel-2016": {
+    "id": 161,
+    "source": "market_source_161",
+    "dataset": "provider_data",
+    "scope": "Exact June 2016 historical Intel France company homepage replay.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_161/provider_data/2016/50342612ca422337929b4bbcb47cce8d83a1c2f3a021526da325cc38e3d058ca",
+      "sha256": "50342612ca422337929b4bbcb47cce8d83a1c2f3a021526da325cc38e3d058ca",
+      "source_url": "https://web.archive.org/web/20160601234329id_/http://www.intel.fr/content/www/fr/fr/homepage.html",
+      "retrieved_at": "2026-11-21T15:10:34.343593+00:00",
+      "bytes": 80981,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_161/dataset=provider_data/run_3c62eab3-2950-4038-a279-d409fd822577/final.json"
+  },
+  "irena-capacity-stats-2026": {
+    "id": 202,
+    "source": "market_source_202",
+    "dataset": "provider_data",
+    "scope": "Official 2026 IRENA renewable capacity statistical tables covering 2016–2025. Native page layout and text retained.",
+    "records": 67,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_202/provider_data/2026/fc580bd4f4ee39ef20de6b1ce3926005a4e3e3b8e2c92fd6a16d175a52515921",
+      "sha256": "fc580bd4f4ee39ef20de6b1ce3926005a4e3e3b8e2c92fd6a16d175a52515921",
+      "source_url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2026/Mar/IRENA_DAT_RE_Capacity_Statistics_2026.pdf",
+      "retrieved_at": "2026-11-21T15:11:15.303116+00:00",
+      "bytes": 1681315,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_202/dataset=provider_data/run_7a89203d-d19b-4a67-b0c5-3e928a9378f8/final.json"
+  },
+  "oica-world-production-2024": {
+    "id": 206,
+    "source": "market_source_206",
+    "dataset": "provider_data",
+    "scope": "OICA official 2024 world motor-vehicle production by country. Published tabular report as extracted page text.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_206/provider_data/2024/b0113aa465a11ae83bc28724a5e19232c4a18cab5c6328f81b14a023ac443f26",
+      "sha256": "b0113aa465a11ae83bc28724a5e19232c4a18cab5c6328f81b14a023ac443f26",
+      "source_url": "https://oica.net/wp-content/uploads/2025/11/By-country.pdf",
+      "retrieved_at": "2026-11-21T15:11:20.540603+00:00",
+      "bytes": 116538,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_206/dataset=provider_data/run_8db416a3-a731-402c-b0ff-9c4f9af18ea5/final.json"
+  },
+  "oica-world-production-2016": {
+    "id": 206,
+    "dataset": "provider_data",
+    "scope": "Official OICA 2016 world motor vehicle production by country.",
+    "url": "https://www.oica.net/wp-content/uploads/Total-2016.pdf",
+    "error": "provider_http_404"
+  },
+  "oecd-icio-2016": {
+    "id": 208,
+    "dataset": "icio",
+    "scope": "OECD small ICIO retrospective edition, 2016 matrix only. First 600 native origin-sector rows and all published destination columns.",
+    "url": "https://webfs-sti.oecd.org/files/STI-PIE/ICIO/2026/2015-2019_SML.zip",
+    "error": "provider_http_403"
+  },
+  "epa-tri-ny-2016": {
+    "id": 197,
+    "source": "market_source_197",
+    "dataset": "provider_data",
+    "scope": "2016 EPA historical-vintage TRI Basic Plus facility/chemical release and waste-management summary for NY. Other table types remain in the ZIP.",
+    "records": 1960,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_197/provider_data/2016/8ba361a2c5d079ddf045059cee2270bdd2bdb475478ba7df813adc0e635c2865",
+      "sha256": "8ba361a2c5d079ddf045059cee2270bdd2bdb475478ba7df813adc0e635c2865",
+      "source_url": "https://www3.epa.gov/tri/na_archive/2016/NY_2016_v15.zip",
+      "retrieved_at": "2026-11-21T15:10:41.924367+00:00",
+      "bytes": 882122,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_197/dataset=provider_data/run_645e2219-3a23-4cda-849e-a9429da68a57/final.json"
+  },
+  "oecd-tiva-japan-2016": {
+    "id": 208,
+    "source": "market_source_208",
+    "dataset": "tiva",
+    "scope": "Japan OECD TiVA domestic value added in gross exports, 2016. One official edition-specific series.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_208/tiva/2016/375c4b08d5b17e5b8765e384ad76e57221233c2e52ad68c6b908e34c8baf72d8",
+      "sha256": "375c4b08d5b17e5b8765e384ad76e57221233c2e52ad68c6b908e34c8baf72d8",
+      "source_url": "https://sdmx.oecd.org/sti-public/rest/data/OECD.STI.PIE,DSD_TIVA_MAINSH@DF_MAINSH,1.1/EXGR_DVA.JPN._T...A?startPeriod=2016&endPeriod=2016&dimensionAtObservation=AllDimensions",
+      "retrieved_at": "2026-11-21T15:11:26.561630+00:00",
+      "bytes": 190,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_208/dataset=tiva/run_3eba0291-fc1e-480e-860a-6d6770433310/final.json"
+  },
+  "cellar-2016-gdpr": {
+    "id": 216,
+    "source": "market_source_216",
+    "dataset": "law",
+    "scope": "Official EU law CELLAR RDF graph for the 2016 English GDPR expression. Legislative history and legal text require distinct extraction.",
+    "records": 4,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_216/law/2016/ab8cf60f651d9f0903ffd03543449dd6c42697fd2f304dfb411bde1db64bfb8f",
+      "sha256": "ab8cf60f651d9f0903ffd03543449dd6c42697fd2f304dfb411bde1db64bfb8f",
+      "source_url": "https://publications.europa.eu/resource/cellar/3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006/rdf/object/full",
+      "retrieved_at": "2026-11-21T15:11:27.242993+00:00",
+      "bytes": 3875,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_216/dataset=law/run_46dff29f-0ac8-4fd4-8006-bc8dd9549d9a/final.json"
+  },
+  "wto-ds456-2016": {
+    "id": 218,
+    "source": "market_source_218",
+    "dataset": "provider_data",
+    "scope": "Official WTO case history for DS456 solar cells and modules, including the 2016 dispute decision.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_218/provider_data/2016/4a52d4134b848e53529fb016fad0b8498b650106106a6442c3f0f1e5b890bfec",
+      "sha256": "4a52d4134b848e53529fb016fad0b8498b650106106a6442c3f0f1e5b890bfec",
+      "source_url": "https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds456_e.htm",
+      "retrieved_at": "2026-11-21T15:11:32.053701+00:00",
+      "bytes": 31102,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_218/dataset=provider_data/run_05ccf2e9-924b-4e03-9b78-387988a9ee9e/final.json"
+  },
+  "us-lda-filings-2016": {
+    "id": 219,
+    "source": "market_source_219",
+    "dataset": "registrations_and_reports",
+    "scope": "First 100 public 2016 Lobbying Disclosure Act filings records from the current API. Additional pages remain separate.",
+    "records": 25,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_219/registrations_and_reports/2016/21562e3749a8355bd4b635d264ef4df6b3941d589fc6d6adfa30ea1c0bf5da93",
+      "sha256": "21562e3749a8355bd4b635d264ef4df6b3941d589fc6d6adfa30ea1c0bf5da93",
+      "source_url": "https://lda.gov/api/v1/filings/?filing_year=2016&page_size=100",
+      "retrieved_at": "2026-11-21T15:11:33.265641+00:00",
+      "bytes": 78858,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_219/dataset=registrations_and_reports/run_51abd9da-2f65-4c17-811a-b4347aa938fa/final.json"
+  },
+  "uspto-case-files-2016": {
+    "id": 227,
+    "dataset": "case_files",
+    "scope": "Official USPTO 2016 trademark case files dataset.",
+    "url": "https://data.uspto.gov/ui/datasets/products/files/TRCFECO2/2016/csv.zip",
+    "error": "provider_returned_html_instead_of_native_file"
+  },
+  "us-lda-contributions-2016": {
+    "id": 219,
+    "source": "market_source_219",
+    "dataset": "contributions",
+    "scope": "First 100 public 2016 Lobbying Disclosure Act contributions records from the current API. Additional pages remain separate.",
+    "records": 25,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_219/contributions/2016/a6158b64f5ee66f9dcd5b0b1ec1eeb35710e94ca53bbe2b7e462d18b8dd3dcd5",
+      "sha256": "a6158b64f5ee66f9dcd5b0b1ec1eeb35710e94ca53bbe2b7e462d18b8dd3dcd5",
+      "source_url": "https://lda.gov/api/v1/contributions/?filing_year=2016&page_size=100",
+      "retrieved_at": "2026-11-21T15:11:39.509706+00:00",
+      "bytes": 42945,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_219/dataset=contributions/run_d179f576-7084-442c-bac7-f89a3fe504b6/final.json"
+  },
+  "brfss-2016-national": {
+    "id": 239,
+    "source": "market_source_239",
+    "dataset": "brfss",
+    "scope": "2016 CDC BRFSS national public-use XPT. Bounded first 25,000 native response rows, with geography, general health and survey weights.",
+    "records": 25000,
+    "bounded_parse": true,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_239/brfss/2016/eac600a8817ef2375eff5cdccba07d820565b61930cab32e24b1c673002ebe83",
+      "sha256": "eac600a8817ef2375eff5cdccba07d820565b61930cab32e24b1c673002ebe83",
+      "source_url": "https://www.cdc.gov/brfss/annual_data/2016/files/LLCP2016XPT.zip",
+      "retrieved_at": "2026-11-21T15:15:18.095169+00:00",
+      "bytes": 83360774,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_239/dataset=brfss/run_a6e1e0b4-fa11-4ffa-bcc7-aa2fe62a0fdc/final.json"
+  },
+  "epa-tri-ca-2016": {
+    "id": 197,
+    "source": "market_source_197",
+    "dataset": "provider_data",
+    "scope": "2016 EPA historical-vintage TRI Basic Plus facility/chemical release and waste-management summary for CA. Other table types remain in the ZIP.",
+    "records": 3660,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_197/provider_data/2016/8cd81afc6f402b0722b5d48126b5feff44ddfad23632a9199ef907ac6c122126",
+      "sha256": "8cd81afc6f402b0722b5d48126b5feff44ddfad23632a9199ef907ac6c122126",
+      "source_url": "https://www3.epa.gov/tri/na_archive/2016/CA_2016_v15.zip",
+      "retrieved_at": "2026-11-21T15:10:39.159198+00:00",
+      "bytes": 1574421,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_197/dataset=provider_data/run_f328d666-12eb-4971-b20f-f0d39fdee9aa/final.json"
+  },
+  "ecdc-ears-net-2016": {
+    "id": 247,
+    "dataset": "ears_net",
+    "scope": "ECDC published 2016 EARS-Net antimicrobial-resistance surveillance edition. Parsed only public report and aggregate tables.",
+    "url": "https://www.ecdc.europa.eu/sites/default/files/documents/AMR-surveillance-Europe-2016.pdf",
+    "error": "provider_http_429"
+  },
+  "ecdc-esac-net-2016": {
+    "id": 247,
+    "dataset": "esac_net",
+    "scope": "ECDC published 2016 ESAC-Net antimicrobial consumption annual surveillance edition.",
+    "url": "https://www.ecdc.europa.eu/sites/default/files/documents/AER_for_2016-AMC.pdf",
+    "error": "provider_http_429"
+  },
+  "sec-13g-nvidia-2016": {
+    "id": 250,
+    "source": "market_source_250",
+    "dataset": "schedule_13g",
+    "scope": "Complete SEC Schedule 13G or amendment original. Parsed filing identity and document list. No trade or holding-change inference.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_250/schedule_13g/2016/79baad89153b7435cfeaec6977280265bb3ce479b1c376aa3978ec2c66f61ba6",
+      "sha256": "79baad89153b7435cfeaec6977280265bb3ce479b1c376aa3978ec2c66f61ba6",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/0000932471-16-011864.txt",
+      "retrieved_at": "2026-11-21T15:11:59.002918+00:00",
+      "bytes": 39705,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_250/dataset=schedule_13g/run_bc59617a-c174-4be7-b619-5579061612af/final.json"
+  },
+  "commons-register-160111": {
+    "id": 257,
+    "dataset": "legacy_register",
+    "scope": "Official Commons Member financial-interests register published in 2016. Parsed register text by page. Positions and declarations retain source wording.",
+    "url": "https://publications.parliament.uk/pa/cm/cmregmem/160111/160111.pdf",
+    "error": "rendering_gateway_did_not_return_original_pdf_bytes"
+  },
+  "ripe-ris-rrc00-2016-01-01": {
+    "id": 172,
+    "source": "market_source_172",
+    "dataset": "ripe_ris",
+    "scope": "First January 2016 Route Information Service snapshot for rrc00. Aggregate native MRT counts by message type and subtype.",
+    "records": 3,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_172/ripe_ris/2016/1507f90fc56ab831a792f17cae317343dbae66a8592f87c40c6fd20b849b36cb",
+      "sha256": "1507f90fc56ab831a792f17cae317343dbae66a8592f87c40c6fd20b849b36cb",
+      "source_url": "https://data.ris.ripe.net/rrc00/2016.01/bview.20160101.0000.gz",
+      "retrieved_at": "2026-11-21T15:12:11.420194+00:00",
+      "bytes": 44202799,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_172/dataset=ripe_ris/run_9c2125a6-38df-4424-87b8-f334d42ab5ad/final.json"
+  },
+  "commons-register-160418": {
+    "id": 257,
+    "dataset": "legacy_register",
+    "scope": "Official Commons Member financial-interests register published in 2016. Parsed register text by page. Positions and declarations retain source wording.",
+    "url": "https://publications.parliament.uk/pa/cm/cmregmem/160418/160418.pdf",
+    "error": "rendering_gateway_did_not_return_original_pdf_bytes"
+  },
+  "meti-latest-industry-workbook": {
+    "id": 267,
+    "dataset": "machinery",
+    "scope": "Official 2025 METI current production statistics yearbook. Selected industry rows by native published label.",
+    "url": "https://www.meti.go.jp/statistics/tyo/seidou/result/ichiran/resourceData/08_seidou/nenpo/2025/h2daa2025k.xlsx",
+    "error": "provider_http_403"
+  },
+  "commons-register-160516": {
+    "id": 257,
+    "dataset": "legacy_register",
+    "scope": "Official Commons Member financial-interests register published in 2016. Parsed register text by page. Positions and declarations retain source wording.",
+    "url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/160516.pdf",
+    "error": "rendering_gateway_did_not_return_original_pdf_bytes"
+  },
+  "who-wuenic-input-2026": {
+    "id": 245,
+    "source": "market_source_245",
+    "dataset": "wuenic",
+    "scope": "WHO immunization estimates input workbook. Native worksheet evidence for public coverage reporting, with version and workbook coordinates retained.",
+    "records": 15000,
+    "bounded_parse": true,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_245/wuenic/2026/03d66aa0482b3557dd8a7a4b25e1dea50cee1e94657eb0d395192494399fbc42",
+      "sha256": "03d66aa0482b3557dd8a7a4b25e1dea50cee1e94657eb0d395192494399fbc42",
+      "source_url": "https://cdn.who.int/media/docs/default-source/immunization/wuenic_input_to_pdf.xlsx?sfvrsn=a067f2ad_33&download=true",
+      "retrieved_at": "2026-11-21T15:12:08.185368+00:00",
+      "bytes": 3535046,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_245/dataset=wuenic/run_a92397d5-3df6-41af-ab5f-a296fb7be6ab/final.json"
+  },
+  "epa-tri-tx-2016": {
+    "id": 197,
+    "source": "market_source_197",
+    "dataset": "provider_data",
+    "scope": "2016 EPA historical-vintage TRI Basic Plus facility/chemical release and waste-management summary for TX. Other table types remain in the ZIP.",
+    "records": 8638,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_197/provider_data/2016/43184ef4be5522974b7ce2aa38868cf616af0be194c491f1ddf601086088e1b4",
+      "sha256": "43184ef4be5522974b7ce2aa38868cf616af0be194c491f1ddf601086088e1b4",
+      "source_url": "https://www3.epa.gov/tri/na_archive/2016/TX_2016_v15.zip",
+      "retrieved_at": "2026-11-21T15:10:43.092686+00:00",
+      "bytes": 3472574,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_197/dataset=provider_data/run_27d567a9-2b35-439c-b041-59276ebef0aa/final.json"
+  },
+  "nhis-2016-adult": {
+    "id": 239,
+    "source": "market_source_239",
+    "dataset": "nhis",
+    "scope": "2016 NHIS official sample-adult public-use CSV. Preserve selected native survey variables and sample weights.",
+    "records": 33028,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_239/nhis/2016/49c635bf5c3612e9ac255ac8203bc1019c2df49d06709beaf4ee783e9dc0fd23",
+      "sha256": "49c635bf5c3612e9ac255ac8203bc1019c2df49d06709beaf4ee783e9dc0fd23",
+      "source_url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHIS/2016/samadultcsv.zip",
+      "retrieved_at": "2026-11-21T15:12:20.202853+00:00",
+      "bytes": 4508868,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_239/dataset=nhis/run_f344fd26-e6e8-4e63-b08b-4c7a96230ee3/final.json"
+  },
+  "eu-comp-antitrust-2016": {
+    "id": 181,
+    "source": "market_source_181",
+    "dataset": "provider_data",
+    "scope": "DG Competition open export of antitrust and cartel cases whose last decision is dated in 2016. Native publication metadata retained.",
+    "records": 21,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_181/provider_data/2016/4e65d270287c61e82f96d41c9d62040d7763f8b39879e1866c1e14524a1a0431",
+      "sha256": "4e65d270287c61e82f96d41c9d62040d7763f8b39879e1866c1e14524a1a0431",
+      "source_url": "https://compcases-open-data-portal-files-prod.s3.eu-west-1.amazonaws.com/case-data-AT.json",
+      "retrieved_at": "2026-11-21T15:14:36.946934+00:00",
+      "bytes": 2805125,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_181/dataset=provider_data/run_7a3c577d-ca89-4ece-856a-e6ae49f93850/final.json"
+  },
+  "cci-antitrust-order-2016": {
+    "id": 186,
+    "source": "market_source_186",
+    "dataset": "provider_data",
+    "scope": "A published Competition Commission of India case order selected from its 2016 archive. Text extraction by original page.",
+    "records": 6,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_186/provider_data/2016/ff2be8158f7fb3c42ea4e005aebe3560fab2a97a770fbaa517f347001d144521",
+      "sha256": "ff2be8158f7fb3c42ea4e005aebe3560fab2a97a770fbaa517f347001d144521",
+      "source_url": "https://cci.gov.in/images/caseorders/en/160820161652431825.pdf",
+      "retrieved_at": "2026-11-21T15:14:42.257038+00:00",
+      "bytes": 387490,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_186/dataset=provider_data/run_72d7ac67-7021-4825-9868-4b923d7c37fe/final.json"
+  },
+  "eea-ets-2005-2025": {
+    "id": 199,
+    "source": "market_source_199",
+    "dataset": "provider_data",
+    "scope": "2026 EEA revised edition of EU ETS verified emissions and allowances. Public Union Registry data archive covering 2005–2025.",
+    "records": 35000,
+    "bounded_parse": true,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_199/provider_data/2025/7650899f59bbf161c604ede2a8f99cc3d4d786c30059000be9668ea9566e3b4f",
+      "sha256": "7650899f59bbf161c604ede2a8f99cc3d4d786c30059000be9668ea9566e3b4f",
+      "source_url": "https://sdi.eea.europa.eu/datashare/s/aZ7Ti5HkRGEbF62/download",
+      "retrieved_at": "2026-11-21T15:20:28.398760+00:00",
+      "bytes": 6084504,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_199/dataset=provider_data/run_37cb5bc6-e35c-46ea-8855-1d870a5730ee/final.json"
+  },
+  "cdc-flusurv-rates-2024-25": {
+    "id": 237,
+    "source": "market_source_237",
+    "dataset": "provider_data",
+    "scope": "CDC RESP-NET 2024–25 FluSurv-NET overall geography, up to 200 public released rate and clinical rows.",
+    "records": 200,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_237/provider_data/2024/7c94b8efad9d749c079bf99782e0ded54d7acf041efa7f764755ffbc0f2eedb5",
+      "sha256": "7c94b8efad9d749c079bf99782e0ded54d7acf041efa7f764755ffbc0f2eedb5",
+      "source_url": "https://data.cdc.gov/resource/kvib-3txy.json?$where=surveillance_network%20%3D%20%27FluSurv-NET%27%20AND%20season%20%3D%20%272024-25%27%20AND%20state%20%3D%20%27Overall%27&$limit=200",
+      "retrieved_at": "2026-11-21T15:20:22.543104+00:00",
+      "bytes": 56803,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_237/dataset=provider_data/run_643fe285-6212-44ca-adce-ec2b6c134570/final.json"
+  },
+  "ecdc-pertussis-2016": {
+    "id": 246,
+    "source": "market_source_246",
+    "dataset": "annual_reports",
+    "scope": "Official ECDC 2016 annual epidemiological report for pertussis. Aggregate national notifications and surveillance tables.",
+    "records": 10,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_246/annual_reports/2016/08633668f305fe43e07ecb0d7f3e284cdbcb4c4cf9d39b307e47be52da073d45",
+      "sha256": "08633668f305fe43e07ecb0d7f3e284cdbcb4c4cf9d39b307e47be52da073d45",
+      "source_url": "https://www.ecdc.europa.eu/sites/default/files/documents/AER-for-2016-pertussis.pdf",
+      "retrieved_at": "2026-11-21T15:15:02.648847+00:00",
+      "bytes": 939987,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_246/dataset=annual_reports/run_03d4b7f1-6822-4cfa-9144-e963044ee8a4/final.json"
+  },
+  "sec-13d-2016": {
+    "id": 250,
+    "source": "market_source_250",
+    "dataset": "schedule_13d",
+    "scope": "Complete official SEC Schedule 13D or amendment original. Filing metadata and original document references.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_250/schedule_13d/2016/414f2f9f8b070a194a8fb7d866c61ec909dc173d706e961963fd20ae945390cd",
+      "sha256": "414f2f9f8b070a194a8fb7d866c61ec909dc173d706e961963fd20ae945390cd",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1325740/0001193125-16-461852.txt",
+      "retrieved_at": "2026-11-21T15:15:04.324018+00:00",
+      "bytes": 181536,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_250/dataset=schedule_13d/run_84d403fb-5e1d-45d4-8992-f8cc1794a66c/final.json"
+  },
+  "mhlw-pharma-2016": {
+    "id": 271,
+    "source": "market_source_271",
+    "dataset": "provider_data",
+    "scope": "MHLW 2016 Pharmaceutical Industry Production Dynamics official survey table. Values retain Japanese source layout and pre-2019 method.",
+    "records": 1222,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_271/provider_data/2016/6c46e18c7ade4d3b0056d0ea3b1379a8443394ea5fe33089e567adfe5de605a2",
+      "sha256": "6c46e18c7ade4d3b0056d0ea3b1379a8443394ea5fe33089e567adfe5de605a2",
+      "source_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000031754375&fileKind=0",
+      "retrieved_at": "2026-11-21T15:15:11.910468+00:00",
+      "bytes": 255488,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_271/dataset=provider_data/run_034d861b-8666-48f3-8661-414f821369ec/final.json"
+  },
+  "meti-machinery-2016": {
+    "id": 267,
+    "source": "market_source_267",
+    "dataset": "machinery",
+    "scope": "2016 official Japan METI machinery production yearbook. Published tables retained in original order as extracted page text.",
+    "records": 48,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_267/machinery/2016/abc7f343959d8e68b559c02113991e794e2d72c004db90198756f7302c9d0848",
+      "sha256": "abc7f343959d8e68b559c02113991e794e2d72c004db90198756f7302c9d0848",
+      "source_url": "https://www.e-stat.go.jp/stat-search/file-download?fileKind=2&statInfId=000031444279",
+      "retrieved_at": "2026-11-21T15:15:55.111509+00:00",
+      "bytes": 7420604,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_267/dataset=machinery/run_b5f790c7-f671-4315-91e3-051f8dd14f29/final.json"
+  },
+  "commons-2016-aldous_peter": {
+    "id": 257,
+    "source": "market_source_257",
+    "dataset": "legacy_register",
+    "scope": "Original public member-level May 2016 Commons financial interests register entry. Decodo rendering preserves the public page when direct browser retrieval fails.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_257/legacy_register/2016/f53cef1c42b37bfb2bcc0e842f3826b51b6a34a00b266e211e6573d0c636363c",
+      "sha256": "f53cef1c42b37bfb2bcc0e842f3826b51b6a34a00b266e211e6573d0c636363c",
+      "source_url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/aldous_peter.htm",
+      "retrieved_at": "2026-11-21T15:20:32.090269+00:00",
+      "bytes": 17420,
+      "method": "decodo_public_rendered_html"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_257/dataset=legacy_register/run_013d282f-0d0b-4bc9-9c55-608935a31519/final.json"
+  },
+  "commons-2016-alexander_heidi": {
+    "id": 257,
+    "source": "market_source_257",
+    "dataset": "legacy_register",
+    "scope": "Original public member-level May 2016 Commons financial interests register entry. Decodo rendering preserves the public page when direct browser retrieval fails.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_257/legacy_register/2016/aef52769f6529992f240d0aa62d56118c188bed0782d1135bf63843fc5fec22b",
+      "sha256": "aef52769f6529992f240d0aa62d56118c188bed0782d1135bf63843fc5fec22b",
+      "source_url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/alexander_heidi.htm",
+      "retrieved_at": "2026-11-21T15:20:35.625611+00:00",
+      "bytes": 14341,
+      "method": "decodo_public_rendered_html"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_257/dataset=legacy_register/run_421615c7-9f6a-46b5-9f56-15b7ade00f22/final.json"
+  },
+  "commons-2016-abrahams_debbie": {
+    "id": 257,
+    "source": "market_source_257",
+    "dataset": "legacy_register",
+    "scope": "Original public member-level May 2016 Commons financial interests register entry. Decodo rendering preserves the public page when direct browser retrieval fails.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_257/legacy_register/2016/de2d430631235ebfad9a2a09b5b3da4c36e5248a9073496d2ebc62d9b1257d37",
+      "sha256": "de2d430631235ebfad9a2a09b5b3da4c36e5248a9073496d2ebc62d9b1257d37",
+      "source_url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/abrahams_debbie.htm",
+      "retrieved_at": "2026-11-21T15:20:35.826573+00:00",
+      "bytes": 16653,
+      "method": "decodo_public_rendered_html"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_257/dataset=legacy_register/run_254ed09f-07bc-4909-84d7-7532ca87b373/final.json"
+  },
+  "meti-2016-industrial_robots": {
+    "id": 267,
+    "dataset": "industrial_robots",
+    "scope": "Official 2016 Japanese e-Stat production/shipment/inventory table page for the selected machinery category. Text and table values retained as displayed.",
+    "url": "https://www.e-stat.go.jp/dbview?sid=0003194168",
+    "error": "no_parsed_provider_records"
+  },
+  "commons-2016-abbott_diane": {
+    "id": 257,
+    "source": "market_source_257",
+    "dataset": "legacy_register",
+    "scope": "Original public member-level May 2016 Commons financial interests register entry. Decodo rendering preserves the public page when direct browser retrieval fails.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_257/legacy_register/2016/38e62618b93f54653f74d3e05f299c127c7691b18e3887e3aea7bb51bdeff6a9",
+      "sha256": "38e62618b93f54653f74d3e05f299c127c7691b18e3887e3aea7bb51bdeff6a9",
+      "source_url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/abbott_diane.htm",
+      "retrieved_at": "2026-11-21T15:20:40.626314+00:00",
+      "bytes": 19203,
+      "method": "decodo_public_rendered_html"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_257/dataset=legacy_register/run_ded0c974-39b4-42d6-bb5e-4a05319f0bfa/final.json"
+  },
+  "ecdc-esac-net-tables-2016": {
+    "id": 247,
+    "source": "market_source_247",
+    "dataset": "esac_net",
+    "scope": "Official ECDC 2016 antimicrobial consumption tables from the ESAC-Net report supplement. Preserve worksheet coordinates and printed units.",
+    "records": 594,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_247/esac_net/2016/0e31c75408bc9766b7c5fbfdc11734ba427acb9b53637a676da7fff6ca3821a7",
+      "sha256": "0e31c75408bc9766b7c5fbfdc11734ba427acb9b53637a676da7fff6ca3821a7",
+      "source_url": "https://www.ecdc.europa.eu/sites/default/files/documents/Tables_2016.zip",
+      "retrieved_at": "2026-11-21T15:20:44.606500+00:00",
+      "bytes": 351209,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_247/dataset=esac_net/run_3048f606-b901-4d23-9da0-9d4798c51fad/final.json"
+  },
+  "bts-t100-monthly-summary-2016": {
+    "id": 203,
+    "source": "market_source_203",
+    "dataset": "provider_data",
+    "scope": "Official T-100 monthly domestic and international traffic summary for 2016. Carrier and origin/destination segment rows remain separate.",
+    "records": 12,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_203/provider_data/2016/b670a5002481e479e0db2b0630fec4b0a83c5ff2563c19d50bd6145bb0392b4e",
+      "sha256": "b670a5002481e479e0db2b0630fec4b0a83c5ff2563c19d50bd6145bb0392b4e",
+      "source_url": "https://data.bts.gov/resource/jqx4-4iha.json?$where=year%3D%272016%27&$limit=25",
+      "retrieved_at": "2026-11-21T15:20:48.337479+00:00",
+      "bytes": 21371,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_203/dataset=provider_data/run_58024b47-d601-47ee-b8e6-62cca45e4a9d/final.json"
+  },
+  "meti-2016-semiconductor_equipment": {
+    "id": 267,
+    "dataset": "semiconductor_equipment",
+    "scope": "Official 2016 Japanese e-Stat production/shipment/inventory table page for the selected machinery category. Text and table values retained as displayed.",
+    "url": "https://www.e-stat.go.jp/dbview?sid=0003194185",
+    "error": "no_parsed_provider_records"
+  },
+  "companies-house-arm-tm01-2016": {
+    "id": 174,
+    "source": "market_source_174",
+    "dataset": "filing_documents",
+    "scope": "Official Companies House PDF for a 2016 ARM filing. The original scanned PDF and the matching public register row are retained together.",
+    "records": 1,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_174/filing_documents/2016/d6e475a6712b8e02ee1601b6d28571d5682860a123230c850c56ba8e752bbb0f",
+      "sha256": "d6e475a6712b8e02ee1601b6d28571d5682860a123230c850c56ba8e752bbb0f",
+      "source_url": "https://find-and-update.company-information.service.gov.uk/company/02548782/filing-history/MzEzODk5MzkzNmFkaXF6a2N4/document?format=pdf&download=0",
+      "retrieved_at": "2026-11-22T10:00:48.433879+00:00",
+      "bytes": 14727,
+      "method": "provider_https",
+      "publication_evidence": {
+        "value": "2016-01-06",
+        "precision": "day",
+        "basis": "Companies House public filing index",
+        "scope": "document",
+        "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_174/filing_documents/2016/b04fd494a35f732230cb1601ccded278dbe2b1564428e4878e7e5c3a43677e50"
+      }
+    },
+    "manifest": "manifests/collection_runs/source=market_source_174/dataset=filing_documents/run_d6ca4d22-d243-413e-9997-deab25fdf627/final.json"
+  },
+  "cmf-ifrs-issuer-txt-2016": {
+    "id": 179,
+    "source": "market_source_179",
+    "dataset": "issuer_ifrs",
+    "scope": "Official quarterly issuer IFRS statement TXT for 2016. The reference period is separate from the official archive index update of 28 January 2017. Bank statistics and contemporaneous filing releases are separate scopes.",
+    "records": 133229,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_179/issuer_ifrs/2016/c0e27da875a19888d5bf1fee9f767e68ca4d19ef0992a5e74a34697679463372",
+      "sha256": "c0e27da875a19888d5bf1fee9f767e68ca4d19ef0992a5e74a34697679463372",
+      "source_url": "https://www.cmfchile.cl/institucional/estadisticas/ver_archivo.php?inicio=201603&termino=201612",
+      "retrieved_at": "2026-11-22T20:47:22.093780+00:00",
+      "bytes": 16623466,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_179/dataset=issuer_ifrs/run_b6cb3f2a-9147-46a7-88af-1f4ebcb01a1e/final.json"
+  },
+  "eurostat-prodcom-de-semiconductors-2016": {
+    "id": 192,
+    "source": "market_source_192",
+    "dataset": "sold_production",
+    "scope": "Eurostat DS-059358 2016 German semiconductor production value in the current release. Includes individually validated PRODCOM codes. TIME_PERIOD is the reporting year.",
+    "records": 18,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_192/sold_production/2016/b2c55b441fab250603c48ed74bb1945551751e4f80194540b684ac7ee4c6684c",
+      "sha256": "b2c55b441fab250603c48ed74bb1945551751e4f80194540b684ac7ee4c6684c",
+      "source_url": "https://ec.europa.eu/eurostat/api/comext/dissemination/sdmx/2.1/data/DS-059358/A.DE.26111100+26111200+26112120+26112150+26112180+26112220+26112240+26112260+26112280+26113003+26113006+26113023+26113027+26113034+26113054+26113065+26113067+26113080+26113091+26113094+26114010+26114040+26114070+26114090+26115020+26115050.PRODVAL?startPeriod=2016&endPeriod=2016&format=SDMX-CSV",
+      "retrieved_at": "2026-11-22T20:59:57.388732+00:00",
+      "bytes": 1433,
+      "method": "provider_https"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_192/dataset=sold_production/run_8b40730f-da80-47af-9eb6-0333e35c89cb/final.json"
+  },
+  "regulations-gov-epa-january-2016-first-page": {
+    "id": 217,
+    "source": "market_source_217",
+    "dataset": "documents",
+    "scope": "EPA Regulations.gov documents posted in January 2016. First page only, with five of 1,464 matching records.",
+    "records": 5,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_217/documents/2016/8eb87153c1f05d1f62dc8d29954227b477d178da60c26ed4fd9773a700694185",
+      "sha256": "8eb87153c1f05d1f62dc8d29954227b477d178da60c26ed4fd9773a700694185",
+      "source_url": "https://api.regulations.gov/v4/documents?filter%5BagencyId%5D=EPA&filter%5BpostedDate%5D%5Bge%5D=2016-01-01&filter%5BpostedDate%5D%5Ble%5D=2016-01-31&sort=postedDate&page%5Bsize%5D=5",
+      "retrieved_at": "2026-11-23T12:36:58.675055+00:00",
+      "bytes": 17897,
+      "method": "manual_original",
+      "publication_evidence": {
+        "value": "2016-01-04T05:00:00Z",
+        "basis": "Regulations.gov v4 data[].attributes.postedDate",
+        "scope": "earliest record in returned page",
+        "evidence_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_217/documents/2016/8eb87153c1f05d1f62dc8d29954227b477d178da60c26ed4fd9773a700694185"
+      },
+      "provider_api_probe": {
+        "first_document_id": "EPA-HQ-OAR-2004-0266-0544",
+        "matches": 1464
+      }
+    },
+    "manifest": "manifests/collection_runs/source=market_source_217/dataset=documents/run_40d4a3b9-af34-4caa-8b43-8c2efc32f726/final.json"
+  },
+  "google-trends-2016-semiconductors": {
+    "id": 166,
+    "source": "market_source_166",
+    "dataset": "provider_data",
+    "scope": "Google Trends Explore weekly worldwide interest for semiconductors, all categories, requested January through December 2016. This series was exported separately with its own 0 to 100 scale. Search property and original export timestamp are not recorded in the CSV.",
+    "records": 52,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_166/provider_data/2016/4f8ec1f62fcda411f31ceb1aefda8099d9a8d73a8731e5e872ea90a47cfbe738",
+      "sha256": "4f8ec1f62fcda411f31ceb1aefda8099d9a8d73a8731e5e872ea90a47cfbe738",
+      "source_url": "https://trends.google.com/trends/explore?date=2016-01-01+2016-12-31&q=semiconductors",
+      "retrieved_at": "2026-11-23T13:07:59.497090+00:00",
+      "bytes": 802,
+      "method": "manual_original"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_166/dataset=provider_data/run_fffe2bb4-a2b4-4842-8760-99fa840717b5/final.json"
+  },
+  "google-trends-2016-industrial-robots": {
+    "id": 166,
+    "source": "market_source_166",
+    "dataset": "provider_data",
+    "scope": "Google Trends Explore weekly worldwide interest for industrial robots, all categories, requested January through December 2016. This series was exported separately with its own 0 to 100 scale. Search property and original export timestamp are not recorded in the CSV.",
+    "records": 52,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_166/provider_data/2016/0a4776ac3278cc1d4f63f159a6cd91bf13a2524f8a7a807b2576c77cbcf7248e",
+      "sha256": "0a4776ac3278cc1d4f63f159a6cd91bf13a2524f8a7a807b2576c77cbcf7248e",
+      "source_url": "https://trends.google.com/trends/explore?date=2016-01-01+2016-12-31&q=industrial+robots",
+      "retrieved_at": "2026-11-23T13:08:04.975921+00:00",
+      "bytes": 805,
+      "method": "manual_original"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_166/dataset=provider_data/run_4190190b-2170-4984-82dd-19f7dd03ae2b/final.json"
+  },
+  "google-trends-2016-solar-energy": {
+    "id": 166,
+    "source": "market_source_166",
+    "dataset": "provider_data",
+    "scope": "Google Trends Explore weekly worldwide interest for solar energy, all categories, requested January through December 2016. This series was exported separately with its own 0 to 100 scale. Search property and original export timestamp are not recorded in the CSV.",
+    "records": 52,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_166/provider_data/2016/aa5e856adf464686e80991b9463734b04b4d98b3bdac4cc0fff4c2cf79a372dd",
+      "sha256": "aa5e856adf464686e80991b9463734b04b4d98b3bdac4cc0fff4c2cf79a372dd",
+      "source_url": "https://trends.google.com/trends/explore?date=2016-01-01+2016-12-31&q=solar+energy",
+      "retrieved_at": "2026-11-23T13:08:08.316785+00:00",
+      "bytes": 800,
+      "method": "manual_original"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_166/dataset=provider_data/run_8ec6d15f-b6fb-4553-bf6d-6bf2f0d01927/final.json"
+  },
+  "google-trends-2016-biotechnology": {
+    "id": 166,
+    "source": "market_source_166",
+    "dataset": "provider_data",
+    "scope": "Google Trends Explore weekly worldwide interest for biotechnology, all categories, requested January through December 2016. This series was exported separately with its own 0 to 100 scale. Search property and original export timestamp are not recorded in the CSV.",
+    "records": 52,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_166/provider_data/2016/7a16b2b1f5daeab5d799239a6f5d3127088cc1228c784b56ed4fce2193f3886c",
+      "sha256": "7a16b2b1f5daeab5d799239a6f5d3127088cc1228c784b56ed4fce2193f3886c",
+      "source_url": "https://trends.google.com/trends/explore?date=2016-01-01+2016-12-31&q=biotechnology",
+      "retrieved_at": "2026-11-23T13:08:11.341166+00:00",
+      "bytes": 801,
+      "method": "manual_original"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_166/dataset=provider_data/run_0df4c4a7-280e-4b46-9370-09ff36889f7a/final.json"
+  },
+  "google-trends-2017-2020-semiconductors": {
+    "id": 166,
+    "source": "market_source_166",
+    "dataset": "provider_data",
+    "scope": "Google Trends Explore weekly worldwide interest for semiconductors, all categories. The supplied CSV covers week starts 2017-01-01 through 2020-12-27. Scores retain the independent normalization of this export. The CSV omits the search property and original export timestamp.",
+    "records": 209,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_166/provider_data/2017-2020/d70e9a8dc91daabdc5de8a1d30177c4f2a25dba152c8ee5608d905bf9ebca927",
+      "sha256": "d70e9a8dc91daabdc5de8a1d30177c4f2a25dba152c8ee5608d905bf9ebca927",
+      "source_url": "https://trends.google.com/trends/explore?date=2017-01-01+2020-12-31&q=semiconductors",
+      "retrieved_at": "2026-11-23T13:19:45.813785+00:00",
+      "bytes": 2986,
+      "method": "manual_original"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_166/dataset=provider_data/run_4d957e10-dda1-4e37-9852-e9cfd47f527a/final.json"
+  },
+  "google-trends-2017-2020-industrial-robots": {
+    "id": 166,
+    "source": "market_source_166",
+    "dataset": "provider_data",
+    "scope": "Google Trends Explore weekly worldwide interest for industrial robots, all categories. The supplied CSV covers week starts 2017-01-01 through 2020-12-27. Scores retain the independent normalization of this export. The CSV omits the search property and original export timestamp.",
+    "records": 209,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_166/provider_data/2017-2020/11a22d2cdabfb0879e89ae7adb1093ea5ed6fb88f3d3695fa2aa793b802a3a03",
+      "sha256": "11a22d2cdabfb0879e89ae7adb1093ea5ed6fb88f3d3695fa2aa793b802a3a03",
+      "source_url": "https://trends.google.com/trends/explore?date=2017-01-01+2020-12-31&q=industrial+robots",
+      "retrieved_at": "2026-11-23T13:19:51.321686+00:00",
+      "bytes": 2989,
+      "method": "manual_original"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_166/dataset=provider_data/run_aa65d343-0088-4b5e-a231-1bd9f78cba87/final.json"
+  },
+  "google-trends-2017-2020-solar-energy": {
+    "id": 166,
+    "source": "market_source_166",
+    "dataset": "provider_data",
+    "scope": "Google Trends Explore weekly worldwide interest for solar energy, all categories. The supplied CSV covers week starts 2017-01-01 through 2020-12-27. Scores retain the independent normalization of this export. The CSV omits the search property and original export timestamp.",
+    "records": 209,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_166/provider_data/2017-2020/583d12208abb506e623d905a4cbc58b7c87e012b37c3f8faaaad5fe49620002d",
+      "sha256": "583d12208abb506e623d905a4cbc58b7c87e012b37c3f8faaaad5fe49620002d",
+      "source_url": "https://trends.google.com/trends/explore?date=2017-01-01+2020-12-31&q=solar+energy",
+      "retrieved_at": "2026-11-23T13:19:56.326074+00:00",
+      "bytes": 2984,
+      "method": "manual_original"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_166/dataset=provider_data/run_4a21ca28-d6a8-41ef-91ac-a38053794fdc/final.json"
+  },
+  "google-trends-2017-2020-biotechnology": {
+    "id": 166,
+    "source": "market_source_166",
+    "dataset": "provider_data",
+    "scope": "Google Trends Explore weekly worldwide interest for biotechnology, all categories. The supplied CSV covers week starts 2017-01-01 through 2020-12-27. Scores retain the independent normalization of this export. The CSV omits the search property and original export timestamp.",
+    "records": 209,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_166/provider_data/2017-2020/2c2a29f07c9eac4150d74e656b4038a14a1eae6401a3dc3025228e132d2e57f6",
+      "sha256": "2c2a29f07c9eac4150d74e656b4038a14a1eae6401a3dc3025228e132d2e57f6",
+      "source_url": "https://trends.google.com/trends/explore?date=2017-01-01+2020-12-31&q=biotechnology",
+      "retrieved_at": "2026-11-23T13:20:02.988504+00:00",
+      "bytes": 2985,
+      "method": "manual_original"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_166/dataset=provider_data/run_7225de62-7a78-44d4-9c7f-c2bb47b49e57/final.json"
+  },
+  "entsoe-fr-actual-total-load-2016-01": {
+    "id": 200,
+    "source": "market_source_200",
+    "dataset": "provider_data",
+    "scope": "France actual total load in megawatts for January 2016 local time. Native ENTSO-E blocks use the provider XML intervals and curve definition. The archive response generation date is distinct from the first historical publication.",
+    "records": 729,
+    "bounded_parse": false,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_200/provider_data/2016/89deb872f1fb92b3da83102496ead5b310bf97f3692165daef04587cc9fb9de8",
+      "sha256": "89deb872f1fb92b3da83102496ead5b310bf97f3692165daef04587cc9fb9de8",
+      "source_url": "https://web-api.tp.entsoe.eu/api?documentType=A65&processType=A16&outBiddingZone_Domain=10YFR-RTE------C&periodStart=201512312300&periodEnd=201601312300",
+      "retrieved_at": "2026-11-23T15:46:48.815497+00:00",
+      "bytes": 89723,
+      "method": "manual_original"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_200/dataset=provider_data/run_bdc0a4f6-105b-4f3b-9af6-b3b6a090e300/final.json"
+  },
+  "sedi-issuer-events-2016-01-01_2016-06-30-1b975e8b1dac461104906aee795d4c11e8ff0a32455f7d517524f105f4267951": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 394,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2016-01-01_2016-06-30/1b975e8b1dac461104906aee795d4c11e8ff0a32455f7d517524f105f4267951.pdf",
+      "sha256": "1b975e8b1dac461104906aee795d4c11e8ff0a32455f7d517524f105f4267951",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:20:14.624437+00:00",
+      "member": "SEDI-Issuer-Report-History_2016-01-01_to_2016-06-30.pdf",
+      "start": "2016-01-01",
+      "end": "2016-06-30",
+      "bytes": 1086352,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:01 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_a7aa7874-9fc3-4dbe-bc86-398af6d8b851/final.json",
+    "first_filing_date": "2016-01-04",
+    "last_filing_date": "2016-06-30"
+  },
+  "sedi-issuer-events-2016-07-01_2016-12-31-b919669cfff111e02bb904ab924e353c52679f41651a1bb8e3dba6cd43f3d4e9": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 372,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2016-07-01_2016-12-31/b919669cfff111e02bb904ab924e353c52679f41651a1bb8e3dba6cd43f3d4e9.pdf",
+      "sha256": "b919669cfff111e02bb904ab924e353c52679f41651a1bb8e3dba6cd43f3d4e9",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:20:20.972113+00:00",
+      "member": "SEDI-Issuer-Report-History_2016-07-01_to_2016-12-31.pdf",
+      "start": "2016-07-01",
+      "end": "2016-12-31",
+      "bytes": 1023261,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:01 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_ff2b1158-86fd-4dc5-bf01-02c30d333bfb/final.json",
+    "first_filing_date": "2016-07-01",
+    "last_filing_date": "2016-12-29"
+  },
+  "sedi-issuer-events-2017-01-01_2017-06-30-d1804d642e8acc323fd69cfa8e47edaf1af01d372b0a2cc77f8625aa138b313b": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 404,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2017-01-01_2017-06-30/d1804d642e8acc323fd69cfa8e47edaf1af01d372b0a2cc77f8625aa138b313b.pdf",
+      "sha256": "d1804d642e8acc323fd69cfa8e47edaf1af01d372b0a2cc77f8625aa138b313b",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:20:27.905501+00:00",
+      "member": "SEDI-Issuer-Report-History_2017-01-01_to_2017-06-30.pdf",
+      "start": "2017-01-01",
+      "end": "2017-06-30",
+      "bytes": 1128589,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:02 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_ecec3e31-672f-4534-8199-d5e469cab85b/final.json",
+    "first_filing_date": "2017-01-02",
+    "last_filing_date": "2017-06-30"
+  },
+  "sedi-issuer-events-2017-07-01_2017-12-31-ce62cb177b2bacbd4c1a0e816b4a5e5e75cad2552bfacb4cd72f046439ec73bc": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 329,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2017-07-01_2017-12-31/ce62cb177b2bacbd4c1a0e816b4a5e5e75cad2552bfacb4cd72f046439ec73bc.pdf",
+      "sha256": "ce62cb177b2bacbd4c1a0e816b4a5e5e75cad2552bfacb4cd72f046439ec73bc",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:20:33.601856+00:00",
+      "member": "SEDI-Issuer-Report-History_2017-07-01_to_2017-12-31.pdf",
+      "start": "2017-07-01",
+      "end": "2017-12-31",
+      "bytes": 916651,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:02 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_f0d0140f-5f24-429e-acf7-63f55d23fe5e/final.json",
+    "first_filing_date": "2017-07-03",
+    "last_filing_date": "2017-12-28"
+  },
+  "sedi-issuer-events-2018-01-01_2018-06-30-b88957977e24e0fb2979b2d1ba58b30fa41737f71d7c1fda44ab5ffa1e7032c7": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 398,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2018-01-01_2018-06-30/b88957977e24e0fb2979b2d1ba58b30fa41737f71d7c1fda44ab5ffa1e7032c7.pdf",
+      "sha256": "b88957977e24e0fb2979b2d1ba58b30fa41737f71d7c1fda44ab5ffa1e7032c7",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:20:38.463300+00:00",
+      "member": "SEDI-Issuer-Report-History_2018-01-01_to_2018-06-30.pdf",
+      "start": "2018-01-01",
+      "end": "2018-06-30",
+      "bytes": 1102835,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:02 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_f2bb71e0-b5cd-4b05-89ee-377cdd3df1ff/final.json",
+    "first_filing_date": "2018-01-02",
+    "last_filing_date": "2018-06-30"
+  },
+  "sedi-issuer-events-2018-07-01_2018-12-31-3f8f6204b9e85df976b9c2e1b655ee55399001f0a570d256de4adac4121cf2e6": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 324,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2018-07-01_2018-12-31/3f8f6204b9e85df976b9c2e1b655ee55399001f0a570d256de4adac4121cf2e6.pdf",
+      "sha256": "3f8f6204b9e85df976b9c2e1b655ee55399001f0a570d256de4adac4121cf2e6",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:20:45.329650+00:00",
+      "member": "SEDI-Issuer-Report-History_2018-07-01_to_2018-12-31.pdf",
+      "start": "2018-07-01",
+      "end": "2018-12-31",
+      "bytes": 932229,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:03 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_5823c123-ee07-4faa-9752-5494a3be7912/final.json",
+    "first_filing_date": "2018-07-02",
+    "last_filing_date": "2018-12-31"
+  },
+  "sedi-issuer-events-2019-01-01_2019-06-30-5a6b8f75fa26e1511090f566cd106db31f5ada201d24bfe8b4623956b36daeb7": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 397,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2019-01-01_2019-06-30/5a6b8f75fa26e1511090f566cd106db31f5ada201d24bfe8b4623956b36daeb7.pdf",
+      "sha256": "5a6b8f75fa26e1511090f566cd106db31f5ada201d24bfe8b4623956b36daeb7",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:20:51.423706+00:00",
+      "member": "SEDI-Issuer-Report-History_2019-01-01_to_2019-06-30.pdf",
+      "start": "2019-01-01",
+      "end": "2019-06-30",
+      "bytes": 1086041,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:03 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_e59d25d1-bf50-4a0e-8b70-13da0b8fcef0/final.json",
+    "first_filing_date": "2019-01-02",
+    "last_filing_date": "2019-06-28"
+  },
+  "sedi-issuer-events-2019-07-01_2019-12-31-d3d9830f8d27ad5f98683d6920f3f1ec03f971e4a9d2168d12a39220afbf89a9": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 354,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2019-07-01_2019-12-31/d3d9830f8d27ad5f98683d6920f3f1ec03f971e4a9d2168d12a39220afbf89a9.pdf",
+      "sha256": "d3d9830f8d27ad5f98683d6920f3f1ec03f971e4a9d2168d12a39220afbf89a9",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:20:58.491103+00:00",
+      "member": "SEDI-Issuer-Report-History_2019-07-01_to_2019-12-31.pdf",
+      "start": "2019-07-01",
+      "end": "2019-12-31",
+      "bytes": 939211,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:03 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_4881788d-147a-45f6-8967-f332598ef148/final.json",
+    "first_filing_date": "2019-07-02",
+    "last_filing_date": "2019-12-30"
+  },
+  "sedi-issuer-events-2020-01-01_2020-06-30-9542c88b677f3c3b690f46b1c7d069fdab758859975d41c58b190e3c401d2f6b": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 369,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2020-01-01_2020-06-30/9542c88b677f3c3b690f46b1c7d069fdab758859975d41c58b190e3c401d2f6b.pdf",
+      "sha256": "9542c88b677f3c3b690f46b1c7d069fdab758859975d41c58b190e3c401d2f6b",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:03.594271+00:00",
+      "member": "SEDI-Issuer-Report-History_2020-01-01_to_2020-06-30.pdf",
+      "start": "2020-01-01",
+      "end": "2020-06-30",
+      "bytes": 994896,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:03 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_52dde708-6f17-4fca-94ed-2d6963485d6b/final.json",
+    "first_filing_date": "2020-01-01",
+    "last_filing_date": "2020-06-30"
+  },
+  "sedi-issuer-events-2020-07-01_2020-12-31-b0b83f608714da580240456e7c69394dafa24ae1e4131b661ef01f6697a25157": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 384,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2020-07-01_2020-12-31/b0b83f608714da580240456e7c69394dafa24ae1e4131b661ef01f6697a25157.pdf",
+      "sha256": "b0b83f608714da580240456e7c69394dafa24ae1e4131b661ef01f6697a25157",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:08.173692+00:00",
+      "member": "SEDI-Issuer-Report-History_2020-07-01_to_2020-12-31.pdf",
+      "start": "2020-07-01",
+      "end": "2020-12-31",
+      "bytes": 1031780,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:03 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_0bacc0d1-a429-4797-bedf-00511ed1f84c/final.json",
+    "first_filing_date": "2020-07-01",
+    "last_filing_date": "2020-12-31"
+  },
+  "sedi-issuer-events-2021-01-01_2021-06-30-13479f6d936dc878cdbb13acd8f7d0b38346708f5558c3e993b74e766de65be1": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 413,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2021-01-01_2021-06-30/13479f6d936dc878cdbb13acd8f7d0b38346708f5558c3e993b74e766de65be1.pdf",
+      "sha256": "13479f6d936dc878cdbb13acd8f7d0b38346708f5558c3e993b74e766de65be1",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:13.017072+00:00",
+      "member": "SEDI-Issuer-Report-History_2021-01-01_to_2021-06-30.pdf",
+      "start": "2021-01-01",
+      "end": "2021-06-30",
+      "bytes": 1140981,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:04 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_5bbb46b6-9d6a-446f-9e1c-34ada0057420/final.json",
+    "first_filing_date": "2021-01-01",
+    "last_filing_date": "2021-06-30"
+  },
+  "sedi-issuer-events-2021-07-01_2021-12-31-fab4f7bdfb4071738da47b4287e7ce494d27c118139cb223e86850688224fca3": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 391,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2021-07-01_2021-12-31/fab4f7bdfb4071738da47b4287e7ce494d27c118139cb223e86850688224fca3.pdf",
+      "sha256": "fab4f7bdfb4071738da47b4287e7ce494d27c118139cb223e86850688224fca3",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:17.923899+00:00",
+      "member": "SEDI-Issuer-Report-History_2021-07-01_to_2021-12-31.pdf",
+      "start": "2021-07-01",
+      "end": "2021-12-31",
+      "bytes": 1051967,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:04 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_bdb19495-aa30-4a39-a7d8-ab3c6383a9e1/final.json",
+    "first_filing_date": "2021-07-02",
+    "last_filing_date": "2021-12-31"
+  },
+  "sedi-issuer-events-2022-01-01_2022-06-30-abc7b20b51e31aa1d4b3fe3f245d70bbbcdbf6623c808a2c5cbad545ae7bd69e": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 322,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2022-01-01_2022-06-30/abc7b20b51e31aa1d4b3fe3f245d70bbbcdbf6623c808a2c5cbad545ae7bd69e.pdf",
+      "sha256": "abc7b20b51e31aa1d4b3fe3f245d70bbbcdbf6623c808a2c5cbad545ae7bd69e",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:25.113462+00:00",
+      "member": "SEDI-Issuer-Report-History_2022-01-01_to_2022-06-30.pdf",
+      "start": "2022-01-01",
+      "end": "2022-06-30",
+      "bytes": 909140,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:04 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_90baab33-5229-4036-a6fa-385e8fcc9a24/final.json",
+    "first_filing_date": "2022-01-03",
+    "last_filing_date": "2022-06-30"
+  },
+  "sedi-issuer-events-2022-07-01_2022-12-31-79c6112c679d3e8e73d9b2024c1cff3c5bcdbebe394be1111d94347e40bb384f": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 295,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2022-07-01_2022-12-31/79c6112c679d3e8e73d9b2024c1cff3c5bcdbebe394be1111d94347e40bb384f.pdf",
+      "sha256": "79c6112c679d3e8e73d9b2024c1cff3c5bcdbebe394be1111d94347e40bb384f",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:29.540447+00:00",
+      "member": "SEDI-Issuer-Report-History_2022-07-01_to_2022-12-31.pdf",
+      "start": "2022-07-01",
+      "end": "2022-12-31",
+      "bytes": 836462,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:04 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_c985ff3c-3cec-4157-8201-9ffd48d81356/final.json",
+    "first_filing_date": "2022-07-01",
+    "last_filing_date": "2022-12-30"
+  },
+  "sedi-issuer-events-2023-01-01_2023-06-30-6ff98a22d84d705f80b326884315cba22007e8ccf3b3a8c853bc62bac241c8d2": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 332,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2023-01-01_2023-06-30/6ff98a22d84d705f80b326884315cba22007e8ccf3b3a8c853bc62bac241c8d2.pdf",
+      "sha256": "6ff98a22d84d705f80b326884315cba22007e8ccf3b3a8c853bc62bac241c8d2",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:33.943662+00:00",
+      "member": "SEDI-Issuer-Report-History_2023-01-01_to_2023-06-30.pdf",
+      "start": "2023-01-01",
+      "end": "2023-06-30",
+      "bytes": 932941,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:04 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_7636c673-7dd2-44a4-b848-758c50da4fb1/final.json",
+    "first_filing_date": "2023-01-02",
+    "last_filing_date": "2023-06-30"
+  },
+  "sedi-issuer-events-2023-07-01_2023-12-31-8dce6e88570294ac2f1a47dcf3f71467b6799ef617ab2be3254f55b0572a2e2a": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 284,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2023-07-01_2023-12-31/8dce6e88570294ac2f1a47dcf3f71467b6799ef617ab2be3254f55b0572a2e2a.pdf",
+      "sha256": "8dce6e88570294ac2f1a47dcf3f71467b6799ef617ab2be3254f55b0572a2e2a",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:38.721120+00:00",
+      "member": "SEDI-Issuer-Report-History_2023-07-01_to_2023-12-31.pdf",
+      "start": "2023-07-01",
+      "end": "2023-12-31",
+      "bytes": 829953,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:04 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_7654f816-41de-496d-af50-22e0c4ea5d92/final.json",
+    "first_filing_date": "2023-07-03",
+    "last_filing_date": "2023-12-29"
+  },
+  "sedi-issuer-events-2024-01-01_2024-06-30-d21e7906076507a36faf05d516a9d79a3200f327679dd36a9fbacce82d8ce386": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 305,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2024-01-01_2024-06-30/d21e7906076507a36faf05d516a9d79a3200f327679dd36a9fbacce82d8ce386.pdf",
+      "sha256": "d21e7906076507a36faf05d516a9d79a3200f327679dd36a9fbacce82d8ce386",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:42.761955+00:00",
+      "member": "SEDI-Issuer-Report-History_2024-01-01_to_2024-06-30.pdf",
+      "start": "2024-01-01",
+      "end": "2024-06-30",
+      "bytes": 868034,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:04 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_a3b2ffdd-4274-44b9-bcf5-c0baaa3c5d3f/final.json",
+    "first_filing_date": "2024-01-02",
+    "last_filing_date": "2024-06-28"
+  },
+  "sedi-issuer-events-2024-07-01_2024-12-31-be007e902acc4b56b95cb7284c1661590abfb7e066000a7b2b2140a44274db8d": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 293,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2024-07-01_2024-12-31/be007e902acc4b56b95cb7284c1661590abfb7e066000a7b2b2140a44274db8d.pdf",
+      "sha256": "be007e902acc4b56b95cb7284c1661590abfb7e066000a7b2b2140a44274db8d",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:47.011009+00:00",
+      "member": "SEDI-Issuer-Report-History_2024-07-01_to_2024-12-31.pdf",
+      "start": "2024-07-01",
+      "end": "2024-12-31",
+      "bytes": 867044,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:05 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_1f328f48-6e02-423c-bb18-7cee244f08c4/final.json",
+    "first_filing_date": "2024-07-01",
+    "last_filing_date": "2024-12-31"
+  },
+  "sedi-issuer-events-2025-01-01_2025-06-30-03ebe0732527312326bbea6a68fdb6f68db7126fd2759d750095ef9b35a3789b": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 362,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2025-01-01_2025-06-30/03ebe0732527312326bbea6a68fdb6f68db7126fd2759d750095ef9b35a3789b.pdf",
+      "sha256": "03ebe0732527312326bbea6a68fdb6f68db7126fd2759d750095ef9b35a3789b",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:51.408417+00:00",
+      "member": "SEDI-Issuer-Report-History_2025-01-01_to_2025-06-30.pdf",
+      "start": "2025-01-01",
+      "end": "2025-06-30",
+      "bytes": 1018594,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:05 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_a64eae9f-38e0-4261-99d0-45b1ab8c0999/final.json",
+    "first_filing_date": "2025-01-01",
+    "last_filing_date": "2025-06-30"
+  },
+  "sedi-issuer-events-2025-07-01_2025-12-31-68085e4735f2f29b942d4a8bcdb63849383d6546f628850805e88d1254a34688": {
+    "id": 253,
+    "source": "market_source_253",
+    "dataset": "issuer_events",
+    "scope": "Public SEDI issuer event history by filing date",
+    "records": 362,
+    "raw": {
+      "s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2025-07-01_2025-12-31/68085e4735f2f29b942d4a8bcdb63849383d6546f628850805e88d1254a34688.pdf",
+      "sha256": "68085e4735f2f29b942d4a8bcdb63849383d6546f628850805e88d1254a34688",
+      "source_url": "https://www.sedi.ca/sedi/",
+      "retrieved_at": "2026-11-24T19:21:55.700150+00:00",
+      "member": "SEDI-Issuer-Report-History_2025-07-01_to_2025-12-31.pdf",
+      "start": "2025-07-01",
+      "end": "2025-12-31",
+      "bytes": 1037382,
+      "method": "manual_original",
+      "report_generated_at_et": "2026-11-24 14:05 ET",
+      "archive_s3_uri": "s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/archives/5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca.zip",
+      "archive_sha256": "5254453421ce4e88c89f8d184cfd030b0f1af8e5a05bd06cfbfb811a579ec3ca"
+    },
+    "manifest": "manifests/collection_runs/source=market_source_253/dataset=issuer_events/run_f62e9b3b-5447-4006-bcc9-86da78340380/final.json",
+    "first_filing_date": "2025-07-02",
+    "last_filing_date": "2025-12-31"
+  }
+}

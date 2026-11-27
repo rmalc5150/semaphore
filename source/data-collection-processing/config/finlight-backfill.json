@@ -3,6 +3,10 @@
   "collection_config": "config/news-history-finlight.json",
   "start": "2021-01-01",
   "end_exclusive": "2026-10-11",
+  "earlier_archive": {
+    "start": "2016-01-01",
+    "history_evidence": "operations/news/history_probes/9c95751ee51123cc2e3bc60fa04f538b1f2b7cf8b200ca035765fa67a43e25b6.json"
+  },
   "max_days_per_invocation": 4,
   "max_requests_per_invocation": 100,
   "max_requests_per_day": 1000,
@@ -10,5 +14,5 @@
   "completion_notification_owner": "finlight-content-backfill",
   "downgrade_to": "Pro Light",
   "notification_requested_at": "2026-10-11",
-  "scope_note": "Four configured sector searches in English and Chinese; completion is exhausted scoped searches, not all worldwide news. Daily/reconciliation cursors remain in their existing stream. January 2021 onward is the verified archive scope. Earlier 2016-2020 access remains unverified and is not declared unavailable or captured."
+  "scope_note": "Four configured sector searches in English and Chinese. The January 2016 probe confirmed dated provider records. The 2016–2020 archive has its own collection and publication cursors. Both historical ranges share the Finlight request budget."
 }

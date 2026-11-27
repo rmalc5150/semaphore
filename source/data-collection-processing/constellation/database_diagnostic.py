@@ -109,6 +109,12 @@ def run(control,job,save,stamp,deadline_seconds=480,metadata=None):
                 checkpoint['batch_size']=max(5,limit//2);checkpoint['query_metrics']['retries']+=1
                 save(control,job['id'],checkpoint=checkpoint);time.sleep(.25);continue
             for row in rows:
+                if lane=='historical' and task['state']=='blocked' and task['source'].startswith('legacy:'):
+                    result=json.loads(row['result_json'] or '{}') or {}
+                    resolution=result.get('resolution') or {}
+                    if resolution.get('status')=='superseded' and resolution.get('checkpoint_manifest_uri') and resolution.get('prior_failure_archive'):
+                        checkpoint['resolved_historical_invocations']=checkpoint.get('resolved_historical_invocations',0)+1
+                        continue
                 reason=failure_reason(lane,row);key=lane+'|'+task['source']+'|'+task['state']+'|'+reason
                 checkpoint['failure_counts'][key]=checkpoint['failure_counts'].get(key,0)+1
                 samples=checkpoint['failure_samples'].setdefault(key,[])
@@ -120,6 +126,7 @@ def run(control,job,save,stamp,deadline_seconds=480,metadata=None):
         elif phase=='complete':
             return {'schema_version':2,'algorithm':'covering_index_source_counts_and_bounded_failure_pages','started_at':checkpoint['started_at'],'finished_at':stamp(),
                     'counts':checkpoint['counts'],'failure_counts':checkpoint['failure_counts'],'failure_samples':checkpoint['failure_samples'],
+                    'resolved_historical_invocations':checkpoint.get('resolved_historical_invocations',0),
                     'source_controls':checkpoint['source_controls'],'tables':checkpoint['tables'],'query_metrics':checkpoint['query_metrics'],
                     'job_rows_counted':sum(checkpoint['counts'].values()),'sources_audited':{k:len(v)for k,v in checkpoint['sources'].items()},
                     'consistency':'Live per-source counts and keyset failure reads, not a point-in-time snapshot; concurrent changes can affect totals. Table inventory row estimates are labelled separately from counted job rows.'}

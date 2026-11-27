@@ -1,0 +1,13 @@
+import os,json,hashlib
+from pathlib import Path
+import boto3
+s=boto3.client('s3');files={'news_operations.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116-afternoon/23348996cde09ba709ad087c59fe7d1e7b9a3c73608db5d8db341f6a36677925/news_operations.py', 'sha': '23348996cde09ba709ad087c59fe7d1e7b9a3c73608db5d8db341f6a36677925'}, 'eia_enrichment.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116-afternoon/6ec4c7eac2da6f3eff695c0a8858a0055d85ee4e734a04c355a4ba0d321d33b6/eia_enrichment.py', 'sha': '6ec4c7eac2da6f3eff695c0a8858a0055d85ee4e734a04c355a4ba0d321d33b6'}, 'regulatory_sources.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116-afternoon/6ef3ff2b546bb26f98349ce8455fa33ed9efab3d49b2772ee3cb0463421bd3aa/regulatory_sources.py', 'sha': '6ef3ff2b546bb26f98349ce8455fa33ed9efab3d49b2772ee3cb0463421bd3aa'}, 'constellation/gaps.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116-afternoon/8f27245b73e8c113052709a0a28da10033ccf34514d74e81377e80901c254839/constellation/gaps.py', 'sha': '8f27245b73e8c113052709a0a28da10033ccf34514d74e81377e80901c254839'}, 'constellation/shared_limits.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116-afternoon/97808f2d6089e3856ba38f7c8856f1db63021827612fbce8a982212e64410261/constellation/shared_limits.py', 'sha': '97808f2d6089e3856ba38f7c8856f1db63021827612fbce8a982212e64410261'}, 'patent_prosecution.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116-afternoon/34428d12c3e8883f985245733fd2d6a4090aaf6bee70212256c3f5de9e512ecb/patent_prosecution.py', 'sha': '34428d12c3e8883f985245733fd2d6a4090aaf6bee70212256c3f5de9e512ecb'}};roots=[Path('/opt/constellation/auxiliary-publication/source'),Path('/opt/constellation/capture-workers/source'),Path('/opt/constellation/summary-worker'),*Path('/opt/constellation/legacy').glob('*')];changed=[]
+for name,meta in files.items():
+ raw=s.get_object(Bucket='data-collection-059416028963-us-east-1-an',Key=meta['key'])['Body'].read();assert hashlib.sha256(raw).hexdigest()==meta['sha'];compile(raw,name,'exec')
+ for root in roots:
+  target=root/name
+  if not target.is_file() or target.read_bytes()==raw:continue
+  backup=Path('/opt/constellation/tmp/checkup1116-afternoon-backup')/hashlib.sha256(str(root).encode()).hexdigest()[:12]/name;backup.parent.mkdir(parents=True,exist_ok=True)
+  if not backup.exists():backup.write_bytes(target.read_bytes())
+  temp=target.with_suffix('.1116pm.tmp');temp.write_bytes(raw);os.chmod(temp,0o644);temp.replace(target);changed.append(str(target))
+print(json.dumps({'updated':len(changed),'files':list(files)}))

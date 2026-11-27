@@ -1,0 +1,21 @@
+[Unit]
+Description=Recover complete OpenDART originals from the official viewer
+After=network-online.target
+ConditionPathExists=!/opt/constellation/batch-paused
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/opt/constellation/metadata-engine-runtime
+ExecStart=/opt/constellation/legacy-venv/bin/python -B -m metadata_engine.dart_repair_queue
+Slice=constellation-workers.slice
+Nice=15
+CPUQuota=50%
+MemoryHigh=640M
+MemoryMax=768M
+MemorySwapMax=0
+Environment=CONSTELLATION_ROLE=worker
+Environment=CONSTELLATION_SHARED_HTTP_LIMITS=1
+Environment=AWS_CONFIG_FILE=/dev/null
+Environment=PYTHONPATH=/opt/constellation/source
+TimeoutStartSec=8min

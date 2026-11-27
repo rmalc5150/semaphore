@@ -1,0 +1,10 @@
+[Unit]
+Description=Continue verified recovery of OpenDART filing originals
+
+[Timer]
+OnBootSec=10min
+OnUnitInactiveSec=90s
+Unit=optima-dart-original-repair.service
+
+[Install]
+WantedBy=timers.target

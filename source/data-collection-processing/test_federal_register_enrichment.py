@@ -14,6 +14,14 @@ FIX=Path(__file__).parent/'tests/fixtures/federal_register'
 
 
 class Tests(unittest.TestCase):
+    def test_larger_original_pdf_bound_is_scoped_to_notice_pdfs(self):
+        from federal_register_enrichment import NoticeClient
+        from regulatory_collection import EvidenceClient
+        client=NoticeClient(Mock())
+        self.assertEqual(client.response_limit('https://www.govinfo.gov/content/pkg/FR-2026-11-09/pdf/2026-22743.pdf'),128*1024*1024)
+        self.assertEqual(client.response_limit('https://www.federalregister.gov/api/v1/documents/2026-22743.json'),64*1024*1024)
+        self.assertEqual(EvidenceClient(Mock(),'other').response_limit('https://example.org/large.pdf'),64*1024*1024)
+
     def setUp(self):
         self.raw=(FIX/'2021-26683.xml').read_bytes()
         self.meta=json.loads((FIX/'2021-26683-metadata.json').read_text())

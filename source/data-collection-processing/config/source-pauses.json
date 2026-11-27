@@ -7,7 +7,10 @@
     "bluesky_company_posts",
     "bluesky_company_events",
     "github_sdk",
-    "marketaux"
+    "marketaux",
+    "market_source_165",
+    "market_source_191",
+    "south_korea_kosis_statistical_openapi"
   ],
   "resume_requires_user_request": true
 }

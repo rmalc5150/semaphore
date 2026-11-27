@@ -1,5 +1,20 @@
 import unittest
-from committed_data_athena import batches
+from committed_data_athena import OWNER, batches, committed_partition, read_committed_partitions, validate_terminal_manifest
+
+
+class CatalogInventoryTests(unittest.TestCase):
+ def test_paginated_inventory_is_reused_for_each_exact_partition(self):
+  from unittest.mock import Mock
+  glue=Mock()
+  part={'Values':['source','dataset'],'Parameters':{'optima_owner':OWNER}}
+  glue.get_paginator.return_value.paginate.return_value=[{'Partitions':[part]},{'Partitions':[]}]
+  result=read_committed_partitions(glue)
+  self.assertEqual(committed_partition(glue,result,'source','dataset'),part)
+  self.assertIsNone(committed_partition(glue,result,'source','missing'))
+  glue.get_partition.assert_not_called()
+  part['Parameters']={}
+  with self.assertRaisesRegex(ValueError,'ownership'):
+   committed_partition(glue,result,'source','dataset')
 from research_contract import digest
 
 class CommittedTests(unittest.TestCase):
@@ -20,6 +35,14 @@ class CommittedTests(unittest.TestCase):
  def test_wrong_task_identity_rejected(self):
   d=self.doc();d['task_id']='task_other'
   with self.assertRaises(ValueError):batches(d)
+ def test_recovered_manifest_must_match_scope_run_and_revision(self):
+  run='run_1ee18ced-5c8d-4e4c-8624-d059f0ecfd92'
+  path=f'manifests/collection_runs/source=example/dataset=records/{run}/recovery/final-recovered-7.json'
+  d={**self.doc(),'run_id':run,'base_revision':7,'exhausted':False,'reason_code':'checkpoint_recovered_after_interruption'}
+  validate_terminal_manifest(path,d,d['task'])
+  for wrong in ({'base_revision':8},{'status':'complete'},{'exhausted':True},{'reason_code':'unrelated_repair'}):
+   with self.assertRaises(ValueError):validate_terminal_manifest(path,{**d,**wrong},d['task'])
+  with self.assertRaises(ValueError):validate_terminal_manifest(path.replace('source=example','source=other'),d,d['task'])
 
 class IncrementalVerificationTests(unittest.TestCase):
  def setUp(self):

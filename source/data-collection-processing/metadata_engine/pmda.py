@@ -3,7 +3,7 @@ import hashlib,re
 from functools import lru_cache
 from urllib.parse import urlsplit
 from metadata_engine.evidence import object_bytes,RawFailure
-from metadata_engine.pmda_tables import parse_pdf
+from raw_parsers.pmda_tables import parse_pdf
 
 @lru_cache(maxsize=4)
 def parsed_pdf(body):return parse_pdf(body)

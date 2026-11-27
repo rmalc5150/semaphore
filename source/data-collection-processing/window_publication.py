@@ -113,6 +113,10 @@ def deploy_window(store, settings, root, window_id, owner, glue=None, athena=Non
 def publish_pending(store,settings,owner,config,prepare,output_root,max_windows=2,window_ids=None):
     outcomes=[]
     blocked_commits = 0
+    scan_key = 'operations/'+owner+'/publication-retries/_scan-cursor.json'
+    scan_token = None
+    scan_last = None
+    bounded_scan = owner == 'regulatory' and window_ids is None
     # Queue inventories grow with every historical window. Read the small
     # metadata objects concurrently so discovery does not monopolize the shared
     # heavy-job lock; preparation, publication and receipt writes stay serial.
@@ -128,7 +132,14 @@ def publish_pending(store,settings,owner,config,prepare,output_root,max_windows=
             queued = None
     if queued is None:
         keys = list_keys(store,settings,prefix)
-        with ThreadPoolExecutor(max_workers=8) as pool:
+        if bounded_scan:
+            scan, scan_token = load_stored(store, scan_key)
+            after = (scan or {}).get('last_key', '')
+            # Completed windows remain immutable queue entries. Rotate through
+            # bounded metadata pages rather than rereading the whole archive
+            # under the shared publication lock on every invocation.
+            keys = ([k for k in keys if k > after] + [k for k in keys if k <= after])[:128]
+        with ThreadPoolExecutor(max_workers=4 if bounded_scan else 8) as pool:
             queued=list(pool.map(lambda key: load_stored(store,key)[0], keys))
     if owner == 'specialists':
         canonical = {tuple(sorted(q['manifests'])) for q in queued if not q.get('repair_evidence')}
@@ -153,8 +164,8 @@ def publish_pending(store,settings,owner,config,prepare,output_root,max_windows=
         return item, receipt_key, receipt, token, source_hash, done
 
     def candidates():
-        ordered = sorted(queued,key=lambda row:(row.get('queued_at',''),row['window_id']))
-        with ThreadPoolExecutor(max_workers=8) as pool:
+        ordered = queued if bounded_scan else sorted(queued,key=lambda row:(row.get('queued_at',''),row['window_id']))
+        with ThreadPoolExecutor(max_workers=4 if bounded_scan else 8) as pool:
             for offset in range(0, len(ordered), 32):
                 # Bound look-ahead; never fan out expensive publication work.
                 yield from pool.map(inspect, ordered[offset:offset+32])
@@ -162,10 +173,12 @@ def publish_pending(store,settings,owner,config,prepare,output_root,max_windows=
     with closing(candidates()) as pending:
         for item, receipt_key, receipt, token, source_hash, done in pending:
             if done:
+                if bounded_scan: scan_last = prefix+item['window_id']+'.json'
                 continue
             retry_key='operations/'+owner+'/publication-retries/'+item['window_id']+'.json'
             retry,retry_token=load_stored(store,retry_key)
             if retry and retry.get('source_hash')==source_hash and retry['retry_after']>now():
+                if bounded_scan: scan_last = prefix+item['window_id']+'.json'
                 continue
             # Invalid legacy queue entries remain failures, but must not starve
             # valid committed windows on every scheduled specialist run.
@@ -192,4 +205,7 @@ def publish_pending(store,settings,owner,config,prepare,output_root,max_windows=
                 write_json(store,retry_key,{'source_hash':source_hash, 'attempts': attempts,
                     'retry_after':(datetime.now(timezone.utc)+timedelta(minutes=delay)).isoformat().replace('+00:00','Z')},retry_token)
                 outcomes.append(failure)
+            if bounded_scan: scan_last = prefix+item['window_id']+'.json'
+    if scan_last:
+        write_json(store,scan_key,{'last_key':scan_last,'checked_at':now(),'max_candidates':128},scan_token)
     return {'status':'failed' if any(r['status']=='failed' for r in outcomes) else 'complete','results':outcomes}

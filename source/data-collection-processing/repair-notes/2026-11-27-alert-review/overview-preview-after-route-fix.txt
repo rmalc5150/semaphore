@@ -1,0 +1,31 @@
+Optima 24-hour overview: 1 service and 14 data gap groups need attention
+
+Optima 24-hour overview: 1 service and 14 data gap groups need attention
+2026-11-27 10:39 UTC
+
+NEEDS REPAIR
+- optima-authenticated-daily.service [sam_daily_request_budget] Fix — Repair the affected service or source checkpoint and verify fresh output.
+
+HISTORICAL DATA GAPS
+- biorxiv_medrxiv_preprints — 17 flagged intervals. Longest 2016-01-01 to 2017-11-01 (end exclusive, 670 days). additional_duplicate_provider_ids, pdf_proxy_http_429, source_http_403. Fix — Use stable pagination and reconcile provider identifiers in the affected windows. Resume the affected document windows after the proxy cooldown.
+- cninfo_mainland_china_company_disclosures — 8 flagged intervals. Longest 2023-08-01 to 2023-11-01 (end exclusive, 92 days). source_changed_refresh_required. Fix — Replay the affected window from a fresh stable provider snapshot.
+- copernicus_era5_era5_land — 3 flagged intervals. Longest 2022-01-01 to 2022-02-01 (end exclusive, 31 days). copernicus_request_failed, source_http_500, source_http_502. Fix — Repair and replay the affected historical windows and verify the resulting coverage. Resolve the provider throttling, outage or changed response and replay the affected scope.
+- datacite_dissertations_datasets_software_and_usage — 26 flagged intervals. Longest 2025-11-01 to 2026-10-26 (end exclusive, 359 days). additional_request_failed, source_changed_refresh_required. Fix — Repair and replay the affected historical windows and verify the resulting coverage. Replay the affected window from a fresh stable provider snapshot.
+- ema — 11 flagged intervals. Longest 2025-04-01 to 2026-10-26 (end exclusive, 573 days). duplicate_provider_record, source_changed_during_pagination. Fix — Use stable pagination and reconcile provider identifiers in the affected windows. Refresh the affected search window from a stable provider snapshot.
+- england_nhsbsa_prescribing_data — 2 flagged intervals. Longest 2020-11-01 to 2025-03-01 (end exclusive, 1581 days). nhsbsa_release_not_yet_published, source_http_400. Fix — Confirm the provider release date and collect the period when its original file is available. Correct the provider request for the affected scope and replay it.
+- hugging_face_hub_models_and_datasets — 1 flagged interval. Longest 2016-01-01 to 2026-10-26 (end exclusive, 3951 days). collection_checkpoint_conflict. Fix — Repair and replay the affected historical windows and verify the resulting coverage.
+- imf_portwatch_shipping_activity — 11 flagged intervals. Longest 2020-03-18 to 2020-07-13 (end exclusive, 117 days). additional_request_failed, portwatch_invalid_features, portwatch_missing_count. Fix — Repair and replay the affected historical windows and verify the resulting coverage. Validate the PortWatch response schema and replay the affected ArcGIS windows.
+- uk — 1 flagged interval. Longest 2016-01-01 to 2026-10-26 (end exclusive, 3951 days). historical_designation_date_unavailable. Fix — Find a dated original designation record or document the exact unavailable period.
+- wto_timeseries_api — 13 flagged intervals. Longest 2016-01-01 to 2020-01-01 (end exclusive, 1461 days). additional_request_failed, source_http_204. Fix — Repair and replay the affected historical windows and verify the resulting coverage. Verify whether the exact provider window is empty or needs a narrower query.
+- zenodo_research_artifacts_and_usage — 19 flagged intervals. Longest 2020-06-01 to 2020-10-01 (end exclusive, 122 days). additional_request_failed, source_changed_refresh_required. Fix — Repair and replay the affected historical windows and verify the resulting coverage. Replay the affected window from a fresh stable provider snapshot.
+Affected dates and evidence — s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/summary-reports/485e265af9a64fb9af4e898bb267d044.json
+
+DAILY DATA GAPS
+- finlight — Reconciliation pending for 2026-11-24 (run_request_budget_reached). Fix — Resume the affected dates using the saved checkpoint and existing request cap.
+
+OTHER COVERAGE GAPS
+- optima-market-collection.service [market_empty_price_window_unverified] — Empty price windows remain unverified outside the 61 reviewed window exclusions. Fix — Check the affected tickers, listings and trading dates against EODHD coverage.
+- optima-market-collection.service [unresolved_market_coverage] — Unresolved coverage: daily: 174 symbols; historical: 491 symbols. 61 windows excluded with reviewed evidence. Fix — Correct ticker and listing mappings, and replay the affected EODHD windows.
+
+Labelled metadata — 22,870,551 rows in 719,162 verified releases as of 2026-11-25 05:30 UTC (stale).
+Saved source counts — s3://data-collection-059416028963-us-east-1-an/research-data/monitoring/health/metadata-publication-counts.json

@@ -1,0 +1,194 @@
+Optima 24-hour overview: 8 services need attention
+Optima 24-hour overview: 8 services need attention
+As of: 2026-11-20 10:25 CET
+
+ACTION ITEMS
+
+optima-assignments-reviewed-historical.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Inspect the failed invocation, repair its cause, and verify committed output plus Athena publication. [service_failed]
+  1. Inspect journalctl -u optima-assignments-reviewed-historical.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+  2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+  3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+  4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: optima-m7-capture-assignments-reviewed-historical.service: Failed with result 'signal'.
+
+optima-authenticated-daily.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Retries have not cleared this issue within six hours. Inspect provider quota/access and the exact failed scope; verify new committed output. [source_http_429]
+  1. Inspect journalctl -u optima-authenticated-daily.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+  2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+  3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+  4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Latest service-level progress: 2026-11-19T08:15:37.786001Z (not proof every failed scope is fixed).
+
+optima-cms-coverage-publication.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Check the last committed checkpoint and quota/lock state; restore progress and verify publication. [progress_stalled]
+  1. Inspect journalctl -u optima-cms-coverage-publication.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+  2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+  3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+  4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: Outstanding work with no committed progress beyond the job-specific threshold.
+Latest service-level progress: 2026-11-20T02:38:36.076777Z (not proof every failed scope is fixed).
+
+optima-crossref-publication-resumed.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Check the last committed checkpoint and quota/lock state; restore progress and verify publication. [progress_stalled]
+  1. Inspect journalctl -u optima-crossref-publication-resumed.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+  2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+  3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+  4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: Outstanding work with no committed progress beyond the job-specific threshold.
+Latest service-level progress: 2026-11-20T02:43:20.172084Z (not proof every failed scope is fixed).
+
+optima-market-collection.service — COVERAGE REVIEW
+Owner: Implementation (no credential purchase requested)
+Action: Reconcile empty symbol/date windows against listing and trading calendars; add only evidence-backed exclusions. [market_empty_price_window_unverified]
+  1. Locate each empty symbol/date window in the market checkpoints; do not advance it merely because a request succeeded.
+  2. Check listing history, trading days, ticker changes and provider availability with dated evidence.
+  3. Retry a correctly mapped window, or record an evidence-backed scoped exclusion in the reviewed registry.
+  4. Recompute unresolved daily/historical counts and verify saved prices in Athena.
+Action: Resolve missing symbol mappings/provider coverage and verify affected date windows in Athena. [unresolved_market_coverage]
+  1. Read the market daily/historical progress files and coverage-exclusions registry; enumerate unresolved symbol/date windows separately by lane.
+  2. Verify exchange/ticker mappings, IPO/delisting dates, trading calendars and provider coverage against dated evidence.
+  3. Repair valid mappings and replay affected windows. Add exclusions only where reviewed evidence supports that precise date scope.
+  4. Verify prices/actions in S3 and Athena and reconcile unresolved counts; daily and historical symbol sets may overlap.
+Evidence: Empty price windows remain unverified outside the 56 reviewed window exclusions.
+Evidence: Unresolved coverage: daily: 174 symbols; historical: 201 symbols. 56 windows excluded with reviewed evidence.
+Latest service-level progress: 2026-11-20T01:31:38.149400Z (not proof every failed scope is fixed).
+
+optima-nist-robotics-daily.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Inspect the failed invocation, repair its cause, and verify committed output plus Athena publication. [service_failed]
+  1. Inspect journalctl -u optima-nist-robotics-daily.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+  2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+  3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+  4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: optima-m7-capture-nist-robotics-daily.service: Failed with result 'signal'.
+
+optima-patents-daily.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Retries have not cleared this issue within six hours. Inspect provider quota/access and the exact failed scope; verify new committed output. [source_changed_refresh_required]
+  1. Inspect journalctl -u optima-patents-daily.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+  2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+  3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+  4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Latest service-level progress: 2026-11-20T01:26:48Z (not proof every failed scope is fixed).
+
+optima-research-publication.service — REPAIR / VERIFY
+Owner: Implementation (no credential purchase requested)
+Action: Inspect the named source/checkpoint, repair the persistent failure, and verify the affected output in Athena. [AccessDenied]
+  1. Inspect journalctl -u optima-research-publication.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+  2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+  3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+  4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Action: Inspect the failed invocation, repair its cause, and verify committed output plus Athena publication. [service_failed]
+  1. Inspect journalctl -u optima-research-publication.service --since "24 hours ago" --no-pager and the named S3 checkpoint/receipt; identify the exact failed scope.
+  2. Check the relevant cause: timer/schedule, lock/quota, provider access, memory limit, schema or artifact validation. Preserve original failure evidence.
+  3. Apply the smallest evidenced correction and resume one bounded scope through its existing runner when the worker is idle.
+  4. Verify committed S3 outputs and the appropriate Athena or model-validation receipt. Close only the verified scope.
+Evidence: optima-m7-research-publication.service: Failed with result 'exit-code'.
+Latest service-level progress: 2026-11-20T02:29:30.679036Z (not proof every failed scope is fixed).
+
+AUTOMATIC RETRIES
+0 services have recent retryable issues; no manual action yet. Persistent issues become action items after six hours.
+
+PAUSED BY OWNER
+optima-authenticated-historical.service, optima-conference-collection.service, optima-conference-publication.service, optima-core-historical.service, optima-nmpa-inventory.service, optima-patents-backfill.service, optima-patents-publication.service, optima-reddit-collection.service, optima-social-daily.service, optima-specialist-historical.service; retained data is unchanged.
+
+COLLECTION STATUS
+42 services monitored; 0 running; 0 queued.
+14 services still have outstanding collection/publication work. Backfill is not itself a failure.
+M7 is in scheduled batch sleep; 30 durable requests await the next session. This is not a fresh execution-health check.
+Earliest threshold-based wake: 2026-11-20 17:57 CET; wake deadline for pending work: 2026-11-21 03:57 CET.
+Host inspection: 2026-11-20T09:23:55.801937Z
+
+LIVE S3 / ATHENA CHECKS
+Audit checked: 2026-11-20T06:07:30.328644+00:00
+Shared publisher: 67,092,721 committed observations across 105 partitions; cutoff 2026-11-20T01:40:40.222989+00:00. Includes partial windows and prior versions.
+Fresh shared readbacks: 105/105 passed. S3: 5 manifests and 707 referenced objects inspected; 0 failures.
+Publisher receipt queries: 10817 checked; 0 failed/unavailable.
+office-actions: SUCCEEDED; []; query 5cf8fb65-975b-4fbe-bf6f-5199248ad14c
+petitions: SUCCEEDED; [['749', '716', '2026-11-20T00:50:09.161906Z', '0']]; query f4aa858c-06e4-418d-b179-becfab59ff17
+reddit: SUCCEEDED; [['4099', '4099']]; query 9a35d129-fb87-4d73-9b97-797f291a001b
+reddit-freshness: SUCCEEDED; [['4099', '1.7926076524367867E9', '4099']]; query f418bee9-b874-40a8-9a9e-73ebc117cc2a
+search: SUCCEEDED; [['S65', '8318', '2026-11-13T10:03:44.219963+00:00'], ['S28', '26', '2026-10-09T09:47:43.334088+00:00'], ['S27', '8', '2026-10-09T09:47:31.799686+00:00'], ['S19', '30', '2026-10-09T09:52:15.052573+00:00'], ['S56', '6', '2026-10-09T09:55:07.103194+00:00'], ['S46', '11', '2026-10-09T09:51:39.358981+00:00'], ['S11', '3', '2026-10-09T09:52:15.552680+00:00'], ['S51', '4', '2026-10-09T09:47:33.526304+00:00'], ['S48', '60', '2026-10-09T09:52:30.004224+00:00'], ['S59', '25', '2026-10-09T09:47:43.727484+00:00'], ['S17', '4', '2026-10-09T09:47:42.702161+00:00'], ['S43', '9', '2026-10-09T09:52:21.182329+00:00']]; query e40c9ba4-6831-4df2-809d-f49087ae2b22
+specialist-coverage: SUCCEEDED; 4,980 published coverage windows; query 1879b243-a125-430a-8bb5-7cadd4fe927c
+specialist-observations: SUCCEEDED; 1,435,042 observations across 45 source/dataset partitions; query ef79d3e1-bc4c-45ac-99a6-b053da0c6016
+Audit evidence: s3://data-collection-059416028963-us-east-1-an/research-data/monitoring/daily-health/2026-11-20/
+
+PUBLICATION QUEUES
+constellation-backfill/specialist-publication-queue/cms-payments/: 0 outstanding queue entries (optima-cms-catalog-publication.service)
+specialists: 36297 outstanding queue entries (optima-cms-coverage-publication.service)
+conferences: 2421 outstanding queue entries (optima-crossref-publication-resumed.service)
+constellation-backfill/specialist-publication-queue/fda-review/: 0 outstanding queue entries (optima-fda-reviewed-publication.service)
+market: 307 outstanding queue entries (optima-market-publication.service)
+news: 1 outstanding queue entries (optima-news-publication.service)
+patent_office_actions: 0 outstanding queue entries (optima-patents-prosecution-publication.service)
+patent_petition_decisions: 2 outstanding queue entries (optima-patents-prosecution-publication.service)
+disclosures: 4997 outstanding queue entries (optima-research-publication.service)
+eodhd: 0 outstanding queue entries (optima-research-publication.service)
+people: 3104 outstanding queue entries (optima-research-publication.service)
+regulatory: 47192 outstanding queue entries (optima-research-publication.service)
+sec: 665 outstanding queue entries (optima-research-publication.service)
+specialists: 36297 outstanding queue entries (optima-specialist-publication.service)
+1. Read the named owner’s operations/<owner>/publication-queue and publication-receipts in S3; pair entries by window/task identity.
+2. Inspect that publisher’s journal, lock state and source checkpoint. Classify queued work as waiting, partial upstream, failed validation or failed query.
+3. Let a progressing queued publisher finish. For failed entries repair the evidenced cause, then resume the existing publisher with a bounded window limit; never manufacture a checkpoint or bypass checksums.
+4. Require a current verified receipt and fresh Athena readback in the intended curated table. Recompute the backlog; shared raw readability alone does not clear it.
+
+PER-JOB STATUS
+optima-assignments-reviewed-daily.service: scheduled_wait; last verified 2026-11-20T00:38:13Z; pending False; issues none detected
+optima-assignments-reviewed-historical.service: scheduled_wait; last verified no evidence; pending False; issues none detected
+optima-authenticated-daily.service: idle; last verified 2026-11-19T08:15:37.786001Z; pending False; issues none detected
+optima-authenticated-historical.service: unknown; last verified no evidence; pending False; issues none detected
+optima-authenticated-processing.service: scheduled_wait; last verified 2026-11-20T00:53:49.055406Z; pending False; issues none detected
+optima-chictr-daily.service: idle; last verified 2026-11-20T08:38:32Z; pending True; issues none detected
+optima-cms-catalog-publication.service: scheduled_wait; last verified 2026-11-20T00:08:51.666640Z; pending False; issues none detected
+optima-cms-coverage-publication.service: scheduled_wait; last verified 2026-11-20T02:38:36.076777Z; pending True; issues none detected
+optima-cms-financial-resumed.service: scheduled_wait; last verified 2026-11-19T16:14:26Z; pending False; issues none detected
+optima-collection-daily.service: scheduled_wait; last verified 2026-11-20T02:26:18Z; pending True; issues none detected
+optima-committed-athena.service: scheduled_wait; last verified 2026-11-20T01:40:41Z; pending False; issues none detected
+optima-conference-collection.service: unknown; last verified no evidence; pending False; issues none detected
+optima-conference-publication.service: unknown; last verified no evidence; pending False; issues none detected
+optima-core-historical.service: unknown; last verified no evidence; pending False; issues none detected
+optima-crossref-publication-resumed.service: scheduled_wait; last verified 2026-11-20T02:43:20.172084Z; pending True; issues none detected
+optima-daily-health-audit.service: idle; last verified no evidence; pending False; issues none detected
+optima-edinet-documents-daily.service: scheduled_wait; last verified 2026-11-20T02:22:41Z; pending True; issues none detected
+optima-eia-daily-processing.service: scheduled_wait; last verified 2026-11-20T00:08:14.549238Z; pending False; issues none detected
+optima-eodhd-profiles.service: scheduled_wait; last verified 2026-11-20T00:37:56.271516Z; pending False; issues none detected
+optima-fda-product-codes-capture.service: idle; last verified 2026-11-20T00:01:44.356094Z; pending False; issues none detected
+optima-fda-reviewed-publication.service: scheduled_wait; last verified 2026-11-20T02:26:48.649013Z; pending False; issues none detected
+optima-federal-register-daily-enrichment.service: scheduled_wait; last verified 2026-11-20T01:38:22.796543Z; pending False; issues none detected
+optima-market-collection.service: idle; last verified 2026-11-20T01:31:38.149400Z; pending True; issues unresolved_market_coverage, market_empty_price_window_unverified
+optima-market-publication.service: scheduled_wait; last verified 2026-11-20T02:39:14.638265Z; pending True; issues none detected
+optima-news-collection.service: idle; last verified 2026-11-20T09:07:04Z; pending True; issues none detected
+optima-news-publication.service: scheduled_wait; last verified 2026-11-20T02:09:15.217649Z; pending True; issues none detected
+optima-nist-robotics-daily.service: scheduled_wait; last verified no evidence; pending False; issues none detected
+optima-nmpa-inventory.service: unknown; last verified no evidence; pending False; issues none detected
+optima-patents-backfill.service: unknown; last verified no evidence; pending False; issues none detected
+optima-patents-daily.service: scheduled_wait; last verified 2026-11-20T01:26:48Z; pending True; issues source_changed_refresh_required
+optima-patents-global-monitor.service: idle; last verified 2026-11-20T07:18:02.470940Z; pending False; issues none detected
+optima-patents-prosecution-publication.service: scheduled_wait; last verified 2026-11-20T02:10:54.363773Z; pending True; issues none detected
+optima-patents-prosecution.service: scheduled_wait; last verified 2026-11-20T01:49:46Z; pending True; issues none detected
+optima-patents-publication.service: unknown; last verified no evidence; pending False; issues none detected
+optima-people-collection.service: idle; last verified 2026-11-20T00:28:08.823792Z; pending False; issues none detected
+optima-reddit-collection.service: unknown; last verified no evidence; pending False; issues none detected
+optima-research-publication.service: scheduled_wait; last verified 2026-11-20T02:29:30.679036Z; pending True; issues AccessDenied
+optima-search-capture.service: idle; last verified 2026-11-13T10:03:53.058977+00:00; pending False; issues none detected
+optima-social-daily.service: unknown; last verified no evidence; pending False; issues none detected
+optima-specialist-daily.service: scheduled_wait; last verified 2026-11-20T02:21:27.868421Z; pending False; issues none detected
+optima-specialist-historical.service: unknown; last verified no evidence; pending False; issues none detected
+optima-specialist-publication.service: scheduled_wait; last verified 2026-11-20T02:38:36.076777Z; pending True; issues none detected
+
+PIPELINE / MODEL COVERAGE
+Event pipelines: awaiting_setup
+HMM: awaiting_setup
+Specialist layer models: awaiting_setup
+TFT testing: awaiting_setup
+TFT training: awaiting_setup
+New stage workers are discovered by registered unit patterns. Training/testing output checks require registered S3 receipts; unavailable stages are not marked healthy. Model quality requires the explicit metrics and validation evidence in those receipts.
+
+Resolved incidents are omitted. Full incident evidence remains in S3.
+This is operational status, not certification of complete history or specialist-ready fields.

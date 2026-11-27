@@ -1,0 +1,11 @@
+[Unit]
+Description=Install verified S3 read reductions on the existing M7 worker at normal wake
+ConditionPathExists=!/home/ec2-user/data-collection-processing/state/s3-read-reduction-m7-complete.json
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ec2-user/data-collection-processing
+Environment=AWS_CONFIG_FILE=/dev/null AWS_SHARED_CREDENTIALS_FILE=/dev/null AWS_DEFAULT_REGION=us-east-1 AWS_REGION=us-east-1 AWS_EC2_METADATA_DISABLED=false
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B -m constellation.deploy_s3_read_reduction m7-on-wake
+TimeoutStartSec=7min

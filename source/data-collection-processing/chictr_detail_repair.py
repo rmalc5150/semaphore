@@ -5,7 +5,7 @@ from research_contract import ROOT,load_json,digest
 from collection_storage import StorageSettings,write_json,now
 from regulatory_collection import collect,EvidenceClient
 from regulatory_sources import item,field_names,day
-from metadata_engine.chictr_tables import parse_detail_page
+from raw_parsers.chictr_tables import parse_detail_page
 
 REGISTRATION='ChiCTR2600132684'
 URL='https://www.chictr.org.cn/showproj.html?proj=343036'

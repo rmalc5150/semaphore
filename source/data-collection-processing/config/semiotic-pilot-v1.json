@@ -1,0 +1,300 @@
+{
+  "version": "semiotic-pilot-v1",
+  "seed": 20261126,
+  "inventory_sha256": "c5ff8e052e62c7bcb72573f4611fad351d752c5f68ba4340b9bfd548b10cedb6",
+  "eligible_sources": 215,
+  "sources": [
+    {
+      "catalog_id": "150",
+      "name": "Brazil CAPES theses and dissertations",
+      "source_key": "brazil_capes_theses_and_dissertations",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/brazil_capes_theses_and_dissertations/4c16bd1af7ab9604f20f1ac14f6902f2c38d2dbcf4725087cf2ecb42497295cd",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/brazil_capes_theses_and_dissertations/d14cd79a315c7cd844546a2de6ef40ac62e9b4f0d17e89c78f9f0f9b038b811a",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/brazil_capes_theses_and_dissertations/695799bf41b49246aa6ab6eab0e736ec0b5223a057e1ecc09784a75f7590ac33"
+      ],
+      "raw_description": "CAPES 2016 thesis and dissertation CSV, 410 MB, with native reference year, enrollment and degree dates.",
+      "input_kind": "catalogue",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "139",
+      "name": "Antler early-stage portfolio",
+      "source_key": "antler_early_stage_portfolio",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/antler_early_stage_portfolio/1304989faa571f807336d4bde4cef41d3f495cdd57886a3f69f53ac32838752e.html"
+      ],
+      "raw_description": "Archived Antler HTML announcement on the Disrupt portfolio.",
+      "input_kind": "document",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "011",
+      "name": "Finlight news",
+      "source_key": "finlight",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/finlight/e91cd2cf74d06228fa78fa608a9f9b437d4e6d49cae0dc8060ad2f402a0540d5",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/finlight/1406f7ce84b95e436f76f080b7d2365cd71430450d499d09004d8da76efde6fa",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/finlight/9410bc52bc5d276292b87cc771c99e60b3e6eadd9eed947d559e32ffc3b68c2e"
+      ],
+      "raw_description": "Original Finlight all-source API JSON with publishDate 2016-01-01 00:01:01 UTC. The earliest article in the verified sector-search release is dated 2016-01-04 05:38:46 UTC.",
+      "input_kind": "article",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "197",
+      "name": "EPA Toxics Release Inventory (TRI)",
+      "source_key": "market_source_197",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_197/provider_data/2016/8ba361a2c5d079ddf045059cee2270bdd2bdb475478ba7df813adc0e635c2865",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_197/provider_data/2016/8cd81afc6f402b0722b5d48126b5feff44ddfad23632a9199ef907ac6c122126",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_197/provider_data/2016/43184ef4be5522974b7ce2aa38868cf616af0be194c491f1ddf601086088e1b4"
+      ],
+      "raw_description": "EPA Toxics Release Inventory Basic Plus ZIPs for 2016 facilities in NY, CA and TX.",
+      "input_kind": "structured",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "209",
+      "name": "Brazil IBGE SIDRA PIM-PF industrial production",
+      "source_key": "market_source_209",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/objects/market_source_209/c5a2aecc24ef70b596688ec137c2762cbd48477c5a6f910b9aade2efd7303bda",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/objects/market_source_209/e204bcb8500d91c815034d2bec26fe80e4b69508f49bbedf7b1b0ed197ab3cb7",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/objects/market_source_209/122c5f56553fb5af361a07b8c410d9df44dc58ef208f433b317544a1ffe84ff1"
+      ],
+      "raw_description": "Brazil IBGE SIDRA industrial production API JSON for the January 2016 query.",
+      "input_kind": "structured",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "024",
+      "name": "NMPA trials",
+      "source_key": "nmpa_trials",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/nmpa_trials/1a5a21c9e412c32df33f1a6c2d059aa0850e5d33fd2e35bcb723a80bc295ce0b",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/nmpa_trials/2bddca49c865f5b7f72f45d21a0bc75b6819468b3374a46f1575c3990ce3888a",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/nmpa_trials/27741a220080eee633a8a3005c69f6f2caacdba85edd41cf55d4273ba5c83733"
+      ],
+      "raw_description": "NMPA original trial-detail HTML (CTR20140468). The field \u9996\u6b21\u516c\u793a\u4fe1\u606f\u65e5\u671f explicitly records the initial public disclosure on 4 January 2016.",
+      "input_kind": "document",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "084",
+      "name": "International Federation of Robotics World Robotics",
+      "source_key": "international_federation_of_robotics_world_robotics",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/international_federation_of_robotics_world_robotics/a9c236677655b075a11b77a0db6180d6b1167ddc3f2e2955358503fa2973a294",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/international_federation_of_robotics_world_robotics/52b97a3139295677f1b1cc088fa64d762ee768e3e269f3b65f67632d1df38e15",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/international_federation_of_robotics_world_robotics/e6b0a6b857fbe4708d97d570b398b9a2160d70eb087bb4e964ad3944221cbe60"
+      ],
+      "raw_description": "IFR World Robotics USA press release PDF, identified by the dated official release filename.",
+      "input_kind": "document",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "094",
+      "name": "China MIIT electronics and battery statistics",
+      "source_key": "china_miit_electronics_and_battery_statistics",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/china_miit_electronics_and_battery_statistics/2562c45c918c98fcad8aa4192637b68b3cf963c2155a7e2c7734b9d4e5806aaf",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/china_miit_electronics_and_battery_statistics/fc8a4a266561e16efc94427574c788419531f07f6b2d9d34700375cfa5c16bdc",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/china_miit_electronics_and_battery_statistics/017e5de2325451b601fb2872bdab50afa65aba6a83e75fdb66dc42e5b1588953"
+      ],
+      "raw_description": "China MIIT HTML release on electronics manufacturing from January through August 2026.",
+      "input_kind": "document",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "201",
+      "name": "JODI Oil and Gas world databases",
+      "source_key": "market_source_201",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/objects/market_source_201/e2689657ff553737c3a58bf6806595e10fbecdb17536a25069fd14ee446ce973",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/objects/market_source_201/50908ded4a46aa44a4101449441bba7a7d7e24ca6a46710228ccb25daa4eb25e",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/objects/market_source_201/057ae19f7c57005fe08eacfacea7684bc2fee210b4b5ae82e9ee63450e1f8628"
+      ],
+      "raw_description": "JODI primary oil data CSV for 2016, by country, product and flow.",
+      "input_kind": "structured",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "066",
+      "name": "FRED / ALFRED series and vintages",
+      "source_key": "fred_alfred_series_and_vintages",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/fred_alfred_series_and_vintages/c5bf13283701e3ec10dca2acf03a2ca5662afa3a5387b5b80979642816ddd50e",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/fred_alfred_series_and_vintages/5fb5df2c8ece0a7b5e8f4d876275355d1492db93ef0ddaeba4fe9d4fbcc849e8",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/fred_alfred_series_and_vintages/7f5d6e9fcda4becb34822fcbdd0368be66d93cabd7fed28ee6c9a3da86e5dfb0"
+      ],
+      "raw_description": "FRED API JSON for a series description and vintage-related metadata.",
+      "input_kind": "structured",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "199",
+      "name": "EU ETS Union Registry verified emissions and allowances",
+      "source_key": "market_source_199",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_199/provider_data/2025/7650899f59bbf161c604ede2a8f99cc3d4d786c30059000be9668ea9566e3b4f"
+      ],
+      "raw_description": "EEA export of EU ETS emissions and allowance data covering 2005\u20132025 in a revised edition.",
+      "input_kind": "structured",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "198",
+      "name": "EPA Greenhouse Gas Reporting Program (GHGRP)",
+      "source_key": "market_source_198",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/objects/market_source_198/895349c8008b7962dba68659c8187cec6b340d68be84ccb3f0e7fb6037bf8345"
+      ],
+      "raw_description": "EPA summary ZIP for the 2023 Greenhouse Gas Reporting Program release. It includes annual workbooks with earlier reporting years. https://www.epa.gov/newsreleases/epa-releases-2023-data-collected-under-greenhouse-gas-reporting-program",
+      "input_kind": "structured",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "085",
+      "name": "IEA-PVPS solar deployment reports",
+      "source_key": "iea_pvps_solar_deployment_reports",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/iea_pvps_solar_deployment_reports/c464fb7d762c8779aca455b10de0659668e74805dd77a68acc2b991242448b21",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/iea_pvps_solar_deployment_reports/9d6807c332ae262d84a5328554d4c2a01bda055a5f7ee139e9b75b57d3a9d8aa",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/iea_pvps_solar_deployment_reports/cc8382664eec6dee09ff780cf7110463a025a8c0fb7a414ee1131b60a531e677"
+      ],
+      "raw_description": "IEA PVPS Snapshot of Global PV 1992\u20132016, report T1-31:2017. The publisher's press release identifies the exact report and its publication day.",
+      "input_kind": "document",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "030",
+      "name": "CMS coverage documents",
+      "source_key": "cms_coverage_documents",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/cms_coverage_documents/b6eb94fba1b536f0d8ed31f8858bccfc276f93fa2eae7ac4ec05a37025494ebc",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/cms_coverage_documents/605d55adc2c6b95e338b831545c51b320802e81a0c0ec5197bb4471fb641e9cf",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/cms_coverage_documents/58bc34fc4e373f983e4dddaa09cf48227f1d472c9cf569354cbe13f920f2c310"
+      ],
+      "raw_description": "CMS API JSON containing an original national coverage determination record and its implementation dates.",
+      "input_kind": "document",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "120",
+      "name": "Climate TRACE industrial assets and activity",
+      "source_key": "climate_trace_industrial_assets_and_activity",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/climate_trace_industrial_assets_and_activity/bdecf5c6ffecf15bcee1835b73bbc34eae8efb4722c5c45f6347eea06d2b95ac",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/climate_trace_industrial_assets_and_activity/b80260d9f7ed48f12f08a979027b2083dbad6bcaf2371589ea9c2dceb3a10f70",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/climate_trace_industrial_assets_and_activity/efc31159d9e34b37c15bcfc443e0c1ba5c1249cfc17c3828d560cd67c4e2f8fe"
+      ],
+      "raw_description": "Climate TRACE API JSON for one emissions source and its reported emissions.",
+      "input_kind": "structured",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "100",
+      "name": "Taiwan TWSE/MOPS issuer and revenue archives",
+      "source_key": "taiwan_twse_mops_issuer_and_revenue_archives",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/taiwan_twse_mops_issuer_and_revenue_archives/c40c2b24c4c996074076d9be6def2b102e7a7a3ff181770c9d78976221c3d3f5",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/taiwan_twse_mops_issuer_and_revenue_archives/a58c04b3bdc2b94632027018ca4f09f6ad053848addb7b9580b372626542fc17",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/objects/taiwan_twse_mops_issuer_and_revenue_archives/207a141d007bd0d37f1313bfdf09ee0b63b64d55ae04913e6112b1cc54e97edf"
+      ],
+      "raw_description": "TWSE open-data JSON for issuer monthly revenues.",
+      "input_kind": "structured",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "072",
+      "name": "WTO Quantitative Restrictions API",
+      "source_key": "wto_quantitative_restrictions_api",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/wto_quantitative_restrictions_api/cb484c1887d36a2a2d6b6fbdc71a3d82ca0e98a4421b96f6332e70b548775582",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/wto_quantitative_restrictions_api/f7ec07ef6544e8a74dddd721d9324c81c25ad3bb1a64847f61548f8df145d003",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/wto_quantitative_restrictions_api/366fe72ee87c7c5f0b7805dee43009857b17ca165bd24b67e1576e7f3cf26be7"
+      ],
+      "raw_description": "WTO Quantitative Restrictions API JSON with registered import or export restrictions.",
+      "input_kind": "structured",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "171",
+      "name": "IETF Internet-Drafts and RFC archive",
+      "source_key": "market_source_171",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/objects/market_source_171/6439defbd58a8b651731159274301ab96db1aa3adac4957dcb9bb5babab8988b"
+      ],
+      "raw_description": "RFC Editor archive index XML. Date is the earliest RFC publication month found in the reviewed index.",
+      "input_kind": "catalogue",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "253",
+      "name": "Canada SEDI issuer event history",
+      "source_key": "market_source_253",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2016-01-01_2016-06-30/1b975e8b1dac461104906aee795d4c11e8ff0a32455f7d517524f105f4267951.pdf",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2016-07-01_2016-12-31/b919669cfff111e02bb904ab924e353c52679f41651a1bb8e3dba6cd43f3d4e9.pdf",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/constellation-backfill/public-capture/market-workbook-v1/historical-exports/market_source_253/issuer_events/2017-01-01_2017-06-30/d1804d642e8acc323fd69cfa8e47edaf1af01d372b0a2cc77f8625aa138b313b.pdf"
+      ],
+      "raw_description": "SEDI issuer event history PDFs record issuer, filing date, effective date, event type, title and details. The PDFs were generated on 2026-11-24 and omit first public release dates.",
+      "input_kind": "document",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    },
+    {
+      "catalog_id": "036",
+      "name": "FDA Enforcement Report recalls",
+      "source_key": "fda_ires_recalls",
+      "raw_examples": [
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/fda_ires_recalls/32603c396e74d8ff5e6044b36c2966fc665d314222f7ecff3e62a965b5793a4f",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/fda_ires_recalls/bd4b53a87fd736e9e4f850ed0cfd048c2c577962c87fd9e01557fe464d8036dc",
+        "https://s3.console.aws.amazon.com/s3/object/data-collection-059416028963-us-east-1-an?region=us-east-1&prefix=research-data/source_documents/fda_ires_recalls/66f21a81f26e24ca8acba404164510d2101710572f3f38b7982b4ab5fb4edaa9"
+      ],
+      "raw_description": "FDA iRES Enforcement Report JSON. Earliest checked public enforcement-report date from ENFORCEMENTREPORTDT.",
+      "input_kind": "structured",
+      "profile_version": "1.0.0",
+      "original_required": true,
+      "profile_status": "pilot"
+    }
+  ]
+}

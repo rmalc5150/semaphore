@@ -1,0 +1,4 @@
+import boto3,subprocess,json
+from pathlib import Path
+s=boto3.client('s3');p=Path('/opt/constellation/tmp/checkup1116');p.mkdir(exist_ok=True,parents=True);f=p/'second.py';f.write_bytes(s.get_object(Bucket='data-collection-059416028963-us-east-1-an',Key='research-data/constellation-backfill/repairs/2026-11-16/second.py')['Body'].read())
+r=subprocess.run(['systemd-run','--unit=optima-checkup-1116-second','--property=Slice=constellation-workers.slice','--property=MemoryMax=1536M','--property=CPUQuota=50%','--property=RuntimeMaxSec=1800','--property=StandardOutput=append:'+str(p/'second.log'),'--property=StandardError=append:'+str(p/'second.log'),'--setenv=AWS_CONFIG_FILE=/dev/null','--setenv=AWS_SHARED_CREDENTIALS_FILE=/dev/null','--setenv=AWS_DEFAULT_REGION=us-east-1','/opt/constellation/legacy-venv/bin/python',str(f)],capture_output=True,text=True);print(r.returncode,r.stdout,r.stderr);assert r.returncode==0

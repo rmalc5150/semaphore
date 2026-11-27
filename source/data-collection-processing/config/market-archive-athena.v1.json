@@ -1,0 +1,334 @@
+{
+  "table": "optima_collected_data.committed_records",
+  "observations_view": "optima_collected_data.observations",
+  "query_id": "e05199e6-4bcb-4022-b028-c54ccff0035b",
+  "bytes_scanned": 21460603,
+  "verified_at": "2026-11-24T19:26:17.107441+00:00",
+  "partitions": [
+    {
+      "source": "market_source_161",
+      "dataset": "provider_data",
+      "records": 1,
+      "expected_records": 1,
+      "manifest_sha256": "38394245d4a507818ccab664397d6815b13c4dbda9e6b100ff61e99bb1bc6cbb",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_168",
+      "dataset": "provider_data",
+      "records": 56030,
+      "expected_records": 56030,
+      "manifest_sha256": "a7c98c6199b9c51139ba4bfabc09d679b71104ecda4d3fcf7053db762ef6223d",
+      "native_batches": 57,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_172",
+      "dataset": "ripe_ris",
+      "records": 3,
+      "expected_records": 3,
+      "manifest_sha256": "48053f1dfc4d9935a1a5cd1b2de2bd41b472de0bea4fd94568e3114e5ad5c35d",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_172",
+      "dataset": "routeviews",
+      "records": 2,
+      "expected_records": 2,
+      "manifest_sha256": "8dfbb64ed0028c6e558df23d9ae9a8e58a4d1b881b33fda45cc11079ea2d4c63",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_173",
+      "dataset": "provider_data",
+      "records": 1,
+      "expected_records": 1,
+      "manifest_sha256": "4e05c03b1b1b7d76856178cdb2db068fcf041cf5ee0ee0c4d52fd588be3d9053",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_181",
+      "dataset": "provider_data",
+      "records": 21,
+      "expected_records": 21,
+      "manifest_sha256": "a3ff92212590ed8f881c31fe8b8b644e4e2664f335ff8625078ed82840c716fa",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_186",
+      "dataset": "provider_data",
+      "records": 6,
+      "expected_records": 6,
+      "manifest_sha256": "78d158e5c54fd451564749517f3ebe1e23f8e65b5a2c6fdfcce8ea46d06260da",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_193",
+      "dataset": "provider_data",
+      "records": 52,
+      "expected_records": 52,
+      "manifest_sha256": "8ab54338fa1f3dd42d754d02ea38e1464ef819dd57bff4cc1f5618f67d095ccb",
+      "native_batches": 2,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_197",
+      "dataset": "provider_data",
+      "records": 14258,
+      "expected_records": 14258,
+      "manifest_sha256": "ad943ea51781b5a101b30e45cb212486894d35e743d52fb4e850a57bc9965982",
+      "native_batches": 22,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_199",
+      "dataset": "provider_data",
+      "records": 35000,
+      "expected_records": 35000,
+      "manifest_sha256": "6694161e31dc8aadd5e8abdaeb1cffeb162ef66d643b8504345a1f5e0b991eb5",
+      "native_batches": 35,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_202",
+      "dataset": "provider_data",
+      "records": 67,
+      "expected_records": 67,
+      "manifest_sha256": "abf7ffc80319b1d666b24be6f600a4bae997edefe758e88c8cee23072d5c4c7c",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_203",
+      "dataset": "provider_data",
+      "records": 12,
+      "expected_records": 12,
+      "manifest_sha256": "4d7730363847b8c0e0a23306749298e291626246c7f3a61d784b66ac932bb51e",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_206",
+      "dataset": "provider_data",
+      "records": 1,
+      "expected_records": 1,
+      "manifest_sha256": "dd3ff028f99db1f468bacc90c60fa686e978f97500f3a2b1a825cb5ba765e927",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_208",
+      "dataset": "tiva",
+      "records": 1,
+      "expected_records": 1,
+      "manifest_sha256": "3286b14dbac7256ac284e09e4e150b1d64d41fd20b253947125b7d58bb71bae5",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_216",
+      "dataset": "law",
+      "records": 4,
+      "expected_records": 4,
+      "manifest_sha256": "9b5a9e0c3b519ae0eca44ec0ea0e9685a68e66f1134321ef6f8e403a733de1c8",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_218",
+      "dataset": "provider_data",
+      "records": 1,
+      "expected_records": 1,
+      "manifest_sha256": "d8ce4b8ecf5e0f380aa91d2280b91909555e7817790e1ab65d46587aabf4e68c",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_219",
+      "dataset": "contributions",
+      "records": 25,
+      "expected_records": 25,
+      "manifest_sha256": "ea65f6d7fd2546c6c244773d6109b6c2d3d208ce15b8f5f9e376960f6ef8843f",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_219",
+      "dataset": "registrations_and_reports",
+      "records": 25,
+      "expected_records": 25,
+      "manifest_sha256": "1a214183b70cb5755840a669cead9258dff315f42db22ac06771f5ff59e20ce0",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_237",
+      "dataset": "provider_data",
+      "records": 200,
+      "expected_records": 200,
+      "manifest_sha256": "dc0ec7e44799fad7de08a822e20a8ef3e856e8178675a958fdadb6efb79a7a1e",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_239",
+      "dataset": "brfss",
+      "records": 25000,
+      "expected_records": 25000,
+      "manifest_sha256": "6439b3a55c87c05c86aa2b9aadcc61d85f17a0a32a26000d1120f18b764d565f",
+      "native_batches": 25,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_239",
+      "dataset": "nhis",
+      "records": 33028,
+      "expected_records": 33028,
+      "manifest_sha256": "499e0106d2c83c604258012e46abe9b60ee581fdb9fb01a2d22acac14cdcd141",
+      "native_batches": 34,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_245",
+      "dataset": "wuenic",
+      "records": 15000,
+      "expected_records": 15000,
+      "manifest_sha256": "d99274e87b8800ebd8558aaa39f3af1363e043e1496338355baca185386ead52",
+      "native_batches": 15,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_246",
+      "dataset": "annual_reports",
+      "records": 10,
+      "expected_records": 10,
+      "manifest_sha256": "8be1bd7a970720078c26b9c2ec5c8d19b936cc904c4fbd3ce6ffde9c05688c8d",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_247",
+      "dataset": "esac_net",
+      "records": 594,
+      "expected_records": 594,
+      "manifest_sha256": "fd6c9762d6e2695f622493626bf3f9e6cbffd364d99d67d49def656111bc724c",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_250",
+      "dataset": "schedule_13d",
+      "records": 1,
+      "expected_records": 1,
+      "manifest_sha256": "5d06295f154adaa729c4ac0ec476cfe937ac64e8b615bba1dcc86a8ce857dcb9",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_250",
+      "dataset": "schedule_13g",
+      "records": 1,
+      "expected_records": 1,
+      "manifest_sha256": "93a71e455326f19f409364f7df02abf360fbe7d6c0cc29a81a2dc58b1495c10d",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_257",
+      "dataset": "legacy_register",
+      "records": 4,
+      "expected_records": 4,
+      "manifest_sha256": "809631592406adc700fed05ec05f383bfa2361b00b8383afbff9203e3a98b08f",
+      "native_batches": 4,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_267",
+      "dataset": "machinery",
+      "records": 48,
+      "expected_records": 48,
+      "manifest_sha256": "e2b50a00c4c16fbe00b8fa78282783a1454dc461fcbdfe1d20f63ecb33677ea9",
+      "native_batches": 1,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_271",
+      "dataset": "provider_data",
+      "records": 1222,
+      "expected_records": 1222,
+      "manifest_sha256": "650a2f06d46e028fe6b79773ed5073b94b029f3dffa824d736ce38d5940e1faf",
+      "native_batches": 2,
+      "query_id": "1a8d6d26-5172-4015-9296-001f8a03855f"
+    },
+    {
+      "source": "market_source_174",
+      "dataset": "filing_documents",
+      "records": 1,
+      "expected_records": 1,
+      "manifest_sha256": "fa1580c239489694a3469a7b0cefde756f421a5141f696f847406bca15a09831",
+      "native_batches": 1,
+      "query_id": "7beb3284-647c-4b79-90b8-4710515bbaf8"
+    },
+    {
+      "source": "market_source_179",
+      "dataset": "issuer_ifrs",
+      "records": 133229,
+      "expected_records": 133229,
+      "manifest_sha256": "8bd460f33f555ef2f169d3844dd575bd022dd09cbd58df6d8f320d022ebbbb39",
+      "native_batches": 134,
+      "query_id": "46d269be-d559-4029-afde-5fce0369e2a7"
+    },
+    {
+      "source": "market_source_192",
+      "dataset": "sold_production",
+      "records": 18,
+      "expected_records": 18,
+      "manifest_sha256": "bddc7c5ef98618e614116bc4659d554ed80c871c78da55bce16ed8dcb95ebb89",
+      "native_batches": 1,
+      "query_id": "e4cdcee3-b27e-4258-bfb0-8326d745b4b5"
+    },
+    {
+      "source": "market_source_217",
+      "dataset": "documents",
+      "records": 5,
+      "expected_records": 5,
+      "manifest_sha256": "cc9d8c330261ab91448e086db54f36cd5b9bf519dbbd02a07b71817276ccd3ec",
+      "native_batches": 1,
+      "query_id": "513223fd-e8d6-4ecf-84eb-7018b4299a6a"
+    },
+    {
+      "source": "market_source_166",
+      "dataset": "provider_data",
+      "records": 1044,
+      "expected_records": 1044,
+      "manifest_sha256": "1e58af14ae7acaef0344e3cafa817d24304a206bf1e17ef4968a8a3098dadd8c",
+      "native_batches": 8,
+      "query_id": "57794f7d-db71-4bc2-87f7-fa5dfcc8d707"
+    },
+    {
+      "source": "market_source_200",
+      "dataset": "provider_data",
+      "records": 729,
+      "expected_records": 729,
+      "manifest_sha256": "1ae35295962dde028266e0bb8b5105f18bb01941db3640c59ef4a77754754e62",
+      "native_batches": 1,
+      "query_id": "7cbbfb7d-f486-4db6-af44-072dbffcd323"
+    },
+    {
+      "source": "market_source_253",
+      "dataset": "issuer_events",
+      "records": 7084,
+      "expected_records": 7084,
+      "manifest_sha256": "dd354872fce03f072b2c073b6f2d0e745a5ed3fd10f55f2dde79b6d782df60d7",
+      "native_batches": 20,
+      "query_id": "e05199e6-4bcb-4022-b028-c54ccff0035b"
+    }
+  ],
+  "receipt": "s3://data-collection-059416028963-us-east-1-an/research-data/athena-committed/verifications/market-archive-395ab3ab5449f51ae3a67f38c4aa80e63f596d3bd2ed60a4391790d0ac072eaf.json"
+}

@@ -1,0 +1,6 @@
+{
+  "instance_id": "i-08311762628a9830f",
+  "armed_until": 0,
+  "continuous": true,
+  "lifecycle_mode": "always_on_historical"
+}

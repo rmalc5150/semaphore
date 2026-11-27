@@ -1,0 +1,9 @@
+Result=success
+Id=optima-patents-reviewed-odp.timer
+ActiveState=active
+UnitFileState=enabled
+
+Result=success
+Id=optima-patents-reviewed-odp.service
+ActiveState=inactive
+UnitFileState=static

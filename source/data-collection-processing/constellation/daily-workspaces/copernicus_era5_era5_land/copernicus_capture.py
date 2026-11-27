@@ -23,6 +23,8 @@ def call(client,method,url,body=None):
             if asset.get('href'):asset['href']=urlsplit(asset['href'])._replace(query='',fragment='').geturl()
             safe=json.dumps(document).encode()
         client.save(safe,url,'application/json')
+        if r.status_code==404 and re.fullmatch(r'/api/retrieve/v1/jobs/[A-Za-z0-9-]+(?:/results)?',u.path):
+            raise SourceIssue('copernicus_expired_job',True)
         require(r.status_code in (200,201,202),'source_http_'+str(r.status_code))
         return r.json()
     except SourceIssue:raise
@@ -55,20 +57,39 @@ def fetch(client,job,cursor,item):
                 require(bool(re.fullmatch(r'[A-Za-z0-9-]+',identity or '')),'copernicus_job_id_missing')
                 state={'job_id':identity}
                 from collection_storage import write_json
-                write_json(client.store,key,state)
+                write_json(client.store,key,state,saved.token if saved else None)
+                saved=client.store.get(key)
             finally:db.execute("SELECT RELEASE_LOCK('constellation:copernicus-submit')")
     identity=state['job_id'];require(bool(re.fullmatch(r'[A-Za-z0-9-]+',identity)),'copernicus_invalid_job_id')
-    status=call(client,'GET',API+'/jobs/'+identity).get('status')
+    def expired(reason):
+        # CDS can retain a successful job after its downloadable asset expires.
+        # Preserve that identity, then conditionally clear only this submission.
+        # The next bounded pass resubmits under the normal two-job admission lock.
+        from collection_storage import write_json,now
+        receipt={'previous_submission':state,'reason':reason,'request_sha256':digest(request),'expired_at':now()}
+        write_json(client.store,'constellation-backfill/copernicus/expired/'+digest(receipt)+'.json',receipt)
+        write_json(client.store,key,{'expired_job_id':identity,'reason':reason},saved.token if saved else None)
+        previous=json.loads(cursor)if cursor else{}
+        return [],json.dumps({'expired_job_id':identity,'poll':previous.get('poll',0)+1})
+    try:status=call(client,'GET',API+'/jobs/'+identity).get('status')
+    except SourceIssue as exc:
+        if exc.code=='copernicus_expired_job':return expired(exc.code)
+        raise
     if status in ('accepted','running'):
         # A changing poll counter is an operational cursor, never a data row.
         return [],json.dumps({'job_id':identity,'poll':(json.loads(cursor).get('poll',0) if cursor else 0)+1})
     require(status=='successful','copernicus_job_'+str(status))
-    result=call(client,'GET',API+'/jobs/'+identity+'/results');asset=result.get('asset',{}).get('value',{});url=asset.get('href','');u=urlsplit(url)
+    try:result=call(client,'GET',API+'/jobs/'+identity+'/results')
+    except SourceIssue as exc:
+        if exc.code=='copernicus_expired_job':return expired(exc.code)
+        raise
+    asset=result.get('asset',{}).get('value',{});url=asset.get('href','');u=urlsplit(url)
     require(u.scheme=='https' and u.hostname and (u.hostname.endswith('.ecmwf.int') or u.hostname.endswith('.climate.copernicus.eu')) and not u.username and not u.password,'copernicus_unreviewed_download')
     expected=int(asset['file:size']);require(0<expected<=16*1024**2,'copernicus_download_too_large_split_scope')
     try:
         # Signed provider URLs are used only in memory; saved provenance omits query.
         with requests.get(url,stream=True,timeout=(10,60),allow_redirects=False) as r:
+            if r.status_code==404:return expired('copernicus_successful_job_asset_expired')
             require(r.status_code==200,'source_http_'+str(r.status_code));chunks=[];size=0
             for chunk in r.iter_content(65536):size+=len(chunk);require(size<=expected,'copernicus_download_size_mismatch');chunks.append(chunk)
         body=b''.join(chunks);require(len(body)==expected,'copernicus_download_truncated')

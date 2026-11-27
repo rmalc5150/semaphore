@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import Mock,patch
 from contextlib import nullcontext
 
-from metadata_engine.runtime_db import source_failure_state,fingerprint,source_failure_mode,failure_date
+from metadata_engine.runtime_db import Database,source_failure_state,fingerprint,source_failure_mode,failure_date
 from metadata_engine.evidence import substantive,RawFailure,object_bytes
 from metadata_engine.source_policies import build
 from metadata_engine.graph import stable_id
@@ -13,6 +13,34 @@ from metadata_engine_sec_document_pilot import committed_input,HEAD,MANIFEST,KEY
 
 
 class RuntimeTests(unittest.TestCase):
+    def test_a_handed_off_source_is_excluded_only_on_that_worker(self):
+        database = Database.__new__(Database)
+        database.config = {}
+        cursor = Mock()
+        cursor.fetchall.return_value = []
+        database.tx = Mock(return_value=nullcontext(cursor))
+        with patch('metadata_engine.runtime_db.host_excluded_sources',
+                   return_value=('openalex_scholarly_graph',)):
+            self.assertIsNone(database.claim(source_key='openalex_scholarly_graph'))
+            database.tx.assert_not_called()
+            self.assertIsNone(database.claim())
+            sql, parameters = cursor.execute.call_args.args
+            self.assertIn('s.source_key NOT IN (%s)', sql)
+            self.assertEqual(parameters[-1], 'openalex_scholarly_graph')
+
+    def test_repeated_edinet_missing_manifest_waits_longer(self):
+        database=Database.__new__(Database)
+        database.config={}
+        cursor=Mock()
+        database.tx=lambda: nullcontext(cursor)
+        for source, attempts, minutes in (('edinet_filings', 2, 15), ('edinet_filings', 3, 360), ('other', 32, 15)):
+            with self.subTest(source=source, attempts=attempts):
+                cursor.reset_mock()
+                cursor.fetchone.side_effect=[{'state': 'enabled'}, {'state': 'running', 'lease_token': 'lease', 'attempts': attempts}]
+                database.finish({'source_key': source, 'job_id': 'job', 'lease_token': 'lease'},
+                                'uncommitted', 'collection_manifest_not_yet_present')
+                self.assertEqual(cursor.execute.call_args.args[1][-2], minutes)
+
     def test_native_evidence_uses_actual_request_host(self):
         from metadata_engine.worker import load_input
         import hashlib
@@ -39,7 +67,8 @@ class RuntimeTests(unittest.TestCase):
         run.closed=False;run.pending_final={'status':'complete','reason_code':None,'expected_records':1}
         run.spec={'source':'sec_edgar','mode':'daily'}
         run.state={'exhausted':True,'record_count':1,'revision':1,'terminal_history':[],'manifest_prefix':'manifests/run-test',
-            'pages':[{'batches':[{'key':'raw/source=sec_edgar/batch.jsonl'}]}]}
+            'pages':[{'batches':[{'key':'raw/source=sec_edgar/batch.jsonl','etag':'"original-write"'},
+                                 {'key':'raw/source=sec_edgar/older.jsonl'}]}]}
         run.token='old';run.checkpoint_key='checkpoints/test/head.json'
         run.store=object.__new__(storage.S3Store);run.store.bucket='test';run.store.prefix='research-data';run.store.owner=None;run.store.client=Mock()
         with patch.dict('os.environ',{'METADATA_ENGINE_NOTIFY':'1'}),patch.object(storage,'write_json',return_value='new') as committed:
@@ -47,7 +76,33 @@ class RuntimeTests(unittest.TestCase):
         self.assertEqual(committed.call_count,2)
         notice=run.store.client.put_object.call_args.kwargs
         self.assertIn('/intake/',notice['Key'])
-        self.assertEqual(json.loads(notice['Body'])['batches'],['research-data/raw/source=sec_edgar/batch.jsonl'])
+        body=json.loads(notice['Body'])
+        self.assertEqual(body['batches'],['research-data/raw/source=sec_edgar/batch.jsonl',
+                                          'research-data/raw/source=sec_edgar/older.jsonl'])
+        self.assertEqual(body['batch_etags'],{'research-data/raw/source=sec_edgar/batch.jsonl':'"original-write"'})
+
+    def test_intake_prefers_write_etag_with_per_batch_head_fallback(self):
+        from metadata_engine.controller import committed_daily_intake
+        first='research-data/raw/source=sec_edgar/first.jsonl'
+        second='research-data/raw/source=sec_edgar/second.jsonl'
+        for etags, expected_heads in (({first:'"original"',second:'"other"'},0),
+                                     ({first:'"original"',second:'bad'},1), (None,2)):
+            with self.subTest(etags=etags):
+                db=Mock(config={'bucket':'bucket','prefix':'meta','contracts':{'sec_edgar':{}}})
+                db.cursor.return_value={}
+                db.enqueue.return_value=True
+                s3=Mock()
+                s3.list_objects_v2.side_effect=[{'Contents':[{'Key':'meta/notice.json'}]},{}]
+                s3.head_object.return_value={'ETag':'"fallback"'}
+                notice={'batches':[first,second]}
+                if etags is not None:
+                    notice['batch_etags']=etags
+                with patch('metadata_engine.controller.object_bytes',return_value=json.dumps(notice).encode()):
+                    self.assertEqual(committed_daily_intake(db,s3),2)
+                self.assertEqual(s3.head_object.call_count,expected_heads)
+                tokens=[call.args[2] for call in db.enqueue.call_args_list]
+                self.assertEqual(tokens, ['"original"' if etags else '"fallback"',
+                                          '"other"' if expected_heads==0 else '"fallback"'])
 
     def test_failed_checkpoint_does_not_wake_metadata(self):
         import collection_storage as storage
@@ -101,8 +156,18 @@ class RuntimeTests(unittest.TestCase):
 
     def test_all_catalog_entries_have_policies_and_owner_pauses(self):
         policies=build(Path(__file__).parent)
-        self.assertEqual(len({n for p in policies.values() for n in p['catalog_entries']}),158)
-        for key in ('marketaux','github_sdk','reddit','bluesky_search','nice_technology_appraisals'):
+        catalogued={n for p in policies.values() for n in p['catalog_entries']}
+        from market_source_register import OWNER_REMOVED
+        from metadata_engine.market_archive import contracts as archive_contracts
+        self.assertEqual({n for n in catalogued if n<=158},set(range(1,159))-OWNER_REMOVED)
+        from market_source_capture import active_routes
+        enabled={int(source.rsplit('_',1)[-1]) for source,datasets in active_routes().items()
+                 if any(policy['metadata'] for policy in datasets.values())}
+        self.assertEqual({n for n in catalogued if n>158},enabled|{166,248,253})
+        for source, policy in archive_contracts().items():
+            self.assertEqual(policies[source],policy)
+        self.assertNotIn('marketaux',policies)
+        for key in ('github_sdk','reddit','bluesky_search','nice_technology_appraisals'):
             self.assertEqual(policies[key]['state'],'owner_paused')
         self.assertIn('full_text',policies['europe_pmc']['raw_requirements']['required_artifact_kinds'])
 

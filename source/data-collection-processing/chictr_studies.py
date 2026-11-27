@@ -64,7 +64,7 @@ def period_bounds(period: str, selected: date) -> tuple[date, date]:
     return start, following - timedelta(days=1)
 
 
-from metadata_engine.chictr_tables import TableParser, clean_text, parse_detail_page
+from raw_parsers.chictr_tables import TableParser, clean_text, parse_detail_page
 
 
 def parse_registry_date(value: str) -> date | None:

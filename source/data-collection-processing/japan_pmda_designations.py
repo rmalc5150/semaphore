@@ -19,7 +19,7 @@ S3_PREFIX = "s3://processed-059416028963-us-east-1-an/regulatory-designations/ja
 USER_AGENT = "pmda-sakigake-designations/1.0"
 
 
-from metadata_engine.pmda_tables import japanese_date,parse_pdf
+from raw_parsers.pmda_tables import japanese_date,parse_pdf
 
 
 def fetch_records() -> list[dict[str, str]]:

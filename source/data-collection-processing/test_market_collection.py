@@ -41,6 +41,16 @@ class MarketTests(unittest.TestCase):
         self.client.get.side_effect=good
         self.assertEqual(self.collect()['status'],'complete')
         self.assertEqual(sum(p.startswith('eod/') for p,_ in self.calls),1)
+    def test_inconsistent_provider_close_is_rejected_with_actionable_evidence(self):
+        from market_collection import normalize
+        from regulatory_collection import SourceIssue
+        row={'date':'2021-01-04','open':37.8852,'high':37.8852,'low':36.4894,'close':34.9879,'adjusted_close':34.9879,'volume':17628252}
+        with self.assertRaises(SourceIssue) as raised:
+            normalize(row,'prices',date(2021,1,1),date(2021,2,1))
+        self.assertEqual(raised.exception.code,'market_ohlc_inconsistent')
+        self.assertEqual(raised.exception.diagnostics['date'],'2021-01-04')
+        self.assertEqual(raised.exception.diagnostics['provider_ohlc']['close'],'34.9879')
+
     def test_empty_prices_never_marked_complete(self):
         self.client.get.side_effect=lambda *a:([],b'[]','https://example.org')
         self.assertEqual(self.collect()['reason'],'market_empty_price_window_unverified')

@@ -1,0 +1,10 @@
+[Unit]
+Description=Check the current backlog trial window
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=2min
+AccuracySec=10s
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,2 @@
+import json,boto3
+s=boto3.client('secretsmanager',region_name='us-east-1');d=json.loads(s.get_secret_value(SecretId='arn:aws:secretsmanager:us-east-1:059416028963:secret:proxies-fkWzVV')['SecretString']);assert isinstance(d.get('decodo-web'),str)and d['decodo-web'].strip();print(json.dumps({'worker_secret_read':'passed','token_field':'decodo-web','token_present':True,'legacy_scraper_field_retained':'decodo-web-scraping'in d}))

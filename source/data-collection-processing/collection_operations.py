@@ -24,6 +24,10 @@ ORDER = ("sec", "clinicaltrials", "fda", "ema", "uk", "japan", "chictr",
          "hkex-filings", "documents", *disclosure.CATEGORIES)
 DEPENDENCIES = {"documents": ("sec", "hkex-filings"),
                 **{name: ("documents",) for name in disclosure.CATEGORIES}}
+DAILY_WINDOW_GAPS = {
+    "prerequisite_incomplete", "hkex_prefix_changed", "source_changed_during_pagination",
+    "source_count_mismatch", "duplicate_provider_record", "invalid_fda_action_date",
+}
 SOURCE_IDS = {name: adapter.source for name, adapter in ADAPTERS.items()}
 SOURCE_IDS.update({"sec": "sec_edgar", "hkex-filings": "hkex_news",
     "documents": "disclosure_documents",
@@ -226,8 +230,10 @@ class Operations:
             suffix = str(origin) if mode == "daily" else f"{origin}_{end}"
             progress_key = f"{self.prefix}/{mode}/{source}/progress-{suffix}.json"
             progress, token = load_stored(self.store, progress_key)
+            progress = progress or {}
             cursor = date.fromisoformat(progress["next_date"]) if progress else origin
             retained_gaps = list((progress or {}).get("accepted_gaps",[]))
+            continue_daily = mode == "daily" and self.config.get("daily_gap_continuation") is True
             results, attempted = [], 0
             while cursor < end and attempted < max_windows:
                 following = following_window(cursor, end, mode)
@@ -237,23 +243,30 @@ class Operations:
                 print(json.dumps({"source": source, "start": str(cursor), "status": result["status"],
                     "manifest": result.get("manifest"), "reason": result.get("reason")}), flush=True)
                 if result["status"] != "complete":
-                    limit=self.config.get("historical_gap_continue_after_attempts") if mode=="historical" else None
-                    # A bounded page/record allowance resumes its cursor; it is
-                    # not a failed scope to skip after repeated healthy batches.
-                    bounded=result.get("reason") in {"page_limit","page_budget","record_limit","max_pages","max_records"}
-                    if not limit or result.get("historical_window_attempts",0)<limit or bounded:
-                        break
-                    retained_gaps.append({"start":str(cursor),"end":str(following),
-                        "reason":result.get("reason"),"attempt_receipt":result.get("attempt_receipt"),
-                        "manifest":result.get("manifest"),"status":result["status"]})
+                    if continue_daily and result.get("reason") in DAILY_WINDOW_GAPS:
+                        # Record retry ownership before advancing the forward cursor.
+                        self.set_pending(source, cursor, True)
+                    else:
+                        limit=self.config.get("historical_gap_continue_after_attempts") if mode=="historical" else None
+                        # Budgeted pages stay on their existing resumable cursor.
+                        bounded=result.get("reason") in {"page_limit","page_budget","record_limit","max_pages","max_records"}
+                        if not limit or result.get("historical_window_attempts",0)<limit or bounded:
+                            break
+                        retained_gaps.append({"start":str(cursor),"end":str(following),
+                            "reason":result.get("reason"),"attempt_receipt":result.get("attempt_receipt"),
+                            "manifest":result.get("manifest"),"status":result["status"]})
                 cursor = following
-                token = write_json(self.store, progress_key,
-                    {"next_date": str(cursor), "origin": str(origin), "accepted_gaps":retained_gaps,
-                     "last_manifest": result.get("manifest"), "updated_at": now()}, token)
+                progress.update(next_date=str(cursor), origin=str(origin), accepted_gaps=retained_gaps, updated_at=now())
+                if result["status"] == "complete" or mode == "historical":
+                    progress["last_manifest"] = result.get("manifest")
+                token = write_json(self.store, progress_key, progress, token)
             if mode == "daily" and cursor >= end:
                 recent = {str(end - timedelta(days=n)) for n in range(1, reconcile_days + 1)
                           if end - timedelta(days=n) >= origin}
                 dates = sorted(self.pending_dates(source) | recent)
+                if continue_daily:
+                    after = progress.get("reconciliation_after", "")
+                    dates.sort(key=lambda day: (day <= after, day))
                 for value in dates:
                     day = date.fromisoformat(value)
                     if day >= end or attempted >= max_windows:
@@ -263,7 +276,13 @@ class Operations:
                         result = self.window(source, day, day + timedelta(days=1), mode, refresh=True)
                         results.append({"start": str(day), "end": str(day + timedelta(days=1)), **result})
                         attempted += 1
+                        if continue_daily and (result["status"] == "complete" or result.get("reason") in DAILY_WINDOW_GAPS):
+                            progress.update(next_date=str(cursor), origin=str(origin),
+                                            reconciliation_after=str(day), updated_at=now())
+                            token = write_json(self.store, progress_key, progress, token)
                         if result["status"] != "complete":
+                            if continue_daily and result.get("reason") in DAILY_WINDOW_GAPS:
+                                continue
                             break
                     self.set_pending(source, day, False)
             pending = sorted(self.pending_dates(source)) if mode == "daily" else []

@@ -1,7 +1,7 @@
 {
   "function": "optima-collection-watchdog",
-  "version": "3",
-  "sha256": "BfpiUs4NyyDSXZlYK0nv2u6guvbjeWJF5hd72KT22Gk=",
+  "version": "4",
+  "sha256": "Evbt3giu408KCJXfhDPN3EWm8XlCvG280YJA0ysjlRg=",
   "jobs": 42,
   "notification_routing_preserved": true
 }

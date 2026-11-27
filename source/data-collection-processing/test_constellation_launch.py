@@ -19,12 +19,10 @@ class GapTests(unittest.TestCase):
         gaps=merged_gaps([self.window('2016-01-01','2016-01-06'),self.window('2016-02-01','2016-02-07',scope='other')])
         snap={'historical_gaps':{'checked_at':'2026-10-26T08:00:00Z','gaps':gaps,'flagged_gaps':1,'record_only_gaps':1}}
         subject,body=overview({},1793001600,'2026-10-25',snap)
-        self.assertIn('0 services need attention',subject)
-        self.assertIn('1 historical scopes need review',subject)
-        self.assertNotIn('journalctl -u constellation-history/',body)
-        self.assertIn('constellation-history/other',body)
-        self.assertNotIn('constellation-history/provider',body)
-        self.assertIn('five days or less are recorded without flags',body)
+        self.assertIn('1 data gap group needs attention',subject)
+        self.assertNotIn('journalctl',body)
+        self.assertIn('other — 1 flagged interval',body)
+        self.assertNotIn('provider —',body)
     def test_active_bounded_window_is_backlog_not_gap(self):
         self.assertEqual(merged_gaps([self.window('2016-01-01','2016-02-01',status='in_progress')]),[])
 

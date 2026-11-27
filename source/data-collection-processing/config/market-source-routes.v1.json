@@ -1,0 +1,1911 @@
+{
+  "version": 1,
+  "historical_cutoff_exclusive": "2026-11-21",
+  "routes": [
+    {
+      "catalog_entry": 159,
+      "source": "market_source_159",
+      "dataset": "events",
+      "history": [
+        "https://data.gdeltproject.org/gdeltv2/{stamp}.export.CSV.zip"
+      ],
+      "current": [
+        "https://data.gdeltproject.org/gdeltv2/{stamp}.export.CSV.zip"
+      ],
+      "format": "gdelt",
+      "scope": "GDELT 2.0 raw 15-minute files, one stream per dataset. Daily dispatcher advances a bounded backlog.",
+      "hosts": [
+        "data.gdeltproject.org"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "15min",
+      "current_step": "15min",
+      "lag_days": 1,
+      "columns": 61,
+      "max_mb": 12,
+      "throughput_hold": "Each short original is verified. Worldwide interval retention needs a disk, S3 and runtime budget before starting recurring full-stream downloads."
+    },
+    {
+      "catalog_entry": 159,
+      "source": "market_source_159",
+      "dataset": "mentions",
+      "history": [
+        "https://data.gdeltproject.org/gdeltv2/{stamp}.mentions.CSV.zip"
+      ],
+      "current": [
+        "https://data.gdeltproject.org/gdeltv2/{stamp}.mentions.CSV.zip"
+      ],
+      "format": "gdelt",
+      "scope": "GDELT 2.0 raw 15-minute files, one stream per dataset. Daily dispatcher advances a bounded backlog.",
+      "hosts": [
+        "data.gdeltproject.org"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "15min",
+      "current_step": "15min",
+      "lag_days": 1,
+      "columns": 16,
+      "max_mb": 12,
+      "throughput_hold": "Each short original is verified. Worldwide interval retention needs a disk, S3 and runtime budget before starting recurring full-stream downloads."
+    },
+    {
+      "catalog_entry": 159,
+      "source": "market_source_159",
+      "dataset": "knowledge_graph",
+      "history": [
+        "https://data.gdeltproject.org/gdeltv2/{stamp}.gkg.csv.zip"
+      ],
+      "current": [
+        "https://data.gdeltproject.org/gdeltv2/{stamp}.gkg.csv.zip"
+      ],
+      "format": "gdelt",
+      "scope": "GDELT 2.0 raw 15-minute files, one stream per dataset. Daily dispatcher advances a bounded backlog.",
+      "hosts": [
+        "data.gdeltproject.org"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "15min",
+      "current_step": "15min",
+      "lag_days": 1,
+      "columns": 27,
+      "max_mb": 12,
+      "throughput_hold": "Each short original is verified. Worldwide interval retention needs a disk, S3 and runtime budget before starting recurring full-stream downloads."
+    },
+    {
+      "catalog_entry": 162,
+      "source": "market_source_162",
+      "dataset": "provider_data",
+      "history": [
+        "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/user/Semiconductor/daily/{start_compact}00/{last_compact}00",
+        "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/user/Industrial_robot/daily/{start_compact}00/{last_compact}00",
+        "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/user/Renewable_energy/daily/{start_compact}00/{last_compact}00",
+        "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/user/Biotechnology/daily/{start_compact}00/{last_compact}00"
+      ],
+      "current": [
+        "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/user/Semiconductor/daily/{start_compact}00/{last_compact}00",
+        "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/user/Industrial_robot/daily/{start_compact}00/{last_compact}00",
+        "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/user/Renewable_energy/daily/{start_compact}00/{last_compact}00",
+        "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/user/Biotechnology/daily/{start_compact}00/{last_compact}00"
+      ],
+      "format": "json",
+      "scope": "English Wikipedia user page views for four sector topics, all access types.",
+      "hosts": [
+        "wikimedia.org"
+      ],
+      "tokens": [],
+      "fields": [
+        "article",
+        "timestamp",
+        "views"
+      ],
+      "path": [
+        "items"
+      ],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "month",
+      "current_step": "month",
+      "lag_days": 3,
+      "dated": [
+        "timestamp"
+      ]
+    },
+    {
+      "catalog_entry": 163,
+      "source": "market_source_163",
+      "dataset": "provider_data",
+      "history": [
+        "https://gs.statcounter.com/download/browser-country/?year={year}&month={month}"
+      ],
+      "current": [
+        "https://gs.statcounter.com/download/browser-country/?year={year}&month={month}"
+      ],
+      "format": "csv",
+      "scope": "Monthly browser share by country in the public export.",
+      "hosts": [
+        "gs.statcounter.com"
+      ],
+      "tokens": [
+        "browser",
+        "chrome",
+        "United States"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "history_step": "month",
+      "current_step": "month",
+      "lag_days": 3
+    },
+    {
+      "catalog_entry": 164,
+      "source": "market_source_164",
+      "dataset": "github_events",
+      "history": [
+        "https://data.gharchive.org/{date}-{hour}.json.gz"
+      ],
+      "current": [
+        "https://data.gharchive.org/{date}-{hour}.json.gz"
+      ],
+      "format": "gzip_jsonl",
+      "scope": "Hourly GH Archive public event files. Future acceptance requires a tested storage throughput budget.",
+      "hosts": [
+        "data.gharchive.org"
+      ],
+      "tokens": [],
+      "fields": [
+        "id",
+        "type",
+        "repo",
+        "created_at"
+      ],
+      "path": [],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "hour",
+      "current_step": "hour",
+      "lag_days": 1,
+      "max_mb": 32,
+      "throughput_hold": "Each short original is verified. Worldwide interval retention needs a disk, S3 and runtime budget before starting recurring full-stream downloads."
+    },
+    {
+      "catalog_entry": 167,
+      "source": "market_source_167",
+      "dataset": "posts",
+      "history": [
+        "https://api.stackexchange.com/2.3/questions?site=stackoverflow&tagged=robotics&fromdate={start_epoch}&todate={last_epoch}&sort=creation&order=asc&pagesize=100&page=1"
+      ],
+      "current": [
+        "https://api.stackexchange.com/2.3/questions?site=stackoverflow&tagged=robotics&fromdate={start_epoch}&todate={last_epoch}&sort=creation&order=asc&pagesize=100&page=1"
+      ],
+      "format": "json",
+      "scope": "Stack Overflow questions tagged robotics. One bounded page per day, through the provider quota.",
+      "hosts": [
+        "api.stackexchange.com"
+      ],
+      "tokens": [],
+      "fields": [
+        "question_id",
+        "creation_date",
+        "title",
+        "tags"
+      ],
+      "path": [
+        "items"
+      ],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "day",
+      "current_step": "day",
+      "lag_days": 1,
+      "dated": [
+        "creation_date"
+      ],
+      "empty_ok": true,
+      "pagination_flag": "has_more"
+    },
+    {
+      "catalog_entry": 169,
+      "source": "market_source_169",
+      "dataset": "provider_data",
+      "history": [
+        "https://hacker-news.firebaseio.com/v0/item/10919695.json"
+      ],
+      "current": [
+        "https://hacker-news.firebaseio.com/v0/maxitem.json"
+      ],
+      "format": "json",
+      "scope": "First historical Hacker News item plus bounded traversal of latest item IDs from the official high watermark.",
+      "hosts": [
+        "hacker-news.firebaseio.com"
+      ],
+      "tokens": [],
+      "fields": [
+        "id",
+        "type",
+        "time"
+      ],
+      "path": [],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "pointer": "hn",
+      "lag_days": 0,
+      "dated": [
+        "time"
+      ]
+    },
+    {
+      "catalog_entry": 170,
+      "source": "market_source_170",
+      "dataset": "cve",
+      "history": [
+        "https://services.nvd.nist.gov/rest/json/cves/2.0?pubStartDate={date}T00:00:00.000&pubEndDate={last}T23:59:59.999&resultsPerPage=100&startIndex=0"
+      ],
+      "current": [
+        "https://services.nvd.nist.gov/rest/json/cves/2.0?pubStartDate={date}T00:00:00.000&pubEndDate={last}T23:59:59.999&resultsPerPage=100&startIndex=0"
+      ],
+      "format": "json",
+      "scope": "NVD public CVE inventory for defensive product exposure mapping. Daily publication windows.",
+      "hosts": [
+        "services.nvd.nist.gov"
+      ],
+      "tokens": [],
+      "fields": [
+        "cve.id",
+        "cve.published",
+        "cve.lastModified"
+      ],
+      "path": [
+        "vulnerabilities"
+      ],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "day",
+      "current_step": "day",
+      "lag_days": 5,
+      "dated": [
+        "cve.published"
+      ],
+      "empty_ok": true,
+      "page_total": "totalResults"
+    },
+    {
+      "catalog_entry": 171,
+      "source": "market_source_171",
+      "dataset": "rfc",
+      "history": [
+        "https://www.rfc-editor.org/rfc/rfc-index.xml"
+      ],
+      "current": [
+        "https://www.rfc-editor.org/rfc/rfc-index.xml"
+      ],
+      "format": "xml",
+      "scope": "Official RFC XML publication register; individual text retrieval and Internet-Drafts remain outstanding.",
+      "hosts": [
+        "www.rfc-editor.org"
+      ],
+      "tokens": [
+        "rfc-index",
+        "rfc-entry",
+        "doc-id",
+        "title"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 176,
+      "source": "market_source_176",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.bodacc.fr/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=dateparution%3E%3D%22{date}%22%20and%20dateparution%3C%22{end}%22&limit=100&order_by=dateparution"
+      ],
+      "current": [
+        "https://www.bodacc.fr/api/explore/v2.1/catalog/datasets/annonces-commerciales/records?where=dateparution%3E%3D%22{date}%22%20and%20dateparution%3C%22{end}%22&limit=100&order_by=dateparution"
+      ],
+      "format": "json",
+      "scope": "BODACC official notice results, first provider page per publication day.",
+      "hosts": [
+        "www.bodacc.fr"
+      ],
+      "tokens": [],
+      "fields": [
+        "id",
+        "dateparution",
+        "typeavis"
+      ],
+      "path": [
+        "results"
+      ],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "day",
+      "current_step": "day",
+      "lag_days": 2,
+      "dated": [
+        "dateparution"
+      ],
+      "empty_ok": true,
+      "page_total": "total_count"
+    },
+    {
+      "catalog_entry": 177,
+      "source": "market_source_177",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.boe.es/datosabiertos/api/borme/sumario/{start_compact}"
+      ],
+      "current": [
+        "https://www.boe.es/datosabiertos/api/borme/sumario/{start_compact}"
+      ],
+      "format": "json",
+      "scope": "BORME official sumario with links and issuer notices. Spain publication weekdays.",
+      "hosts": [
+        "www.boe.es"
+      ],
+      "tokens": [],
+      "fields": [
+        "metadatos.fecha_publicacion",
+        "diario"
+      ],
+      "path": [
+        "data",
+        "sumario"
+      ],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "day",
+      "current_step": "day",
+      "lag_days": 2,
+      "accept": "application/json",
+      "weekdays": true,
+      "dated": [
+        "metadatos.fecha_publicacion"
+      ]
+    },
+    {
+      "catalog_entry": 178,
+      "source": "market_source_178",
+      "dataset": "dfp",
+      "history": [
+        "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DADOS/"
+      ],
+      "current": [
+        "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/DFP/DADOS/"
+      ],
+      "format": "zip",
+      "scope": "CVM DFP complete official annual filing packages. Statement and filing date semantics remain in source tables.",
+      "hosts": [
+        "dados.cvm.gov.br"
+      ],
+      "tokens": [
+        "dfp_cia_aberta_\\d{4}\\.csv"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "dfp_cia_aberta_20(?:1[6-9]|2\\d)\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "max_mb": 32
+    },
+    {
+      "catalog_entry": 178,
+      "source": "market_source_178",
+      "dataset": "itr",
+      "history": [
+        "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/ITR/DADOS/"
+      ],
+      "current": [
+        "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/ITR/DADOS/"
+      ],
+      "format": "zip",
+      "scope": "CVM ITR complete official annual filing packages. Statement and filing date semantics remain in source tables.",
+      "hosts": [
+        "dados.cvm.gov.br"
+      ],
+      "tokens": [
+        "itr_cia_aberta_\\d{4}\\.csv"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "itr_cia_aberta_20(?:1[6-9]|2\\d)\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "max_mb": 64,
+      "max_expanded_mb": 900
+    },
+    {
+      "catalog_entry": 182,
+      "source": "market_source_182",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.gov.uk/cma-cases?outcome_type=mergers-phase-2-clearance-with-remedies"
+      ],
+      "current": [
+        "https://www.gov.uk/cma-cases"
+      ],
+      "format": "html",
+      "scope": "Official CMA case decisions and inquiry notices. Initial archive scope is phase-two mergers cleared with remedies.",
+      "tokens": [
+        "case",
+        "decision|inquiry"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "^/cma-cases/[a-z0-9-]+$",
+      "check_days": 1,
+      "metadata_eligible": true,
+      "hosts": [
+        "www.gov.uk"
+      ]
+    },
+    {
+      "catalog_entry": 183,
+      "source": "market_source_183",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.ftc.gov/legal-library/browse/cases-proceedings?search=2016"
+      ],
+      "current": [
+        "https://www.ftc.gov/legal-library/browse/cases-proceedings"
+      ],
+      "format": "html",
+      "scope": "Official FTC case proceeding pages and attached documents referenced by case identifiers.",
+      "tokens": [
+        "case",
+        "matter|commission"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/legal-library/browse/cases-proceedings/(?![a-z-]+$)[a-z0-9-]+/?$",
+      "check_days": 1,
+      "metadata_eligible": true,
+      "hosts": [
+        "www.ftc.gov"
+      ]
+    },
+    {
+      "catalog_entry": 184,
+      "source": "market_source_184",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.justice.gov/d9/333615.pdf"
+      ],
+      "current": [
+        "https://www.justice.gov/atr/antitrust-case-filings-alpha"
+      ],
+      "format": "document",
+      "scope": "Official DOJ antitrust case filings. Historical starting case is the Aetna–Humana merger litigation.",
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/atr/case-document/[^/]+/dl$|/d9/[^/]+\\.pdf$",
+      "check_days": 1,
+      "metadata_eligible": true,
+      "hosts": [
+        "www.justice.gov"
+      ],
+      "seed_is_document_history": true
+    },
+    {
+      "catalog_entry": 187,
+      "source": "market_source_187",
+      "dataset": "provider_data",
+      "history": [
+        "https://comptrib.co.za/decided-cases"
+      ],
+      "current": [
+        "https://comptrib.co.za/decided-cases"
+      ],
+      "format": "pdf",
+      "scope": "Published tribunal orders and reasons visible in the decided-cases index.",
+      "hosts": [
+        "comptrib.co.za"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/uploads/topics/CompTrib_Case_Files/.+\\.pdf$",
+      "check_days": 1,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 190,
+      "source": "market_source_190",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=2&smid=2&ssid=9"
+      ],
+      "current": [
+        "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=2&smid=2&ssid=9"
+      ],
+      "format": "document",
+      "scope": "Published SEBI orders and official Section 11B order summary editions.",
+      "hosts": [
+        "www.sebi.gov.in"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/enforcement/orders/Order-11B-20(?:1[6-9]|2\\d)(?:_new)?\\.xlsx$|/sebi_data/(?:attachdocs|commondocs)/[^/]+/[^/]+\\.pdf$",
+      "check_days": 1,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 193,
+      "source": "market_source_193",
+      "dataset": "provider_data",
+      "history": [
+        "https://www2.census.gov/ces/bds/"
+      ],
+      "current": [
+        "https://www2.census.gov/ces/bds/"
+      ],
+      "format": "csv",
+      "scope": "U.S. Census BDS published official state-level all-industry CSV editions.",
+      "tokens": [
+        "job_creation",
+        "job_destruction",
+        "firm"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/bds20\\d\\d_st\\.csv$",
+      "check_days": 30,
+      "metadata_eligible": true,
+      "hosts": [
+        "www2.census.gov"
+      ],
+      "max_mb": 48
+    },
+    {
+      "catalog_entry": 194,
+      "source": "market_source_194",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.census.gov/econ/bfs/csv/bfs_monthly.csv"
+      ],
+      "current": [
+        "https://www.census.gov/econ/bfs/csv/bfs_monthly.csv"
+      ],
+      "format": "csv",
+      "scope": "Official Census monthly BFS flat file, including retrospective observations.",
+      "hosts": [
+        "www.census.gov"
+      ],
+      "tokens": [
+        "series",
+        "jan",
+        "year"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "max_mb": 48,
+      "dated_pattern": "^\\w,[^,]+,[^,]+,[^,]+,((?:19|20)\\d{2}),",
+      "multiline_dates": true
+    },
+    {
+      "catalog_entry": 195,
+      "source": "market_source_195",
+      "dataset": "provider_data",
+      "history": [
+        "https://data.bls.gov/cew/data/api/{year}/{quarter}/area/06000.csv"
+      ],
+      "current": [
+        "https://data.bls.gov/cew/data/api/{year}/{quarter}/area/06000.csv"
+      ],
+      "format": "csv",
+      "scope": "QCEW all reported ownership and industries in California, quarterly. Additional area scopes require their own routes.",
+      "hosts": [
+        "data.bls.gov"
+      ],
+      "tokens": [
+        "area_fips",
+        "industry_code",
+        "month1_emplvl"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "history_step": "quarter",
+      "current_step": "quarter",
+      "lag_days": 245,
+      "dated_pattern": "(?m)^\"[^\"\\n]+\",\"[^\"\\n]+\",\"[^\"\\n]+\",\"[^\"\\n]+\",\"[^\"\\n]+\",\"((?:19|20)\\d{2})\","
+    },
+    {
+      "catalog_entry": 197,
+      "source": "market_source_197",
+      "dataset": "provider_data",
+      "history": [
+        "https://19january2021snapshot.epa.gov/toxics-release-inventory-tri-program/2016-tri-national-analysis-basic-plus-data-files_.html"
+      ],
+      "current": [
+        "https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-data-files-calendar-years-1987-present"
+      ],
+      "format": "document",
+      "scope": "Official 2016 EPA TRI archive and current TRI tabular release links.",
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "tri[_-]20\\d\\d[_-](?:ca|us)\\.csv$|/(?:ca|CA)_2016[^/]*\\.zip$",
+      "check_days": 30,
+      "metadata_eligible": true,
+      "hosts": [
+        "19january2021snapshot.epa.gov",
+        "www.epa.gov"
+      ],
+      "max_mb": 48
+    },
+    {
+      "catalog_entry": 198,
+      "source": "market_source_198",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.epa.gov/system/files/other-files/2024-10/2023_data_summary_spreadsheets.zip"
+      ],
+      "current": [
+        "https://www.epa.gov/ghgreporting/data-sets"
+      ],
+      "format": "zip",
+      "scope": "EPA GHGRP annual facility emissions workbooks in official data-summary packages.",
+      "hosts": [
+        "www.epa.gov"
+      ],
+      "tokens": [
+        "ghgp_data_\\d{4}\\.xlsx"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/system/files/other-files/[^/]+/\\d{4}_data_summary_spreadsheets\\.zip$",
+      "check_days": 30,
+      "metadata_eligible": true,
+      "max_mb": 56,
+      "seed_is_document_history": true
+    },
+    {
+      "catalog_entry": 201,
+      "source": "market_source_201",
+      "dataset": "oil",
+      "history": [
+        "https://www.jodidata.org/oil/database/data-downloads.aspx"
+      ],
+      "current": [
+        "https://www.jodidata.org/oil/database/data-downloads.aspx"
+      ],
+      "format": "csv",
+      "scope": "JODI oil primary and secondary monthly country observations in annual CSV releases.",
+      "hosts": [
+        "www.jodidata.org"
+      ],
+      "tokens": [
+        "period",
+        "product",
+        "flow"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/oil-data/annual-csv/(?:primary|secondary)/[^/?]*(?:201[6-9]|202\\d)\\.csv",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "max_mb": 64
+    },
+    {
+      "catalog_entry": 204,
+      "source": "market_source_204",
+      "dataset": "disaggregated_futures",
+      "history": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "current": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "format": "zip",
+      "scope": "Official CFTC yearly commitment-of-traders text archive, one reporting convention per dataset.",
+      "hosts": [
+        "www.cftc.gov"
+      ],
+      "tokens": [
+        "\\.(txt|csv)$"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/files/dea/history/fut_disagg_txt_20(?:1[6-9]|2\\d)\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 204,
+      "source": "market_source_204",
+      "dataset": "disaggregated_combined",
+      "history": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "current": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "format": "zip",
+      "scope": "Official CFTC yearly commitment-of-traders text archive, one reporting convention per dataset.",
+      "hosts": [
+        "www.cftc.gov"
+      ],
+      "tokens": [
+        "\\.(txt|csv)$"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/files/dea/history/com_disagg_txt_20(?:1[6-9]|2\\d)\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 204,
+      "source": "market_source_204",
+      "dataset": "financial_futures",
+      "history": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "current": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "format": "zip",
+      "scope": "Official CFTC yearly commitment-of-traders text archive, one reporting convention per dataset.",
+      "hosts": [
+        "www.cftc.gov"
+      ],
+      "tokens": [
+        "\\.(txt|csv)$"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/files/dea/history/fut_fin_txt_20(?:1[6-9]|2\\d)\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 204,
+      "source": "market_source_204",
+      "dataset": "financial_combined",
+      "history": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "current": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "format": "zip",
+      "scope": "Official CFTC yearly commitment-of-traders text archive, one reporting convention per dataset.",
+      "hosts": [
+        "www.cftc.gov"
+      ],
+      "tokens": [
+        "\\.(txt|csv)$"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/files/dea/history/com_fin_txt_20(?:1[6-9]|2\\d)\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 204,
+      "source": "market_source_204",
+      "dataset": "legacy_futures",
+      "history": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "current": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "format": "zip",
+      "scope": "Official CFTC yearly commitment-of-traders text archive, one reporting convention per dataset.",
+      "hosts": [
+        "www.cftc.gov"
+      ],
+      "tokens": [
+        "\\.(txt|csv)$"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/files/dea/history/deacot(?!_)_?20(?:1[6-9]|2\\d)\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 204,
+      "source": "market_source_204",
+      "dataset": "legacy_combined",
+      "history": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "current": [
+        "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm"
+      ],
+      "format": "zip",
+      "scope": "Official CFTC yearly commitment-of-traders text archive, one reporting convention per dataset.",
+      "hosts": [
+        "www.cftc.gov"
+      ],
+      "tokens": [
+        "\\.(txt|csv)$"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/files/dea/history/deahistfo(?!_)_?20(?:1[6-9]|2\\d)\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 205,
+      "source": "market_source_205",
+      "dataset": "financials",
+      "history": [
+        "https://api.fdic.gov/banks/financials?filters=REPDTE%3A%5B{start_compact}+TO+{last_compact}%5D+AND+CERT%3A3510&limit=100&format=json"
+      ],
+      "current": [
+        "https://api.fdic.gov/banks/financials?filters=REPDTE%3A%5B{start_compact}+TO+{last_compact}%5D+AND+CERT%3A3510&limit=100&format=json"
+      ],
+      "format": "json",
+      "scope": "FDIC BankFind public records for institution CERT 3510. Branch results bounded by the first page.",
+      "hosts": [
+        "api.fdic.gov"
+      ],
+      "tokens": [],
+      "fields": [
+        "data.CERT",
+        "data.REPDTE",
+        "data.ASSET"
+      ],
+      "path": [
+        "data"
+      ],
+      "link": null,
+      "check_days": 30,
+      "metadata_eligible": true,
+      "history_step": "year",
+      "current_step": "year",
+      "lag_days": 150,
+      "dated": [
+        "data.REPDTE"
+      ]
+    },
+    {
+      "catalog_entry": 205,
+      "source": "market_source_205",
+      "dataset": "deposits",
+      "history": [
+        "https://api.fdic.gov/banks/sod?filters=YEAR%3A{year}+AND+CERT%3A3510&limit=100&format=json"
+      ],
+      "current": [
+        "https://api.fdic.gov/banks/sod?filters=YEAR%3A{year}+AND+CERT%3A3510&limit=100&format=json"
+      ],
+      "format": "json",
+      "scope": "FDIC BankFind public records for institution CERT 3510. Branch results bounded by the first page.",
+      "hosts": [
+        "api.fdic.gov"
+      ],
+      "tokens": [],
+      "fields": [
+        "data.CERT",
+        "data.YEAR",
+        "data.DEPSUMBR"
+      ],
+      "path": [
+        "data"
+      ],
+      "link": null,
+      "check_days": 30,
+      "metadata_eligible": true,
+      "history_step": "year",
+      "current_step": "year",
+      "lag_days": 150,
+      "dated": [
+        "data.YEAR"
+      ]
+    },
+    {
+      "catalog_entry": 207,
+      "source": "market_source_207",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files"
+      ],
+      "current": [
+        "https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-files"
+      ],
+      "format": "csv",
+      "scope": "Official vehicle stock and first registrations by make/model, Great Britain and UK as published.",
+      "hosts": [
+        "assets.publishing.service.gov.uk",
+        "www.gov.uk"
+      ],
+      "tokens": [
+        "make",
+        "model"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/df_VEH0(?:120|160|124|164)_[a-z]+\\.csv$",
+      "check_days": 21,
+      "metadata_eligible": true,
+      "max_mb": 64
+    },
+    {
+      "catalog_entry": 209,
+      "source": "market_source_209",
+      "dataset": "provider_data",
+      "history": [
+        "https://apisidra.ibge.gov.br/values/t/8159/n1/all/v/11601/p/{year}{month02}/c544/129314"
+      ],
+      "current": [
+        "https://apisidra.ibge.gov.br/values/t/8159/n1/all/v/11601/p/{year}{month02}/c544/129314"
+      ],
+      "format": "json",
+      "scope": "IBGE SIDRA production index for the selected national activity and variable. Native dimensions retained.",
+      "tokens": [],
+      "fields": [
+        "NC",
+        "NN",
+        "V",
+        "D1C"
+      ],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "hosts": [
+        "apisidra.ibge.gov.br"
+      ],
+      "history_step": "month",
+      "current_step": "month",
+      "lag_days": 105,
+      "json_header": true
+    },
+    {
+      "catalog_entry": 210,
+      "source": "market_source_210",
+      "dataset": "provider_data",
+      "history": [
+        "https://www2.census.gov/econ/bps/State/st{year}a.txt"
+      ],
+      "current": [
+        "https://www2.census.gov/econ/bps/State/st{year}a.txt"
+      ],
+      "format": "text",
+      "scope": "Annual state building permits survey text files; monthly and other geographic levels remain separate.",
+      "hosts": [
+        "www2.census.gov"
+      ],
+      "tokens": [
+        "FIPS",
+        "Bldgs",
+        "Units"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 30,
+      "metadata_eligible": true,
+      "history_step": "year",
+      "current_step": "year",
+      "lag_days": 365,
+      "dated_pattern": "(?m)^((?:19|20)\\d{2})99,"
+    },
+    {
+      "catalog_entry": 214,
+      "source": "market_source_214",
+      "dataset": "provider_data",
+      "capture_revision": "trial-protocol-v1",
+      "history": [
+        "https://www.clinicaltrialsregister.eu/ctr-search/trial/2016-001694-32/GB",
+        "https://www.clinicaltrialsregister.eu/ctr-search/trial/2016-003544-37/GB"
+      ],
+      "current": [],
+      "format": "html",
+      "scope": "Original EU CTR trial protocol details with visible trial, sponsor and entry-date fields. Active discovery remains subject to the legacy-register migration.",
+      "tokens": [
+        "Date on which this record was first entered in the EudraCT database",
+        "Full title of the trial",
+        "Name of Sponsor"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 30,
+      "metadata_eligible": true,
+      "hosts": [
+        "www.clinicaltrialsregister.eu"
+      ]
+    },
+    {
+      "catalog_entry": 215,
+      "source": "market_source_215",
+      "dataset": "provider_data",
+      "history": [
+        "https://wits.worldbank.org/API/V1/SDMX/V21/rest/data/DF_WITS_Tariff_TRAINS/.840.000.020110.reported/?startperiod={year}&endperiod={year}"
+      ],
+      "current": [
+        "https://wits.worldbank.org/API/V1/SDMX/V21/rest/data/DF_WITS_Tariff_TRAINS/.840.000.020110.reported/?startperiod={year}&endperiod={year}"
+      ],
+      "format": "xml",
+      "scope": "WITS applied tariff for the documented US/world HS 020110 reference series. Additional sector scope requires validated HS selections.",
+      "hosts": [
+        "wits.worldbank.org"
+      ],
+      "tokens": [
+        "obs",
+        "time_period"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 30,
+      "metadata_eligible": true,
+      "history_step": "year",
+      "current_step": "year",
+      "lag_days": 300
+    },
+    {
+      "catalog_entry": 220,
+      "source": "market_source_220",
+      "dataset": "projects",
+      "history": [
+        "https://search.worldbank.org/api/v2/projects?format=json&frmYear={year}&toYear={year}&rows=100&os=0"
+      ],
+      "current": [
+        "https://search.worldbank.org/api/v2/projects?format=json&frmYear={year}&toYear={year}&rows=100&os=0"
+      ],
+      "format": "json",
+      "scope": "World Bank project data first 100 returned rows per approval year, with source-native fields preserved.",
+      "hosts": [
+        "search.worldbank.org"
+      ],
+      "tokens": [],
+      "fields": [
+        "id",
+        "project_name",
+        "countryshortname"
+      ],
+      "path": [
+        "projects"
+      ],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "history_step": "year",
+      "current_step": "year",
+      "page_total": "total",
+      "dict_records": true,
+      "dated": [
+        "boardapprovaldate"
+      ]
+    },
+    {
+      "catalog_entry": 221,
+      "source": "market_source_221",
+      "dataset": "provider_data",
+      "history": [
+        "https://docs.aiddata.org/ad4/datasets/AidDatas_CLG_Global_Dataset_v1.0.zip"
+      ],
+      "current": [],
+      "format": "zip",
+      "scope": "Published AidData China global loans and grants v1.0 retrospective release, including bundled codebook.",
+      "hosts": [
+        "docs.aiddata.org"
+      ],
+      "tokens": [
+        "Global_Dataset_v1\\.0\\.xlsx"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 30,
+      "metadata_eligible": true,
+      "max_mb": 64
+    },
+    {
+      "catalog_entry": 229,
+      "source": "market_source_229",
+      "dataset": "downloads",
+      "history": [
+        "https://api.npmjs.org/downloads/range/{date}:{last}/express"
+      ],
+      "current": [
+        "https://api.npmjs.org/downloads/range/{date}:{last}/express"
+      ],
+      "format": "json",
+      "scope": "Express package only. Conditional historical floor validated against 2016 response rows before activation.",
+      "hosts": [
+        "api.npmjs.org"
+      ],
+      "tokens": [],
+      "fields": [
+        "day",
+        "downloads"
+      ],
+      "path": [
+        "downloads"
+      ],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "month",
+      "current_step": "month",
+      "lag_days": 2,
+      "dated": [
+        "day"
+      ]
+    },
+    {
+      "catalog_entry": 229,
+      "source": "market_source_229",
+      "dataset": "release_metadata",
+      "history": [
+        "https://registry.npmjs.org/express"
+      ],
+      "current": [
+        "https://registry.npmjs.org/express"
+      ],
+      "format": "json",
+      "scope": "Express registry release and version metadata, including provider timestamps.",
+      "hosts": [
+        "registry.npmjs.org"
+      ],
+      "tokens": [],
+      "fields": [
+        "name",
+        "versions",
+        "time"
+      ],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 234,
+      "source": "market_source_234",
+      "dataset": "provider_data",
+      "history": [
+        "https://data.cdc.gov/api/v3/views/dwqk-w36f/export.csv"
+      ],
+      "current": [],
+      "format": "csv",
+      "scope": "CDC 2016 NNDSS official annual export only. Additional annual dataset IDs need separate discovery.",
+      "hosts": [
+        "data.cdc.gov"
+      ],
+      "tokens": [
+        "year",
+        "week"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "max_mb": 24
+    },
+    {
+      "catalog_entry": 236,
+      "source": "market_source_236",
+      "dataset": "rsv_archive_2010_2020",
+      "history": [
+        "https://data.cdc.gov/api/v3/views/52kb-ccu2/export.csv"
+      ],
+      "current": [],
+      "format": "csv",
+      "scope": "CDC NREVSS published 2010–2020 RSV archive. Historical-only.",
+      "hosts": [
+        "data.cdc.gov"
+      ],
+      "tokens": [
+        "rsv",
+        "year"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "max_mb": 24
+    },
+    {
+      "catalog_entry": 238,
+      "source": "market_source_238",
+      "dataset": "demographics",
+      "history": [
+        "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Demographics&Cycle={year}-{next_year}"
+      ],
+      "current": [
+        "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Demographics&Cycle={year}-{next_year}"
+      ],
+      "format": "xpt",
+      "scope": "CDC public-use NHANES Demographics SAS transport datasets, beginning 2015–16 survey cycle.",
+      "hosts": [
+        "wwwn.cdc.gov"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/[^/?]+\\.xpt(?:\\?|$)",
+      "check_days": 30,
+      "metadata_eligible": true,
+      "history_step": "cycle",
+      "current_step": "cycle",
+      "lag_days": 730
+    },
+    {
+      "catalog_entry": 238,
+      "source": "market_source_238",
+      "dataset": "exam",
+      "history": [
+        "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Examination&Cycle={year}-{next_year}"
+      ],
+      "current": [
+        "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Examination&Cycle={year}-{next_year}"
+      ],
+      "format": "xpt",
+      "scope": "CDC public-use NHANES Examination SAS transport datasets, beginning 2015–16 survey cycle.",
+      "hosts": [
+        "wwwn.cdc.gov"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/[^/?]+\\.xpt(?:\\?|$)",
+      "check_days": 30,
+      "metadata_eligible": true,
+      "history_step": "cycle",
+      "current_step": "cycle",
+      "lag_days": 730
+    },
+    {
+      "catalog_entry": 238,
+      "source": "market_source_238",
+      "dataset": "lab",
+      "history": [
+        "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Laboratory&Cycle={year}-{next_year}"
+      ],
+      "current": [
+        "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Laboratory&Cycle={year}-{next_year}"
+      ],
+      "format": "xpt",
+      "scope": "CDC public-use NHANES Laboratory SAS transport datasets, beginning 2015–16 survey cycle.",
+      "hosts": [
+        "wwwn.cdc.gov"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/[^/?]+\\.xpt(?:\\?|$)",
+      "check_days": 30,
+      "metadata_eligible": true,
+      "history_step": "cycle",
+      "current_step": "cycle",
+      "lag_days": 730
+    },
+    {
+      "catalog_entry": 238,
+      "source": "market_source_238",
+      "dataset": "questionnaire",
+      "history": [
+        "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Questionnaire&Cycle={year}-{next_year}"
+      ],
+      "current": [
+        "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Questionnaire&Cycle={year}-{next_year}"
+      ],
+      "format": "xpt",
+      "scope": "CDC public-use NHANES Questionnaire SAS transport datasets, beginning 2015–16 survey cycle.",
+      "hosts": [
+        "wwwn.cdc.gov"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/[^/?]+\\.xpt(?:\\?|$)",
+      "check_days": 30,
+      "metadata_eligible": true,
+      "history_step": "cycle",
+      "current_step": "cycle",
+      "lag_days": 730
+    },
+    {
+      "catalog_entry": 239,
+      "source": "market_source_239",
+      "dataset": "nhis",
+      "history": [
+        "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHIS/2016/personsx.zip",
+        "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHIS/2016/personsxcsv.zip",
+        "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHIS/2016/samadult.zip",
+        "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHIS/2016/samadultcsv.zip"
+      ],
+      "current": [],
+      "format": "zip",
+      "scope": "CDC public 2016 NHIS original sample microdata. Current release needs the post-2016 catalogue.",
+      "hosts": [
+        "ftp.cdc.gov"
+      ],
+      "tokens": [
+        "\\.(dat|txt|xpt|csv)$"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "max_mb": 64
+    },
+    {
+      "catalog_entry": 239,
+      "source": "market_source_239",
+      "dataset": "brfss",
+      "history": [
+        "https://www.cdc.gov/brfss/annual_data/2016/files/LLCP2016ASC.zip",
+        "https://www.cdc.gov/brfss/annual_data/2016/files/LLCP2016XPT.zip"
+      ],
+      "current": [],
+      "format": "zip",
+      "scope": "CDC public 2016 BRFSS original sample microdata. Current release needs the post-2016 catalogue.",
+      "hosts": [
+        "www.cdc.gov"
+      ],
+      "tokens": [
+        "\\.(dat|txt|xpt|csv)$"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "max_mb": 100,
+      "max_expanded_mb": 900
+    },
+    {
+      "catalog_entry": 240,
+      "source": "market_source_240",
+      "dataset": "uscs",
+      "history": [
+        "https://www.cdc.gov/united-states-cancer-statistics/dataviz/data-tables.html"
+      ],
+      "current": [
+        "https://www.cdc.gov/united-states-cancer-statistics/dataviz/data-tables.html"
+      ],
+      "format": "zip",
+      "scope": "CDC USCS versioned public cancer incidence/mortality data as distributed.",
+      "hosts": [
+        "www.cdc.gov"
+      ],
+      "tokens": [
+        "\\.(txt|dat|csv)$"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/cancer/uscs/USCS-1999-20(?:1[6-9]|2\\d)-ASCII\\.zip$",
+      "check_days": 30,
+      "metadata_eligible": true,
+      "max_mb": 64,
+      "seed_is_document_history": false
+    },
+    {
+      "catalog_entry": 241,
+      "source": "market_source_241",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.cdc.gov/acip-recs/hcp/recs-by-date/index.html"
+      ],
+      "current": [
+        "https://www.cdc.gov/acip-recs/hcp/recs-by-date/index.html"
+      ],
+      "format": "html",
+      "scope": "CDC ACIP-linked published MMWR recommendation text.",
+      "hosts": [
+        "www.cdc.gov"
+      ],
+      "tokens": [
+        "recommendation",
+        "mmwr"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/mmwr/volumes/\\d+/(?:rr|wr)/mm\\d+[a-z0-9]+\\.htm(?:\\?|$)",
+      "check_days": 1,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 242,
+      "source": "market_source_242",
+      "dataset": "provider_data",
+      "history": [
+        "https://ghoapi.azureedge.net/api/WHOSIS_000001?$filter=TimeDim%20eq%20{year}&$top=1000"
+      ],
+      "current": [
+        "https://ghoapi.azureedge.net/api/WHOSIS_000001?$filter=TimeDim%20eq%20{year}&$top=1000"
+      ],
+      "format": "json",
+      "scope": "WHO published life expectancy series, annual national data. This is a selected GHO indicator.",
+      "hosts": [
+        "ghoapi.azureedge.net"
+      ],
+      "tokens": [],
+      "fields": [
+        "IndicatorCode",
+        "SpatialDim",
+        "TimeDim",
+        "NumericValue"
+      ],
+      "path": [
+        "value"
+      ],
+      "link": null,
+      "check_days": 30,
+      "metadata_eligible": true,
+      "history_step": "year",
+      "current_step": "year",
+      "lag_days": 1095,
+      "dated": [
+        "TimeDim"
+      ],
+      "empty_ok": true
+    },
+    {
+      "catalog_entry": 243,
+      "source": "market_source_243",
+      "dataset": "flunet",
+      "history": [
+        "https://xmart-api-public.who.int/FLUMART/VIW_FNT?$format=csv&$filter=ISO_YEAR%20eq%20{year}%20and%20COUNTRY_CODE%20eq%20%27USA%27&$top=1000"
+      ],
+      "current": [
+        "https://xmart-api-public.who.int/FLUMART/VIW_FNT?$format=csv&$filter=ISO_YEAR%20eq%20{year}%20and%20COUNTRY_CODE%20eq%20%27USA%27&$top=1000"
+      ],
+      "format": "csv",
+      "scope": "WHO influenza surveillance table, United States, weekly records from the scoped annual public export.",
+      "tokens": [
+        "country_code",
+        "iso_year",
+        "inf_all"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "hosts": [
+        "xmart-api-public.who.int"
+      ],
+      "history_step": "year",
+      "current_step": "year",
+      "lag_days": 30
+    },
+    {
+      "catalog_entry": 243,
+      "source": "market_source_243",
+      "dataset": "fluid",
+      "history": [
+        "https://xmart-api-public.who.int/FLUMART/VIW_FID_EPI?$format=csv&$filter=ISO_YEAR%20eq%20{year}%20and%20COUNTRY_CODE%20eq%20%27USA%27&$top=1000"
+      ],
+      "current": [
+        "https://xmart-api-public.who.int/FLUMART/VIW_FID_EPI?$format=csv&$filter=ISO_YEAR%20eq%20{year}%20and%20COUNTRY_CODE%20eq%20%27USA%27&$top=1000"
+      ],
+      "format": "csv",
+      "scope": "WHO influenza surveillance table, United States, weekly records from the scoped annual public export.",
+      "tokens": [
+        "country_code",
+        "iso_year",
+        "ili"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "hosts": [
+        "xmart-api-public.who.int"
+      ],
+      "history_step": "year",
+      "current_step": "year",
+      "lag_days": 30
+    },
+    {
+      "catalog_entry": 244,
+      "source": "market_source_244",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.who.int/emergencies/emergency-events/item/{year}"
+      ],
+      "current": [
+        "https://www.who.int/emergencies/disease-outbreak-news"
+      ],
+      "format": "html",
+      "scope": "WHO public Disease Outbreak News documents linked by annual archive or current release.",
+      "hosts": [
+        "www.who.int"
+      ],
+      "tokens": [
+        "disease outbreak news",
+        "<h1"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/emergencies/disease-outbreak-news/item/[^/?#]+",
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "year"
+    },
+    {
+      "catalog_entry": 249,
+      "source": "market_source_249",
+      "dataset": "insider_bulk",
+      "history": [
+        "https://www.sec.gov/data-research/sec-markets-data/insider-transactions-data-sets"
+      ],
+      "current": [
+        "https://www.sec.gov/data-research/sec-markets-data/insider-transactions-data-sets"
+      ],
+      "format": "zip",
+      "scope": "SEC structured quarterly insider holdings and transactions edition. Related EDGAR source 005 already retrieves filings. Raw edition metadata preserves coverage and does not infer trades.",
+      "hosts": [
+        "www.sec.gov"
+      ],
+      "tokens": [
+        "NONDERIV_TRANS\\.tsv"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/files/[^/]+/data/[^/]+/[^/?]*_form345\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "max_mb": 64
+    },
+    {
+      "catalog_entry": 251,
+      "source": "market_source_251",
+      "dataset": "holdings_bulk",
+      "history": [
+        "https://www.sec.gov/data-research/sec-markets-data/form-13f-data-sets"
+      ],
+      "current": [
+        "https://www.sec.gov/data-research/sec-markets-data/form-13f-data-sets"
+      ],
+      "format": "zip",
+      "scope": "SEC structured quarterly 13F institutional holdings positions edition. Related EDGAR source 005 already retrieves filings. Raw edition metadata preserves coverage and does not infer trades.",
+      "hosts": [
+        "www.sec.gov"
+      ],
+      "tokens": [
+        "INFOTABLE\\.tsv"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/files/[^/]+/data/[^/]+/[^/?]*_form13f\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "max_mb": 64
+    },
+    {
+      "catalog_entry": 257,
+      "source": "market_source_257",
+      "dataset": "current_register",
+      "history": [],
+      "current": [
+        "https://interests-api.parliament.uk/api/v2/Interests/csv"
+      ],
+      "format": "csv",
+      "scope": "UK Parliament official Commons published interests CSV under the Open Parliament Licence.",
+      "tokens": [
+        "member",
+        "category",
+        "interest"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "hosts": [
+        "interests-api.parliament.uk"
+      ],
+      "max_mb": 32
+    },
+    {
+      "catalog_entry": 257,
+      "source": "market_source_257",
+      "dataset": "legacy_register",
+      "history": [
+        "https://publications.parliament.uk/pa/cm/cmregmem/contents1516.htm"
+      ],
+      "current": [],
+      "format": "pdf",
+      "scope": "UK Parliament original financial-interests registers in the 2015–16 session archive.",
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/pa/cm/cmregmem/[^/]*2016[^/]*\\.pdf$|/pa/cm/cmregmem/\\d+/\\w+\\.pdf$",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "hosts": [
+        "publications.parliament.uk"
+      ]
+    },
+    {
+      "catalog_entry": 264,
+      "source": "market_source_264",
+      "dataset": "final",
+      "history": [
+        "https://www.eia.gov/electricity/data/eia923/index.php"
+      ],
+      "current": [
+        "https://www.eia.gov/electricity/data/eia923/index.php"
+      ],
+      "format": "zip",
+      "scope": "EIA-923 archive and recent annual packages. Current reporting year is isolated in the preliminary stream.",
+      "hosts": [
+        "www.eia.gov"
+      ],
+      "tokens": [
+        "2_3_4_5|Page 1|Schedules_2"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/electricity/data/eia923/(?:archive/)?xls/f923_20(?:1[6-9]|2\\d)\\.zip$",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "exclude_current_year": true,
+      "max_mb": 48
+    },
+    {
+      "catalog_entry": 264,
+      "source": "market_source_264",
+      "dataset": "preliminary",
+      "history": [],
+      "current": [
+        "https://www.eia.gov/electricity/data/eia923/xls/f923_{year}.zip"
+      ],
+      "format": "zip",
+      "scope": "Current calendar-year EIA-923 year-to-date preliminary release. Annual final reconciliation uses the independently captured archive.",
+      "hosts": [
+        "www.eia.gov"
+      ],
+      "tokens": [
+        "2_3_4_5|Page 1|Schedules_2"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 7,
+      "metadata_eligible": true,
+      "current_step": "year",
+      "lag_days": 90,
+      "max_mb": 48
+    },
+    {
+      "catalog_entry": 265,
+      "source": "market_source_265",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.nrc.gov/documents-reports/document-collections/events-reports-associated-with/power-reactor-status-reports/{year}/{year}PowerStatus.txt"
+      ],
+      "current": [
+        "https://www.nrc.gov/documents-reports/document-collections/events-reports-associated-with/power-reactor-status-reports/PowerReactorStatusForLast365Days.txt"
+      ],
+      "format": "text",
+      "scope": "Official NRC dated tabular reactor power-status publications, including annual original snapshots and the rolling current file.",
+      "hosts": [
+        "www.nrc.gov"
+      ],
+      "tokens": [
+        "unit",
+        "power"
+      ],
+      "fields": [],
+      "path": [],
+      "link": null,
+      "check_days": 1,
+      "metadata_eligible": true,
+      "history_step": "year",
+      "dated_pattern": "(\\d{1,2}/\\d{1,2}/(?:19|20)\\d{2})"
+    },
+    {
+      "catalog_entry": 267,
+      "source": "market_source_267",
+      "dataset": "semiconductor_equipment",
+      "history": [
+        "https://www.meti.go.jp/english/statistics/tyo/seidou/"
+      ],
+      "current": [
+        "https://www.meti.go.jp/english/statistics/tyo/seidou/"
+      ],
+      "format": "document",
+      "scope": "Official METI production statistics workbooks and long-series publications. Component rows require validation from the original workbook.",
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/[^/]*(?:kikai|seido|monthly|machinery|seisan)[^/]*\\.(?:xlsx|pdf)$",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "hosts": [
+        "www.meti.go.jp"
+      ]
+    },
+    {
+      "catalog_entry": 267,
+      "source": "market_source_267",
+      "dataset": "industrial_robots",
+      "history": [
+        "https://www.meti.go.jp/english/statistics/tyo/seidou/"
+      ],
+      "current": [
+        "https://www.meti.go.jp/english/statistics/tyo/seidou/"
+      ],
+      "format": "document",
+      "scope": "Official METI production statistics workbooks and long-series publications. Component rows require validation from the original workbook.",
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/[^/]*(?:kikai|seido|monthly|machinery|seisan)[^/]*\\.(?:xlsx|pdf)$",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "hosts": [
+        "www.meti.go.jp"
+      ]
+    },
+    {
+      "catalog_entry": 267,
+      "source": "market_source_267",
+      "dataset": "machinery",
+      "history": [
+        "https://www.meti.go.jp/english/statistics/tyo/seidou/"
+      ],
+      "current": [
+        "https://www.meti.go.jp/english/statistics/tyo/seidou/"
+      ],
+      "format": "document",
+      "scope": "Official METI production statistics workbooks and long-series publications. Component rows require validation from the original workbook.",
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/[^/]*(?:kikai|seido|monthly|machinery|seisan)[^/]*\\.(?:xlsx|pdf)$",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "hosts": [
+        "www.meti.go.jp"
+      ]
+    },
+    {
+      "catalog_entry": 268,
+      "source": "market_source_268",
+      "dataset": "quarterly",
+      "history": [
+        "https://www.jara.jp/e/data/quarterly.html"
+      ],
+      "current": [
+        "https://www.jara.jp/e/data/quarterly.html"
+      ],
+      "format": "document",
+      "scope": "JARA official quarterly order/production/shipment tables in the English archive.",
+      "hosts": [
+        "www.jara.jp"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/e/data/dl/quarter/[^/?]+\\.(?:xlsx|pdf)$",
+      "check_days": 7,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 269,
+      "source": "market_source_269",
+      "dataset": "provider_data",
+      "history": [
+        "https://www.jmtba.or.jp/english/category/machine-tool-orders/"
+      ],
+      "current": [
+        "https://www.jmtba.or.jp/english/category/machine-tool-orders/"
+      ],
+      "format": "pdf",
+      "scope": "JMTBA monthly Machine Tool Orders notes and tables in the official English archive.",
+      "hosts": [
+        "www.jmtba.or.jp"
+      ],
+      "tokens": [],
+      "fields": [],
+      "path": [],
+      "link": "/wp-content/uploads/(?:\\d{4}/\\d{2}/)?JMTBA-NOTES-20(?:1[6-9]|2\\d)[^/?]*\\.pdf$",
+      "check_days": 7,
+      "metadata_eligible": true
+    },
+    {
+      "catalog_entry": 270,
+      "source": "market_source_270",
+      "dataset": "orders",
+      "history": [
+        "https://www.automate.org/robotics/news/north-american-robotics-market-sets-new-records-in-2015",
+        "https://www.automate.org/robotics/news/north-american-robotics-market-records-strongest-opening-quarter-ever",
+        "https://www.automate.org/robotics/news/north-american-robotics-market-sets-new-record-in-first-half-of-2016",
+        "https://www.automate.org/robotics/news/north-american-robotics-market-sets-new-records-for-first-nine-months-of-2016",
+        "https://www.automate.org/news/2016-breaks-records-for-north-american-robot-orders-and-shipments"
+      ],
+      "current": [
+        "https://www.automate.org/robotics/news"
+      ],
+      "format": "html",
+      "scope": "A3/RIA public order announcement pages, including the original 2016 releases. The primary article calendar gives the release date independently from its reporting period.",
+      "hosts": [
+        "www.automate.org"
+      ],
+      "tokens": [
+        "robot",
+        "orders",
+        "record"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/(?:robotics/)?news/[^/?]*(?:robot[-s]*-order|robotics[-a-z]*-sales|robot-orders)[^/?]*$",
+      "check_days": 7,
+      "metadata_eligible": true,
+      "seed_is_document_history": true,
+      "capture_revision": "a3-2016-releases-v2"
+    },
+    {
+      "catalog_entry": 272,
+      "source": "market_source_272",
+      "dataset": "provider_data",
+      "history": [
+        "https://emp.lbl.gov/sites/default/files/2026-05/LBNL_Ix_Queue_Data_File_thru2025.xlsx"
+      ],
+      "current": [
+        "https://emp.lbl.gov/sites/default/files/2026-05/LBNL_Ix_Queue_Data_File_thru2025.xlsx",
+        "https://eta-publications.lbl.gov/publications/queued-2026-edition-characteristics"
+      ],
+      "format": "xlsx",
+      "scope": "Berkeley Lab Queued Up project-level spreadsheet, revised retrospective edition. Queued projects do not establish operating status at earlier dates.",
+      "hosts": [
+        "emp.lbl.gov",
+        "eta-publications.lbl.gov"
+      ],
+      "tokens": [
+        "codebook|project"
+      ],
+      "fields": [],
+      "path": [],
+      "link": "/[^/?]*LBNL[^/?]*Queue[^/?]*\\.xlsx$",
+      "check_days": 30,
+      "metadata_eligible": true,
+      "seed_is_document_history": true,
+      "max_mb": 32,
+      "max_expanded_mb": 900,
+      "direct_document_ext": ".xlsx"
+    }
+  ]
+}

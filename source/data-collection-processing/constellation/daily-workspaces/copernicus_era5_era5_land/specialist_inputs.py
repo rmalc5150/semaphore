@@ -17,7 +17,7 @@ from urllib.parse import urlencode, urljoin
 import xml.etree.ElementTree as ET
 from urllib.parse import urlsplit
 
-from collection_storage import AlreadyComplete, CollectionRun, StorageSettings, now, task_spec, write_json
+from collection_storage import AlreadyComplete, CollectionRun, Conflict, StorageSettings, now, task_spec, write_json
 from research_contract import ROOT, digest, load_json, seal_record
 from regulatory_collection import EvidenceClient, SourceIssue, require, stamp
 
@@ -657,7 +657,11 @@ def main():
         # receipt, and the preceding successful source is not the failed one.
         print(json.dumps({'stage': 'capture_started', 'source': job['source'],
                           'job_id': identity, 'start': job['start'], 'end_exclusive': job['end']}), flush=True)
-        result = collect(job, store, settings, universe, taxonomy, args.pages)
+        try:
+            result = collect(job, store, settings, universe, taxonomy, args.pages)
+        except Conflict:
+            # Keep a checkpoint conflict attached to its exact scheduled window.
+            result = {'status': 'failed', 'reason': 'collection_checkpoint_conflict'}
         row = {**result, 'job_id': identity, 'source': job['source'], 'source_id': job['source_id'],
                'start': job['start'], 'end_exclusive': job['end'], 'last_attempt': now(), 'job': job}
         if result['status'] == 'failed':

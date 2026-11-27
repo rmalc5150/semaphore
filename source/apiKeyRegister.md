@@ -35,9 +35,6 @@ NICE replied: syndication application and cybersecurity certification/report rev
 opendart (98):
 dart
 
-kosis (99):
-**emailed
-
 census (118):
 US-census
 

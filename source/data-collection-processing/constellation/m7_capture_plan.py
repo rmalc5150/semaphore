@@ -13,6 +13,15 @@ JOBS={
 }
 import json
 from pathlib import Path
+PUBLIC_FILE_JOBS={
+ 'public-ndb-daily':'japan_mhlw_ndb_open_data',
+ 'public-indonesia-minerals-daily':'indonesia_esdm_and_geological_agency_mineral_statistics',
+ 'public-cfem-daily':'brazil_anm_cfem_mining_royalties',
+}
+extra_public_jobs = Path(__file__).resolve().parents[1] / 'config/m7-public-file-jobs.json'
+if extra_public_jobs.exists():
+    PUBLIC_FILE_JOBS.update(json.loads(extra_public_jobs.read_text()))
+JOBS.update({name:['public_source_capture.py','--source',source,'--mode','daily','--limit','2']for name,source in PUBLIC_FILE_JOBS.items()})
 STAGED={'federal-register-daily-enrichment','nist-robotics-daily'}
 activation=Path(__file__).resolve().parents[1]/'config/m7-document-capture-active.json'
 enabled=set(json.loads(activation.read_text()))if activation.exists()else set()

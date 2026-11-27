@@ -1,17 +1,19 @@
 {
   "checked_on": "2026-10-26",
-  "catalog_entries": 158,
+  "catalog_entries": 156,
   "credential_group_counts": {
     "stored": 11,
-    "paused_stored": 2,
     "stored_optional": 1,
     "configured_identity": 1,
-    "obtain": 18,
+    "paused_stored": 1,
+    "obtain": 15,
+    "stored_validated": 1,
+    "credentials_present_validation_blocked": 1,
+    "credentials_present_product_access_blocked": 1,
     "commercial_conditional": 9,
     "optional": 5,
     "paused_optional": 1,
-    "license_not_key": 4,
-    "stored_validated": 1
+    "license_not_key": 4
   },
   "values_included": false,
   "scope": "Existing config/Secrets Manager presence plus current official access documentation. Presence does not verify token validity, historic entitlement or commercial ML rights.",
@@ -46,16 +48,6 @@
       "credential": "API key",
       "action": "Use existing finlight-api-key in newKeys; archive availability is separate.",
       "reference": "https://docs.finlight.me/"
-    },
-    {
-      "group": "marketaux",
-      "catalog_entries": [
-        12
-      ],
-      "status": "paused_stored",
-      "credential": "API token",
-      "action": "Already stored. Keep paused; do not renew or reactivate for this task.",
-      "reference": "https://www.marketaux.com/documentation"
     },
     {
       "group": "openfda",
@@ -265,16 +257,6 @@
       "credential": "Authentication key",
       "action": "Register at OpenDART and request an authentication key.",
       "reference": "https://engopendart.fss.or.kr/uss/umt/EgovMberInsertView.do"
-    },
-    {
-      "group": "kosis",
-      "catalog_entries": [
-        99
-      ],
-      "status": "obtain",
-      "credential": "KOSIS OpenAPI key",
-      "action": "Apply for the KOSIS authentication key; a different data.go.kr route can have a different service key.",
-      "reference": "https://kosis.kr/openapi/"
     },
     {
       "group": "census",
@@ -677,17 +659,6 @@
       "credential": "API key",
       "action": "Use existing finlight-api-key in newKeys; archive availability is separate.",
       "reference": "https://docs.finlight.me/",
-      "historical_start_target": "2016-01-01"
-    },
-    {
-      "catalog_entry": 12,
-      "source_key": "marketaux",
-      "source_name": "Marketaux news (paused)",
-      "credential_group": "marketaux",
-      "access_status": "paused_stored",
-      "credential": "API token",
-      "action": "Already stored. Keep paused; do not renew or reactivate for this task.",
-      "reference": "https://www.marketaux.com/documentation",
       "historical_start_target": "2016-01-01"
     },
     {
@@ -1634,17 +1605,6 @@
       "credential": "Authentication key",
       "action": "Register at OpenDART and request an authentication key.",
       "reference": "https://engopendart.fss.or.kr/uss/umt/EgovMberInsertView.do",
-      "historical_start_target": "2016-01-01"
-    },
-    {
-      "catalog_entry": 99,
-      "source_key": "south_korea_kosis_statistical_openapi",
-      "source_name": "South Korea KOSIS statistical OpenAPI",
-      "credential_group": "kosis",
-      "access_status": "obtain",
-      "credential": "KOSIS OpenAPI key",
-      "action": "Apply for the KOSIS authentication key; a different data.go.kr route can have a different service key.",
-      "reference": "https://kosis.kr/openapi/",
       "historical_start_target": "2016-01-01"
     },
     {

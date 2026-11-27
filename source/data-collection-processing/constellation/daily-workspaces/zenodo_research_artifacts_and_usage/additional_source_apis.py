@@ -6,11 +6,14 @@ import re
 from urllib.parse import urlsplit,urlencode,urlunsplit,parse_qsl
 import requests
 from regulatory_collection import SourceIssue,require
+from research_contract import digest
 
 KINDS={'additional_fred','additional_dart','additional_nasa','additional_biorxiv','additional_datacite','additional_zenodo','additional_huggingface','additional_epo'}
 KINDS.update('additional_'+k for k in ('ember','wto_timeseries','wto_qr','wto_eping','census','usda','comtrade','copernicus'))
+KINDS.update(('additional_portwatch','additional_unido','additional_nhsbsa'))
 HOSTS={'api.stlouisfed.org','opendart.fss.or.kr','power.larc.nasa.gov','api.biorxiv.org','www.biorxiv.org','www.medrxiv.org','api.datacite.org','zenodo.org','huggingface.co'}
 HOSTS.update({'api.ember-energy.org','api.wto.org','api.census.gov','apps.fas.usda.gov','api.fas.usda.gov','comtradeapi.un.org'})
+HOSTS.update(('services9.arcgis.com','stat.unido.org','opendata.nhsbsa.net'))
 SECRET='arn:aws:secretsmanager:us-east-1:059416028963:secret:dataSourceAPIkeys-PSTzff'
 
 @lru_cache(maxsize=1)
@@ -35,6 +38,7 @@ def get_json(client,url,params=None,key_field=None,key_parameter='api_key',key_h
     if key_header:headers[key_header]=key.strip()
     from constellation.shared_limits import admit
     admit(url)
+    stage='http_request'
     try:
         with requests.get(url,params=query,headers=headers,timeout=(10,30),stream=True,allow_redirects=False) as r:
             pieces=[];size=0
@@ -45,7 +49,9 @@ def get_json(client,url,params=None,key_field=None,key_parameter='api_key',key_h
                 for value in {key,key.strip(),json.dumps(key)[1:-1]}:body=body.replace(value.encode(),b'[REDACTED]')
             # Evidence includes provider error bodies, with credentials removed.
             public_url=url+('?' +urlencode(public,doseq=True) if public else '')
+            stage='archive_response'
             client.save(body,public_url,r.headers.get('Content-Type','application/json'))
+            stage='parse_response'
             if r.status_code == 302 and urlsplit(url).hostname == 'api.census.gov':
                 location = urlsplit(r.headers.get('Location', ''))
                 if location.path == '/data/invalid_key.html' and location.hostname in (None, 'api.census.gov'):
@@ -67,7 +73,13 @@ def get_json(client,url,params=None,key_field=None,key_parameter='api_key',key_h
             except (ValueError,UnicodeDecodeError):raise SourceIssue('additional_non_json_response') from None
             return data,r.links.get('next',{}).get('url')
     except SourceIssue:raise
-    except Exception:raise SourceIssue('additional_request_failed',True) from None
+    except Exception as exc:
+        # Exception strings may include an authenticated URL. Retain only safe
+        # failure classification so transport and archive failures are distinct.
+        diagnostics={'stage':stage,'host':urlsplit(url).hostname,'exception_type':type(exc).__name__}
+        if isinstance(getattr(exc,'response',None),dict):
+            diagnostics['aws_error_code']=exc.response.get('Error',{}).get('Code')
+        raise SourceIssue('additional_request_failed',True,diagnostics) from None
 
 def datacite_page(client, url, params):
     # Shrink only this request, retaining cursor/filter dimensions. Provider
@@ -116,6 +128,12 @@ def position(cursor):
     return json.loads(cursor) if cursor else {}
 
 def fetch(client,job,cursor,item):
+    if job['adapter']=='additional_nhsbsa':
+        from nhsbsa_capture import fetch as nhsbsa_fetch
+        return nhsbsa_fetch(client,job,cursor,item)
+    if job['adapter']in ('additional_portwatch','additional_unido'):
+        from public_statistics_apis import fetch as statistics_fetch
+        return statistics_fetch(client,job,cursor,item)
     if job['adapter'] in {'additional_'+k for k in ('ember','wto_timeseries','wto_qr','wto_eping','census','usda','comtrade','copernicus')}:
         from credential_source_apis import fetch as credential_fetch
         return credential_fetch(client,job,cursor,item)
@@ -185,9 +203,17 @@ def fetch(client,job,cursor,item):
         # per invocation so every emitted record also has its own source PDF.
         # Advancing by emitted rows (rather than the API's 100-row response)
         # makes this resumable without skipping records.
+        if offset and 'seen_signatures' not in state:
+            raise SourceIssue('biorxiv_cursor_identity_upgrade_required')
+        signatures=dict(state.get('seen_signatures',{}));duplicates=state.get('duplicate_rows',0)
         batch=d['collection'][:int(p.get('full_text_per_page',20))]
         for r in batch:
             require(job['start']<=r['date']<job['end'],'biorxiv_date_outside_scope');require(r.get('doi') and r.get('version'),'biorxiv_identity_missing')
+            identity=r['doi']+':v'+str(r['version']);signature=digest(r)
+            if identity in signatures:
+                require(signatures[identity]==signature,'biorxiv_conflicting_duplicate_provider_id')
+                duplicates+=1;continue
+            require(len(signatures)<20000,'biorxiv_identity_scope_split_required')
             host='www.biorxiv.org' if p['repository']=='biorxiv' else 'www.medrxiv.org'
             pdf=f"https://{host}/content/{r['doi']}v{r['version']}.full.pdf"
             validated_url(pdf,host)
@@ -196,9 +222,9 @@ def fetch(client,job,cursor,item):
             # EvidenceClient appends this PDF after the listing response.  Do
             # not let another paper's PDF satisfy this record's contract.
             proof=dict(client.evidence[-1])
-            rows.append({**row(item,r['doi']+':v'+str(r['version']),r,pdf,r['date']), 'source_evidence':[proof]})
-        following=offset+len(rows);require(following<=total and (bool(rows) or following==total),'biorxiv_truncated_pagination');unique(rows);client.expected_records=total
-        return rows,json.dumps({'offset':following,'total':total}) if following<total else None
+            rows.append({**row(item,identity,r,pdf,r['date']), 'source_evidence':[proof]});signatures[identity]=signature
+        following=offset+len(batch);require(following<=total and (bool(batch) or following==total),'biorxiv_truncated_pagination');unique(rows);client.expected_records=total-duplicates
+        return rows,json.dumps({'offset':following,'total':total,'seen_signatures':signatures,'duplicate_rows':duplicates}) if following<total else None
     if kind=='additional_datacite':
         url=validated_url(state['url'],'api.datacite.org') if state else 'https://api.datacite.org/dois'
         params=None if state else {'query':f"created:[{job['start']}T00:00:00Z TO {last.isoformat()}T23:59:59.999Z]",'resource-type-id':p['resource'],'page[size]':100,'page[cursor]':'1'}

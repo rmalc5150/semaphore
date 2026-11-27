@@ -2,7 +2,7 @@
 import re
 from datetime import date
 from urllib.parse import urlsplit,parse_qs
-from metadata_engine.chictr_tables import parse_detail_page
+from raw_parsers.chictr_tables import parse_detail_page
 class ProviderError(ValueError):pass
 
 def require(ok,reason):

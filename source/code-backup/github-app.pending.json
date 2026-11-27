@@ -1,0 +1,6 @@
+{
+  "app_id": 5743112,
+  "secret_arn": "arn:aws:secretsmanager:us-east-1:059416028963:secret:githubAPP-FbiTEW",
+  "region": "us-east-1",
+  "repository": "rmalc5150/semaphore"
+}

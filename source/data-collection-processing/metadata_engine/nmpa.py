@@ -3,7 +3,7 @@ import hashlib,re
 from html import unescape
 from datetime import datetime
 from urllib.parse import urlsplit,parse_qs
-from metadata_engine.nmpa_tables import TableParser,parse_detail_page,structured_detail,digest
+from raw_parsers.nmpa_tables import TableParser,parse_detail_page,structured_detail,digest
 class ProviderError(ValueError):pass
 
 def require(ok,reason):

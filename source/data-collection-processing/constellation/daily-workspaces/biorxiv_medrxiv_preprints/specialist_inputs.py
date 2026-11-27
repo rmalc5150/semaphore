@@ -17,7 +17,7 @@ from urllib.parse import urlencode, urljoin
 import xml.etree.ElementTree as ET
 from urllib.parse import urlsplit
 
-from collection_storage import AlreadyComplete, CollectionRun, StorageSettings, now, task_spec, write_json
+from collection_storage import AlreadyComplete, CollectionRun, Conflict, StorageSettings, now, task_spec, write_json
 from research_contract import ROOT, digest, load_json, seal_record
 from regulatory_collection import EvidenceClient, SourceIssue, require, stamp
 
@@ -530,6 +530,7 @@ def collect(job, store, settings, universe, taxonomy, page_budget):
     except (Exception, KeyboardInterrupt) as exc:
         status = 'partial' if isinstance(exc, KeyboardInterrupt) or (job['adapter'] == 'ted' and isinstance(exc, SourceIssue) and exc.code == 'ted_daily_xml_pending') or (job['adapter']=='additional_copernicus' and isinstance(exc,SourceIssue) and exc.code=='copernicus_queue_wait') else 'failed'
         code = exc.code if isinstance(exc, SourceIssue) else 'interrupted' if isinstance(exc, KeyboardInterrupt) else 'collection_error'
+        if isinstance(exc,SourceIssue) and code in {'pdf_proxy_daily_budget','pdf_proxy_url_cooldown','pdf_proxy_client_budget'}:status='partial'
         if isinstance(exc, SourceIssue) and exc.diagnostics:
             write_json(store, run.state['manifest_prefix'] + '/failure.json',
                        {'reason': code, 'diagnostics': exc.diagnostics, 'evidence': client.evidence})
@@ -657,7 +658,11 @@ def main():
         # receipt, and the preceding successful source is not the failed one.
         print(json.dumps({'stage': 'capture_started', 'source': job['source'],
                           'job_id': identity, 'start': job['start'], 'end_exclusive': job['end']}), flush=True)
-        result = collect(job, store, settings, universe, taxonomy, args.pages)
+        try:
+            result = collect(job, store, settings, universe, taxonomy, args.pages)
+        except Conflict:
+            # Keep a checkpoint conflict attached to its exact scheduled window.
+            result = {'status': 'failed', 'reason': 'collection_checkpoint_conflict'}
         row = {**result, 'job_id': identity, 'source': job['source'], 'source_id': job['source_id'],
                'start': job['start'], 'end_exclusive': job['end'], 'last_attempt': now(), 'job': job}
         if result['status'] == 'failed':

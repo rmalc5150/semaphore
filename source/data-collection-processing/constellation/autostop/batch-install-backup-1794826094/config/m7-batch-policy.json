@@ -1,0 +1,7 @@
+{
+  "session_hours": 5,
+  "off_hours": 19,
+  "max_off_hours": 24,
+  "batch_jobs": 26000,
+  "overflow_jobs": 130000
+}

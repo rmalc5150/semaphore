@@ -10,7 +10,7 @@ from urllib.error import HTTPError
 from urllib.parse import urlencode, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
-from collection_storage import now, write_checked, write_json
+from collection_storage import Conflict, now, write_checked, write_json
 from collection_operations import load_stored
 from regulatory_collection import EvidenceClient, SourceIssue, require
 from research_contract import digest, parse_instant
@@ -93,12 +93,19 @@ class Capture:
     def publisher(self, url, summary):
         require(self.remaining > 0, 'fulltext_run_budget_reached')
         key = 'operations/news/fulltext/publisher-budgets/' + now()[:10] + '.json'
-        state, token = load_stored(self.store, key)
-        count = (state or {}).get('requests', 0)
-        if count >= self.daily_cap:
-            raise SourceIssue('fulltext_daily_budget_reached', True)
         public_url(url)
-        write_json(self.store, key, {'requests': count + 1, 'updated_at': now()}, token)
+        for _ in range(4):
+            state, token = load_stored(self.store, key)
+            count = (state or {}).get('requests', 0)
+            if count >= self.daily_cap:
+                raise SourceIssue('fulltext_daily_budget_reached', True)
+            try:
+                write_json(self.store, key, {'requests': count + 1, 'updated_at': now()}, token)
+                break
+            except Conflict:
+                continue
+        else:
+            raise SourceIssue('fulltext_publisher_budget_contended', True)
         self.remaining -= 1
         time.sleep(1)
         try:

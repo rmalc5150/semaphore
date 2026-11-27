@@ -1,0 +1,14 @@
+from ops import *
+import hashlib
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime,timezone
+s=session.client('s3')
+for name in ['arxiv-gap-repair.json','arxiv-gap-verified.json','daily-cleanup.json','has-frontier-repair.json']:
+ (P/name).write_bytes(s.get_object(Bucket=B,Key=BASE+name)['Body'].read())
+files=[P/name for name in ['review-report.md','verification.sql','raw-locators.json','before.json','after.json','counts-before.json','counts-after.json','verified-sample-sql.json','verified-sample-job-ids.json','capture-proof.json','final-opinions.json','migration.json','replay-publication.json','deployment-verified.json','source-lanes.json','worker-check-t3.json','worker-check-m7.json','daily-cleanup.json','has-frontier-repair.json','arxiv-uncommitted.json','arxiv-gap-repair.json','arxiv-gap-verified.json','test-results.txt','policies.json','public-source-updates.json']]
+files +=[Path('RAW_DATA_VERIFICATION_SCHEDULE.md'),Path('/home/ec2-user/data-source-status-2026-10-26.md')]
+code=['public_source_capture.py','public_source_scope.py','open_medic_download.py','nhsbsa_capture.py','specialist_inputs.py','additional_source_apis.py','additional_source_plan.py','metadata_engine/evidence.py','metadata_engine/controller.py','metadata_engine/labelling.py','metadata_engine/source_policies.py','metadata_engine/streaming.py','metadata_engine/raw_catalog_review.py','metadata_engine/nhsbsa.py','metadata_engine/public_documents.py','constellation/autostop/proofs.py','reviewed_metadata_publication.py','test_raw_source_review.py','test_historical_autostop.py'];files +=[Path(name)for name in code]
+def upload(path):
+ raw=path.read_bytes();sha=hashlib.sha256(raw).hexdigest();name=str(path)if str(path)in code else path.name;key=BASE+'final/'+name;s.put_object(Bucket=B,Key=key,Body=raw,ServerSideEncryption='AES256');saved=s.get_object(Bucket=B,Key=key)['Body'].read();assert hashlib.sha256(saved).hexdigest()==sha;return {'local':str(path.resolve()),'s3_uri':'s3://'+B+'/'+key,'bytes':len(raw),'sha256':sha}
+with ThreadPoolExecutor(max_workers=4)as pool:receipts=list(pool.map(upload,files))
+manifest={'completed_at':datetime.now(timezone.utc).isoformat(),'reviewed_entries':[76,77,78,80,81,82,83,84,85,86,87,89,90],'pending_entries':{'79':'citation/abstract pipeline repaired; full-text acquisition outstanding','88':'intentional owner pause; licensed API/security approval still required'},'scope':'Raw-source and metadata validation; not exhaustive historical coverage or numerical extraction of public report files.','owner_action_today':False,'evidence':receipts};raw=(json.dumps(manifest,indent=2)+'\n').encode();(P/'final-manifest.json').write_bytes(raw);key=BASE+'final-manifest.json';s.put_object(Bucket=B,Key=key,Body=raw,ServerSideEncryption='AES256');assert s.get_object(Bucket=B,Key=key)['Body'].read()==raw;print(json.dumps({'files_archived_and_verified':len(receipts),'manifest':'s3://'+B+'/'+key}))

@@ -1,0 +1,9 @@
+Thank you. We tested POST https://data.decodo.com/v1/scrape with a valid Web Data API Bearer token and this JSON body:
+
+{"url":"https://www.medrxiv.org/content/10.64898/2026.05.07.26352693v2.full.pdf"}
+
+The API and target both return HTTP 200. Task ID: 7528037087912708097, created November 16, 2026 at 10:11:45 UTC (11:11:45 CET).
+
+The response contains results[0].type = "raw" and results[0].content begins with "%PDF-", rather than base64. Strict base64 decoding fails. Encoding that string as UTF-8 produces a PDF that fails strict parsing with "Broken xref table"; Windows-1252 and Latin-1 cannot encode all returned characters either.
+
+Please provide a verified request for this exact URL that returns the original PDF bytes losslessly, including any required parameter or account feature, or confirm that binary-safe PDF output is not currently supported. We can supply the redacted response if useful. We have not promoted this response into our collection pipeline.

@@ -1,0 +1,13 @@
+[Unit]
+Description=Read-only S3 request and cost rollout follow-up
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B /home/ec2-user/data-collection-processing/s3_rollout_followup.py
+StandardOutput=append:/home/ec2-user/data-collection-processing/state/s3-rollout-followup-2026-11-27.json
+UMask=0077
+TimeoutStartSec=5min
+NoNewPrivileges=true

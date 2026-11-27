@@ -1,0 +1,54 @@
+{
+  "thesis_manual_review": {
+    "extract-and-translate": {
+      "automatic_pass": 0,
+      "reviewed_accept": 0,
+      "cases": 4,
+      "median_seconds": 1.35
+    },
+    "ministral3-3b": {
+      "automatic_pass": 3,
+      "reviewed_accept": 2,
+      "cases": 4,
+      "median_seconds": 6.53
+    },
+    "qwen35-2b-focused": {
+      "automatic_pass": 2,
+      "reviewed_accept": 0,
+      "cases": 4,
+      "median_seconds": 4.66
+    },
+    "qwen35-2b": {
+      "automatic_pass": 4,
+      "reviewed_accept": 0,
+      "cases": 4,
+      "median_seconds": 4.49
+    },
+    "qwen35-4b": {
+      "automatic_pass": 4,
+      "reviewed_accept": 2,
+      "cases": 4,
+      "median_seconds": 10.46
+    }
+  },
+  "isic": {
+    "mdeberta": {
+      "correct_applicable": 0,
+      "correct_abstention": 5,
+      "false_label_on_negative": 0,
+      "miss_or_wrong_label": 6
+    },
+    "qwen35-2b": {
+      "correct_applicable": 4,
+      "correct_abstention": 1,
+      "false_label_on_negative": 4,
+      "miss_or_wrong_label": 2
+    }
+  },
+  "isic_retrieval_top5": {
+    "titles_only": 5,
+    "shortlist": 5
+  },
+  "isic_positive_cases": 6,
+  "isic_negative_cases": 5
+}

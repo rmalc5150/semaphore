@@ -38,7 +38,19 @@ def evidence(record,s3,bucket):
   enrichment['retrieval_method']='daily_xml_package'if u.path.startswith('/packages/daily/')else'individual_xml'
   complete={**api,'notice_xml':body.decode('utf-8-sig'),'enrichment':enrichment}
   factory=lambda rid,value,url,day=None:{'id':rid,'data':value}
-  items=bounded_notice_items(identity,complete,record['source_url'],None,factory);_cache_items={r['id']:r['data']for r in items};_cache_artifacts=[api_art,{'artifact_kind':'primary_document','s3_uri':'s3://'+bucket+'/'+key,'sha256':ref['sha256'],'bytes':len(body),'origin':'first_party_source','source_url':url,'validation':{'provider':'TED original XML','notice_id':identity}}];_cache_key=cache
- require(_cache_items.get(str(record['source_record_id']))==data,'ted_mapped_notice_or_content_chunk_differs_from_original')
+  items=bounded_notice_items(identity,complete,record['source_url'],None,factory);_cache_items={r['id']:r['data']for r in items};_cache_artifacts=[api_art,{'artifact_kind':'primary_document','s3_uri':'s3://'+bucket+'/'+key,'sha256':ref['sha256'],'bytes':len(body),'origin':'first_party_source','source_url':url,'validation':{'provider':'TED original XML','notice_id':identity}}]
+  _cache_key=cache
+ record_id=str(record['source_record_id'])
+ expected=_cache_items.get(record_id)
+ if expected!=data:
+  # Some committed parents store the full notice that the current collector
+  # would divide into chunks. Their exact bytes must match the archive rebuild.
+  has_rebuilt_chunks=record_id==identity and identity+':content:000000' in _cache_items
+  manifest=expected.get('content_manifest') if has_rebuilt_chunks and expected else None
+  if not manifest or 'notice_xml' not in data:
+   raise RawFailure('ted_mapped_notice_or_content_chunk_differs_from_original')
+  full_bytes=json.dumps(data,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode('utf-8')
+  if len(full_bytes)!=manifest['bytes'] or hashlib.sha256(full_bytes).hexdigest()!=manifest['sha256']:
+   raise RawFailure('ted_mapped_notice_or_content_chunk_differs_from_original')
  require(record['source_url']=='https://ted.europa.eu/en/notice/-/detail/'+identity,'ted_notice_url_mismatch')
  return _cache_artifacts

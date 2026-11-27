@@ -1,0 +1,33 @@
+{
+  "source_id": 180,
+  "status": "incomplete",
+  "issuer": "Acasti Pharma Inc.",
+  "current_name": "Grace Therapeutics, Inc.",
+  "in_project_universe": true,
+  "fiscal_period_end": "2016-02-29",
+  "sedar_filing_date": null,
+  "sedar_original_saved": false,
+  "sedar_public_index_saved": false,
+  "blocker": "SEDAR+ document and search requests served Radware interstitials. Official legacy archive browser session redirected to CAPTCHA.",
+  "legacy_archive_url": "https://www.sedarplus.ca:5443/legacysedardata/",
+  "sec_reference": {
+    "accession": "0001102624-16-002894",
+    "filing_date": "2016-05-31",
+    "files": [
+      {
+        "path": "issuer-reference/acasti-fy2016-audited-financials-form-20f.pdf",
+        "source_url": "https://www.gracetx.com/investors/sec-filings/all-sec-filings/content/0001102624-16-002894/0001102624-16-002894.pdf",
+        "kind": "issuer_hosted_sec_form_20_f",
+        "bytes": 881503,
+        "sha256": "3a74249c7cd74ea5fb904ba7eeffd3e8ed0ff260710f989ec24ddd51e2c4451f"
+      },
+      {
+        "path": "issuer-reference/acasti-fy2016-dated-filing-page.html",
+        "source_url": "https://www.gracetx.com/investors/sec-filings/all-sec-filings/content/0001102624-16-002894/acasti20f.htm",
+        "kind": "issuer_hosted_sec_filing_page",
+        "bytes": 2546767,
+        "sha256": "0bd9e3e0f3e2116fc93b6ed1e2507707447caab35da553a2f9ff0c3df700a798"
+      }
+    ]
+  }
+}

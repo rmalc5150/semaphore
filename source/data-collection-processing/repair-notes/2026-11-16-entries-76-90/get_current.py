@@ -1,0 +1,2 @@
+from ops import *
+s=session.client('s3');raw=s.get_object(Bucket=B,Key=BASE+'capture-proof.json')['Body'].read();(P/'capture-proof.json').write_bytes(raw);v=json.loads(raw);print('public',{k:r['status']for k,r in v['public'].items()});print('native',v['native']);print(remote(M7,"import subprocess;print(subprocess.run(['journalctl','-u','optima-review-7690-current-native-20261116','-n','8','--no-pager'],capture_output=True,text=True).stdout)")['out'])

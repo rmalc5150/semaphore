@@ -2,8 +2,11 @@ import io
 import json
 import tempfile
 import unittest
+from datetime import datetime
 from pathlib import Path
 from unittest.mock import patch
+from zoneinfo import ZoneInfo
+from collection_storage import StorageSettings, now
 from nist_robotics import canonical,parse_document,product_mentions,evidence_event,ROOT_URL
 import nist_robotics_pipeline as pipeline
 
@@ -74,6 +77,18 @@ class Tests(unittest.TestCase):
                 db.execute("INSERT INTO jobs VALUES ('job','backfill','2026-10-18','captured','[]')");db.commit()
                 with patch.object(pipeline,'get_bytes',side_effect=AssertionError('No publication check before matching')):
                     self.assertIsNone(pipeline.notify(db,None,None,{'job_id':'job'},'job'))
+
+    def test_daily_seed_recovers_when_shared_scheduler_has_no_receipt(self):
+        with tempfile.TemporaryDirectory() as directory, patch.object(pipeline,'ROOT',Path(directory)):
+            settings=StorageSettings(local_root=directory+'/store')
+            day=datetime.now(ZoneInfo('Europe/Madrid')).date().isoformat()
+            manifest={'status':'complete','exhausted':True,'finished_at':now(),'pages':[]}
+            with pipeline.registry() as db, patch.object(pipeline,'capture_daily_landing',return_value=manifest) as landing:
+                config={'max_depth':1,'max_documents_per_job':2}
+                self.assertEqual(pipeline.seed(db,settings.store(),config,'daily',settings),'nist-daily-'+day)
+                self.assertEqual(pipeline.seed(db,settings.store(),config,'daily',settings),'nist-daily-'+day)
+                landing.assert_called_once()
+                self.assertEqual(db.execute('SELECT url FROM docs').fetchone(),(ROOT_URL,))
 
     def test_queue_is_bounded_and_exclusions_visible(self):
         with tempfile.TemporaryDirectory() as directory,patch.object(pipeline,'ROOT',Path(directory)):

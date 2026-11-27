@@ -1,0 +1,11 @@
+[Unit]
+Description=Apply the S3 read reduction once on M7 without waking it
+
+[Timer]
+OnActiveSec=2s
+OnUnitInactiveSec=5min
+AccuracySec=30s
+Unit=optima-s3-read-reduction-on-wake.service
+
+[Install]
+WantedBy=timers.target

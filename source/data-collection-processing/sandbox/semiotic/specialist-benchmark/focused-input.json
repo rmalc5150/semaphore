@@ -1,0 +1,298 @@
+{
+  "thesis": [
+    {
+      "id": "MIIT",
+      "language": "zh",
+      "document_type": "official manufacturing statistics release",
+      "evidence": [
+        {
+          "id": "1",
+          "page": 1,
+          "start": 104,
+          "end": 222,
+          "quote": "2026年1－8月，我国电子信息制造业生产快速增长，出口持续上行，效益改善态势稳固，投资保持稳步增长，行业整体发展态势良好。 一、生产快速增长 1－8月份，规模以上电子信息制造业增加值同比增长15.7%，增速较去年同期高4.9个百分点。",
+          "artifact_sha256": "2562c45c918c98fcad8aa4192637b68b3cf963c2155a7e2c7734b9d4e5806aaf",
+          "observation_id": "obs_127b9e924d81cb97469063c41c8bcc5517633ef69c81b9894dc86f3eb546c7df"
+        }
+      ],
+      "focused_evidence": true
+    },
+    {
+      "id": "CAPES",
+      "language": "pt",
+      "document_type": "metadata guide describing an international research cooperation dataset",
+      "evidence": [
+        {
+          "id": "1",
+          "page": 2,
+          "start": 0,
+          "end": 522,
+          "quote": "CAPES - [2023 a 2025] Projetos de cooperação internacional/pesquisa - SCBA Informação geral Identificação NÚMERO DE ID DDI-BR-CAPES-PROJ-COOPERACAO-2023A2025-2025-10-01 Versão PERIODICIDADE DE ATUALIZAÇÃO Esta publicação apresenta os dados dos anos de 2023 a 2025, conforme cronograma estabelecido no PDA 2025-2027. DATA DE PRODUÇÃO 2025-10 Informação geral ARQUIVO DE CARGA O conjunto de dados a ser disponibilizado apresenta os valores de custeio concedidos pelos programas da Diretoria de Relações Internacionais (DRI).",
+          "artifact_sha256": "0ebc38ee9dcb9b2695826f8abaf0516f5a97cfd3e2d842a387a2ad60c914c37c",
+          "observation_id": "obs_f77a736c4d2fc4d3700fb54abbcc2d384f14f0ae56fb65a3ae53437a0f057d70"
+        }
+      ],
+      "focused_evidence": true
+    },
+    {
+      "id": "IFR",
+      "language": "de",
+      "document_type": "press release announcing a position paper on humanoid robots",
+      "evidence": [
+        {
+          "id": "1",
+          "page": 1,
+          "start": 785,
+          "end": 927,
+          "quote": "Einblicke in Trends, Chancen und mögliche Grenzen humanoider Roboter bietet das neue Positionspapier der International Federation of Robotics.",
+          "artifact_sha256": "69ddedf34318f4d3b80e26d7727d948822b14e265382ffa84d2598b351e8eb15",
+          "observation_id": "obs_d6327a8b00ef931230a89228f1f0abe0208ecbcbf13c98c2afd74a206b19f08b"
+        }
+      ],
+      "focused_evidence": true
+    },
+    {
+      "id": "IEA",
+      "language": "en",
+      "document_type": "2016 global photovoltaic market report",
+      "evidence": [
+        {
+          "id": "2",
+          "page": 6,
+          "start": 347,
+          "end": 513,
+          "quote": "The global PV market grew significantly, to at least 74 ,4 GW in 2016. With non-reporting countries, this number could grow up to 75,4 GW, compared to 50 GW in 2015 .",
+          "artifact_sha256": "c464fb7d762c8779aca455b10de0659668e74805dd77a68acc2b991242448b21",
+          "observation_id": "obs_14d712faf5e48d9041b10a94a8fd158d1233c539ee59aa35c3a9569b8d2451b0"
+        }
+      ],
+      "focused_evidence": true
+    }
+  ],
+  "isic": [
+    {
+      "id": "MIIT",
+      "actor": "Chinese electronic information manufacturing enterprises",
+      "role": "producers described by MIIT",
+      "activity": "manufacture electronic equipment and components",
+      "quote": "2026年1－8月，我国电子信息制造业生产快速增长，出口持续上行，效益改善态势稳固，投资保持稳步增长，行业整体发展态势良好。",
+      "expected_section": "C",
+      "expected_division": "26",
+      "kind": "archived"
+    },
+    {
+      "id": "IFR",
+      "actor": "International Federation of Robotics",
+      "role": "publisher",
+      "activity": "announces a position paper on humanoid robot technology",
+      "quote": "Einblicke in Trends, Chancen und mögliche Grenzen humanoider Roboter bietet das neue Positionspapier der International Federation of Robotics.",
+      "expected_section": null,
+      "expected_division": null,
+      "kind": "archived"
+    },
+    {
+      "id": "IEA",
+      "actor": "IEA PVPS",
+      "role": "reporting organization",
+      "activity": "reports observed global deployment by other actors",
+      "quote": "At least 75 GW of PV systems have been installed and connected to the grid in the world last year.",
+      "expected_section": null,
+      "expected_division": null,
+      "kind": "archived"
+    },
+    {
+      "id": "CAPES",
+      "actor": "dataset beneficiaries",
+      "role": "subjects of the funding dataset",
+      "activity": "no specific economic activity is stated for the beneficiaries",
+      "quote": "O conjunto de dados a ser disponibilizado apresenta os valores de custeio concedidos pelos programas da Diretoria de Relações Internacionais (DRI).",
+      "expected_section": null,
+      "expected_division": null,
+      "kind": "archived"
+    },
+    {
+      "id": "battery_factory",
+      "actor": "Aster Cells",
+      "role": "named organization or actor",
+      "activity": "manufactures lithium-ion battery cells for sale",
+      "quote": "Aster Cells manufactures lithium-ion battery cells for sale.",
+      "expected_section": "C",
+      "expected_division": "27",
+      "kind": "synthetic_control"
+    },
+    {
+      "id": "solar_constructor",
+      "actor": "Bright Sites",
+      "role": "named organization or actor",
+      "activity": "constructs utility-scale solar farms for clients",
+      "quote": "Bright Sites constructs utility-scale solar farms for clients.",
+      "expected_section": "F",
+      "expected_division": "42",
+      "kind": "synthetic_control"
+    },
+    {
+      "id": "solar_operator",
+      "actor": "Bright Power",
+      "role": "named organization or actor",
+      "activity": "operates solar farms and sells the electricity generated",
+      "quote": "Bright Power operates solar farms and sells the electricity generated.",
+      "expected_section": "D",
+      "expected_division": "35",
+      "kind": "synthetic_control"
+    },
+    {
+      "id": "solar_wholesaler",
+      "actor": "Bright Supply",
+      "role": "named organization or actor",
+      "activity": "buys photovoltaic modules and resells them wholesale without installing them",
+      "quote": "Bright Supply buys photovoltaic modules and resells them wholesale without installing them.",
+      "expected_section": "G",
+      "expected_division": "46",
+      "kind": "synthetic_control"
+    },
+    {
+      "id": "insurer",
+      "actor": "Atlas Insurance",
+      "role": "named organization or actor",
+      "activity": "underwrites property insurance policies for factories",
+      "quote": "Atlas Insurance underwrites property insurance policies for factories.",
+      "expected_section": "L",
+      "expected_division": "65",
+      "kind": "synthetic_control"
+    },
+    {
+      "id": "math_operator",
+      "actor": "paper authors",
+      "role": "named organization or actor",
+      "activity": "estimate the scaling dimension of an operator in a theoretical physics paper",
+      "quote": "paper authors estimate the scaling dimension of an operator in a theoretical physics paper.",
+      "expected_section": null,
+      "expected_division": null,
+      "kind": "synthetic_control"
+    },
+    {
+      "id": "solar_plan",
+      "actor": "Bright Power",
+      "role": "named organization or actor",
+      "activity": "plans to build a solar facility and has yet to begin construction or generation",
+      "quote": "Bright Power plans to build a solar facility and has yet to begin construction or generation.",
+      "expected_section": null,
+      "expected_division": null,
+      "kind": "synthetic_control"
+    }
+  ],
+  "sections": {
+    "A": {
+      "name": "Agriculture, forestry and fishing",
+      "includes": "This section includes the exploitation of vegetal and animal natural resources, comprising the activities of growing of crops, raising and breeding of animals, harvesting of timber and other plants, production of animal products from a farm or natural habitats. This section includes also: organic agriculture, soilless cultivation of crops, hydroponics and aquaponics, aquaculture, the growing of genetically modified crops and the raising of genetically modified animals",
+      "excludes": "This section excludes undifferentiated subsistence goods-producing activities of households, which is classified in class 9810."
+    },
+    "B": {
+      "name": "Mining and quarrying",
+      "includes": "Mining and quarrying include the extraction of minerals occurring naturally as solids (coal and ores), liquids (petroleum) or gases (natural gas), from mines, seabed, and the extraction of salt from sea water, brine, and other saline waters. Extraction can be achieved by different methods such as underground or surface mining, well operation, seabed mining etc. This section includes supplementary activities aimed at preparing the crude materials for marketing, for example, crushing, grinding, cleaning, drying, sorting, beneficiation and concentration of ores and liquefaction of natural gas. Mining activities are classified into divisions, groups and classes on the basis of the principal mineral produced. Divisions 05, 06 are concerned with mining and quarrying of fossil fuels (coal, lignite, petroleum, gas); divisions 07, 08 concern metal ores, various minerals and quarry products. Some of the technical operations of this section, particularly related to the extraction of hydrocarbons, may also be carried out for third parties by specialised units as an industrial service which is reflected in division 09.",
+      "excludes": "This section excludes: - further processing of the extracted materials, see section C (Manufacturing) - usage of the extracted materials without a further transformation for construction purposes, see section F (Construction) - bottling of natural spring and mineral waters at springs and wells, see 1105 - remediation of mine sites, see 3900 - overburden removal and contouring of land at mine sites, see 4312"
+    },
+    "C": {
+      "name": "Manufacturing",
+      "includes": "This section includes the physical, chemical or biological transformation of materials, substances, or components into new products, although this cannot be used as the single universal criterion for defining manufacturing (see remark on processing of waste below). The materials, substances, or components undergoing transformation are either raw materials or products of agriculture, forestry, fishing, mining or quarrying as well as products of other manufacturing activities. Substantial alteration, renovation or reconstruction of goods is generally considered to be manufacturing. The output of a manufacturing process may be finished in the sense that it is ready for utilisation or consumption, or it may be semi-finished in the sense that it is to become an input for further manufacturing. For example, the output of alumina refining is the input used in the primary production of aluminium; primary aluminium is the input to aluminium wire drawing; and aluminium wire is the input for the manufacture of fabricated wire products. This section includes factoryless goods producers (FGPs) that completely outsources the transformation process but still controls the production process and supplies critical intellectual property inputs, regardless of whether the principal owns the material inputs or not. The FGPs are classified in the same class where they would have been classified if they carried out the manufacturing process themselves. However, this section excludes units that completely outsources the transformation process but neither controls the production process, nor supplies the critical intellectual property inputs, nor owns the material inputs. These units are in fact buying the completed goods from the manufacturer with the intention to re-sell them. Such an activity is classified in section G (Wholesale and retail trade), specifically according to the type of sale and the specific type of goods being sold. Manufacture of specialised components and parts of, and accessories and attachments to, machinery and equipment is, as a general rule, classified in the same class as the manufacture of the machinery and equipment for which the parts and accessories are intended. Manufacture of unspecialised components and parts of machinery and equipment, e.g. engines, pistons, electric motors, electrical assemblies, valves, gears, roller bearings, is classified in the appropriate class of manufacturing, without regard to the machinery and equipment in which these items may be included. Making specialised components and accessories by moulding or extruding plastics materials is usually included in group 222. Assembly of the component parts of manufactured products is considered manufacturing. This includes the assembly of manufactured products from either self-produced or purchased components. The recovery of waste, i.e. the processing of waste into secondary_x0002_ raw materials is classified in group 383 (Materials and other waste recovery). While this may involve physical, chemical or biological transformations, this is not considered to be a part of manufacturing. The primary purpose of these activities is considered to be the treatment or processing of waste and they are therefore classified in Section E (Water supply; sewerage, waste management and remediation activities). However, the manufacture of new products from secondary raw materials is classified in manufacturing, even if these processes use waste as an input. For example, the production of silver from film waste is considered to be a manufacturing process. Specialised maintenance and repair of industrial, commercial and similar machinery and equipment is, in general, classified in division 33 (Repair, maintenance and installation of machinery and equipment). However, the repair and maintenance of computers, personal and household goods and motor vehicles and motorcycles is classified in division 95 (Repair and maintenance of computers, personal and household goods, and motor vehicles and motorcycles). The installation of industrial machinery and equipment, when carried out as a specialised activity, is classified in class 3320. Maintenance, repair and installation of equipment that forms an integral part of buildings or similar structures, such as maintenance, repair and installation of escalators or of air-conditioning systems, is classified as construction in section F (Construction), if carried out at the construction site. As a general rule, the activities in the manufacturing section involve the transformation of materials into new products, and the repair and installation of machinery and equipment. The output is either a new product or a product that has gone through factory rebuilding and remanufacturing. As clarification, the following activities are considered manufacturing in ISIC: - fresh fish processing (oyster shucking, fish filleting), not done on a fishing boat (see 1020) - milk pasteurising and bottling (see 1050) - leather converting (see 1511) - wood preserving (see 1629) - printing and related activities (see 181) - tyre retreading (see 2211) - ready-mixed concrete production (see 2395) - electroplating, plating, and metal heat treating (see 2592) - rebuilding or remanufacture of machinery (e.g. automobile engines, see 2910) - refilling or recharging of fire extinguishers - manufacture and deliverance of structures and prefabricated buildings with minimal on-site construction work",
+      "excludes": "Conversely, there are activities that, although sometimes involving transformation processes, are classified in other sections of ISIC; in other words, they are not considered as manufacturing. They include: - logging, classified in section A (Agriculture, forestry and fishing); - beneficiating of agricultural products, classified in section A (Agriculture, forestry and fishing); - preparation of food for immediate consumption on the premises is classified to division 56 (Food and beverage service activities); - beneficiating of ores and other minerals, classified in section B (Mining and quarrying); - production of gaseous fuels for energy supply through a permanent network, classified in section D (Electricity, gas, steam and air conditioning supply);. - production of compost from organic waste, see 3821 - construction of structures, assembling of prefabricated buildings at the site of construction, classified in section F (Construction); - assembly provided as part of a delivery or by a seller. However, if assembly is the main activity provided by a contractor it is classified in manufacturing - activities of breaking bulk and redistribution in smaller lots, including packaging, repackaging, or bottling products, e.g. as liquors or chemicals; sorting of scrap; mixing paints to customer order; and cutting metals to customer order; treatment not resulting into a different good is classified to section G (Wholesale and retail trade). - publishing and the combined activity of publishing and printing are classified to section J (Publishing, broadcasting, and content production and distribution activities)"
+    },
+    "D": {
+      "name": "Electricity, gas, steam and air conditioning supply",
+      "includes": "This section includes the generation, storage, control, distribution, trade and brokerage of electric power or of gaseous fuels for energy supply through a permanent network of lines, mains and pipes. Energy supply for industrial parks or residential buildings is included. This section therefore includes the operation of electricity and gas utilities. The section also includes heating and cooling, e.g. steam and air conditioning supply, through a permanent network.",
+      "excludes": "This section excludes: - extraction of crude natural gas, see 0620 - water supply and sewerage treatment services, see divisions 36, 37 - transport of gas through pipelines, i.e. not through the distribution network, see 4930"
+    },
+    "E": {
+      "name": "Water supply; sewerage, waste management and remediation activities",
+      "includes": "This section includes activities related to the management, e.g. collection, pretreatment, recovery and disposal, of various forms of waste, such as solid or non-solid industrial or household waste and its organisation. The output of the waste or sewage treatment process can either be disposed of or become an input into other production processes. Secondary raw materials are materials and products which can be used as raw materials by simple re-use, or via recycling and recovery of waste. Activities of water supply are also grouped in this section, since they are often carried out in connection with, or by units also engaged in, the treatment of sewage. The activities also include remediation of contaminated buildings and sites, soil, surface and ground water (e.g. oceans, mangroves, seas) etc. Units that usually take over their clients waste procedures and become the customer of the waste hauler, and then in turn bill their clients for waste service must be classified in Division 38 because although these units do not render the corresponding services themselves, they are responsible for their fulfilment. This activity has to be regarded as complete outsourcing of a service. This section includes also: - carbon capture and storage",
+      "excludes": "This section excludes: - waste trade activities as agents, see 4610 - waste trade activities as wholesalers, see 4679"
+    },
+    "F": {
+      "name": "Construction",
+      "includes": "This section includes general construction and specialised construction activities for buildings and civil engineering works. It includes new work, repair, additions and alterations, the erection of prefabricated buildings or structures on the site as well as construction of a temporary nature. General construction is the construction of entire buildings for e.g., homes, offices, stores , as well as utility buildings or farm buildings etc.It also includes the construction of civil engineering works such as motorways, streets, bridges, tunnels, railways, airfields, harbours and other water projects, irrigation systems, sewerage systems, industrial facilities, pipelines and electric lines, sports facilities etc. This work can be carried out on own account or on a fee or contract basis, including intermediation service activities for construction. Portions of the work and sometimes even the whole practical work can be subcontracted out. A main contractor that carries the overall responsibility for a construction project is classified here. Also included is the repair of buildings and engineering works. Maintenance, repair and installation of equipment that forms an integral part of buildings , e.g. escalators or air-conditioning systems, is classified as construction in section F, if carried out at the construction site. This section includes the complete construction of buildings (division 41), the complete construction of civil engineering works (division 42), as well as specialised construction activities, if carried out only as a part of the construction process (division 43). The rental of construction equipment with operator is classified with the specific construction activity carried out with this equipment. This section also includes: - renovation and restoration of historical sites and buildings which are part of the cultural heritage",
+      "excludes": "This section excludes: - curative conservation of historical sites and buildings, see 9130 - archaeological excavations, see 722 - erection of complete prefabricated constructions from self-manufactured parts not of concrete, see divisions 16 and 25 - manufacturing operations not performed at the site of construction, see Section C"
+    },
+    "G": {
+      "name": "Wholesale and retail trade",
+      "includes": "This section includes wholesale and retail sale (i.e. sale without transformation) of any type of physical goods, and rendering services incidental to the sale of merchandise. Goods are physical, produced objects for which a demand exists, over which ownership rights can be established and whose ownership can be transferred from one unit to another by engaging in transactions on markets. Wholesaling and retailing are the final steps in the distribution of merchandise. For this purpose, ancillary activities () are carried out, which is considered to include a number of usual operations (or manipulations) associated with trade, without transforming the goods. These operations (or manipulations) include, for example, sorting, grading and assembling of goods, mixing of goods (e.g. sand), bottling (with or without preceding bottle cleaning), packaging, breaking bulk and repacking for distribution in smaller lots, storage (whether or not frozen or chilled). If not carried out as usual operations (or manipulations) associated with trade, the mentioned activities can be carried out as principal, secondary or ancillary activities in other sections of ISIC. Wholesale is the resale of new and used goods to retailers, business-to-business trade, such as to industrial, commercial, institutional or professional users, or resale to other wholesalers, or involves acting as an agent or broker in buying merchandise for, or selling merchandise to, such persons or companies. The principal types of businesses included are merchant wholesalers, i.e. wholesalers who take title to the goods they sell, such as wholesale merchants or jobbers, industrial distributors, exporters, importers, and cooperative buying associations, sales branches and sales offices (but not retail stores) that are maintained by manufacturing or mining units apart from their plants or mines for the purpose of marketing their products and that do not merely take orders to be filled by direct shipments from the plants or mines. Also included are intermediation service activities, such as the activities of merchandise and commodity brokers, commission merchants and agents and assemblers, cooperative associations primarily engaged in the marketing of farm products. If the wholesaler does not assume ownership of the goods he trades, he must be classified in group 461. If the wholesaler assumes ownership of the goods, even if he is acting on behalf of a third party, he must be classified in groups 462-469. Wholesalers frequently physically assemble, sort and grade goods in large lots, break bulk, repack and redistribute in smaller lots, for example pharmaceuticals; store, refrigerate, deliver and install goods, engage in sales promotion for their customers and label design. Retailing is the resale of new and used goods to the general public for personal or household consumption or utilisation, whatever the channel, in shops, department stores, stalls, mail-order houses, door-to-door sales persons, hawkers, consumer cooperatives, auction houses etc. It includes the sale of goods via showroom (where the exposed goods can be bought), via ephemeral points of sale (e.g. pop up stores) as well as in automated retail shops. Most retailers take title to the goods they sell, but some act as agents for a principal and sell either on consignment or on a commission basis. Retailing via mail order or internet is classified according to the type of goods sold. The distinction between wholesale and retail is not based on the quantity of goods sold, as wholesale sales may be made on a unit basis, just as retail sales may be made on a bulk basis. Instead, the primary distinction between wholesale and retail is the type of customer. Wholesale usually involves business as customers, and retail trade usually sell to individual customers. If a trader sells to both business and household customers without distinction, and it is practically impossible to distinguish the majority type of customers, then it is recommended to treat the seller as a retailer. This section also includes: - transit trade activities consisting of buying commodities, moving them from one customs territory to another or from one point to another in the same customs territory and finally selling them. Transit trade represents a triangular transaction in which the transit trader carries out export and import transactions between two or more different countries outside his own economic territory. The transit trader owns the commodity during its transport (difference to intermediaries that do not take ownership of the intermediated goods); - specialised and non-specialised intermediation service activities for retail trade - sale of food and/or beverages via vending machines or automated points of sale",
+      "excludes": "This section excludes: - trade of electricity, see 3513 - trade of gaseous fuels for energy supply through mains, see 3520; - distribution of digital products, including downloading and streaming services such as e-books, audio etc., are included in section J; - activities of resellers of pre-paid calling cards and services, see 6120 - repair of motor vehicles and motorcycles, see division 95"
+    },
+    "H": {
+      "name": "Transportation and storage",
+      "includes": "This section includes transportation of passengers or freight, e.g by rail, pipeline, road, water or air, including transportation of passengers disregarding the reasons, whether for personal, professional or recreational reasons, scheduled or not. Rental of transport equipment with driver or operator as well as postal and courier activities are classified this section The section also includes associated activities, e.g. operational of terminal and parking facilities, cargo handling and storage. Transport activities classified in divisions 49, 50, 51, 53 often involve related activities, e.g. packaging, goods handling operations, temporary crating, sampling and weighing of goods, which solely support the transport activities. These supporting activities are only to be classified in division 52, if they are performed on behalf of others This section includes also: - intermediation services that link customers to transport service providers except for division 79: Travel agency, tour operator, and other travel related activities",
+      "excludes": "This section excludes: - major repair or alteration of transport equipment, except motor vehicles, see group 331 - construction, maintenance and repair of roads, railways, harbours, airfields, see division 42 - maintenance and repair of motor vehicles, see 9531 - rental of transport equipment without driver or operator, see 771, 773 - transportation activities as an integral part of recreational facilities, e.g. in theme parks, see group 932"
+    },
+    "I": {
+      "name": "Accommodation and food service activities",
+      "includes": "This section includes the provision of short-term (less than one year) accommodation in buildings, camping grounds and recreational vehicle parks for visitors and other travelers and the provision of meals and drinks fit for immediate consumption. The amount and type of supplementary services provided within this section can vary widely.",
+      "excludes": "This section excludes: - the preparation of food or drinks for resale through wholesale or retail trade activities, see section G - the preparation of these foods is classified in manufacturing, see section C"
+    },
+    "J": {
+      "name": "Publishing, broadcasting, and content production and distribution activities",
+      "includes": "This section includes the production and publishing, broadcasting and other distribution of information products. This section includes book, newspaper, periodical, and software publishing activities (division 58), motion picture, video and television programme production, sound recording and music publishing activities (division 59) and radio and television broadcasting as well as radio and television programme production and distribution activities, including operation of streaming, downloads, and content distribution (sharing) platforms not associated with publishing of the content, operation of blog and wiki sites, social network sites, and the operation of online gaming/video game sites (division 60). Publishing refers to the acquisition of copyrights to content (information products) or the acquisition of publication authorization from copyright holders, and making this content available to the general public by engaging in (or arranging for) the reproduction and distribution of this content in various forms. Publishers may publish only and license rights to others to distribute their content, or they may publish and distribute content they create or own. All the feasible forms of publishing (in print, electronic, digital, analog, or any other form) and self-publishing activities are included in this section. Individual television programming components, such as movies, television series, etc. are produced by activities in division 59, while the creation of a complete television channel programme, from components produced in division 59 or other components (such as live news programming) is included in division 60. Division 60 also includes the broadcasting of this programme by the producer. This section includes also the creation and leasing of copyrights for published content",
+      "excludes": "This section excludes - the activities of providing telecommunications and related service activities, i.e. transmitting voice, data, text, sound and video, computer programming activities, computing infrastructure and hosting activities and web search portals (see section K ); - wholesale and retail sales of recorded media (see section G); - provision of financial and insurance activities using published financial and insurance technologies software (see section L); - video disc rental (see section O); - activities of independent musicians and actors (including influencers appearing in vlogs), producers, writers and bloggersnot self-publishing their own created content, and gambling sites (see section S); - the management of copyrights, see 7491"
+    },
+    "K": {
+      "name": "Telecommunications, computer programming, consultancy, computing infrastructure, and other information service activities",
+      "includes": "This section includes telecommunications and related service activities, i.e. transmitting voice, data, text, sound and video (division 61), computer programming, consultancy and related activities (division 62), and computing infrastructure, data processing, hosting, and other information service activities (division 63).",
+      "excludes": "This section excludes the activities of publishing, broadcasting, and content production, including software publishing, postproduction services to convert audio and video content into streaming formats and independent third party provision of on-demand audio and video streaming distribution services (Section J), provision of financial and insurance activities using published financial and insurance technologies software (Section L), activities of gambling sites (Section R), and repair and maintenance of computers and communications equipment (Section T)."
+    },
+    "L": {
+      "name": "Financial and insurance activities",
+      "includes": "This section includes financial service activities, insurance activities and financial auxiliary activities, regardless of the technologies used to conduct these activities or support services Three principal types of activities are classified in this section: raising, obtaining and providing funding in division 64, pooling of risk by underwriting insurance and annuities in division 65 and providing specialised services facilitating or supporting financial or insurance service activities in division 66. This section also includes activities of holding assets, such as activities of holding companies and financing conduits and the activities of trusts, funds and similar financial entities (in division 64), as well as the activities of reinsurance and pension funds (in division 65).",
+      "excludes": "This section excludes support activities to financial services but not financial in nature (e.g. IT services supporting banking activities)"
+    },
+    "M": {
+      "name": "Real estate activities",
+      "includes": "This section includes activities of owning, renting out, buying, selling, developing or refurbishing (re-developing) property. It includes various types of real estate investors, e.g. real estate investment companies, real estate investment trust (REITs), real estate asset management firms, real estate funds, real estate development companies or real estate traders, housing cooperatives. Furthermore, it includes agents and/or brokers in one or more of the following: selling or buying real estate, rental real estate, providing other real estate services such as appraising real estate or acting as real estate escrow agents. Activities in this section may be carried out on own or leased property and may be done on a fee or contract basis. This section also includes the development of construction projects for self-owned buildings or civil engineering works for later sale or renting",
+      "excludes": "This section excludes: - general construction and specialised construction activities for buildings and civil engineering works, see section F"
+    },
+    "N": {
+      "name": "Professional, scientific and technical activities",
+      "includes": "This section includes specialised professional, scientific and technical activities. These activities require a high degree of training, and make specialised knowledge and skills available to users.",
+      "excludes": ""
+    },
+    "O": {
+      "name": "Administrative and support service activities",
+      "includes": "This section includes a variety of activities that support general business operations. These activities differ from those in section N, since their primary purpose is not the transfer of specialised knowledge.",
+      "excludes": ""
+    },
+    "P": {
+      "name": "Public administration and defence; compulsory social security",
+      "includes": "This section includes activities of a governmental nature, normally carried out by the public administration. This includes the enactment and judicial interpretation of laws and their pursuant regulation, as well as the administration of programmes based on them, legislative activities, taxation, national defence, public order and safety, immigration services, foreign affairs and the administration of government programmes. The legal or institutional status is not, in itself, the determining factor for an activity to belong in this section, rather than the activity being of a nature specified in the previous paragraph. This means that activities classified elsewhere in ISIC do not fall under this section, even if carried out by public entities. For example, administration of the school system (i.e. regulations, checks, curricula) falls under this section, but teaching itself does not (see section Q), and a prison or military hospital is classified to health (see section R). Similarly, some activities described in this section may be carried out by non-government units. This section also includes compulsory social security activities.",
+      "excludes": ""
+    },
+    "Q": {
+      "name": "Education",
+      "includes": "This section includes education at any level or for any profession. The instructions may be oral or written and may be provided by radio, television, Internet or via correspondence. Education activities are those having an educational programme, a time frame and some evaluation of the knowledge achieved. It includes formal initial education at its different levels provided by the different institutions in the regular school system designed for students as a continuous educational pathway before their first entrance to the labour market, as well as formal education outside the regular school system with programme content and qualifications that are equivalent to those of such initial education (adult education, literacy programmes etc). Also included are activities provided by military schools and academies, prison schools etc. at their respective levels. This section includes compulsory and non-compulsory schooling and public as well as private education. For each level of education, the classes include special education for physically or mentally disabled persons. Groups 851, 852, 853 and 854 take into account the formal education activities provided under the ISCED-P 2011 classification, that is, the international classification of educational programmes. As a consequence, the breakdown of the categories in this section is based on the level of education offered as defined by the levels of ISCED-P 2011. Specifically, the activities of educational institutions providing courses on ISCED-P 2011 level 0 are classified in 8510, on ISCED-P 2011 level 1 in 8520, on ISCED-P 2011 levels 2 category 24 and level 3 category 34 in class 8531, on ISCED-P 2011 levels 2 category 25 and level 3 category 35 in class 8532, on ISCED-P 2011 levels 4 in class 8533 and on ISCED-P 2011 levels 5 to 8 in group 854. Educational institutions classified in groups 852 to 854 are authorised to certify successful completion of an educational programme, usually in the form of a document officially recognized by the relevant national education authorities. This section is also based on the distinction between formal and non-formal educational programmes provided by the European classification of learning activities (CLA). Thus, this section also includes non-formal instruction primarily concerned with sport and recreational activities such as tennis or golf and education support activities (in groups 855-856). This section also includes education activities run by self-employed/own account/individual/independent lecturers (tutors, academics, instructors). Such activities should be classified in class 8559. This section also includes activities relating to administration, inspection, operation or support of schools and other institutions providing education as well as coordination of sports programmes.",
+      "excludes": "This section excludes: - child day-care activities (ISCED-P 2011 level 01 early childhood educational development), see 8890"
+    },
+    "R": {
+      "name": "Human health and social work activities",
+      "includes": "This section includes the provision of health and social work activities. Activities include a wide range of activities, private or public. It includes: - health care provided by trained medical professionals in hospitals and other facilities, including outpatient settings - residential care activities that still involve a degree of health care activities - social work activities without accommodation and any involvement of health care professionals This section also includes social work activities with accommodation, such as temporary homeless shelters.",
+      "excludes": ""
+    },
+    "S": {
+      "name": "Arts, sports and recreation",
+      "includes": "This section includes a wide range of activities to meet varied cultural, sports and recreational interests of their customers, including live performances, entertainment, operation of cultural and natural heritage sites, and gambling. Sports associations are typically non-profit entities, but inclusion in the sports sector is legitimised by the prevailing purpose of the activity carried out (promotion of sports practice). The activities of education, training, sale of advertising space, provision of clubhouse services, are, in this context, ancillary activities, which may have a prevailing weight at an economic level, but which are instrumental with respect to the prevailing purpose of the activity carried out and for its perpetuation. This section also includes: - services which enable entertainment events and live performances to be carried out",
+      "excludes": ""
+    },
+    "T": {
+      "name": "Other service activities",
+      "includes": "This section (as a residual category) includes the activities of membership organisations, the repair of computers, personal and household goods, and motor vehicles and motorcycles, and a variety of personal service activities not covered elsewhere in the classification.",
+      "excludes": ""
+    },
+    "U": {
+      "name": "Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use",
+      "includes": "This section includes households’ employment of domestic personnel and undifferentiated subsistence goods-producing and services-producing activities of households.",
+      "excludes": ""
+    },
+    "V": {
+      "name": "Activities of extraterritorial organizations and bodies ",
+      "includes": "See class 9900",
+      "excludes": ""
+    }
+  },
+  "UN_notes_sha256": "e54e922eebcf37353f9e1783789e177d841987f0db04ef01b774ebb2cf0dfffa",
+  "notes_url": "https://unstats.un.org/unsd/classifications/Econ/Download/ISIC5_Exp_Notes_19_Aug_2026.xlsx"
+}

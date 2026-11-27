@@ -1,0 +1,7 @@
+{
+  "function": "optima-collection-watchdog",
+  "state": "Active",
+  "last_update": "Successful",
+  "code_sha256": "Evbt3giu408KCJXfhDPN3EWm8XlCvG280YJA0ysjlRg=",
+  "schedule_check_error": "AccessDeniedException"
+}

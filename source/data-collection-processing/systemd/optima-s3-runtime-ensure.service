@@ -1,0 +1,9 @@
+[Unit]
+Description=Ensure S3 capture workspace exists before each dependent start
+# This idempotent mkdir runs for each activation, including bursts of collectors.
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+User=ec2-user
+ExecStart=/usr/bin/mkdir -p /dev/shm/optima-s3/locks

@@ -1,0 +1,313 @@
+{
+  "model": "mdeberta",
+  "rows": [
+    {
+      "case": "MIIT",
+      "status": "candidate",
+      "code": "V",
+      "ranked": [
+        [
+          "V",
+          0.7315
+        ],
+        [
+          "K",
+          0.3922
+        ],
+        [
+          "C",
+          0.0311
+        ],
+        [
+          "E",
+          0.005
+        ],
+        [
+          "N",
+          0.0021
+        ]
+      ],
+      "seconds": 1.405
+    },
+    {
+      "case": "IFR",
+      "status": "abstained",
+      "code": null,
+      "ranked": [
+        [
+          "K",
+          0.0949
+        ],
+        [
+          "J",
+          0.0422
+        ],
+        [
+          "V",
+          0.0183
+        ],
+        [
+          "P",
+          0.0089
+        ],
+        [
+          "N",
+          0.0015
+        ]
+      ],
+      "seconds": 1.159
+    },
+    {
+      "case": "IEA",
+      "status": "abstained",
+      "code": null,
+      "ranked": [
+        [
+          "V",
+          0.0884
+        ],
+        [
+          "K",
+          0.0854
+        ],
+        [
+          "J",
+          0.052
+        ],
+        [
+          "H",
+          0.0107
+        ],
+        [
+          "O",
+          0.0012
+        ]
+      ],
+      "seconds": 1.257
+    },
+    {
+      "case": "CAPES",
+      "status": "abstained",
+      "code": null,
+      "ranked": [
+        [
+          "L",
+          0.0121
+        ],
+        [
+          "T",
+          0.0097
+        ],
+        [
+          "P",
+          0.008
+        ],
+        [
+          "O",
+          0.0016
+        ],
+        [
+          "S",
+          0.0007
+        ]
+      ],
+      "seconds": 1.026
+    },
+    {
+      "case": "battery_factory",
+      "status": "abstained",
+      "code": null,
+      "ranked": [
+        [
+          "M",
+          0.1623
+        ],
+        [
+          "V",
+          0.1409
+        ],
+        [
+          "B",
+          0.1292
+        ],
+        [
+          "G",
+          0.0515
+        ],
+        [
+          "D",
+          0.0218
+        ]
+      ],
+      "seconds": 1.297
+    },
+    {
+      "case": "solar_constructor",
+      "status": "candidate",
+      "code": "A",
+      "ranked": [
+        [
+          "A",
+          0.8218
+        ],
+        [
+          "M",
+          0.0968
+        ],
+        [
+          "V",
+          0.0656
+        ],
+        [
+          "F",
+          0.0393
+        ],
+        [
+          "D",
+          0.0184
+        ]
+      ],
+      "seconds": 1.219
+    },
+    {
+      "case": "solar_operator",
+      "status": "abstained",
+      "code": null,
+      "ranked": [
+        [
+          "M",
+          0.1645
+        ],
+        [
+          "V",
+          0.1556
+        ],
+        [
+          "J",
+          0.1498
+        ],
+        [
+          "B",
+          0.1382
+        ],
+        [
+          "D",
+          0.0183
+        ]
+      ],
+      "seconds": 1.265
+    },
+    {
+      "case": "solar_wholesaler",
+      "status": "abstained",
+      "code": null,
+      "ranked": [
+        [
+          "V",
+          0.2235
+        ],
+        [
+          "M",
+          0.1345
+        ],
+        [
+          "G",
+          0.0548
+        ],
+        [
+          "D",
+          0.0213
+        ],
+        [
+          "E",
+          0.0154
+        ]
+      ],
+      "seconds": 1.377
+    },
+    {
+      "case": "insurer",
+      "status": "abstained",
+      "code": null,
+      "ranked": [
+        [
+          "M",
+          0.0969
+        ],
+        [
+          "V",
+          0.0953
+        ],
+        [
+          "T",
+          0.0526
+        ],
+        [
+          "L",
+          0.0521
+        ],
+        [
+          "S",
+          0.0008
+        ]
+      ],
+      "seconds": 0.888
+    },
+    {
+      "case": "math_operator",
+      "status": "abstained",
+      "code": null,
+      "ranked": [
+        [
+          "J",
+          0.0746
+        ],
+        [
+          "D",
+          0.0195
+        ],
+        [
+          "H",
+          0.0171
+        ],
+        [
+          "V",
+          0.0105
+        ],
+        [
+          "N",
+          0.0021
+        ]
+      ],
+      "seconds": 1.201
+    },
+    {
+      "case": "solar_plan",
+      "status": "abstained",
+      "code": null,
+      "ranked": [
+        [
+          "M",
+          0.0941
+        ],
+        [
+          "V",
+          0.0466
+        ],
+        [
+          "F",
+          0.039
+        ],
+        [
+          "D",
+          0.0145
+        ],
+        [
+          "I",
+          0.0096
+        ]
+      ],
+      "seconds": 1.262
+    }
+  ]
+}

@@ -51,7 +51,32 @@ def enqueue(db,job,url,depth,config):
             db.execute("UPDATE jobs SET status='capturing' WHERE id=?",(job,))
 
 
-def seed(db,store,config,mode):
+def capture_daily_landing(db, store, settings, day):
+    from grants_review_capture import capture_one
+    from specialist_plan import jobs
+
+    retry_key = 'landing-retry:' + day
+    retry = db.execute('SELECT value FROM control WHERE key=?',(retry_key,)).fetchone()
+    if retry and retry[0] > now():
+        return None
+    plan = load_json(ROOT/'config/specialist-inputs.json')
+    plan['sources'] = [source for source in plan['sources'] if source['source']=='nist_robotics_methods']
+    universe = load_json(ROOT/'config/company-universe.v0.5.json')
+    taxonomy = load_json(ROOT/'config/sectors.v1.json')
+    job = next((job for job in jobs(plan,universe,'daily',datetime.fromisoformat(day).date())
+                if canonical(job['parameters']['url'])==ROOT_URL),None)
+    if not job:
+        return None
+    result = capture_one(store,settings,universe,taxonomy,job,pages=1)
+    if result.get('status')=='complete' and result.get('manifest'):
+        return json.loads(store.get(result['manifest']).body)
+    retry_at = datetime.fromtimestamp(result['retry_after'],timezone.utc).isoformat().replace('+00:00','Z')
+    with db:
+        db.execute('INSERT OR REPLACE INTO control VALUES (?,?)',(retry_key,retry_at))
+    return None
+
+
+def seed(db,store,config,mode,settings=None):
     day=datetime.now(ZoneInfo('Europe/Madrid')).date().isoformat()
     if mode=='daily':
         previous=db.execute("SELECT id FROM jobs WHERE mode='daily' AND status='capturing' ORDER BY day LIMIT 1").fetchone()
@@ -65,12 +90,20 @@ def seed(db,store,config,mode):
                 r=json.loads(line)
                 roots.extend(r['payload'].get('source_evidence',[]))
     else:
-        scheduler=json.loads(store.get('operations/specialists/scheduler/daily.json').body)
+        job='nist-daily-'+day
+        if db.execute('SELECT 1 FROM control WHERE key=?',('seeded:'+job,)).fetchone():return job
+        stored=store.get('operations/specialists/scheduler/daily.json')
+        scheduler=json.loads(stored.body) if stored else {'jobs':{}}
         candidates=[r for r in scheduler['jobs'].values() if r['source']=='nist_robotics_methods' and r['status']=='complete' and datetime.fromisoformat(r['last_attempt'].replace('Z','+00:00')).astimezone(ZoneInfo('Europe/Madrid')).date().isoformat()==day]
-        if not candidates:return None
-        receipt=max(candidates,key=lambda r:r['last_attempt']);manifest=json.loads(store.get(receipt['manifest']).body)
-        if manifest['status']!='complete' or not manifest['exhausted'] or datetime.fromisoformat(manifest['finished_at'].replace('Z','+00:00')).astimezone(ZoneInfo('Europe/Madrid')).date().isoformat()!=day:return None
-        job='nist-daily-'+day;roots=[]
+        manifest=None
+        if candidates:
+            receipt=max(candidates,key=lambda r:r['last_attempt'])
+            saved=store.get(receipt['manifest'])
+            manifest=json.loads(saved.body) if saved else None
+        if manifest is None and settings:
+            manifest=capture_daily_landing(db,store,settings,day)
+        if not manifest or manifest['status']!='complete' or not manifest['exhausted'] or datetime.fromisoformat(manifest['finished_at'].replace('Z','+00:00')).astimezone(ZoneInfo('Europe/Madrid')).date().isoformat()!=day:return None
+        roots=[]
         for page in manifest['pages']:
             for b in page['batches']:
                 for line in get_bytes(store,b['key'],b['sha256']).splitlines():roots.extend(json.loads(line)['payload'].get('source_evidence',[]))
@@ -171,8 +204,10 @@ def main():
         try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:return
         with registry() as db:
-            job=seed(db,store,config,a.mode)
-            if job:
+            job=seed(db,store,config,a.mode,settings)
+            if job and a.mode=='daily' and db.execute('SELECT status FROM jobs WHERE id=?',(job,)).fetchone()==('captured',):
+                print(json.dumps({'status':'current_day_captured','job':job}))
+            elif job:
                 capture(db,store,settings,config,job);notify(db,store,settings,config,job)
             else:print(json.dumps({'status':'waiting_for_completed_S47_capture_today'}))
 

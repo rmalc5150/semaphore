@@ -421,15 +421,15 @@
       "source": "canada_cda_amc_cadth_reimbursement_reviews",
       "name": "Canada CDA-AMC / CADTH reimbursement reviews",
       "seeds": [
-      "https://www.cda-amc.ca/",
-      "https://www.cda-amc.ca/sites/default/files/DRR/2024/SR0860_Patient_and_Clinician_Group_Input.pdf"
+        "https://www.cda-amc.ca/",
+        "https://www.cda-amc.ca/sites/default/files/DRR/2024/SR0860_Patient_and_Clinician_Group_Input.pdf"
       ],
       "hosts": [
         "cda-amc.ca",
         "www.cda-amc.ca"
       ],
       "max_depth": 3,
-    "raw_content_revision": "raw-v2",
+      "raw_content_revision": "raw-v2",
       "decodo": true,
       "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
     },
@@ -438,17 +438,17 @@
       "source": "france_assurance_maladie_open_medic",
       "name": "France Assurance Maladie Open Medic",
       "seeds": [
-      "https://www.data.gouv.fr/api/1/datasets/open-medic-base-complete-sur-les-depenses-de-medicaments-interregimes/"
+        "https://www.data.gouv.fr/api/1/datasets/open-medic-base-complete-sur-les-depenses-de-medicaments-interregimes/"
       ],
       "hosts": [
         "data.gouv.fr",
-      "files.data.gouv.fr",
+        "files.data.gouv.fr",
         "www.data.gouv.fr"
       ],
       "max_depth": 3,
-    "raw_content_revision": "raw-v2",
-    "catalog_index": true,
-    "asset_only": true,
+      "raw_content_revision": "raw-v2",
+      "catalog_index": true,
+      "asset_only": true,
       "decodo": true,
       "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
     },
@@ -457,15 +457,21 @@
       "source": "japan_mhlw_ndb_open_data",
       "name": "Japan MHLW NDB Open Data",
       "seeds": [
+        "https://www.mhlw.go.jp/content/12400000/001492951.xlsx",
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177221_00016.html",
         "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177182.html"
       ],
       "hosts": [
-        "mhlw.go.jp",
-        "www.mhlw.go.jp"
+        "www.mhlw.go.jp",
+        "mhlw.go.jp"
       ],
       "max_depth": 3,
-      "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "decodo": false,
+      "scope_note": "Native published NDB aggregate workbooks and archives; suppressed cells retained. Not individual patient data or complete fiscal-year coverage.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true,
+      "daily_execution": "worker"
     },
     {
       "catalog_entry": 92,
@@ -480,85 +486,107 @@
       ],
       "max_depth": 3,
       "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "scope_note": "Discovery-only web route replaced by native CNINFO announcement index plus original PDF capture. Old receipts retained.",
+      "enabled": false
     },
     {
       "catalog_entry": 93,
       "source": "china_nbs_industrial_production",
       "name": "China NBS industrial production",
       "seeds": [
-        "https://data.stats.gov.cn/english/?cn=C01",
+        "https://www.stats.gov.cn/english/PressRelease/202611/t20261117_1965883.html",
         "https://www.stats.gov.cn/english/PressRelease/"
       ],
       "hosts": [
-        "data.stats.gov.cn",
+        "www.stats.gov.cn",
         "stats.gov.cn",
-        "www.data.stats.gov.cn",
-        "www.stats.gov.cn"
+        "data.stats.gov.cn"
       ],
       "max_depth": 3,
-      "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "decodo": false,
+      "scope_note": "Official statistical HTML releases and original same-release figures; numerical text retained, formal series extraction and complete history not asserted.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true
     },
     {
       "catalog_entry": 94,
       "source": "china_miit_electronics_and_battery_statistics",
       "name": "China MIIT electronics and battery statistics",
       "seeds": [
-        "https://www.miit.gov.cn/"
+        "https://www.miit.gov.cn/gxsj/tjfx/dzxx/art/2026/art_bcb9e6c06d814f9183b9f5a795d0610e.html",
+        "https://www.miit.gov.cn/gxsj/tjfx/dzxx/index.html",
+        "https://www.miit.gov.cn/gxsj/tjfx/yclgy/index.html"
       ],
       "hosts": [
-        "miit.gov.cn",
-        "www.miit.gov.cn"
+        "www.miit.gov.cn",
+        "wap.miit.gov.cn"
       ],
       "max_depth": 3,
       "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "scope_note": "Official statistical HTML releases and original same-release figures; numerical text retained, formal series extraction and complete history not asserted.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true
     },
     {
       "catalog_entry": 95,
       "source": "china_nea_power_statistics",
       "name": "China NEA power statistics",
       "seeds": [
+        "https://www.nea.gov.cn/20260825/1430d07985474c5b8110552785f1c74b/c.html",
         "https://www.nea.gov.cn/"
       ],
       "hosts": [
-        "nea.gov.cn",
-        "www.nea.gov.cn"
+        "www.nea.gov.cn",
+        "nea.gov.cn"
       ],
       "max_depth": 3,
       "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "scope_note": "Official statistical HTML releases and original same-release figures; numerical text retained, formal series extraction and complete history not asserted.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true
     },
     {
       "catalog_entry": 96,
       "source": "china_nhsa_reimbursement_and_procurement",
       "name": "China NHSA reimbursement and procurement",
       "seeds": [
-        "https://www.nhsa.gov.cn/"
+        "https://www.nhsa.gov.cn/art/2026/11/14/art_53_23387.html",
+        "https://www.nhsa.gov.cn/col/col53/index.html"
       ],
       "hosts": [
-        "nhsa.gov.cn",
-        "www.nhsa.gov.cn"
+        "www.nhsa.gov.cn",
+        "nhsa.gov.cn"
       ],
       "max_depth": 3,
       "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "scope_note": "Original official notices and linked public documents; no clinical interpretation, current legal-effect conclusion or confidential reimbursement values inferred.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true
     },
     {
       "catalog_entry": 97,
       "source": "china_mofcom_export_controls",
       "name": "China MOFCOM export controls",
       "seeds": [
-        "https://www.mofcom.gov.cn/"
+        "https://www.mofcom.gov.cn/zcfb/zc/art/2026/art_531d1a665fab4dafb810927f37788e24.html",
+        "https://www.mofcom.gov.cn/zcfb/"
       ],
       "hosts": [
-        "mofcom.gov.cn",
-        "www.mofcom.gov.cn"
+        "www.mofcom.gov.cn",
+        "exportcontrol.mofcom.gov.cn",
+        "picpolicy.mofcom.gov.cn",
+        "interview.mofcom.gov.cn"
       ],
       "max_depth": 3,
       "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "scope_note": "Original official notices and linked public documents; no clinical interpretation, current legal-effect conclusion or confidential reimbursement values inferred.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true
     },
     {
       "catalog_entry": 100,
@@ -570,86 +598,130 @@
       ],
       "hosts": [
         "openapi.twse.com.tw",
-        "www.openapi.twse.com.tw"
+        "mops.twse.com.tw"
       ],
       "max_depth": 3,
       "decodo": false,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "scope_note": "Entire original TWSE issuer and monthly revenue rows; native units and reporting month retained. Current snapshots, not a complete MOPS filing archive or original historical vintages.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true
     },
     {
       "catalog_entry": 101,
       "source": "taiwan_customs_trade_statistics",
       "name": "Taiwan customs trade statistics",
       "seeds": [
-        "https://www.sw.nat.gov.tw/"
+        "https://opendata.customs.gov.tw/data/6053/csv.csv"
       ],
       "hosts": [
-        "sw.nat.gov.tw",
-        "www.sw.nat.gov.tw"
+        "opendata.customs.gov.tw",
+        "data.gov.tw"
       ],
       "max_depth": 3,
-      "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "decodo": false,
+      "scope_note": "Entire native monthly customs-clearance aggregate rows, with original reporting year and NTD-thousand units. Not detailed HS/country trade or original vintages.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true
     },
     {
       "catalog_entry": 102,
       "source": "india_ibm_mineral_production",
       "name": "India IBM mineral production",
       "seeds": [
-        "https://ibm.gov.in/"
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2026"
       ],
       "hosts": [
         "ibm.gov.in",
         "www.ibm.gov.in"
       ],
       "max_depth": 3,
-      "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "decodo": false,
+      "scope_note": "Entire source-scoped native dataset/report/release with checksums; no complete historical coverage or unperformed numerical extraction asserted.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true,
+      "historical_seeds": [
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2026",
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2025",
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2024",
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2023",
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2022",
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2021",
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2020",
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2019",
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2018",
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2017",
+        "https://ibm.gov.in/IBMPortal/pages/monthly-statistics-of-mineral-production---2016"
+      ]
     },
     {
       "catalog_entry": 103,
       "source": "indonesia_esdm_and_geological_agency_mineral_statistics",
       "name": "Indonesia ESDM and Geological Agency mineral statistics",
       "seeds": [
-        "https://www.esdm.go.id/"
+        "https://geologi.esdm.go.id/publikasi/laporan-dan-buku/neraca-sumber-daya-dan-cadangan-mineral-batubara-dan-panas-bumi-indonesia-tahun-2026",
+        "https://geologi.esdm.go.id/publikasi/laporan-dan-buku/neraca-sumber-daya-dan-cadangan-mineral-batubara-dan-panas-bumi-indonesia-tahun-2025",
+        "https://geologi.esdm.go.id/publikasi/laporan-dan-buku"
       ],
       "hosts": [
-        "esdm.go.id",
-        "www.esdm.go.id"
+        "www.esdm.go.id",
+        "geologi.esdm.go.id",
+        "jdih.esdm.go.id"
       ],
       "max_depth": 3,
-      "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "decodo": false,
+      "scope_note": "Official mineral/coal resource-and-reserve report PDFs, including their stated data cutoff; not unrelated energy-site images or complete historical vintages.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true,
+      "daily_execution": "worker"
     },
     {
       "catalog_entry": 104,
       "source": "brazil_anm_mineral_yearbook",
       "name": "Brazil ANM mineral yearbook",
       "seeds": [
-        "https://www.gov.br/anm/pt-br/centrais-de-conteudo/dados-abertos"
+        "https://dadosabertos.anm.gov.br/AMB/Producao_Bruta.csv",
+        "https://dadosabertos.anm.gov.br/AMB/Producao_Beneficiada.csv",
+        "https://dadosabertos.anm.gov.br/AMB/Agua_Mineral_Producao.csv",
+        "https://www.gov.br/anm/pt-br/assuntos/economia-mineral/publicacoes/anuario-mineral/anuario-mineral"
       ],
       "hosts": [
-        "gov.br",
-        "www.gov.br"
+        "www.gov.br",
+        "dadosabertos.anm.gov.br"
       ],
       "max_depth": 3,
-      "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "decodo": false,
+      "scope_note": "Complete native AMB production CSV files and original yearbook PDFs; annual declared data and provider revisions, not original historical vintages.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true
     },
     {
       "catalog_entry": 105,
       "source": "brazil_anm_cfem_mining_royalties",
       "name": "Brazil ANM CFEM mining royalties",
       "seeds": [
-        "https://www.gov.br/anm/pt-br/assuntos/arrecadacao"
+        "https://dadosabertos.anm.gov.br/CFEM/CFEM_Arrecadacao_2022_2026.csv"
       ],
       "hosts": [
-        "gov.br",
-        "www.gov.br"
+        "www.gov.br",
+        "dadosabertos.anm.gov.br"
       ],
       "max_depth": 3,
-      "decodo": true,
-      "scope_note": "Public archive discovery and linked raw documents; dated coverage and structured extraction require separate verification."
+      "decodo": false,
+      "scope_note": "Complete native CFEM revenue CSV chunks, with original payment-period fields and encoding. Revenue collections; distribution/enforcement datasets and original historical vintages not inferred.",
+      "enabled": true,
+      "raw_content_revision": "review-20261118",
+      "reviewed_document_discovery": true,
+      "historical_seeds": [
+        "https://dadosabertos.anm.gov.br/CFEM/CFEM_Arrecadacao_2022_2026.csv",
+        "https://dadosabertos.anm.gov.br/CFEM/CFEM_Arrecadacao_2017_2021.csv",
+        "https://dadosabertos.anm.gov.br/CFEM/CFEM_Arrecadacao_2012_2016.csv"
+      ],
+      "daily_execution": "worker"
     },
     {
       "catalog_entry": 106,

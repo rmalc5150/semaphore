@@ -107,6 +107,28 @@ def label_observation(record: dict[str, Any], contract: dict[str, Any], *, label
         "payload": payload,
         "labelled_at": labelled_at,
     }
+    from regional_source_review import PUBLIC_KEYS
+    if record['source']in PUBLIC_KEYS and record['dataset']=='public_documents':base['quality_flags'].append('original_file_metadata; numerical_extraction_and_full_history_not_asserted')
+    if record['source']in ('cninfo_mainland_china_company_disclosures','south_korea_fss_opendart'):base['quality_flags'].append('native_index_and_original_document; XBRL_extraction_not_asserted')
+    if record['source']in ('wto_quantitative_restrictions_api','wto_eping_sps_tbt_notifications','epo_ops_patent_legal_events','ember_electricity_demand_and_generation'):
+        info=next(a['validation']for a in raw_artifacts if isinstance(a.get('validation'),dict))
+        base.update(record_kind=info['record_type'],completeness_scope=info['scope'])
+        base['quality_flags'].append('declared_query_scope_not_full_history_or_verified_legal_effect')
+    if record['source']in ('imf_portwatch_shipping_activity','unido_iip_and_indstat'):
+        info=next(a['validation']for a in raw_artifacts if isinstance(a.get('validation'),dict))
+        base.update(record_kind=info['record_type'],completeness_scope=info['scope'])
+        base['quality_flags'].append('current_provider_estimates_or_statistics_not_original_historical_vintages')
+        if record['source']=='unido_iip_and_indstat' and 'v' not in record['payload']['data']['native_observation']:
+            base['quality_flags'].append('provider_footnote_only_cell_no_numeric_value')
+    if record['source']in ('arxiv','england_nhsbsa_prescribing_data','ucdp_organized_violence','semi_worldwide_equipment_billings','sia_wsts_public_semiconductor_sales','international_federation_of_robotics_world_robotics','iea_pvps_solar_deployment_reports','germany_g_ba_drug_benefit_assessments','france_has_medicine_assessment_opinions','canada_cda_amc_cadth_reimbursement_reviews','france_assurance_maladie_open_medic'):
+        info=next(a['validation']for a in raw_artifacts if isinstance(a.get('validation'),dict))
+        base.update(record_kind=info['record_type'],completeness_scope=info['scope'])
+        base['quality_flags'].append('declared_record_or_file_scope_not_full_historical_completion')
+        if record['source']=='arxiv':base['quality_flags'].append('citation_and_abstract_metadata_only; article_full_text_not_collected')
+    if record['source']=='sam_gov_opportunities':
+        info=next(a['validation']for a in raw_artifacts if isinstance(a.get('validation'),dict))
+        base.update(record_kind=info['record_type'],completeness_scope=info['scope'])
+        base['quality_flags'].append('notice_metadata_not_full_description_or_attachments')
     if record['source']=='nmpa_trials' and record['dataset']=='registry_inventory':
         base.update(record_kind='registry_inventory',completeness_scope='original_registry_inventory_row')
         base['quality_flags'].append('registry_inventory_not_trial_detail')
@@ -138,6 +160,34 @@ def label_observation(record: dict[str, Any], contract: dict[str, Any], *, label
         if record['source']=='fda_ires_recalls' and payload['fda_context']['legacy_selected_columns']:base['quality_flags'].append('legacy_selected_recall_columns')
     if record['source']=='cms_payments_catalog':
         base['quality_flags'].append('catalog_metadata_not_individual_payment_or_spending_rows')
+    if record['source']=='un_comtrade' or record['source'].startswith('doe_storage_'):
+        info=next(a['validation'] for a in base['raw_artifacts'] if isinstance(a.get('validation'),dict)
+                  and a['validation'].get('provider') in ('UN Comtrade','DOE storage originals'))
+        document=info.pop('parsed_document',None)
+        base.update(record_kind=info['record_type'],completeness_scope=info['scope'])
+        if document is not None:
+            payload['original_collector_data']=payload['data'];payload['data']=document
+        base['quality_flags'].append('configured_source_scope_not_exhaustive_history')
+        if record['source'].startswith('doe_storage_'):
+            base['quality_flags'].append('source_statement_not_verified_performance_or_award_payment')
+            if info['extraction_limits']:base['quality_flags'].append('extraction_limits_preserved')
+    if record['source'] in ('federal_register','federal_register_documents'):
+        info=next(a['validation']for a in raw_artifacts if isinstance(a.get('validation'),dict)
+                  and a['validation'].get('provider')in ('Federal Register API','Federal Register full notice'))
+        base.update(record_kind=info['record_type'],completeness_scope=info['scope'])
+        payload['federal_register_context']=deepcopy(info)
+        base['quality_flags'].append('current_law_and_product_applicability_unreviewed')
+        if record['source']=='federal_register':base['quality_flags'].append('listing_metadata_not_full_notice')
+        if payload.get('data',{}).get('enrichment',{}).get('extraction_storage'):
+            base['quality_flags'].append('full_extraction_in_linked_s3_artifact')
+    if record['source'] in ('mlperf_results','cpsc_recalls'):
+        info=next(a['validation']for a in raw_artifacts if isinstance(a.get('validation'),dict)
+                  and a['validation'].get('provider')in ('MLCommons MLPerf','CPSC recalls'))
+        base.update(record_kind=info['record_type'],completeness_scope=info['scope'])
+        if info['record_type']=='benchmark_artifact_inventory':
+            base['quality_flags'].append('artifact_inventory_not_benchmark_result_or_file_contents')
+        elif info['record_type']=='benchmark_supporting_artifact':
+            base['quality_flags'].append('supporting_file_not_independent_benchmark_result')
     if record['source']=='cms_coverage':
         base['quality_flags'].append('inventory_row_not_policy_body')
     if record['source']=='cms_coverage_documents':
@@ -149,12 +199,21 @@ def label_observation(record: dict[str, Any], contract: dict[str, Any], *, label
         base['quality_flags'].append('proceedings_full_text_not_collected')
         if not payload['data'].get('abstract'):base['quality_flags'].append('abstract_not_deposited_in_returned_metadata')
     if record['source']=='europe_pmc_fulltext':
-        from metadata_engine.epmc_fulltext import enrichment
+        from raw_parsers.epmc_fulltext import enrichment
         data=payload['data'];data['enrichment']=enrichment(data['article_xml'],str(record['source_record_id']))
         base.update(completeness_scope=data['enrichment']['completeness_scope'],parser_version=data['enrichment']['version'])
         base['quality_flags'].append('supplements_and_historical_vintages_not_established')
+    if contract['adapter'] == 'research_feed':
+        base['completeness_scope'] = contract['completeness_scope']
+        base['quality_flags'].append('provider_metadata_scope')
+    if contract['adapter'] == 'market_archive_original':
+        base['completeness_scope'] = contract['completeness_scope']
+        base['quality_flags'].append('original_release_publication_date_unverified')
+    if contract['adapter'] == 'sedi_issuer_events':
+        base['completeness_scope'] = contract['completeness_scope']
+        base['quality_flags'].append('public_release_date_unverified')
     if record['source']=='pubmed_abstracts':
-        from metadata_engine.pubmed_enrichment import enrich
+        from raw_parsers.pubmed_enrichment import enrich
         data=payload['data']
         if 'enrichment'not in data:
             data['enrichment']=enrich(data['article_xml'],str(record['source_record_id']))
@@ -162,6 +221,9 @@ def label_observation(record: dict[str, Any], contract: dict[str, Any], *, label
         base.update(completeness_scope='complete_pubmed_citation_not_article_full_text',parser_version=data['enrichment']['version'])
         base['quality_flags'].append('pubmed_record_not_article_full_text')
         if not data['enrichment']['abstract_sections']:base['quality_flags'].append('primary_abstract_not_supplied_or_book_record')
+    for field in ('company_ids', 'entity_ids', 'product_ids', 'person_ids'):
+        if isinstance(record.get(field), list) and record[field]:
+            base[field] = deepcopy(record[field])
     base["payload_hash"] = "sha256:" + digest(payload)
     if contract.get('provider_role'):
         base.update(provider_role=contract['provider_role'],data_purpose=contract['data_purpose'],

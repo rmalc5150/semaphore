@@ -1,0 +1,20 @@
+[Unit]
+Description=Historical research metadata collection for %i
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=!/opt/constellation/batch-paused
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/opt/constellation/source
+Environment=CONSTELLATION_ROLE=worker
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=RESEARCH_FEED_BUDGET=1
+ExecStart=/opt/constellation/.venv/bin/python -B -m constellation.research_feeds %i historical --budget ${RESEARCH_FEED_BUDGET}
+Slice=constellation-workers.slice
+Nice=15
+CPUQuota=100%
+MemoryMax=384M
+MemorySwapMax=0
+TimeoutStartSec=40min

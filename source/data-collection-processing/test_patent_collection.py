@@ -205,6 +205,23 @@ class PatentCollectionTests(unittest.TestCase):
         self.assertLessEqual(len(client.calls)-before,40)
         self.assertEqual(sum('T00:00:00 TO' in q['q']for q in client.calls),1)
 
+    def test_changing_small_partition_can_split_below_five_minutes(self):
+        from datetime import datetime
+        rows=[odp(str(16123456+n),updated='2025-01-06T01:00:01') for n in range(4)]
+        client=self.partition_client(rows)
+        self.partitioned(client,page_size=1,max_pages=2)
+        for n in range(8):
+            rows.append(odp(str(16123460+n),updated='2025-01-06T01:00:01'))
+            self.partitioned(client,page_size=1,max_pages=2,eager_split=True)
+            self.partitioned(client,page_size=1,max_pages=2,eager_split=True)
+        spans=[]
+        for query in client.calls:
+            lower,upper=query['q'].split('[')[1][:-1].split(' TO ')
+            spans.append((datetime.fromisoformat(upper)-datetime.fromisoformat(lower)).total_seconds())
+        self.assertTrue(any(span<225 for span in spans))
+        result=self.partitioned(client,page_size=1,max_pages=80,eager_split=True)
+        self.assertEqual((result['status'],result['records']),('complete',len(rows)))
+
     def test_partition_ignored_filter_never_commits(self):
         result = self.partitioned(FakeODP(self.store, [odp()]), max_pages=30)
         self.assertEqual(result['reason'], 'source_ignored_partition_filter')
@@ -271,6 +288,19 @@ class PatentCollectionTests(unittest.TestCase):
     def test_empty_source_complete(self):
         result, _ = self.collect([])
         self.assertEqual((result["status"], result["records"]), ("complete", 0))
+
+    def test_odp_omitted_data_bag_requires_a_valid_empty_response(self):
+        cases = [
+            ({"count": 0, "requestIdentifier": "empty-search"}, "complete", None),
+            ({"count": 1, "requestIdentifier": "missing-page"}, "failed", "invalid_search_response"),
+            ({"count": 0, "requestIdentifier": "error", "message": "Error"}, "failed", "invalid_search_response"),
+        ]
+        for response, status, reason in cases:
+            with self.subTest(response=response):
+                client = FakeODP(self.store, [])
+                client.search = lambda query: response
+                result, _ = self.collect([], client=client, refresh=True)
+                self.assertEqual((result["status"], result.get("reason"), result["records"]), (status, reason, 0))
 
     def test_pct_identifiers_are_retained(self):
         result, _ = self.collect([odp("PCTUS2025010385")])

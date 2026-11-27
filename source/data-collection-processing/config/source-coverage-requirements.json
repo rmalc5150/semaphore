@@ -77,20 +77,6 @@
       "known_gaps": "Query exhaustion is not exhaustive company coverage; full 2021-onward archive and company matching incomplete"
     },
     {
-      "source": "marketaux",
-      "dataset": "news_articles",
-      "applicable_sectors": [
-        "biotech",
-        "robotics",
-        "semiconductors",
-        "energy_storage"
-      ],
-      "geographic_scope": "Four-sector multilingual provider searches",
-      "implemented": "shared",
-      "access_limits": "Configured 40 HTTP attempts/day; bounded historical queries",
-      "known_gaps": "Query exhaustion is not exhaustive company coverage; full 2021-onward archive and company matching incomplete"
-    },
-    {
       "source": "sec_edgar",
       "dataset": "filings",
       "applicable_sectors": [

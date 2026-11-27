@@ -6,6 +6,7 @@ from unittest.mock import Mock, patch
 
 from test_news_collection import NewsTests
 import finlight_content as f
+from collection_storage import Conflict
 from regulatory_collection import SourceIssue
 
 BODY = ('The company said, “Our battery remained stable during the entire flight.” '
@@ -78,6 +79,17 @@ class ContentTests(NewsTests):
             with self.assertRaises(SourceIssue) as exc:
                 capture.get(self.article())
         self.assertTrue(exc.exception.partial)
+
+    def test_concurrent_publisher_reservation_rechecks_the_daily_cap(self):
+        capture = self.capture()
+        capture.daily_cap = 2
+        states = [({'requests': 1}, 'before'), ({'requests': 2}, 'winner')]
+        with patch.object(f, 'public_url'), patch.object(f, 'load_stored', side_effect=states), \
+             patch.object(f, 'write_json', side_effect=Conflict('another worker reserved the last request')) as write:
+            with self.assertRaisesRegex(SourceIssue, 'fulltext_daily_budget_reached'):
+                capture.publisher(self.article()['link'], 'Summary')
+        write.assert_called_once()
+        self.assertEqual(capture.remaining, 100)
 
     def test_private_addresses_are_rejected(self):
         with patch('socket.getaddrinfo', return_value=[(2,1,6,'',('169.254.169.254',80))]):

@@ -1,0 +1,2 @@
+MemoryHigh=335544320
+MemoryMax=402653184

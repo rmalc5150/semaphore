@@ -4,7 +4,7 @@ from datetime import datetime,timedelta,timezone
 from collection_storage import StorageSettings,CollectionRun,AlreadyComplete,task_spec,write_json,now
 from research_contract import ROOT,load_json,digest
 from specialist_inputs import SpecialistClient,normalized,item
-from metadata_engine.canada_noc import product_id
+from raw_parsers.canada_noc import product_id
 
 def page_rows(rows,offset,size=4000):
     offset=int(offset);selected=rows[offset:offset+size];following=offset+len(selected)

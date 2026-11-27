@@ -11,6 +11,17 @@ SOURCES=('nih_reporter','usa_spending','ted_notices','uspto_assignment_histories
 BASE='constellation-backfill/grants-review/'
 QUEUE='constellation-backfill/specialist-publication-queue/grants-review/'
 
+def completed_summary(planned, state):
+ if not planned:return None
+ results=[]
+ for job in planned:
+  prior=state.get('windows',{}).get(digest(job),{})
+  if (prior.get('job')!=job or prior.get('status')!='complete'
+      or not str(prior.get('manifest','')).startswith('manifests/collection_runs/')):
+   return None
+  results.append({'status':'complete','manifest':prior['manifest']})
+ return {'status':'complete','reviewed_scope_only':True,'completed_scopes':len(results),'results':results}
+
 def save(store,key,value):
  old=store.get(key);write_json(store,key,value,old.token if old else None)
 
@@ -68,4 +79,7 @@ def main():
     if prior.get('status')=='complete'or prior.get('retry_after',0)>time.time():continue
     result=capture_one(store,settings,universe,taxonomy,job);state.setdefault('windows',{})[digest(job)]=result;state['source_cursor']=(cursor+i+1)%len(args.sources);save(store,key,state);attempted+=1;break
    if attempted>=2:break
+  if attempted==0:
+   summary=completed_summary(planned,state)
+   if summary:print(json.dumps(summary),flush=True)
 if __name__=='__main__':main()

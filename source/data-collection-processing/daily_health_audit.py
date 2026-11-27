@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 import boto3
 from botocore.config import Config
+from botocore.exceptions import ClientError
+from daily_athena_routes import verified_publisher, plan_routes, inspect_changes, sample_query
 from collection_health_exporter import properties, json_reports
 
 OUT = Path(os.environ.get('OPTIMA_DAILY_HEALTH_ROOT',str(ROOT/'reports/daily-health')))/datetime.now(timezone.utc).strftime('%Y-%m-%d')
@@ -24,12 +26,16 @@ glue = session.client('glue')
 def save(name, value):
     (OUT/(name+'.json')).write_text(json.dumps(value, indent=2, default=str)+'\n')
 def read(key):
-    return json.loads(s3.get_object(Bucket=cfg['bucket'], Key=key)['Body'].read())
+    with s3.get_object(Bucket=cfg['bucket'], Key=key)['Body'] as body:
+        return json.load(body)
 health = read(cfg['prefix'].rstrip('/')+'/health/latest.json')
 save('health', health)
-publisher = read('research-data/athena-committed/latest-report.json')
-save('publisher', publisher)
-print('Health and publisher snapshots saved', flush=True)
+try:
+    previous = read(cfg['prefix'].rstrip('/')+'/daily-health/latest.json')
+except ClientError as exc:
+    if exc.response['Error']['Code'] not in ('NoSuchKey','404'):raise
+    previous = {}
+print('Health snapshot saved', flush=True)
 units = subprocess.check_output(['systemctl','list-unit-files','optima-*','--no-legend','--no-pager'], text=True)
 (OUT/'unit-files.txt').write_text(units)
 (OUT/'timers.txt').write_text(subprocess.check_output(['systemctl','list-timers','--all','--no-pager'], text=True))
@@ -43,17 +49,12 @@ for line in units.splitlines():
             services[unit] = {'error': str(exc)}
 save('services', services)
 print(f'{len(services)} services inspected', flush=True)
-ids = set(publisher.get('batch_verification_query_ids', []))
-ids.update(x['query_id'] for x in publisher.get('partition_verifications', []))
-def status(q):
-    row = athena.get_query_execution(QueryExecutionId=q)['QueryExecution']
-    return {'query_id':q, 'state':row['Status']['State'], 'reason':row['Status'].get('StateChangeReason')}
-statuses=[]
-ordered=sorted(ids)
-for offset in range(0,len(ordered),50):
-    response=athena.batch_get_query_execution(QueryExecutionIds=ordered[offset:offset+50])
-    statuses.extend({'query_id':r['QueryExecutionId'],'state':r['Status']['State']} for r in response['QueryExecutions'])
-    statuses.extend({'query_id':r['QueryExecutionId'],'state':'INSPECTION_FAILED','reason':r.get('ErrorMessage')} for r in response.get('UnprocessedQueryExecutionIds',[]))
+publisher = verified_publisher(s3, BUCKET, read('research-data/athena-committed/latest-report.json'))
+save('publisher', publisher)
+route_proofs, changed_routes, live_routes, pending_live, route_failures = plan_routes(publisher,previous,OUT.name)
+statuses, changed_failures = inspect_changes(glue,athena,BUCKET,publisher,route_proofs,changed_routes)
+route_failures.extend(changed_failures)
+live_routes = [name for name in live_routes if route_proofs[name]['status']=='verified']
 save('publisher-query-statuses',statuses)
 def query(item):
     name, wg, sql = item
@@ -77,15 +78,13 @@ def query(item):
             data=athena.get_query_results(QueryExecutionId=q, MaxResults=1000)['ResultSet']
             result['columns']=[c['Name'] for c in data['ResultSetMetadata']['ColumnInfo']]
             result['rows']=[[c.get('VarCharValue') for c in r['Data']] for r in data['Rows'][1:]]
+            if name in live_routes and not any(row and row[0] for row in result['rows']):
+                result.update(state='FAILED',reason='verified nonempty route returned no observation ID')
     except Exception as exc:
         result['error']=str(exc)
     save(name, result)
     return result
-checks=[]
-for part in publisher['sources']:
-    source,dataset=part['source'],part['dataset']
-    checks.append((source+'--'+dataset,'optima-collected-data',
-        f"SELECT record_id, observation_id, ingested_at, substr(payload_json,1,100) AS payload_sample FROM optima_collected_data.observations WHERE source='{source}' AND dataset='{dataset}' LIMIT 1"))
+checks=[sample_query(route_proofs[name]) for name in live_routes]
 checks += [('reddit-freshness','optima-social-research',f'SELECT count(*) AS records,max(verified_utc) AS latest_verified,count_if(verified_utc < {time.time()-86400}) AS overdue_24h FROM optima_social_research.reddit_records'),
  ('specialist-observations','optima-collected-data','SELECT source,dataset,count(*) AS records,max(ingested_at) AS latest_capture FROM optima_specialist_inputs.source_observations_windows GROUP BY source,dataset'),
  ('specialist-coverage','optima-collected-data','SELECT source,dataset,count(*) AS windows FROM optima_specialist_inputs.source_coverage_windows GROUP BY source,dataset'),
@@ -95,8 +94,13 @@ checks += [('reddit-freshness','optima-social-research',f'SELECT count(*) AS rec
  ('office-actions','optima-patent-office-actions','SELECT * FROM optima_patent_office_actions.source_observations_windows LIMIT 1')]
 with cf.ThreadPoolExecutor(max_workers=4) as pool:
     results=list(pool.map(query, checks))
+for result in results:
+    if result['name'] in live_routes:
+        pending_live.pop(result['name'],None)
+        if result.get('state')!='SUCCEEDED':
+            pending_live[result['name']]=result
 save('athena-checks', results)
-save('summary', {'checked_at':datetime.now(timezone.utc).isoformat(),'services':len(services),'monitored_jobs':len(health['jobs']), 'partitions':len(publisher['sources']), 'observations':sum(p['records'] for p in publisher['sources']), 'publisher_finished_at':publisher['finished_at'], 'queries':len(results),'query_failures':[r for r in results if r.get('state')!='SUCCEEDED'], 'bytes_scanned':sum(r.get('bytes_scanned',0) for r in results)})
+save('summary', {'checked_at':datetime.now(timezone.utc).isoformat(),'services':len(services),'monitored_jobs':len(health['jobs']), 'partitions':len(publisher['sources']), 'observations':sum(p['records'] for p in publisher['sources']), 'publisher_finished_at':publisher['finished_at'], 'queries':len(results),'query_failures':[r for r in results if r['name'] not in live_routes and r.get('state')!='SUCCEEDED']+list(pending_live.values()), 'bytes_scanned':sum(r.get('bytes_scanned',0) for r in results)})
 print('Audit complete', flush=True)
 
 def refs(value):
@@ -140,9 +144,13 @@ with cf.ThreadPoolExecutor(max_workers=4) as pool:results=list(pool.map(check,ch
 print(json.dumps({'manifests':len(results),'objects':sum(len(r.get('objects',[])) for r in results),'failures':[r for r in results if r['status']=='failed']}))
 
 summary=json.loads((OUT/'summary.json').read_text())
-summary.update(shared_readbacks_passed=sum(r.get('state')=='SUCCEEDED' for r in json.loads((OUT/'athena-checks.json').read_text()) if '--' in r['name']),
+summary.update(published_route_proofs=route_proofs, route_live_failures=list(pending_live.values()),
+    shared_receipts_reused=sum(p['basis']=='receipt_reused' for p in route_proofs.values() if p['status']=='verified'),
+    shared_changed_receipts=sum(route_proofs[n]['status']=='verified' for n in changed_routes),
+    shared_live_queries=len(live_routes),
+    shared_readbacks_passed=sum(r.get('state')=='SUCCEEDED' for r in json.loads((OUT/'athena-checks.json').read_text()) if r['name'] in live_routes),
     s3_manifests=len(results),s3_objects=sum(len(r.get('objects',[])) for r in results),s3_failures=[r for r in results if r['status']=='failed'],
-    receipt_queries=len(statuses),receipt_query_failures=[r for r in statuses if r['state']!='SUCCEEDED'])
+    receipt_queries=len(statuses),receipt_query_failures=route_failures)
 summary['routes']={name:json.loads((OUT/(name+'.json')).read_text()) for name in ('reddit','reddit-freshness','search','petitions','office-actions','specialist-observations','specialist-coverage')}
 # A missing typed Office Action route is pending only while no completed window exists.
 try:

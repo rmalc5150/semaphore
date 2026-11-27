@@ -3,7 +3,9 @@ import io
 import json
 import time
 from unittest.mock import patch, Mock
-from collection_health_exporter import inspect_job, json_reports, Evidence as StoredEvidence
+from collection_health_exporter import (daily_reconciliation_gap, historical_capture_blockers,
+                                        inspect_job, json_reports, PATENT_GAP_STREAM, RESEARCH_FEED_HISTORY,
+                                        Evidence as StoredEvidence)
 from research_contract import digest
 import hashlib
 from datetime import datetime, timezone
@@ -27,6 +29,110 @@ class Evidence:
 
 
 class HealthRepairTests(unittest.TestCase):
+    def test_daily_gaps_use_saved_reconciliation_dates_and_outcome(self):
+        evidence = Mock()
+        evidence.read.side_effect = [
+            ({'pending_dates': ['2026-10-14']}, None, None),
+            ({'reason': 'prerequisite_incomplete'}, None, None),
+        ]
+        gap = daily_reconciliation_gap(
+            'operations/streams/test/daily/documents/progress-2026-09-25.json', {}, evidence)
+        self.assertEqual(gap, {'source': 'documents', 'dates': ['2026-10-14'],
+                               'reason': 'prerequisite_incomplete'})
+        self.assertTrue(evidence.read.call_args.args[0].endswith('/2026-10-14_2026-10-15.json'))
+        news = {'pending': ['2026-11-18'], 'attempted_date': '2026-11-17',
+                'last_result': {'status': 'partial', 'reason': 'page_limit'}}
+        self.assertIsNone(daily_reconciliation_gap(
+            'operations/news/automation/test/finlight/reconcile.json', news, evidence))
+
+    def test_historical_blockers_follow_working_routes_and_keep_missing_proof_visible(self):
+        openalex = 'openalex_scholarly_graph'
+        kaken = 'japan_kaken_funded_research'
+        checkpoints = {
+            f'{RESEARCH_FEED_HISTORY}/control.json': {'historical_enabled': True},
+            f'{RESEARCH_FEED_HISTORY}/progress/{openalex}/snapshot.json':
+                {'snapshot_sha256': 'snapshot', 'next_part': 1302, 'retained': 100},
+            f'{RESEARCH_FEED_HISTORY}/checkpoints/{kaken}/historical/fy-2016.json':
+                {'scope': {'fiscal_year': 2016, 'active': False}, 'unique_records': 31059,
+                 'published_batches': 16},
+            PATENT_GAP_STREAM + '/progress.json': {'next_date': '2018-04-01', 'completed_windows': 27},
+            'probe.json': {'provider': 'finlight', 'results': [
+                {'start': '2016-01-01', 'end_exclusive': '2016-01-05',
+                 'earliest': '2016-01-04T05:38:46Z', 'count': 3,
+                 'raw': {'key': 'source_documents/finlight/original'}}]},
+        }
+        evidence = Mock()
+        evidence.read.side_effect = lambda key: (checkpoints.get(key), None, None)
+        configs = {
+            'collection-gap-policy.json': {'historical_start_target': '2016-01-01'},
+            'patent-backfill.json': {'start_date': '2016-01-01'},
+            'finlight-backfill.json': {'enabled': True, 'collection_config': 'config/news-history-finlight.json',
+                                     'earlier_archive': {'start': '2016-01-01', 'history_evidence': 'probe.json'}},
+            'news-history-finlight.json': {'providers': {'finlight': {'history_start': '2021-01-01'}}},
+        }
+        with patch('collection_health_exporter.Path.read_text',
+                   autospec=True, side_effect=lambda path: json.dumps(configs[path.name])), \
+             patch('collection_health_exporter.properties', return_value={'ActiveState': 'active'}) as timer:
+            self.assertEqual(historical_capture_blockers(set(), evidence), [])
+            timer.assert_called_with('optima-patent-gap-catchup.timer')
+            timer.return_value = {'ActiveState': 'inactive'}
+            self.assertEqual([row['source'] for row in historical_capture_blockers(set(), evidence)],
+                             ['google_patents_bigquery'])
+            checkpoints[PATENT_GAP_STREAM + '/athena-publication/progress.json'] = {'next_date': '2021-01-01'}
+            self.assertEqual(historical_capture_blockers(set(), evidence), [])
+            checkpoints['probe.json']['results'][0].update(
+                earliest='2021-01-01T00:00:00Z', end_exclusive='2021-01-02')
+            del checkpoints[f'{RESEARCH_FEED_HISTORY}/progress/{openalex}/snapshot.json']
+            self.assertEqual([row['source'] for row in historical_capture_blockers(set(), evidence)],
+                             [openalex, 'finlight'])
+            self.assertEqual(historical_capture_blockers({openalex, 'finlight'}, evidence), [])
+
+    def test_verified_immutable_batch_uses_durable_cache(self):
+        raw = b'{"record": 1}\n'
+        batch = {'key': 'batch', 'sha256': hashlib.sha256(raw).hexdigest(), 'records': 1}
+        cached = {'batch': {'sha256': batch['sha256'], 'records': 1, 'etag':'"one"',
+                            'verified_at': datetime.now(timezone.utc).isoformat()}}
+        s3 = Mock()
+        evidence = StoredEvidence(s3, 'bucket', 'data', cached)
+        evidence.verify_batch(batch, '"one"')
+        s3.get_object.assert_not_called()
+
+    def test_grouped_batch_listing_reuses_matching_etags_and_downloads_changed_objects(self):
+        raw = b'{}\n'
+        sha = hashlib.sha256(raw).hexdigest()
+        batches = [{'key':f'raw/run/batch-{i:02}', 'sha256':sha, 'records':1} for i in range(16)]
+        checked_at = datetime.now(timezone.utc).isoformat()
+        cached = {batch['key']: {'sha256':sha, 'records':1, 'etag':'"prior"', 'verified_at':checked_at}
+                  for batch in batches}
+        s3 = Mock()
+        s3.list_objects_v2.return_value = {'Contents': [
+            {'Key':'data/'+batch['key'], 'ETag':'"prior"' if i else '"new"'}
+            for i, batch in enumerate(batches)]}
+        s3.get_object.return_value = {'Body':io.BytesIO(raw), 'ContentLength':len(raw), 'ETag':'"new"'}
+        evidence = StoredEvidence(s3,'bucket','data',cached)
+        evidence.verify_batches(batches)
+        s3.get_object.assert_called_once_with(Bucket='bucket', Key='data/'+batches[0]['key'])
+        self.assertEqual(evidence.batch_checks, {'downloads':1, 'cache_hits':15, 'list_requests':1})
+
+    def test_specialist_execution_outcomes_use_same_task_recovery_evidence(self):
+        from collection_health_exporter import reconcile_repaired_outcomes
+        old='manifests/collection_runs/source=sam/dataset=specialist_inputs/old/final.json'
+        new='manifests/collection_runs/source=sam/dataset=specialist_inputs/new/final.json'
+        task={'source':'sam_gov_opportunities'}
+        docs={old:{'task_id':'t','task':task,'finished_at':'2026-11-12T12:00:00Z'},
+              'checkpoints/t/head.json':{'task':task,'terminal_manifest':new,'terminal_history':[old,new]},
+              new:{'task':task,'status':'partial','reason_code':'page_budget','finished_at':'2026-11-12T13:00:00Z'}}
+        e=Mock();e.read.side_effect=lambda k:(docs[k],None,None)
+        e.checkpoint_commits.return_value=([('verified-page','2026-11-12T13:00:00Z')],True)
+        report={'outcomes':[{'manifest':old,'status':'failed','reason':'sam_count_mismatch'}]}
+        updated,commits=reconcile_repaired_outcomes(report,e)
+        self.assertEqual(updated['outcomes'][0]['manifest'],new)
+        self.assertEqual(updated['outcomes'][0]['reason'],'page_budget')
+        self.assertTrue(commits)
+        docs['checkpoints/t/head.json']['task']={'source':'different'}
+        updated,commits=reconcile_repaired_outcomes(report,e)
+        self.assertEqual(updated,report);self.assertFalse(commits)
+
     def test_partial_patent_child_requires_matching_scope_and_verified_pages(self):
         raw = b'{"record":1}\n'
         page = {'sequence':0,'run_id':'child-run','record_count':1,

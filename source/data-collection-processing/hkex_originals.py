@@ -19,7 +19,7 @@ from research_contract import digest, seal_record
 API = 'https://www1.hkexnews.hk/search/titleSearchServlet.do'
 NOTICE = 'an announcement has just been published by the issuer in the chinese section of this website'
 VERSION = 'hkex-originals-1'
-MAX_ORIGINAL_BYTES = 64 * 1024 * 1024  # Match EvidenceClient's bounded document download.
+MAX_ORIGINAL_BYTES = 128 * 1024 * 1024  # Match the official HKEX PDF download bound.
 
 class OriginalError(ValueError):
     def __init__(self,code,diagnostics=None):

@@ -447,7 +447,13 @@
       "queue_timeout_seconds": 0,
       "max_start_gap_seconds": 1800,
       "stale_progress_seconds": 86400,
-      "progress_keys": []
+      "progress_keys": [],
+      "publication_scopes": [
+        {
+          "owner": "specialists",
+          "queue_prefix": "constellation-backfill/specialist-publication-queue/cms-payments/"
+        }
+      ]
     },
     "optima-fda-product-codes-capture.service": {
       "memory_max_bytes": 268435456,
@@ -463,7 +469,13 @@
       "execution_timeout_seconds": 300,
       "queue_timeout_seconds": 0,
       "max_start_gap_seconds": 1800,
-      "stale_progress_seconds": 86400
+      "stale_progress_seconds": 86400,
+      "publication_scopes": [
+        {
+          "owner": "specialists",
+          "queue_prefix": "constellation-backfill/specialist-publication-queue/fda-review/"
+        }
+      ]
     },
     "optima-edinet-documents-daily.service": {
       "serialized": false,

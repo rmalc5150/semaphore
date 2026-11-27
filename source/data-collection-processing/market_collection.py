@@ -38,8 +38,12 @@ def normalize(row,kind,start,end):
             require(field in row,'market_price_field_missing')
             data[field]=number(row[field])
         require(all(data[k] is not None for k in ('open','high','low','close','volume')),'market_missing_ohlcv')
-        require(Decimal(data['low'])<=min(Decimal(data['open']),Decimal(data['close']))<=
-                max(Decimal(data['open']),Decimal(data['close']))<=Decimal(data['high']),'market_ohlc_inconsistent')
+        if not (Decimal(data['low'])<=min(Decimal(data['open']),Decimal(data['close']))<=
+                max(Decimal(data['open']),Decimal(data['close']))<=Decimal(data['high'])):
+            raise SourceIssue('market_ohlc_inconsistent', False, {
+                'date': str(day), 'provider_ohlc': {k:data[k] for k in ('open','high','low','close')},
+                'required_order': 'low <= open/close <= high',
+                'action': 'Provider correction required; do not substitute adjusted_close or invent a price.'})
     elif kind=='dividends':
         data['value']=number(row.get('value'));require(data['value'] is not None,'market_dividend_value_missing')
         for field in ('declarationDate','recordDate','paymentDate'):

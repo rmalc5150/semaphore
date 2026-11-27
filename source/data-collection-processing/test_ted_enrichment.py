@@ -1,4 +1,6 @@
 import unittest
+import hashlib
+import json
 from unittest.mock import Mock, patch
 from ted_enrichment import parse_xml, enrich_notice
 
@@ -45,5 +47,44 @@ class ChunkTests(unittest.TestCase):
         self.assertEqual(len({r['id'] for r in rows}),len(rows))
         self.assertTrue(all(r['data']['record_type']=='notice_content_chunk' for r in rows[1:]))
         self.assertFalse(rows[0]['data']['enrichment']['specialist_ready'])
+
+    def test_metadata_verifies_full_parent_from_archive_and_gap_routes_changed_content(self):
+        from metadata_engine.evidence import RawFailure
+        from metadata_engine import ted_records
+        from ted_enrichment import bounded_notice_items
+
+        identity = '331738-2021'
+        landing = f'https://ted.europa.eu/en/notice/-/detail/{identity}'
+        xml_url = f'https://ted.europa.eu/en/notice/{identity}/xml'
+        search_url = 'https://api.ted.europa.eu/v3/notices/search'
+        notice = {'publication-number': identity}
+        search = json.dumps({'notices': [notice]}).encode()
+        xml = TedTests.raw
+        evidence = [{'source_url': url, 'key': key, 'sha256': hashlib.sha256(body).hexdigest()}
+                    for url, key, body in ((search_url, 'search', search), (xml_url, 'xml', xml))]
+        data = {**notice, 'notice_xml': xml.decode(),
+                'enrichment': {**parse_xml(xml, identity), 'retrieval_method': 'individual_xml'}}
+        factory = lambda record_id, contents, *_: {'id': record_id, 'data': contents}
+        chunked = bounded_notice_items(identity, data, landing, None, factory, threshold=100)
+        base = {'source_url': landing, 'source_record_id': identity}
+
+        def item(record_id, contents):
+            return {**base, 'source_record_id': record_id,
+                    'payload': {'data': contents, 'source_evidence': evidence}}
+
+        with (
+            patch.object(ted_records, '_cache_key', None),
+            patch.object(ted_records, 'bounded_notice_items',
+                         side_effect=lambda *args: bounded_notice_items(*args, threshold=100)),
+            patch('metadata_engine.evidence.object_bytes', side_effect=[search, xml]),
+        ):
+            s3 = object()
+            self.assertEqual(len(ted_records.evidence(item(identity, data), s3, 'bucket')), 2)
+            for chunk in chunked:
+                self.assertEqual(len(ted_records.evidence(item(chunk['id'], chunk['data']), s3, 'bucket')), 2)
+            with self.assertRaisesRegex(RawFailure, 'ted_mapped_notice_or_content_chunk_differs'):
+                ted_records.evidence(item(identity, {**data, 'notice_xml': 'changed'}), s3, 'bucket')
+            with self.assertRaisesRegex(RawFailure, 'ted_mapped_notice_or_content_chunk_differs'):
+                ted_records.evidence(item(chunked[1]['id'], data), s3, 'bucket')
 
 if __name__=='__main__': unittest.main()

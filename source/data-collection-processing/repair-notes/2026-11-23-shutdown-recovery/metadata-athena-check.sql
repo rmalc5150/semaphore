@@ -1,0 +1,1 @@
+SELECT source_key,count(*) AS rows,count_if(raw_s3_uri IS NOT NULL) AS linked_raw FROM optima_metadata_engine.source_observations WHERE job_id='2e59115a9b31a4117fd2f1ce03f579d8ca3e1acb70f1ff6366e0f14149d19769' GROUP BY source_key;

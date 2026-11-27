@@ -1,0 +1,525 @@
+{
+  "model": "qwen3-0.6b-q8_0-23749fe",
+  "prompt_version": "semiotic-language-v5",
+  "input_graph_sha256": "825653ad9c7e242f18ce53e913d02ce42ab8b0ae75c6cf40a4174495503fbdf7",
+  "finished_at": "2026-11-23T14:25:17.495861+00:00",
+  "cases": [
+    {
+      "chunk_id": "factory",
+      "expected": {
+        "region": "Germany",
+        "sector": "isic_C"
+      },
+      "result": {
+        "chunk_id": "factory",
+        "observation_id": "factory",
+        "model": "qwen3-0.6b-q8_0-23749fe",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 5,
+        "original_language": "en",
+        "english_text": "Acme manufactures batteries in Germany.",
+        "extraction_confidence": "low",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": null,
+        "tone_evidence": null,
+        "triples": [
+          {
+            "subject": "Acme",
+            "verb": "manufactures",
+            "object": "batteries",
+            "subject_en": "Acme",
+            "verb_en": "manufactures",
+            "object_en": "batteries",
+            "evidence": {
+              "quote": "Acme manufactures batteries in Germany.",
+              "page": 1,
+              "start": 0,
+              "end": 39
+            }
+          }
+        ],
+        "sector_classifications": [],
+        "geographic_coverage": [
+          {
+            "label": "Germany",
+            "evidence": {
+              "quote": "Acme manufactures batteries in Germany.",
+              "page": 1,
+              "start": 0,
+              "end": 39
+            }
+          }
+        ],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "sector_classifications",
+            "reason": "invalid_sector_subsector_pair"
+          },
+          {
+            "field": "tone",
+            "reason": "quote_missing_or_ambiguous"
+          }
+        ],
+        "id": "language_245bf9097309e5f416ce708b12437e75eba22e4c8a1402587c514ccff1d49117"
+      },
+      "region_match": true,
+      "sector_match": false,
+      "seconds": 25.554
+    },
+    {
+      "chunk_id": "insurance",
+      "expected": {
+        "region": "German",
+        "sector": "isic_L"
+      },
+      "result": {
+        "chunk_id": "insurance",
+        "observation_id": "insurance",
+        "model": "qwen3-0.6b-q8_0-23749fe",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 8,
+        "original_language": "und",
+        "english_text": "Atlas insures a German battery factory against fire.",
+        "extraction_confidence": "low",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": null,
+        "tone_evidence": null,
+        "triples": [
+          {
+            "subject": "Atlas",
+            "verb": "insures",
+            "object": "battery factory",
+            "subject_en": "Atlas",
+            "verb_en": "insures",
+            "object_en": "battery factory",
+            "evidence": {
+              "quote": "Atlas insures a German battery factory against fire.",
+              "page": 1,
+              "start": 0,
+              "end": 52
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "isic_A",
+            "subsector_id": "isic_01",
+            "evidence": {
+              "quote": "Atlas insures a German battery factory against fire.",
+              "page": 1,
+              "start": 0,
+              "end": 52
+            }
+          }
+        ],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "tone",
+            "reason": "quote_missing_or_ambiguous"
+          }
+        ],
+        "id": "language_6f814fbe9fe732526a11eda4dbc72fcc20833f7132e6d6ffa561f506d46ff6b0"
+      },
+      "region_match": false,
+      "sector_match": false,
+      "seconds": 16.505
+    },
+    {
+      "chunk_id": "spanish",
+      "expected": {
+        "region": "España",
+        "sector": "isic_C"
+      },
+      "result": {
+        "chunk_id": "spanish",
+        "observation_id": "spanish",
+        "model": "qwen3-0.6b-q8_0-23749fe",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 5,
+        "original_language": "es",
+        "english_text": "Acme fabrica baterías en España.",
+        "extraction_confidence": "low",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "negative",
+        "tone_evidence": {
+          "quote": "Acme fabrica baterías en España.",
+          "page": 1,
+          "start": 0,
+          "end": 32
+        },
+        "triples": [
+          {
+            "subject": "Acme",
+            "verb": "fabrica",
+            "object": "baterías",
+            "subject_en": "Acme",
+            "verb_en": "fabrica",
+            "object_en": "Batteries",
+            "evidence": {
+              "quote": "Acme fabrica baterías en España.",
+              "page": 1,
+              "start": 0,
+              "end": 32
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "isic_I",
+            "subsector_id": null,
+            "evidence": {
+              "quote": "Acme fabrica baterías en España.",
+              "page": 1,
+              "start": 0,
+              "end": 32
+            }
+          }
+        ],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "id": "language_0cfa472274b64fa97faa7f34fc4e040823a6dbd36d161ced0e9b504fe46f53ec"
+      },
+      "region_match": false,
+      "sector_match": false,
+      "seconds": 17.047
+    },
+    {
+      "chunk_id": "no_geography",
+      "expected": {
+        "region": null,
+        "sector": "isic_L"
+      },
+      "result": {
+        "chunk_id": "no_geography",
+        "observation_id": "no_geography",
+        "model": "qwen3-0.6b-q8_0-23749fe",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 4,
+        "original_language": "und",
+        "english_text": "Atlas provides insurance services.",
+        "extraction_confidence": "low",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "negative",
+        "tone_evidence": {
+          "quote": "Atlas provides insurance services.",
+          "page": 1,
+          "start": 0,
+          "end": 34
+        },
+        "triples": [
+          {
+            "subject": "Atlas",
+            "verb": "provides",
+            "object": "insurance services",
+            "subject_en": "Atlas",
+            "verb_en": "provides",
+            "object_en": "insurance services",
+            "evidence": {
+              "quote": "Atlas provides insurance services.",
+              "page": 1,
+              "start": 0,
+              "end": 34
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "isic_D",
+            "subsector_id": "isic_35",
+            "evidence": {
+              "quote": "Atlas provides insurance services.",
+              "page": 1,
+              "start": 0,
+              "end": 34
+            }
+          }
+        ],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "id": "language_4b1c80b4dde42ae4095298fe823041c0db4c093b6f22985f5f044a9e6b060127"
+      },
+      "region_match": true,
+      "sector_match": false,
+      "seconds": 15.394
+    },
+    {
+      "chunk_id": "chunk_108987ae8183f16d141a0a0324c432eb23a10184678d89d2a4d995cba6be72b8",
+      "expected": null,
+      "result": {
+        "chunk_id": "chunk_108987ae8183f16d141a0a0324c432eb23a10184678d89d2a4d995cba6be72b8",
+        "observation_id": "obs_bc2d1ecacdf40dccc7de1fe3d414d5e282cc5f5184fea0295f479cbb5656d4f5",
+        "model": "qwen3-0.6b-q8_0-23749fe",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 116,
+        "original_language": "und",
+        "english_text": "IEEE Standards Study Group: Standard Metrics and Test Methods for Assessing the Performance of Grasping-Type Robot End-Effectors Goal: A unified set of metrics and performance tests that the robotics community will use to help advance robot grasp type end-effector technologies through standardized benchmarking with the longer-term use as a standard specification to define the characteristics of commercially available end-effector technologies. Scope: This standard contains a series of metrics and supporting test methods to perform a characterization of grasping type robot end-effectors. Developing these characterizations will guide in the selection of appropriate designs to support an application and will help to direct research and development advancements. Each test method describes the 1.",
+        "extraction_confidence": "low",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": null,
+        "tone_evidence": null,
+        "triples": [
+          {
+            "subject": "IEEE Standards Study Group",
+            "verb": "will use",
+            "object": "Standard Metrics and Test Methods",
+            "subject_en": "IEEE Standards Study Group",
+            "verb_en": "will use",
+            "object_en": "Standard Metrics and Test Methods",
+            "evidence": {
+              "quote": "A unified set of metrics and performance tests that the robotics community will use to help advance robot grasp type end-effector technologies through standardized benchmarking with the longer-term use as a standard specification to define the characteristics of commercially available end-effector technologies.",
+              "page": 3,
+              "start": 135,
+              "end": 447
+            }
+          },
+          {
+            "subject": "robotics",
+            "verb": "contains",
+            "object": "Grasping-Type Robot End-Effectors",
+            "subject_en": "robotics",
+            "verb_en": "contains",
+            "object_en": "Grasping-Type Robot End-Effectors",
+            "evidence": {
+              "quote": "This standard contains a series of metrics and supporting test methods to perform a characterization of grasping type robot end-effectors.",
+              "page": 3,
+              "start": 455,
+              "end": 593
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "isic_I",
+            "subsector_id": "isic_55",
+            "evidence": {
+              "quote": "This standard contains a series of metrics and supporting test methods to perform a characterization of grasping type robot end-effectors.",
+              "page": 3,
+              "start": 455,
+              "end": 593
+            }
+          }
+        ],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "tone",
+            "reason": "quote_missing_or_ambiguous"
+          }
+        ],
+        "id": "language_f372ecc8d15b2dd457eaf1c2315d272fd68f0c03aa3d096db8482f39468652df"
+      },
+      "seconds": 43.139
+    },
+    {
+      "chunk_id": "chunk_1d9fe71f94dea6768f3fce24cc95e42d5a17290430d7bceb0c652b6e8e51b876",
+      "expected": null,
+      "error": "TimeoutError",
+      "seconds": 90.081
+    },
+    {
+      "chunk_id": "chunk_5c80e013807279b8bfca1218150e3bec2b3e92945cf343224926d40d323257fa",
+      "expected": null,
+      "result": {
+        "chunk_id": "chunk_5c80e013807279b8bfca1218150e3bec2b3e92945cf343224926d40d323257fa",
+        "observation_id": "obs_d90957e478555040b05af963e928de63503427538789564287e2dc959cc82195",
+        "model": "qwen3-0.6b-q8_0-23749fe",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 111,
+        "original_language": "und",
+        "english_text": "tion method to fully exploit the complementary knowledge in the model bank for inter-model interaction. Nevertheless, considering the optimization conflict between inter-model interaction and intra-model adaptation, we augment the existing bi-classifier domain confusion architecture into an Optimization-Separated Tri-Classifier counterpart. After optimizing the model bank, architecture adaptation is leveraged via our proposed Unsupervised Performance Evaluation Metric. Under various resource constraints, our framework surpasses other competing approaches by a very large margin on multiple benchmarks. It is also worth emphasizing that our framework can preserve the performance improvement against the source-only model even when the computing complexity is reduced to $1/64$. Code will be available.",
+        "extraction_confidence": "low",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": null,
+        "tone_evidence": null,
+        "triples": [
+          {
+            "subject": "inter-model interaction",
+            "verb": "augment",
+            "object": "inter-model interaction",
+            "subject_en": "inter-model interaction",
+            "verb_en": "augment",
+            "object_en": "inter-model interaction",
+            "evidence": {
+              "quote": "Nevertheless, considering the optimization conflict between inter-model interaction and intra-model adaptation, we augment the existing bi-classifier domain confusion architecture into an Optimization-Separated Tri-Classifier counterpart.",
+              "page": 2,
+              "start": 904,
+              "end": 1142
+            }
+          },
+          {
+            "subject": "model bank",
+            "verb": "optimized",
+            "object": "model bank",
+            "subject_en": "model bank",
+            "verb_en": "optimized",
+            "object_en": "model bank",
+            "evidence": {
+              "quote": "After optimizing the model bank, architecture adaptation is leveraged via our proposed Unsupervised Performance Evaluation Metric.",
+              "page": 2,
+              "start": 1143,
+              "end": 1273
+            }
+          },
+          {
+            "subject": "Unsupervised Performance Evaluation Metric",
+            "verb": "surpasses",
+            "object": "Unsupervised Performance Evaluation Metric",
+            "subject_en": "Unsupervised Performance Evaluation Metric",
+            "verb_en": "surpasses",
+            "object_en": "Unsupervised Performance Evaluation Metric",
+            "evidence": {
+              "quote": "Under various resource constraints, our framework surpasses other competing approaches by a very large margin on multiple benchmarks.",
+              "page": 2,
+              "start": 1274,
+              "end": 1407
+            }
+          },
+          {
+            "subject": "model bank",
+            "verb": "exploit",
+            "object": "model bank",
+            "subject_en": "model bank",
+            "verb_en": "exploit",
+            "object_en": "model bank",
+            "evidence": {
+              "quote": "tion method to fully exploit the complementary knowledge in the model bank for inter-model interaction.",
+              "page": 2,
+              "start": 800,
+              "end": 903
+            }
+          }
+        ],
+        "sector_classifications": [],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "sector_classifications",
+            "reason": "invalid_sector_subsector_pair"
+          },
+          {
+            "field": "tone",
+            "reason": "quote_missing_or_ambiguous"
+          }
+        ],
+        "id": "language_a1eccf318d2cacd49ff8f89b9cd393cd12b8acbb14646f9236e8ec2b67a1e2f7"
+      },
+      "seconds": 58.136
+    },
+    {
+      "chunk_id": "chunk_679b148cfbb79860ed4de0dab6cac70d2301242c8151c35dfa14b9691a5c94aa",
+      "expected": null,
+      "result": {
+        "chunk_id": "chunk_679b148cfbb79860ed4de0dab6cac70d2301242c8151c35dfa14b9691a5c94aa",
+        "observation_id": "obs_6b16deaec91b47cb6e9c7bf4805a1d200c92738cb1db984c2bde91018cd155bc",
+        "model": "qwen3-0.6b-q8_0-23749fe",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 35,
+        "original_language": "und",
+        "english_text": "Novel salt of 3-[(3-{[4-(4-morpholinylmethyl)-1h-pyrrol-2-yl]methylene}-2-oxo-2,3-dihydro-1h-indol-5-yl)methyl]-1,3-thiazolidine-2,4-dione, preparation thereof and formulations containing same",
+        "extraction_confidence": "low",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": null,
+        "tone_evidence": null,
+        "triples": [
+          {
+            "subject": "novel salt",
+            "verb": "preparation thereof",
+            "object": "novel salt",
+            "subject_en": "novel salt",
+            "verb_en": "preparation",
+            "object_en": "novel salt",
+            "evidence": {
+              "quote": "Novel salt of 3-[(3-{[4-(4-morpholinylmethyl)-1h-pyrrol-2-yl]methylene}-2-oxo-2,3-dihydro-1h-indol-5-yl)methyl]-1,3-thiazolidine-2,4-dione",
+              "page": 1,
+              "start": 0,
+              "end": 138
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "biotech",
+            "subsector_id": "therapeutics",
+            "evidence": {
+              "quote": "Novel salt of 3-[(3-{[4-(4-morpholinylmethyl)-1h-pyrrol-2-yl]methylene}-2-oxo-2,3-dihydro-1h-indol-5-yl)methyl]-1,3-thiazolidine-2,4-dione",
+              "page": 1,
+              "start": 0,
+              "end": 138
+            }
+          }
+        ],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "tone",
+            "reason": "quote_missing_or_ambiguous"
+          }
+        ],
+        "id": "language_64d4e030e83229a3e8ff28a769ea1c110ca155ea9799a3400f575e043c59399d"
+      },
+      "seconds": 33.23
+    },
+    {
+      "chunk_id": "chunk_38126614b4092716d3bc292c749b18864a0150718eb13e3a16b3b3463516f099",
+      "expected": null,
+      "result": {
+        "chunk_id": "chunk_38126614b4092716d3bc292c749b18864a0150718eb13e3a16b3b3463516f099",
+        "observation_id": "obs_5bf422bae037444fb219f3fb9ea0763c471356bfb6a0ad8947b09e76f284d4ce",
+        "model": "qwen3-0.6b-q8_0-23749fe",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 6,
+        "original_language": "und",
+        "english_text": "Lithium aluminum hydride powder and tablets",
+        "extraction_confidence": "low",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": null,
+        "tone_evidence": null,
+        "triples": [],
+        "sector_classifications": [],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "triples",
+            "reason": "quote_missing_or_ambiguous"
+          },
+          {
+            "field": "sector_classifications",
+            "reason": "quote_missing_or_ambiguous"
+          },
+          {
+            "field": "tone",
+            "reason": "quote_missing_or_ambiguous"
+          }
+        ],
+        "id": "language_47704162bfe141ad511ddb56ddad83c3be3ba52c8244f715a9bcac6af6e7b5c3"
+      },
+      "seconds": 17.639
+    }
+  ],
+  "summary": {
+    "attempted": 9,
+    "returned": 8,
+    "with_evidence_linked_triples": 7,
+    "with_evidence_linked_tone": 2,
+    "rejected_annotations": 10,
+    "gold_region_matches": 2,
+    "gold_sector_matches": 0,
+    "gold_cases": 4,
+    "median_seconds": 25.554
+  }
+}

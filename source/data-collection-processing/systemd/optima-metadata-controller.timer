@@ -1,0 +1,10 @@
+[Unit]
+Description=Discover new committed metadata inputs and deliver stop alerts in bounded batches
+
+[Timer]
+OnBootSec=60
+OnUnitInactiveSec=15min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

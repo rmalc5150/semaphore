@@ -35,6 +35,13 @@ def main():
         # no usable raw data.  Their date queue and pipeline-error queue are
         # installed separately and are reviewed before expanding this list.
         'verified_source_failure_handling':{
+            'trade_screening':'queue_by_source_date',
+            'european_commission_cordis':'queue_by_source_date',
+            'indonesia_esdm_and_geological_agency_mineral_statistics':'queue_by_source_date',
+            'federal_register':'queue_by_source_date',
+            'federal_register_documents':'queue_by_source_date',
+            'mlperf_results':'queue_by_source_date',
+            'cpsc_recalls':'queue_by_source_date',
             'gleif_legal_entities':'queue_by_source_date',
             'eodhd':'queue_by_source_date',
             'eodhd_market':'queue_by_source_date',
@@ -56,19 +63,36 @@ def main():
             'pubmed_abstracts':'queue_by_source_date','europe_pmc_fulltext':'queue_by_source_date','crossref_proceedings':'queue_by_source_date','fda_dd_compliance_actions':'queue_by_source_date','fda_dd_import_refusals':'queue_by_source_date','fda_dd_inspections_citations':'queue_by_source_date','fda_ires_recalls':'queue_by_source_date','fda_product_codes':'queue_by_source_date','nih_reporter':'queue_by_source_date','nist_robotics_methods':'queue_by_source_date','nist_robotics_documents':'queue_by_source_date','usa_spending':'queue_by_source_date','ted_notices':'queue_by_source_date','uspto_assignment_histories':'queue_by_source_date','uspto_odp':'queue_by_source_date','google_patents_bigquery':'queue_by_source_date','cms_payments_catalog':'queue_by_source_date','cms_coverage':'queue_by_source_date','cms_coverage_documents':'queue_by_source_date',
             'uk_mhra':'queue_by_source_date',
             'japan_pmda':'queue_by_source_date',
+            'openalex_scholarly_graph':'queue_by_source_date',
+            'japan_kaken_funded_research':'queue_by_source_date',
         },
         'contracts':build(ROOT)}
+    current_path = ROOT/'config/metadata-engine.json'
+    if current_path.exists():
+        existing = json.loads(current_path.read_text())
+        for key in ('metadata_source_parallelism','publication_batch_size','publication_verify_chunk_size',
+                    'publication_glue_batch','publication_parallel_sources'):
+            if key in existing:
+                config[key] = existing[key]
     infra=json.loads((ROOT/'config/constellation-infrastructure.json').read_text())
     config.update(collection_host=infra['db_host'],collection_worker_secret=infra['worker_secret_arn'],collection_controller_secret=infra['controller_secret_arn'])
-    config['build_sha256']=hashlib.sha256(b''.join(path.read_bytes() for path in sorted((ROOT/'metadata_engine').glob('*.py')))+(ROOT/'hkex_originals.py').read_bytes()).hexdigest()
+    from raw_parsers.release import source_paths as raw_parser_paths
+    parser_names = raw_parser_paths()
+    build_inputs = [*sorted((ROOT/'metadata_engine').glob('*.py')),
+                    *(ROOT/name for name in parser_names), ROOT/'hkex_originals.py']
+    config['build_sha256']=hashlib.sha256(b''.join(path.read_bytes() for path in build_inputs)).hexdigest()
     db=Database(config,session)
     if not a.deploy_only:
         with db.tx() as cursor:
             for contract in config['contracts'].values():register_contract(db,contract,cursor)
-    names=['hkex_originals.py','collection_storage.py','research_contract.py','schemas/research-data.schema.json','test_metadata_engine.py','test_metadata_sec_documents.py','test_metadata_runtime.py','metadata_engine_sec_document_pilot.py','config/rds-us-east-1-ca-bundle.pem','config/constellation-source-registry.json','config/constellation-specialist-historical.json','config/constellation-public-sources.json']
+    names=['federal_register_parser.py','hkex_originals.py','collection_storage.py','research_contract.py','schemas/research-data.schema.json','test_metadata_engine.py','test_metadata_sec_documents.py','test_metadata_runtime.py','metadata_engine_sec_document_pilot.py','config/rds-us-east-1-ca-bundle.pem','config/constellation-source-registry.json','config/constellation-specialist-historical.json','config/constellation-public-sources.json']
+    for name in ('provider_publication.py','market_source_capture.py','config/market-source-routes.v1.json','config/market-source-activation.v1.json'):
+        if (ROOT/name).exists():
+            names.append(name)
     # Pure source validators reuse deterministic collector parsers.
     names += ['chictr_studies.py', 'clinicaltrials_studies.py', 'corporate_disclosures.py', 'decodo_scraping_api.py', 'ema_ctis_actions.py', 'fda_access.py', 'historical_policy.py', 'japan_pmda_designations.py', 'mhra_product_enrichment.py', 'nist_robotics.py', 'nmpa_drug_trials.py', 'nmpa_enrichment.py', 'patent_adjudication.py', 'patent_assignments.py', 'patent_bigquery_access.py', 'patent_bigquery_collection.py', 'patent_collection.py', 'patent_landscape.py', 'patent_prosecution.py', 'patent_query_plan.py', 'regulatory_athena.py', 'regulatory_collection.py', 'regulatory_sources.py', 's3_runtime_fs.py', 'sec_athena_pilot.py', 'sec_filings.py', 'sec_filings_legacy.py', 'streaming_release.py', 'ted_enrichment.py', 'ted_packages.py', 'uk_mhra_designations.py', 'uspto_patents.py', 'uspto_rate_limit.py', 'config/patent-document-exceptions.json']
     names += [str(p.relative_to(ROOT)) for p in (ROOT/'metadata_engine').rglob('*') if p.is_file() and '__pycache__' not in p.parts]
+    names += parser_names
     with tempfile.TemporaryDirectory(prefix='metadata-runtime-') as directory:
         staged=Path(directory)
         # Generated runtime settings have no credential values.
@@ -113,6 +137,10 @@ Persistent=true
 [Install]
 WantedBy=timers.target
 '''
+    streaming_units={name:(ROOT/'systemd'/name).read_text()
+                     for base_name in ('optima-metadata-streaming','optima-metadata-streaming-opendart',
+                                       'optima-dart-original-repair')
+                     for name in (base_name+'.service',base_name+'.timer')}
     # SSM executes a fixed script; no secret values occur in these arguments.
     worker_code="""import boto3,hashlib,io,os,subprocess,tarfile
 from pathlib import Path
@@ -133,10 +161,14 @@ for target in targets:
  temporary=target.with_suffix('.metadata-new');temporary.write_bytes((root/'collection_storage.py').read_bytes());os.chown(temporary,1000,1000);temporary.replace(target)
 Path('/etc/systemd/system/optima-metadata-worker.service').write_text(UNIT)
 Path('/etc/systemd/system/optima-metadata-worker.timer').write_text(TIMER)
+streaming_settings=STREAMING_FILES
+for name, contents in streaming_settings.items():
+ (Path('/etc/systemd/system')/name).write_text(contents)
 subprocess.run(['systemctl','daemon-reload'],check=True)
-if ACTIVATE:subprocess.run(['systemctl','enable','--now','optima-metadata-worker.timer'],check=True)
+if ACTIVATE:subprocess.run(['systemctl','enable','--now','optima-metadata-worker.timer',
+                           *[name for name in streaming_settings if name.endswith('.timer')]],check=True)
 print('metadata_worker_ready; activated='+str(ACTIVATE))
-""".replace('BUCKET',repr(bucket)).replace('KEY',repr(key)).replace('SHA',repr(sha)).replace('BASE',repr(base)).replace('UNIT',repr(worker_unit)).replace('TIMER',repr(worker_timer)).replace('ACTIVATE',repr(a.activate))
+""".replace('BUCKET',repr(bucket)).replace('KEY',repr(key)).replace('SHA',repr(sha)).replace('BASE',repr(base)).replace('UNIT',repr(worker_unit)).replace('TIMER',repr(worker_timer)).replace('ACTIVATE',repr(a.activate)).replace('STREAMING_FILES',repr(streaming_units))
     command='/opt/constellation/.venv/bin/python -c '+shlex.quote(worker_code)
     worker_command=session.client('ssm').send_command(InstanceIds=['i-06241bd1c4e91c2fc'],DocumentName='AWS-RunShellScript',Parameters={'commands':[command]},TimeoutSeconds=180)['Command']['CommandId']
     # The controller uses its local established Python runtime and source tree.
@@ -163,10 +195,10 @@ NoNewPrivileges=true
 ProtectSystem=full
 '''
     controller_timer='''[Unit]
-Description=Discover new committed metadata inputs and deliver stop alerts
+Description=Discover new committed metadata inputs and deliver stop alerts in bounded batches
 [Timer]
 OnBootSec=60
-OnUnitInactiveSec=120
+OnUnitInactiveSec=15min
 Persistent=true
 [Install]
 WantedBy=timers.target

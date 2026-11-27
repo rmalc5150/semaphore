@@ -69,6 +69,37 @@ class OperationsTests(unittest.TestCase):
             self.assertEqual(report['sources']['sec']['next_date'],str(self.start))
             self.assertFalse(report['sources']['sec']['accepted_gaps'])
 
+    def test_daily_window_gap_is_saved_before_advancing_and_can_be_replayed(self):
+        self.config['daily_gap_continuation']=True
+        def gap(source,start,end,mode,inputs,refresh):
+            if start==self.start:
+                return {'status':'failed','reason':'source_count_mismatch'}
+            return self.invoke(source,start,end,mode,inputs,refresh)
+        self.runner.invoke=gap
+        report=self.run_ops(['sec'],max_windows=3)
+        self.assertEqual(report['sources']['sec']['next_date'],str(self.end))
+        self.assertEqual(self.runner.pending_dates('sec'),{str(self.start)})
+        self.assertEqual(report['status'],'partial')
+        self.runner.invoke=self.invoke
+        self.assertEqual(self.run_ops(['sec'],max_windows=1)['status'],'complete')
+        self.assertFalse(self.runner.pending_dates('sec'))
+
+    def test_stuck_reconciliation_cannot_starve_later_pending_dates(self):
+        self.config['daily_gap_continuation']=True
+        self.run_ops(['sec'])
+        self.runner.set_pending('sec',self.start,True)
+        second=date(2024,6,4)
+        self.runner.set_pending('sec',second,True)
+        def gap(source,start,end,mode,inputs,refresh):
+            if start==self.start:
+                return {'status':'failed','reason':'source_count_mismatch'}
+            return self.invoke(source,start,end,mode,inputs,refresh)
+        self.runner.invoke=gap
+        self.run_ops(['sec'],max_windows=1)
+        report=self.run_ops(['sec'],max_windows=1)
+        self.assertEqual(report['sources']['sec']['windows'][0]['start'],str(second))
+        self.assertEqual(self.runner.pending_dates('sec'),{str(self.start)})
+
     def test_downtime_catchup_and_rerun_skip_completed_dates(self):
         report = self.run_ops(["sec"], max_windows=1)
         self.assertEqual(report["sources"]["sec"]["next_date"], "2024-06-04")

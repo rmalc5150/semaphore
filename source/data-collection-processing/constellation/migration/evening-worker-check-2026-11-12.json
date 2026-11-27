@@ -1,0 +1,220 @@
+{
+  "checked_at": "2026-11-12",
+  "database_audit": {
+    "started_at": "2026-11-12T17:12:33.967656+00:00",
+    "finished_at": "2026-11-12T17:14:34.489439+00:00",
+    "job_rows_counted": 392182,
+    "query_metrics": {
+      "queries": 470,
+      "max_query_seconds": 1.622,
+      "retries": 0
+    },
+    "consistency": "Live per-source counts and keyset failure reads, not a point-in-time snapshot; concurrent changes can affect totals. Table inventory row estimates are labelled separately from counted job rows."
+  },
+  "metadata_source_controls": {
+    "raw_stopped": 61,
+    "enabled": 91,
+    "owner_paused": 5,
+    "access_layer": 4
+  },
+  "raw_stopped_causes": {
+    "public_capture_is_discovery_page_only": 32,
+    "missing_verified_raw_artifacts:full_text": 5,
+    "missing_verified_raw_artifacts:provider_record": 21,
+    "provider_request_projects_subset_of_raw_fields": 1,
+    "missing_verified_raw_artifacts:primary_document": 2
+  },
+  "repairs": {
+    "patents_prosecution": {
+      "cause": "M7 IAM role lacked access to the canonical first-observed and document checkpoints",
+      "policy_name": "constellation-legacy-artifacts",
+      "role": "constellation-backfill-worker",
+      "grants_added": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "prefixes": [
+        "research-data/checkpoints/uspto-prosecution-first-observed/*",
+        "research-data/checkpoints/uspto-prosecution-documents/*"
+      ],
+      "all_prior_grants_preserved": true,
+      "aggregate_inline_characters": 10172,
+      "verified_outputs": {
+        "daily_office_actions_records": 15,
+        "historical_office_actions_records": 10,
+        "historical_petition_records": 8,
+        "petition_day_status": "complete",
+        "latest_report_utc": "2026-11-12T17:22:49.268101Z"
+      },
+      "final_service_state": {
+        "ActiveState": "inactive",
+        "Result": "success",
+        "ExecMainStatus": 0
+      }
+    },
+    "edinet": {
+      "requeued_checkpointed_jobs": 7,
+      "cause": "Interrupted or OOM before verified native PDF parser recovery",
+      "previous_state_archive": "research-data/constellation-backfill/repairs/edinet-evening-retry-e344dd39c816464ea893b9aefaeb87e5.json"
+    }
+  },
+  "owner_pauses_preserved": {
+    "reason": "Paused at user request pending API and capture-scope review",
+    "sources": [
+      "reddit",
+      "bluesky_search",
+      "bluesky_company_accounts",
+      "bluesky_company_posts",
+      "bluesky_company_events",
+      "github_sdk",
+      "marketaux"
+    ],
+    "resume_requires_user_request": true
+  },
+  "github_backup": "Deferred at user request until tomorrow; not retried",
+  "historical_safety_deadline_utc": "2026-11-15T05:36:33+00:00",
+  "queue_counts_at_audit": {
+    "metadata": {
+      "queued": 166567,
+      "raw_failed": 2030,
+      "accepted": 35080,
+      "retry": 61,
+      "uncommitted": 118,
+      "running": 4,
+      "superseded": 53605
+    },
+    "historical": {
+      "succeeded": 134641,
+      "pending": 31,
+      "running": 8,
+      "retryable_failed": 27,
+      "blocked": 10
+    }
+  },
+  "t3": {
+    "snapshot_file": "constellation/migration/worker-check-20261112T172115Z-t3.json",
+    "snapshot_epoch": 1794504076.5895565,
+    "units_inspected": 200,
+    "failed": [
+      "ec2-code-backup.service loaded failed failed Back up EC2 source code to GitHub"
+    ],
+    "enabled_timers": 51,
+    "inactive_enabled_timers": [],
+    "meminfo": {
+      "MemTotal": "        3927660 kB",
+      "MemAvailable": "    1998796 kB"
+    },
+    "loadavg": "0.60 0.69 0.75 1/311 1257546",
+    "lifecycle": {
+      "busy": true,
+      "deployment_hold": false
+    }
+  },
+  "m7": {
+    "snapshot_file": "constellation/migration/worker-check-20261112T172115Z-m7.json",
+    "snapshot_epoch": 1794504080.250138,
+    "units_inspected": 97,
+    "failed": [],
+    "enabled_timers": 24,
+    "inactive_enabled_timers": [],
+    "meminfo": {
+      "MemTotal": "        7966320 kB",
+      "MemAvailable": "    3652428 kB"
+    },
+    "loadavg": "17.86 12.87 12.61 26/266 191272",
+    "pool": {
+      "memory.current": "4219441152",
+      "memory.high": "6526009344",
+      "memory.max": "7260184576",
+      "memory.events": "low 0\nhigh 1798570\nmax 782\noom 33\noom_kill 15\noom_group_kill 0",
+      "cpu.pressure": "some avg10=99.40 avg60=91.86 avg300=86.96 total=44951497119\nfull avg10=1.00 avg60=0.61 avg300=0.63 total=1417732057",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=18627331420\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=6639277929"
+    },
+    "recent_kernel_oom": "-- No entries --\n",
+    "metadata_recent": {
+      "optima-metadata-worker.service": "0.314701+00:00\",\"status\":\"accepted\"}\n{\"build_sha256\":\"3d04dc3809759fd7958c7c2343afbc4e44388862b13c4aab66c89ec5a5e613a2\",\"checked_at\":\"2026-11-12T17:20:58.874977+00:00\",\"collection_status\":\"complete\",\"input_key\":\"research-data/constellation-backfill/jobs/33e4142f22ed769e8ffe691ee7fa5499db184b4c917a528c2c4995d22ffa1287/attempts/09cf1ef9f4ef42b6925d229f0def018c/manifest.json\",\"job_id\":\"3814b432011a06faaff10f58602fc2833e5dc572d3254fa6c7ecbe26379fd7a8\",\"output_uri\":\"s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/jobs/3814b432011a06faaff10f58602fc2833e5dc572d3254fa6c7ecbe26379fd7a8/data/bfb7c6292fa4a375a88f432b82260727345adf700a8f0bebb00da83c1bdd4534/part.parquet\",\"records\":32,\"source\":\"usgs_earthquakes\",\"started_at\":\"2026-11-12T17:20:54.877158+00:00\",\"status\":\"accepted\"}\n{\"build_sha256\":\"3d04dc3809759fd7958c7c2343afbc4e44388862b13c4aab66c89ec5a5e613a2\",\"checked_at\":\"2026-11-12T17:20:59.967855+00:00\",\"collection_status\":\"partial\",\"input_key\":\"research-data/raw/source=fda_dd_compliance_actions/dataset=specialist_inputs/ingestion_date=2026-10-19/run_id=run_95dd3ee8-be78-4bcc-86ff-aaf95ccb1fd8/page-00000005-part-00000-b1f5735c14da320f6b13f9597da2a77512674602a426c2362c38e8166b7e7b58.jsonl\",\"job_id\":\"05eb9641b7e0e0bae4b54a66f6232cb9e17b21876f5d1cd37266f5eede47dc10\",\"output_uri\":\"s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/jobs/05eb9641b7e0e0bae4b54a66f6232cb9e17b21876f5d1cd37266f5eede47dc10/data/2c5b46398698152d9002d8f5f73bc7191218d3b77bca558e0722234dbd5c7911/part.parquet\",\"records\":32,\"source\":\"fda_dd_compliance_actions\",\"started_at\":\"2026-11-12T17:20:59.584409+00:00\",\"status\":\"accepted\"}\n{\"build_sha256\":\"3d04dc3809759fd7958c7c2343afbc4e44388862b13c4aab66c89ec5a5e613a2\",\"checked_at\":\"2026-11-12T17:21:01.890338+00:00\",\"collection_status\":\"partial\",\"input_key\":\"research-data/raw/source=fda_dd_import_refusals/dataset=specialist_inputs/ingestion_date=2026-11-11/run_id=run_53f5d019-0ad4-4e1c-820e-c493c4869497/page-00000033-part-00000-f2de77e71cf73114f9d1321d5111e05a572938f2afab288ff4be02d37a79baf1.jsonl\",\"job_id\":\"b6d3bc1e543bd6c04adec37e1ce3960c2a02b97cea09e8230a37a2bb6e4bd8fa\",\"output_uri\":\"s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/jobs/b6d3bc1e543bd6c04adec37e1ce3960c2a02b97cea09e8230a37a2bb6e4bd8fa/data/2312a79b705686b53c86fa19e7d82bb83f7f6916963f54eb4664284f85f5ddc8/part.parquet\",\"records\":32,\"source\":\"fda_dd_import_refusals\",\"started_at\":\"2026-11-12T17:21:01.369427+00:00\",\"status\":\"accepted\"}\n{\"build_sha256\":\"3d04dc3809759fd7958c7c2343afbc4e44388862b13c4aab66c89ec5a5e613a2\",\"checked_at\":\"2026-11-12T17:21:18.785413+00:00\",\"collection_status\":\"complete\",\"input_key\":\"research-data/raw/source=ema_medicines/dataset=specialist_inputs/ingestion_date=2026-10-11/run_id=run_89d5b201-6672-4d6e-b10a-04c271b5b7e5/page-00000000-part-00001-9c4f343357c2706b45398ba0cbad7c9fa340ced204d82e91b4e2dfd09e36829b.jsonl\",\"job_id\":\"9d656cd15adfc8110aa667553a9b810746d1057979d53edf3445be8f6aebc3de\",\"output_uri\":\"s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/jobs/9d656cd15adfc8110aa667553a9b810746d1057979d53edf3445be8f6aebc3de/data/feeea15beee1670adb77d635c03e84adaf3b95be3116c211075e49c53b030a72/part.parquet\",\"records\":32,\"source\":\"ema_medicines\",\"started_at\":\"2026-11-12T17:21:02.804224+00:00\",\"status\":\"accepted\"}\n",
+      "optima-metadata-worker-extra.service": "build_sha256\":\"3d04dc3809759fd7958c7c2343afbc4e44388862b13c4aab66c89ec5a5e613a2\",\"checked_at\":\"2026-11-12T17:21:05.176450+00:00\",\"collection_status\":\"partial\",\"input_key\":\"research-data/raw/source=sam_gov_opportunities/dataset=specialist_inputs/ingestion_date=2026-11-12/run_id=run_6f8976e9-03f9-4148-abe5-186c8f7427fb/page-00000002-part-00000-afcb12bd1b2a33334e1d7f216db30c8e55a050e3aac3abfaab74e0dd4191a320.jsonl\",\"job_id\":\"23f80ceb1e0e3b190e67e77ca07b03286a19230173ae6d455492b24e7bfbe3cf\",\"output_uri\":\"s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/jobs/23f80ceb1e0e3b190e67e77ca07b03286a19230173ae6d455492b24e7bfbe3cf/data/041210ce51b75cba44a6e8841b1bdadada55141e3c03d18384b72b9c8a7e9b72/part.parquet\",\"records\":32,\"source\":\"sam_gov_opportunities\",\"started_at\":\"2026-11-12T17:20:58.467152+00:00\",\"status\":\"accepted\"}\n{\"build_sha256\":\"3d04dc3809759fd7958c7c2343afbc4e44388862b13c4aab66c89ec5a5e613a2\",\"input_key\":\"research-data/constellation-backfill/public-capture/athena/27d650e3278948bbbcbc80e9fc376ec2.jsonl\",\"job_id\":\"843a7143bc33c74635d4cae8ed4fa31383b622df099398f5ccf9cab14b267e91\",\"reason\":\"RuntimeError:larger_artifact_requires_streaming_adapter\",\"source\":\"european_commission_cordis\",\"started_at\":\"2026-11-12T17:21:05.962284+00:00\",\"status\":\"retry\"}\n{\"build_sha256\":\"3d04dc3809759fd7958c7c2343afbc4e44388862b13c4aab66c89ec5a5e613a2\",\"checked_at\":\"2026-11-12T17:21:09.166978+00:00\",\"collection_status\":\"failed\",\"input_key\":\"research-data/raw/source=fda_openfda/dataset=research_records/ingestion_date=2026-10-26/run_id=run_c912b21d-a897-4aef-9372-4c2725aa08ef/page-00000000-part-00000-497ba41a5739a8fa93abbce0f942f352ffda6a88ca8832ae2a92d324cc60f334.jsonl\",\"job_id\":\"7cf4487156d7c037fd85a4e490f990dddadf3f0eee42c5f41d0f1114a600569c\",\"output_uri\":\"s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/jobs/7cf4487156d7c037fd85a4e490f990dddadf3f0eee42c5f41d0f1114a600569c/data/43c41803e45243b5342a2a401b8e87029fe40c26b9e221058bce47698ea9cfa4/part.parquet\",\"records\":32,\"source\":\"fda_openfda\",\"started_at\":\"2026-11-12T17:21:06.192548+00:00\",\"status\":\"accepted\"}\n{\"build_sha256\":\"3d04dc3809759fd7958c7c2343afbc4e44388862b13c4aab66c89ec5a5e613a2\",\"input_key\":\"research-data/constellation-backfill/public-capture/athena/1be74a72fb9a4a9db67a577aa1e36481.jsonl\",\"job_id\":\"ac9e041c68b99908809283b9804989435e1951c1ac856f371e35e62aac4d661c\",\"reason\":\"RuntimeError:larger_artifact_requires_streaming_adapter\",\"source\":\"bis_sdmx_api\",\"started_at\":\"2026-11-12T17:21:09.795636+00:00\",\"status\":\"retry\"}\n{\"build_sha256\":\"3d04dc3809759fd7958c7c2343afbc4e44388862b13c4aab66c89ec5a5e613a2\",\"checked_at\":\"2026-11-12T17:21:13.191298+00:00\",\"collection_status\":\"complete\",\"input_key\":\"research-data/raw/source=pubmed_abstracts/dataset=specialist_inputs/ingestion_date=2026-10-16/run_id=run_11b73656-dbcf-4183-b299-460048421743/page-00000000-part-00000-929fbe3e74ca2058e743b197dbafd5245d7b7b6e5674b8a0ca18d7da9e1c7cf1.jsonl\",\"job_id\":\"10c4b4c0482b1dac472b9cd598e695f105ae2513d6c422a2c8280b35a3a1a0b7\",\"output_uri\":\"s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/metadata-engine/runtime-v2/jobs/10c4b4c0482b1dac472b9cd598e695f105ae2513d6c422a2c8280b35a3a1a0b7/data/90b67ebf6dfd2e92eec4d4d81f17f544c9ae24a30d2cb0a8ce5cc831dfec069d/part.parquet\",\"records\":1,\"source\":\"pubmed_abstracts\",\"started_at\":\"2026-11-12T17:21:09.982804+00:00\",\"status\":\"accepted\"}\n"
+    },
+    "historical_executors_active": 15,
+    "metadata_lanes": {
+      "optima-metadata-worker-extra.service": {
+        "ActiveState": "activating",
+        "SubState": "start",
+        "Result": "success"
+      },
+      "optima-metadata-worker.service": {
+        "ActiveState": "activating",
+        "SubState": "start",
+        "Result": "success"
+      }
+    },
+    "sampled_worker_cpu_cores": 1.96,
+    "sampled_worker_cpu_capacity_percent": 98,
+    "sampled_pool_memory_gib": 3.77,
+    "sampled_memory_pressure_avg60": 0.0
+  },
+  "monitoring": {
+    "checked_at": "2026-11-12T17:24:44.676758Z",
+    "health_checked_at": "2026-11-12T17:24:01.893885Z",
+    "active": {
+      "optima-market-collection.service:market_empty_price_window_unverified": {
+        "code": "market_empty_price_window_unverified",
+        "detail": "Empty price windows remain unverified outside the 52 reviewed window exclusions.",
+        "evidence_at": "2026-10-21T22:05:04Z",
+        "first_seen": "2026-10-26T08:35:38.874580Z",
+        "last_notified": {},
+        "last_seen": "2026-11-12T17:24:44.676758Z",
+        "severity": "low",
+        "unit": "optima-market-collection.service"
+      },
+      "optima-market-collection.service:unresolved_market_coverage": {
+        "code": "unresolved_market_coverage",
+        "detail": "Unresolved coverage: daily: 175 symbols; historical: 202 symbols. 52 windows excluded with reviewed evidence.",
+        "evidence_at": "2026-11-12T17:16:21.566280Z",
+        "first_seen": "2026-10-26T08:35:38.874580Z",
+        "last_notified": {},
+        "last_seen": "2026-11-12T17:24:44.676758Z",
+        "severity": "low",
+        "unit": "optima-market-collection.service"
+      },
+      "optima-news-collection.service:service_failed": {
+        "code": "service_failed",
+        "detail": "optima-news-collection.service: Failed with result 'signal'.",
+        "evidence_at": "2026-11-12T13:11:12.215803Z",
+        "first_seen": "2026-11-12T13:16:04.626631Z",
+        "last_notified": {},
+        "last_seen": "2026-11-12T17:24:44.676758Z",
+        "severity": "low",
+        "unit": "optima-news-collection.service"
+      },
+      "optima-patents-prosecution.service:request_limit": {
+        "code": "request_limit",
+        "detail": "request_limit",
+        "evidence_at": "2026-11-12T17:22:49.373067Z",
+        "first_seen": "2026-11-12T17:24:44.676758Z",
+        "last_notified": {},
+        "last_seen": "2026-11-12T17:24:44.676758Z",
+        "severity": "low",
+        "unit": "optima-patents-prosecution.service"
+      }
+    },
+    "notification_errors": []
+  },
+  "remaining_historical_failures": {
+    "full_audit_retryable": 27,
+    "full_audit_blocked": 10,
+    "edinet_requeued_after_audit": 7,
+    "investigated_causes": {
+      "ema": "Checkpointed bounded invocation interruptions and previous memory kills; current route running",
+      "hugging_face": "Repeated interruption while revalidating inherited raw batches; current route running, previous attempts retained as blocked",
+      "news": "Old source collection error; subsequent invocations succeeded",
+      "migration_probe": "Superseded diagnostic; deliberately not retried"
+    },
+    "coverage_complete_claimed": false
+  },
+  "remaining_metadata_retries": {
+    "at_audit": 61,
+    "common_reason": "larger_artifact_requires_streaming_adapter",
+    "status": "Workers remain active; these jobs need a streaming adapter rather than blind retries"
+  }
+}

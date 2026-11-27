@@ -2,25 +2,114 @@
 import hashlib
 import json
 import re
+from collections import Counter
+from contextlib import contextmanager
+from contextvars import ContextVar
+from pathlib import Path
+import tempfile
 from urllib.parse import urlsplit
 
 from metadata_engine.sec_documents import retrieve_submission,archive_submission,DocumentError
 
 MAX_BODY=32*1024*1024
+_JOB_CACHE=ContextVar('job_evidence_cache', default=None)
 
 
 class RawFailure(ValueError):pass
 class Uncommitted(ValueError):pass
+class OversizedArtifact(RuntimeError):pass
+
+
+class EvidenceCache:
+    def __init__(self, rows, memory_limit, disk_limit, disk_dir):
+        self.entries={}
+        self.memory_limit=memory_limit
+        self.disk_limit=disk_limit
+        self.disk_dir=disk_dir
+        self.stats=Counter()
+        references=Counter()
+        for row in rows:
+            payload=row.get('payload') or {}
+            if not isinstance(payload,dict):payload={}
+            for refs in (payload.get('source_evidence'),row.get('source_evidence')):
+                if not isinstance(refs,(list,tuple)):continue
+                for ref in refs:
+                    if isinstance(ref,dict) and isinstance(ref.get('sha256'),str):
+                        references[ref['sha256'].removeprefix('sha256:')]+=1
+        self.repeated={sha for sha,count in references.items() if count>1}
+
+    def get(self, identity, limit):
+        item=self.entries.get(identity)
+        if item is None:return None
+        (size,body)=item
+        if size>limit:raise OversizedArtifact('larger_artifact_requires_streaming_adapter')
+        if not isinstance(body,bytes):
+            try:
+                body.seek(0)
+                b=body.read(size+1)
+                if len(b)!=size or hashlib.sha256(b).hexdigest()!=identity[-1]:raise OSError('cache integrity')
+            except OSError:
+                body.close()
+                del self.entries[identity]
+                self.stats['disk_bytes']-=size
+                return None
+            self.stats['disk_hits']+=1
+            body=b
+        self.stats['hits']+=1
+        return body
+
+    def store(self, identity, body):
+        size=len(body)
+        if len(self.entries)>=64:return
+        if self.stats['memory_bytes']+size<=self.memory_limit:
+            self.entries[identity]=(size,body)
+            self.stats['memory_bytes']+=size
+        elif identity[-1] in self.repeated and self.stats['disk_bytes']+size<=self.disk_limit:
+            local=None
+            try:
+                local=tempfile.TemporaryFile(dir=self.disk_dir)
+                local.write(body);local.flush()
+            except OSError:
+                if local is not None:local.close()
+                return
+            self.entries[identity]=(size,local)
+            self.stats['disk_bytes']+=size
+
+    def close(self):
+        for _,val in self.entries.values():
+            if not isinstance(val,bytes):val.close()
+        self.entries.clear()
+
+
+@contextmanager
+def job_evidence_cache(rows=(), *, memory_limit=8*1024**2, disk_limit=128*1024**2, disk_dir=None):
+    """Never reuse unverified bytes or retain evidence beyond this job."""
+    if disk_dir is None:
+        disk_dir='/opt/constellation/tmp' if Path('/opt/constellation/tmp').is_dir() else '/var/tmp'
+    cache=EvidenceCache(rows,memory_limit,disk_limit,disk_dir)
+    token=_JOB_CACHE.set(cache)
+    try:
+        yield cache.stats
+    finally:
+        _JOB_CACHE.reset(token)
+        cache.close()
 
 
 def object_bytes(s3,bucket,key,limit=MAX_BODY,expected=None):
+    digest=expected.removeprefix('sha256:') if expected else None
+    cache=_JOB_CACHE.get() if digest else None
+    identity=(id(s3),bucket,key,digest)
+    if cache is not None:
+        known=cache.get(identity,limit)
+        if known is not None:return known
     r=s3.get_object(Bucket=bucket,Key=key)
     try:
-        if r.get('ContentLength',0)>limit:raise RuntimeError('larger_artifact_requires_streaming_adapter')
+        if r.get('ContentLength',0)>limit:raise OversizedArtifact('larger_artifact_requires_streaming_adapter')
         b=r['Body'].read(limit+1)
     finally:r['Body'].close()
-    if len(b)>limit:raise RuntimeError('larger_artifact_requires_streaming_adapter')
-    if expected and hashlib.sha256(b).hexdigest()!=expected.removeprefix('sha256:'):raise RawFailure('raw_artifact_checksum_mismatch')
+    if len(b)>limit:raise OversizedArtifact('larger_artifact_requires_streaming_adapter')
+    if digest and hashlib.sha256(b).hexdigest()!=digest:raise RawFailure('raw_artifact_checksum_mismatch')
+    if cache is not None:cache.store(identity,b)
     return b
 
 
@@ -70,6 +159,69 @@ def substantive(body):
 
 def evidence_for(record,contract,s3,bucket):
     source=record.get('source') or record.get('source_key')
+    if contract.get('adapter') == 'research_feed':
+        from metadata_engine.research_feeds import evidence
+        return evidence(record, s3, bucket)
+    if contract.get('adapter') == 'market_workbook_original':
+        from metadata_engine.market_sources import evidence
+        return evidence(record,contract,s3,bucket)
+    if contract.get('adapter') == 'market_archive_original':
+        from metadata_engine.market_archive import evidence
+        return evidence(record,contract,s3,bucket)
+    if contract.get('adapter') == 'sedi_issuer_events':
+        from metadata_engine.sedi import evidence
+        return evidence(record,s3,bucket)
+    if source == 'us_census_international_trade_api' and contract.get('contract_version') == '2.0.3':
+        from metadata_engine.census_trade import evidence
+        return evidence(record,s3,bucket)
+    if contract.get('contract_version') == '2.0.3':
+        from trade_mining_sources import SOURCES as trade_mining_sources
+        if source in trade_mining_sources:
+            from metadata_engine.trade_mining import evidence
+            return evidence(record,s3,bucket)
+    if source in ('cninfo_mainland_china_company_disclosures','south_korea_fss_opendart')and contract.get('contract_version')=='2.0.3':
+        from metadata_engine.regional_filings import evidence
+        return evidence(record,s3,bucket)
+    from regional_source_review import PUBLIC_KEYS
+    if source in PUBLIC_KEYS and contract.get('contract_version')=='2.0.3':
+        from metadata_engine.regional_public import evidence
+        return evidence(record,s3,bucket)
+    if source in ('arxiv','nasa_power_weather_and_solar_resource'):
+        from metadata_engine.raw_catalog_review import evidence
+        return evidence(record,s3,bucket)
+    if source=='england_nhsbsa_prescribing_data':
+        from metadata_engine.nhsbsa import evidence
+        return evidence(record,s3,bucket)
+    if source in ('ucdp_organized_violence','semi_worldwide_equipment_billings','sia_wsts_public_semiconductor_sales','international_federation_of_robotics_world_robotics','iea_pvps_solar_deployment_reports','germany_g_ba_drug_benefit_assessments','france_has_medicine_assessment_opinions','canada_cda_amc_cadth_reimbursement_reviews','france_assurance_maladie_open_medic'):
+        from metadata_engine.public_documents import evidence
+        return evidence(record,s3,bucket)
+    if source=='sam_gov_opportunities':
+        from metadata_engine.sam_opportunities import evidence
+        return evidence(record,s3,bucket)
+    if source in ('imf_portwatch_shipping_activity','unido_iip_and_indstat'):
+        from metadata_engine.public_statistics import evidence
+        return evidence(record,s3,bucket)
+    if source in ('wto_quantitative_restrictions_api','wto_eping_sps_tbt_notifications','epo_ops_patent_legal_events','ember_electricity_demand_and_generation'):
+        from metadata_engine.economic_records import evidence
+        return evidence(record,s3,bucket)
+    if source=='un_comtrade':
+        from metadata_engine.comtrade import evidence
+        return evidence(record,s3,bucket)
+    if source in ('doe_storage_program','doe_storage_documents','doe_storage_benchmarks','doe_storage_funding'):
+        from metadata_engine.doe_storage import evidence
+        return evidence(record,s3,bucket)
+    if source in ('federal_register','federal_register_documents'):
+        from metadata_engine.federal_register import evidence
+        return evidence(record,s3,bucket)
+    if source in ('mlperf_results', 'cpsc_recalls'):
+        from metadata_engine.benchmark_recalls import evidence
+        return evidence(record,s3,bucket)
+    if source=='trade_screening':
+        from metadata_engine.streaming import evidence
+        for ref in record.get('payload',{}).get('source_evidence',[]):
+            if (ref.get('source_url')or ref.get('url'))=='https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.json':
+                return [evidence(record,ref,contract,s3,bucket)]
+        raise RawFailure('trade_screening_original_response_missing')
     if source in ('nih_reporter','usa_spending','uspto_assignment_histories'):
         from metadata_engine.grants_awards import evidence
         return evidence(record,s3,bucket)
@@ -138,7 +290,12 @@ def evidence_for(record,contract,s3,bucket):
             try:
                 if project_id(ref.get('source_url')or'')!=project_id(record.get('source_url')or''):continue
             except ProviderError:continue
-        body=object_bytes(s3,bucket,key,expected=ref['sha256'])
+        try:body=object_bytes(s3,bucket,key,expected=ref['sha256'])
+        except OversizedArtifact:
+            from metadata_engine.streaming import evidence
+            wanted='provider_data' if contract['adapter']=='eodhd_provider_data' else 'full_text' if contract['adapter']=='publications' else 'patent_document' if contract['adapter']=='patents' else 'primary_document' if contract['adapter']=='filings_xbrl' else 'provider_record'
+            if contract['adapter']=='eodhd_provider_data':raise
+            artifacts.append(evidence(record,ref,contract,s3,bucket,wanted));continue
         validation=None
         try:
             if contract['adapter']=='eodhd_provider_data':
@@ -152,7 +309,7 @@ def evidence_for(record,contract,s3,bucket):
                 except ProviderError as error:raise RawFailure(str(error))from None
                 kind='native_record'
             elif source == 'canada_noc':
-                from metadata_engine.canada_noc import validate, ProviderError
+                from raw_parsers.canada_noc import validate, ProviderError
                 try: validation = validate(body,record,ref.get('source_url') or '')
                 except ProviderError as error: raise RawFailure(str(error)) from None
                 kind = 'native_record'

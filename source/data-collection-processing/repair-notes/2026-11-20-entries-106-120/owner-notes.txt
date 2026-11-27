@@ -1,0 +1,149 @@
+- [ ] **106. Brazil MDIC Comex Stat API** (`brazil_mdic_comex_stat_api`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=brazil_mdic_comex_stat_api/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_mdic_comex_stat_api' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **107. Chile COCHILCO production and mining economics** (`chile_cochilco_production_and_mining_economics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=chile_cochilco_production_and_mining_economics/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'chile_cochilco_production_and_mining_economics' GROUP BY source_key;`
+
+RM: no S3 bucket
+SQL: no
+
+- [ ] **108. Chile SERNAGEOMIN mining yearbooks** (`chile_sernageomin_mining_yearbooks`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=chile_sernageomin_mining_yearbooks/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'chile_sernageomin_mining_yearbooks' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **109. Chile SMA SNIFA environmental compliance** (`chile_sma_snifa_environmental_compliance`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=chile_sma_snifa_environmental_compliance/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'chile_sma_snifa_environmental_compliance' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **110. Peru MINEM mining bulletins and yearbooks** (`peru_minem_mining_bulletins_and_yearbooks`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=peru_minem_mining_bulletins_and_yearbooks/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'peru_minem_mining_bulletins_and_yearbooks' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **111. Argentina SIACAM mining indicators** (`argentina_siacam_mining_indicators`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=argentina_siacam_mining_indicators/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'argentina_siacam_mining_indicators' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **112. Brazil ANM SIGMINE and Cadastro Mineiro** (`brazil_anm_sigmine_and_cadastro_mineiro`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=brazil_anm_sigmine_and_cadastro_mineiro/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 1 failed attempt(s).  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_anm_sigmine_and_cadastro_mineiro' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **113. Peru INGEMMET GEOCATMIN** (`peru_ingemmet_geocatmin`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=peru_ingemmet_geocatmin/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'peru_ingemmet_geocatmin' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **114. ImportYeti shipment and supplier relationships** (`importyeti_shipment_and_supplier_relationships`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=importyeti_shipment_and_supplier_relationships/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'importyeti_shipment_and_supplier_relationships' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **115. ImportGenius international shipments** (`importgenius_international_shipments`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=importgenius_international_shipments/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'importgenius_international_shipments' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **116. MarineTraffic historical vessel tracks and port calls** (`marinetraffic_historical_vessel_tracks_and_port_calls`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=marinetraffic_historical_vessel_tracks_and_port_calls/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'marinetraffic_historical_vessel_tracks_and_port_calls' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **117. Kpler commodity cargo flows** (`kpler_commodity_cargo_flows`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=kpler_commodity_cargo_flows/`  
+  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'kpler_commodity_cargo_flows' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no
+
+- [ ] **118. US Census International Trade API** (`us_census_international_trade_api`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=us_census_international_trade_api/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
+  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` (latest live failure only).  
+  Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'us_census_international_trade_api' GROUP BY source_key;`
+
+  RM: yes
+  SQL: no
+
+- [ ] **119. Eurostat Comext goods trade** (`eurostat_comext_goods_trade`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=eurostat_comext_goods_trade/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 7 failed attempt(s).  
+  Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'eurostat_comext_goods_trade' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: yes
+
+- [ ] **120. Climate TRACE industrial assets and activity** (`climate_trace_industrial_assets_and_activity`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=climate_trace_industrial_assets_and_activity/`  
+  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` (latest live failure only).  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'climate_trace_industrial_assets_and_activity' GROUP BY source_key;`
+
+  RM: no S3 bucket
+  SQL: no

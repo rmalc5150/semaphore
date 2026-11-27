@@ -1,0 +1,59 @@
+{
+  "model": "ministral3-3b",
+  "rows": [
+    {
+      "case": "MIIT",
+      "status": "rejected",
+      "error": "english_check_failed",
+      "seconds": 7.796
+    },
+    {
+      "case": "CAPES",
+      "status": "passes_automatic_checks",
+      "thesis": "International research cooperation cost data for 2023–2025 provided by DRI programs",
+      "word_count": 12,
+      "evidence": {
+        "id": "2",
+        "page": 2,
+        "start": 205,
+        "end": 315,
+        "quote": "Esta publicação apresenta os dados dos anos de 2023 a 2025, conforme cronograma estabelecido no PDA 2025-2027.",
+        "artifact_sha256": "0ebc38ee9dcb9b2695826f8abaf0516f5a97cfd3e2d842a387a2ad60c914c37c",
+        "observation_id": "obs_f77a736c4d2fc4d3700fb54abbcc2d384f14f0ae56fb65a3ae53437a0f057d70"
+      },
+      "seconds": 6.686
+    },
+    {
+      "case": "IFR",
+      "status": "passes_automatic_checks",
+      "thesis": "Exploring humanoid robots' trends, opportunities, and potential limits",
+      "word_count": 8,
+      "evidence": {
+        "id": "1",
+        "page": 1,
+        "start": 785,
+        "end": 927,
+        "quote": "Einblicke in Trends, Chancen und mögliche Grenzen humanoider Roboter bietet das neue Positionspapier der International Federation of Robotics.",
+        "artifact_sha256": "69ddedf34318f4d3b80e26d7727d948822b14e265382ffa84d2598b351e8eb15",
+        "observation_id": "obs_d6327a8b00ef931230a89228f1f0abe0208ecbcbf13c98c2afd74a206b19f08b"
+      },
+      "seconds": 6.377
+    },
+    {
+      "case": "IEA",
+      "status": "passes_automatic_checks",
+      "thesis": "Global PV installations in 2016 reached at least 75 GW",
+      "word_count": 10,
+      "evidence": {
+        "id": "1",
+        "page": 6,
+        "start": 132,
+        "end": 230,
+        "quote": "At least 75 GW of PV systems have been installed and connected to the grid in the world last year.",
+        "artifact_sha256": "c464fb7d762c8779aca455b10de0659668e74805dd77a68acc2b991242448b21",
+        "observation_id": "obs_14d712faf5e48d9041b10a94a8fd158d1233c539ee59aa35c3a9569b8d2451b0"
+      },
+      "seconds": 5.927
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "drain_proof": {
+    "active": [],
+    "pending_checkpoints": [],
+    "safe_to_stop": true
+  },
+  "drain_reason": "bounded_sessions_requested",
+  "drain_requested_at": 1795003793.602596,
+  "history_focus_resume": {
+    "resumed": true,
+    "runtime_update": null
+  },
+  "last_checked_at": 1795733947.1450086,
+  "last_counts": {
+    "historical": 36,
+    "metadata": 0,
+    "publication": null
+  },
+  "last_history_check_at": 1795733947.1450086,
+  "last_history_work": {
+    "authorization_seconds": 133084,
+    "capture_enabled": true,
+    "estimated_seconds": 137316,
+    "has_work": true,
+    "leased": 1,
+    "openalex": {
+      "bytes": 358008699484,
+      "estimated_seconds": 137316,
+      "parts": 633,
+      "provider_rows": 190716752
+    },
+    "queue_estimated_seconds": 0,
+    "ready": 0
+  },
+  "metadata_processing_paused": true,
+  "phase": "sleeping",
+  "requests": {
+    "optima-m7-aux-cms-catalog-publication.service": 1795696820.9860115,
+    "optima-m7-aux-cms-coverage-publication.service": 1795696940.9170246,
+    "optima-m7-aux-collection-daily.service": 1795698909.4267154,
+    "optima-m7-aux-crossref-publication-resumed.service": 1795696840.501242,
+    "optima-m7-aux-fda-reviewed-publication.service": 1795696840.4133968,
+    "optima-m7-aux-grants-reviewed-publication.service": 1795696840.4254274,
+    "optima-m7-aux-market-publication.service": 1795697054.004961,
+    "optima-m7-aux-metadata-publication.service": 1795650947.835351,
+    "optima-m7-aux-news-publication.service": 1795696998.8811452,
+    "optima-m7-aux-patents-prosecution-publication.service": 1795696998.8811464,
+    "optima-m7-aux-reviewed-metadata-publication.service": 1795650968.7106586,
+    "optima-m7-aux-specialist-publication.service": 1795696998.8811474,
+    "optima-m7-capture-assignments-reviewed-daily.service": 1795696853.8741035,
+    "optima-m7-capture-assignments-reviewed-historical.service": 1795737322.8799202,
+    "optima-m7-capture-authenticated-processing.service": 1795696882.0212748,
+    "optima-m7-capture-edinet-documents-daily.service": 1795697287.4483218,
+    "optima-m7-capture-eia-daily-processing.service": 1795696899.024705,
+    "optima-m7-capture-eodhd-profiles.service": 1795700112.9965925,
+    "optima-m7-capture-federal-register-daily-enrichment.service": 1795696995.1157122,
+    "optima-m7-capture-nist-robotics-daily.service": 1795697054.015836,
+    "optima-m7-capture-patents-daily.service": 1795699504.6663885,
+    "optima-m7-capture-patents-prosecution.service": 1795697123.1696248,
+    "optima-m7-capture-public-cfem-daily.service": 1795718113.9861557,
+    "optima-m7-capture-public-cochilco-daily.service": 1795718112.6961539,
+    "optima-m7-capture-public-indonesia-minerals-daily.service": 1795718113.3495226,
+    "optima-m7-capture-public-minem-daily.service": 1795718113.0392635,
+    "optima-m7-capture-public-ndb-daily.service": 1795718113.8059676,
+    "optima-m7-capture-public-sernageomin-daily.service": 1795718112.4937718,
+    "optima-m7-capture-public-sigmine-daily.service": 1795718113.4857507,
+    "optima-m7-capture-public-snifa-daily.service": 1795718113.6907976,
+    "optima-m7-cms-financial-resumed.service": 1795696853.9877868,
+    "optima-m7-committed-athena.service": 1795700115.253558,
+    "optima-m7-eodhd-inventory.service": 1795738806.023554,
+    "optima-m7-research-publication.service": 1795697524.9741435,
+    "optima-m7-specialist-daily.service": 1795696856.8774307,
+    "optima-m7-summary-worker.service": 1795696856.896262
+  },
+  "resize_started_at": 1794826944.4950044,
+  "resized_at": 1794827276.4285944,
+  "runtime_update": {
+    "files_changed": 4,
+    "status": "applied"
+  },
+  "started_at": 1795694069.0,
+  "stopped_at": 1795737943.8329563,
+  "wake_reason": "operator_historical_focus",
+  "workload_mode": "historical_only"
+}

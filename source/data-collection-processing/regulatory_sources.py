@@ -84,6 +84,9 @@ class ClinicalTrials:
 
 class FDA:
     source = "fda_openfda"
+    # Old cursors used a different sort and rejected undated submissions.
+    # Preserve their evidence, but never resume them with this query contract.
+    version = "application-order-undated-crl-letter-20261116"
     date_basis = "submission_action_or_letter_date"
     coverage = "Public approvals and CRLs; letter/action dates do not establish publication. CRLs include approved and unapproved applications."
 
@@ -131,8 +134,16 @@ class FDA:
                     raise SourceIssue("invalid_crl_date") from None
                 if in_window(event, start, end):
                     require(row.get("file_name"), "missing_crl_identity")
-                    output.append(item("crl:" + row["file_name"], "regulatory_event", row, url,
-                        self.date_basis, event, [row.get("company_name")], row["file_name"], coverage_note=self.coverage))
+                    # One bundled PDF can contain several dated letters. Its
+                    # filename alone is not the identity of an individual CRL.
+                    applications = row.get('application_number', [])
+                    require(isinstance(applications, list) and all(isinstance(v,str) for v in applications),
+                            'invalid_crl_application_numbers')
+                    identity = 'crl:' + digest({'file_name': row['file_name'], 'letter_date': event,
+                                               'application_numbers': sorted(set(applications))})
+                    output.append(item(identity, "regulatory_event", row, url,
+                        self.date_basis, event, [row.get("company_name")], row["file_name"],
+                        coverage_note=self.coverage, identity_basis='documented_composite'))
         # Identical repeated submissions are redundant; distinct source variants
         # sharing the reported composite identity must both remain recoverable.
         grouped = {}
@@ -235,7 +246,7 @@ def render_documents(client, urls):
                 registration = parse_qs(urlsplit(url).query)["reg_no"][0]
                 return client.rendered(url, pending_validator=lambda doc: valid_detail(doc, registration))
             if 'www.chictr.org.cn/showproj.html' in url:
-                from metadata_engine.chictr_tables import has_trial_detail
+                from raw_parsers.chictr_tables import has_trial_detail
                 return client.rendered(url,pending_validator=has_trial_detail)
             return client.rendered(url)
         return list(pool.map(fetch, urls))

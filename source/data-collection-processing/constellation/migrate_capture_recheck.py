@@ -7,6 +7,7 @@ from constellation.m7_capture_plan import JOBS,UNITS,SOURCE_SCOPES
 TARGET='/opt/constellation/capture-workers/source'
 
 def deploy():
+ remote(M7,"import shutil,subprocess; subprocess.run(['dnf','install','-y','poppler-utils'],check=True,timeout=240) if not shutil.which('pdftotext') else print('Poppler dependency present')")
  remote(T3,"""import json,time
 from pathlib import Path
 p=Path('constellation/autostop/m7-deployment-hold.json');p.write_text(json.dumps({'expires_at':time.time()+7200,'reason':'Installing shared guarded capture workers'}))
@@ -57,10 +58,11 @@ for src,dest,updates in [('patent-operations.json','patent-operations.m7-bounded
 base=Path('/opt/constellation/capture-workers');(base/'eodhd-reports').mkdir(exist_ok=True)
 for p in [base,base/'eodhd-reports']:os.chown(p,1000,1000)
 slice_name='constellation-workers-capture.slice'
-Path('/etc/systemd/system/'+slice_name).write_text('[Slice]\\nCPUAccounting=true\\nMemoryAccounting=true\\nCPUQuota=100%\\nCPUWeight=300\\nMemoryHigh=2G\\nMemoryMax=2300M\\nMemorySwapMax=0\\n')
+Path('/etc/systemd/system/'+slice_name).write_text('[Slice]\\nCPUAccounting=true\\nMemoryAccounting=true\\nCPUQuota=100%\\nCPUWeight=300\\nMemoryHigh=3G\\nMemoryMax=3328M\\nMemorySwapMax=0\\n')
 for name in JOBS:
  unit='optima-m7-capture-'+name+'.service';tmp=Path('/opt/constellation/tmp/publication-staging')/unit;tmp.mkdir(parents=True,exist_ok=True);os.chown(tmp,1000,1000)
  text='[Unit]\\nDescription=Bounded m7 capture '+name+'\\nAfter=network-online.target\\n[Service]\\nType=oneshot\\nUser=ec2-user\\nWorkingDirectory='+str(root)+'\\nExecStart=/opt/constellation/legacy-venv/bin/python -B m7_capture_worker.py --job '+name+'\\nSlice='+slice_name+'\\nCPUQuota=100%\\nCPUWeight=150\\nMemoryHigh=1536M\\nMemoryMax=2G\\nMemorySwapMax=0\\nTimeoutStartSec=3h\\nTimeoutStopSec=150\\nKillSignal=SIGINT\\nSuccessExitStatus=2 75\\nEnvironment=AWS_DEFAULT_REGION=us-east-1\\nEnvironment=CONSTELLATION_ROLE=worker\\nEnvironment=CONSTELLATION_SHARED_HTTP_LIMITS=1\\nEnvironment=METADATA_ENGINE_NOTIFY=1\\nEnvironment=ARROW_NUM_THREADS=1\\nEnvironment=MALLOC_ARENA_MAX=2\\nEnvironment=TMPDIR='+str(tmp)+'\\n'
+ if name=='edinet-documents-daily':text=text.replace('MemoryHigh=1536M','MemoryHigh=2560M').replace('MemoryMax=2G','MemoryMax=2560M')
  if name in SCOPES:text+='Environment=CONSTELLATION_SPECIALIST_SCHEDULER_PREFIX=operations/specialists/m7-schedulers/'+SCOPES[name]+'\\nEnvironment=CONSTELLATION_SPECIALIST_MODE=daily\\n'
  clean='/opt/constellation/legacy-venv/bin/python /opt/constellation/auxiliary-publication/source/constellation/clean_publication_staging.py '+unit
  text+='ExecStartPre='+clean+'\\nExecStopPost='+clean+'\\n'

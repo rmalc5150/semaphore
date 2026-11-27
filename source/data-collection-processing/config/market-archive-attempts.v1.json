@@ -1,0 +1,942 @@
+{
+  "168": {
+    "direct": [
+      {
+        "url": "https://api.github.com/repos/StackExchange/Survey/contents/packages/archive/2016",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://stackoverflow.blog/2016/07/12/you-can-now-download-stack-overflows-2016-developer-survey-data/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 12
+      }
+    ]
+  },
+  "172": {
+    "direct": [
+      {
+        "url": "https://data.ris.ripe.net/rrc00/2016.01/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 380
+      },
+      {
+        "url": "https://archive.routeviews.org/bgpdata/2016.01/RIBS/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 377
+      }
+    ]
+  },
+  "173": {
+    "direct": [
+      {
+        "url": "https://www.wikidata.org/w/api.php?action=query&prop=revisions&titles=Q182477&rvstart=2016-12-31T23:59:59Z&rvlimit=1&rvprop=ids%7Ctimestamp%7Ccontent&rvslots=main&format=json",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "175": {
+    "direct": [
+      {
+        "url": "https://www.data.gouv.fr/api/1/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "179": {
+    "direct": [
+      {
+        "url": "https://www.cmfchile.cl/institucional/estadisticas/ver_archivo.php?inicio=201603&termino=201612",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://www.cmfchile.cl/institucional/estadisticas/ver_archivo.php?inicio=201603&termino=201612",
+      "state": "scrape_incomplete_response",
+      "candidate_links": 0
+    }
+  },
+  "181": {
+    "direct": [
+      {
+        "url": "https://competition-policy.ec.europa.eu/about/news/dg-competitions-case-data-available-open-data-2025-03-18_en",
+        "status": 200,
+        "error": null,
+        "candidate_links": 33
+      },
+      {
+        "url": "https://competition-policy.ec.europa.eu/mergers/merger-cases/open-data_en",
+        "status": 429,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://data.europa.eu/api/hub/search/datasets/18489cb7-bce7-4d44-a138-795b390d2109~~1",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://competition-cases.ec.europa.eu/cases/M.7932",
+        "status": 200,
+        "error": null,
+        "candidate_links": 6
+      }
+    ],
+    "decodo": {
+      "url": "https://competition-cases.ec.europa.eu/search",
+      "state": "rendered_page",
+      "candidate_links": 31
+    }
+  },
+  "185": {
+    "direct": [
+      {
+        "url": "https://www.gov.br/cade/pt-br/acesso-a-informacao/dados-abertos",
+        "status": 200,
+        "error": null,
+        "candidate_links": 21
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://dados.gov.br/dados/organizacoes/visualizar/conselho-administrativo-de-defesa-economica-cade",
+        "status": 200,
+        "error": null,
+        "candidate_links": 65
+      }
+    ],
+    "decodo": {
+      "url": "https://www.gov.br/cade/pt-br/acesso-a-informacao/dados-abertos",
+      "state": "scrape_gateway_http_400",
+      "candidate_links": 0
+    }
+  },
+  "186": {
+    "direct": [
+      {
+        "url": "https://www.cci.gov.in/antitrust/orders/section26/",
+        "status": 404,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://www.cci.gov.in/combination/orders",
+        "status": 404,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://www.cci.gov.in/public/antitrust/orders",
+      "state": "scrape_gateway_http_400",
+      "candidate_links": 0
+    }
+  },
+  "189": {
+    "direct": [
+      {
+        "url": "https://ec.europa.eu/safety-gate-alerts/screen/webReport",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://data.europa.eu/data/datasets/rapex-rapid-alert-system-non-food?locale=en",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://ec.europa.eu/safety-gate-alerts/screen/webReport",
+      "state": "rendered_page",
+      "candidate_links": 3
+    }
+  },
+  "192": {
+    "direct": [
+      {
+        "url": "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-056120?lang=en&freq=A&declarant=DE&prccode=26113000&indicators=PRODVAL&time=2016",
+        "status": 404,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "193": {
+    "direct": [
+      {
+        "url": "https://www2.census.gov/programs-surveys/bds/tables/time-series/2023/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 192
+      }
+    ]
+  },
+  "196": {
+    "direct": [
+      {
+        "url": "https://www.osha.gov/data",
+        "status": 403,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://data.dol.gov:443/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://www.osha.gov/Establishment-Specific-Injury-and-Illness-Data",
+        "status": 403,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "197": {
+    "direct": [
+      {
+        "url": "https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-data-files-calendar-years-1987-present",
+        "status": 200,
+        "error": null,
+        "candidate_links": 16
+      },
+      {
+        "url": "https://19january2021snapshot.epa.gov/toxics-release-inventory-tri-program/2016-tri-national-analysis-basic-plus-data-files_.html",
+        "status": 200,
+        "error": null,
+        "candidate_links": 69
+      }
+    ],
+    "decodo": {
+      "url": "https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-data-files-calendar-years-1987-present",
+      "state": "scrape_gateway_http_400",
+      "candidate_links": 0
+    }
+  },
+  "199": {
+    "direct": [
+      {
+        "url": "https://sdi.eea.europa.eu/datastore/public?path=/eea_t_eu-emission-trading-scheme_p_2005-2025_v03_r00/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 2
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://sdi.eea.europa.eu/catalogue/datahub/api/records/9eee3fc9-3060-4e3f-bc8d-e22e7c3f6bda?language=eng",
+        "status": 200,
+        "error": null,
+        "candidate_links": 25
+      },
+      {
+        "url": "https://sdi.eea.europa.eu/datastore/public?path=/eea_t_eu-emission-trading-scheme_p_2005-2025_v03_r00/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 60
+      }
+    ],
+    "decodo": {
+      "url": "https://www.eea.europa.eu/en/datahub/datahubitem-view/98f04097-26de-4fca-86c4-63834818c0c0",
+      "state": "rendered_page",
+      "candidate_links": 2
+    }
+  },
+  "202": {
+    "direct": [
+      {
+        "url": "https://pxweb.irena.org/pxweb/api/v1/en/IRENASTAT/Power%20Capacity%20and%20Generation/Country_ELECCAP_2026_H1_v-PX%201.px",
+        "status": 404,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2026/Mar/IRENA_DAT_RE_Capacity_Statistics_2026.pdf",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://www.irena.org/Data/Downloads/IRENASTAT",
+      "state": "rendered_page",
+      "candidate_links": 5
+    }
+  },
+  "203": {
+    "direct": [
+      {
+        "url": "https://data.bts.gov/Research-and-Statistics/T-100-Domestic-Segment-All-Carriers-/rf5k-46ns",
+        "status": 404,
+        "error": null,
+        "candidate_links": 11
+      },
+      {
+        "url": "https://www.transtats.bts.gov/ErrPage.asp",
+        "status": 500,
+        "error": null,
+        "candidate_links": 21
+      },
+      {
+        "url": "https://www.transtats.bts.gov/PREZIP/T_T100D_SEGMENT_ALL_CARRIER_2016.zip",
+        "status": 404,
+        "error": null,
+        "candidate_links": 22
+      }
+    ]
+  },
+  "206": {
+    "direct": [
+      {
+        "url": "https://oica.net/wp-content/uploads/Total-2016.pdf",
+        "status": 404,
+        "error": null,
+        "candidate_links": 1
+      },
+      {
+        "url": "https://oica.net/production-statistics/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 1
+      }
+    ],
+    "decodo": {
+      "url": "https://oica.net/production-statistics/",
+      "state": "rendered_page",
+      "candidate_links": 11
+    }
+  },
+  "208": {
+    "direct": [
+      {
+        "url": "https://www.oecd.org/en/data/datasets/inter-country-input-output-tables.html",
+        "status": 403,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://sdmx.oecd.org/sti-public/rest/data/OECD.STI.PIE,DSD_TIVA_MAINSH@DF_MAINSH,1.1/EXGR_DVA.JPN._T...A?startPeriod=2016&endPeriod=2016&dimensionAtObservation=AllDimensions",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://www.oecd.org/en/data/datasets/inter-country-input-output-tables.html",
+      "state": "rendered_page",
+      "candidate_links": 99
+    }
+  },
+  "211": {
+    "direct": [
+      {
+        "url": "https://ppi.worldbank.org/en/ppidata",
+        "status": 200,
+        "error": null,
+        "candidate_links": 10
+      },
+      {
+        "url": "https://ppp.worldbank.org/library/private-participation-infrastructure-ppi-database",
+        "status": 403,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://ppi.worldbank.org/en/ppidata",
+      "state": "rendered_page",
+      "candidate_links": 3
+    }
+  },
+  "212": {
+    "direct": [
+      {
+        "url": "https://data.imf.org/en/Datasets/DIP",
+        "status": 200,
+        "error": null,
+        "candidate_links": 18
+      }
+    ],
+    "decodo": {
+      "url": "https://data.imf.org/en/Datasets/DIP",
+      "state": "rendered_page",
+      "candidate_links": 13
+    }
+  },
+  "216": {
+    "direct": [
+      {
+        "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng",
+        "status": null,
+        "error": "ParserError",
+        "candidate_links": 0
+      },
+      {
+        "url": "http://publications.europa.eu/resource/cellar/3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006/rdf/object/full",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "followed": [
+      {
+        "url": "http://publications.europa.eu/resource/cellar/3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006/rdf/object/full",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32016R0679",
+        "status": 202,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "218": {
+    "direct": [
+      {
+        "url": "https://www.wto.org/english/tratop_e/dispu_e/find_dispu_documents_e.htm",
+        "status": 200,
+        "error": null,
+        "candidate_links": 1
+      },
+      {
+        "url": "https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds456_e.htm",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://data.wto.org/dataset/disputedb",
+        "status": 200,
+        "error": null,
+        "candidate_links": 14
+      }
+    ],
+    "decodo": {
+      "url": "https://data.wto.org/dataset/disputedb",
+      "state": "rendered_page",
+      "candidate_links": 8
+    }
+  },
+  "219": {
+    "direct": [
+      {
+        "url": "https://lda.gov/api/redoc/v1/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 1
+      },
+      {
+        "url": "https://lda.gov/api/v1/filings/?filing_year=2016&page_size=2",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://lda.gov/api/v1/contributions/?filing_year=2016&page_size=2",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "222": {
+    "direct": [
+      {
+        "url": "https://sdmx.oecd.org/public/rest/v1/data/OECD.DCD.FSD,DSD_CRS@DF_CRS,1.0/?startPeriod=2016&endPeriod=2016",
+        "status": 404,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "223": {
+    "direct": [
+      {
+        "url": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/5200/VNP46A2/2016/001/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 380
+      }
+    ]
+  },
+  "224": {
+    "direct": [
+      {
+        "url": "https://www.usgs.gov/landsat-missions/landsat-data-access",
+        "status": 200,
+        "error": null,
+        "candidate_links": 29
+      }
+    ]
+  },
+  "225": {
+    "direct": [
+      {
+        "url": "https://catalogue.dataspace.copernicus.eu/odata/v1/Products?$filter=Collection/Name%20eq%20%27SENTINEL-2%27%20and%20ContentDate/Start%20ge%202016-01-01T00:00:00Z&$top=1",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "226": {
+    "direct": [
+      {
+        "url": "https://datos-abiertos.chilecompra.cl/descargas",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://datos-abiertos.chilecompra.cl/descargas",
+        "status": 200,
+        "error": null,
+        "candidate_links": 2
+      }
+    ],
+    "decodo": {
+      "url": "https://datos-abiertos.chilecompra.cl/descargas",
+      "state": "rendered_page",
+      "candidate_links": 0
+    }
+  },
+  "227": {
+    "direct": [
+      {
+        "url": "https://www.uspto.gov/ip-policy/economic-research/research-datasets/trademark-case-files-dataset",
+        "status": 200,
+        "error": null,
+        "candidate_links": 180
+      },
+      {
+        "url": "https://data.uspto.gov/ui/datasets/products/files/TRCFECO2/2016/csv.zip",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "228": {
+    "direct": [
+      {
+        "url": "https://apps.fcc.gov/oetcf/eas/reports/GenericSearch.cfm",
+        "status": 403,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://apps.fcc.gov/oetcf/eas/reports/GenericSearch.cfm",
+      "state": "scrape_gateway_http_400",
+      "candidate_links": 0
+    }
+  },
+  "235": {
+    "direct": [
+      {
+        "url": "https://www.cdc.gov/fluview/overview/fluview-interactive.html",
+        "status": 200,
+        "error": null,
+        "candidate_links": 9
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html",
+        "status": 200,
+        "error": null,
+        "candidate_links": 2
+      }
+    ],
+    "decodo": {
+      "url": "https://gis.cdc.gov/grasp/fluview/FluPortalDashboard.html",
+      "state": "scrape_gateway_http_400",
+      "candidate_links": 0
+    }
+  },
+  "237": {
+    "direct": [
+      {
+        "url": "https://catalog.data.gov/dataset/flusurv-net-rates-and-clinical-data",
+        "status": 200,
+        "error": null,
+        "candidate_links": 29
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://catalog.data.gov/harvest_record/6d93c094-68cc-4710-96a6-cb2a184e0f72/raw",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://catalog.data.gov/dataset/flusurv-net-rates-and-clinical-data",
+      "state": "scrape_gateway_http_400",
+      "candidate_links": 0
+    }
+  },
+  "239": {
+    "direct": [
+      {
+        "url": "https://www.cdc.gov/brfss/annual_data/2016/files/LLCP2016XPT.zip",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHIS/2016/samadultcsv.zip",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "245": {
+    "direct": [
+      {
+        "url": "https://data.unicef.org/resources/immunization/",
+        "status": 403,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://www.who.int/publications/m/item/wuenic_input",
+        "status": 200,
+        "error": null,
+        "candidate_links": 25
+      }
+    ],
+    "decodo": {
+      "url": "https://immunizationdata.who.int/",
+      "state": "rendered_page",
+      "candidate_links": 0
+    }
+  },
+  "246": {
+    "direct": [
+      {
+        "url": "https://www.ecdc.europa.eu/en/publications-data/monitoring/all-annual-epidemiological-reports",
+        "status": 200,
+        "error": null,
+        "candidate_links": 380
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://www.ecdc.europa.eu/en/publications-data/seasonal-influenza-annual-epidemiological-report-2016-17-season",
+        "status": 429,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://www.ecdc.europa.eu/en/publications-data/pertussis-annual-epidemiological-report-2016",
+        "status": 429,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://www.ecdc.europa.eu/en/publications-data/monitoring/all-annual-epidemiological-reports",
+      "state": "rendered_page",
+      "candidate_links": 116
+    }
+  },
+  "247": {
+    "direct": [
+      {
+        "url": "https://www.ecdc.europa.eu/en/publications-data/antimicrobial-resistance-surveillance-europe-2016",
+        "status": 200,
+        "error": null,
+        "candidate_links": 27
+      },
+      {
+        "url": "https://www.ecdc.europa.eu/en/publications-data/antimicrobial-consumption-eueea-annual-epidemiological-report-2016",
+        "status": 429,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://www.ecdc.europa.eu/en/publications-data/antimicrobial-consumption-annual-epidemiological-report-2016",
+        "status": 200,
+        "error": null,
+        "candidate_links": 13
+      }
+    ],
+    "decodo": {
+      "url": "https://www.ecdc.europa.eu/en/about-us/networks/disease-networks-and-laboratory-networks/ears-net-data",
+      "state": "rendered_page",
+      "candidate_links": 1
+    }
+  },
+  "250": {
+    "direct": [
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/1045810/0000932471-16-011864.txt",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      }
+    ]
+  },
+  "252": {
+    "direct": [
+      {
+        "url": "https://www2.hkexnews.hk/Shareholding-Disclosures/Disclosure-of-Interests?p=1&sc_lang=en",
+        "status": 200,
+        "error": null,
+        "candidate_links": 7
+      }
+    ],
+    "decodo": {
+      "url": "https://di.hkex.com.hk/di/NSAllSSList.aspx",
+      "state": "rendered_page",
+      "candidate_links": 0
+    }
+  },
+  "256": {
+    "direct": [
+      {
+        "url": "https://www.nbim.no/en/investments/all-investments/?year=2016",
+        "status": 200,
+        "error": null,
+        "candidate_links": 1
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://www.nbim.no/en/investments/all-investments/?year=2016",
+        "status": 200,
+        "error": null,
+        "candidate_links": 1
+      }
+    ],
+    "decodo": {
+      "url": "https://www.nbim.no/en/investments/all-investments/?year=2016",
+      "state": "rendered_page",
+      "candidate_links": 27
+    }
+  },
+  "257": {
+    "direct": [
+      {
+        "url": "https://publications.parliament.uk/pa/cm/cmregmem/contents1516.htm",
+        "status": 403,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://interests-api.parliament.uk/api/v2/Interests/csv",
+        "status": null,
+        "error": "ReadTimeout",
+        "candidate_links": 0
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://publications.parliament.uk/pa/cm/cmregmem/160516/160516.pdf",
+        "status": 403,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://publications.parliament.uk/pa/cm/cmregmem/contents1516.htm",
+      "state": "rendered_page",
+      "candidate_links": 20
+    }
+  },
+  "266": {
+    "direct": [
+      {
+        "url": "https://ferc.gov/migrated-data-downloads",
+        "status": 403,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://eqrreportviewer.ferc.gov/",
+        "status": 200,
+        "error": null,
+        "candidate_links": 29
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://eqrreportviewer.ferc.gov/633",
+        "status": 404,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://eqrreportviewer.ferc.gov/6872725",
+        "status": 404,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://eqrreportviewer.ferc.gov/",
+      "state": "scrape_gateway_http_400",
+      "candidate_links": 0
+    }
+  },
+  "267": {
+    "direct": [
+      {
+        "url": "https://www.meti.go.jp/statistics/tyo/seidou/result/ichiran/nenpo_2007-2020.html",
+        "status": 403,
+        "error": null,
+        "candidate_links": 1
+      },
+      {
+        "url": "https://www.meti.go.jp/english/statistics/tyo/seidou/",
+        "status": 403,
+        "error": null,
+        "candidate_links": 1
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00550200&tstat=000001023671&year=20160",
+        "status": 200,
+        "error": null,
+        "candidate_links": 268
+      }
+    ],
+    "decodo": {
+      "url": "https://www.meti.go.jp/english/statistics/tyo/seidou/",
+      "state": "rendered_page",
+      "candidate_links": 39
+    }
+  },
+  "271": {
+    "direct": [
+      {
+        "url": "https://www.mhlw.go.jp/toukei/list/105-1f.html",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://www.mhlw.go.jp/toukei/list/105-1c.html",
+        "status": 200,
+        "error": null,
+        "candidate_links": 1
+      }
+    ],
+    "followed": [
+      {
+        "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450151&year=20160",
+        "status": 200,
+        "error": null,
+        "candidate_links": 273
+      },
+      {
+        "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450151&year=20250",
+        "status": 200,
+        "error": null,
+        "candidate_links": 270
+      }
+    ],
+    "decodo": {
+      "url": "https://www.mhlw.go.jp/toukei/list/105-1.html",
+      "state": "rendered_page",
+      "candidate_links": 9
+    }
+  },
+  "161": {
+    "followed": [
+      {
+        "url": "https://archive.org/wayback/available?url=www.intel.com&timestamp=20160601",
+        "status": 200,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://web.archive.org/web/20160601234329id_/http://www.intel.fr/content/www/fr/fr/homepage.html",
+        "status": 200,
+        "error": null,
+        "candidate_links": 4
+      }
+    ],
+    "decodo": {
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.intel.com%2F&from=2016&to=2016&output=json&filter=statuscode:200&limit=5",
+      "state": "rendered_page",
+      "candidate_links": 0
+    }
+  },
+  "160": {
+    "followed": [
+      {
+        "url": "https://index.commoncrawl.org/CC-MAIN-2016-26-index?url=www.intel.com&output=json",
+        "status": 504,
+        "error": null,
+        "candidate_links": 0
+      },
+      {
+        "url": "https://index.commoncrawl.org/CC-MAIN-2016-50-index?url=example.com&output=json",
+        "status": 504,
+        "error": null,
+        "candidate_links": 0
+      }
+    ],
+    "decodo": {
+      "url": "https://index.commoncrawl.org/CC-MAIN-2016-50-index?url=www.intel.com%2F&output=json",
+      "state": "scrape_incomplete_response",
+      "candidate_links": 0
+    }
+  },
+  "213": {
+    "decodo": {
+      "url": "https://www.fao.org/giews/food-prices/price-tool/en/",
+      "state": "rendered_page",
+      "candidate_links": 0
+    }
+  },
+  "253": {
+    "decodo": {
+      "url": "https://www.sedi.ca/sedi/SVTWelcome?locale=en_CA",
+      "state": "rendered_page",
+      "candidate_links": 0
+    }
+  },
+  "254": {
+    "decodo": {
+      "url": "https://data.fca.org.uk/#/nsm/nationalstoragemechanism",
+      "state": "rendered_page",
+      "candidate_links": 3
+    }
+  },
+  "255": {
+    "decodo": {
+      "url": "https://www.cnmv.es/portal/consultas/directivos-consulta-anterior-reglamento",
+      "state": "rendered_page",
+      "candidate_links": 19
+    }
+  }
+}

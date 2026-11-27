@@ -1,0 +1,348 @@
+{
+  "model": "qwen3-4b-q4_k_m-bc64014",
+  "prompt_version": "semiotic-language-v5",
+  "input_graph_sha256": "825653ad9c7e242f18ce53e913d02ce42ab8b0ae75c6cf40a4174495503fbdf7",
+  "finished_at": "2026-11-23T14:35:57.570843+00:00",
+  "cases": [
+    {
+      "chunk_id": "factory",
+      "expected": {
+        "region": "Germany",
+        "sector": "isic_C"
+      },
+      "result": {
+        "chunk_id": "factory",
+        "observation_id": "factory",
+        "model": "qwen3-4b-q4_k_m-bc64014",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 5,
+        "original_language": "en",
+        "english_text": "Acme manufactures batteries in Germany.",
+        "extraction_confidence": "high",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "neutral",
+        "tone_evidence": {
+          "quote": "Acme manufactures batteries in Germany.",
+          "page": 1,
+          "start": 0,
+          "end": 39
+        },
+        "triples": [
+          {
+            "subject": "Acme",
+            "verb": "manufactures",
+            "object": "batteries",
+            "subject_en": "Acme",
+            "verb_en": "manufactures",
+            "object_en": "batteries",
+            "evidence": {
+              "quote": "Acme manufactures batteries in Germany.",
+              "page": 1,
+              "start": 0,
+              "end": 39
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "energy_storage",
+            "subsector_id": "batteries",
+            "evidence": {
+              "quote": "Acme manufactures batteries in Germany.",
+              "page": 1,
+              "start": 0,
+              "end": 39
+            }
+          }
+        ],
+        "geographic_coverage": [
+          {
+            "label": "Germany",
+            "evidence": {
+              "quote": "Acme manufactures batteries in Germany.",
+              "page": 1,
+              "start": 0,
+              "end": 39
+            }
+          }
+        ],
+        "population_coverage": [],
+        "id": "language_ecf11a875a89227776901ff8d6bfbb1eef0165749980336736e5784a1bdae381"
+      },
+      "region_match": true,
+      "sector_match": false,
+      "seconds": 78.446
+    },
+    {
+      "chunk_id": "insurance",
+      "expected": {
+        "region": "German",
+        "sector": "isic_L"
+      },
+      "result": {
+        "chunk_id": "insurance",
+        "observation_id": "insurance",
+        "model": "qwen3-4b-q4_k_m-bc64014",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 8,
+        "original_language": "mul",
+        "english_text": "Atlas insures a German battery factory against fire.",
+        "extraction_confidence": "high",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "neutral",
+        "tone_evidence": {
+          "quote": "Atlas insures a German battery factory against fire.",
+          "page": 1,
+          "start": 0,
+          "end": 52
+        },
+        "triples": [
+          {
+            "subject": "Atlas",
+            "verb": "insures",
+            "object": "fire",
+            "subject_en": "Atlas",
+            "verb_en": "insures",
+            "object_en": "fire",
+            "evidence": {
+              "quote": "against fire",
+              "page": 1,
+              "start": 39,
+              "end": 51
+            }
+          }
+        ],
+        "sector_classifications": [],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "geographic_coverage",
+            "reason": "label_absent_from_quote"
+          }
+        ],
+        "id": "language_d5c212c2779493867ef7f35b6e544835e33f807164ff08f8e42f4b8ac8678df4"
+      },
+      "region_match": false,
+      "sector_match": false,
+      "seconds": 39.95
+    },
+    {
+      "chunk_id": "spanish",
+      "expected": {
+        "region": "España",
+        "sector": "isic_C"
+      },
+      "result": {
+        "chunk_id": "spanish",
+        "observation_id": "spanish",
+        "model": "qwen3-4b-q4_k_m-bc64014",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 5,
+        "original_language": "es",
+        "english_text": "Acme fabrica baterías en España.",
+        "extraction_confidence": "high",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "neutral",
+        "tone_evidence": {
+          "quote": "Acme fabrica baterías en España.",
+          "page": 1,
+          "start": 0,
+          "end": 32
+        },
+        "triples": [
+          {
+            "subject": "Acme",
+            "verb": "fabrica",
+            "object": "baterías",
+            "subject_en": "Acme",
+            "verb_en": "manufactures",
+            "object_en": "batteries",
+            "evidence": {
+              "quote": "Acme fabrica baterías en España.",
+              "page": 1,
+              "start": 0,
+              "end": 32
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "energy_storage",
+            "subsector_id": "batteries",
+            "evidence": {
+              "quote": "Acme fabrica baterías en España.",
+              "page": 1,
+              "start": 0,
+              "end": 32
+            }
+          }
+        ],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "geographic_coverage",
+            "reason": "label_absent_from_quote"
+          }
+        ],
+        "id": "language_a9824142c312fd1ebac93c1f9e516889168104039aea4e0e1fc4e615a1e2d02b"
+      },
+      "region_match": false,
+      "sector_match": false,
+      "seconds": 53.708
+    },
+    {
+      "chunk_id": "no_geography",
+      "expected": {
+        "region": null,
+        "sector": "isic_L"
+      },
+      "result": {
+        "chunk_id": "no_geography",
+        "observation_id": "no_geography",
+        "model": "qwen3-4b-q4_k_m-bc64014",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 4,
+        "original_language": "und",
+        "english_text": "Atlas provides insurance services.",
+        "extraction_confidence": "high",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "neutral",
+        "tone_evidence": {
+          "quote": "Atlas provides insurance services.",
+          "page": 1,
+          "start": 0,
+          "end": 34
+        },
+        "triples": [
+          {
+            "subject": "Atlas",
+            "verb": "provides",
+            "object": "insurance services",
+            "subject_en": "Atlas",
+            "verb_en": "provides",
+            "object_en": "insurance services",
+            "evidence": {
+              "quote": "Atlas provides insurance services.",
+              "page": 1,
+              "start": 0,
+              "end": 34
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "isic_A",
+            "subsector_id": null,
+            "evidence": {
+              "quote": "Atlas provides insurance services.",
+              "page": 1,
+              "start": 0,
+              "end": 34
+            }
+          }
+        ],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "geographic_coverage",
+            "reason": "label_absent_from_quote"
+          },
+          {
+            "field": "population_coverage",
+            "reason": "label_absent_from_quote"
+          }
+        ],
+        "id": "language_0a6b69ba8a5c8dbedb7a154018f9c70c16356c5fc656c1d2672bf5a234705f0d"
+      },
+      "region_match": true,
+      "sector_match": false,
+      "seconds": 51.741
+    },
+    {
+      "chunk_id": "chunk_108987ae8183f16d141a0a0324c432eb23a10184678d89d2a4d995cba6be72b8",
+      "expected": null,
+      "error": "TimeoutError",
+      "seconds": 90.094
+    },
+    {
+      "chunk_id": "chunk_1d9fe71f94dea6768f3fce24cc95e42d5a17290430d7bceb0c652b6e8e51b876",
+      "expected": null,
+      "error": "TimeoutError",
+      "seconds": 90.09
+    },
+    {
+      "chunk_id": "chunk_5c80e013807279b8bfca1218150e3bec2b3e92945cf343224926d40d323257fa",
+      "expected": null,
+      "error": "TimeoutError",
+      "seconds": 90.09
+    },
+    {
+      "chunk_id": "chunk_679b148cfbb79860ed4de0dab6cac70d2301242c8151c35dfa14b9691a5c94aa",
+      "expected": null,
+      "error": "TimeoutError",
+      "seconds": 90.09
+    },
+    {
+      "chunk_id": "chunk_38126614b4092716d3bc292c749b18864a0150718eb13e3a16b3b3463516f099",
+      "expected": null,
+      "result": {
+        "chunk_id": "chunk_38126614b4092716d3bc292c749b18864a0150718eb13e3a16b3b3463516f099",
+        "observation_id": "obs_5bf422bae037444fb219f3fb9ea0763c471356bfb6a0ad8947b09e76f284d4ce",
+        "model": "qwen3-4b-q4_k_m-bc64014",
+        "prompt_version": "semiotic-language-v5",
+        "status": "candidate",
+        "word_count": 6,
+        "original_language": "und",
+        "english_text": "LITHIUM ALUMINUM HYDRIDE POWDER AND TABETS",
+        "extraction_confidence": "low",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "neutral",
+        "tone_evidence": {
+          "quote": "LITHIUM ALUMINUM HYDRIDE POWDER AND TABETS",
+          "page": 1,
+          "start": 0,
+          "end": 42
+        },
+        "triples": [
+          {
+            "subject": "LITHIUM ALUMINUM HYDRIDE POWDER AND TABETS",
+            "verb": "is",
+            "object": "LITHIUM ALUMINUM HYDRIDE POWDER AND TABETS",
+            "subject_en": "Lithium aluminum hydride powder and tabets",
+            "verb_en": "is",
+            "object_en": "Lithium aluminum hydride powder and tabets",
+            "evidence": {
+              "quote": "LITHIUM ALUMINUM HYDRIDE POWDER AND TABETS",
+              "page": 1,
+              "start": 0,
+              "end": 42
+            }
+          }
+        ],
+        "sector_classifications": [],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "id": "language_be77c29bc7d1795e69b2c0c778eb4fb01b036e988a4ddb7ff2f23b6aabf99778"
+      },
+      "seconds": 53.66
+    }
+  ],
+  "summary": {
+    "attempted": 9,
+    "returned": 5,
+    "with_evidence_linked_triples": 5,
+    "with_evidence_linked_tone": 5,
+    "rejected_annotations": 4,
+    "gold_region_matches": 2,
+    "gold_sector_matches": 0,
+    "gold_cases": 4,
+    "median_seconds": 78.446
+  }
+}

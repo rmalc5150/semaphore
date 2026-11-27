@@ -1,0 +1,69 @@
+{
+  "model": "qwen35-2b",
+  "rows": [
+    {
+      "case": "MIIT",
+      "status": "passes_automatic_checks",
+      "thesis": "2026 Q1-8 China's electronic information manufacturing showed strong growth with a 15.7% increase in value added.",
+      "word_count": 18,
+      "evidence": {
+        "id": "2",
+        "page": 1,
+        "start": 176,
+        "end": 222,
+        "quote": "1－8月份，规模以上电子信息制造业增加值同比增长15.7%，增速较去年同期高4.9个百分点。",
+        "artifact_sha256": "2562c45c918c98fcad8aa4192637b68b3cf963c2155a7e2c7734b9d4e5806aaf",
+        "observation_id": "obs_127b9e924d81cb97469063c41c8bcc5517633ef69c81b9894dc86f3eb546c7df"
+      },
+      "seconds": 5.259
+    },
+    {
+      "case": "CAPES",
+      "status": "passes_automatic_checks",
+      "thesis": "The dataset provides international research cooperation funding costs for the 2023-2025 period.",
+      "word_count": 13,
+      "evidence": {
+        "id": "1",
+        "page": 2,
+        "start": 375,
+        "end": 522,
+        "quote": "O conjunto de dados a ser disponibilizado apresenta os valores de custeio concedidos pelos programas da Diretoria de Relações Internacionais (DRI).",
+        "artifact_sha256": "0ebc38ee9dcb9b2695826f8abaf0516f5a97cfd3e2d842a387a2ad60c914c37c",
+        "observation_id": "obs_f77a736c4d2fc4d3700fb54abbcc2d384f14f0ae56fb65a3ae53437a0f057d70"
+      },
+      "seconds": 4.481
+    },
+    {
+      "case": "IFR",
+      "status": "passes_automatic_checks",
+      "thesis": "The paper explores humanoid robot trends without predicting future market replacement.",
+      "word_count": 11,
+      "evidence": {
+        "id": "1",
+        "page": 1,
+        "start": 785,
+        "end": 927,
+        "quote": "Einblicke in Trends, Chancen und mögliche Grenzen humanoider Roboter bietet das neue Positionspapier der International Federation of Robotics.",
+        "artifact_sha256": "69ddedf34318f4d3b80e26d7727d948822b14e265382ffa84d2598b351e8eb15",
+        "observation_id": "obs_d6327a8b00ef931230a89228f1f0abe0208ecbcbf13c98c2afd74a206b19f08b"
+      },
+      "seconds": 3.692
+    },
+    {
+      "case": "IEA",
+      "status": "passes_automatic_checks",
+      "thesis": "Global PV market reached at least 74.4 GW in 2016, potentially growing to 75.4 GW.",
+      "word_count": 17,
+      "evidence": {
+        "id": "2",
+        "page": 6,
+        "start": 347,
+        "end": 513,
+        "quote": "The global PV market grew significantly, to at least 74 ,4 GW in 2016. With non-reporting countries, this number could grow up to 75,4 GW, compared to 50 GW in 2015 .",
+        "artifact_sha256": "c464fb7d762c8779aca455b10de0659668e74805dd77a68acc2b991242448b21",
+        "observation_id": "obs_14d712faf5e48d9041b10a94a8fd158d1233c539ee59aa35c3a9569b8d2451b0"
+      },
+      "seconds": 4.504
+    }
+  ]
+}

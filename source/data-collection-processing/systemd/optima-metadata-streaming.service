@@ -1,0 +1,18 @@
+[Unit]
+Description=Isolated disk-backed validation for oversized metadata artifacts
+After=network-online.target
+ConditionPathExists=!/opt/constellation/batch-paused
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/opt/constellation/metadata-engine-runtime
+ExecStart=/opt/constellation/legacy-venv/bin/python -B -m metadata_engine.streaming_worker --lane general --max-jobs 12
+Slice=constellation-workers.slice
+MemoryHigh=671088640
+MemoryMax=805306368
+MemorySwapMax=0
+CPUQuota=50%
+TimeoutStartSec=900
+TimeoutStopSec=20
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=MALLOC_ARENA_MAX=2

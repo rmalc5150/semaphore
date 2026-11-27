@@ -1,0 +1,134 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ResearchAndAuxiliaryPublicationObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/*/publication-queue/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/*/publication-receipts/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/*/publication-retries/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/*/publication-failures/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/research-publication/failures/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/specialists/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/conferences/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/federal-register/discovered-jobs/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/market/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/news/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/specialist-publication-queue/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/curated/*/releases/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/athena-results/*"
+      ]
+    },
+    {
+      "Sid": "ListPublicationObjects",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "research-data/checkpoints/task_*/*",
+            "research-data/manifests/collection_runs/*",
+            "research-data/operations/*/publication-*/*",
+            "research-data/operations/specialists/*",
+            "research-data/operations/conferences/*",
+            "research-data/operations/market/*",
+            "research-data/operations/news/*",
+            "research-data/operations/federal-register/discovered-jobs/*",
+            "research-data/constellation-backfill/specialist-publication-queue/*",
+            "research-data/curated/*/releases/*",
+            "research-data/athena-results/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "PublicationGlueCatalog",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetDatabase",
+        "glue:CreateDatabase",
+        "glue:GetTable",
+        "glue:CreateTable",
+        "glue:GetPartition",
+        "glue:CreatePartition",
+        "glue:UpdatePartition",
+        "glue:DeletePartition"
+      ],
+      "Resource": [
+        "arn:aws:glue:us-east-1:059416028963:catalog",
+        "arn:aws:glue:us-east-1:059416028963:database/optima_*",
+        "arn:aws:glue:us-east-1:059416028963:table/optima_*/*"
+      ]
+    },
+    {
+      "Sid": "PublicationAthenaWorkgroups",
+      "Effect": "Allow",
+      "Action": [
+        "athena:GetWorkGroup",
+        "athena:CreateWorkGroup",
+        "athena:StartQueryExecution"
+      ],
+      "Resource": "arn:aws:athena:us-east-1:059416028963:workgroup/optima-*"
+    },
+    {
+      "Sid": "PublicationAthenaQueryStatus",
+      "Effect": "Allow",
+      "Action": [
+        "athena:GetQueryExecution",
+        "athena:GetQueryResults",
+        "athena:StopQueryExecution"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "NewsPublicationCompletionNotification",
+      "Effect": "Allow",
+      "Action": "sns:Publish",
+      "Resource": "arn:aws:sns:us-east-1:059416028963:optima-collection-alerts-email"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/federal-register/*",
+        "arn:aws:s3:::data-collection-059416028963-us-east-1-an/research-data/operations/nist-robotics/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::data-collection-059416028963-us-east-1-an",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "research-data/operations/federal-register/*",
+            "research-data/operations/nist-robotics/*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "BatchRegisterMetadataPartitions",
+      "Effect": "Allow",
+      "Action": [
+        "glue:BatchCreatePartition",
+        "glue:GetPartitions"
+      ],
+      "Resource": [
+        "arn:aws:glue:us-east-1:059416028963:catalog",
+        "arn:aws:glue:us-east-1:059416028963:database/optima_metadata_engine",
+        "arn:aws:glue:us-east-1:059416028963:table/optima_metadata_engine/source_observations",
+        "arn:aws:glue:us-east-1:059416028963:table/optima_metadata_engine/source_observations_staging"
+      ]
+    }
+  ]
+}

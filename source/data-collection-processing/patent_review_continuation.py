@@ -4,7 +4,22 @@ from datetime import date,datetime,timezone
 from pathlib import Path
 from collection_storage import StorageSettings,write_json,now
 from research_contract import ROOT,load_json,digest
-from cms_coverage_capture import deadline,queue_metadata
+from cms_coverage_capture import deadline
+
+def queue_metadata_notice(store,settings,key,manifest):
+ # Capture has already committed these pages. Send only this attempt's new
+ # batches through the existing intake queue; historical discovery repairs
+ # older inputs independently. Never download every inherited raw batch here.
+ task=manifest['task'];head=store.get('checkpoints/'+manifest['task_id']+'/head.json')
+ state=json.loads(head.body)if head else{}
+ if manifest['task_id']!='task_'+digest(task)or state.get('task')!=task or key not in state.get('terminal_history',[]):
+  raise ValueError('patent_metadata_manifest_not_committed')
+ batches=[settings.s3_prefix.rstrip('/')+'/'+b['key']for p in manifest['pages']if p['run_id']==manifest['run_id']for b in p['batches']]
+ if not batches:return None
+ notice={'source':task['source'],'mode':task['mode'],'manifest_key':settings.s3_prefix.rstrip('/')+'/'+key,'batches':batches}
+ target='constellation-backfill/metadata-engine/runtime-v2/intake/'+now()[:10]+'/'+digest(notice)+'.json'
+ write_json(store,target,notice)
+ return target
 
 def manifests(value):
  if isinstance(value,dict):
@@ -41,10 +56,11 @@ def main():
   prior=store.get(key);state=json.loads(prior.body)if prior else{}
   if state.get('retry_after',0)>time.time():print(json.dumps({'status':'deferred','reason':'source_cooldown','lane':a.lane}),flush=True);return
   try:
-   with deadline(150):result=run(a.lane,store,settings)
-   for manifest in set(manifests(result)):
-    saved=store.get(manifest)
-    if saved:queue_metadata(store,json.loads(saved.body))
+   with deadline(150):
+    result=run(a.lane,store,settings)
+    for manifest in set(manifests(result)):
+     saved=store.get(manifest)
+     if saved:queue_metadata_notice(store,settings,manifest,json.loads(saved.body))
   except Exception as e:result={'status':'failed','reason':type(e).__name__+': '+str(e)[:250]}
   entry={'lane':a.lane,'result':result,'at':now(),'retry_after':time.time()+(21600 if result.get('status')=='failed'else 120)};write_json(store,key,entry,prior.token if prior else None);write_json(store,'constellation-backfill/patent-reviewed/receipts/'+digest(entry)+'.json',entry);print(json.dumps(entry),flush=True)
 if __name__=='__main__':main()

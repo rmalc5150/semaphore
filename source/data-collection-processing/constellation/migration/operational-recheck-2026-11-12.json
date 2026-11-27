@@ -1,0 +1,1593 @@
+{
+  "checked_at": "2026-11-12T14:26:32.262750+00:00",
+  "hosts": {
+    "m7": {
+      "checked_at_epoch": 1794493577.0025263,
+      "cpu_percent_of_host": 99.8,
+      "meminfo": {
+        "MemTotal": "        7966320 kB",
+        "MemAvailable": "    3254848 kB"
+      },
+      "loadavg": "15.11 14.02 13.41 13/265 159778",
+      "failed_units": [],
+      "pool_cpu_percent_of_two_cores": 99.4,
+      "pool": {
+        "memory.current": "4577873920",
+        "memory.high": "6526009344",
+        "memory.max": "7260184576",
+        "memory.events": "low 0\nhigh 1798570\nmax 782\noom 33\noom_kill 15\noom_group_kill 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=18627331420\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=6639277929",
+        "cpu.pressure": "some avg10=99.86 avg60=95.06 avg300=93.55 total=34980572807\nfull avg10=0.37 avg60=0.48 avg300=0.55 total=1297445882"
+      },
+      "capture_pool": {
+        "memory.current": "103841792",
+        "memory.high": "3221225472",
+        "memory.max": "3489660928",
+        "memory.events": "low 0\nhigh 114468\nmax 451\noom 22\noom_kill 4\noom_group_kill 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1300890213\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1300239842",
+        "cpu.pressure": "some avg10=39.93 avg60=26.48 avg300=11.79 total=1318935818\nfull avg10=39.91 avg60=26.40 avg300=11.75 total=1313496973"
+      },
+      "memory_events_changed_during_sample": false,
+      "units": {
+        "constellation-backfill@1.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "483183820",
+          "MemoryMax": "536870912",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-backfill@2.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "483183820",
+          "MemoryMax": "536870912",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-backfill@3.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "483183820",
+          "MemoryMax": "536870912",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-backfill@4.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "483183820",
+          "MemoryMax": "536870912",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-backfill@5.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "483183820",
+          "MemoryMax": "536870912",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-legacy-worker@1.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1932735283",
+          "MemoryMax": "2147483648",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-legacy-worker@2.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1932735283",
+          "MemoryMax": "2147483648",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-legacy-worker@3.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1932735283",
+          "MemoryMax": "2147483648",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-legacy-worker@4.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1932735283",
+          "MemoryMax": "2147483648",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-legacy-worker@5.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1932735283",
+          "MemoryMax": "2147483648",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-legacy-worker@6.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1932735283",
+          "MemoryMax": "2147483648",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-public-worker@1.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "724775731",
+          "MemoryMax": "805306368",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-public-worker@2.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "724775731",
+          "MemoryMax": "805306368",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-public-worker@3.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "724775731",
+          "MemoryMax": "805306368",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "constellation-public-worker@4.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "724775731",
+          "MemoryMax": "805306368",
+          "ActiveState": "active",
+          "SubState": "running"
+        },
+        "optima-m7-aux-cms-catalog-publication.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2147483648",
+          "MemoryMax": "3221225472",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-aux-cms-coverage-publication.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2899102924",
+          "MemoryMax": "3221225472",
+          "ActiveState": "activating",
+          "SubState": "start"
+        },
+        "optima-m7-aux-collection-daily.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2147483648",
+          "MemoryMax": "3221225472",
+          "ActiveState": "activating",
+          "SubState": "start"
+        },
+        "optima-m7-aux-crossref-publication-resumed.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2899102924",
+          "MemoryMax": "3221225472",
+          "ActiveState": "activating",
+          "SubState": "start"
+        },
+        "optima-m7-aux-fda-reviewed-publication.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2147483648",
+          "MemoryMax": "3221225472",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-aux-grants-reviewed-publication.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2147483648",
+          "MemoryMax": "3221225472",
+          "ActiveState": "activating",
+          "SubState": "start"
+        },
+        "optima-m7-aux-market-publication.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2899102924",
+          "MemoryMax": "3221225472",
+          "ActiveState": "activating",
+          "SubState": "start"
+        },
+        "optima-m7-aux-news-publication.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2899102924",
+          "MemoryMax": "3221225472",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-aux-patents-prosecution-publication.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2147483648",
+          "MemoryMax": "3221225472",
+          "ActiveState": "activating",
+          "SubState": "start"
+        },
+        "optima-m7-aux-reviewed-metadata-publication.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2147483648",
+          "MemoryMax": "3221225472",
+          "ActiveState": "activating",
+          "SubState": "start"
+        },
+        "optima-m7-aux-specialist-publication.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2899102924",
+          "MemoryMax": "3221225472",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-capture-assignments-reviewed-daily.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1610612736",
+          "MemoryMax": "2147483648",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-capture-assignments-reviewed-historical.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1610612736",
+          "MemoryMax": "2147483648",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-capture-authenticated-processing.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1610612736",
+          "MemoryMax": "2147483648",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-capture-edinet-documents-daily.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2684354560",
+          "MemoryMax": "2684354560",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-capture-eia-daily-processing.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1610612736",
+          "MemoryMax": "2147483648",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-capture-eodhd-profiles.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1610612736",
+          "MemoryMax": "2147483648",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-capture-federal-register-daily-enrichment.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1610612736",
+          "MemoryMax": "2147483648",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-capture-nist-robotics-daily.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1610612736",
+          "MemoryMax": "2147483648",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-capture-patents-daily.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1610612736",
+          "MemoryMax": "2147483648",
+          "ActiveState": "activating",
+          "SubState": "start"
+        },
+        "optima-m7-capture-patents-prosecution.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1610612736",
+          "MemoryMax": "2147483648",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-cms-financial-resumed.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1073741824",
+          "MemoryMax": "2147483648",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-committed-athena.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2147483648",
+          "MemoryMax": "3221225472",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-eodhd-inventory.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1073741824",
+          "MemoryMax": "2147483648",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-m7-research-publication.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "2899102924",
+          "MemoryMax": "3221225472",
+          "ActiveState": "activating",
+          "SubState": "start"
+        },
+        "optima-m7-specialist-daily.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "1073741824",
+          "MemoryMax": "1610612736",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-metadata-worker-extra.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "724775731",
+          "MemoryMax": "805306368",
+          "ActiveState": "activating",
+          "SubState": "start"
+        },
+        "optima-metadata-worker.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "MemoryHigh": "724775731",
+          "MemoryMax": "805306368",
+          "ActiveState": "activating",
+          "SubState": "start"
+        }
+      },
+      "work_volume_free_bytes": 13633613824
+    },
+    "t3": {
+      "checked_at_epoch": 1794493589.2547166,
+      "cpu_percent_of_host": 0.2,
+      "meminfo": {
+        "MemTotal": "        3927660 kB",
+        "MemAvailable": "    1995744 kB"
+      },
+      "loadavg": "0.47 0.63 0.73 1/294 1244150",
+      "failed_units": [
+        "ec2-code-backup.service loaded failed failed Back up EC2 source code to GitHub"
+      ],
+      "capture_slice": {
+        "memory.current": "35594240",
+        "memory.high": "1699999744",
+        "memory.max": "1999998976",
+        "memory.events": "low 0\nhigh 12289962\nmax 6123\noom 28908\noom_kill 53\noom_group_kill 0",
+        "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=150899992397\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=146757681676",
+        "cpu.pressure": "some avg10=0.00 avg60=0.00 avg300=0.24 total=32397718018\nfull avg10=0.00 avg60=0.00 avg300=0.24 total=28046090693"
+      },
+      "lifecycle_busy": true,
+      "deployment_hold_active": false,
+      "lifecycle_timers": [
+        "Thu 2026-11-12 14:28:24 UTC 1min 53s left Thu 2026-11-12 14:23:23 UTC 3min 7s ago  optima-m7-summary-poll.timer                   optima-m7-summary-poll.service",
+        "Thu 2026-11-12 14:30:36 UTC 4min 5s left  Thu 2026-11-12 14:25:34 UTC 56s ago      optima-m7-shared-autostop.timer                optima-m7-shared-autostop.service",
+        "Thu 2026-11-12 16:49:14 UTC 2h 22min left Thu 2026-11-12 10:49:05 UTC 3h 37min ago optima-m7-database-summary.timer               optima-m7-database-summary.service",
+        "Fri 2026-11-13 02:00:00 UTC 11h left      Thu 2026-11-12 02:00:05 UTC 12h ago      ec2-code-backup.timer                          ec2-code-backup.service"
+      ],
+      "units": {
+        "ec2-code-backup.service": {
+          "Result": "exit-code",
+          "ExecMainStatus": "1",
+          "ActiveState": "failed",
+          "SubState": "failed"
+        },
+        "optima-assignments-reviewed-daily.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-assignments-reviewed-historical.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-authenticated-processing.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-edinet-documents-daily.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-eia-daily-processing.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-eodhd-profiles.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-federal-register-daily-enrichment.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-market-collection.service": {
+          "Result": "success",
+          "ExecMainStatus": "2",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-news-collection.service": {
+          "Result": "success",
+          "ExecMainStatus": "2",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-nist-robotics-daily.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-patents-daily.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-patents-prosecution.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-patents-reviewed-odp-historical.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        },
+        "optima-sam-scope-repair.service": {
+          "Result": "success",
+          "ExecMainStatus": "0",
+          "ActiveState": "inactive",
+          "SubState": "dead"
+        }
+      },
+      "backup_journal": "  File \"/usr/lib64/python3.9/subprocess.py\", line 528, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '('git', '-C', '/dev/shm/optima-s3/work/tmp/code-backup/repository', 'ls-remote', '--heads', 'origin', 'refs/heads/ec2-code-backup')' returned non-zero exit status 128.\n{\"stage\": \"s3_checkpoint_verified\", \"unit\": \"ec2-code-backup.service\", \"changed_files\": 0, \"run_id\": \"20261112T135336-8b37d04fe4464fdbb387c52dc8c98580\"}\nec2-code-backup.service: Main process exited, code=exited, status=1/FAILURE\nec2-code-backup.service: Failed with result 'exit-code'.\nFailed to start ec2-code-backup.service - Back up EC2 source code to GitHub.\nec2-code-backup.service: Consumed 13.960s CPU time.\n",
+      "sam_repair_journal": "{\"stage\": \"repair_scope_started\", \"source\": \"sam_gov_opportunities\", \"job_id\": \"a1186e72ee0c51ab4c939ba9762f8730541d77666c70222d90669bb622eb0f0c\", \"job\": {\"adapter\": \"sam_gov\", \"coverage_note\": \"US federal published opportunity search, all categories; latest available notice versions retrieved now, not historical vintages. Posted-date windows exhausted only within API-visible scope; zero old results do not establish archive completeness. Original descriptions/attachments and reviewed company/product joins remain separate; solicitations are not awards.\", \"end\": \"2026-10-21\", \"mode\": \"daily\", \"parameters\": {\"end\": \"2026-10-20\", \"start\": \"2026-10-13\", \"url\": \"https://api.sam.gov/opportunities/v2/search\"}, \"source\": \"sam_gov_opportunities\", \"source_id\": \"S41\", \"start\": \"2026-10-20\"}}\n{\"at\": \"2026-11-12T13:11:30.968393Z\", \"job_id\": \"a1186e72ee0c51ab4c939ba9762f8730541d77666c70222d90669bb622eb0f0c\", \"legacy_job_id\": null, \"prior_manifest\": \"manifests/collection_runs/source=sam_gov_opportunities/dataset=specialist_inputs/run_38e7a892-d43e-439a-a121-d31c93bac2be/final.json\", \"capture\": {\"status\": \"partial\", \"manifest\": \"manifests/collection_runs/source=sam_gov_opportunities/dataset=specialist_inputs/run_235d13e8-9791-4613-ab7d-125d1fdda0b5/final.json\", \"records\": 1000, \"pages\": 1, \"reason\": \"page_budget\"}}\n{\"at\": \"2026-11-12T13:11:30.968393Z\", \"job_id\": \"a1186e72ee0c51ab4c939ba9762f8730541d77666c70222d90669bb622eb0f0c\", \"legacy_job_id\": null, \"prior_manifest\": \"manifests/collection_runs/source=sam_gov_opportunities/dataset=specialist_inputs/run_38e7a892-d43e-439a-a121-d31c93bac2be/final.json\", \"capture\": {\"status\": \"partial\", \"manifest\": \"manifests/collection_runs/source=sam_gov_opportunities/dataset=specialist_inputs/run_235d13e8-9791-4613-ab7d-125d1fdda0b5/final.json\", \"records\": 1000, \"pages\": 1, \"reason\": \"page_budget\"}}\n{\"stage\": \"s3_checkpoint_verified\", \"unit\": \"optima-sam-scope-repair.service\", \"changed_files\": 1, \"run_id\": \"20261112T131118-d2d2583c912c47d192fff79a0bc25c74\"}\noptima-sam-scope-repair.service: Deactivated successfully.\nFinished optima-sam-scope-repair.service - /usr/bin/flock --exclusive --timeout 600 --conflict-exit-code 75 /dev/shm/optima-s3/supervisor.lock /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B s3_runtime.py --unit optima-sam-scope-repair.service -- /home/ec2-user/data-collection-processing/.venv-athena/bin/python -B repair_scope.py authenticated-daily sam_gov_opportunities --reason sam_count_mismatch --pages 1.\noptima-sam-scope-repair.service: Consumed 7.052s CPU time.\n"
+    }
+  },
+  "migrated_capture_workers": {
+    "optima-edinet-documents-daily.service": "optima-m7-capture-edinet-documents-daily.service",
+    "optima-authenticated-processing.service": "optima-m7-capture-authenticated-processing.service",
+    "optima-eia-daily-processing.service": "optima-m7-capture-eia-daily-processing.service",
+    "optima-eodhd-profiles.service": "optima-m7-capture-eodhd-profiles.service",
+    "optima-patents-daily.service": "optima-m7-capture-patents-daily.service",
+    "optima-patents-prosecution.service": "optima-m7-capture-patents-prosecution.service",
+    "optima-assignments-reviewed-daily.service": "optima-m7-capture-assignments-reviewed-daily.service",
+    "optima-assignments-reviewed-historical.service": "optima-m7-capture-assignments-reviewed-historical.service",
+    "optima-federal-register-daily-enrichment.service": "optima-m7-capture-federal-register-daily-enrichment.service",
+    "optima-nist-robotics-daily.service": "optima-m7-capture-nist-robotics-daily.service"
+  },
+  "iam": {
+    "managed_policy_version_verified": "v6",
+    "document_policy_file": "constellation/migration/m7-managed-publisher-policy-with-document-processing.json",
+    "inline_aggregate_characters": 10160,
+    "inline_aggregate_limit": 10240
+  },
+  "monitoring": {
+    "checked_at": "2026-11-12T14:08:44.532803Z",
+    "jobs": 42,
+    "errors": [],
+    "inspection_errors": {},
+    "active_alerts": {
+      "optima-collection-daily.service:prerequisite_incomplete": {
+        "code": "prerequisite_incomplete",
+        "detail": "prerequisite_incomplete",
+        "evidence_at": "2026-11-12T13:32:50.735973Z",
+        "first_seen": "2026-10-26T08:35:38.874580Z",
+        "last_notified": {},
+        "last_seen": "2026-11-12T14:09:27.262537Z",
+        "severity": "low",
+        "unit": "optima-collection-daily.service"
+      },
+      "optima-market-collection.service:market_empty_price_window_unverified": {
+        "code": "market_empty_price_window_unverified",
+        "detail": "Empty price windows remain unverified outside the 52 reviewed window exclusions.",
+        "evidence_at": "2026-10-21T22:05:04Z",
+        "first_seen": "2026-10-26T08:35:38.874580Z",
+        "last_notified": {},
+        "last_seen": "2026-11-12T14:09:27.262537Z",
+        "severity": "low",
+        "unit": "optima-market-collection.service"
+      },
+      "optima-market-collection.service:unresolved_market_coverage": {
+        "code": "unresolved_market_coverage",
+        "detail": "Unresolved coverage: daily: 175 symbols; historical: 202 symbols. 52 windows excluded with reviewed evidence.",
+        "evidence_at": "2026-11-12T14:00:31.845395Z",
+        "first_seen": "2026-10-26T08:35:38.874580Z",
+        "last_notified": {},
+        "last_seen": "2026-11-12T14:09:27.262537Z",
+        "severity": "low",
+        "unit": "optima-market-collection.service"
+      },
+      "optima-news-collection.service:service_failed": {
+        "code": "service_failed",
+        "detail": "optima-news-collection.service: Failed with result 'signal'.",
+        "evidence_at": "2026-11-12T13:11:12.215803Z",
+        "first_seen": "2026-11-12T13:16:04.626631Z",
+        "last_notified": {},
+        "last_seen": "2026-11-12T14:09:27.262537Z",
+        "severity": "low",
+        "unit": "optima-news-collection.service"
+      }
+    }
+  },
+  "resource_metrics": {
+    "t3cpu": {
+      "at": "2026-11-12 13:21:00+00:00",
+      "value": 18.33475314658358
+    },
+    "t3credits": {
+      "at": "2026-11-12 13:21:00+00:00",
+      "value": 515.6740312333334
+    },
+    "m7cpu": {
+      "at": "2026-11-12 13:21:00+00:00",
+      "value": 98.74166666666667
+    },
+    "rdscpu": {
+      "at": "2026-11-12 13:21:00+00:00",
+      "value": 12.386334046949269
+    },
+    "rdsread": {
+      "at": "2026-11-12 13:21:00+00:00",
+      "value": 0.0006873396619015231
+    },
+    "rdsfree": {
+      "at": "2026-11-12 13:21:00+00:00",
+      "value": 96959692.8
+    }
+  },
+  "database_diagnostic": {
+    "finished_at": "2026-11-12T12:20:50.065056+00:00",
+    "job_rows_counted": 378718,
+    "query_metrics": {
+      "queries": 454,
+      "max_query_seconds": 0.4584,
+      "retries": 0
+    },
+    "live_counts": {
+      "metadata": {
+        "queued": 164235,
+        "raw_failed": 1703,
+        "accepted": 27350,
+        "retry": 49,
+        "uncommitted": 133,
+        "running": 4,
+        "superseded": 53605
+      },
+      "historical": {
+        "succeeded": 131537,
+        "pending": 53,
+        "running": 8,
+        "retryable_failed": 33,
+        "blocked": 8
+      }
+    },
+    "failure_counts": {
+      "metadata|500_global_portfolio_and_cohorts|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|antler_early_stage_portfolio|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|argentina_siacam_mining_indicators|raw_failed|public_capture_is_discovery_page_only": 6,
+      "metadata|arxiv|raw_failed|missing_verified_raw_artifacts:full_text": 4,
+      "metadata|biorxiv_medrxiv_preprints|raw_failed|missing_verified_raw_artifacts:full_text": 4,
+      "metadata|bis_sdmx_api|retry|RuntimeError:larger_artifact_requires_streaming_adapter": 8,
+      "metadata|bls_wages|uncommitted|collection_checkpoint_head_missing": 2,
+      "metadata|brazil_abve_electric_vehicle_registrations|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|brazil_anm_cfem_mining_royalties|raw_failed|public_capture_is_discovery_page_only": 7,
+      "metadata|brazil_anm_sigmine_and_cadastro_mineiro|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|brazil_capes_theses_and_dissertations|raw_failed|missing_verified_raw_artifacts:full_text": 1,
+      "metadata|brazil_capes_theses_and_dissertations|raw_failed|public_capture_is_discovery_page_only": 3,
+      "metadata|brazil_fapesp_pipe_and_grants|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|brazil_senatran_vehicle_fleet|raw_failed|public_capture_is_discovery_page_only": 19,
+      "metadata|caiso_prices|uncommitted|collection_checkpoint_head_missing": 1,
+      "metadata|canada_cda_amc_cadth_reimbursement_reviews|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|chile_sma_snifa_environmental_compliance|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|china_miit_electronics_and_battery_statistics|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|china_mofcom_export_controls|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|china_nbs_industrial_production|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|china_nea_power_statistics|raw_failed|public_capture_is_discovery_page_only": 5,
+      "metadata|china_nhsa_reimbursement_and_procurement|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|climate_trace_industrial_assets_and_activity|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|cms_coverage|uncommitted|collection_checkpoint_head_missing": 1,
+      "metadata|cms_payments_catalog|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|cms_payments_catalog|uncommitted|manifest_not_in_committed_history": 2,
+      "metadata|cninfo_mainland_china_company_disclosures|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|cpsc_recalls|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|datacite_dissertations_datasets_software_and_usage|raw_failed|missing_verified_raw_artifacts:full_text": 4,
+      "metadata|doe_storage_benchmarks|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|doe_storage_documents|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|doe_storage_funding|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|doe_storage_program|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|doe_storage_program|uncommitted|manifest_not_in_committed_history": 1,
+      "metadata|drugsfda_applications|raw_failed|drugsfda_application_products_missing": 80,
+      "metadata|edinet_filings|uncommitted|collection_manifest_not_yet_present": 74,
+      "metadata|eia_battery_generators|uncommitted|collection_checkpoint_head_missing": 2,
+      "metadata|eia_generator_index|raw_failed|missing_verified_raw_artifacts:provider_record": 3,
+      "metadata|eia_generator_index|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|eia_generator_index|retry|NoSuchKey:An error occurred (NoSuchKey) when calling the GetObject operation: The specified key does not exist.": 1,
+      "metadata|ema_ctis|raw_failed|public_capture_is_discovery_page_only": 112,
+      "metadata|ember_electricity_demand_and_generation|raw_failed|missing_verified_raw_artifacts:provider_record": 20,
+      "metadata|england_nhsbsa_prescribing_data|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|eodhd|raw_failed|eodhd_inventory_payload_differs_from_provider": 65,
+      "metadata|epo_ops_patent_legal_events|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|europe_pmc|raw_failed|missing_verified_raw_artifacts:full_text": 4,
+      "metadata|european_commission_cordis|retry|RuntimeError:larger_artifact_requires_streaming_adapter": 9,
+      "metadata|european_environment_agency_industrial_facilities|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|eurostat_comext_goods_trade|raw_failed|public_capture_is_discovery_page_only": 7,
+      "metadata|faostat_food_balances|retry|RuntimeError:larger_artifact_requires_streaming_adapter": 6,
+      "metadata|fda_dd_inspections_classifications|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|federal_register|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|federal_register_documents|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|france_assurance_maladie_open_medic|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|france_has_medicine_assessment_opinions|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|france_theses_fr_doctoral_theses|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|germany_g_ba_drug_benefit_assessments|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|gleif_legal_entities|raw_failed|missing_verified_raw_artifacts:provider_record": 167,
+      "metadata|gleif_legal_entities|raw_failed|public_capture_is_discovery_page_only": 306,
+      "metadata|global_energy_monitor_asset_and_ownership_api|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|google_patents_bigquery|raw_failed|patent_matching_original_record_missing": 8,
+      "metadata|hkex_news|raw_failed|hkex_original_http_404": 23,
+      "metadata|hkex_news|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|hkex_news|raw_failed|missing_verified_raw_artifacts:primary_document": 11,
+      "metadata|hkex_news|raw_failed|hkex_original_oversize": 2,
+      "metadata|hkex_news|retry|RuntimeError:larger_artifact_requires_streaming_adapter": 1,
+      "metadata|hkex_prices|raw_failed|public_capture_is_discovery_page_only": 157,
+      "metadata|hkex_prices|raw_failed|missing_verified_raw_artifacts:provider_record": 32,
+      "metadata|hkex_prices|retry|RuntimeError:larger_artifact_requires_streaming_adapter": 3,
+      "metadata|hugging_face_hub_models_and_datasets|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|iea_global_ev_data_explorer_and_outlook|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|iea_pvps_solar_deployment_reports|raw_failed|public_capture_is_discovery_page_only": 10,
+      "metadata|imf_portwatch_shipping_activity|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|indonesia_esdm_and_geological_agency_mineral_statistics|raw_failed|missing_verified_raw_artifacts:provider_record": 10,
+      "metadata|indonesia_esdm_and_geological_agency_mineral_statistics|raw_failed|public_capture_is_discovery_page_only": 9,
+      "metadata|indonesia_esdm_and_geological_agency_mineral_statistics|retry|RuntimeError:larger_artifact_requires_streaming_adapter": 1,
+      "metadata|international_federation_of_robotics_world_robotics|raw_failed|missing_verified_raw_artifacts:provider_record": 22,
+      "metadata|international_federation_of_robotics_world_robotics|raw_failed|public_capture_is_discovery_page_only": 2,
+      "metadata|japan_mhlw_ndb_open_data|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|japan_pmda|raw_failed|pmda_original_designation_row_mismatch": 81,
+      "metadata|mlperf_results|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|mlperf_results|retry|NoSuchKey:An error occurred (NoSuchKey) when calling the GetObject operation: The specified key does not exist.": 1,
+      "metadata|mlperf_results|uncommitted|manifest_not_in_committed_history": 1,
+      "metadata|nih_reporter|uncommitted|collection_checkpoint_head_missing": 1,
+      "metadata|nist_robotics_documents|raw_failed|nist_saved_extraction_differs_from_original": 1,
+      "metadata|nist_robotics_methods|uncommitted|collection_checkpoint_head_missing": 1,
+      "metadata|nmpa_trials|raw_failed|public_capture_is_discovery_page_only": 1,
+      "metadata|nsf_awards|raw_failed|provider_request_projects_subset_of_raw_fields": 4,
+      "metadata|openaire_graph_projects_and_research_products|raw_failed|missing_verified_raw_artifacts:full_text": 4,
+      "metadata|peru_minem_mining_bulletins_and_yearbooks|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|ror_institutions|raw_failed|missing_verified_raw_artifacts:provider_record": 1,
+      "metadata|ror_institutions|uncommitted|collection_checkpoint_head_missing": 2,
+      "metadata|sam_gov_opportunities|raw_failed|missing_verified_raw_artifacts:provider_record": 3,
+      "metadata|sec_edgar|raw_failed|sec_document_http_503": 56,
+      "metadata|sec_edgar|raw_failed|sec_document_empty_or_oversized": 143,
+      "metadata|sec_edgar|raw_failed|sec_primary_document_missing": 4,
+      "metadata|semantic_scholar_citation_context|raw_failed|missing_verified_raw_artifacts:full_text": 1,
+      "metadata|sia_wsts_public_semiconductor_sales|raw_failed|public_capture_is_discovery_page_only": 6,
+      "metadata|south_korea_fss_opendart|raw_failed|missing_verified_raw_artifacts:primary_document": 4,
+      "metadata|taiwan_twse_mops_issuer_and_revenue_archives|raw_failed|missing_verified_raw_artifacts:primary_document": 4,
+      "metadata|techstars_portfolio_and_cohorts|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|ted_notices|raw_failed|ted_matching_original_xml_missing": 6,
+      "metadata|ted_notices|uncommitted|collection_manifest_not_yet_present": 8,
+      "metadata|trade_screening|raw_failed|public_capture_is_discovery_page_only": 1,
+      "metadata|trade_screening|retry|RuntimeError:larger_artifact_requires_streaming_adapter": 16,
+      "metadata|trade_screening|uncommitted|collection_checkpoint_head_missing": 27,
+      "metadata|un_comtrade|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|university_technology_transfer_catalogs_and_reports|raw_failed|public_capture_is_discovery_page_only": 6,
+      "metadata|university_technology_transfer_catalogs_and_reports|retry|RuntimeError:larger_artifact_requires_streaming_adapter": 2,
+      "metadata|us_census_international_trade_api|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|usda_fas_production_supply_and_distribution|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|usgs_minerals|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|usgs_minerals|retry|NoSuchKey:An error occurred (NoSuchKey) when calling the GetObject operation: The specified key does not exist.": 1,
+      "metadata|uspto_odp|uncommitted|collection_manifest_not_yet_present": 10,
+      "metadata|wefunder_and_republic_crowdfunding_campaigns|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|wto_eping_sps_tbt_notifications|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|wto_quantitative_restrictions_api|raw_failed|missing_verified_raw_artifacts:provider_record": 4,
+      "metadata|y_combinator_company_directory_and_cohorts|raw_failed|public_capture_is_discovery_page_only": 4,
+      "metadata|zenodo_research_artifacts_and_usage|raw_failed|missing_verified_raw_artifacts:provider_record": 87,
+      "historical|legacy:constellation-core-ema-historical.service|blocked|attempt_budget_exhausted": 6,
+      "historical|legacy:constellation-core-ema-historical.service|retryable_failed|unspecified": 13,
+      "historical|legacy:constellation-core-migration-probe.service|blocked|superseded_executor_diagnostic": 1,
+      "historical|legacy:constellation-specialist-edinet_filings.service|retryable_failed|unspecified": 18,
+      "historical|legacy:constellation-specialist-hugging_face_hub_models_and_datasets.service|retryable_failed|unspecified": 2,
+      "historical|legacy:optima-news-collection-historical.service|blocked|unspecified": 1
+    },
+    "consistency": "Live per-source counts and keyset failure reads, not a point-in-time snapshot; concurrent changes can affect totals. Table inventory row estimates are labelled separately from counted job rows."
+  },
+  "independent_audit": {
+    "checked_at": "2026-11-12T12:37:01.755355+00:00",
+    "services": 93,
+    "monitored_jobs": 40,
+    "partitions": 101,
+    "observations": 50667412,
+    "publisher_finished_at": "2026-11-12T11:47:56.989054+00:00",
+    "queries": 108,
+    "query_failures": [],
+    "bytes_scanned": 181800060,
+    "shared_readbacks_passed": 101,
+    "s3_manifests": 15,
+    "s3_objects": 479,
+    "s3_failures": [],
+    "receipt_queries": 6529,
+    "receipt_query_failures": [],
+    "routes": {
+      "reddit": {
+        "name": "reddit",
+        "sql": "SELECT count(*) AS records,count(DISTINCT record_id) AS distinct_ids FROM optima_social_research.reddit_records",
+        "workgroup": "optima-social-research",
+        "query_id": "0332063e-dd58-4902-8206-bcb5216dd863",
+        "state": "SUCCEEDED",
+        "reason": null,
+        "bytes_scanned": 8561480,
+        "columns": [
+          "records",
+          "distinct_ids"
+        ],
+        "rows": [
+          [
+            "4099",
+            "4099"
+          ]
+        ]
+      },
+      "reddit-freshness": {
+        "name": "reddit-freshness",
+        "sql": "SELECT count(*) AS records,max(verified_utc) AS latest_verified,count_if(verified_utc < 1794400436.052969) AS overdue_24h FROM optima_social_research.reddit_records",
+        "workgroup": "optima-social-research",
+        "query_id": "96724bfb-23b1-4004-b702-8b3a1385bc9c",
+        "state": "SUCCEEDED",
+        "reason": null,
+        "bytes_scanned": 8561480,
+        "columns": [
+          "records",
+          "latest_verified",
+          "overdue_24h"
+        ],
+        "rows": [
+          [
+            "4099",
+            "1.7926076524367867E9",
+            "4099"
+          ]
+        ]
+      },
+      "search": {
+        "name": "search",
+        "sql": "SELECT source_id,count(*) AS records,max(observed_at) AS latest_capture FROM optima_source_readiness.source_samples_windows GROUP BY source_id",
+        "workgroup": "optima-eodhd-research",
+        "query_id": "9d108e21-e6b2-43f7-be15-3796dc800e65",
+        "state": "SUCCEEDED",
+        "reason": null,
+        "bytes_scanned": 7753,
+        "columns": [
+          "source_id",
+          "records",
+          "latest_capture"
+        ],
+        "rows": [
+          [
+            "S65",
+            "7945",
+            "2026-11-06T14:13:41.328208+00:00"
+          ],
+          [
+            "S28",
+            "26",
+            "2026-10-09T09:47:43.334088+00:00"
+          ],
+          [
+            "S27",
+            "8",
+            "2026-10-09T09:47:31.799686+00:00"
+          ],
+          [
+            "S19",
+            "30",
+            "2026-10-09T09:52:15.052573+00:00"
+          ],
+          [
+            "S59",
+            "25",
+            "2026-10-09T09:47:43.727484+00:00"
+          ],
+          [
+            "S17",
+            "4",
+            "2026-10-09T09:47:42.702161+00:00"
+          ],
+          [
+            "S43",
+            "9",
+            "2026-10-09T09:52:21.182329+00:00"
+          ],
+          [
+            "S51",
+            "4",
+            "2026-10-09T09:47:33.526304+00:00"
+          ],
+          [
+            "S48",
+            "60",
+            "2026-10-09T09:52:30.004224+00:00"
+          ],
+          [
+            "S56",
+            "6",
+            "2026-10-09T09:55:07.103194+00:00"
+          ],
+          [
+            "S46",
+            "11",
+            "2026-10-09T09:51:39.358981+00:00"
+          ],
+          [
+            "S11",
+            "3",
+            "2026-10-09T09:52:15.552680+00:00"
+          ]
+        ]
+      },
+      "petitions": {
+        "name": "petitions",
+        "sql": "SELECT count(*) AS records,count(DISTINCT provider_id) AS documents,max(ingested_at) AS latest_capture,count_if(document_retrieval_status IS DISTINCT FROM 'downloaded') AS missing_downloads FROM optima_patent_petitions.source_observations_windows",
+        "workgroup": "optima-patent-petitions",
+        "query_id": "9a3f73f6-87e2-42e7-b197-0dc7201f7a77",
+        "state": "SUCCEEDED",
+        "reason": null,
+        "bytes_scanned": 44600,
+        "columns": [
+          "records",
+          "documents",
+          "latest_capture",
+          "missing_downloads"
+        ],
+        "rows": [
+          [
+            "249",
+            "226",
+            "2026-10-25T17:29:03.088194Z",
+            "0"
+          ]
+        ]
+      },
+      "office-actions": {
+        "name": "office-actions",
+        "sql": "SELECT * FROM optima_patent_office_actions.source_observations_windows LIMIT 1",
+        "workgroup": "optima-patent-office-actions",
+        "query_id": "b19a10a8-4ea6-49e4-9df5-7d32b8fe9bc9",
+        "state": "SUCCEEDED",
+        "reason": null,
+        "bytes_scanned": 0,
+        "columns": [
+          "record_id",
+          "observation_id",
+          "source",
+          "dataset",
+          "provider_id",
+          "event_at_json",
+          "ingested_at",
+          "source_url",
+          "payload_json",
+          "record_json",
+          "source_manifests",
+          "source_document_keys",
+          "point_in_time_eligible",
+          "application_number",
+          "official_document_id",
+          "document_type",
+          "action_date",
+          "provider_updated_at",
+          "first_observed_at",
+          "document_retrieval_status",
+          "documents_json",
+          "structured_source_fields_json",
+          "reported_parties_json",
+          "source_text",
+          "window_id"
+        ],
+        "rows": []
+      },
+      "specialist-observations": {
+        "name": "specialist-observations",
+        "sql": "SELECT source,dataset,count(*) AS records,max(ingested_at) AS latest_capture FROM optima_specialist_inputs.source_observations_windows GROUP BY source,dataset",
+        "workgroup": "optima-collected-data",
+        "query_id": "7599a567-a6fe-420c-99aa-60924f2b3b61",
+        "state": "SUCCEEDED",
+        "reason": null,
+        "bytes_scanned": 17321914,
+        "columns": [
+          "source",
+          "dataset",
+          "records",
+          "latest_capture"
+        ],
+        "rows": [
+          [
+            "edinet_filings",
+            "specialist_inputs",
+            "159155",
+            "2026-10-18T07:03:12.255522Z"
+          ],
+          [
+            "europe_pmc",
+            "specialist_inputs",
+            "2932",
+            "2026-10-18T07:53:57.432089Z"
+          ],
+          [
+            "un_comtrade",
+            "specialist_inputs",
+            "52",
+            "2026-10-18T07:33:06.701500Z"
+          ],
+          [
+            "fda_product_codes",
+            "specialist_inputs",
+            "890",
+            "2026-11-12T00:07:34.365184Z"
+          ],
+          [
+            "cms_payments_catalog",
+            "specialist_inputs",
+            "520",
+            "2026-11-12T00:04:02.870305Z"
+          ],
+          [
+            "eia_battery_generators",
+            "specialist_inputs",
+            "69269",
+            "2026-10-21T20:44:07.742144Z"
+          ],
+          [
+            "cms_coverage_documents",
+            "specialist_inputs",
+            "746",
+            "2026-11-11T01:34:00.668933Z"
+          ],
+          [
+            "trade_screening_enriched",
+            "specialist_inputs",
+            "2500",
+            "2026-10-18T11:06:07.615406Z"
+          ],
+          [
+            "nist_robotics_methods",
+            "specialist_inputs",
+            "16",
+            "2026-11-12T00:24:16.069235Z"
+          ],
+          [
+            "eia_generator_index",
+            "specialist_inputs",
+            "1390",
+            "2026-10-18T02:41:15.611724Z"
+          ],
+          [
+            "usa_spending",
+            "specialist_inputs",
+            "828",
+            "2026-11-12T01:03:51.261192Z"
+          ],
+          [
+            "caiso_prices",
+            "specialist_inputs",
+            "8640",
+            "2026-10-21T20:24:37.946553Z"
+          ],
+          [
+            "ror_institutions",
+            "specialist_inputs",
+            "55",
+            "2026-10-18T07:53:22.869434Z"
+          ],
+          [
+            "federal_register",
+            "specialist_inputs",
+            "1161",
+            "2026-10-18T07:54:05.786354Z"
+          ],
+          [
+            "fda_dd_inspections_citations",
+            "specialist_inputs",
+            "22997",
+            "2026-11-12T06:39:57.636522Z"
+          ],
+          [
+            "ted_notices",
+            "specialist_inputs",
+            "7776",
+            "2026-11-12T00:24:10.027545Z"
+          ],
+          [
+            "doe_storage_documents",
+            "specialist_inputs",
+            "2",
+            "2026-10-18T11:06:16.807474Z"
+          ],
+          [
+            "gleif_legal_entities",
+            "specialist_inputs",
+            "140",
+            "2026-10-18T07:54:14.485040Z"
+          ],
+          [
+            "canada_noc",
+            "specialist_inputs",
+            "130340",
+            "2026-11-10T12:59:14.347718Z"
+          ],
+          [
+            "pubmed_abstracts",
+            "specialist_inputs",
+            "13702",
+            "2026-11-10T20:03:30.173689Z"
+          ],
+          [
+            "bls_wages",
+            "specialist_inputs",
+            "168",
+            "2026-10-18T02:40:06.400314Z"
+          ],
+          [
+            "europe_pmc_fulltext",
+            "specialist_inputs",
+            "587",
+            "2026-11-10T20:21:14.759482Z"
+          ],
+          [
+            "nih_reporter",
+            "specialist_inputs",
+            "46602",
+            "2026-11-12T00:31:01.407668Z"
+          ],
+          [
+            "eia_retail_prices",
+            "specialist_inputs",
+            "77",
+            "2026-10-21T20:29:00.952864Z"
+          ],
+          [
+            "fda_dd_import_refusals",
+            "specialist_inputs",
+            "129515",
+            "2026-11-12T07:50:27.664439Z"
+          ],
+          [
+            "uspto_assignment_histories",
+            "specialist_inputs",
+            "133",
+            "2026-11-12T01:03:31.748002Z"
+          ],
+          [
+            "cms_coverage",
+            "specialist_inputs",
+            "4341",
+            "2026-11-11T00:00:37.291756Z"
+          ],
+          [
+            "fda_dd_inspections_classifications",
+            "specialist_inputs",
+            "32379",
+            "2026-10-18T04:57:04.871800Z"
+          ],
+          [
+            "fda_ires_recalls",
+            "specialist_inputs",
+            "4418",
+            "2026-11-12T00:07:24.039659Z"
+          ],
+          [
+            "cpsc_recalls",
+            "specialist_inputs",
+            "1423",
+            "2026-10-21T18:13:37.673496Z"
+          ],
+          [
+            "drugsfda_applications",
+            "specialist_inputs",
+            "18250",
+            "2026-10-18T07:33:36.310044Z"
+          ],
+          [
+            "ema_medicines",
+            "specialist_inputs",
+            "31046",
+            "2026-11-10T11:23:42.199096Z"
+          ],
+          [
+            "fda_dd_compliance_actions",
+            "specialist_inputs",
+            "37187",
+            "2026-11-12T06:40:07.077487Z"
+          ],
+          [
+            "usgs_minerals",
+            "specialist_inputs",
+            "97",
+            "2026-10-21T18:21:55.396058Z"
+          ],
+          [
+            "trade_screening",
+            "specialist_inputs",
+            "261282",
+            "2026-10-18T02:43:00.231943Z"
+          ],
+          [
+            "federal_register_documents",
+            "specialist_inputs",
+            "13",
+            "2026-10-18T10:26:40.353641Z"
+          ],
+          [
+            "github_sdk",
+            "specialist_inputs",
+            "2281",
+            "2026-10-18T07:54:10.099404Z"
+          ],
+          [
+            "sec_companyfacts",
+            "specialist_inputs",
+            "78640",
+            "2026-10-18T07:33:18.866184Z"
+          ],
+          [
+            "doe_storage_benchmarks",
+            "specialist_inputs",
+            "2",
+            "2026-10-18T11:06:21.684175Z"
+          ],
+          [
+            "sam_gov_opportunities",
+            "specialist_inputs",
+            "33005",
+            "2026-10-21T20:25:41.760211Z"
+          ],
+          [
+            "mlperf_results",
+            "specialist_inputs",
+            "24016",
+            "2026-10-21T20:27:43.992945Z"
+          ],
+          [
+            "doe_storage_funding",
+            "specialist_inputs",
+            "1",
+            "2026-10-18T11:06:26.798305Z"
+          ],
+          [
+            "doe_storage_program",
+            "specialist_inputs",
+            "10",
+            "2026-10-18T02:40:45.112640Z"
+          ]
+        ]
+      },
+      "specialist-coverage": {
+        "name": "specialist-coverage",
+        "sql": "SELECT source,dataset,count(*) AS windows FROM optima_specialist_inputs.source_coverage_windows GROUP BY source,dataset",
+        "workgroup": "optima-collected-data",
+        "query_id": "f2dfbced-58ad-4a0d-9d48-0484b156b583",
+        "state": "SUCCEEDED",
+        "reason": null,
+        "bytes_scanned": 941050,
+        "columns": [
+          "source",
+          "dataset",
+          "windows"
+        ],
+        "rows": [
+          [
+            "canada_noc",
+            "specialist_inputs",
+            "18"
+          ],
+          [
+            "fda_dd_import_refusals",
+            "specialist_inputs",
+            "35"
+          ],
+          [
+            "sam_gov_opportunities",
+            "specialist_inputs",
+            "25"
+          ],
+          [
+            "nist_robotics_methods",
+            "specialist_inputs",
+            "16"
+          ],
+          [
+            "bls_wages",
+            "specialist_inputs",
+            "17"
+          ],
+          [
+            "pubmed_abstracts",
+            "specialist_inputs",
+            "81"
+          ],
+          [
+            "eia_retail_prices",
+            "specialist_inputs",
+            "104"
+          ],
+          [
+            "europe_pmc",
+            "specialist_inputs",
+            "25"
+          ],
+          [
+            "caiso_prices",
+            "specialist_inputs",
+            "72"
+          ],
+          [
+            "gleif_legal_entities",
+            "specialist_inputs",
+            "140"
+          ],
+          [
+            "uspto_assignment_histories",
+            "specialist_inputs",
+            "185"
+          ],
+          [
+            "cms_coverage_documents",
+            "specialist_inputs",
+            "746"
+          ],
+          [
+            "usa_spending",
+            "specialist_inputs",
+            "39"
+          ],
+          [
+            "fda_product_codes",
+            "specialist_inputs",
+            "10"
+          ],
+          [
+            "cms_payments_catalog",
+            "specialist_inputs",
+            "13"
+          ],
+          [
+            "un_comtrade",
+            "specialist_inputs",
+            "86"
+          ],
+          [
+            "fda_dd_inspections_classifications",
+            "specialist_inputs",
+            "41"
+          ],
+          [
+            "eia_generator_index",
+            "specialist_inputs",
+            "10"
+          ],
+          [
+            "europe_pmc_fulltext",
+            "specialist_inputs",
+            "587"
+          ],
+          [
+            "nih_reporter",
+            "specialist_inputs",
+            "136"
+          ],
+          [
+            "eia_battery_generators",
+            "specialist_inputs",
+            "66"
+          ],
+          [
+            "doe_storage_program",
+            "specialist_inputs",
+            "10"
+          ],
+          [
+            "ema_medicines",
+            "specialist_inputs",
+            "17"
+          ],
+          [
+            "drugsfda_applications",
+            "specialist_inputs",
+            "63"
+          ],
+          [
+            "cpsc_recalls",
+            "specialist_inputs",
+            "64"
+          ],
+          [
+            "cms_coverage",
+            "specialist_inputs",
+            "39"
+          ],
+          [
+            "federal_register",
+            "specialist_inputs",
+            "87"
+          ],
+          [
+            "fda_dd_inspections_citations",
+            "specialist_inputs",
+            "57"
+          ],
+          [
+            "ted_notices",
+            "specialist_inputs",
+            "75"
+          ],
+          [
+            "doe_storage_documents",
+            "specialist_inputs",
+            "2"
+          ],
+          [
+            "sec_companyfacts",
+            "specialist_inputs",
+            "92"
+          ],
+          [
+            "doe_storage_benchmarks",
+            "specialist_inputs",
+            "2"
+          ],
+          [
+            "github_sdk",
+            "specialist_inputs",
+            "31"
+          ],
+          [
+            "federal_register_documents",
+            "specialist_inputs",
+            "13"
+          ],
+          [
+            "usgs_minerals",
+            "specialist_inputs",
+            "49"
+          ],
+          [
+            "fda_dd_compliance_actions",
+            "specialist_inputs",
+            "56"
+          ],
+          [
+            "trade_screening_enriched",
+            "specialist_inputs",
+            "5"
+          ],
+          [
+            "mlperf_results",
+            "specialist_inputs",
+            "324"
+          ],
+          [
+            "doe_storage_funding",
+            "specialist_inputs",
+            "1"
+          ],
+          [
+            "trade_screening",
+            "specialist_inputs",
+            "10"
+          ],
+          [
+            "edinet_filings",
+            "specialist_inputs",
+            "773"
+          ],
+          [
+            "ror_institutions",
+            "specialist_inputs",
+            "39"
+          ],
+          [
+            "fda_ires_recalls",
+            "specialist_inputs",
+            "19"
+          ]
+        ]
+      }
+    },
+    "expected_unpublished_routes": [],
+    "evidence_prefix": "research-data/monitoring/daily-health/2026-11-12/"
+  },
+  "historical_odp_recovery": {
+    "manifest": "manifests/collection_runs/source=uspto_odp/dataset=patent_records/run_f8a0533a-b6b5-471c-a2cf-a590d6e8da66/final.json",
+    "finished_at": "2026-11-12T14:20:28.201693Z",
+    "record_count": 9150,
+    "new_batches": 4,
+    "notice": "constellation-backfill/metadata-engine/runtime-v2/intake/2026-11-12/0c6a4e60b59e3c02d706830034bf618ced770ba6b582e48f7c37c7c8e1e21d82.json",
+    "previous_timeout_notice": "constellation-backfill/metadata-engine/runtime-v2/intake/2026-11-12/15f4232b9e15baea1cb2d169f1e0256bef77acf4f2dd9f8d61600518a0da12a2.json",
+    "duration_seconds": 47.1,
+    "outcome": "source page limit retained; unit exit 0 and metadata handoff persisted"
+  },
+  "federal_register_recovery": {
+    "manifest": "manifests/collection_runs/source=federal_register_documents/dataset=specialist_inputs/run_ca810585-e93c-48ac-ac7f-18a6d5276400/final.json",
+    "finished_at": "2026-11-12T14:04:40.272809Z",
+    "document_number": "2026-22743",
+    "official_pdf_status": "downloaded",
+    "official_pdf_bytes": 120719355,
+    "official_pdf_sha256": "5ef19da65eed42de3b1f77a4064b719077238173c0931e166c794ba4ac7076fa",
+    "artifact_gaps": []
+  },
+  "edinet_recovery": {
+    "manifest": "manifests/collection_runs/source=edinet_filings/dataset=specialist_inputs/run_488bfcf5-7e91-4ef5-91e6-06332a7ebf60/final.json",
+    "finished_at": "2026-11-12T13:47:16.354677Z",
+    "record_count_before": 142,
+    "record_count_after": 143,
+    "doc_id": "S100Z97F",
+    "formats": [
+      {
+        "kind": "1",
+        "source_bytes": 1076037,
+        "text_characters": 9005071,
+        "files": []
+      },
+      {
+        "kind": "2",
+        "source_bytes": 1807353,
+        "text_characters": 860274,
+        "files": [
+          {
+            "format": "pdf",
+            "extractor": "poppler-pdftotext",
+            "pages": 336
+          }
+        ]
+      },
+      {
+        "kind": "3",
+        "source_bytes": 429332,
+        "text_characters": 22021,
+        "files": [
+          {
+            "format": "pdf",
+            "extractor": "poppler-pdftotext",
+            "pages": 19
+          }
+        ]
+      },
+      {
+        "kind": "5",
+        "source_bytes": 146251,
+        "text_characters": 320547,
+        "files": []
+      }
+    ],
+    "cpu_seconds": 13.3,
+    "sampled_memory_max_bytes": 110551040,
+    "sampling_note": "Maximum of ten five-second samples, not a measured lifetime peak."
+  },
+  "metadata_batches": {
+    "lanes": 2,
+    "max_jobs": 32,
+    "max_seconds": 210,
+    "observed_completed_batch": {
+      "jobs_processed": 25,
+      "elapsed_seconds": 105.8
+    }
+  },
+  "tests": {
+    "passed": 228,
+    "suite": "capture admission, health, alerts, monitoring, patents, EDINET, EODHD quotas, discovery, staging and bounded diagnostics"
+  },
+  "watchdog_deployment": {
+    "function": "optima-collection-watchdog",
+    "state": "Active",
+    "last_update": "Successful",
+    "code_sha256": "Evbt3giu408KCJXfhDPN3EWm8XlCvG280YJA0ysjlRg=",
+    "schedule_check_error": "AccessDeniedException"
+  },
+  "source_pauses": {
+    "reason": "Paused at user request pending API and capture-scope review",
+    "sources": [
+      "reddit",
+      "bluesky_search",
+      "bluesky_company_accounts",
+      "bluesky_company_posts",
+      "bluesky_company_events",
+      "github_sdk",
+      "marketaux"
+    ],
+    "resume_requires_user_request": true
+  },
+  "retired": "tracking-dependent jobs remain retired",
+  "backup_access": {
+    "earlier_success": "2026-11-12T13:11Z; commit 4ad83d1; 3926 files",
+    "latest_attempt": "2026-11-12T13:53Z failed: GitHub Repository not found",
+    "deploy_key_authentication": "GitHub identifies the service key as rmalc5150/semaphore",
+    "deploy_key_fingerprint": "SHA256:G9ixQupbhkXbA6G8C4xSAhQZFcsYgZwaJWalGqdmJBk",
+    "required_owner_action": "Owner should follow remaining recovery requirements in GitHub security notices, review account security, and ask GitHub Support to check for a remaining security restriction if repository access stays denied. Retain the verified local backup; do not repeat deploy-key resets without new evidence.",
+    "rechecked_at": "2026-11-12T17:00:52.414980+00:00",
+    "user_confirmed_repository_url": true,
+    "user_confirmed_active_key": true,
+    "ssh_authentication_reverified": true,
+    "repository_read_and_write_advertisement": "Both denied by GitHub: Repository not found",
+    "pending_local_snapshot": "/home/ec2-user/code-backup/.pending/source-2026-11-12.tar.gz",
+    "pending_snapshot_files": 3935,
+    "owner_readded_key": true,
+    "ssh_over_443_retested": true,
+    "diagnostic_report": "constellation/migration/github-backup-recheck-2026-11-12.json",
+    "owner_reported_suspicious_login_notice": true,
+    "forced_password_reset_completed": true,
+    "account_restriction_hypothesis": "plausible, unconfirmed"
+  },
+  "verified_repairs": [
+    "ODP continuation hands off only newly committed batches through the existing metadata intake queue; removed repeated raw-batch downloads and synchronous registration that exceeded its 190-second service deadline",
+    "Federal Register completed five pending documents on m7",
+    "NIST captured two daily items on m7",
+    "EODHD profiles worker reported inventory_profiles_complete=true",
+    "Assignment daily and historical workers exited successfully on m7 after prior t3 OOM/timeout",
+    "SAM stale page-four cursor recovered through a fresh generation with 1000 committed records; provider quotas retained",
+    "Patent eager subdivision progressed through bounded daily pages; monitoring verifies child-page receipts and batch checksums",
+    "EDINET PyPDF CID font-width parsing exhausted per-unit memory on a 1.8 MB PDF. Switched to Poppler 24.08 with bounded runtime/output and verified page counts; installed in 150 compatible worker modules. Extraction releases prior formats and serializes JSON incrementally; initial 1.5 GiB soft-limit thrashing was also corrected. Revised dedicated cap 2.5 GiB, shared-pool admission below 4 GiB, and one filing per batch; waiting for RAM no longer holds the capture slot",
+    "Earlier configured GitHub backup explicitly approved and pushed 3926 selected files at commit 4ad83d1 at 13:11 UTC; final upload at 13:53 UTC was denied by GitHub and awaits repository access"
+  ],
+  "limitations": [
+    "Latest source backup is blocked by GitHub repository access; the prior successful backup predates the final PDF fixes.",
+    "Current low-severity source alerts remain open until same-task verified recovery; no coverage watermark was skipped.",
+    "Market gaps remain open for listing/ticker verification as requested; no other provider is licensed.",
+    "Database raw_failed states include missing or invalid evidence; they are not all operational service crashes and were not force-accepted.",
+    "The m7 CPU pool is already saturated; adding concurrency cannot add CPU capacity.",
+    "Memory event counters are cumulative since cgroup creation. EDINET retries exceeded their 2 / 2.5 GiB per-unit budgets while isolating the PyPDF font parser defect. These failures remain in kernel and monitoring history; Poppler replaces the failing parser.",
+    "Lifecycle busy/hold/activity protection was verified; an idle cold-stop/start test was not forced while legitimate work remained."
+  ]
+}

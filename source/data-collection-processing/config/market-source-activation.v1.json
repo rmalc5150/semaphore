@@ -1,0 +1,496 @@
+{
+  "market_source_159": {
+    "events": {
+      "modes": [],
+      "metadata": true
+    },
+    "mentions": {
+      "modes": [],
+      "metadata": true
+    },
+    "knowledge_graph": {
+      "modes": [],
+      "metadata": true
+    }
+  },
+  "market_source_162": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_163": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_164": {
+    "github_events": {
+      "modes": [],
+      "metadata": true
+    }
+  },
+  "market_source_167": {
+    "posts": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_169": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_170": {
+    "cve": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_171": {
+    "rfc": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_176": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_177": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_178": {
+    "dfp": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "itr": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_182": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_183": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_184": {
+    "provider_data": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_187": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_190": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_194": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_195": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_198": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_201": {
+    "oil": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_204": {
+    "disaggregated_futures": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "disaggregated_combined": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "financial_futures": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "financial_combined": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "legacy_futures": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "legacy_combined": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_205": {
+    "financials": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "deposits": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_207": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_209": {
+    "provider_data": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_210": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_214": {
+    "provider_data": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_215": {
+    "provider_data": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_220": {
+    "projects": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_221": {
+    "provider_data": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_229": {
+    "downloads": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "release_metadata": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_234": {
+    "provider_data": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_236": {
+    "rsv_archive_2010_2020": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_238": {
+    "demographics": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "exam": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "lab": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "questionnaire": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_240": {
+    "uscs": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_241": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_242": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_243": {
+    "flunet": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "fluid": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_244": {
+    "provider_data": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_249": {
+    "insider_bulk": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_251": {
+    "holdings_bulk": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_264": {
+    "final": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    },
+    "preliminary": {
+      "modes": [
+        "daily"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_265": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_268": {
+    "quarterly": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_269": {
+    "provider_data": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_270": {
+    "orders": {
+      "modes": [
+        "daily",
+        "historical"
+      ],
+      "metadata": true
+    }
+  },
+  "market_source_272": {
+    "provider_data": {
+      "modes": [
+        "historical"
+      ],
+      "metadata": true
+    }
+  }
+}

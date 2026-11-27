@@ -124,6 +124,8 @@ class EvaluationTests(unittest.TestCase):
     def test_success_exit_75_is_queue_failure(self):
         alerts, _ = evaluate(health(exit_status=75), {}, CONFIG, NOW)
         self.assertIn(UNIT+':queue_timeout', alerts)
+        alerts, _ = evaluate(health(exit_status=75,resource_wait='worker_pool_memory_busy'), {}, CONFIG, NOW)
+        self.assertNotIn(UNIT+':queue_timeout', alerts)
 
     def test_missed_timer_and_disabled_timer(self):
         alerts, _ = evaluate(health(timer_state='inactive', last_start_age_seconds=50000), {}, CONFIG, NOW)

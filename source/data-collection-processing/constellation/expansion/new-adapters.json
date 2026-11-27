@@ -13,13 +13,6 @@
     "scope_note": "Daily temperature, corrected precipitation and solar radiation for eight named regional reference locations. Current reanalysis retrieval, not original forecast vintages or plant-specific exposure."
   },
   {
-    "entry": 98,
-    "source": "south_korea_fss_opendart",
-    "adapter": "dart",
-    "scope_note": "All-company monthly filing index including corrections, date and receipt identifiers since 2016; original report downloads and financial-statement extraction are separate.",
-    "daily_enabled": true
-  },
-  {
     "entry": 143,
     "source": "datacite_dissertations_datasets_software_and_usage",
     "adapter": "datacite",
@@ -105,5 +98,19 @@
     "adapter": "usda",
     "daily_enabled": true,
     "scope_note": "Current PSD forecasts/estimates for corn, wheat, rice, soybeans and cotton, all countries, market years since 2016. Market year differs from release date; historical forecast vintages not supplied by this route."
+  },
+  {
+    "entry": 92,
+    "source": "cninfo_mainland_china_company_disclosures",
+    "adapter": "cninfo",
+    "scope_note": "Complete CNINFO announcement-index rows paired with original PDF filings, receipt identity and native China publication day; monthly bounded query scopes from 2016 and recent daily windows. No XBRL facts, complete market coverage or original historical vintages inferred.",
+    "daily_enabled": true
+  },
+  {
+    "entry": 98,
+    "source": "south_korea_fss_opendart",
+    "adapter": "dart",
+    "scope_note": "Complete OpenDART filing-index rows paired with original XML ZIPs; receipt identities and all provider fields retained. Whole months require exhausted pagination; no XBRL fact extraction or original historical vintage asserted.",
+    "daily_enabled": true
   }
 ]

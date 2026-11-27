@@ -1,0 +1,29 @@
+{
+  "model": "extract-and-translate",
+  "rows": [
+    {
+      "case": "MIIT",
+      "status": "rejected",
+      "error": "word_count_32",
+      "seconds": 4.118
+    },
+    {
+      "case": "CAPES",
+      "status": "rejected",
+      "error": "word_count_22",
+      "seconds": 1.336
+    },
+    {
+      "case": "IFR",
+      "status": "rejected",
+      "error": "word_count_21",
+      "seconds": 1.372
+    },
+    {
+      "case": "IEA",
+      "status": "rejected",
+      "error": "word_count_20",
+      "seconds": 0.0
+    }
+  ]
+}

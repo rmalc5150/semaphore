@@ -33,7 +33,7 @@ def canonical(value):
 
 
 def structured_detail(document, registration):
-    from metadata_engine.nmpa_tables import structured_detail as parse, DetailError
+    from raw_parsers.nmpa_tables import structured_detail as parse, DetailError
     try:return parse(document,registration)
     except DetailError as error:raise SourceIssue(str(error))from None
 

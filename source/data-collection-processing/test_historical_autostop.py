@@ -33,9 +33,14 @@ class AutoStopTests(unittest.TestCase):
   ready,state=quiet_ready({},'scope','queue',100);self.assertFalse(ready)
   self.assertTrue(quiet_ready(state,'scope','queue',100+QUIET_SECONDS)[0]);self.assertFalse(quiet_ready(state,'new-scope','queue',100+QUIET_SECONDS)[0])
  def test_daily_update_includes_failures_even_without_long_calendar_gap(self):
-  _,body=overview({},1793001600,'2026-10-25',{'historical_autostop':{'status':'worker_stopped','failure_count':1,'failures':[{'source':'arxiv','reason':'source_http_503','job_id':'failed-job'}]}})
-  self.assertIn('HISTORICAL WORKER AND REPAIR LIST',body);self.assertIn('arxiv',body);self.assertIn('source_http_503',body);self.assertIn('do not keep',body)
-if __name__=='__main__':unittest.main()
+  now=1793001600
+  from collection_alerts import stamp
+  shutdown={'checked_at':stamp(now-3600),'status':'worker_stopped','failure_count':1,
+            'failures':[{'source':'arxiv','reason':'source_http_503','job_id':'failed-job'}]}
+  _,body=overview({},now,'2026-10-25',{'historical_autostop':shutdown})
+  self.assertIn('HISTORICAL CAPTURE FAILURES',body);self.assertIn('arxiv',body);self.assertIn('source_http_503',body)
+  _,body=overview({},now+3*86400,'2026-10-25',{'historical_autostop':shutdown})
+  self.assertNotIn('arxiv',body)
 
 class RouteProofTests(unittest.TestCase):
  def public(self,state,seeds=None):
@@ -84,3 +89,16 @@ class StopActionTests(unittest.TestCase):
   control=Mock();control.config={'worker_instance_id':TARGET,'controller_instance_id':TARGET}
   with self.assertRaises(ValueError):verify_target(control)
   control.session.client.assert_not_called()
+
+class RevisedFrontierTests(unittest.TestCase):
+ def test_revised_pending_frontier_overrides_old_completed_frontier(self):
+  from constellation.autostop.proofs import inspect_routes
+  from unittest.mock import Mock
+  control=Mock();control.config={'prefix':'research-data/p','bucket':'bucket'}
+  route={'unit':'u','public_capture_source':'fixture','start_target':'2016-01-01','end_exclusive':'2026-11-16','argv':['x']}
+  def read(control,key):return {'frontier':[{'url':'https://example.org/file.csv'}],'done':{},'failures':{}}if key.endswith('/fixture/review-20261116.json')else {'frontier':[],'done':{'https://example.org/file.csv':{}},'failures':{}}
+  config={'sources':[{'source':'fixture','seeds':['https://example.org/file.csv'],'raw_content_revision':'review-20261116'}]}
+  with patch('pathlib.Path.read_text',return_value=json.dumps(config)),patch('constellation.autostop.proofs.get_json',side_effect=read):proof=inspect_routes(control,[],[route],{})
+  self.assertEqual(proof['u']['state'],'unfinished')
+
+if __name__=='__main__':unittest.main()

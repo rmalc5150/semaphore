@@ -24,7 +24,7 @@ def main():
  buf=io.BytesIO()
  with tarfile.open(fileobj=buf,mode='w:gz',dereference=True)as tar:
   for p in ROOT.glob('*.py'):tar.add(p,arcname=p.name)
-  for folder in ('config','schemas','metadata_engine'):
+  for folder in ('config','schemas','metadata_engine','raw_parsers'):
    for p in (ROOT/folder).rglob('*'):
     if p.is_file()and '__pycache__' not in p.parts:tar.add(p,arcname=str(p.relative_to(ROOT)))
  body=buf.getvalue();sha=__import__('hashlib').sha256(body).hexdigest();key='research-data/constellation-backfill/deployments/aux-'+sha+'.tgz'

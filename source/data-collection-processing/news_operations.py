@@ -31,6 +31,20 @@ class NewsOperations:
     def window(self, provider, day, mode, client, config, revision=None):
         end = day + timedelta(days=1)
         config = deepcopy(config)
+        # Keep the durable daily stream and its unfinished dates. An older
+        # reconciliation date can use the separately evidenced archive grant;
+        # a stale Pro Light setting must not prevent that request locally.
+        if provider == 'finlight' and config['providers'][provider].get('historical_access') == 'recent_only':
+            from finlight_backfill import setup
+            control, archive, _ = setup()
+            grant = archive.get('providers', {}).get(provider, {})
+            if (control['enabled'] and grant.get('historical_access') == 'observed_archive'
+                    and grant.get('history_evidence') and grant.get('history_start')
+                    and day >= date.fromisoformat(grant['history_start'])
+                    and all(archive.get(k) == config.get(k) for k in ('universe', 'taxonomy', 'secret_id', 'region'))
+                    and grant.get('secret_field') == config['providers'][provider].get('secret_field')):
+                for field in ('historical_access', 'history_start', 'history_evidence'):
+                    config['providers'][provider][field] = grant[field]
         if revision:
             config['reconciliation_revision'] = revision
         results = []
@@ -151,10 +165,12 @@ def main():
         report = runner.run(client, lanes=('daily','reconcile') if args.lane == 'daily' else ('historical',) if args.lane == 'historical' else ('daily','reconcile','historical'))
         from finlight_backfill import collect_archive
         report['finlight_backfill'] = ({'status':'not_selected_daily_lane'} if args.lane == 'daily' else collect_archive(runner, keys[daily['providers']['finlight']['secret_field']]))
-        archive_status = report['finlight_backfill'].get('last_result', {}).get('status')
-        if archive_status == 'failed':
+        archive = report['finlight_backfill']
+        archive_statuses = {state.get('last_result', {}).get('status')
+                            for state in (archive, archive.get('earlier_archive', {}))}
+        if 'failed' in archive_statuses:
             report['status'] = 'failed'
-        elif archive_status == 'partial' and report['status'] == 'complete':
+        elif 'partial' in archive_statuses and report['status'] == 'complete':
             report['status'] = 'partial'
         write_json(store, runner.prefix+'/attempts/'+digest(report)+'.json',report)
         print(json.dumps(report),flush=True)

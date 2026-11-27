@@ -1,6 +1,6 @@
 # Daily raw-data and Athena verification schedule
 
-This weekday-only schedule starts **Monday, 9 November 2026** and covers all 158 catalog entries in `config/constellation-source-registry.json`: 15 entries per weekday, with the final day containing 8. It retains registry order so every item can be reconciled directly to the catalog.
+This weekday-only schedule starts **Monday, 9 November 2026** and covers the 156 original catalogue entries still in scope. It retains registry order and source IDs so each item can be reconciled directly to the catalogue.
 
 Live metadata-engine status was read on **9 November 2026**. “Raw stopped” means the engine has observed four consecutive raw-validation failures. “Owner paused” and “access layer” are intentional operating states, not raw-capture failures.
 
@@ -102,13 +102,6 @@ A checked **scoped pipeline review** records which provider fields or original d
   Current raw processing: Checks original Finlight API JSON, checksum, exact article URL/identity and provider fields; request receipts are rejected. Publisher HTML/full text is separate evidence, not implied by provider-record completeness.  
   Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'finlight' GROUP BY source_key;`  
   November 9 Athena verification: **160 raw-complete observations linked to five raw batches**, including current-day capture; query `a6756902-682c-4c43-9ad8-3d395205e8d3`. Curated `optima_news_research.news_articles_windows` also verified: **13,740 distinct articles**, latest ingestion November 9; query `b0b7aafb-ae73-4f63-90bf-e395dabf88c1`. Published a fully completed November 3 window with all eight sector/language manifests. Metadata backlogs, full text and complete history remain separate checks. Verified archive scope begins January 2021; pre-2021 access remains unverified. Historical capture is running from its retained November 10, 2021 checkpoint; publisher full-text gaps remain explicit. [Repair evidence and schedules](repair-notes/2026-11-09-finlight/README.md).
-
-- [ ] **12. Marketaux news (paused)** (`marketaux`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=marketaux/`  
-  Current collection state: **owner_paused** — deliberate pause, not a raw-validation stop  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `news_articles`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'marketaux' GROUP BY source_key;`
 
 - [x] **13. People-related RSS feeds** (`people_rss`)  
   Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=people_rss/`  
@@ -369,61 +362,60 @@ A checked **scoped pipeline review** records which provider fields or original d
 
 ### Day 4 — Thursday — 12 November 2026 (15 catalog entries)
 
-- [ ] **46. MLPerf benchmark results** (`mlperf_results`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=mlperf_results/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'mlperf_results' GROUP BY source_key;`
+- [x] **46. MLPerf benchmark results** (`mlperf_results`) — reviewed 13 November 2026, scoped pipeline verification  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=mlperf_results/`; checksummed originals linked in each record.  
+  Source enabled under contract 2.0.3. SQL verified **451 row occurrences / 5 linked raw batches**, all 451 raw-complete for the declared record kind. Counts are observations, not unique recalls/results or completed history.  
+  Published summary results, original supporting files and Git-tree inventories have distinct record kinds. Two older batches remain uncommitted and excluded because commit evidence is missing; current processing continues. This does not certify all benchmark artifacts, comparisons or historical availability.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'mlperf_results' GROUP BY source_key;`  
+  All 3,028 saved validation rows tested across both sources passed; 65 tests passed. Capture/metadata/publication and all 15 historical executors checked, with enabled timers active. [Review evidence](repair-notes/2026-11-13-mlperf-cpsc/review-complete.json) · [SQL examples](repair-notes/2026-11-13-mlperf-cpsc/review-queries.sql).
 
-- [ ] **47. CPSC recalls** (`cpsc_recalls`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=cpsc_recalls/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'cpsc_recalls' GROUP BY source_key;`
+- [x] **47. CPSC recalls** (`cpsc_recalls`) — reviewed 13 November 2026, scoped pipeline verification  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=cpsc_recalls/`; checksummed originals linked in each record.  
+  Source enabled under contract 2.0.3. SQL verified **262 row occurrences / 16 linked raw batches**, all 262 raw-complete for the declared record kind. Counts are observations, not unique recalls/results or completed history.  
+  Entire official recall records, including nested products, hazards and remedies, match original API responses. The overnight network backoff was cleared after normal transport recovery; today’s capture completed with 7 records. Image URLs are retained; image downloads, all incidents and historical vintages are outside this review.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'cpsc_recalls' GROUP BY source_key;`  
+  All 3,028 saved validation rows tested across both sources passed; 65 tests passed. Capture/metadata/publication and all 15 historical executors checked, with enabled timers active. [Review evidence](repair-notes/2026-11-13-mlperf-cpsc/review-complete.json) · [SQL examples](repair-notes/2026-11-13-mlperf-cpsc/review-queries.sql).
 
-- [ ] **48. Federal Register** (`federal_register`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=federal_register/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'federal_register' GROUP BY source_key;`
+- [x] **48. Federal Register** (`federal_register`, companion `federal_register_documents`) — reviewed 13 November 2026, scoped pipeline verification  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=federal_register/` and `raw/source=federal_register_documents/`; original API, XML/HTML and PDF links retained.  
+  Both streams enabled under contract 2.0.3. Verified SQL snapshot: **145 listing observations / 16 full-notice observations**, all raw-complete for their distinct record kinds. Counts are row occurrences, not unique notices or historical completion.  
+  Checked 100 saved inputs: 99 inputs / 446 rows passed; the one incomplete 2026-22743 capture was superseded by a newly committed, metadata-verified replacement with its 120,719,355-byte official PDF and 4,375,819-character extraction. Old raw evidence is preserved. Missing PDFs now stay queued for retry.  
+  Scope: configured semiconductor, battery, robotics and clinical-trial searches. Full notice validation checks exact API identities, reparsed XML/HTML content and streamed official-PDF checksums. Large extractions are linked in S3. Current-law status, product applicability, exhaustive coverage and historical availability are not certified.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations FROM optima_metadata_engine.source_observations WHERE source_key IN ('federal_register','federal_register_documents') GROUP BY source_key;`  
+  **83 tests passed.** Capture/metadata/publication and all 15 historical executors checked; enabled timers active. No new IAM, key or manual restart action for you. [Review evidence](repair-notes/2026-11-13-federal-register/review-complete.json) · [SQL examples](repair-notes/2026-11-13-federal-register/review-queries.sql).
 
-- [ ] **49. Trade screening lists** (`trade_screening`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=trade_screening/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'trade_screening' GROUP BY source_key;`
+- [x] **49. Trade screening lists** (`trade_screening`) — reviewed 13 November 2026, scoped Athena/publication verification  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=trade_screening/`; original provider exports remain linked in metadata.  
+  Source **enabled**, with zero consecutive raw failures. The old SQL preview used `LIMIT 1`; the schedule's aggregate correctly returns one summary row, whose `observations` field is the actual count. The working preview now shows 25 individual named screening records.  
+  Repaired a separate publication backlog: **18 validated batches / 576 observations** published and read back through Athena. Fresh total: **897 observations / 29 linked raw batches**, all raw-complete for their declared kinds; **896 named screening observations plus one older archive receipt**. Counts are observation occurrences, not unique people/entities or completed history.  
+  Added trade screening to the existing bounded reviewed-source publication pass on m7. The controller dispatch timer and isolated streaming timer are active; remaining raw processing continues separately. Ten old inputs lacking checkpoint evidence and one discovery-only receipt remain excluded. Retired tracking enrichment stays retired.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations FROM optima_metadata_engine.source_observations WHERE source_key = 'trade_screening' GROUP BY source_key;`  
+  **3 publication tests passed**, with successful fresh summary, 25-record preview and exact repaired-partition readbacks. This review checks Athena visibility and publication, not exhaustive sanctions coverage or screening/legal conclusions. [Review evidence](repair-notes/2026-11-13-trade-screening/review-complete.json) · [Individual-record SQL](repair-notes/2026-11-13-trade-screening/review-queries.sql).
 
-- [ ] **50. USGS minerals** (`usgs_minerals`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=usgs_minerals/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` (latest live failure only).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'usgs_minerals' GROUP BY source_key;`
+- [x] **50. USGS minerals** (`usgs_minerals`) — reviewed 14 November 2026, scoped raw-material/SQL verification  
+  Fresh Athena check: **84 published observations**, all with complete raw status for their declared record kinds; counts are occurrences, not unique records or completed history. Both committed-data and metadata previews returned substantive rows.  
+  Two 2026 lithium/cobalt PDFs matched their originals, reparsed text, statistics, footnotes and sections. The background metadata queue remains **raw_stopped** after four older validation failures, plus one missing-object retry; this finding is open. Published rows remain queryable. This checkbox covers existing raw material/SQL, not recovery of that queue or full history.  
+  Two raw records checked per source with official-original checksums and collection manifest/checkpoint evidence. Processing for this verification ran on m7; production settings and deliberate pauses are unchanged.  
+  [Review evidence and remaining findings](repair-notes/2026-11-14-six-source-review/review-complete.json) · [Verified SQL examples](repair-notes/2026-11-14-six-source-review/review-queries.sql).
 
-- [ ] **51. UN Comtrade** (`un_comtrade`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=un_comtrade/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` across 4 failed attempt(s).  
-  Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'un_comtrade' GROUP BY source_key;`
+- [x] **51. UN Comtrade** (`un_comtrade`) — reviewed 13 November 2026, scoped raw/metadata/Athena pipeline  
+  Source enabled under contract 2.0.3. Replaced generic false raw failures with exact official response/row, identity, query-dimension, year and truncation checks. Provider quantities, units, nulls and estimation flags are retained.  
+  Verified SQL snapshot: **14 observations / 14 linked raw batches**, all raw-complete; latest captured input **2026-11-13T11:00:27.328698Z**. Two older 2021 inputs also passed original-byte and collection-commit checks. Counts are occurrences, not unique trade flows.  
+  Scope: configured five reporters, four battery/mineral HS6 commodities, annual imports/exports and world partner totals. Historical route has checkpointed successes and reports its configured target drained; exhaustive coverage and historical vintages are not certified. Daily capture and all enabled schedules checked. No new key/IAM action required.  
+  [Working SQL](repair-notes/2026-11-13-comtrade-doe/review-queries.sql) · [Review evidence](repair-notes/2026-11-13-comtrade-doe/review-complete.json).
 
-- [ ] **52. Department of Energy storage program** (`doe_storage_program`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=doe_storage_program/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'doe_storage_program' GROUP BY source_key;`
+- [x] **52. Department of Energy storage program** (`doe_storage_program` and document/technical/funding companions) — reviewed 13 November 2026, scoped raw/metadata/Athena pipeline  
+  All four streams enabled under contract 2.0.3. Verified SQL snapshot: **54 observations**: 14 program/original-document, 13 document-summary, 13 technical-evidence and 14 funding-evidence rows, all raw-complete for their declared kinds. These are occurrences, not unique documents or certified results.  
+  Originals, deterministic reparsing, saved extraction/fact/table mapping and URL/semantic identities are checked. Two older PDFs also passed commit/original checks. The archived long-duration storage report is visible in Athena with its full original PDF and 117,216 extracted characters. Extraction limits remain explicit.  
+  Public discovery now follows storage main content and linked official reports, with new retained daily/historical frontiers. Excluded 55 discovery receipts and 25 unrelated DOE history/administrative receipts; originals retained. One old input lacking committed-history evidence remains excluded. Tracking-based enrichment stays retired.  
+  Current daily and historical capture, metadata lanes and all enabled schedules checked. The bounded recurring publisher uses an independent lock on m7 and completed successfully. Full archive coverage, normalized performance, recipient allocation and actual payments are not certified.  
+  [Working SQL](repair-notes/2026-11-13-comtrade-doe/review-queries.sql) · [Review evidence](repair-notes/2026-11-13-comtrade-doe/review-complete.json).
 
-- [ ] **53. EIA battery generators** (`eia_battery_generators`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=eia_battery_generators/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'eia_battery_generators' GROUP BY source_key;`
+- [x] **53. EIA battery generators** (`eia_battery_generators`) — reviewed 14 November 2026, scoped raw-material/SQL verification  
+  Fresh Athena check: **13,085 published observations**, all with complete raw status for their declared record kinds; counts are occurrences, not unique records or completed history. Both committed-data and metadata previews returned substantive rows.  
+  Two September 2026 Planned/Operating generator rows matched the official workbook, sheet, Plant ID, Generator ID and all retained columns. Inventory statuses/units remain explicit; dispatch, firm capacity and supplier/entity matching are outside scope. The source is enabled; two older inputs lacking checkpoint evidence remain excluded.  
+  Two raw records checked per source with official-original checksums and collection manifest/checkpoint evidence. Processing for this verification ran on m7; production settings and deliberate pauses are unchanged.  
+  [Review evidence and remaining findings](repair-notes/2026-11-14-six-source-review/review-complete.json) · [Verified SQL examples](repair-notes/2026-11-14-six-source-review/review-queries.sql).
 
 - [ ] **54. EIA generator index** (`eia_generator_index`)  
   Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=eia_generator_index/`  
@@ -432,33 +424,29 @@ A checked **scoped pipeline review** records which provider fields or original d
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
   Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'eia_generator_index' GROUP BY source_key;`
 
-- [ ] **55. EIA retail prices** (`eia_retail_prices`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=eia_retail_prices/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'eia_retail_prices' GROUP BY source_key;`
+- [x] **55. EIA retail prices** (`eia_retail_prices`) — reviewed 14 November 2026, scoped raw-material/SQL verification  
+  Fresh Athena check: **322 published observations**, all with complete raw status for their declared record kinds; counts are occurrences, not unique records or completed history. Both committed-data and metadata previews returned substantive rows.  
+  Two saved US/all-sector monthly rows matched original API responses, identities and price/sales/revenue/customer units. These are average retail statistics, not wholesale prices or site tariffs. Source enabled; no failed/retry/uncommitted metadata jobs in the scoped control check.  
+  Two raw records checked per source with official-original checksums and collection manifest/checkpoint evidence. Processing for this verification ran on m7; production settings and deliberate pauses are unchanged.  
+  [Review evidence and remaining findings](repair-notes/2026-11-14-six-source-review/review-complete.json) · [Verified SQL examples](repair-notes/2026-11-14-six-source-review/review-queries.sql).
 
-- [ ] **56. California ISO prices** (`caiso_prices`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=caiso_prices/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'caiso_prices' GROUP BY source_key;`
+- [x] **56. California ISO prices** (`caiso_prices`) — reviewed 14 November 2026, scoped raw-material/SQL verification  
+  Fresh Athena check: **16,256 published observations**, all with complete raw status for their declared record kinds; counts are occurrences, not unique records or completed history. Both committed-data and metadata previews returned substantive rows.  
+  Two DAM price components matched official ZIP/member provenance, exact native rows, prices and interval timing. Negative values are retained. This covers caiso_prices only, not all nodes, ancillary datasets, storage indicators or profitability. Source enabled; one older input lacking checkpoint evidence remains excluded.  
+  Two raw records checked per source with official-original checksums and collection manifest/checkpoint evidence. Processing for this verification ran on m7; production settings and deliberate pauses are unchanged.  
+  [Review evidence and remaining findings](repair-notes/2026-11-14-six-source-review/review-complete.json) · [Verified SQL examples](repair-notes/2026-11-14-six-source-review/review-queries.sql).
 
-- [ ] **57. BLS wages** (`bls_wages`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=bls_wages/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'bls_wages' GROUP BY source_key;`
+- [x] **57. BLS wages** (`bls_wages`) — reviewed 14 November 2026, scoped raw-material/SQL verification  
+  Fresh Athena check: **802 published observations**, all with complete raw status for their declared record kinds; counts are occurrences, not unique records or completed history. Both committed-data and metadata previews returned substantive rows.  
+  Two CES3000000003 observations matched original BLS series rows, periods, values and footnotes. Units are seasonally adjusted manufacturing average hourly earnings in USD/hour, not fully loaded customer labor costs. Source enabled; two older inputs lacking checkpoint evidence remain excluded.  
+  Two raw records checked per source with official-original checksums and collection manifest/checkpoint evidence. Processing for this verification ran on m7; production settings and deliberate pauses are unchanged.  
+  [Review evidence and remaining findings](repair-notes/2026-11-14-six-source-review/review-complete.json) · [Verified SQL examples](repair-notes/2026-11-14-six-source-review/review-queries.sql).
 
-- [ ] **58. Research Organization Registry institutions** (`ror_institutions`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=ror_institutions/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'ror_institutions' GROUP BY source_key;`
+- [x] **58. Research Organization Registry institutions** (`ror_institutions`) — reviewed 14 November 2026, scoped raw-material/SQL verification  
+  Fresh Athena check: **141 published observations**, all with complete raw status for their declared record kinds; counts are occurrences, not unique records or completed history. Both committed-data and metadata previews returned substantive rows.  
+  Two entire institution records matched original ROR v2 responses, IDs, names, relationships and status. These are current identity candidates, not verified grant affiliations or historical vintages. Source enabled; one older public-receipt validation failure and two uncommitted inputs remain recorded.  
+  Two raw records checked per source with official-original checksums and collection manifest/checkpoint evidence. Processing for this verification ran on m7; production settings and deliberate pauses are unchanged.  
+  [Review evidence and remaining findings](repair-notes/2026-11-14-six-source-review/review-complete.json) · [Verified SQL examples](repair-notes/2026-11-14-six-source-review/review-queries.sql).
 
 - [ ] **59. Reddit posts and comments (paused)** (`reddit`)  
   Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=reddit/`  
@@ -483,424 +471,759 @@ A checked **scoped pipeline review** records which provider fields or original d
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `social_records`.  
   Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'bluesky_search' GROUP BY source_key;`
 
-- [ ] **62. SAM.gov opportunities** (`sam_gov_opportunities`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=sam_gov_opportunities/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'sam_gov_opportunities' GROUP BY source_key;`
+- [x] **62. SAM.gov opportunities** (`sam_gov_opportunities`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/sam_gov_opportunities/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=sam_gov_opportunities/dataset=specialist_inputs/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Native SAM notice records matched their complete saved search pages. Three older failures (2,009 notices) were generic-validator false negatives; repaired under a notice-metadata contract. Descriptions/attachments are separate linked resources. Daily timer succeeded. The legacy authenticated historical timer remains disabled with migration requirements; no separate SAM historical route was established by this audit. This is an open capture finding, not proof of full history.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'sam_gov_opportunities' AND dataset = 'specialist_inputs' GROUP BY source_key, dataset;`
 
-- [ ] **63. USPTO Office Actions** (`uspto_odp`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=uspto_odp/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:patent_document`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:patent_document` across 4 failed attempt(s).  
-  Current raw processing: Archives the provider patent record plus patent document; extracts patent identity, provenance, and normalized source-record fields for `patent_office_actions`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'uspto_odp' GROUP BY source_key;`
+  RM: yes
+  SQL: yes
 
-- [ ] **64. USPTO final Petition Decisions** (`uspto_odp`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=uspto_odp/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:patent_document`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:patent_document` across 4 failed attempt(s).  
-  Current raw processing: Archives the provider patent record plus patent document; extracts patent identity, provenance, and normalized source-record fields for `patent_petition_decisions`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'uspto_odp' GROUP BY source_key;`
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **21,790 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
 
-- [ ] **65. BIS SDMX API** (`bis_sdmx_api`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=bis_sdmx_api/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'bis_sdmx_api' GROUP BY source_key;`
+- [x] **63. USPTO Office Actions** (`uspto_odp`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/uspto_odp/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=uspto_odp/dataset=patent_office_actions/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Office-action API record and actual USPTO PDF checksum, document/application identity and PDF parse verified. The pasted raw stop was stale: uspto_odp is enabled under contract 2.0.3. Daily and historical prosecution streams share the successful m7 tick. Query now filters patent_office_actions; general patent bibliography cannot satisfy this entry. Ten source-wide inputs remain uncommitted and are withheld until their collection manifests exist.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'uspto_odp' AND dataset = 'patent_office_actions' GROUP BY source_key, dataset;`
 
-- [ ] **66. FRED / ALFRED series and vintages** (`fred_alfred_series_and_vintages`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=fred_alfred_series_and_vintages/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'fred_alfred_series_and_vintages' GROUP BY source_key;`
+  RM: yes
+  SQL: yes
 
-- [ ] **67. UNIDO IIP and INDSTAT** (`unido_iip_and_indstat`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=unido_iip_and_indstat/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'unido_iip_and_indstat' GROUP BY source_key;`
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **95 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
 
-- [ ] **68. ILOSTAT labor statistics** (`ilostat_labor_statistics`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=ilostat_labor_statistics/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'ilostat_labor_statistics' GROUP BY source_key;`
+- [x] **64. USPTO final Petition Decisions** (`uspto_odp`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/uspto_odp/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=uspto_odp/dataset=patent_petition_decisions/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Petition-decision API record and actual USPTO PDF checksum, application identity and PDF parse verified. Daily and historical prosecution streams share the successful m7 tick. Query now filters patent_petition_decisions. Ten source-wide uncommitted inputs remain withheld; no claim of exhaustive prosecution history.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'uspto_odp' AND dataset = 'patent_petition_decisions' GROUP BY source_key, dataset;`
 
-- [ ] **69. IMF PortWatch shipping activity** (`imf_portwatch_shipping_activity`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=imf_portwatch_shipping_activity/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'imf_portwatch_shipping_activity' GROUP BY source_key;`
+  RM: yes
+  SQL: yes
 
-- [ ] **70. Ember electricity demand and generation** (`ember_electricity_demand_and_generation`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=ember_electricity_demand_and_generation/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` across 20 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'ember_electricity_demand_and_generation' GROUP BY source_key;`
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **95 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
 
-- [ ] **71. WTO Timeseries API** (`wto_timeseries_api`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=wto_timeseries_api/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'wto_timeseries_api' GROUP BY source_key;`
+- [x] **65. BIS SDMX API** (`bis_sdmx_api`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/bis_sdmx_api/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/athena/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: The missing folder was an incorrect locator. Native policy-rate CSVs are under constellation-backfill/public-capture/objects/bis_sdmx_api/. Two complete files (about 59 MB each) passed SHA-256/size and CSV-header checks on m7. Daily frontier succeeded today, historical file route is drained. SQL counts archived-file metadata, not individual policy-rate measurements; selected BIS dataflow only.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'bis_sdmx_api' AND dataset = 'public_documents' GROUP BY source_key, dataset;`
 
-- [ ] **72. WTO Quantitative Restrictions API** (`wto_quantitative_restrictions_api`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=wto_quantitative_restrictions_api/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'wto_quantitative_restrictions_api' GROUP BY source_key;`
+  Can't find S3 folder. 
+  SQL: yes
 
-- [ ] **73. WTO ePing SPS/TBT notifications** (`wto_eping_sps_tbt_notifications`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=wto_eping_sps_tbt_notifications/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'wto_eping_sps_tbt_notifications' GROUP BY source_key;`
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **8 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
 
-- [ ] **74. EPO OPS patent legal events** (`epo_ops_patent_legal_events`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=epo_ops_patent_legal_events/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for `specialist_inputs`.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'epo_ops_patent_legal_events' GROUP BY source_key;`
+- [x] **66. FRED / ALFRED series and vintages** (`fred_alfred_series_and_vintages`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/fred_alfred_series_and_vintages/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=fred_alfred_series_and_vintages/dataset=specialist_inputs/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Two saved FRED observations matched exact original date/value/realtime intervals. Daily and historical routes are enabled and have successful captures. Open scheduler exceptions include ALFRED vintages the provider says are unavailable, older HTTP 400s and date-scope failures. These remain visible; missing vintages are not synthesized or treated as zeros. Configured series only, not all FRED.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'fred_alfred_series_and_vintages' AND dataset = 'specialist_inputs' GROUP BY source_key, dataset;`
 
-- [ ] **75. Copernicus ERA5 / ERA5-Land** (`copernicus_era5_era5_land`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=copernicus_era5_era5_land/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'copernicus_era5_era5_land' GROUP BY source_key;`
+  RM: yes
+  SQL: yes
+
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **17,183 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
+
+- [x] **67. UNIDO IIP and INDSTAT** (`unido_iip_and_indstat`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/unido_iip_and_indstat/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=unido_iip_and_indstat/dataset=specialist_inputs/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Old SQL rows described catalogues, not industrial measurements. Added native UNIDO getData capture with dynamic dataset IDs and country/variable/activity/period provenance, plus m7 historical dispatch and daily rotation. Historical and daily proof captures passed for both IIP and INDSTAT/4. Suppressed/aggregation footnote cells are retained without inventing zeros. SQL below excludes legacy public_documents catalogues. Backfill remains in progress.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'unido_iip_and_indstat' AND dataset = 'specialist_inputs' GROUP BY source_key, dataset;`
+
+  No S3 bucket
+  SQL: yes
+
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **1,056 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
+
+- [x] **68. ILOSTAT labor statistics** (`ilostat_labor_statistics`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/ilostat_labor_statistics/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/athena/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: The missing folder was an incorrect locator. Original gzip-compressed RDS files are under constellation-backfill/public-capture/objects/ilostat_labor_statistics/. Two files passed SHA-256/size, full gzip integrity and R serialization framing checks. Daily frontier succeeded today; historical snapshot route is drained. SQL rows describe archived files, not extracted labor observations. Forecast/observation and vintage extraction remain unimplemented.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'ilostat_labor_statistics' AND dataset = 'public_documents' GROUP BY source_key, dataset;`
+
+  No S3 bucket
+  SQL: yes
+
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **8 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
+
+- [x] **69. IMF PortWatch shipping activity** (`imf_portwatch_shipping_activity`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/imf_portwatch_shipping_activity/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=imf_portwatch_shipping_activity/dataset=specialist_inputs/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Replaced website-discovery-only input with the IMF native ArcGIS port/day table. m7 captured and validated all 2,065 port rows for 2019-01-01 and for 2026-11-06, then published metadata. Recurring historical dispatcher and m7 daily rotation are active; obsolete discovery inputs were superseded with evidence retained. Provider availability starts 2019-01-01, not 2016; daily uses a seven-day lag. Estimates are not customs shipments; backfill is ongoing.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'imf_portwatch_shipping_activity' AND dataset = 'specialist_inputs' GROUP BY source_key, dataset;`
+
+  No S3 bucket
+  SQL: no
+
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **993 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
+
+- [x] **70. Ember electricity demand and generation** (`ember_electricity_demand_and_generation`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/ember_electricity_demand_and_generation/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=ember_electricity_demand_and_generation/dataset=specialist_inputs/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Corrected validation against the exact archived monthly Ember response, including count, units/aggregation flags and attribution. All 20 formerly failed batches passed original checks, source re-enabled, pending jobs migrated and publication verified. Daily capture is current; historical configured scopes were completed. Missing releases remain missing, not zero.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'ember_electricity_demand_and_generation' AND dataset = 'specialist_inputs' GROUP BY source_key, dataset;`
+
+  RM: yes
+  SQl: yes
+
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **2,560 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
+
+- [x] **71. WTO Timeseries API** (`wto_timeseries_api`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/wto_timeseries_api/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=wto_timeseries_api/dataset=specialist_inputs/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Two entire WTO observation rows matched original Dataset responses, including indicator, reporting economy, period, unit and value. Daily/historical routes and metadata are enabled. Saved HTTP/network failures and source-change refreshes remain retryable capture findings; no blanket historical completion claim or all bilateral/product combinations claim.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'wto_timeseries_api' AND dataset = 'specialist_inputs' GROUP BY source_key, dataset;`
+
+  RM: yes
+  SQL: yes
+
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **22,529 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
+
+- [x] **72. WTO Quantitative Restrictions API** (`wto_quantitative_restrictions_api`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/wto_quantitative_restrictions_api/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=wto_quantitative_restrictions_api/dataset=specialist_inputs/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Full native restriction/notification JSON is saved under source_documents/wto_quantitative_restrictions_api/, beyond the URL fields visible in normalized rows. Corrected endpoint/identity/date/pagination validation, replayed formerly failed inputs and verified nonempty Athena publication. Daily and configured historical scopes succeeded. Linked documents and current legal effect remain separate.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'wto_quantitative_restrictions_api' AND dataset = 'specialist_inputs' GROUP BY source_key, dataset;`
+
+  RM: just point to orginal URLs, no raw material
+  SQL: no
+
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **1,212 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
+
+- [x] **73. WTO ePing SPS/TBT notifications** (`wto_eping_sps_tbt_notifications`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/wto_eping_sps_tbt_notifications/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=wto_eping_sps_tbt_notifications/dataset=specialist_inputs/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Corrected metadata validation against the exact original ePing notification page and distribution-date query window, including older saved scopes. Replayed and published verified rows. Daily and configured historical captures succeeded. Entire returned English notification metadata is retained; document links are not a claim that attachments were downloaded.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'wto_eping_sps_tbt_notifications' AND dataset = 'specialist_inputs' GROUP BY source_key, dataset;`
+
+  RM: yes
+  SQL no
+
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **1,215 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
+
+- [x] **74. EPO OPS patent legal events** (`epo_ops_patent_legal_events`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/epo_ops_patent_legal_events/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=epo_ops_patent_legal_events/dataset=specialist_inputs/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Corrected validation of original EPO legal-event XML, event/family identity and distinct gazette/effective/created/exchanged dates; replayed and published verified rows. Daily/historical capture remains enabled, with older provider HTTP 500s and quota deferrals recorded. Candidate applicant matches and current legal title are unverified.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'epo_ops_patent_legal_events' AND dataset = 'specialist_inputs' GROUP BY source_key, dataset;`
+
+  RM: yes
+  SQL: no
+
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **227 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
+
+- [x] **75. Copernicus ERA5 / ERA5-Land** (`copernicus_era5_era5_land`)  
+  Raw S3 (original provider bytes): `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/copernicus_era5_era5_land/`  
+  Normalized input / file receipts: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=copernicus_era5_era5_land/dataset=specialist_inputs/`  
+  Current collection state: **metadata enabled** — checked 14 November 2026; capture exceptions below.  
+  Recorded raw-data errors: Original inventory retained in repair evidence; current validation and capture findings below.  
+  Current raw processing: Two complete saved NetCDF artifacts passed checksum/signature checks, including a ZIP with verified NetCDF members; SQL remains nonempty. Found current successful CDS jobs whose download assets had expired. Installed conditional expiry recovery that retains old job receipts and resubmits under the existing two-job limit. A previously failing scope now has a fresh verified NetCDF download and an accepted, published metadata release; exact-job recovery proof is saved separately. Historical and daily lanes remain active. Eight configured reference cells only; structured weather extraction remains pending.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_batches, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'copernicus_era5_era5_land' AND dataset = 'specialist_inputs' GROUP BY source_key, dataset;`
+RM: yes
+SQL: yes
+
+  **Reviewed 14 November 2026 — raw/SQL verified; daily, historical and metadata lanes inspected.** Fresh readback: **172 observations**, all raw-complete within the declared record/file scope. Published occurrences do not mean the backfill is finished.  
+  [Review evidence and open findings](repair-notes/2026-11-14-entries-62-75/review-complete.json) · [Actual S3 locators](repair-notes/2026-11-14-entries-62-75/raw-s3-locators.json) · [Verified SQL](repair-notes/2026-11-14-entries-62-75/review-queries.sql).
 
 ### Day 6 — Monday — 16 November 2026 (15 catalog entries)
 
-- [ ] **76. NASA POWER weather and solar resource** (`nasa_power_weather_and_solar_resource`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=nasa_power_weather_and_solar_resource/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+- [x] **76. NASA POWER weather and solar resource** (`nasa_power_weather_and_solar_resource`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/nasa_power_weather_and_solar_resource/` (provider originals); `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=nasa_power_weather_and_solar_resource/` (committed row batches).
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'nasa_power_weather_and_solar_resource' GROUP BY source_key;`
+  Current raw processing: Native NASA measurements were checked against the saved complete provider response, including parameter values and units. Daily capture and the configured historical scopes are healthy; the eight reference locations are a bounded geographic scope.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'nasa_power_weather_and_solar_resource' AND contract_version = '2.0.2' AND job_id IN ('002565768e416cb6727c726186823352ea2537160b7ed5d090120cd8cbd2a4e6', '00eed946e9b41bf6153e1442692e8d2e79a9a540e68b377d83175bf468fc4f4c', '01507966c490f7590ae0a7954df1e143d6d7693f21b5634673052fbe8612b0f3', '017eec1ee3c217e279a30eddcbfd6ac89d98cfa9e899b80430221a8bd8e43205', '018a01f18a5ce8a19e1c7e684b2938330adb8f2ace1193ddcbde1cf01008e00c') GROUP BY source_key, dataset;`
 
-- [ ] **77. USGS Earthquake Catalog API** (`usgs_earthquakes`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=usgs_earthquakes/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'usgs_earthquakes' GROUP BY source_key;`
+  RM: yes
+  SQL: yes
 
-- [ ] **78. UCDP organized violence** (`ucdp_organized_violence`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=ucdp_organized_violence/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Review (16 November 2026): **reviewed** — 135 complete published sample rows. Native NASA measurements were checked against the saved complete provider response, including parameter values and units. Daily capture and the configured historical scopes are healthy; the eight reference locations are a bounded geographic scope. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **77. USGS Earthquake Catalog API** (`usgs_earthquakes`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/usgs_earthquakes/` (daily); historical example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/jobs/ef98722cff7dd7c3f6c6ee16bf46f9a02d58aa1d57dbd013cf0f650c916aa349/attempts/a3eaf20b54894529bbe8ebfc90da8911/raw/a2d4ff767f558e2e2bf53cdd37ccf35bf57541bb786c61b05ad76d1afc3997ca`.
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'ucdp_organized_violence' GROUP BY source_key;`
+  Current raw processing: The missing folder was a locator error. Daily GeoJSON originals live under public-capture/objects/usgs_earthquakes; historical originals are linked from native job manifests. All 3,951 registered historical query partitions succeeded and the seven current daily windows completed; this does not certify every possible earthquake query or original vintage.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'usgs_earthquakes' AND contract_version = '2.0.2' AND job_id IN ('00ba868baf2b73d76073980ee5514974f97bd2d76f9237d78ed9c5f3f73c9b31', '012e78fe7260b3629dcd9f24a566b98aafecf60c212202eb1daf40ceffe1a94a', '01b84b0dfab55ed568e76267b227fab2961a9a3ed8bb27d44a700ff40181a681', '01bbde93ee3a577de5f94fe26998d796167aae269cb8a457c3eac004939ffee9') GROUP BY source_key, dataset;`
+
+  RM: no S3 folder
+  SQL: yes
+
+  Review (16 November 2026): **reviewed** — 128 complete published sample rows. The missing folder was a locator error. Daily GeoJSON originals live under public-capture/objects/usgs_earthquakes; historical originals are linked from native job manifests. All 3,951 registered historical query partitions succeeded and the seven current daily windows completed; this does not certify every possible earthquake query or original vintage. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **78. UCDP organized violence** (`ucdp_organized_violence`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/ucdp_organized_violence/`
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Added official UCDP GED ZIP and candidate CSV acquisition, checksums, whole-archive CRC/structure checks, metadata validation and publication. Daily and historical public-file routes completed their present frontiers. Public downloads work without the separately authenticated UCDP API.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'ucdp_organized_violence' AND contract_version = '2.0.3' AND job_id IN ('43ebe1db1e0a565738657a3e79166136fc272276db63809ce8ae0938495805d0', '9abe4a47193d54e81ee70157858b0cad93c6aa22a94b7cadf74561415e371878') GROUP BY source_key, dataset;`
+
+  RM: no S3 folder
+  SQL: no
+
+  Review (16 November 2026): **reviewed** — 2 complete published sample rows. Added official UCDP GED ZIP and candidate CSV acquisition, checksums, whole-archive CRC/structure checks, metadata validation and publication. Daily and historical public-file routes completed their present frontiers. Public downloads work without the separately authenticated UCDP API. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
 
 - [ ] **79. arXiv early technical disclosures** (`arxiv`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=arxiv/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:full_text`  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/arxiv/` (daily); historical example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/jobs/027db69986966e1bde98f5618ccf3575cfbc4a1dff4d95d60f119244d09a3f7e/attempts/9297cac901e04d619727d77d61aa7978/raw/053b4ebebf76cf634c5438c79e759cc4e7695dac9cf2f06e02fc0fed1133dffa`.
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
   Recorded raw-data errors: `missing_verified_raw_artifacts:full_text` across 4 failed attempt(s).  
-  Current raw processing: Archives provider metadata and versioned full text; extracts source identity, provenance, and publication metadata for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'arxiv' GROUP BY source_key;`
+  Current raw processing: Citation and abstract processing is repaired and published under contract 2.0.3; all 400 records from the four former failed batches matched saved Atom originals. These are metadata/abstracts, not full papers. Full-text acquisition remains outstanding, so this entry is not fully reviewed. An older daily snapshot stopped on duplicate provider IDs; its replacement query completed with 1,647 records, all were validated against native Atom originals, and only the exact incomplete metadata input was superseded. Original bytes remain retained; replacement metadata processing is queued.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'arxiv' AND contract_version = '2.0.3' AND job_id IN ('0eda391b934be0f3bd7b88a36ee572a652f3309fd46e1d031d32188773ddcc1b', '1d22ad5a415479481a7fff7d3faf0a1d63f2ef479bf387cccdaca8206aa546e9', '30587ca1f2be9650772f684032adf2a9aa96ee1341378e151930a092868d86b6', '36b2d8c47ae1f352f9cacda68af1f99ed32e269f08cdfb176e63859cd04697d1', '370d35cf12eceee55049b7e0ed8f26853e0a55ce7c125247c4dcb6ece3bbdae7') GROUP BY source_key, dataset;`
 
-- [ ] **80. England NHSBSA prescribing data** (`england_nhsbsa_prescribing_data`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=england_nhsbsa_prescribing_data/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  RM: no S3 folder
+  SQL: no
+
+  Review (16 November 2026): **partial — not fully reviewed** — 104 complete published sample rows. Citation and abstract processing is repaired and published under contract 2.0.3; all 400 records from the four former failed batches matched saved Atom originals. These are metadata/abstracts, not full papers. Full-text acquisition remains outstanding, so this entry is not fully reviewed. An older daily snapshot stopped on duplicate provider IDs; its replacement query completed with 1,647 records, all were validated against native Atom originals, and only the exact incomplete metadata input was superseded. Original bytes remain retained; replacement metadata processing is queued. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **80. England NHSBSA prescribing data** (`england_nhsbsa_prescribing_data`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/england_nhsbsa_prescribing_data/` (provider originals); `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=england_nhsbsa_prescribing_data/` (committed row batches).
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
   Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` across 1 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'england_nhsbsa_prescribing_data' GROUP BY source_key;`
+  Current raw processing: Replaced catalogue-only input with native, full-field prescribing rows. Daily collection prefers the current SNOMED catalogue, whose latest probed release is August 2026; the retired catalogue remains available for older months. Verified 1,000 January-2016 rows and 1,000 August-2026 rows. Pagination continues; neither month nor the full history is claimed complete.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'england_nhsbsa_prescribing_data' AND contract_version = '2.0.3' AND job_id IN ('01e15bfae93a53f2eaf2edaad8dba27d1d9fc9edef8d948c56981969fb7a05bf', '0284438d4829006f6ec019be12bdd7317d172cd0e20351d9f3eba4cfc34964b5', '038303d3f9d1403ddd244ad8a490b98519f6f85bf7b3d244ff5576ba15f244b8', '05c01b2c9f684c9b24c136aa9761cbfe2a1a5aae3b8311cacef739cf3487e0a3', '0da7408f9c038518577228312c0a5cd89dbb72497f0bc02ee252fdc975c3f08c') GROUP BY source_key, dataset;`
 
-- [ ] **81. Decodo shared web retrieval (access layer)** (`decodo_shared_web_retrieval_access_layer`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=decodo_shared_web_retrieval_access_layer/`  
-  Current collection state: **access_layer** — routing/access service, not an independently collected raw dataset  
+  RM: no S3 folder
+  SQL: no
+
+  Review (16 November 2026): **reviewed** — 160 complete published sample rows. Replaced catalogue-only input with native, full-field prescribing rows. Daily collection prefers the current SNOMED catalogue, whose latest probed release is August 2026; the retired catalogue remains available for older months. Verified 1,000 January-2016 rows and 1,000 August-2026 rows. Pagination continues; neither month nor the full history is claimed complete. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **81. Decodo shared web retrieval (access layer)** (`decodo_shared_web_retrieval_access_layer`)  
+  Raw S3: Not applicable — retrieval access layer; originals belong to dependent sources.
+  Current collection state: **access_layer** — verified through dependent-source retrieval; no standalone queue  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'decodo_shared_web_retrieval_access_layer' GROUP BY source_key;`
+  Current raw processing: Reviewed as an access layer: successful CDA-AMC retrieval and strict base64-PDF recovery verified the gateway. Standalone raw folders and source_observations rows are not applicable; dependent sources own their original artifacts and observations.  
+  Athena SQL (bounded published sample, not a source total): `-- Decodo is a retrieval access layer; standalone source rows are not applicable.`
 
-- [ ] **82. SIA / WSTS public semiconductor sales** (`sia_wsts_public_semiconductor_sales`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=sia_wsts_public_semiconductor_sales/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Review (16 November 2026): **reviewed** — N/A (access layer). Reviewed as an access layer: successful CDA-AMC retrieval and strict base64-PDF recovery verified the gateway. Standalone raw folders and source_observations rows are not applicable; dependent sources own their original artifacts and observations. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **82. SIA / WSTS public semiconductor sales** (`sia_wsts_public_semiconductor_sales`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/sia_wsts_public_semiconductor_sales/`
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
   Recorded raw-data errors: `public_capture_is_discovery_page_only` across 6 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'sia_wsts_public_semiconductor_sales' GROUP BY source_key;`
+  Current raw processing: Located and verified the complete saved WSTS billings PDF and restored scoped native-file publication. The old August URL now returns 404, while its archived original remains intact; current daily and historical index discovery completed without download failures.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'sia_wsts_public_semiconductor_sales' AND contract_version = '2.0.3' AND job_id IN ('eb06a5d04d093727576a87a96813262a26d2968aefdd4acab1b9c62e1c26b614') GROUP BY source_key, dataset;`
 
-- [ ] **83. SEMI worldwide equipment billings** (`semi_worldwide_equipment_billings`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=semi_worldwide_equipment_billings/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  RM: no S3 folder
+  SQL: yes
+
+  Review (16 November 2026): **reviewed** — 1 complete published sample rows. Located and verified the complete saved WSTS billings PDF and restored scoped native-file publication. The old August URL now returns 404, while its archived original remains intact; current daily and historical index discovery completed without download failures. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **83. SEMI worldwide equipment billings** (`semi_worldwide_equipment_billings`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/semi_worldwide_equipment_billings/`
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'semi_worldwide_equipment_billings' GROUP BY source_key;`
+  Current raw processing: Moved discovery to the working official SEAJ index and followed only its worldwide SEMS rows, excluding Japan-only and FPD rows. The joint SEMI/SEAJ worldwide PDFs and back-number PDF are captured; daily and historical crawls are healthy. Paid detailed WWSEMS products are excluded.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'semi_worldwide_equipment_billings' AND contract_version = '2.0.3' AND job_id IN ('493af9a0638ac3d7a5ef1148d0d602944c305bdb063c45d5183468f0070906d4') GROUP BY source_key, dataset;`
 
-- [ ] **84. International Federation of Robotics World Robotics** (`international_federation_of_robotics_world_robotics`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=international_federation_of_robotics_world_robotics/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
+  RM: no S3 folder
+  SQL: no
+
+  Review (16 November 2026): **reviewed** — 1 complete published sample rows. Moved discovery to the working official SEAJ index and followed only its worldwide SEMS rows, excluding Japan-only and FPD rows. The joint SEMI/SEAJ worldwide PDFs and back-number PDF are captured; daily and historical crawls are healthy. Paid detailed WWSEMS products are excluded. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **84. International Federation of Robotics World Robotics** (`international_federation_of_robotics_world_robotics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/international_federation_of_robotics_world_robotics/`
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
   Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record`; `public_capture_is_discovery_page_only` across 18 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'international_federation_of_robotics_world_robotics' GROUP BY source_key;`
+  Current raw processing: Rejected images and discovery pages as reports; verified the complete public 2025 World Robotics executive-summary PDF and published its native-file metadata. Daily and historical discovery continue. This does not assert a paid full database or that the 2025 summary is a 2026 release.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'international_federation_of_robotics_world_robotics' AND contract_version = '2.0.3' AND job_id IN ('b956eb4b673a4546ebd03266e4cf32bc5697a85343379433826835297d7e384a') GROUP BY source_key, dataset;`
 
-- [ ] **85. IEA-PVPS solar deployment reports** (`iea_pvps_solar_deployment_reports`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=iea_pvps_solar_deployment_reports/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  RM: no S3 folder
+  SQL: yes
+
+  Review (16 November 2026): **reviewed** — 1 complete published sample rows. Rejected images and discovery pages as reports; verified the complete public 2025 World Robotics executive-summary PDF and published its native-file metadata. Daily and historical discovery continue. This does not assert a paid full database or that the 2025 summary is a 2026 release. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **85. IEA-PVPS solar deployment reports** (`iea_pvps_solar_deployment_reports`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/iea_pvps_solar_deployment_reports/`
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
   Recorded raw-data errors: `public_capture_is_discovery_page_only` across 10 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'iea_pvps_solar_deployment_reports' GROUP BY source_key;`
+  Current raw processing: Verified the actual Snapshot of Global PV Markets 2026 PDF, excluded unrelated technical files, and replaced the broken trends index with the working publications index. Daily and historical capture are healthy; additional public reports continue through the queue.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'iea_pvps_solar_deployment_reports' AND contract_version = '2.0.3' AND job_id IN ('97fb4e95091dde3f22dba4e0a8358fa9780738d1a31bda54e4374cf51ed2b06b') GROUP BY source_key, dataset;`
 
-- [ ] **86. Germany G-BA drug benefit assessments** (`germany_g_ba_drug_benefit_assessments`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=germany_g_ba_drug_benefit_assessments/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
-  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'germany_g_ba_drug_benefit_assessments' GROUP BY source_key;`
+  RM: no S3 folder
+  SQL: yes
 
-- [ ] **87. France HAS medicine assessment opinions** (`france_has_medicine_assessment_opinions`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=france_has_medicine_assessment_opinions/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Review (16 November 2026): **reviewed** — 1 complete published sample rows. Verified the actual Snapshot of Global PV Markets 2026 PDF, excluded unrelated technical files, and replaced the broken trends index with the working publications index. Daily and historical capture are healthy; additional public reports continue through the queue. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **86. Germany G-BA drug benefit assessments** (`germany_g_ba_drug_benefit_assessments`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/germany_g_ba_drug_benefit_assessments/`
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
   Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'france_has_medicine_assessment_opinions' GROUP BY source_key;`
+  Current raw processing: Restricted discovery to benefit-assessment cases and original dossier/assessment PDFs. Verified an original IQWiG/G-BA benefit-assessment PDF and its published metadata. Daily and historical discovery continue; no clinical or reimbursement interpretation is inferred.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'germany_g_ba_drug_benefit_assessments' AND contract_version = '2.0.3' AND job_id IN ('b0c60b7e25484fc3bea15927f58fe66d94210f673af49293e37af116484f4b40') GROUP BY source_key, dataset;`
+
+  RM: no S3 folder
+  SQL: no
+
+  Review (16 November 2026): **reviewed** — 1 complete published sample rows. Restricted discovery to benefit-assessment cases and original dossier/assessment PDFs. Verified an original IQWiG/G-BA benefit-assessment PDF and its published metadata. Daily and historical discovery continue; no clinical or reimbursement interpretation is inferred. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **87. France HAS medicine assessment opinions** (`france_has_medicine_assessment_opinions`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/france_has_medicine_assessment_opinions/`
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Fixed HAS relative links, native CP1252/dollar-quoted CSV validation, and its headerless CT-to-opinion URL export. SMR/ASMR originals and a final committee-opinion PDF are verified and published. All daily download errors recovered. Discovered 10,490 opinion links and restored about 5,000 within the existing frontier cap; historical processing is active and full coverage remains open.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'france_has_medicine_assessment_opinions' AND contract_version = '2.0.3' AND job_id IN ('451cbaabfed1ccc9296116b5b9d0648060021271e1d891adcb1d2d19c3a29ae9', '6bad4a342934cb2ae660edf143542bec0d92d88619aee3f2871676debf5017d3', 'dc312d7a3bfd9e272c25fbde42c02148820a478ca6186ae0ce0607d7ae3644c6', 'de55a7825bfec23ad5d44a27d9da52c2bc7261aad15e8d7615d5490d27efd797', 'e8115c9f77af2b551a5d76b239017a447d8d8f00352daa3049df0879cfeb9078') GROUP BY source_key, dataset;`
+
+  RM: no S3 folder
+  SQL: no
+
+  Review (16 November 2026): **reviewed** — 5 complete published sample rows. Fixed HAS relative links, native CP1252/dollar-quoted CSV validation, and its headerless CT-to-opinion URL export. SMR/ASMR originals and a final committee-opinion PDF are verified and published. All daily download errors recovered. Discovered 10,490 opinion links and restored about 5,000 within the existing frontier cap; historical processing is active and full coverage remains open. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
 
 - [ ] **88. NICE technology appraisals** (`nice_technology_appraisals`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=nice_technology_appraisals/`  
-  Current collection state: **owner_paused** — deliberate pause, not a raw-validation stop  
+  Raw S3: Owner paused; retained evidence only. No new raw material acquired.
+  Current collection state: **owner_paused** — deliberate pause preserved  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'nice_technology_appraisals' GROUP BY source_key;`
+  Current raw processing: Deliberate owner pause preserved. NICE capture and AI processing were not resumed and no fresh provider request was made. The existing licensed API, cybersecurity review and owner authorization requirements remain; no completed review is claimed.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'nice_technology_appraisals' GROUP BY source_key, dataset;`
 
-- [ ] **89. Canada CDA-AMC / CADTH reimbursement reviews** (`canada_cda_amc_cadth_reimbursement_reviews`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=canada_cda_amc_cadth_reimbursement_reviews/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
-  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'canada_cda_amc_cadth_reimbursement_reviews' GROUP BY source_key;`
+  RM: no S3 folder
+  SQL: no
 
-- [ ] **90. France Assurance Maladie Open Medic** (`france_assurance_maladie_open_medic`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=france_assurance_maladie_open_medic/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Review (16 November 2026): **not reviewed — intentionally paused** — not run (owner paused). Deliberate owner pause preserved. NICE capture and AI processing were not resumed and no fresh provider request was made. The existing licensed API, cybersecurity review and owner authorization requirements remain; no completed review is claimed. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **89. Canada CDA-AMC / CADTH reimbursement reviews** (`canada_cda_amc_cadth_reimbursement_reviews`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/canada_cda_amc_cadth_reimbursement_reviews/`
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
   Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'france_assurance_maladie_open_medic' GROUP BY source_key;`
+  Current raw processing: Fixed gateway base64 PDFs that had been mislabelled HTML, preserving the original gateway wrapper separately. Verified and published a final CDA-AMC reimbursement recommendation PDF as well as the separately labelled patient/clinician input. Daily and historical public-file crawls completed their current frontiers; exhaustive review history and clinical interpretation are not asserted.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'canada_cda_amc_cadth_reimbursement_reviews' AND contract_version = '2.0.3' AND job_id IN ('2e31bf1b92a6f506cc9ac059c6dd7bbe3f9ecbead040324ac9e6f645aac9542c', '7cffc150b76ee4c1805246957e707049b0068ae3c4c67d1861d9b2e92bd1577d') GROUP BY source_key, dataset;`
+
+  RM: no S3 folder
+  SQL: no
+
+  Review (16 November 2026): **reviewed** — 2 complete published sample rows. Fixed gateway base64 PDFs that had been mislabelled HTML, preserving the original gateway wrapper separately. Verified and published a final CDA-AMC reimbursement recommendation PDF as well as the separately labelled patient/clinician input. Daily and historical public-file crawls completed their current frontiers; exhaustive review history and clinical interpretation are not asserted. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
+
+- [x] **90. France Assurance Maladie Open Medic** (`france_assurance_maladie_open_medic`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/france_assurance_maladie_open_medic/`
+  Current collection state: **enabled** — daily/historical capture and metadata queues checked on 16 November 2026  
+  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Corrected the provider download host, catalogue/document classification and fresh public download-link resolution. Verified the complete 2025 Open Medic ZIP, checksum and every member CRC. Daily and historical capture are active. SQL rows represent validated original annual dataset files; individual medicine/cost-row extraction is a separate downstream step.  
+  Athena SQL (bounded published sample, not a source total): `SELECT source_key, dataset, count(*) AS observations, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original_s3_uri FROM optima_metadata_engine.source_observations WHERE source_key = 'france_assurance_maladie_open_medic' AND contract_version = '2.0.3' AND job_id IN ('d19394d3b1f339cff55f60225b27ab76f369093a835d297d4eb043ec8ba642c9') GROUP BY source_key, dataset;`
+
+  RM: no S3 folder
+  SQL: no
 
 ### Day 7 — Tuesday — 17 November 2026 (15 catalog entries)
 
-- [ ] **91. Japan MHLW NDB Open Data** (`japan_mhlw_ndb_open_data`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=japan_mhlw_ndb_open_data/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
-  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'japan_mhlw_ndb_open_data' GROUP BY source_key;`
+  Review (16 November 2026): **reviewed** — 1 complete published sample rows. Corrected the provider download host, catalogue/document classification and fresh public download-link resolution. Verified the complete 2025 Open Medic ZIP, checksum and every member CRC. Daily and historical capture are active. SQL rows represent validated original annual dataset files; individual medicine/cost-row extraction is a separate downstream step. Evidence: [review report](repair-notes/2026-11-16-entries-76-90/review-report.md). Original owner RM/SQL notes above are retained as the pre-repair observations.
 
-- [ ] **92. CNINFO mainland-China company disclosures** (`cninfo_mainland_china_company_disclosures`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=cninfo_mainland_china_company_disclosures/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
-  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the provider filing record plus original primary document; extracts filing identity, provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'cninfo_mainland_china_company_disclosures' GROUP BY source_key;`
+- [x] **91. Japan MHLW NDB Open Data** (`japan_mhlw_ndb_open_data`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/japan_mhlw_ndb_open_data/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'japan_mhlw_ndb_open_data' AND contract_version = '2.0.3' GROUP BY source_key;`
 
-- [ ] **93. China NBS industrial production** (`china_nbs_industrial_production`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=china_nbs_industrial_production/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
-  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_nbs_industrial_production' GROUP BY source_key;`
+  Owner's pre-repair check:
 
-- [ ] **94. China MIIT electronics and battery statistics** (`china_miit_electronics_and_battery_statistics`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=china_miit_electronics_and_battery_statistics/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
-  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_miit_electronics_and_battery_statistics' GROUP BY source_key;`
+  RM: no S3 bucket
+  SQL: no
 
-- [ ] **95. China NEA power statistics** (`china_nea_power_statistics`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=china_nea_power_statistics/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
-  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 5 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_nea_power_statistics' GROUP BY source_key;`
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. The collector followed NDB discovery pages without selecting native workbooks. A complete official XLSX is now archived; ZIP member CRCs, four worksheets and worksheet XML passed the bounded sample check. Verified Athena sample: 1 complete row(s). SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/japan_mhlw_ndb_open_data/4ac58c59d85810592d5ab33f2d980e6f75907e650dffdd88644d82c490665f13`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
 
-- [ ] **96. China NHSA reimbursement and procurement** (`china_nhsa_reimbursement_and_procurement`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=china_nhsa_reimbursement_and_procurement/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
-  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_nhsa_reimbursement_and_procurement' GROUP BY source_key;`
+- [x] **92. CNINFO mainland-China company disclosures** (`cninfo_mainland_china_company_disclosures`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/cninfo_mainland_china_company_disclosures/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: Complete native filing-index row paired with its original PDF/XML document; no XBRL fact extraction or historical-vintage inference.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'cninfo_mainland_china_company_disclosures' AND contract_version = '2.0.3' GROUP BY source_key;`
 
-- [ ] **97. China MOFCOM export controls** (`china_mofcom_export_controls`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=china_mofcom_export_controls/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
-  Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_mofcom_export_controls' GROUP BY source_key;`
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. The homepage is a JavaScript discovery page; the announcement endpoint requires POST. The new collector pairs complete native index rows with original PDFs. One seven-page PDF and its native index row passed sample validation. Verified Athena sample: 8 complete row(s). Complete native filing-index row paired with its original PDF/XML document; no XBRL fact extraction or historical-vintage inference. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/cninfo_mainland_china_company_disclosures/11f041a2c1ecd7cf1361e42c60936ba3ea524c5e40bad7d48f59fe9c1c13c5ba`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
+
+- [x] **93. China NBS industrial production** (`china_nbs_industrial_production`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/china_nbs_industrial_production/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_nbs_industrial_production' AND contract_version = '2.0.3' GROUP BY source_key;`
+
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. The original statistical HTML releases were misclassified as discovery pages. The repair preserves substantive releases and all same-directory figures. An October 2026 release and nine original figures are archived. Verified Athena sample: 1 complete row(s). SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/china_nbs_industrial_production/2c2bd73a2beea328928d9fced2365d280e32b17af5e51e310f5762cbc9ca8745`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
+
+- [x] **94. China MIIT electronics and battery statistics** (`china_miit_electronics_and_battery_statistics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/china_miit_electronics_and_battery_statistics/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_miit_electronics_and_battery_statistics' AND contract_version = '2.0.3' GROUP BY source_key;`
+
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: yes
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. The old route followed navigation and unrelated binary assets. The deployed scope selects original MIIT electronics/battery statistical releases. A native January–August 2026 release is archived. Verified Athena sample: 1 complete row(s). SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/china_miit_electronics_and_battery_statistics/2562c45c918c98fcad8aa4192637b68b3cf963c2155a7e2c7734b9d4e5806aaf`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
+
+- [x] **95. China NEA power statistics** (`china_nea_power_statistics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/china_nea_power_statistics/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: `public_capture_is_discovery_page_only` across 5 failed attempt(s).  
+  Current raw processing: SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_nea_power_statistics' AND contract_version = '2.0.3' GROUP BY source_key;`
+
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: yes
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. Genuine short statistical releases were treated as discovery-only pages. The validator accepts the complete official release and requires its original table figure. Both are archived; the PNG passed CRC/structure checks. Verified Athena sample: 1 complete row(s). SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/china_nea_power_statistics/3d45ee768c1e429a439cef99cd812ca3a9b0572d1bc0795e9c7ddab948103b21`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
+
+- [x] **96. China NHSA reimbursement and procurement** (`china_nhsa_reimbursement_and_procurement`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/china_nhsa_reimbursement_and_procurement/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_nhsa_reimbursement_and_procurement' AND contract_version = '2.0.3' GROUP BY source_key;`
+
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. The old route crawled navigation, misclassified substantive notices and delayed every transient failure for 24 hours. Discovery now follows the relevant policy index; a source-specific transient retry and 15-minute backoff are installed. The native catalogue notice and both linked original PDFs passed worker validation and publication; the final daily checkpoint has zero current failures. Verified Athena sample: 3 complete row(s). SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/china_nhsa_reimbursement_and_procurement/cc52976c8a25f90c623febddc6bd973830e63768c8e6d188e96fdb632840fb06`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
+
+- [x] **97. China MOFCOM export controls** (`china_mofcom_export_controls`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/china_mofcom_export_controls/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'china_mofcom_export_controls' AND contract_version = '2.0.3' GROUP BY source_key;`
+
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. The former route archived a navigation-heavy export-control page rather than a formal notice. The staged parser rejects generic site titles and uses a substantive official MOFCOM notice. One complete notice is archived. Verified Athena sample: 1 complete row(s). SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/china_mofcom_export_controls/70ab2e80822b0c3a6ea469e6c18c04244090ad5aea0da1c3152d148337ebcc44`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
 
 - [ ] **98. South Korea FSS OpenDART** (`south_korea_fss_opendart`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=south_korea_fss_opendart/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:primary_document`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:primary_document` across 4 failed attempt(s).  
-  Current raw processing: Archives the provider filing record plus original primary document; extracts filing identity, provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'south_korea_fss_opendart' GROUP BY source_key;`
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/south_korea_fss_opendart/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled** — individual provider-document gaps remain isolated.
+  Pre-repair recorded raw-data errors: `missing_verified_raw_artifacts:primary_document` across 4 failed attempt(s).  
+  Current raw processing: Complete native filing-index row paired with its original PDF/XML document; no XBRL fact extraction or historical-vintage inference.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'south_korea_fss_opendart' AND contract_version = '2.0.3' GROUP BY source_key;`
 
-- [ ] **99. South Korea KOSIS statistical OpenAPI** (`south_korea_kosis_statistical_openapi`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=south_korea_kosis_statistical_openapi/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'south_korea_kosis_statistical_openapi' GROUP BY source_key;`
+  Owner's pre-repair check:
 
-- [ ] **100. Taiwan TWSE/MOPS issuer and revenue archives** (`taiwan_twse_mops_issuer_and_revenue_archives`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=taiwan_twse_mops_issuer_and_revenue_archives/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:primary_document`  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:primary_document` across 2 failed attempt(s).  
-  Current raw processing: Archives the provider filing record plus original primary document; extracts filing identity, provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'taiwan_twse_mops_issuer_and_revenue_archives' GROUP BY source_key;`
+  RM: yes
+  SQL: no
 
-- [ ] **101. Taiwan customs trade statistics** (`taiwan_customs_trade_statistics`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=taiwan_customs_trade_statistics/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'taiwan_customs_trade_statistics' GROUP BY source_key;`
+  Review (18 November 2026): **partially reviewed — provider document gaps** — Current RM: partial; SQL: yes. The collector previously archived only listing rows. Native receipt-specific original ZIP capture is repaired, and both daily and historical commits plus four complete filing records passed metadata/Athena verification. Four proof batches remain rejected for unavailable or malformed provider originals, and processing retains these gaps explicitly. An additional archived sample contains malformed XML. The source stays enabled with failures isolated by source/date; its review remains partial. Verified Athena sample: 4 complete row(s). Complete native filing-index row paired with its original PDF/XML document; no XBRL fact extraction or historical-vintage inference. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/south_korea_fss_opendart/723fbe38f4f4d06e59a1ab1806845a2cb3de1142b4afe2112b70f89f9b248a49`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
 
-- [ ] **102. India IBM mineral production** (`india_ibm_mineral_production`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=india_ibm_mineral_production/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'india_ibm_mineral_production' GROUP BY source_key;`
+- [x] **100. Taiwan TWSE/MOPS issuer and revenue archives** (`taiwan_twse_mops_issuer_and_revenue_archives`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/taiwan_twse_mops_issuer_and_revenue_archives/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: `missing_verified_raw_artifacts:primary_document` across 2 failed attempt(s).  
+  Current raw processing: Native issuer/revenue rows with all returned fields and original reporting month/units. Both complete source arrays (2190 rows) passed raw verification; published proof samples cover 64 rows and continuation remains active. Historical MOPS issuer and monthly-release archive coverage remains unverified.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'taiwan_twse_mops_issuer_and_revenue_archives' AND contract_version = '2.0.3' GROUP BY source_key;`
 
-- [ ] **103. Indonesia ESDM and Geological Agency mineral statistics** (`indonesia_esdm_and_geological_agency_mineral_statistics`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=indonesia_esdm_and_geological_agency_mineral_statistics/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record`; `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'indonesia_esdm_and_geological_agency_mineral_statistics' GROUP BY source_key;`
+  Owner's pre-repair check:
 
-- [ ] **104. Brazil ANM mineral yearbook** (`brazil_anm_mineral_yearbook`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=brazil_anm_mineral_yearbook/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_anm_mineral_yearbook' GROUP BY source_key;`
+  RM: no S3 bucket
+  SQL: no
 
-- [ ] **105. Brazil ANM CFEM mining royalties** (`brazil_anm_cfem_mining_royalties`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=brazil_anm_cfem_mining_royalties/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_anm_cfem_mining_royalties' GROUP BY source_key;`
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. The native issuer/revenue JSON arrays were wrongly treated as filings that required a primary PDF. Two complete native TWSE arrays are archived. The deployed converter retains every original row, company identifier, ROC reporting month and native units. These are current snapshots, not a full MOPS historical filing archive. Verified Athena sample: 64 complete row(s). Native issuer/revenue rows with all returned fields and original reporting month/units. Both complete source arrays (2190 rows) passed raw verification; published proof samples cover 64 rows and continuation remains active. Historical MOPS issuer and monthly-release archive coverage remains unverified. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/taiwan_twse_mops_issuer_and_revenue_archives/d723b8f56406a38101dc1c23780a93188f39bfeb9c8d8556b9ba3def2eeeef5e`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
+
+- [x] **101. Taiwan customs trade statistics** (`taiwan_customs_trade_statistics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/taiwan_customs_trade_statistics/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Native monthly aggregate clearance rows, with reporting year and NTD-thousand fields retained. All 153 source rows passed raw verification; published proof sample covers 32 rows, with continuation active. Detailed HS/country trade is outside this feed.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'taiwan_customs_trade_statistics' AND contract_version = '2.0.3' GROUP BY source_key;`
+
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. The route crawled the interactive customs website instead of the official public CSV. The complete monthly aggregate clearance CSV is archived. The deployed converter preserves native year/month and NTD-thousand fields; this is not detailed HS/country trade. Verified Athena sample: 32 complete row(s). Native monthly aggregate clearance rows, with reporting year and NTD-thousand fields retained. All 153 source rows passed raw verification; published proof sample covers 32 rows, with continuation active. Detailed HS/country trade is outside this feed. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/taiwan_customs_trade_statistics/052826a293ba16b0199fee8bac00990e6313852aa9517feea583573ce3fff8ae`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
+
+- [x] **102. India IBM mineral production** (`india_ibm_mineral_production`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/india_ibm_mineral_production/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'india_ibm_mineral_production' AND contract_version = '2.0.3' GROUP BY source_key;`
+
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. The old homepage crawl did not follow monthly mineral-production report files. The June 2026 original PDF is archived. A bounded archive plan is prepared; older year index URLs and monthly completeness still need worker checks. Verified Athena sample: 1 complete row(s). SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/india_ibm_mineral_production/33a965aa326ff927cfdb790a5e9d0a0aa7f19d0c7fd50e4ac0a4540708ca8ba0`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
+
+- [x] **103. Indonesia ESDM and Geological Agency mineral statistics** (`indonesia_esdm_and_geological_agency_mineral_statistics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/indonesia_esdm_and_geological_agency_mineral_statistics/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: `missing_verified_raw_artifacts:provider_record`; `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
+  Current raw processing: SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'indonesia_esdm_and_geological_agency_mineral_statistics' AND contract_version = '2.0.3' GROUP BY source_key;`
+
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: yes
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. Legacy accepted site JPEGs were unrelated to mineral statistics. The corrected route follows Geological Agency mineral/coal resource-and-reserve reports; a complete official original report passed PDF validation and publication. All 117 individually confirmed invalid legacy jobs were superseded, with published partitions withdrawn and originals retained. Verified Athena sample: 1 complete row(s). SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/indonesia_esdm_and_geological_agency_mineral_statistics/bef74715b45ac017454d8171d81a6e8c7019362d4c31393d584de1af0d5e751c`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
+
+- [x] **104. Brazil ANM mineral yearbook** (`brazil_anm_mineral_yearbook`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/brazil_anm_mineral_yearbook/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_anm_mineral_yearbook' AND contract_version = '2.0.3' GROUP BY source_key;`
+
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. ANM moved its public data host, its TLS response omitted an intermediate certificate, and native CSVs use CP1252. The provider-specific intermediate chain was independently verified to trusted roots, without disabling TLS checks. All three native production CSVs were captured, fully parsed and published. Verified Athena sample: 3 complete row(s). SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/brazil_anm_mineral_yearbook/0f64e7a38965d0bc9cf63a891ba9e19ab361e8b5109b2926b660fdc67a894539`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
+
+- [x] **105. Brazil ANM CFEM mining royalties** (`brazil_anm_cfem_mining_royalties`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/brazil_anm_cfem_mining_royalties/` (original provider files; verified object links below).  
+  Current collection state: **enabled — daily and historical capture verified; metadata source enabled**.
+  Pre-repair recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step.  
+  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_anm_cfem_mining_royalties' AND contract_version = '2.0.3' GROUP BY source_key;`
+
+  Owner's pre-repair check:
+
+  RM: no S3 bucket
+  SQL: yes
+
+  Review (18 November 2026): **reviewed** — Current RM: yes; SQL: yes. The legacy route accepted an unrelated protocol manual. It now uses three official CFEM revenue CSV chunks, each within the 128 MB capture limit, with verified TLS and native encoding. Entire chunks passed CSV/schema/checksum checks and publication. All 101 individually confirmed bad legacy jobs were superseded; published partitions were withdrawn and raw objects retained. Verified Athena sample: 3 complete row(s). SQL rows represent validated original files/releases. Source measurements remain in the linked originals; detailed numerical extraction is a separate step. Daily and historical checkpoints are verified for the declared scope; complete historical coverage remains under audit. Verified original: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/brazil_anm_cfem_mining_royalties/bff3919f6da4f23d7c08ba53f6bca7812e30252f79856de7185e2d88903dcfb7`. Evidence and scope: [review status](repair-notes/2026-11-18-entries-91-105/review-status.json). Original owner RM/SQL notes are retained as pre-repair observations.
 
 ### Day 8 — Wednesday — 18 November 2026 (15 catalog entries)
 
-- [ ] **106. Brazil MDIC Comex Stat API** (`brazil_mdic_comex_stat_api`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=brazil_mdic_comex_stat_api/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+- [x] **106. Brazil MDIC Comex Stat API** (`brazil_mdic_comex_stat_api`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/brazil_mdic_comex_stat_api/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_mdic_comex_stat_api' GROUP BY source_key;`
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_mdic_comex_stat_api' AND contract_version = '2.0.3' AND job_id IN ('e8df0dde99f1ade0a02fe796f778edff64646f4585fd2bdaca5f443e9f512b4e','7b85aa0919ee901a238d7403b2998a79aa73b2f778593d026f6a7b094c29a785') GROUP BY source_key, dataset;`
 
-- [ ] **107. Chile COCHILCO production and mining economics** (`chile_cochilco_production_and_mining_economics`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=chile_cochilco_production_and_mining_economics/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
-  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
-  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'chile_cochilco_production_and_mining_economics' GROUP BY source_key;`
+  RM: no S3 bucket
+  SQL: no
 
-- [ ] **108. Chile SERNAGEOMIN mining yearbooks** (`chile_sernageomin_mining_yearbooks`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=chile_sernageomin_mining_yearbooks/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Review (20 November 2026): **reviewed**. The old crawler requested the API homepage. The replacement uses the official Comex Stat POST query for four battery and mineral NCM products, with native monthly import and export FOB values and kilograms. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/brazil_mdic_comex_stat_api/7dd865a2548deeba093dd0f89e56fa93aa782479f954f72ba281d9c7029df59a`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
+
+- [x] **107. Chile COCHILCO production and mining economics** (`chile_cochilco_production_and_mining_economics`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/chile_cochilco_production_and_mining_economics/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'chile_sernageomin_mining_yearbooks' GROUP BY source_key;`
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'chile_cochilco_production_and_mining_economics' AND contract_version = '2.0.3' AND job_id IN ('82ee55cd6368a16d7fd6a6789ef0da419015cf1ca0c16b0f8fc11702847a5515','29692e35b4b1495ec6825ca4ff7d154130d519dd672c2bcd22dfa0deeeba1805') GROUP BY source_key, dataset;`
+
+RM: no S3 bucket
+SQL: no
+
+  Review (20 November 2026): **reviewed**. The old crawler started at the homepage. The replacement targets the official COCHILCO statistical workbook for 2000–2025 and earlier annual releases. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/chile_cochilco_production_and_mining_economics/80d620da33f59f5913802b9eea924fd895c6e4f4534103afad7107e8c26c1b45`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
+
+- [x] **108. Chile SERNAGEOMIN mining yearbooks** (`chile_sernageomin_mining_yearbooks`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/chile_sernageomin_mining_yearbooks/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
+  Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
+  Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'chile_sernageomin_mining_yearbooks' AND contract_version = '2.0.3' AND job_id IN ('8695365a9694a1f62f3ba902b17c2c2fd50312bc0d3d04d203847cf84e0d0345','d942a74e238035e29a8cb096aae080d1ed82e829c2909b36d1ec9abfd2e9e570') GROUP BY source_key, dataset;`
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (20 November 2026): **reviewed**. The old yearbook URL was outdated, and the current host omits its certificate intermediate. The replacement targets the official archive and uses an independently verified intermediate with hostname verification. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/chile_sernageomin_mining_yearbooks/e8aa867b5ca447c2bddde1ffcd93eb8b4f1c5e41b018ab6bbaa97013b940cb93`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
 
 - [ ] **109. Chile SMA SNIFA environmental compliance** (`chile_sma_snifa_environmental_compliance`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=chile_sma_snifa_environmental_compliance/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/chile_sma_snifa_environmental_compliance/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'chile_sma_snifa_environmental_compliance' GROUP BY source_key;`
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'chile_sma_snifa_environmental_compliance' AND contract_version = '2.0.3' AND job_id IN ('af9ae09671940c511d3e3bc4a518f615cfc24a48bc317215cc3030465516136a','d86127d8c10b8cd68c2eaa84ac153f79ad30950fd90275b09892450296ce1ce7') GROUP BY source_key, dataset;`
 
-- [ ] **110. Peru MINEM mining bulletins and yearbooks** (`peru_minem_mining_bulletins_and_yearbooks`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=peru_minem_mining_bulletins_and_yearbooks/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  RM: no S3 bucket
+  SQL: no
+
+  Review (20 November 2026): **partial — verified scope only**. SNIFA’s portal now links directly to the official sanctioning-proceedings export. This covers proceedings. Inspections, final sanctions and regulated-unit records remain separate. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/chile_sma_snifa_environmental_compliance/3f3db18a1c2e46e0b19de3a5b67ef60bb234df5f42ff3eb39362de418898d7a2`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
+
+- [x] **110. Peru MINEM mining bulletins and yearbooks** (`peru_minem_mining_bulletins_and_yearbooks`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/peru_minem_mining_bulletins_and_yearbooks/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
   Recorded raw-data errors: `public_capture_is_discovery_page_only` across 4 failed attempt(s).  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'peru_minem_mining_bulletins_and_yearbooks' GROUP BY source_key;`
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'peru_minem_mining_bulletins_and_yearbooks' AND contract_version = '2.0.3' AND job_id IN ('df5c3ed777d974df3d418302f26866f3e634fa0fbf9b2036fe29f3e364e01d63','103b75840ea294bd9e864a5faaa1e6160242bd9cfcf9668cbd884e5a25fd7461') GROUP BY source_key, dataset;`
 
-- [ ] **111. Argentina SIACAM mining indicators** (`argentina_siacam_mining_indicators`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=argentina_siacam_mining_indicators/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  RM: no S3 bucket
+  SQL: no
+
+  Review (20 November 2026): **reviewed**. The general ministry crawler followed unrelated publication indexes. The replacement follows the official bulletin and yearbook archives and their original spreadsheets and PDFs. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/peru_minem_mining_bulletins_and_yearbooks/8f8be689c6f8ea923a29a46874dd96a194fd5f1f6e7d16b2217c624f29afca2b`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
+
+- [x] **111. Argentina SIACAM mining indicators** (`argentina_siacam_mining_indicators`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/argentina_siacam_mining_indicators/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'argentina_siacam_mining_indicators' GROUP BY source_key;`
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'argentina_siacam_mining_indicators' AND contract_version = '2.0.3' AND job_id IN ('43cd42e19f2f31f8959b214f37364159692ab0b5400db5b68b9b54373785eaa9','7361533edd13fe9637cadf58b049938f4be79f4047544c1b0dbe47225bf540ea') GROUP BY source_key, dataset;`
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (20 November 2026): **reviewed**. The dashboard crawler did not reach the native data. The replacement targets official SIACAM production index, change and lithium CSV exports. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/argentina_siacam_mining_indicators/4b161367716d999ccbcdbce1a79ccb6aad2d52b9b3f51c86aa17b6505cc52c78`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
 
 - [ ] **112. Brazil ANM SIGMINE and Cadastro Mineiro** (`brazil_anm_sigmine_and_cadastro_mineiro`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=brazil_anm_sigmine_and_cadastro_mineiro/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/brazil_anm_sigmine_and_cadastro_mineiro/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
   Recorded raw-data errors: `public_capture_is_discovery_page_only` across 1 failed attempt(s).  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_anm_sigmine_and_cadastro_mineiro' GROUP BY source_key;`
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'brazil_anm_sigmine_and_cadastro_mineiro' AND contract_version = '2.0.3' AND job_id IN ('91ceb522500404270b28a858991663baa837a6ac830799b138408a0addb44fa3','5db72aef6dd1afc03364f7ba5f1c04fe6662d2d368dfb4b34bcfc0104e4bdd10') GROUP BY source_key, dataset;`
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (20 November 2026): **partial — verified scope only**. The old map viewer exposed a discovery page. The replacement targets the current SIGMINE state shapefiles and Cadastro Mineiro CSVs and verifies archive structure and record counts. Older snapshots still need a provider archive. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/brazil_anm_sigmine_and_cadastro_mineiro/3fb8113e02eeb546a519da258d43cbe5ebf225c8952fbb455c2a0c6d3d7638bc`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
 
 - [ ] **113. Peru INGEMMET GEOCATMIN** (`peru_ingemmet_geocatmin`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=peru_ingemmet_geocatmin/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/peru_ingemmet_geocatmin/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'peru_ingemmet_geocatmin' GROUP BY source_key;`
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'peru_ingemmet_geocatmin' AND contract_version = '2.0.3' AND job_id IN ('4e1c42ac882cff2a1061d571f3c6e3101c25e139c9113f224c2c231cd6b7b9b8','a515a4631e9b4e29e554159c7b0c788e9c0e34246b9b2409f9773c9db6a045a7') GROUP BY source_key, dataset;`
+
+  RM: no S3 bucket
+  SQL: no
+
+  Review (20 November 2026): **partial — verified scope only**. The map homepage supplied no features. The official GEOCATMIN query now returns eight Tacna concession features with original attributes and geometry. The wider cadastre and dated snapshots remain open. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/peru_ingemmet_geocatmin/509e41db658f9a2da54d2fbbde185eba6582a4e3f8a996ab3d3334cddc01fd7f`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
 
 - [ ] **114. ImportYeti shipment and supplier relationships** (`importyeti_shipment_and_supplier_relationships`)  
   Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=importyeti_shipment_and_supplier_relationships/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Current collection state: **deferred by owner. No capture route configured.**  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
   Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'importyeti_shipment_and_supplier_relationships' GROUP BY source_key;`
 
+  RM: no S3 bucket
+  SQL: no
+
+  Review (20 November 2026): **deferred by owner**. The owner deferred the paid API. If resumed, shipment and supplier collection requires ImportYeti API access and data credits. [Provider access](https://www.importyeti.com/yeti-api). [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
+
 - [ ] **115. ImportGenius international shipments** (`importgenius_international_shipments`)  
   Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=importgenius_international_shipments/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Current collection state: **deferred by owner. No capture route configured.**  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
   Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'importgenius_international_shipments' GROUP BY source_key;`
 
+  RM: no S3 bucket
+  SQL: no
+
+  Review (20 November 2026): **deferred by owner**. The owner deferred the paid API. If resumed, collection requires an ImportGenius API agreement covering the intended countries and historical periods. [Provider access](https://www.importgenius.com/pricing). [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
+
 - [ ] **116. MarineTraffic historical vessel tracks and port calls** (`marinetraffic_historical_vessel_tracks_and_port_calls`)  
   Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=marinetraffic_historical_vessel_tracks_and_port_calls/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Current collection state: **blocked by provider access. No capture route configured.**  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
   Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'marinetraffic_historical_vessel_tracks_and_port_calls' GROUP BY source_key;`
 
+  RM: no S3 bucket
+  SQL: no
+
+  Review (20 November 2026): **blocked by provider access**. No API credentials or capture route are configured. MarineTraffic needs provisioned historical vessel track and port call access for the intended vessels or ports. [Provider access](https://servicedocs-sm.kpler.com/). [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
+
 - [ ] **117. Kpler commodity cargo flows** (`kpler_commodity_cargo_flows`)  
   Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=kpler_commodity_cargo_flows/`  
-  Current collection state: **enabled — not stopped** (no live restriction returned)  
+  Current collection state: **deferred by owner. No capture route configured.**  
   Recorded raw-data errors: None recorded in the 31 October raw-error inventory.  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
   Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'kpler_commodity_cargo_flows' GROUP BY source_key;`
 
-- [ ] **118. US Census International Trade API** (`us_census_international_trade_api`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=us_census_international_trade_api/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `missing_verified_raw_artifacts:provider_record`  
+  RM: no S3 bucket
+  SQL:
+
+  Review (20 November 2026): **deferred by owner**. The owner deferred the paid API. If resumed, collection requires Kpler commodity cargo flow access and API credentials. [Provider access](https://help.kpler.com/en/articles/6022217-kpler-api-and-sdk-introduction). [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
+
+- [x] **118. US Census International Trade API** (`us_census_international_trade_api`)  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/us_census_international_trade_api/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
   Recorded raw-data errors: `missing_verified_raw_artifacts:provider_record` (latest live failure only).  
   Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'us_census_international_trade_api' GROUP BY source_key;`
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'us_census_international_trade_api' AND contract_version = '2.0.3' AND job_id IN ('dab7bbffa21a5522e61aa6766eff59ce9be3bddd9ca1cae9832b1e4fce7a262c','ab97940b3f0829f9f6e0ee358d4776053c1069e2963677bd1bf5f96b8a6a69fa') GROUP BY source_key, dataset;`
+
+  RM: yes
+  SQL:
+
+  Review (20 November 2026): **reviewed**. The collectors saved real Census responses, but the generic metadata validator rejected the tabular JSON. The repaired validator matches each exact native row, checks the repeated predicate columns and preserves reported zeros and query scope. During this review, a separate daily API request timed out and was scheduled to retry on 21 November at 06:45 Madrid time. Historical periods the Census API has yet to release remain open. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/source_documents/us_census_international_trade_api/2479968c51a3ffe93cf780eac3a3a84b0a56e8942d22f5261ed9c2cf3880352e`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
 
 - [ ] **119. Eurostat Comext goods trade** (`eurostat_comext_goods_trade`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=eurostat_comext_goods_trade/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/eurostat_comext_goods_trade/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
   Recorded raw-data errors: `public_capture_is_discovery_page_only` across 7 failed attempt(s).  
   Current raw processing: Archives native observations with dimensions, units, flags, and timestamps; extracts normalized measurements for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'eurostat_comext_goods_trade' GROUP BY source_key;`
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'eurostat_comext_goods_trade' AND contract_version = '2.0.3' AND job_id IN ('3530641dbab19d3a8f5b9268f8eb058b621be7fe558f98b6b2f38e2a1acc4d28','bc731ebfa40fcb4f6b97f81a2568f11bd041c6de0e1332f926272493c2939a1f') GROUP BY source_key, dataset;`
+
+  RM: no S3 bucket
+  SQL"
+
+  Review (20 November 2026): **partial — verified scope only**. The previous SQL sample came from a methodology PDF. The replacement uses the official Comext endpoint and preserves native euro values and any returned flags. The initial scope is Germany–US trade for four HS6 products. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/eurostat_comext_goods_trade/3da39c963d1af3bbdbd2b8aabdcf70183f3006677bddb0c7678dde6df94a566f`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
 
 - [ ] **120. Climate TRACE industrial assets and activity** (`climate_trace_industrial_assets_and_activity`)  
-  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/raw/source=climate_trace_industrial_assets_and_activity/`  
-  Current collection state: **raw_stopped** — 4 consecutive raw failures; latest: `public_capture_is_discovery_page_only`  
+  Raw S3: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/climate_trace_industrial_assets_and_activity/` (original provider objects).  
+  Current collection state: **enabled. Daily capture, historical capture and metadata publication verified for the scope below.**  
   Recorded raw-data errors: `public_capture_is_discovery_page_only` (latest live failure only).  
   Current raw processing: Archives the unmodified provider record; extracts source identity, retrieval provenance, and normalized source-record fields for ``.  
-  Athena SQL: `SELECT source_key, count(*) AS observations, count(DISTINCT raw_s3_uri) AS linked_raw_objects, count_if(raw_completeness_status = 'complete') AS complete_raw_observations, min(ingested_at) AS first_ingested_at, max(ingested_at) AS latest_ingested_at FROM optima_metadata_engine.source_observations WHERE source_key = 'climate_trace_industrial_assets_and_activity' GROUP BY source_key;`
+  Athena SQL: `SELECT source_key, dataset, count(*) AS observations, min(json_extract_scalar(labelled_json, '$.raw_artifacts[1].s3_uri')) AS provider_original FROM optima_metadata_engine.source_observations WHERE source_key = 'climate_trace_industrial_assets_and_activity' AND contract_version = '2.0.3' AND job_id IN ('52e293acf53231481d6c6bca8177fe8ae662370749bb8541000b4d209fa985d5','f3e637faa61a5530ed1c88d9b5dc548c524d0176fe7a117b21ebb10d4a22f2f0') GROUP BY source_key, dataset;`
+
+  RM: no S3 bucket
+  SQL:
+
+  Review (20 November 2026): **partial — verified scope only**. The download page was treated as input data. The replacement uses annual native emissions and activity records for five selected iron and steel assets. Broader industrial coverage remains open. Verified raw example: `s3://data-collection-059416028963-us-east-1-an/research-data/constellation-backfill/public-capture/objects/climate_trace_industrial_assets_and_activity/977f5f77eab402a2c93b0a64bca26404246ed2b5c699475e865b801c194ce9b7`. [Review evidence](repair-notes/2026-11-20-entries-106-120/review-status.json).
 
 ### Day 9 — Thursday — 19 November 2026 (15 catalog entries)
 

@@ -1,0 +1,287 @@
+[
+  {
+    "id": "MIIT",
+    "expected_section": "C",
+    "top_class_titles": [
+      {
+        "code": "C2619",
+        "title": "Manufacture of other electronic components and boards",
+        "score": 11.036
+      },
+      {
+        "code": "C3313",
+        "title": "Repair and maintenance of electronic and optical equipment",
+        "score": 6.933
+      },
+      {
+        "code": "G4652",
+        "title": "Wholesale of electronic and telecommunications equipment and parts",
+        "score": 6.933
+      },
+      {
+        "code": "C2640",
+        "title": "Manufacture of consumer electronics",
+        "score": 5.589
+      },
+      {
+        "code": "C2732",
+        "title": "Manufacture of other electronic and electric wires and cables",
+        "score": 5.589
+      }
+    ]
+  },
+  {
+    "id": "IFR",
+    "expected_section": null,
+    "top_class_titles": [
+      {
+        "code": "K6290",
+        "title": "Other information technology and computer service activities",
+        "score": 5.447
+      },
+      {
+        "code": "C1701",
+        "title": "Manufacture of pulp, paper and paperboard",
+        "score": 4.754
+      },
+      {
+        "code": "C1702",
+        "title": "Manufacture of corrugated paper and paperboard and of containers of paper and paperboard",
+        "score": 4.754
+      },
+      {
+        "code": "C1709",
+        "title": "Manufacture of other articles of paper and paperboard",
+        "score": 4.754
+      }
+    ]
+  },
+  {
+    "id": "IEA",
+    "expected_section": null,
+    "top_class_titles": [
+      {
+        "code": "A0119",
+        "title": "Growing of other non-perennial crops",
+        "score": 1.686
+      },
+      {
+        "code": "A0125",
+        "title": "Growing of other tree and bush fruits and nuts",
+        "score": 1.686
+      },
+      {
+        "code": "A0129",
+        "title": "Growing of other perennial crops",
+        "score": 1.686
+      },
+      {
+        "code": "A0142",
+        "title": "Raising of horses and other equines",
+        "score": 1.686
+      },
+      {
+        "code": "A0149",
+        "title": "Raising of other animals",
+        "score": 1.686
+      }
+    ]
+  },
+  {
+    "id": "CAPES",
+    "expected_section": null,
+    "top_class_titles": []
+  },
+  {
+    "id": "battery_factory",
+    "expected_section": "C",
+    "top_class_titles": [
+      {
+        "code": "C2611",
+        "title": "Manufacture of solar cells, solar panels and photovoltaic inverters",
+        "score": 5.447
+      },
+      {
+        "code": "C2720",
+        "title": "Manufacture of batteries and accumulators",
+        "score": 5.447
+      },
+      {
+        "code": "C3290",
+        "title": "Other manufacturing n.e.c.",
+        "score": 5.447
+      },
+      {
+        "code": "G4711",
+        "title": "Non-specialized retail sale with food, beverages or tobacco predominating",
+        "score": 2.962
+      },
+      {
+        "code": "G4719",
+        "title": "Other non-specialized retail sale",
+        "score": 2.962
+      }
+    ]
+  },
+  {
+    "id": "solar_constructor",
+    "expected_section": "F",
+    "top_class_titles": [
+      {
+        "code": "A0150",
+        "title": "Mixed farming",
+        "score": 5.447
+      },
+      {
+        "code": "C2611",
+        "title": "Manufacture of solar cells, solar panels and photovoltaic inverters",
+        "score": 5.447
+      },
+      {
+        "code": "F4220",
+        "title": "Construction of utility projects",
+        "score": 5.447
+      }
+    ]
+  },
+  {
+    "id": "solar_operator",
+    "expected_section": "D",
+    "top_class_titles": [
+      {
+        "code": "A0150",
+        "title": "Mixed farming",
+        "score": 5.447
+      },
+      {
+        "code": "C2611",
+        "title": "Manufacture of solar cells, solar panels and photovoltaic inverters",
+        "score": 5.447
+      },
+      {
+        "code": "C2710",
+        "title": "Manufacture of electric motors, generators, transformers and electricity distribution and control apparatus",
+        "score": 5.447
+      }
+    ]
+  },
+  {
+    "id": "solar_wholesaler",
+    "expected_section": "G",
+    "top_class_titles": [
+      {
+        "code": "C2611",
+        "title": "Manufacture of solar cells, solar panels and photovoltaic inverters",
+        "score": 5.447
+      },
+      {
+        "code": "K6120",
+        "title": "Telecommunication reselling\u00a0activities\u00a0and intermediation service\u00a0activities\u00a0for telecommunication",
+        "score": 5.447
+      },
+      {
+        "code": "G4610",
+        "title": "Wholesale on a fee or contract basis",
+        "score": 3.195
+      },
+      {
+        "code": "G4620",
+        "title": "Wholesale of agricultural raw materials and live animals",
+        "score": 3.195
+      },
+      {
+        "code": "G4630",
+        "title": "Wholesale of food, beverages and tobacco",
+        "score": 3.195
+      }
+    ]
+  },
+  {
+    "id": "insurer",
+    "expected_section": "L",
+    "top_class_titles": [
+      {
+        "code": "M6810",
+        "title": "Real estate activities with own or leased property",
+        "score": 5.041
+      },
+      {
+        "code": "O7740",
+        "title": "Leasing of intellectual property and similar products, except copyrighted works",
+        "score": 5.041
+      },
+      {
+        "code": "L6499",
+        "title": "Other financial service activities n.e.c., except insurance and pension funding activities",
+        "score": 4.194
+      },
+      {
+        "code": "L6511",
+        "title": "Life insurance",
+        "score": 4.194
+      },
+      {
+        "code": "L6512",
+        "title": "Non-life insurance",
+        "score": 4.194
+      }
+    ]
+  },
+  {
+    "id": "math_operator",
+    "expected_section": null,
+    "top_class_titles": [
+      {
+        "code": "O7912",
+        "title": "Tour operator activities",
+        "score": 5.447
+      },
+      {
+        "code": "C1701",
+        "title": "Manufacture of pulp, paper and paperboard",
+        "score": 4.754
+      },
+      {
+        "code": "C1702",
+        "title": "Manufacture of corrugated paper and paperboard and of containers of paper and paperboard",
+        "score": 4.754
+      },
+      {
+        "code": "C1709",
+        "title": "Manufacture of other articles of paper and paperboard",
+        "score": 4.754
+      }
+    ]
+  },
+  {
+    "id": "solar_plan",
+    "expected_section": null,
+    "top_class_titles": [
+      {
+        "code": "C1610",
+        "title": "Sawmilling and planing of wood",
+        "score": 5.447
+      },
+      {
+        "code": "C2611",
+        "title": "Manufacture of solar cells, solar panels and photovoltaic inverters",
+        "score": 5.447
+      },
+      {
+        "code": "D3511",
+        "title": "Electric power generation activities from non-renewable sources",
+        "score": 5.041
+      },
+      {
+        "code": "D3512",
+        "title": "Electric power generation activities from renewable sources",
+        "score": 5.041
+      },
+      {
+        "code": "K6220",
+        "title": "Computer consultancy and computer facilities management activities",
+        "score": 4.53
+      }
+    ]
+  }
+]

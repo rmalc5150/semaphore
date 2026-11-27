@@ -140,7 +140,12 @@ class Client:
                         with self.opener(Request(target, headers={'Accept': 'application/pdf'}), timeout=45) as response:
                             raw = read_response(response, limit)
                     except HTTPError as download_error:
-                        raise SourceIssue(f'document_http_{download_error.code}') from None
+                        # Keep the original public document identity, never the
+                        # signed redirect's query or either request's headers.
+                        raise SourceIssue(f'document_http_{download_error.code}', diagnostics={
+                            'host': parts.hostname, 'path': parts.path,
+                            'download_host': location.hostname,
+                            'http_status': download_error.code, 'operation': 'document'}) from None
                     except (URLError, TimeoutError):
                         raise SourceIssue('document_network_error', True) from None
                     require(raw.startswith(b'%PDF-'), 'invalid_pdf_response')

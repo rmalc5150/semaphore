@@ -1,0 +1,10 @@
+Subject: Confirm daily allowance and HTTP 429 for SAM.gov Opportunities API
+
+I use an individual SAM.gov account for Optima. Please confirm my current daily request allowance for:
+https://api.sam.gov/opportunities/v2/search
+
+On November 23, 2026, our controller recorded its 11th shared request and received HTTP 429. Our precise account role/allowance is unconfirmed; we have conservatively capped collection at 10 requests per UTC day pending clarification. We retain checkpoints and do not retry around the limit.
+
+Please confirm the quota/reset period and whether legitimate entity association or a non-federal system account is the appropriate supported route for our intended automated public-opportunity collection. A replacement key is not being requested unless needed for the supported account route.
+
+I will provide account details through your secure support process. No API key is included here.

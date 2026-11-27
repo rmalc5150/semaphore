@@ -1,0 +1,11 @@
+[Unit]
+Description=Schedule historical research metadata collection for %i
+
+[Timer]
+OnBootSec=4min
+OnUnitInactiveSec=1min
+AccuracySec=10s
+Unit=constellation-research-history@%i.service
+
+[Install]
+WantedBy=timers.target

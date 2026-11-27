@@ -1,0 +1,5 @@
+{"report_key": "constellation-backfill/public-capture/daily-receipts/fb10108b358c4c0ea09af51acfe5bbfa.json", "public_capture_summary": {"source": "fixture", "mode": "historical", "captured_urls": 0, "remaining_urls": 1, "failed_urls": 1}}
+----------------------------------------------------------------------
+Ran 93 tests in 0.279s
+
+OK

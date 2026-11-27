@@ -11,7 +11,6 @@ GROUPS = [
  ('eodhd',[2,3],'stored','API token','Use existing EODHD secret; verify historic/delisted-security entitlement.','https://eodhd.com/financial-apis/'),
  ('edinet',[8],'stored','Subscription key','Use existing EDINET key.','https://disclosure2dl.edinet-fsa.go.jp/guide/static/disclosure/WZEK0110.html'),
  ('finlight',[11],'stored','API key','Use existing finlight-api-key in newKeys; archive availability is separate.','https://docs.finlight.me/'),
- ('marketaux',[12],'paused_stored','API token','Already stored. Keep paused; do not renew or reactivate for this task.','https://www.marketaux.com/documentation'),
  ('openfda',[17,18],'stored_optional','Optional API key','Existing FDA secret is configured; optional for basic requests, useful for quota.','https://open.fda.gov/apis/authentication/'),
  ('fda_dashboard',[32,33,34,35],'stored','Authorization user + key','One existing FDA-Data credential pair covers these dashboard routes.','https://datadashboard.fda.gov/ora/api/'),
  ('fda_enforcement',[36],'stored','Authorization user + key','Existing FDA-Enforcement credential pair.','https://www.accessdata.fda.gov/scripts/ires/'),
@@ -32,7 +31,6 @@ GROUPS = [
  ('ucdp',[78],'obtain','Access token','Request API access from the maintainer using the instructions in the official documentation. Do not assume older anonymous examples still work.','https://ucdp.uu.se/apidocs/'),
  ('nice',[88],'obtain','Syndication API key and content licence','Apply for reuse/API access describing this commercial financial research use. Public webpages are a separate route.','https://www.nice.org.uk/reusing-our-content/nice-syndication-api'),
  ('opendart',[98],'obtain','Authentication key','Register at OpenDART and request an authentication key.','https://engopendart.fss.or.kr/uss/umt/EgovMberInsertView.do'),
- ('kosis',[99],'obtain','KOSIS OpenAPI key','Apply for the KOSIS authentication key; a different data.go.kr route can have a different service key.','https://kosis.kr/openapi/'),
  ('census',[118],'obtain','Census API key','Request and activate a Census key. Plan a keyed production collector; older keyless examples are not an access guarantee.','https://api.census.gov/data/key_signup.html'),
  ('usda_fas',[125],'obtain','FAS API key','Sign in to the FAS data portal and retrieve the PSD/Open Data API key.','https://apps.fas.usda.gov/opendataweb/home'),
  ('meta_ads',[131],'obtain','App credentials and access token','Complete Meta developer/identity and Ad Library access steps; obtain the token for the approved Ad Library scope.','https://www.facebook.com/ads/library/api/'),
@@ -78,6 +76,8 @@ def build():
     rows=[]
     for entry in registry['sources']:
         n=entry['catalog_entry']
+        if n>158:
+            continue
         access=by_entry.get(n)
         if not access:
             if n not in PUBLIC:raise ValueError('Missing catalog row '+str(n))
@@ -99,14 +99,14 @@ def build():
 def main():
     rows=build()
     summary=dict(Counter(g[2] for g in GROUPS))
-    result={'checked_on':'2026-10-26','catalog_entries':158,'credential_group_counts':summary,'values_included':False,
+    result={'checked_on':'2026-10-26','catalog_entries':len(rows),'credential_group_counts':summary,'values_included':False,
         'scope':'Existing config/Secrets Manager presence plus current official access documentation. Presence does not verify token validity, historic entitlement or commercial ML rights.',
         'groups':[dict(zip(('group','catalog_entries','status','credential','action','reference'),g)) for g in GROUPS], 'sources':rows}
     (ROOT/'config/source-access-requirements.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
     with (ROOT/'constellation/source-access-requirements.csv').open('w') as f:
         writer=csv.DictWriter(f,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
     lines=['# API credentials and access checklist — October 26, 2026','',
-        'This is a checklist for all 158 catalog entries, not a request for 158 or 90 separate API keys. Entries share credentials; many selected public download routes need none. No secret values are included.',
+        f'This is a checklist for the {len(rows)} original catalogue entries still in scope. Entries share credentials and many public download routes need none. The list contains no secret values.',
         '',f"There are **{summary.get('obtain',0)} new priority credential/account groups**, **{summary.get('commercial_conditional',0)} commercial or conditional groups**, and **{summary.get('optional',0)} optional upgrade groups**. Some priority groups require app approval or a licence, rather than a single key. WTO product subscriptions can issue separate keys. Existing credentials and intentional pauses are listed separately.",
         '', '“New” means not configured in the audited integration secrets; use a credential you already own elsewhere if appropriate. Stored means a nonempty field was found, not that a new authentication or entitlement test passed. Public-route classifications do not certify a public API, historical completeness or commercial reuse rights.',
         '', '## Obtain or locate these credentials first','', '| Provider / catalog rows | Obtain | Action / official instructions |','|---|---|---|']
@@ -123,7 +123,7 @@ def main():
     for row in rows:
         ref=row['reference'];link=f"[Source]({ref})" if ref.startswith('https://') else ref
         lines.append(f"| {row['catalog_entry']} | {row['source_name']} | {row['credential']} ({row['access_status']}) | {row['action']} {link} |")
-    lines+=['','Store acquired values in AWS Secrets Manager; do not paste keys into this document or commit them to source files. Request only needed read access. Key acquisition does not authorize restarting Marketaux, Reddit, Bluesky or GitHub.', '', '## Important current access details','',
+    lines+=['','Store acquired values in AWS Secrets Manager; do not paste keys into this document or commit them to source files. Request only needed read access. Key acquisition does not authorize restarting Reddit, Bluesky or GitHub.', '', '## Important current access details','',
         '- [OpenAlex authentication](https://help.openalex.org/api/authentication/): a verified key is required for cursor paging beyond the first page.',
         '- [UCDP API](https://ucdp.uu.se/apidocs/): token access is now required; older anonymous examples are obsolete.',
         '- [CMS Coverage API](https://api.coverage.cms.gov/docs/): no API key, with separate licensing tokens on some routes.',

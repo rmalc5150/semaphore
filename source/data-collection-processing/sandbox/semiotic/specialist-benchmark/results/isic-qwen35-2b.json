@@ -1,0 +1,71 @@
+{
+  "model": "qwen35-2b",
+  "rows": [
+    {
+      "case": "MIIT",
+      "status": "candidate",
+      "code": "C",
+      "seconds": 5.289
+    },
+    {
+      "case": "IFR",
+      "status": "candidate",
+      "code": "N",
+      "seconds": 4.427
+    },
+    {
+      "case": "IEA",
+      "status": "candidate",
+      "code": "V",
+      "seconds": 5.02
+    },
+    {
+      "case": "CAPES",
+      "status": "abstained",
+      "code": null,
+      "seconds": 4.002
+    },
+    {
+      "case": "battery_factory",
+      "status": "candidate",
+      "code": "G",
+      "seconds": 5.543
+    },
+    {
+      "case": "solar_constructor",
+      "status": "candidate",
+      "code": "M",
+      "seconds": 4.912
+    },
+    {
+      "case": "solar_operator",
+      "status": "candidate",
+      "code": "D",
+      "seconds": 5.363
+    },
+    {
+      "case": "solar_wholesaler",
+      "status": "candidate",
+      "code": "G",
+      "seconds": 5.253
+    },
+    {
+      "case": "insurer",
+      "status": "candidate",
+      "code": "L",
+      "seconds": 3.582
+    },
+    {
+      "case": "math_operator",
+      "status": "candidate",
+      "code": "N",
+      "seconds": 4.901
+    },
+    {
+      "case": "solar_plan",
+      "status": "candidate",
+      "code": "F",
+      "seconds": 4.966
+    }
+  ]
+}

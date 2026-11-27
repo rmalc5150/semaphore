@@ -3,7 +3,7 @@ import base64,hashlib,json,shlex
 from pathlib import Path
 from constellation.control import Control
 ROOT=Path(__file__).resolve().parents[2]
-FILES=('public_source_capture.py','specialist_inputs.py','specialist_plan.py','additional_source_apis.py','additional_source_plan.py','epo_ops.py','credential_source_apis.py','copernicus_capture.py')
+FILES=('provider_publication.py','public_source_capture.py','specialist_inputs.py','specialist_plan.py','additional_source_apis.py','additional_source_plan.py','epo_ops.py','credential_source_apis.py','copernicus_capture.py')
 CONFIG_FILES=('constellation-public-sources.json','constellation-specialist-historical.json','specialist-inputs.json')
 
 def main():

@@ -380,8 +380,11 @@ class CollectionRun:
             prefix = (f"raw/source={self.spec['source']}/dataset={self.spec['dataset']}/"
                       f"ingestion_date={day}/run_id={self.run_id}")
             key = f"{prefix}/page-{sequence:08d}-part-{len(batches):05d}-{checksum}.jsonl"
-            write_checked(self.store, key, body, content_type="application/x-ndjson")
-            batches.append({"key": key, "sha256": checksum, "bytes": len(body), "records": len(lines)})
+            token = write_checked(self.store, key, body, content_type="application/x-ndjson")
+            batch = {"key": key, "sha256": checksum, "bytes": len(body), "records": len(lines)}
+            if self.spec["mode"] == "daily" and isinstance(self.store, S3Store):
+                batch["etag"] = token
+            batches.append(batch)
             lines, size = [], 0
 
         for record in records:
@@ -463,10 +466,18 @@ class CollectionRun:
         if (self.spec['mode']=='daily' and os.environ.get('METADATA_ENGINE_NOTIFY')=='1'
                 and isinstance(self.store,S3Store)):
             try:
+                batch_refs = [(self.store._args(batch['key'])['Key'], batch.get('etag'))
+                              for page in self.state['pages'] for batch in page['batches']]
                 notice={'source':self.spec['source'],'mode':'daily','manifest_key':self.store._args(key)['Key'],
-                    'batches':[self.store._args(batch['key'])['Key'] for page in self.state['pages'] for batch in page['batches']]}
+                    'batches':[key for key, _ in batch_refs]}
+                # Keep the immutable notice identity stable across producer versions.
                 intake='research-data/constellation-backfill/metadata-engine/runtime-v2/intake/'+now()[:10]+'/'+digest(notice)+'.json'
-                self.store.client.put_object(Bucket=self.store.bucket,Key=intake,Body=canonical_json(notice),
+                etags = {key:etag for key,etag in batch_refs if etag}
+                body = canonical_json({**notice,'batch_etags':etags}) if etags else canonical_json(notice)
+                if len(body) > 1024*1024:
+                    # Older readers have the same 1 MiB notice read limit.
+                    body = canonical_json(notice)
+                self.store.client.put_object(Bucket=self.store.bucket,Key=intake,Body=body,
                     ContentType='application/json',ServerSideEncryption='AES256',IfNoneMatch='*')
             except Exception as error:
                 import logging

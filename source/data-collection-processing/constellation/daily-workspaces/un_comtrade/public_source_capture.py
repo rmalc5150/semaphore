@@ -15,11 +15,13 @@ import uuid
 import boto3
 import requests
 from constellation.shared_limits import admit
+from constellation.s3_integrity import put_immutable_checked, verify_readback
 
 ROOT = Path(__file__).resolve().parent
 BUCKET = 'data-collection-059416028963-us-east-1-an'
 PREFIX = 'research-data/constellation-backfill/public-capture'
 MAX_BYTES = 128 * 1024**2
+SINGLE_PART_LIMIT = 8 * 1024**2
 DOCUMENT = re.compile(r'\.(?:pdf|csv|zip|xlsx?|json|xml|rds|gz)(?:$|\?)', re.I)
 ARCHIVE = re.compile(r'archive|histor|publication|report|download|document|dataset|annual|yearbook|bulletin|statistics|data|20(?:1[6-9]|2[0-6])|[?&](?:page|offset)=', re.I)
 FORBIDDEN = re.compile(r'login|logout|sign.?in|register|checkout|subscribe|password|oauth', re.I)
@@ -147,12 +149,14 @@ def capture(s3, source, entry, mode):
                 if not source.get('decodo') or used_decodo:raise ValueError('public_challenge_unresolved')
                 body=rendered(url);used_decodo=True;size=len(body);first=body[:8192];checksum=hashlib.sha256(body);file.seek(0);file.truncate();file.write(body);media='text/html; charset=utf-8'
             key = PREFIX + '/objects/' + source['source'] + '/' + checksum.hexdigest()
-            file.flush(); s3.upload_file(file.name, BUCKET, key, ExtraArgs={'ServerSideEncryption': 'AES256', 'ContentType': media})
-            verified = s3.get_object(Bucket=BUCKET, Key=key); actual = hashlib.sha256()
-            try:
-                for chunk in verified['Body'].iter_chunks(128 * 1024): actual.update(chunk)
-            finally: verified['Body'].close()
-            if actual.hexdigest() != checksum.hexdigest(): raise ValueError('public_readback_checksum_mismatch')
+            file.flush()
+            if size < SINGLE_PART_LIMIT:
+                file.seek(0)
+                put_immutable_checked(s3, BUCKET, key, file, media, checksum.hexdigest(), size=size,
+                                      mismatch='public_readback_checksum_mismatch')
+            else:
+                s3.upload_file(file.name, BUCKET, key, ExtraArgs={'ServerSideEncryption': 'AES256', 'ContentType': media})
+                verify_readback(s3, BUCKET, key, checksum.hexdigest(), mismatch='public_readback_checksum_mismatch')
             file.seek(0); links = discover(file.read(min(size, 8 * 1024**2)), url, source, entry['depth']) if (html or source.get('catalog_index')) else []
     record = {'source': source['source'], 'catalog_entry': source['catalog_entry'], 'mode': mode, 'retrieved_at': stamp(), 'source_url': url,
               'artifact_uri': 's3://' + BUCKET + '/' + key, 'sha256': checksum.hexdigest(), 'bytes': size, 'media_type': media,

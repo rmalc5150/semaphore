@@ -9,17 +9,25 @@ import os
 from pathlib import Path
 import re
 import tempfile
+import time
 from urllib.parse import urljoin, urlsplit, urlunsplit
 import uuid
 
 import boto3
 import requests
 from constellation.shared_limits import admit
+from constellation.s3_integrity import put_immutable_checked, verify_readback
+from public_source_scope import in_scope,canonical_link,decoded_response,REGIONAL_KEYS,STRICT_NATIVE_ROUTES,HKEX_QUOTATION,verify_expected_asset
+from provider_tls import ca_bundle_for
+from provider_publication import from_path as publication_from_path
+from trade_mining_sources import MDIC, SOURCES as TRADE_MINING_SOURCES
 
 ROOT = Path(__file__).resolve().parent
 BUCKET = 'data-collection-059416028963-us-east-1-an'
 PREFIX = 'research-data/constellation-backfill/public-capture'
 MAX_BYTES = 128 * 1024**2
+MAX_CAPES_CSV_BYTES = 768 * 1024**2
+SINGLE_PART_LIMIT = 8 * 1024**2
 DOCUMENT = re.compile(r'\.(?:pdf|csv|zip|xlsx?|json|xml|rds|gz)(?:$|\?)', re.I)
 ARCHIVE = re.compile(r'archive|histor|publication|report|download|document|dataset|annual|yearbook|bulletin|statistics|data|20(?:1[6-9]|2[0-6])|[?&](?:page|offset)=', re.I)
 FORBIDDEN = re.compile(r'login|logout|sign.?in|register|checkout|subscribe|password|oauth', re.I)
@@ -62,17 +70,49 @@ class Links(HTMLParser):
 
 def discover(body, url, source, depth):
     if depth >= source.get('max_depth', 3): return []
+    if source['source'] in TRADE_MINING_SOURCES and source.get('scoped_trade_mining'):
+        from trade_mining_sources import discover as discover_native_archives
+        return discover_native_archives(body,url,source['source'],depth)
+    if source['source']in REGIONAL_KEYS:
+        from regional_source_review import discover as regional_discover
+        return regional_discover(body,url,source,depth)
+    if source['source']=='semi_worldwide_equipment_billings'and urlsplit(url).hostname=='www.seaj.or.jp'and urlsplit(url).path=='/english/statistics/index.html':
+        found=[]
+        for row in re.findall(r'<tr\b[^>]*>(.*?)</tr>',body.decode('utf-8',errors='replace'),re.I|re.S):
+            if not re.search(r'world\s*wide.*SEMS',row,re.I):continue
+            parser=Links();parser.feed(row)
+            for href in parser.links:
+                target=canonical_link(href,url,source)
+                if allowed(target,source)and in_scope(target,source):found.append({'url':target,'depth':depth+1})
+        return sorted(found,key=lambda r:r['url'])
+    if source['source']=='france_has_medicine_assessment_opinions'and '/url-has-'in urlsplit(url).path.lower()and urlsplit(url).path.lower().endswith('.csv'):
+        import csv,io
+        try:text=body.decode('utf-8-sig')
+        except UnicodeDecodeError:text=body.decode('cp1252')
+        rows=csv.reader(io.StringIO(text),delimiter=';',quotechar='$'if text.lstrip().startswith('$')else '"');found=[];seen=set()
+        for row in rows:
+            for value in row:
+                target=value.strip()
+                if target.startswith('https://')and allowed(target,source)and in_scope(target,source,discovery=True)and target not in seen:found.append(target);seen.add(target)
+        return [{'url':target,'depth':depth+1}for target in found]
+    if source.get('source') == 'doe_storage_program':
+        # Follow storage content and its linked originals, rather than DOE's
+        # site-wide navigation into unrelated history and administrative files.
+        from doe_storage_enrichment import parse_document
+        document = parse_document(body, url)
+        return [{'url': link['url'], 'depth': depth + 1} for link in document['links']
+                if allowed(link['url'], source)]
     # data.gouv.fr dataset endpoints expose the authoritative download URLs in
     # JSON rather than anchor tags.  Treat that response as an index only and
     # enqueue the actual published resources, including their CDN host.
-    if source.get('catalog_index'):
+    if source.get('catalog_index')and body.lstrip().startswith(b'{'):
         try:
             data=json.loads(body)
             resources=data.get('resources', [])
             found=[]
             for resource in resources:
                 target=resource.get('url') if isinstance(resource,dict) else None
-                if isinstance(target,str) and allowed(target,source):
+                if isinstance(target,str) and allowed(target,source)and in_scope(target,source,discovery=True):
                     found.append({'url':target,'depth':depth+1})
             return sorted(found,key=lambda r:r['url'])
         except (ValueError,UnicodeError,AttributeError):
@@ -80,9 +120,13 @@ def discover(body, url, source, depth):
     parser = Links(); parser.feed(body.decode('utf-8', errors='replace'))
     found = []
     for href in parser.links:
-        p = urlsplit(urljoin(url, href)); target = urlunsplit((p.scheme, p.netloc, p.path, p.query, ''))
-        if allowed(target, source) and (DOCUMENT.search(target) or ARCHIVE.search(target)):
+        p = urlsplit(canonical_link(href,url,source)); target = urlunsplit((p.scheme, p.netloc, p.path, p.query, ''))
+        if allowed(target, source)and in_scope(target,source,discovery=True)and (DOCUMENT.search(target)or ARCHIVE.search(target)or source.get('reviewed_document_discovery')):
             found.append({'url': target, 'depth': depth + 1})
+    if source['source'] == 'hkex_prices':
+        reports = [(HKEX_QUOTATION.fullmatch(urlsplit(row['url']).path.lower()), row) for row in found]
+        return [row for _, row in sorted(((m[1], row) for m, row in reports if m),
+                                         key=lambda pair: pair[0], reverse=True)]
     return sorted(found, key=lambda r: (not bool(DOCUMENT.search(r['url'])), r['url']))
 
 
@@ -97,92 +141,228 @@ def read_json(s3, key):
 
 
 def put(s3, key, body, media='application/json', **conditions):
-    s3.put_object(Bucket=BUCKET, Key=key, Body=body, ContentType=media, ServerSideEncryption='AES256', **conditions)
+    return s3.put_object(Bucket=BUCKET, Key=key, Body=body, ContentType=media, ServerSideEncryption='AES256', **conditions)
 
 
-def capture(s3, source, entry, mode):
+def save_checkpoint(s3, key, state, token):
+    response = put(s3, key, encode(state), **({'IfMatch': token} if token else {'IfNoneMatch': '*'}))
+    new_token = response.get('ETag') if response else None
+    if new_token:
+        return new_token
+    saved, new_token = read_json(s3, key)
+    if saved != state or not new_token:
+        raise ValueError('public capture checkpoint changed after write')
+    return new_token
+
+
+def flush_receipts(s3, records):
+    # Keep JSONL files source- and artifact-kind homogeneous for metadata intake.
+    receipt_limit = 1024 * 1024
+    groups = {}
+    for record in records:
+        groups.setdefault(record['artifact_kind'], []).append(encode(record))
+    for lines in groups.values():
+        batch = bytearray()
+        for line in lines:
+            if batch and len(batch) + len(line) > receipt_limit:
+                key = PREFIX + '/athena/' + uuid.uuid4().hex + '.jsonl'
+                put(s3, key, bytes(batch), 'application/x-ndjson')
+                batch.clear()
+            batch.extend(line)
+        if batch:
+            key = PREFIX + '/athena/' + uuid.uuid4().hex + '.jsonl'
+            put(s3, key, bytes(batch), 'application/x-ndjson')
+
+
+def capture(s3, source, entry, mode, *, publish_receipt=True):
     url = entry['url']
+    if source['source']=='france_assurance_maladie_open_medic'and urlsplit(url).path.endswith('/download_file.php'):
+        from open_medic_download import fresh_download
+        url=fresh_download(url)
     if not allowed(url, source): raise ValueError('unreviewed_public_url')
+    strict_native = source['source'] in STRICT_NATIVE_ROUTES
+    if strict_native and not in_scope(url, source, discovery=True): raise ValueError('public_capture_url_outside_source_scope')
     used_decodo = False
+    gateway_representation=None
+    request_details = None
+    native_validation = None
+    scoped_trade_mining = source['source'] in TRADE_MINING_SOURCES and source.get('scoped_trade_mining')
+    if scoped_trade_mining and not in_scope(url,source,discovery=True):
+        raise ValueError('unreviewed_trade_mining_url')
+    if scoped_trade_mining and source['source'] == MDIC:
+        from trade_mining_sources import mdic_request
+        request_url, request_body = mdic_request(url)
+        request_details = {'method': 'POST', 'url': request_url, 'json': request_body}
+    transient_retries=min(1,max(0,int(source.get('http_transient_retries',0))))
     # Redirects are individually checked against the reviewed host list.
     for _ in range(6):
         admit(url)
         try:
-            response = requests.get(url, headers={'User-Agent': 'ConstellationResearch/1.0 (support@optima-holdings.com)', 'Accept': source.get('accept', '*/*')}, stream=True, timeout=(10, 45), allow_redirects=False)
+            options = dict(verify=ca_bundle_for(url), headers={'User-Agent': 'ConstellationResearch/1.0 (support@optima-holdings.com)', 'Accept': source.get('accept', '*/*')}, stream=True, timeout=(10, 45), allow_redirects=False)
+            if request_details:
+                response = requests.post(request_details['url'], json=request_details['json'], **options)
+            else:
+                response = requests.get(url, **options)
         except requests.RequestException:
-            if not source.get('decodo'):raise
+            if not source.get('decodo'):
+                from pdf_proxy_fallback import settings as pdf_settings, eligible as pdf_eligible
+                cfg=pdf_settings()
+                if not (cfg.get('enabled') and source['source'] in cfg.get('allowed_sources',[])
+                        and pdf_eligible(url,'source_retries_exhausted')):raise
             response=requests.Response();response.status_code=503;response._content_consumed=True
+        if response.status_code in (408,500,502,503,504) and transient_retries:
+            retry_after=response.headers.get('Retry-After','2')
+            if retry_after.isdigit() and int(retry_after)>30:
+                response.close();raise ValueError('public_provider_retry_after_pending')
+            response.close();transient_retries-=1;time.sleep(max(2,int(retry_after))if retry_after.isdigit()else 2);continue
         if response.status_code in (301, 302, 303, 307, 308):
             following = urljoin(url, response.headers.get('Location', '')); response.close()
-            if not allowed(following, source): raise ValueError('unreviewed_public_redirect')
+            if (request_details or not allowed(following, source)
+                    or (scoped_trade_mining or strict_native) and not in_scope(following,source,discovery=True)):
+                raise ValueError('unreviewed_public_redirect:'+str(urlsplit(following).hostname))
             url = following; continue
         break
     else: raise ValueError('public_redirect_limit')
     with response:
-        if response.status_code in (403, 429, 503) and source.get('decodo'):
+        from pdf_proxy_fallback import settings as pdf_settings, eligible as pdf_eligible
+        pdf_reason = ('source_pdf_html_response' if response.status_code==200 and
+                      'html' in response.headers.get('Content-Type','').lower()
+                      else 'source_http_'+str(response.status_code))
+        if (pdf_settings().get('enabled') and pdf_eligible(url,pdf_reason)):
+            # The ordinary download (including reviewed redirects) has failed.
+            # Use the shared final-resort path rather than HTML/JSON scraping
+            # of binary PDFs. Its global budget and URL cooldown apply here too.
+            response.close()
+            from collection_storage import StorageSettings
+            from regulatory_collection import EvidenceClient
+            from pdf_proxy_fallback import capture as pdf_capture
+            client=EvidenceClient(StorageSettings.load(ROOT/'config/collection-storage.s3.json').store(),source['source'])
+            body=pdf_capture(client,url,pdf_reason);used_decodo=bool(getattr(client,'_pdf_proxy_requests',0))
+            media='application/pdf';chunks=[body]
+        elif response.status_code in (403, 429, 503) and source.get('decodo') and not urlsplit(url).path.lower().endswith('.pdf'):
             response.close()
             body = rendered(url); used_decodo = True
             if len(body) > MAX_BYTES: raise ValueError('public_asset_too_large')
-            media = 'text/html; charset=utf-8'; chunks = [body]
+            body,media,wrapper=decoded_response(body,url,'text/html; charset=utf-8')
+            if wrapper is not None:
+                sha=hashlib.sha256(wrapper).hexdigest();wrapper_key=PREFIX+'/objects/'+source['source']+'/'+sha;put(s3,wrapper_key,wrapper,'text/plain');gateway_representation={'s3_uri':'s3://'+BUCKET+'/'+wrapper_key,'sha256':sha,'encoding':'base64'}
+            chunks=[body]
         else:
             if response.status_code != 200: raise ValueError('public_http_' + str(response.status_code))
             media = response.headers.get('Content-Type', 'application/octet-stream')
-            if int(response.headers.get('Content-Length', 0)) > MAX_BYTES: raise ValueError('public_asset_too_large')
             chunks = response.iter_content(128 * 1024)
-        # Scratch is RAM, and both per-process and aggregate memory limits apply.
-        scratch=os.environ.get('TMPDIR','/dev/shm')
-        if not (scratch=='/dev/shm' or scratch.startswith('/dev/shm/')):scratch='/dev/shm'
+        capes_csv = source['source'] == 'brazil_capes_theses_and_dissertations' and in_scope(url, source)
+        maximum = MAX_CAPES_CSV_BYTES if capes_csv else MAX_BYTES
+        if int(response.headers.get('Content-Length', 0)) > maximum:
+            raise ValueError('public_asset_too_large')
+        if capes_csv:
+            # Annual thesis CSVs can exceed shared-memory and worker RSS limits.
+            from shutil import disk_usage
+            scratch = '/opt/constellation/tmp' if os.environ.get('CONSTELLATION_ROLE') == 'worker' else str(ROOT)
+            if disk_usage(scratch).free < maximum:
+                raise ValueError('public_capes_insufficient_disk_scratch')
+        else:
+            scratch=os.environ.get('TMPDIR','/dev/shm')
+            if not (scratch=='/dev/shm' or scratch.startswith('/dev/shm/')):scratch='/dev/shm'
         with tempfile.NamedTemporaryFile(dir=scratch) as file:
             checksum = hashlib.sha256(); size = 0; first = b''
             for chunk in chunks:
                 size += len(chunk)
-                if size > MAX_BYTES: raise ValueError('public_asset_too_large')
+                if size > maximum: raise ValueError('public_asset_too_large')
                 if len(first) < 8192: first += chunk[:8192 - len(first)]
                 file.write(chunk); checksum.update(chunk)
             if not size: raise ValueError('public_empty_response')
+            catalog_response=bool(source.get('catalog_index')and('json'in media.lower()or first.lstrip().startswith(b'{')))
             html = 'html' in media.lower() or first.lstrip().lower().startswith((b'<!doctype html', b'<html'))
+            if html and scoped_trade_mining and in_scope(url,source):
+                raise ValueError('original_download_returned_html')
             if source.get('asset_only') and html: raise ValueError('public_download_returned_html')
             if source.get('signature') and not first.startswith(bytes.fromhex(source['signature'])): raise ValueError('public_asset_signature_mismatch')
             if html and challenged(first):
                 if not source.get('decodo') or used_decodo:raise ValueError('public_challenge_unresolved')
-                body=rendered(url);used_decodo=True;size=len(body);first=body[:8192];checksum=hashlib.sha256(body);file.seek(0);file.truncate();file.write(body);media='text/html; charset=utf-8'
+                body=rendered(url);body,rendered_media,wrapper=decoded_response(body,url,'text/html; charset=utf-8');used_decodo=True;
+                if wrapper is not None:
+                    sha=hashlib.sha256(wrapper).hexdigest();wrapper_key=PREFIX+'/objects/'+source['source']+'/'+sha;put(s3,wrapper_key,wrapper,'text/plain');gateway_representation={'s3_uri':'s3://'+BUCKET+'/'+wrapper_key,'sha256':sha,'encoding':'base64'}
+                size=len(body);first=body[:8192];checksum=hashlib.sha256(body);file.seek(0);file.truncate();file.write(body);media=rendered_media;html='html'in media
+            file.flush()
+            if strict_native and in_scope(url, source):
+                native_validation = verify_expected_asset(source['source'], url, file.name, first)
             key = PREFIX + '/objects/' + source['source'] + '/' + checksum.hexdigest()
-            file.flush(); s3.upload_file(file.name, BUCKET, key, ExtraArgs={'ServerSideEncryption': 'AES256', 'ContentType': media})
-            verified = s3.get_object(Bucket=BUCKET, Key=key); actual = hashlib.sha256()
-            try:
-                for chunk in verified['Body'].iter_chunks(128 * 1024): actual.update(chunk)
-            finally: verified['Body'].close()
-            if actual.hexdigest() != checksum.hexdigest(): raise ValueError('public_readback_checksum_mismatch')
-            file.seek(0); links = discover(file.read(min(size, 8 * 1024**2)), url, source, entry['depth']) if (html or source.get('catalog_index')) else []
+            if size < SINGLE_PART_LIMIT:
+                file.seek(0)
+                put_immutable_checked(s3, BUCKET, key, file, media, checksum.hexdigest(), size=size,
+                                      mismatch='public_readback_checksum_mismatch')
+            else:
+                s3.upload_file(file.name, BUCKET, key, ExtraArgs={'ServerSideEncryption': 'AES256', 'ContentType': media})
+                verify_readback(s3, BUCKET, key, checksum.hexdigest(), mismatch='public_readback_checksum_mismatch')
+            if html and source['source'] in REGIONAL_KEYS:
+                file.seek(0)
+                native_body = file.read(4*1024*1024+1)
+            fmt = 'html' if html else 'json' if 'json' in media.lower() or first.lstrip().startswith((b'{', b'[')) else None
+            publication = publication_from_path(source['source'], Path(file.name), fmt)
+            file.seek(0); links = discover(file.read(min(size, 8 * 1024**2)), url, source, entry['depth']) if ((html and not native_validation) or catalog_response or (source['source']=='france_has_medicine_assessment_opinions'and '/url-has-'in urlsplit(url).path.lower())) else []
     record = {'source': source['source'], 'catalog_entry': source['catalog_entry'], 'mode': mode, 'retrieved_at': stamp(), 'source_url': url,
               'artifact_uri': 's3://' + BUCKET + '/' + key, 'sha256': checksum.hexdigest(), 'bytes': size, 'media_type': media,
-              'artifact_kind': 'discovery_page' if (html or source.get('catalog_index')) else 'public_document', 'via_decodo': used_decodo,
+              'artifact_kind': 'discovery_page' if (html or catalog_response) else 'public_document', 'via_decodo': used_decodo,
               'historical_target_start': '2016-01-01', 'historical_coverage': 'not_yet_audited', 'scope_note': source['scope_note']}
+    if native_validation:
+        record.update(artifact_kind='public_document', release_validation=native_validation)
+    if strict_native and response.headers.get('Last-Modified'):
+        record['provider_last_modified'] = response.headers['Last-Modified']
+    if html and source['source']in REGIONAL_KEYS:
+        from regional_source_review import release_info,capture_figures
+        # The whole original remains archived; only a substantive scoped release is a record.
+        info=release_info(source['source'],url,native_body)
+        if info:
+            record['artifact_kind']='public_document';record['release_validation']=info;record['embedded_artifacts']=capture_figures(s3,record,native_body,PREFIX,BUCKET)
+    if publication and record['artifact_kind']=='public_document':
+        record['publication_evidence'] = publication
+    if urlsplit(record['source_url']).hostname=='open-data-assurance-maladie.ameli.fr':
+        from open_medic_download import stable_public_url
+        record['source_url']=stable_public_url(record['source_url'])
+    if gateway_representation:record['gateway_representation']=gateway_representation
+    if request_details:record['provider_request']=request_details
     # Index pages establish crawl state, never a substantive provider record.
     # Do not send them to metadata labelling where they could only fail the raw
     # artifact contract; the linked document gets its own immutable receipt.
-    if record['artifact_kind'] != 'discovery_page' or source.get('publish_discovery_receipts'):
+    if publish_receipt and (record['artifact_kind'] != 'discovery_page' or source.get('publish_discovery_receipts')):
         receipt = PREFIX + '/athena/' + uuid.uuid4().hex + '.jsonl'
         put(s3, receipt, encode(record), 'application/x-ndjson')
     return record, links
 
 
-def run(source, mode, limit=6, s3=None):
+def run(source, mode, limit=6, s3=None, *, batch_receipts=False):
     if source.get('enabled', True) is False:
         raise ValueError('public_source_paused')
     if mode == 'historical' and os.environ.get('CONSTELLATION_ROLE') != 'worker': raise ValueError('historical_capture_requires_c7i')
-    if mode == 'daily' and os.environ.get('CONSTELLATION_ROLE', 'controller') != 'controller': raise ValueError('daily_capture_requires_t3')
+    if mode == 'daily':
+        target=source.get('daily_execution','controller')
+        if os.environ.get('CONSTELLATION_ROLE','controller')!=target:
+            raise ValueError('daily_capture_requires_'+('c7i'if target=='worker'else't3'))
     s3 = s3 or boto3.client('s3', region_name='us-east-1')
+    if source.get('market_workbook'):
+        from market_source_capture import run as run_market
+        return run_market(source['source'], mode, limit, s3)
     # A raw-content revision starts a new immutable crawl frontier without
     # deleting the previous audit trail.  Use it when a former discovery-only
     # route gains a substantive-file acquisition path.
+    if mode=='historical'and source.get('historical_seeds'):source={**source,'seeds':source['historical_seeds']}
+    today = stamp()[:10]
+    if source['source'] in TRADE_MINING_SOURCES and source.get('scoped_trade_mining'):
+        from trade_mining_sources import request_seeds
+        seeds = request_seeds(source['source'],mode,today)
+        if seeds is not None:
+            source = {**source, 'seeds': seeds}
     revision = source.get('raw_content_revision')
     key = PREFIX + '/states/' + mode + '/' + source['source'] + (('/' + revision) if revision else '') + '.json'
     state, token = read_json(s3, key)
-    today = stamp()[:10]
     if state is None or (mode == 'daily' and state.get('day') != today):
-        state = {'day': today, 'frontier': [{'url': u, 'depth': 0} for u in source['seeds']], 'done': {}, 'failures': {}, 'attempts_today': 0}
-    obsolete={r['url'] for r in state['frontier'] if r['depth']==0 and r['url'] not in source['seeds']}
+        done = {}
+        if state and source['source'] == 'brazil_capes_theses_and_dissertations':
+            done = {url: item for url, item in state['done'].items()
+                    if item['kind'] == 'public_document' and in_scope(url, source)}
+        state = {'day': today, 'frontier': [{'url': u, 'depth': 0} for u in source['seeds']], 'done': done, 'failures': {}, 'attempts_today': 0}
+    obsolete={r['url'] for r in state['frontier'] if (r['depth']==0 and r['url'] not in source['seeds'])or not in_scope(r['url'],source,discovery=True)}
     if obsolete:
         state['frontier']=[r for r in state['frontier'] if r['url'] not in obsolete]
         for url in obsolete:
@@ -190,13 +370,18 @@ def run(source, mode, limit=6, s3=None):
     known=set(state['done'])|{r['url'] for r in state['frontier']}
     state['frontier'] += [{'url':u,'depth':0} for u in source['seeds'] if u not in known]
     outcomes = []
+    pending_receipts = []
+    pending_attempts = 0
     if mode == 'daily': limit = min(limit, max(0, 12 - state['attempts_today']))
     for _ in range(limit):
         ready = next((i for i, r in enumerate(state['frontier']) if r.get('retry_after', '') <= stamp()), None)
         if ready is None: break
         entry = state['frontier'].pop(ready); state['attempts_today'] += 1
         try:
-            record, links = capture(s3, source, entry, mode); state['done'][entry['url']] = {'at': record['retrieved_at'], 'sha256': record['sha256'], 'kind': record['artifact_kind']}
+            record, links = capture(s3, source, entry, mode, publish_receipt=not batch_receipts)
+            state['done'][entry['url']] = {'at': record['retrieved_at'], 'sha256': record['sha256'], 'kind': record['artifact_kind']}
+            if batch_receipts and (record['artifact_kind'] != 'discovery_page' or source.get('publish_discovery_receipts')):
+                pending_receipts.append(record)
             state['failures'].pop(entry['url'], None)
             known = set(state['done']) | {r['url'] for r in state['frontier']}
             for row in links:
@@ -207,11 +392,23 @@ def run(source, mode, limit=6, s3=None):
             from datetime import timedelta
             reason = str(error) if type(error) is ValueError or type(error).__name__=='ScrapeError' else type(error).__name__
             state['failures'][entry['url']] = {'at': stamp(), 'reason': reason}
-            entry['retry_after'] = (datetime.now(timezone.utc) + timedelta(hours=24)).isoformat(); state['frontier'].append(entry)
+            default_retry=900 if isinstance(error,requests.RequestException)else 86400
+            retry_seconds=max(300,int(source.get('failure_retry_seconds',default_retry)))
+            entry['retry_after'] = (datetime.now(timezone.utc) + timedelta(seconds=retry_seconds)).isoformat(); state['frontier'].append(entry)
             outcomes.append({'status': 'failed', 'url': entry['url'], 'reason': reason})
+        pending_attempts += 1
+        if not batch_receipts or pending_attempts == 4:
+            flush_receipts(s3, pending_receipts)
+            state['updated_at'] = stamp()
+            token = save_checkpoint(s3, key, state, token)
+            pending_receipts.clear()
+            pending_attempts = 0
+    if pending_attempts:
+        # Publish the receipts before advancing the cursor. A failed flush is
+        # replayable from the preceding checkpoint and cannot skip raw inputs.
+        flush_receipts(s3, pending_receipts)
         state['updated_at'] = stamp()
-        put(s3, key, encode(state), **({'IfMatch': token} if token else {'IfNoneMatch': '*'}))
-        _, token = read_json(s3, key)
+        save_checkpoint(s3, key, state, token)
     report = {'collector': 'public_document_capture', 'source': source['source'], 'catalog_entry': source['catalog_entry'], 'mode': mode,
               'at': stamp(), 'outcomes': outcomes, 'captured_urls': len(state['done']), 'remaining_urls': len(state['frontier']),
               'failed_urls': len(state['failures']), 'route_drained': not state['frontier'],

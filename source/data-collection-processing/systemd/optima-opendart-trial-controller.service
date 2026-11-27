@@ -1,0 +1,12 @@
+[Unit]
+Description=Control the temporary OpenAlex and OpenDART trial worker
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B -m constellation.opendart_trial_schedule
+Environment=AWS_CONFIG_FILE=/dev/null
+TimeoutStartSec=50s

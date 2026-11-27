@@ -115,6 +115,22 @@ class DisclosureTests(unittest.TestCase):
         with self.assertRaisesRegex(SourceIssue,'not_committed'):
             self.read(complete)
 
+    def test_skipped_parent_batching_preserves_budget_cursor_and_later_output(self):
+        from unittest.mock import patch
+        filings=self.collect([page([row(n) for n in range(1,151)])])
+        with patch('disclosure_collection.keep',return_value=False):
+            first=self.derive('documents',[filings['manifest']],max_records=65)
+        m=json.loads(self.store.get(first['manifest']).body)
+        self.assertEqual((first['status'],m['cursor'],m['record_count']),('partial','65',0))
+        entries=self.read(filings);last=entries[-1]['record']['source_url']
+        client=Client(self.store,documents={last:b'<html><body>Full issuer document retained after skipped parent batching.</body></html>'})
+        with patch('disclosure_collection.keep',side_effect=lambda parent,*args:parent['source_url']==last):
+            final=self.derive('documents',[filings['manifest']],client)
+        self.assertEqual((final['status'],final['records']),('complete',1))
+        m=json.loads(self.store.get(final['manifest']).body)
+        self.assertLess(len(m['pages']),10)
+        self.assertEqual(len(self.read(final)),1)
+
     def test_missing_source_or_window_gap_rejected(self):
         result=self.collect([page([row()])])
         _,_,manifests=d.read_inputs(self.store,[result['manifest']],self.universe,self.taxonomy)
@@ -165,6 +181,19 @@ class DisclosureTests(unittest.TestCase):
         self.assertEqual(derived['status'], 'complete')
         self.assertEqual(offline.calls, [])
         self.assertIn('exclusive license', self.read(derived)[0]['record']['payload']['data']['text'])
+
+    def test_hkex_document_snapshot_is_fetched_in_bounded_pages(self):
+        first, second = row(1), row(2)
+        urls = [d.urljoin(d.HKEX_API, item['FILE_LINK']) for item in (first, second)]
+        client = Client(self.store, [page([first], 2), page([first, second], 2)],
+            {url: b'<html><body>Example Robotics issued a detailed disclosure to investors.</body></html>' for url in urls})
+        result = d.collect_hkex(self.store, self.settings, self.universe, self.taxonomy,
+            self.start, self.end, 'historical', page_size=1, client=client)
+        self.assertEqual(result['status'], 'complete')
+        requests = [params['rowRange'] for call in client.calls if isinstance(call, tuple)
+                    for params in [call[1]]]
+        self.assertEqual(requests, [1, 2])
+        self.assertEqual(len(self.read(result)), 2)
 
     def test_hkex_download_failure_resumes_without_metadata_only_success(self):
         source = {**row(), 'FILE_TYPE': 'PDF'}

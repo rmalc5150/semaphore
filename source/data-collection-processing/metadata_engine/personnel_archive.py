@@ -1,6 +1,6 @@
 """Validate derived archive lineage against committed parents and original content."""
 import json,hashlib
-from metadata_engine.evidence import RawFailure,object_bytes
+from metadata_engine.evidence import RawFailure,object_bytes,OversizedArtifact
 
 def require(ok,reason):
     if not ok:raise RawFailure(reason)
@@ -40,7 +40,11 @@ def evidence(record,s3,bucket):
         for ref in parent.get('payload',{}).get('source_evidence',[]):
             if urlsplit(ref.get('source_url','')).hostname not in allowed:continue
             key=ref['key'];key=key if key.startswith('research-data/')else'research-data/'+key
-            data=object_bytes(s3,bucket,key,expected=ref['sha256'])
+            try:data=object_bytes(s3,bucket,key,expected=ref['sha256'])
+            except OversizedArtifact:
+                from metadata_engine.streaming import evidence
+                artifact=evidence(parent,ref,{'allowed_hosts':list(allowed)},s3,bucket,'primary_document')
+                artifact['artifact_kind']='source_content';content.append(artifact);continue
             try:
                 if source=='hkex_news':
                     from hkex_originals import validate_original

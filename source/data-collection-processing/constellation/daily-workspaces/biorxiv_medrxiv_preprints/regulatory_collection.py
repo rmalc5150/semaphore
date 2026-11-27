@@ -51,6 +51,23 @@ class EvidenceClient:
         return raw
 
     def get(self, url, params=None, body=None, api_key=None, no_matches=False, api_key_parameter="api_key", persist=True):
+        candidate = (self.opener is urlopen and persist and not params and body is None
+                     and not api_key and urlsplit(url).path.lower().endswith('.pdf'))
+        try:
+            raw = self._get_direct(url, params, body, api_key, no_matches, api_key_parameter,
+                                   persist=False if candidate else persist)
+            if candidate:
+                require(raw.startswith(b'%PDF-'), 'source_pdf_html_response')
+                return self.save(raw, url, 'application/pdf')
+            return raw
+        except SourceIssue as exc:
+            if candidate and (exc.diagnostics or {}).get('last_http_status') != 429:
+                from pdf_proxy_fallback import settings, eligible, capture
+                if settings().get('enabled') and eligible(url, exc.code):
+                    return capture(self, url, exc.code)
+            raise
+
+    def _get_direct(self, url, params=None, body=None, api_key=None, no_matches=False, api_key_parameter="api_key", persist=True):
         is_fda = urlsplit(url).hostname == 'api.fda.gov'
         opener = self.opener
         if is_fda:
@@ -73,6 +90,7 @@ class EvidenceClient:
                 opener = build_opener(NoRedirect()).open
         if body is not None:
             headers["Content-Type"] = "application/json"
+        last_http_status = None
         for attempt in range(4):
             self.sleep(max(0, 0.3 - (time.monotonic() - self.last_request)))
             self.last_request = time.monotonic()
@@ -88,6 +106,7 @@ class EvidenceClient:
                     media = response.headers.get("Content-Type", "application/octet-stream")
                 return self.save(raw, public_url, media) if persist else raw
             except HTTPError as exc:
+                last_http_status = exc.code
                 if (exc.code == 400 and urlsplit(url).hostname == 'clinicaltrials.gov'
                         and urlsplit(url).path == '/api/v2/studies' and (params or {}).get('pageToken')):
                     error = exc.read(65536)
@@ -120,9 +139,10 @@ class EvidenceClient:
                 if attempt < 3:
                     self.sleep(delay)
             except (URLError, TimeoutError):
+                last_http_status = None
                 if attempt < 3:
                     self.sleep(2 ** attempt)
-        raise SourceIssue("source_retries_exhausted", True)
+        raise SourceIssue("source_retries_exhausted", True, {"last_http_status": last_http_status})
 
     def json(self, *args, **kwargs):
         try:

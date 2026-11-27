@@ -147,7 +147,8 @@ def published_links(raw,url):
 
 def historical_metadata_key(key):
     import os
-    if os.environ.get('CONSTELLATION_SPECIALIST_SCHEDULER_PREFIX'):
+    if (os.environ.get('CONSTELLATION_SPECIALIST_SCHEDULER_PREFIX')
+            or os.environ.get('CONSTELLATION_ROLE') == 'worker'):
         return 'constellation-backfill/source-metadata/'+key
     return key
 

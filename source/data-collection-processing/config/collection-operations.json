@@ -49,5 +49,6 @@
     "news": "Shared historical/daily migration pending.",
     "market-prices": "Shared historical/daily migration pending.",
     "people-movements": "Shared historical/daily migration pending."
-  }
+  },
+  "daily_gap_continuation": true
 }

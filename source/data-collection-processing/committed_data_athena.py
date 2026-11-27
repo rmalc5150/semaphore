@@ -26,6 +26,29 @@ WG='optima-collected-data'
 OWNER='optima-committed-batches-v1'
 
 
+def recovery_manifest_reference(path, task):
+    if path.startswith('manifests/collection_runs/') and path.endswith('/final.json'):
+        return None
+    prefix=f'manifests/collection_runs/source={task["source"]}/dataset={task["dataset"]}/'
+    if path.startswith(prefix):
+        match=re.fullmatch(r'(run_[a-f0-9-]{36})/recovery/final-recovered-([1-9][0-9]{0,10})\.json',path[len(prefix):])
+        if match:
+            return match[1],int(match[2])
+    raise ValueError('Invalid terminal history')
+
+
+def validate_terminal_manifest(path, manifest, task):
+    if manifest['task']!=task:
+        raise ValueError('History task mismatch')
+    recovery=recovery_manifest_reference(path,task)
+    if recovery and (
+        (manifest.get('run_id'),manifest.get('base_revision'))!=recovery
+        or manifest.get('reason_code')!='checkpoint_recovered_after_interruption'
+        or manifest.get('status')!='partial' or manifest.get('exhausted') is not False
+    ):
+        raise ValueError('Invalid checkpoint recovery manifest')
+
+
 def batches(document):
     task=document['task']; source=task['source']; dataset=task['dataset']
     if not all(re.fullmatch(r'[a-zA-Z0-9_-]+',s) for s in (source,dataset)):
@@ -106,6 +129,31 @@ def manifest_body(index,source,dataset,pending=False):
     clause=' AND NOT EXISTS (SELECT 1 FROM verified_batches v WHERE v.key=b.key)' if pending else ''
     rows=index.execute('SELECT key FROM batches b WHERE source=? AND dataset=?'+clause+' ORDER BY key',(source,dataset))
     return ''.join('s3://'+BUCKET+'/'+PREFIX+k+'\n' for (k,) in rows).encode()
+
+
+def read_committed_partitions(glue):
+    """Fetch the small source/dataset catalogue as pages rather than per source."""
+    try:
+        pages=glue.get_paginator('get_partitions').paginate(
+            DatabaseName=DB, TableName='committed_records', PaginationConfig={'PageSize':1000})
+        return {tuple(partition['Values']):partition for page in pages for partition in page['Partitions']}
+    except ClientError as error:
+        if error.response['Error']['Code'] not in ('AccessDenied', 'AccessDeniedException'):
+            raise
+        return None
+
+
+def committed_partition(glue, inventory, source, dataset):
+    if inventory is None:
+        try:
+            old=glue.get_partition(DatabaseName=DB,TableName='committed_records',PartitionValues=[source,dataset])['Partition']
+        except glue.exceptions.EntityNotFoundException:
+            old=None
+    else:
+        old=inventory.get((source,dataset))
+    if old and old.get('Parameters',{}).get('optima_owner')!=OWNER:
+        raise ValueError('Partition ownership mismatch')
+    return old
 
 
 def bootstrap_verified(index):
@@ -213,26 +261,24 @@ def main():
                     add(head)
                     for path in head.get('terminal_history',[]):
                         full=PREFIX+path
-                        if not path.startswith('manifests/collection_runs/') or not path.endswith('/final.json'):raise ValueError('Invalid terminal history')
+                        recovery_manifest_reference(path,head['task'])
                         if not index.execute('SELECT 1 FROM documents WHERE key=?',(full,)).fetchone():history[full]=head['task']
                 for offset in range(0,len(history),32):
                     subset=list(history)[offset:offset+32]
                     for mk,me,manifest in pool.map(fetch,[(k,None) for k in subset]):
-                        if manifest['task']!=history[mk]:raise ValueError('History task mismatch')
+                        validate_terminal_manifest(mk.removeprefix(PREFIX),manifest,history[mk])
                         add(manifest);index.execute('INSERT OR REPLACE INTO documents VALUES (?,?)',(mk,me))
                 for key,etag,head in heads:
                     index.execute('INSERT OR REPLACE INTO documents VALUES (?,?)',(key,etag));report['changed_documents']+=1
                 index.commit()
                 if start%320==0:print(json.dumps({'stage':'indexed','heads':start+len(changed[start:start+32])}),flush=True)
         sd=catalog(glue,athena);expected=[];changed_partitions=[]
+        current_partitions=read_committed_partitions(glue)
         for source,dataset,count,size in index.execute('SELECT source,dataset,sum(records),sum(bytes) FROM batches GROUP BY source,dataset ORDER BY source,dataset').fetchall():
             body=manifest_body(index,source,dataset)
             digest=hashlib.sha256(body).hexdigest();location=BASE+'manifests/'+source+'/'+dataset+'/'+digest+'/'
             definition={'Values':[source,dataset],'StorageDescriptor':{**sd,'Location':'s3://'+BUCKET+'/'+location},'Parameters':{'optima_owner':OWNER,'manifest_sha256':digest}}
-            try:
-                old=glue.get_partition(DatabaseName=DB,TableName='committed_records',PartitionValues=[source,dataset])['Partition']
-                if old.get('Parameters',{}).get('optima_owner')!=OWNER:raise ValueError('Partition ownership mismatch')
-            except glue.exceptions.EntityNotFoundException:old=None
+            old=committed_partition(glue,current_partitions,source,dataset)
             if not old or old['StorageDescriptor']['Location']!=definition['StorageDescriptor']['Location']:
                 s3.put_object(Bucket=BUCKET,Key=location+'files.txt',Body=body,ServerSideEncryption='AES256')
                 if old:glue.update_partition(DatabaseName=DB,TableName='committed_records',PartitionValueList=[source,dataset],PartitionInput=definition)

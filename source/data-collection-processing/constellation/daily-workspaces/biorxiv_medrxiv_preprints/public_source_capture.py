@@ -15,11 +15,13 @@ import uuid
 import boto3
 import requests
 from constellation.shared_limits import admit
+from constellation.s3_integrity import put_immutable_checked, verify_readback
 
 ROOT = Path(__file__).resolve().parent
 BUCKET = 'data-collection-059416028963-us-east-1-an'
 PREFIX = 'research-data/constellation-backfill/public-capture'
 MAX_BYTES = 128 * 1024**2
+SINGLE_PART_LIMIT = 8 * 1024**2
 DOCUMENT = re.compile(r'\.(?:pdf|csv|zip|xlsx?|json|xml|rds|gz)(?:$|\?)', re.I)
 ARCHIVE = re.compile(r'archive|histor|publication|report|download|document|dataset|annual|yearbook|bulletin|statistics|data|20(?:1[6-9]|2[0-6])|[?&](?:page|offset)=', re.I)
 FORBIDDEN = re.compile(r'login|logout|sign.?in|register|checkout|subscribe|password|oauth', re.I)
@@ -110,7 +112,10 @@ def capture(s3, source, entry, mode):
         try:
             response = requests.get(url, headers={'User-Agent': 'ConstellationResearch/1.0 (support@optima-holdings.com)', 'Accept': source.get('accept', '*/*')}, stream=True, timeout=(10, 45), allow_redirects=False)
         except requests.RequestException:
-            if not source.get('decodo'):raise
+            if not source.get('decodo'):
+                from pdf_proxy_fallback import settings as pdf_settings, eligible as pdf_eligible
+                cfg=pdf_settings()
+                if not (cfg.get('enabled') and source['source'] in cfg.get('allowed_sources',[]) and pdf_eligible(url,'source_retries_exhausted')):raise
             response=requests.Response();response.status_code=503;response._content_consumed=True
         if response.status_code in (301, 302, 303, 307, 308):
             following = urljoin(url, response.headers.get('Location', '')); response.close()
@@ -119,7 +124,22 @@ def capture(s3, source, entry, mode):
         break
     else: raise ValueError('public_redirect_limit')
     with response:
-        if response.status_code in (403, 429, 503) and source.get('decodo'):
+        from pdf_proxy_fallback import settings as pdf_settings, eligible as pdf_eligible
+        pdf_reason = ('source_pdf_html_response' if response.status_code==200 and
+                      'html' in response.headers.get('Content-Type','').lower()
+                      else 'source_http_'+str(response.status_code))
+        if (pdf_settings().get('enabled') and pdf_eligible(url,pdf_reason)):
+            # The ordinary download (including reviewed redirects) has failed.
+            # Use the shared final-resort path rather than HTML/JSON scraping
+            # of binary PDFs. Its global budget and URL cooldown apply here too.
+            response.close()
+            from collection_storage import StorageSettings
+            from regulatory_collection import EvidenceClient
+            from pdf_proxy_fallback import capture as pdf_capture
+            client=EvidenceClient(StorageSettings.load(ROOT/'config/collection-storage.s3.json').store(),source['source'])
+            body=pdf_capture(client,url,pdf_reason);used_decodo=bool(getattr(client,'_pdf_proxy_requests',0))
+            media='application/pdf';chunks=[body]
+        elif response.status_code in (403, 429, 503) and source.get('decodo') and not urlsplit(url).path.lower().endswith('.pdf'):
             response.close()
             body = rendered(url); used_decodo = True
             if len(body) > MAX_BYTES: raise ValueError('public_asset_too_large')
@@ -147,12 +167,14 @@ def capture(s3, source, entry, mode):
                 if not source.get('decodo') or used_decodo:raise ValueError('public_challenge_unresolved')
                 body=rendered(url);used_decodo=True;size=len(body);first=body[:8192];checksum=hashlib.sha256(body);file.seek(0);file.truncate();file.write(body);media='text/html; charset=utf-8'
             key = PREFIX + '/objects/' + source['source'] + '/' + checksum.hexdigest()
-            file.flush(); s3.upload_file(file.name, BUCKET, key, ExtraArgs={'ServerSideEncryption': 'AES256', 'ContentType': media})
-            verified = s3.get_object(Bucket=BUCKET, Key=key); actual = hashlib.sha256()
-            try:
-                for chunk in verified['Body'].iter_chunks(128 * 1024): actual.update(chunk)
-            finally: verified['Body'].close()
-            if actual.hexdigest() != checksum.hexdigest(): raise ValueError('public_readback_checksum_mismatch')
+            file.flush()
+            if size < SINGLE_PART_LIMIT:
+                file.seek(0)
+                put_immutable_checked(s3, BUCKET, key, file, media, checksum.hexdigest(), size=size,
+                                      mismatch='public_readback_checksum_mismatch')
+            else:
+                s3.upload_file(file.name, BUCKET, key, ExtraArgs={'ServerSideEncryption': 'AES256', 'ContentType': media})
+                verify_readback(s3, BUCKET, key, checksum.hexdigest(), mismatch='public_readback_checksum_mismatch')
             file.seek(0); links = discover(file.read(min(size, 8 * 1024**2)), url, source, entry['depth']) if (html or source.get('catalog_index')) else []
     record = {'source': source['source'], 'catalog_entry': source['catalog_entry'], 'mode': mode, 'retrieved_at': stamp(), 'source_url': url,
               'artifact_uri': 's3://' + BUCKET + '/' + key, 'sha256': checksum.hexdigest(), 'bytes': size, 'media_type': media,

@@ -143,6 +143,15 @@ class Control:
         if kind=='public':
             extra += ' AND source_key LIKE %s'
             values.append('legacy:constellation-public-%')
+        if os.environ.get('CONSTELLATION_ROLE')=='worker' and Path('/opt/constellation/historical-only').is_file():
+            extra += " AND source_key <> '__lease_check__'"
+            if kind in {'legacy','public'}:
+                from constellation.legacy_routes import manifest
+                nonhistorical = ['legacy:' + r['unit'] for r in manifest()['routes']
+                                 if r['route_kind'] in ('independent_public_daily','migration_probe')]
+                if nonhistorical:
+                    extra += ' AND source_key NOT IN (' + ','.join(['%s'] * len(nonhistorical)) + ')'
+                    values.extend(nonhistorical)
         # Keep one provider from occupying the entire pool while rate-limited.
         extra += " AND source_key NOT IN (SELECT source_key FROM backfill_jobs WHERE status='running' AND lease_until>=UNIX_TIMESTAMP() GROUP BY source_key HAVING COUNT(*) >= CASE WHEN source_key='arxiv' THEN 1 ELSE " + ('1' if kind in {'legacy','public'} else '2') + ' END) '
         if not state.get('enabled'):
@@ -232,11 +241,12 @@ class Control:
             finally:
                 if acquired:cursor.execute("SELECT RELEASE_LOCK('constellation:arxiv:http')")
 
-    def defer(self, identity, token, until, reason):
-        """Provider budget waits do not consume the failure retry allowance."""
+    def defer(self, identity, token, until, reason, evidence=None):
+        """Defer a job without consuming its failure retry allowance."""
+        result = {**(evidence or {}), 'reason': reason, 'coverage_status': 'deferred_not_a_gap'}
         with self.db() as cursor:
             cursor.execute("UPDATE backfill_jobs SET status='pending', attempts=GREATEST(0,attempts-1), lease_until=0, next_attempt_at=%s, updated_at=UNIX_TIMESTAMP(), result_json=%s WHERE job_id=%s AND lease_token=%s AND status='running' AND lease_until>=UNIX_TIMESTAMP()",
-                (until, canonical({'reason':reason,'coverage_status':'deferred_not_a_gap'}).decode(),identity,token))
+                (until, canonical(result).decode(),identity,token))
             if cursor.rowcount!=1:raise LeaseLost(identity)
 
     def reconcile(self):

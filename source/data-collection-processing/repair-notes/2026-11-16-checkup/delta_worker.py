@@ -1,0 +1,15 @@
+import os,json,hashlib,subprocess
+from pathlib import Path
+import boto3
+s=boto3.client('s3');files={'additional_source_apis.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116/9e936a540c982f440b6e67494bf81c9b0ce2819629d223cbaf4562bf385dafe3/additional_source_apis.py', 'sha256': '9e936a540c982f440b6e67494bf81c9b0ce2819629d223cbaf4562bf385dafe3'}, 'constellation/gaps.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116/0d25069941aa6308b15604d6dbe29cf1fc65ebde18129c9fd6a35c8ff167834a/constellation/gaps.py', 'sha256': '0d25069941aa6308b15604d6dbe29cf1fc65ebde18129c9fd6a35c8ff167834a'}, 'reviewed_source_gaps.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116/072be6a542b047fcfe17d9fe35fae3eb215904e1fb5d4f5658c8df1f6884673b/reviewed_source_gaps.py', 'sha256': '072be6a542b047fcfe17d9fe35fae3eb215904e1fb5d4f5658c8df1f6884673b'}, 'collection_alerts.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116/215c0eeb17c109971e9f6d3290b0fcecd8e901dd7c191abb148676ff71c492c9/collection_alerts.py', 'sha256': '215c0eeb17c109971e9f6d3290b0fcecd8e901dd7c191abb148676ff71c492c9'}, 'edinet_pipeline.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116/e450d8c18129d879cbf22621bb18694effc32fa89dd7c557693d996fa5804bb4/edinet_pipeline.py', 'sha256': 'e450d8c18129d879cbf22621bb18694effc32fa89dd7c557693d996fa5804bb4'}, 'disclosure_collection.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116/cc9e54f3d654b9c3c511bbae98bf17ad5ce1d3d840571ba043ada56dfcad529d/disclosure_collection.py', 'sha256': 'cc9e54f3d654b9c3c511bbae98bf17ad5ce1d3d840571ba043ada56dfcad529d'}, 'specialist_publication.py': {'key': 'research-data/constellation-backfill/deployments/checkup-20261116/76bf06b0f3c64bd3dbdb319090cac3363d0f23a99cfb5fe8d5d163e36748d301/specialist_publication.py', 'sha256': '76bf06b0f3c64bd3dbdb319090cac3363d0f23a99cfb5fe8d5d163e36748d301'}};roots=[Path('/opt/constellation/auxiliary-publication/source'),Path('/opt/constellation/capture-workers/source'),Path('/opt/constellation/summary-worker/source'),Path('/opt/constellation/summary-worker'),*Path('/opt/constellation/legacy').glob('*')];changed=[]
+for name,meta in files.items():
+ raw=s.get_object(Bucket='data-collection-059416028963-us-east-1-an',Key=meta['key'])['Body'].read();assert hashlib.sha256(raw).hexdigest()==meta['sha256'];compile(raw,name,'exec')
+ for root in roots:
+  target=root/name
+  if not target.is_file():continue
+  old=target.read_bytes()
+  if old==raw:continue
+  backup=Path('/opt/constellation/tmp/checkup1116-delta-backup')/hashlib.sha256(str(root).encode()).hexdigest()[:12]/name;backup.parent.mkdir(parents=True,exist_ok=True)
+  if not backup.exists():backup.write_bytes(old)
+  temp=target.with_suffix('.1116.tmp');temp.write_bytes(raw);os.chmod(temp,0o644);temp.replace(target);changed.append(str(target))
+print(json.dumps({'files_updated':len(changed),'summary_service':subprocess.run(['systemctl','cat','optima-m7-summary-worker.service'],capture_output=True,text=True).stdout[-2000:]}))

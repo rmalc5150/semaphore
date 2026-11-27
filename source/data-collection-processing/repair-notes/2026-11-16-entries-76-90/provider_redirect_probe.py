@@ -1,0 +1,2 @@
+from ops import *
+print(remote(T3,"import requests,json;out=[]\nfor url in ['https://www.seaj.or.jp/english/statistics/','https://iea-pvps.org/publications/']:\n try:\n  with requests.get(url,stream=True,allow_redirects=False,timeout=(5,12))as r:out.append({'url':url,'status':r.status_code,'location':r.headers.get('Location')})\n except Exception as e:out.append({'url':url,'error':type(e).__name__})\nprint(json.dumps(out))")['out'])

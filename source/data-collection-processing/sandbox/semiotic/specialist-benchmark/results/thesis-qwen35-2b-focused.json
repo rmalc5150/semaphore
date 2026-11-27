@@ -1,0 +1,49 @@
+{
+  "model": "qwen35-2b",
+  "rows": [
+    {
+      "case": "MIIT",
+      "status": "passes_automatic_checks",
+      "thesis": "2026 Q1-8 China's electronic information manufacturing output grew 15.7% year-over-year.",
+      "word_count": 14,
+      "evidence": {
+        "id": "1",
+        "page": 1,
+        "start": 104,
+        "end": 222,
+        "quote": "2026年1－8月，我国电子信息制造业生产快速增长，出口持续上行，效益改善态势稳固，投资保持稳步增长，行业整体发展态势良好。 一、生产快速增长 1－8月份，规模以上电子信息制造业增加值同比增长15.7%，增速较去年同期高4.9个百分点。",
+        "artifact_sha256": "2562c45c918c98fcad8aa4192637b68b3cf963c2155a7e2c7734b9d4e5806aaf",
+        "observation_id": "obs_127b9e924d81cb97469063c41c8bcc5517633ef69c81b9894dc86f3eb546c7df"
+      },
+      "seconds": 5.248
+    },
+    {
+      "case": "CAPES",
+      "status": "rejected",
+      "error": "english_check_failed",
+      "seconds": 4.846
+    },
+    {
+      "case": "IFR",
+      "status": "rejected",
+      "error": "word_count_21",
+      "seconds": 4.209
+    },
+    {
+      "case": "IEA",
+      "status": "passes_automatic_checks",
+      "thesis": "Global PV market grew to 74.4 GW in 2016, potentially reaching 75.4 GW with non-reporting countries.",
+      "word_count": 19,
+      "evidence": {
+        "id": "2",
+        "page": 6,
+        "start": 347,
+        "end": 513,
+        "quote": "The global PV market grew significantly, to at least 74 ,4 GW in 2016. With non-reporting countries, this number could grow up to 75,4 GW, compared to 50 GW in 2015 .",
+        "artifact_sha256": "c464fb7d762c8779aca455b10de0659668e74805dd77a68acc2b991242448b21",
+        "observation_id": "obs_14d712faf5e48d9041b10a94a8fd158d1233c539ee59aa35c3a9569b8d2451b0"
+      },
+      "seconds": 4.479
+    }
+  ]
+}

@@ -90,7 +90,7 @@ def parse_search_page(document: str) -> list[dict[str, Any]]:
     return trials
 
 
-from metadata_engine.nmpa_tables import parse_detail_page
+from raw_parsers.nmpa_tables import parse_detail_page
 
 
 class NMPABrowser:

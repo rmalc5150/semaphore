@@ -41,6 +41,13 @@ class AuthenticatedTests(unittest.TestCase):
                                 obj({'status': 'partial', 'reason_code': 'page_budget'})]
         self.assertFalse(nih_refresh_required(store, {}, self.job('sam_gov')))
 
+    def test_partial_sam_drift_restarts_but_quota_wait_does_not(self):
+        from specialist_inputs import nih_refresh_required
+        def obj(d): return Mock(body=json.dumps(d).encode())
+        for reason,expected in [('sam_source_changed_refresh_required',True),('sam_daily_request_budget',False),('page_budget',False)]:
+            store=Mock();store.get.side_effect=[obj({'cursor':'4','terminal_manifest':'old.json'}),obj({'status':'partial','reason_code':reason})]
+            self.assertEqual(nih_refresh_required(store,{},self.job('sam_gov')),expected)
+
     def test_eia_echo_redacted_before_persistence(self):
         from specialist_authenticated import request
         response = io.BytesIO(json.dumps({'request': {'api_key': 'test-only-secret'}, 'response': {'data': []}}).encode())

@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:proxies-fkWzVV",
+  "max_requests_per_day": 4,
+  "max_pdf_bytes": 8388608,
+  "max_requests_per_client": 1,
+  "policy": "Public HTTPS PDFs only. Existing downloader and one ordinary HTTPS attempt before paid proxy. Verified cache first after direct failure. One paid attempt per URL per UTC day; failures count. Reserve maximum bytes before use. Never forward API credentials.",
+  "allowed_sources": [
+    "biorxiv_medrxiv_preprints",
+    "hkex_news",
+    "disclosure_documents",
+    "usgs_minerals",
+    "nist_robotics_methods",
+    "europe_pmc_fulltext",
+    "uk_mhra",
+    "japan_pmda",
+    "canada_cda_amc_cadth_reimbursement_reviews",
+    "france_has_medicine_assessment_opinions",
+    "germany_g_ba_drug_benefit_assessments",
+    "iea_pvps_solar_deployment_reports"
+  ]
+}

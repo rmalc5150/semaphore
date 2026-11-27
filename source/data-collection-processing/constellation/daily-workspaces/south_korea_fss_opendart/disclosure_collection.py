@@ -28,6 +28,20 @@ SEC_DOCUMENT_FORMS = ("8-K", "8-K/A", "6-K", "6-K/A", "10-K", "10-K/A", "10-Q", 
 ZONES = {"sec_edgar": "America/New_York", "hkex_news": "Asia/Hong_Kong"}
 
 
+class DisclosureClient(EvidenceClient):
+    def response_limit(self, url):
+        # HKEX identifies the Sep 30, 2026 offering circular 12352175 as
+        # 90 MB. The former generic 64 MiB ceiling blocked its entire index
+        # page. Bound official PDF originals separately; API/other hosts retain
+        # their existing limits. Extraction remains on the larger worker.
+        parsed=urlsplit(url)
+        if (self.source in {'hkex_news','disclosure_documents'} and parsed.scheme=='https'
+            and parsed.netloc=='www1.hkexnews.hk' and not parsed.query and not parsed.fragment
+            and re.fullmatch(r'/listedco/listconews/(?:sehk|gem)/\d{4}/\d{4}/[A-Za-z0-9_.-]+\.pdf',parsed.path,re.I)):
+            return 128*1024*1024
+        return super().response_limit(url)
+
+
 def midnight(day, zone="UTC"):
     return datetime.combine(day, datetime.min.time(), ZoneInfo(zone)).astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
 
@@ -152,7 +166,8 @@ def finish_error(run, exc, evidence=()):
     code = exc.code if isinstance(exc, SourceIssue) else "interrupted" if isinstance(exc, KeyboardInterrupt) else "collection_error"
     status = "partial" if isinstance(exc, KeyboardInterrupt) or (isinstance(exc, SourceIssue) and exc.partial) else "failed"
     write_json(run.store, run.state["manifest_prefix"] + "/failure.json", {
-        "reason": code, "error_type": type(exc).__name__, "evidence": list(evidence), "cursor": run.cursor})
+        "reason": code, "error_type": type(exc).__name__, "evidence": list(evidence), "cursor": run.cursor,
+        "diagnostics":getattr(exc,'diagnostics',None)})
     return {"status": status, "reason": code, "manifest": run.finish(status, code)}
 
 
@@ -194,8 +209,16 @@ def hkex_snapshot_page(client, day, state, page_size, stock_id, snapshot_key):
     saved = client.store.get(key)
     if saved is None:
         require(not state.get('index_snapshot_key'), 'hkex_index_snapshot_missing')
-        rows, _, done = hkex_page(client, day, {}, 100000, stock_id)
-        require(done, 'hkex_daily_index_snapshot_incomplete')
+        # HKEX's ``rowRange`` response contains the complete prefix, rather
+        # than an offset page.  Requesting 100,000 rows used to make a single
+        # unbounded response before the snapshot was even validated.  Grow the
+        # provider-verified prefix in normal bounded pages instead.  Each call
+        # still verifies the preceding prefix and the final snapshot remains a
+        # single immutable, checksum-verified index for document capture.
+        cursor, rows, done = {}, [], False
+        while not done:
+            chunk, cursor, done = hkex_page(client, day, cursor, page_size, stock_id)
+            rows.extend(chunk)
         snapshot = {'day': str(day), 'stock_id': stock_id, 'rows': rows,
                     'sha256': digest(rows), 'evidence': list(client.evidence)}
         write_json(client.store, key, snapshot)
@@ -228,7 +251,7 @@ def collect_hkex(store, settings, universe, taxonomy, start, end, mode, selectio
         run = CollectionRun.start(store, spec, universe, taxonomy, settings, resume=not refresh, refresh=refresh)
     except AlreadyComplete as exc:
         return {"status": "complete", "manifest": str(exc), "already_complete": True}
-    client = client or EvidenceClient(store, "hkex_news")
+    client = client or DisclosureClient(store, "hkex_news")
     try:
         state = json.loads(run.cursor) if run.cursor else {"day": str(start)}
         pages = 0
@@ -272,7 +295,7 @@ def collect_hkex(store, settings, universe, taxonomy, start, end, mode, selectio
                             try:
                                 resolution = resolve_notice(record, raw, client)
                             except OriginalError as exc:
-                                raise SourceIssue(str(exc), True) from exc
+                                raise SourceIssue(str(exc), True, getattr(exc,'diagnostics',None)) from exc
                             for original in resolution['originals']:
                                 records.append(original_record(record, original, resolution))
                             payload['record_type'] = 'language_availability_notice'
@@ -387,7 +410,7 @@ def collect_derived(store, settings, universe, taxonomy, start, end, mode, stage
         run = CollectionRun.start(store, spec, universe, taxonomy, settings, resume=not refresh, refresh=refresh)
     except AlreadyComplete as exc:
         return {"status": "complete", "manifest": str(exc), "already_complete": True}
-    client = client or EvidenceClient(store, source)
+    client = client or DisclosureClient(store, source)
     try:
         offset = int(run.cursor or 0)
         require(0 <= offset <= len(entries), "invalid_derived_cursor")

@@ -1,0 +1,251 @@
+{
+  "catalog_entries_added": 114,
+  "daily_sources": 32,
+  "historical_sources": 44,
+  "metadata_sources": 46,
+  "metadata_jobs_enqueued": 0,
+  "historical_dispatch": [
+    {
+      "unit": "constellation-public-market_source_162.service",
+      "status": "queued_on_c7i",
+      "job_id": "7ab8b9d968d18a088d71c39b253745bb1fee4e4f388687d2d08fb7bf8e5e8aab",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_163.service",
+      "status": "queued_on_c7i",
+      "job_id": "dbfa0fe79be1c948bc91a976fb7d0bb503a2f90680376aecd862e0b8bbd263a5",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_167.service",
+      "status": "queued_on_c7i",
+      "job_id": "5c40d116f23d757b59837bf3c8c2d03e9add244dde569141b0b45bb41acfb690",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_169.service",
+      "status": "target_drained_with_recorded_coverage"
+    },
+    {
+      "unit": "constellation-public-market_source_170.service",
+      "status": "queued_on_c7i",
+      "job_id": "d8d109e225db8ce575355b1228af1b7c59bb5dc31b809a6b61604334375a5ec7",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_171.service",
+      "status": "target_drained_with_recorded_coverage"
+    },
+    {
+      "unit": "constellation-public-market_source_176.service",
+      "status": "queued_on_c7i",
+      "job_id": "41a5a1eed28a427d6281f1307ad1e9521510e19efb6307dc772f558b1aac84df",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_177.service",
+      "status": "queued_on_c7i",
+      "job_id": "7ad16ad3acab534fcb766292ff2abfaf6d8a13bdbec78f97f026d9bba35d151d",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_178.service",
+      "status": "queued_on_c7i",
+      "job_id": "cf7a19a0a0b1c2404f54cf7e66376f2d40f3d1cfac7d88a47f1e7c6aacefd67c",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_182.service",
+      "status": "queued_on_c7i",
+      "job_id": "6f2e46a7ec4b9e872d3a4b310cc5e9b2c0b6a428c34e60a3da31f1662ca875cb",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_183.service",
+      "status": "queued_on_c7i",
+      "job_id": "0039a650fe223fd80ddba5355baf8d323089449e2d11ee8afc610e83b5460f93",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_184.service",
+      "status": "target_drained_with_recorded_coverage"
+    },
+    {
+      "unit": "constellation-public-market_source_187.service",
+      "status": "queued_on_c7i",
+      "job_id": "c3d5d4de88c8857c3df8558eba0441b17cdd03444e86c022319853e71285f677",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_190.service",
+      "status": "queued_on_c7i",
+      "job_id": "7b172145ae1a2169573ecb942008277e2e56b63dabda7d7af125ca86b89a8300",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_194.service",
+      "status": "target_drained_with_recorded_coverage"
+    },
+    {
+      "unit": "constellation-public-market_source_195.service",
+      "status": "queued_on_c7i",
+      "job_id": "d9c2f24e32eca91d00ca18019b87fb3fb45c660e46e93fae7ac2dd920aaa84d4",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_198.service",
+      "status": "target_drained_with_recorded_coverage"
+    },
+    {
+      "unit": "constellation-public-market_source_201.service",
+      "status": "queued_on_c7i",
+      "job_id": "c6cf340a1c76f31b2db48571f5f96e039bb0979cd06c971b878b034d481b45f0",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_204.service",
+      "status": "queued_on_c7i",
+      "job_id": "81f1cbfc903476e58c2c5e31b5c4e9ef03e7ddd3b2af67b777114b3faa487c52",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_205.service",
+      "status": "queued_on_c7i",
+      "job_id": "c323af82608c89a33dd96d856e058fee551ef9bfa1164356c8f582ae2cb1ee16",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_207.service",
+      "status": "queued_on_c7i",
+      "job_id": "ddfe68f0f0eeb02c7c2225e6133e4ab60b2d8a57d49c2ffa9a61865f098e91d8",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_209.service",
+      "status": "queued_on_c7i",
+      "job_id": "fd72a28628c4bcf84e2d26c7113fa11b0275584d1c443799f1bc461ffe6ec4fa",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_210.service",
+      "status": "queued_on_c7i",
+      "job_id": "262488b332cc3fa642cabfc245d06e6031441fb68a9d8b4af384a9539934c584",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_214.service",
+      "status": "target_drained_with_recorded_coverage"
+    },
+    {
+      "unit": "constellation-public-market_source_215.service",
+      "status": "queued_on_c7i",
+      "job_id": "48193c4574fc36c5d20481a498388c60933cfd8a89e39efdf0daf4981a3a5c7d",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_220.service",
+      "status": "queued_on_c7i",
+      "job_id": "b024710da1b6a3d0ca4835de8a6a3ea1b03e7cf4a20d9da63a11f009aeeeb52b",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_221.service",
+      "status": "target_drained_with_recorded_coverage"
+    },
+    {
+      "unit": "constellation-public-market_source_229.service",
+      "status": "queued_on_c7i",
+      "job_id": "38d1360d333e466c4b846b1e26ce39618329c58b7a504fc9783887cb19368f11",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_234.service",
+      "status": "target_drained_with_recorded_coverage"
+    },
+    {
+      "unit": "constellation-public-market_source_236.service",
+      "status": "target_drained_with_recorded_coverage"
+    },
+    {
+      "unit": "constellation-public-market_source_238.service",
+      "status": "queued_on_c7i",
+      "job_id": "e47875db3af61f73a6b564d58dad78bedcff0223366e98b226c60b4be26b47c6",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_240.service",
+      "status": "queued_on_c7i",
+      "job_id": "674e35cfe9553e49065e5967ec7acaecab780da9d5c8408fdda367067ad8f7f1",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_241.service",
+      "status": "queued_on_c7i",
+      "job_id": "d7546423a93d5401af7cebeb48d205cca82de01de8a785cff53a9b6eb1554037",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_242.service",
+      "status": "queued_on_c7i",
+      "job_id": "158b467f61418190190b617d07a41b7b778b92722062af64b9c3785a14798a9e",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_243.service",
+      "status": "queued_on_c7i",
+      "job_id": "d5295e1d960b5aabbc37d995fa820661d03580713463b490a27930f2ee9d2779",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_244.service",
+      "status": "queued_on_c7i",
+      "job_id": "47dff499dd2d1deb218769f2e7541bd9703fbfe63c65387fa6ef714510c6e446",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_249.service",
+      "status": "queued_on_c7i",
+      "job_id": "e66a260476145b720e59362cc8afb270f0356f0d50910f743cae04c61ccbc333",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_251.service",
+      "status": "queued_on_c7i",
+      "job_id": "de254593def217ecbdbb6bf5929801be30da1c190adf756a558d1f1f2c79b0a8",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_264.service",
+      "status": "queued_on_c7i",
+      "job_id": "efa2cde6d99393cd1c0367892887458fbda366f712dad5c240835b0abebb5691",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_265.service",
+      "status": "queued_on_c7i",
+      "job_id": "5e4f189ed0e0c7e78c6ce1e94d31b67fbd338953c3ac909e377e15eaa230e50d",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_268.service",
+      "status": "queued_on_c7i",
+      "job_id": "469c3484e7b884babab06a91ae318197a42784ea96197c8f4e5bc04e341b7a6a",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_269.service",
+      "status": "queued_on_c7i",
+      "job_id": "a37aedb772c613454286e2bba992f260a9ed687462185790f612bdb0c3a243f5",
+      "collection_enabled": true
+    },
+    {
+      "unit": "constellation-public-market_source_270.service",
+      "status": "target_drained_with_recorded_coverage"
+    },
+    {
+      "unit": "constellation-public-market_source_272.service",
+      "status": "target_drained_with_recorded_coverage"
+    }
+  ]
+}

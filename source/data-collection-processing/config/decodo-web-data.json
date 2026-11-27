@@ -1,0 +1,7 @@
+{
+  "secret_id": "arn:aws:secretsmanager:us-east-1:059416028963:secret:proxies-fkWzVV",
+  "max_requests_per_day": 24,
+  "note": "Bearer authentication verified 2026-11-16. PDF route retired and disabled: owner reports Decodo does not offer base64 output; tested raw string could not reconstruct a validated original PDF. Do not repeat paid probes against this route. Existing HTML routes are unaffected.",
+  "token_field": "decodo-web",
+  "enabled": false
+}

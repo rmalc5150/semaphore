@@ -1,0 +1,19 @@
+[Unit]
+Description=Daily research metadata collection for %i
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ec2-user
+WorkingDirectory=/home/ec2-user/data-collection-processing
+Environment=CONSTELLATION_ROLE=controller
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=RESEARCH_FEED_BUDGET=80
+ExecStart=/home/ec2-user/data-collection-processing/.venv-athena/bin/python -B -m constellation.research_feeds %i daily --budget ${RESEARCH_FEED_BUDGET}
+Slice=constellation-daily.slice
+Nice=15
+CPUQuota=50%
+MemoryMax=384M
+MemorySwapMax=0
+TimeoutStartSec=40min

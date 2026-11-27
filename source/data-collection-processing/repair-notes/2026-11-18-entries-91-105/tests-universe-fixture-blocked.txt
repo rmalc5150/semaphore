@@ -1,0 +1,23 @@
+{"report_key": "constellation-backfill/public-capture/daily-receipts/9693e89b9e7e4b56a605a2fd80d9a802.json", "public_capture_summary": {"source": "fixture", "mode": "historical", "captured_urls": 0, "remaining_urls": 1, "failed_urls": 1}}
+======================================================================
+ERROR: setUpClass (test_specialist_inputs.SpecialistTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/ec2-user/data-collection-processing/test_specialist_inputs.py", line 56, in setUpClass
+    cls.universe = load_json(ROOT / 'config/company-universe.v0.5.json')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ec2-user/data-collection-processing/research_contract.py", line 40, in load_json
+    return json.loads(path.read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/home/ec2-user/data-collection-processing/config/company-universe.v0.5.json'
+
+----------------------------------------------------------------------
+Ran 70 tests in 0.174s
+
+FAILED (errors=1)

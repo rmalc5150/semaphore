@@ -2,7 +2,7 @@ from datetime import date
 import tempfile
 import unittest
 from unittest.mock import Mock,patch
-from collection_storage import StorageSettings, write_json
+from collection_storage import Conflict, StorageSettings, write_json
 from collection_operations import load_stored
 from market_operations import MarketOperations,Budget
 from regulatory_collection import SourceIssue
@@ -93,6 +93,23 @@ class RunnerTests(unittest.TestCase):
         with self.assertRaises(TimeoutError):b('url')
         with self.assertRaises(SourceIssue):b('url')
         self.assertEqual(opener.call_count,1)
+
+    def test_contended_budget_reads_winning_reservation_before_network(self):
+        opener=Mock()
+        budget=Budget(self.store,{'max_requests_per_day':1},2,opener)
+        with patch('market_operations.load_stored',side_effect=[({'reserved':0},'old'),({'reserved':1},'new')]), \
+             patch('market_operations.write_json',side_effect=Conflict('concurrent daily capture')):
+            with self.assertRaisesRegex(SourceIssue,'market_daily_request_budget_reached'):
+                budget('url')
+        opener.assert_not_called()
+
+    def test_historical_lane_never_reconciles_daily_state(self):
+        with patch('market_operations.reconcile_state',side_effect=lambda state,lane,registry:{**state,'read_lane':lane}):
+            for lane in ('daily','historical'):
+                write_json(self.store,self.runner.prefix+'/'+lane+'.json',{'symbols':{}})
+            self.runner.reconcile_exclusions(lanes=('historical',))
+        self.assertNotIn('read_lane',load_stored(self.store,self.runner.prefix+'/daily.json')[0])
+        self.assertEqual(load_stored(self.store,self.runner.prefix+'/historical.json')[0]['read_lane'],'historical')
 
     def test_empty_historical_year_does_not_block_later_prices_or_erase_gap(self):
         self.runner.symbols = {'A.US': ['listing-a']}

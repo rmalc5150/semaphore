@@ -1,0 +1,17 @@
+{
+  "job_id": "bb9be94356f6840118cfdc521d5f0dbe004ac6214cf3dd7870fec2d4c50c2107",
+  "prior": {
+    "attempts": 2,
+    "error_type": "SourceIssue",
+    "last_attempt": "2026-11-12T13:56:59.428920Z",
+    "manifest": "manifests/collection_runs/source=federal_register_documents/dataset=specialist_inputs/run_6fdada22-2fd1-4e88-8f38-cc0a50647942/final.json",
+    "reason": "fr_official_pdf_retry_required",
+    "records": 0,
+    "retry_after": "2026-11-12T14:26:59.428950Z",
+    "status": "failed"
+  },
+  "official_pdf_bytes": 120719355,
+  "previous_bound": 67108864,
+  "new_pdf_bound": 134217728,
+  "reason": "Release retry after correcting measured official PDF size bound"
+}

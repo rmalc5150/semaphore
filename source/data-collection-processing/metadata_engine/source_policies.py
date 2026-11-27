@@ -8,6 +8,8 @@ from urllib.parse import urlsplit
 # publication contract already stored in the runtime database.
 VERSION='2.0.2'
 PAUSED={'marketaux','github_sdk','reddit','bluesky_search','bluesky_company_accounts','bluesky_company_posts','bluesky_company_events','nice_technology_appraisals'}
+# Prevent fallback metadata registration for these paused or removed sources.
+PAUSED.update({'south_korea_kosis_statistical_openapi', 'market_source_165', 'market_source_191'})
 PUBLICATIONS={'pubmed_abstracts','europe_pmc','europe_pmc_fulltext','crossref_proceedings','arxiv','openalex_scholarly_graph','datacite_dissertations_datasets_software_and_usage','biorxiv_medrxiv_preprints','openaire_graph_projects_and_research_products','semantic_scholar_citation_context','france_theses_fr_doctoral_theses','brazil_capes_theses_and_dissertations'}
 FILINGS={'sec_edgar','hkex_news','edinet_filings','cninfo_mainland_china_company_disclosures','south_korea_fss_opendart','taiwan_twse_mops_issuer_and_revenue_archives'}
 PATENTS={'google_patents_bigquery','uspto_odp'}
@@ -39,6 +41,8 @@ def build(root):
     policies={}
     for entry in registry:
         key=entry['source_key']
+        if entry.get('readiness') in ('evidence_gated','excluded_payment_required'):
+            continue
         family='publications' if key in PUBLICATIONS else 'filings_xbrl' if key in FILINGS else 'patents' if key in PATENTS else 'time_series' if key in SERIES else 'api_records'
         required=['provider_record']
         if family in ('publications','filings_xbrl','patents'):required.append({'publications':'full_text','filings_xbrl':'primary_document','patents':'patent_document'}[family])
@@ -69,6 +73,39 @@ def build(root):
         policy['raw_requirements']={'version':EODHD_VERSION,'minimum_completeness':'complete',
             'required_artifact_kinds':['provider_record','provider_data'],
             'forbidden_shortcuts':['unverified_provider_response','identity_mismatch','corrupt_provider_response']}
+    for key, dataset, kind, artifact, hosts, scope in (
+        ('openalex_scholarly_graph', 'works_metadata', 'openalex_work_metadata', 'openalex_work_metadata',
+         ['api.openalex.org', 'openalex.org'], 'complete work object in the OpenAlex works metadata dataset'),
+        ('japan_kaken_funded_research', 'grant_projects', 'kaken_grant_project', 'kaken_project_xml',
+         ['kaken.nii.ac.jp'], 'matched KAKEN grantAward XML with project identity and fiscal period'),
+    ):
+        policy = policies[key]
+        policy.update(contract_version='2.0.3', adapter='research_feed', adapter_version='2.0.3',
+                      datasets=[dataset], allowed_hosts=hosts, record_kind=kind, completeness_scope=scope)
+        policy['raw_requirements'] = {'version': '2.0.3', 'minimum_completeness': 'complete',
+            'required_artifact_kinds': ['provider_record', artifact],
+            'forbidden_shortcuts': ['identity_mismatch', 'uncommitted_batch', 'missing_provider_record']}
+    for key,hosts,kind,scope in (
+        ('mlperf_results',['api.github.com','github.com','raw.githubusercontent.com'],'benchmark_record',
+         'exact commit-pinned summary row, original supporting file or explicitly labelled Git-tree inventory; not exhaustive benchmark evidence or historical availability'),
+        ('cpsc_recalls',['www.saferproducts.gov','cpsc.gov','www.cpsc.gov'],'product_recall',
+         'entire original CPSC recall record; not all incidents, downloaded image files or historical provider vintages')):
+        policy=policies[key]
+        policy.update(contract_version='2.0.3',adapter_version='2.0.3',allowed_hosts=hosts,record_kind=kind,completeness_scope=scope)
+        policy['raw_requirements']={**policy['raw_requirements'],'version':'2.0.3',
+            'forbidden_shortcuts':['unmatched_original','field_projection','index_as_benchmark_measurement','request_receipt_only']}
+    fr=policies['federal_register']
+    fr.update(contract_version='2.0.3',adapter_version='2.0.3',record_kind='federal_register_notice_listing',
+              allowed_hosts=['www.federalregister.gov'],
+              completeness_scope='exact entire returned search-result row; full notice text and official PDF are separate companion records')
+    fr['raw_requirements']={'version':'2.0.3','minimum_completeness':'complete','required_artifact_kinds':['provider_record'],
+                            'forbidden_shortcuts':['unmatched_original','field_projection','listing_as_complete_notice']}
+    policies['federal_register_documents']={**fr,'source_key':'federal_register_documents','catalog_entries':[48],
+        'record_kind':'federal_register_notice','allowed_hosts':['www.federalregister.gov','www.govinfo.gov','www.gpo.gov'],
+        'completeness_scope':'original detail metadata, complete saved XML/HTML extraction and official PDF; not current-law status or product applicability',
+        'raw_requirements':{'version':'2.0.3','minimum_completeness':'complete',
+                            'required_artifact_kinds':['provider_record','notice_body','official_pdf'],
+                            'forbidden_shortcuts':['unmatched_original','abstract_only','listing_only','incomplete_notice_capture']}}
     policy=policies['finlight']
     policy.update(contract_version='2.0.3',adapter_version='2.0.3',allowed_hosts=['api.finlight.me'])
     policy['raw_requirements']={**policy['raw_requirements'],'version':'2.0.3',
@@ -160,4 +197,80 @@ def build(root):
         policy['raw_requirements']={'version':'2.0.3','minimum_completeness':'complete','required_artifact_kinds':['provider_record'],'forbidden_shortcuts':['unmatched_original','unverified_mapping','bibliography_as_patent_text','discovery_as_measurements','content_chunks_as_additional_awards']}
     policies['uspto_odp']['dataset_contracts']={'patent_records':{'scope':'mapped application bibliography; full original API record archived'},'patent_assignment_records':{'scope':'mapped application and returned assignment chain; not established current title'},'patent_office_actions':{'required_artifact_kinds':['provider_record','primary_document']},'patent_petition_decisions':{'required_artifact_kinds':['provider_record','primary_document']}}
     policies['nist_robotics_documents']={**policies['nist_robotics_methods'],'source_key':'nist_robotics_documents','record_kind':'nist_original_document','catalog_entries':[45]}
+    for key,kind in (('un_comtrade','annual_trade_observation'),('doe_storage_program','storage_program_page'),
+                     ('doe_storage_documents','storage_original_document'),('doe_storage_benchmarks','storage_technical_evidence'),
+                     ('doe_storage_funding','storage_funding_evidence')):
+        policy=dict(policies['doe_storage_program'] if key.startswith('doe_storage_') else policies[key])
+        policy.update(source_key=key,catalog_entries=[51 if key=='un_comtrade' else 52],
+                      contract_version='2.0.3',adapter_version='2.0.3',record_kind=kind)
+        policy['allowed_hosts']=(['comtradeapi.un.org'] if key=='un_comtrade' else
+            ['www.energy.gov','energy.gov','cms.doe.gov','netl.doe.gov','www.netl.doe.gov','eere-exchange.energy.gov',
+             'oced-exchange.energy.gov','www.pnnl.gov','pnnl.gov','www.sandia.gov','sandia.gov','www.osti.gov','osti.gov'])
+        policy['raw_requirements']={'version':'2.0.3','minimum_completeness':'complete','required_artifact_kinds':['provider_record'],
+                                    'forbidden_shortcuts':['unmatched_original','projected_provider_fields','discovery_as_measurement','unverified_extraction']}
+        policy['completeness_scope']=('entire returned annual HS row for configured reporters, commodities and flows; not all trade or historical vintages'
+            if key=='un_comtrade' else 'original program/document bytes and declared extraction; limits and unreviewed technical/funding statements retained; not full archive completion')
+        policies[key]=policy
+    for key in ('wto_quantitative_restrictions_api','wto_eping_sps_tbt_notifications','epo_ops_patent_legal_events','ember_electricity_demand_and_generation'):
+        policy=policies[key]
+        policy.update(contract_version='2.0.3',adapter_version='2.0.3',datasets=['specialist_inputs'])
+        policy['allowed_hosts']=['ops.epo.org']if key=='epo_ops_patent_legal_events'else['api.ember-energy.org']if key=='ember_electricity_demand_and_generation'else['api.wto.org']
+        policy['raw_requirements']={'version':'2.0.3','minimum_completeness':'complete','required_artifact_kinds':['provider_record'],
+          'forbidden_shortcuts':['unmatched_original_row','projected_fields','attachments_as_full_text','inferred_legal_effect']}
+    for key,hosts,kind in [('imf_portwatch_shipping_activity',['services9.arcgis.com'],'port_activity_observation'),('unido_iip_and_indstat',['stat.unido.org'],'industrial_statistics_observation')]:
+        policy=policies[key];policy.update(contract_version='2.0.3',adapter_version='2.0.3',datasets=['specialist_inputs'],allowed_hosts=hosts,record_kind=kind)
+        policy['raw_requirements']={'version':'2.0.3','minimum_completeness':'complete','required_artifact_kinds':['provider_record'],'forbidden_shortcuts':['catalogue_as_measurements','discovery_only','unmatched_original','partial_provider_fields']}
+    policy=policies['sam_gov_opportunities']
+    policy.update(contract_version='2.0.3',adapter_version='2.0.3',datasets=['specialist_inputs'],allowed_hosts=['api.sam.gov'],record_kind='opportunity_notice_metadata')
+    policy['raw_requirements']={'version':'2.0.3','minimum_completeness':'complete','required_artifact_kinds':['provider_record'],'forbidden_shortcuts':['unmatched_original_notice','notice_as_full_attachment','dropped_provider_fields']}
+    policy['completeness_scope']='Entire SAM search notice metadata; linked descriptions/attachments and historical vintages remain separate.'
+    from metadata_engine.public_documents import allowed_hosts as reviewed_hosts
+    for key in ('ucdp_organized_violence','semi_worldwide_equipment_billings','sia_wsts_public_semiconductor_sales','international_federation_of_robotics_world_robotics','iea_pvps_solar_deployment_reports','germany_g_ba_drug_benefit_assessments','france_has_medicine_assessment_opinions','canada_cda_amc_cadth_reimbursement_reviews','france_assurance_maladie_open_medic'):
+        policy=policies[key];policy.update(contract_version='2.0.3',adapter='api_records',adapter_version='2.0.3',datasets=['public_documents'],record_kind='public_source_document',allowed_hosts=reviewed_hosts(key),completeness_scope='complete source-scoped native public file, not index/image, analytical extraction or exhaustive history')
+        policy['raw_requirements']={'version':'2.0.3','minimum_completeness':'complete','required_artifact_kinds':['provider_record'],'forbidden_shortcuts':['discovery_as_measurement','image_as_report','unverified_file','unrelated_document']}
+    policy=policies['arxiv'];policy.update(contract_version='2.0.3',adapter='api_records',adapter_version='2.0.3',datasets=['preprint_metadata','research_records'],record_kind='publication_abstract_record',allowed_hosts=['export.arxiv.org'],completeness_scope='exact versioned arXiv Atom citation and abstract metadata; article full text is not collected by the API route')
+    policy['raw_requirements']={'version':'2.0.3','minimum_completeness':'complete','required_artifact_kinds':['provider_record'],'forbidden_shortcuts':['unmatched_atom_entry','abstract_as_article_full_text','inferred_historical_version']}
+    policy=policies['england_nhsbsa_prescribing_data'];policy.update(contract_version='2.0.3',adapter='api_records',adapter_version='2.0.3',datasets=['specialist_inputs'],record_kind='prescribing_measurement',allowed_hosts=['opendata.nhsbsa.net'],completeness_scope='entire native monthly EPD practice/drug/quantity row, current release; complete monthly capture requires exhausted pagination')
+    policy['raw_requirements']={'version':'2.0.3','minimum_completeness':'complete','required_artifact_kinds':['provider_record'],'forbidden_shortcuts':['catalogue_as_measurement','projected_row','unmatched_native_row','partial_month_as_full_history']}
+    from regional_source_review import PROFILES,PUBLIC_KEYS
+    for key in PUBLIC_KEYS|{'south_korea_fss_opendart'}:
+        policy=policies[key];filing=key in ('south_korea_fss_opendart','cninfo_mainland_china_company_disclosures')
+        policy.update(contract_version='2.0.3',adapter='api_records',adapter_version='2.0.3',datasets=['specialist_inputs']if filing else['twse_issuers','twse_monthly_revenue']if PROFILES[key]['kind']=='twse'else['taiwan_customs_monthly_clearance']if key=='taiwan_customs_trade_statistics'else['public_documents'],record_kind='original_filing_record'if filing else'twse_native_row'if PROFILES[key]['kind']=='twse'else'monthly_customs_clearance'if key=='taiwan_customs_trade_statistics'else'official_source_release',allowed_hosts=PROFILES[key]['hosts'],completeness_scope='Exact native row or complete source-scoped original release/file; filing originals required where applicable. No complete historical coverage, original vintage or unperformed numerical/XBRL extraction asserted.')
+        policy['raw_requirements']={'version':'2.0.3','minimum_completeness':'complete','required_artifact_kinds':['provider_record','primary_document']if filing else['provider_record'],'forbidden_shortcuts':['unmatched_native_row','unverified_file','navigation_as_release','image_as_dataset','index_without_required_filing_original','inferred_historical_coverage']}
+    from trade_mining_sources import HOSTS as trade_mining_hosts
+    from metadata_engine.trade_mining import NATIVE_DATASETS
+    for key, allowed_hosts in trade_mining_hosts.items():
+        policy = policies[key]
+        dataset = NATIVE_DATASETS.get(key, 'public_documents')
+        scope = ('Entire observation or feature from the declared native query.'
+                 if key in NATIVE_DATASETS else 'Complete official exported dataset or report file.')
+        policy.update(
+            contract_version='2.0.3', adapter='api_records', adapter_version='2.0.3',
+            datasets=[dataset], record_kind=dataset if key in NATIVE_DATASETS else 'public_source_document',
+            allowed_hosts=allowed_hosts, completeness_scope=scope,
+        )
+        policy['raw_requirements'] = {
+            'version': '2.0.3', 'minimum_completeness': 'complete',
+            'required_artifact_kinds': ['provider_record'],
+            'forbidden_shortcuts': ['homepage_or_catalogue_as_dataset', 'unverified_file', 'unmatched_provider_row'],
+        }
+    census = policies['us_census_international_trade_api']
+    census.update(
+        contract_version='2.0.3', adapter='api_records', adapter_version='2.0.3',
+        record_kind='measurement', datasets=['specialist_inputs'],
+        allowed_hosts=['api.census.gov'],
+        completeness_scope='Exact native row for the configured monthly partner and HS commodity value queries. Current releases and revisions.',
+    )
+    census['raw_requirements'] = {
+        'version': '2.0.3', 'minimum_completeness': 'complete',
+        'required_artifact_kinds': ['provider_record'],
+        'forbidden_shortcuts': ['inferred_zero_from_empty_response', 'mismatched_period', 'projected_or_modified_row'],
+    }
+    if (root/'config/market-source-activation.v1.json').exists():
+        from metadata_engine.market_sources import contracts
+        policies.update(contracts(root))
+    from metadata_engine.market_archive import contracts as archive_contracts
+    policies.update(archive_contracts())
+    from metadata_engine.sedi import SOURCE as sedi_source, contract as sedi_contract
+    policies[sedi_source] = sedi_contract()
     return policies

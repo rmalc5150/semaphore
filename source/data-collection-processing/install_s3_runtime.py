@@ -107,7 +107,7 @@ def main(apply):
                           {'unit': unit, 'original_text': original, 'exec_start': command})
         dropin = Path('/etc/systemd/system') / (unit + '.d') / '99-s3-runtime.conf'
         dropin.parent.mkdir(parents=True, exist_ok=True)
-        body = ('[Unit]\nRequires=optima-s3-runtime-init.service\nAfter=optima-s3-runtime-init.service\n'
+        body = ('[Unit]\nRequires=optima-s3-runtime-init.service optima-s3-runtime-ensure.service\nAfter=optima-s3-runtime-init.service optima-s3-runtime-ensure.service\n'
                 '[Service]\nExecStart=\nExecStart=/usr/bin/flock --exclusive --timeout 43200 --conflict-exit-code 75 /dev/shm/optima-s3/supervisor.lock ' + str(ROOT / '.venv-athena/bin/python') +
                 ' -B ' + str(ROOT / 's3_runtime.py') + ' --unit ' + unit + ' -- ' + command + '\n'
                 'ProtectSystem=strict\nReadOnlyPaths=/home/ec2-user /tmp /var/tmp /dev/shm\n'
@@ -123,6 +123,7 @@ def main(apply):
         (checked_in / dropin.name).write_text(body)
     init = Path('/etc/systemd/system/optima-s3-runtime-init.service')
     init.write_text(INIT)
+    (init.parent / 'optima-s3-runtime-ensure.service').write_text((ROOT / 'systemd/optima-s3-runtime-ensure.service').read_text())
     (ROOT / 'systemd/optima-s3-runtime-init.service').write_text(INIT)
     subprocess.run(['systemctl', 'daemon-reload'], check=True)
     subprocess.run(['systemctl', 'enable', '--now', 'optima-s3-runtime-init.service'], check=True)

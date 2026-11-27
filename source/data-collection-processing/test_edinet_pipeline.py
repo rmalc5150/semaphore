@@ -29,6 +29,57 @@ def metadata(n=1):
 
 
 class Tests(unittest.TestCase):
+    def test_poppler_pdf_keeps_page_provenance_and_rejects_missing_pages(self):
+        from pathlib import Path
+        from pypdf import PdfWriter
+        writer=PdfWriter();writer.add_blank_page(width=100,height=100);writer.add_blank_page(width=100,height=100)
+        raw=io.BytesIO();writer.write(raw)
+        def convert(args,**kwargs):
+            Path(args[-1]).write_text('日本語の本文\f\f',encoding='utf-8')
+            return Mock(returncode=0)
+        with patch.object(e.shutil,'which',return_value='/usr/bin/pdftotext'),patch.object(e.subprocess,'run',side_effect=convert), \
+             patch('pypdf._page.PageObject.extract_text',side_effect=AssertionError('CID expansion must not run')):
+            result=e.extract_file(raw.getvalue(),'report.pdf')
+        self.assertEqual(result['extractor'],'poppler-pdftotext')
+        self.assertEqual(result['pages'],[{'page':1,'text':'日本語の本文'},{'page':2,'text':''}])
+        self.assertEqual(result['skipped_pages'],[2])
+        def incomplete(args,**kwargs):
+            Path(args[-1]).write_text('only one page\f',encoding='utf-8');return Mock(returncode=0)
+        with patch.object(e.shutil,'which',return_value='/usr/bin/pdftotext'),patch.object(e.subprocess,'run',side_effect=incomplete):
+            with self.assertRaisesRegex(SourceIssue,'page_count_mismatch'):e.extract_file(raw.getvalue(),'report.pdf')
+
+    def test_poppler_timeout_is_explicit_and_does_not_fall_back_to_cid_expansion(self):
+        from pypdf import PdfWriter
+        writer=PdfWriter();writer.add_blank_page(width=100,height=100);raw=io.BytesIO();writer.write(raw)
+        with patch.object(e.shutil,'which',return_value='/usr/bin/pdftotext'), \
+             patch.object(e.subprocess,'run',side_effect=e.subprocess.TimeoutExpired('pdftotext',120)):
+            with self.assertRaisesRegex(SourceIssue,'edinet_pdf_text_timeout'):e.extract_file(raw.getvalue(),'report.pdf')
+
+    def test_formats_release_previous_extraction_before_downloading_next(self):
+        import weakref
+        class Extracted(dict): pass
+        references=[]
+        def extracted(raw,kind):
+            value=Extracted(version=e.VERSION,files=[{'text':'日本語'}],text_characters=3,
+                            xbrl_facts=0,textless_pdf_pages=0)
+            value['cycle'] = None
+            references.append(weakref.ref(value))
+            return value
+        def download(client,doc,kind):
+            if references:self.assertIsNone(references[-1]())
+            return self.downloader(client,doc,kind)
+        row=metadata();row['pdfFlag']='1'
+        with patch.object(e,'extract',side_effect=extracted):result=self.collect([row],downloader=download)
+        self.assertEqual(result['status'],'complete')
+        self.assertEqual(len(references),2)
+        for ref in references:self.assertIsNone(ref())
+        record,=self.records(result)
+        ref=record['payload']['documents'][0]['extraction']['source_evidence'][0]
+        packed=self.store.get(ref['key']).body
+        expected={'version':e.VERSION,'files':[{'text':'日本語'}],'text_characters':3,
+                  'xbrl_facts':0,'textless_pdf_pages':0,'cycle':None}
+        self.assertEqual(packed,(json.dumps(expected,ensure_ascii=False,sort_keys=True)+'\n').encode('utf-8'))
+
     def test_archive_limits_are_enforced_before_member_read(self):
         raw = bundle({'large.txt': b'12345'})
         with patch.object(e, 'MAX_MEMBER_BYTES', 4):

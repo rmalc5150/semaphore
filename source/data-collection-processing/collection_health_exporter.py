@@ -1,18 +1,133 @@
 #!/usr/bin/env python3
 """Read systemd, bounded journals and S3 metadata without touching collectors."""
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 import argparse
 import hashlib
 import json
 from pathlib import Path
 import subprocess
 import time
+import tempfile
 
 from collection_alerts import EXPECTED, Watchdog, epoch, fingerprint, outcome_issues, stamp
 from market_coverage_exclusions import Exclusions, reconcile_state, unresolved
 from research_contract import digest
 
 ROOT = Path(__file__).resolve().parent
+CONFIG = ROOT / 'config'
+
+
+# This is the stream pinned by the controller's patent-gap-catchup deployment.
+PATENT_GAP_STREAM = ('operations/patents/global-backfill/streams/'
+                     'd5548c10ab24a442ae7b6c5f05ed3e283f32a1e1e29b0662b74abdd80f903b96')
+RESEARCH_FEED_HISTORY = 'constellation-backfill/research-feeds/v1'
+
+
+def historical_capture_blockers(paused_sources, evidence):
+    """Check the actual capture routes and their durable evidence.
+
+    Older catalog flags and staged migrations do not describe these routes.
+    A positive checkpoint clears a setup blocker, not outstanding coverage.
+    """
+    start = json.loads((CONFIG / 'collection-gap-policy.json').read_text())['historical_start_target']
+    target = date.fromisoformat(start)
+    blockers = []
+
+    def read(key):
+        return evidence.read(key)[0] or {}
+
+    def block(source, label, issue, fix):
+        blockers.append(dict(source=source, label=label, issue=issue, fix=fix))
+
+    feeds = {'openalex_scholarly_graph': 'OpenAlex scholarly graph',
+             'japan_kaken_funded_research': 'Japan KAKEN funded research'}
+    if set(feeds) - paused_sources:
+        active = read(RESEARCH_FEED_HISTORY + '/control.json').get('historical_enabled') is True
+        for source, label in feeds.items():
+            if source in paused_sources:
+                continue
+            if not active:
+                block(source, label, 'The research-feed historical route is not enabled in its current control.',
+                      'Check the historical route control and any intentional pause before resuming.')
+                continue
+            if source == 'openalex_scholarly_graph':
+                from constellation.research_feeds import FLOOR, SNAPSHOT_PARTS
+                row = read(f'{RESEARCH_FEED_HISTORY}/progress/{source}/snapshot.json')
+                proven = (FLOOR <= target and row.get('snapshot_sha256')
+                          and 0 < row.get('next_part', 0) <= SNAPSHOT_PARTS
+                          and row.get('retained', 0) > 0)
+            else:
+                # KAKEN scopes are project-start fiscal years, not calendar periods.
+                year = target.year
+                row = read(f'{RESEARCH_FEED_HISTORY}/checkpoints/{source}/historical/fy-{year}.json')
+                scope = row.get('scope', {})
+                proven = (scope.get('fiscal_year') == year and scope.get('active') is False
+                          and row.get('unique_records', 0) > 0 and row.get('published_batches', 0) > 0)
+            if not proven:
+                block(source, label, 'No committed evidence was found for the configured historical route.',
+                      'Check the research-feed worker and validate a bounded historical batch.')
+
+    source = 'google_patents_bigquery'
+    if source not in paused_sources:
+        collection = read(PATENT_GAP_STREAM + '/progress.json')
+        publication = read(PATENT_GAP_STREAM + '/athena-publication/progress.json')
+        timer = properties('optima-patent-gap-catchup.timer')
+        config = json.loads((CONFIG / 'patent-backfill.json').read_text())
+        # The dedicated catch-up timer disables itself when its 2016–2020 gap is filled.
+        route_available = (timer.get('ActiveState') == 'active'
+                           or (publication.get('next_date') or '') >= '2021-01-01')
+        if not (route_available and config['start_date'] <= start
+                and (collection.get('next_date') or '') > start
+                and collection.get('completed_windows', 0) > 0):
+            block(source, 'Google Patents BigQuery',
+                  'The controller historical catch-up is not scheduled or lacks a committed checkpoint.',
+                  'Check the controller catch-up timer and its BigQuery checkpoint before changing federation.')
+
+    if 'finlight' not in paused_sources:
+        control = json.loads((CONFIG / 'finlight-backfill.json').read_text())
+        news = json.loads((ROOT / control['collection_config']).read_text())
+        primary = news['providers']['finlight']
+        primary_floor = primary.get('history_start')
+        split_archive = bool(primary_floor and primary_floor > start)
+        archive = (control.get('earlier_archive') or {}) if split_archive else primary
+        floor = archive.get('start') or archive.get('history_start')
+        key = archive.get('history_evidence')
+        probe = read(key) if floor and key and floor <= start else {}
+        proven = (probe.get('provider') == 'finlight' and any(
+            isinstance(row.get('start'), str) and row['start'] <= start
+            and isinstance(row.get('earliest'), str) and row['earliest'][:10] >= start
+            and row['earliest'][:10] < (row.get('end_exclusive') or '')
+            and (not split_archive or row['earliest'][:10] < primary_floor)
+            and row.get('count', 0) > 0 and (row.get('raw') or {}).get('key', '').startswith('source_documents/finlight/')
+            for row in probe.get('results', [])))
+        if not control.get('enabled') or not proven:
+            block('finlight', 'Finlight news',
+                  f'The enabled archive route or its access evidence for {start} is missing.',
+                  'Check the configured earlier archive and validate a bounded historical response.')
+    return blockers
+
+
+def daily_reconciliation_gap(key, doc, evidence):
+    directory, _, name = key.rpartition('/')
+    source = directory.rsplit('/', 1)[-1]
+    if key.startswith('operations/streams/') and '/daily/' in key and name.startswith('progress-'):
+        pending, _, _ = evidence.read(directory + '/reconciliation.json')
+        dates = sorted((pending or {}).get('pending_dates', []))
+        if dates:
+            # The queue can span multiple failure causes. Name the cause only
+            # for a single retained date whose exact outcome can be checked.
+            reason = None
+            if len(dates) == 1:
+                start = date.fromisoformat(dates[0])
+                outcome, _, _ = evidence.read(f'{directory}/{start}_{start + timedelta(days=1)}.json')
+                reason = (outcome or {}).get('reason')
+            return {'source': source, 'dates': dates, 'reason': reason}
+    if key.startswith('operations/news/automation/') and name == 'reconcile.json':
+        attempted = doc.get('attempted_date')
+        outcome = doc.get('last_result') or {}
+        if attempted in doc.get('pending', []) and outcome.get('status') in {'partial', 'failed', 'blocked'}:
+            return {'source': source, 'dates': [attempted], 'reason': outcome.get('reason')}
+    return None
 
 
 def command(args):
@@ -104,10 +219,72 @@ def json_reports(unit):
 
 
 class Evidence:
-    def __init__(self, s3, bucket, data_prefix):
+    def __init__(self, s3, bucket, data_prefix, batch_cache=None):
         self.s3, self.bucket = s3, bucket
         self.prefix = data_prefix.rstrip('/')+'/'
         self.cache = {}
+        # A successful batch is immutable (key + SHA-256 + record count).  The
+        # optional durable cache avoids re-downloading it on every health pass.
+        self.batch_cache = batch_cache
+        self.batch_checks = {'downloads': 0, 'cache_hits': 0, 'list_requests': 0}
+
+    def cached_batch(self, batch):
+        entry = (self.batch_cache or {}).get(batch['key'])
+        try:
+            if (isinstance(entry, dict) and entry.get('etag') and entry.get('sha256') == batch['sha256']
+                    and entry.get('records') == batch['records']
+                    and epoch(entry.get('verified_at')) >= time.time()-86400):
+                return entry
+        except (ValueError, TypeError, AttributeError):
+            pass
+        return None
+
+    def verify_batch(self, batch, current_etag=None):
+        key = batch['key']
+        cached = self.cached_batch(batch)
+        if current_etag and cached and cached['etag'] == current_etag:
+            self.batch_checks['cache_hits'] += 1
+            return
+        self.batch_checks['downloads'] += 1
+        response = self.s3.get_object(Bucket=self.bucket, Key=self.prefix+key)
+        if response['ContentLength'] > 8*1024*1024:
+            response['Body'].close()
+            raise ValueError('Checkpoint batch exceeds monitoring size bound')
+        try:
+            raw = response['Body'].read(8*1024*1024+1)
+        finally:
+            response['Body'].close()
+        if len(raw) > 8*1024*1024 or hashlib.sha256(raw).hexdigest() != batch['sha256'] or len(raw.splitlines()) != batch['records']:
+            raise ValueError('Checkpoint batch verification failed: '+key)
+        if self.batch_cache is not None:
+            self.batch_cache[key] = {'sha256': batch['sha256'], 'records': batch['records'],
+                                     'etag': response.get('ETag'),
+                                     'verified_at': stamp()}
+
+    def verify_batches(self, batches):
+        groups = {}
+        for batch in batches:
+            key = batch['key']
+            if '/' in key:
+                groups.setdefault(key.rsplit('/', 1)[0]+'/', []).append(batch)
+        etags = {}
+        for prefix, group in groups.items():
+            cached = [batch for batch in group if self.cached_batch(batch)]
+            # LIST is usually dearer than GET. Require enough likely cache hits
+            # and bound this to one listing before falling back to direct GETs.
+            if len(cached) < 16:
+                continue
+            keys = sorted(self.prefix+batch['key'] for batch in cached)
+            try:
+                self.batch_checks['list_requests'] += 1
+                page = self.s3.list_objects_v2(Bucket=self.bucket, Prefix=self.prefix+prefix,
+                                               StartAfter=keys[0][:-1], MaxKeys=1000)
+            except Exception:
+                continue
+            for row in page.get('Contents', []):
+                etags[row['Key'][len(self.prefix):]] = row.get('ETag')
+        for batch in batches:
+            self.verify_batch(batch, etags.get(batch['key']))
 
     def read(self, key):
         if key in self.cache:
@@ -163,7 +340,7 @@ class Evidence:
                 if document and document.get('status') == 'complete' and document.get('exhausted'):
                     commits.append((manifest, document.get('finished_at') or modified))
             # Only traverse outcome/evidence subtrees, not account data or raw records.
-            for name in ('results', 'sources', 'windows', 'last_result', 'last_attempt', 'last_complete', 'last_verified', 'universe_epochs'):
+            for name in ('results', 'outcomes', 'sources', 'windows', 'last_result', 'last_attempt', 'last_complete', 'last_verified', 'universe_epochs'):
                 item = value.get(name)
                 if name == 'sources' and isinstance(item, dict):
                     item = list(item.values())
@@ -200,16 +377,8 @@ class Evidence:
                             raise ValueError('Checkpoint page receipt mismatch: '+receipt)
                         if len(page['batches']) > 100:
                             raise ValueError('Checkpoint page exceeds monitoring batch bound')
-                        count = 0
-                        for batch in page['batches']:
-                            response = self.s3.get_object(Bucket=self.bucket, Key=self.prefix+batch['key'])
-                            if response['ContentLength'] > 8*1024*1024:
-                                raise ValueError('Checkpoint batch exceeds monitoring size bound')
-                            raw = response['Body'].read()
-                            if (hashlib.sha256(raw).hexdigest() != batch['sha256'] or
-                                    len(raw.splitlines()) != batch['records']):
-                                raise ValueError('Checkpoint batch verification failed: '+batch['key'])
-                            count += batch['records']
+                        self.verify_batches(page['batches'])
+                        count = sum(batch['records'] for batch in page['batches'])
                         if count != page['record_count']:
                             raise ValueError('Checkpoint page count mismatch: '+receipt)
                         commits.append((receipt, committed_at))
@@ -230,7 +399,7 @@ class Evidence:
                     observed, outstanding = self.checkpoint_commits({'manifest': child_key})
                     commits.extend(observed)
                     pending |= outstanding
-            for name in ('results', 'sources', 'windows'):
+            for name in ('results', 'outcomes', 'sources', 'windows'):
                 item = value.get(name)
                 if name == 'sources' and isinstance(item, dict):
                     item = list(item.values())
@@ -293,7 +462,7 @@ def reconcile_repaired_outcomes(value, evidence):
                         result.update(status=current['status'], reason=current.get('reason_code'),
                                       manifest=replacement, superseded_manifest=key)
                         commits.extend(observed)
-    for name in ('results', 'sources', 'windows', 'last_result', 'universe_epochs'):
+    for name in ('results', 'outcomes', 'sources', 'windows', 'last_result', 'universe_epochs'):
         child = result.get(name)
         if isinstance(child, dict) and name == 'sources':
             revised = {}
@@ -313,6 +482,12 @@ def inspect_job(unit, policy, evidence, since, now):
     if pause:
         return {'operator_paused': pause, 'issues': [], 'progress': {'pending': False}}
     from constellation.m7_health import UNITS, view
+    if (policy.get('execution_worker_unit') and unit in UNITS
+            and getattr(evidence, 'worker_workload_mode', None) == 'historical_only'):
+        from constellation.m7_historical_policy import HISTORICAL_DISPATCH_UNITS
+        if UNITS[unit] not in HISTORICAL_DISPATCH_UNITS:
+            return {'operator_paused': {'reason': 'Worker reserved for historical backfill'},
+                    'issues': [], 'progress': {'pending': False}}
     worker = view(unit,evidence,now) if policy.get('execution_worker_unit') and unit in UNITS else None
     service = worker['service'] if worker else properties(unit)
     timer = properties(policy.get('timer', unit.replace('.service', '.timer')))
@@ -322,12 +497,23 @@ def inspect_job(unit, policy, evidence, since, now):
     # Its activation starts schedule grace; it does not establish data progress.
     schedule_started = started or int(timer.get('ActiveEnterTimestampMonotonic') or 0)/1e6
     reports, events, latest_commit = (worker['reports'],worker['events'],worker['latest_commit']) if worker else json_reports(unit)
+    start_age = max(0, time.clock_gettime(time.CLOCK_BOOTTIME)-schedule_started) if schedule_started else now
+    if worker and reports:
+        # An unloaded remote oneshot can retain a start from a prior boot.
+        # A recent journal outcome from the same worker proves an invocation.
+        report_age = now - max(epoch(report.get('at')) for report in reports)
+        if 0 <= report_age < start_age:
+            start_age = report_age
     result = {'timer_enabled': timer.get('UnitFileState'), 'timer_state': timer.get('ActiveState'),
               'activity': state, 'activity_seconds': elapsed, 'result': service.get('Result'),
               'exit_status': int(service.get('ExecMainStatus') or 0),
-              'last_start_age_seconds': max(0, time.clock_gettime(time.CLOCK_BOOTTIME)-schedule_started) if schedule_started else now,
+              'last_start_age_seconds': start_age,
               'failure_events': [e for e in events if epoch(e['at']) > since], 'issues': [], 'evidence_keys': []}
     if worker:result['execution_host']={'instance_id':'i-06241bd1c4e91c2fc','unit':worker['worker_unit']}
+    if worker and worker.get('scheduled_batch_wait'):
+        result['scheduled_batch_wait'] = worker['scheduled_batch_wait']
+        result['last_execution_result'] = result['result']
+        result['result'] = None  # No current invocation while the worker sleeps.
     commits, pending, tokens = evidence.confirmed(latest_commit), False, []
     values = [(r['value'], r['at']) for r in reports]
     search_verified = False
@@ -373,6 +559,8 @@ def inspect_job(unit, policy, evidence, since, now):
         if doc is None:
             pending = True
             continue
+        if gap := daily_reconciliation_gap(key, doc, evidence):
+            result.setdefault('daily_reconciliation_gaps', []).append(gap)
         if key in market_keys:
             prefix, lane = key.rsplit('/', 1)
             if prefix not in market_registries:
@@ -428,6 +616,9 @@ def inspect_job(unit, policy, evidence, since, now):
                 commits.extend(recovered)
                 page_commits.extend(recovered)
     for value, at in values:
+        if isinstance(value, dict) and value.get('reason') == 'worker_pool_memory_busy':
+            result['resource_wait'] = 'worker_pool_memory_busy'
+            pending = True
         value, repaired_commits = reconcile_repaired_outcomes(value, evidence)
         commits.extend(repaired_commits)
         for code, severity in outcome_issues(apply_document_exceptions(value, decisions)):
@@ -485,6 +676,37 @@ def inspect_job(unit, policy, evidence, since, now):
             result['coverage_resolutions'] = {code: {'at': stamp(now), 'basis': 'reviewed_scoped_exclusions',
                 'registry_keys': result['coverage_review']['registry_keys']} for code in clear}
     verified_publication_receipts = []
+    for scope in policy.get('publication_scopes', []):
+        owner, prefix = scope['owner'], scope['queue_prefix']
+        queue = evidence.inventory(prefix)
+        if len(queue) > 256:
+            raise ValueError('Scoped publication check exceeds 256 windows: '+prefix)
+        outstanding = 0
+        for key in queue:
+            entry, _, _ = evidence.read(key)
+            wid = (entry or {}).get('window_id', '')
+            if len(wid) != 64 or any(c not in '0123456789abcdef' for c in wid):
+                raise ValueError('Invalid scoped publication window: '+key)
+            receipt_key = 'operations/'+owner+'/publication-receipts/'+wid+'.json'
+            receipt, _, _ = evidence.read(receipt_key)
+            verified = []
+            if (receipt and receipt.get('status') == 'verified'
+                    and receipt.get('window_id') == wid
+                    and receipt.get('manifests') == entry.get('manifests')):
+                verified = evidence.confirmed(receipt)
+            if verified:
+                document, _, _ = evidence.read(receipt['verification_key'])
+                if document.get('window_id') != wid or document.get('status') != 'verified':
+                    raise ValueError('Scoped publication verification identity mismatch: '+key)
+                commits.extend(verified)
+                tokens.append((prefix, wid, receipt['verification_sha256']))
+            else:
+                outstanding += 1
+        pending |= bool(outstanding)
+        result.setdefault('publication_backlog', {})[prefix] = outstanding
+        result.setdefault('scoped_publication_checks', []).append({
+            'queue_prefix': prefix, 'windows': len(queue), 'verified': len(queue)-outstanding,
+            'checked_at': stamp(now)})
     for owner in policy.get('publication_owners', []):
         queue = evidence.inventory('operations/'+owner+'/publication-queue/')
         receipts = evidence.inventory('operations/'+owner+'/publication-receipts/')
@@ -516,7 +738,7 @@ def inspect_job(unit, policy, evidence, since, now):
     # even when its already-complete data predates this invocation. This does
     # not close source failures or establish new collection progress.
     ended = int(service.get('ExecMainExitTimestampMonotonic') or 0)/1e6
-    if (state == 'idle' and service.get('Result') == 'success' and
+    if (state in ('idle', 'scheduled_wait') and service.get('Result') == 'success' and
             result['exit_status'] == 0 and ended >= started > 0 and
             (search_verified or any(evidence.confirmed(r['value']) for r in reports) or
              (commits and result.get('publication_backlog') and
@@ -533,19 +755,28 @@ def inspect_job(unit, policy, evidence, since, now):
     return result
 
 
-def export(config, s3):
+def export(config, s3, *, full_audit=False):
     now = time.time()
     watchdog = Watchdog(s3, None, config)
     previous = watchdog.get('health/latest.json') or {}
     since = max(epoch(previous.get('checked_at')), now-3600)
-    evidence = Evidence(s3, config['bucket'], config['data_prefix'])
+    cache_path = ROOT/'state'/'collection-health'/'health-verified-batches.json'
+    try:
+        batch_cache = json.loads(cache_path.read_text())
+        if not isinstance(batch_cache, dict):
+            raise ValueError('cache must be an object')
+    except (OSError, ValueError):
+        batch_cache = {}
+    evidence = Evidence(s3, config['bucket'], config['data_prefix'], None if full_audit else batch_cache)
     from constellation.m7_health import UNITS
+    from constellation.m7_batch import policy as worker_policy
+    evidence.worker_workload_mode = worker_policy().get('mode')
     for unit,worker in UNITS.items():
         if unit in config['jobs']:config['jobs'][unit]['execution_worker_unit']=worker
     result = {'schema_version': 1, 'checked_at': stamp(now), 'bucket':config['bucket'], 'jobs': {}, 'errors': []}
     try:
         from constellation.m7_health import refresh
-        refresh(config['bucket'])
+        evidence.worker_instance_state = refresh(config['bucket'])
     except Exception as exc:
         result['errors'].append('Worker execution inspection: '+str(exc)[:500])
     now=time.time()
@@ -556,6 +787,15 @@ def export(config, s3):
         except Exception as exc:
             result['jobs'][unit] = {'inspection_error': str(exc)[:500]}
     result['daily_audit'] = watchdog.get('daily-health/latest.json')
+    try:
+        pauses = json.loads((CONFIG / 'source-pauses.json').read_text())['sources']
+        contracts = json.loads((CONFIG / 'metadata-engine.json').read_text())['contracts']
+        paused_sources = set(pauses) | {source for source, contract in contracts.items()
+                                        if contract.get('state') == 'owner_paused'}
+        result['paused_sources'] = sorted(paused_sources)
+        result['historical_capture_blockers'] = historical_capture_blockers(paused_sources, evidence)
+    except (OSError, ValueError, KeyError) as exc:
+        result['errors'].append('Historical coverage prerequisite inspection: '+str(exc)[:300])
     from pipeline_health import inspect_stages
     def inspect_future(unit):
         try:
@@ -586,6 +826,21 @@ def export(config, s3):
             lambda key:evidence.read(key)[0],verify_artifact)
     except Exception as exc:
         result['errors'].append('Pipeline stage inspection: '+str(exc)[:500])
+    # Retain only a bounded recent cache.  It is an optimization, never an
+    # authority: key/checksum/count must still match the current manifest.
+    if len(batch_cache) > 100000:
+        batch_cache = dict(sorted(batch_cache.items(), key=lambda item: (
+            item[1].get('verified_at','') if isinstance(item[1], dict) else ''), reverse=True)[:100000])
+    try:
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.NamedTemporaryFile('w', dir=cache_path.parent, delete=False) as handle:
+            json.dump(batch_cache, handle, sort_keys=True)
+            handle.write('\n')
+            temporary = Path(handle.name)
+        temporary.replace(cache_path)
+    except OSError as exc:
+        result['errors'].append('Batch verification cache not persisted: '+str(exc)[:200])
+    result['s3_batch_checks'] = evidence.batch_checks
     watchdog.put('health/latest.json', result)
     return result
 
@@ -593,12 +848,14 @@ def export(config, s3):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--record-alerts', action='store_true', help='Local recording while independent AWS deployment is blocked; sends no notifications.')
+    parser.add_argument('--full-audit', action='store_true', help='Download and reverify every referenced checkpoint batch.')
     args = parser.parse_args()
     import boto3
     config = json.loads((ROOT/'config/collection-monitoring.json').read_text())
     s3 = boto3.client('s3', region_name=config['region'])
-    result = export(config, s3)
+    result = export(config, s3, full_audit=args.full_audit)
     print(json.dumps({'checked_at': result['checked_at'], 'jobs': len(result['jobs']),
+                      's3_batch_checks': result['s3_batch_checks'],
                       'inspection_errors': {u: j['inspection_error'] for u,j in result['jobs'].items() if 'inspection_error' in j}}))
     if args.record_alerts:
         print(json.dumps(Watchdog(s3, None, config).run(notifications=False)))

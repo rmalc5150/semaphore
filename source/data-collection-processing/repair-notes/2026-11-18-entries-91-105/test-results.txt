@@ -1,0 +1,8 @@
+{"status": "daily_capture_paused", "source": "brazil_anm_cfem_mining_royalties"}
+{"status": "daily_capture_paused", "source": "brazil_anm_cfem_mining_royalties"}
+{"report_key": "constellation-backfill/public-capture/daily-receipts/fd58755bb8bf4ca8a3d2909b7dcfaeed.json", "public_capture_summary": {"source": "fixture", "mode": "historical", "captured_urls": 0, "remaining_urls": 1, "failed_urls": 1}}
+{"report_key": "constellation-backfill/public-capture/daily-receipts/b11b79d2fc1c4cd981c1e7229528800b.json", "public_capture_summary": {"source": "fixture", "mode": "historical", "captured_urls": 0, "remaining_urls": 1, "failed_urls": 1}}
+----------------------------------------------------------------------
+Ran 99 tests in 0.339s
+
+OK

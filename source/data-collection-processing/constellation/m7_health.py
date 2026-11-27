@@ -3,6 +3,7 @@ import json
 import shlex
 import time
 import boto3
+import math
 
 INSTANCE='i-06241bd1c4e91c2fc'
 KEY='research-data/constellation-backfill/worker-health/latest.json'
@@ -18,6 +19,32 @@ UNITS['optima-eodhd-inventory.service']='optima-m7-eodhd-inventory.service'
 UNITS['optima-specialist-daily.service']='optima-m7-specialist-daily.service'
 from constellation.m7_capture_plan import UNITS as CAPTURE_UNITS
 UNITS.update(CAPTURE_UNITS)
+
+def scheduled_sleep(now, instance_state):
+    """Recognise bounded, proven batch sleep; never infer health from stale data."""
+    if instance_state not in ('stopped', 'stopping'):
+        return None
+    from constellation.m7_batch import read, policy
+    state, settings = read(), policy()
+    stopped = state.get('stopped_at')
+    if (state.get('phase') != 'sleeping'
+            or state.get('drain_proof', {}).get('safe_to_stop') is not True
+            or not isinstance(stopped, (int, float)) or not math.isfinite(stopped)):
+        return None
+    if settings.get('mode') == 'historical_only':
+        return {'reason': 'historical_work_threshold_wait', 'stopped_at_epoch': stopped,
+                'earliest_wake_at_epoch': stopped + settings['off_hours'] * 3600,
+                'historical_wake_hours': settings['historical_wake_hours'],
+                'last_history_work': state.get('last_history_work'),
+                'instance_state': instance_state}
+    deadline = stopped + settings['max_off_hours'] * 3600
+    if not stopped <= now < deadline:
+        return None
+    return {'reason': 'scheduled_batch_sleep', 'stopped_at_epoch': stopped,
+            'earliest_wake_at_epoch': stopped + settings['off_hours'] * 3600,
+            'wake_deadline_epoch': deadline,
+            'queued_requests': len(state.get('requests', {})),
+            'instance_state': instance_state}
 
 def refresh(bucket):
     ec2=boto3.client('ec2',region_name='us-east-1')
@@ -57,15 +84,35 @@ print('Worker health snapshot saved')
 
 def view(unit,evidence,now):
     doc,_,_=evidence.read(KEY.removeprefix(evidence.prefix))
+    wait = scheduled_sleep(now, getattr(evidence, 'worker_instance_state', None))
+    if wait:
+        item = dict((doc or {}).get('jobs', {}).get(unit) or {})
+        # Keep the previous invocation and source reports as historical evidence.
+        # A sleeping instance supplies no current process-health observation.
+        item.setdefault('service', {})
+        item.setdefault('reports', [])
+        item.setdefault('events', [])
+        item.setdefault('latest_commit', None)
+        item.setdefault('worker_unit', UNITS.get(unit, unit))
+        item.update(activity='scheduled_wait', elapsed=0,
+                    scheduled_batch_wait={**wait, 'snapshot_checked_at_epoch':
+                                          (doc or {}).get('checked_at_epoch')})
+        if doc and 'boot_seconds' in doc:
+            item['service'] = translated_service(item['service'], doc, now)
+        return item
     if not doc or now-doc['checked_at_epoch']>900:raise RuntimeError('m7 execution snapshot missing or older than 15 minutes')
     item=doc['jobs'][unit]
     if item.get('error'):raise RuntimeError(item['error'])
-    item=dict(item);props=dict(item['service'])
+    item=dict(item);props=translated_service(item['service'],doc,now)
+    item['service']=props
+    if item['activity']in ('running','queued'):item['elapsed']+=max(0,now-doc['checked_at_epoch'])
+    return item
+
+def translated_service(service, doc, now):
+    props = dict(service)
     # Convert worker monotonic timestamps into this host's clock domain.
     delta=time.clock_gettime(time.CLOCK_BOOTTIME)-doc['boot_seconds']-(now-doc['checked_at_epoch'])
     for field in ('ExecMainStartTimestampMonotonic','ExecMainExitTimestampMonotonic','ActiveEnterTimestampMonotonic'):
         value=int(props.get(field)or 0)
         if value:props[field]=str(int(value+delta*1e6))
-    item['service']=props
-    if item['activity']in ('running','queued'):item['elapsed']+=max(0,now-doc['checked_at_epoch'])
-    return item
+    return props

@@ -1,0 +1,7 @@
+{
+  "public-cochilco-daily": "chile_cochilco_production_and_mining_economics",
+  "public-sernageomin-daily": "chile_sernageomin_mining_yearbooks",
+  "public-snifa-daily": "chile_sma_snifa_environmental_compliance",
+  "public-minem-daily": "peru_minem_mining_bulletins_and_yearbooks",
+  "public-sigmine-daily": "brazil_anm_sigmine_and_cadastro_mineiro"
+}

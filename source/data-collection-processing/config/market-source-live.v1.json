@@ -1,0 +1,540 @@
+{
+  "catalogue": {
+    "sources": 114
+  },
+  "metadata": [
+    {
+      "source_key": "market_source_159",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 6
+    },
+    {
+      "source_key": "market_source_162",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_163",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_164",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_167",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_169",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_170",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_171",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_176",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_177",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_178",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 4
+    },
+    {
+      "source_key": "market_source_182",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_183",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_184",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_187",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_190",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_194",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_195",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_198",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_201",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_204",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 12
+    },
+    {
+      "source_key": "market_source_205",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 4
+    },
+    {
+      "source_key": "market_source_207",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_209",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_210",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_214",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_215",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_220",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_221",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_229",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 3
+    },
+    {
+      "source_key": "market_source_234",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_236",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_238",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 8
+    },
+    {
+      "source_key": "market_source_240",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_241",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_242",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_243",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 4
+    },
+    {
+      "source_key": "market_source_244",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_249",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_251",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    },
+    {
+      "source_key": "market_source_264",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 3
+    },
+    {
+      "source_key": "market_source_265",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_268",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_269",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_270",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 2
+    },
+    {
+      "source_key": "market_source_272",
+      "state": "enabled",
+      "job_state": "accepted",
+      "jobs": 1
+    }
+  ],
+  "historical": [
+    {
+      "source_key": "legacy:constellation-public-market_source_162.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_163.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_167.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_169.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_170.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_171.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_176.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_177.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_178.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_182.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_183.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_184.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_187.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_190.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_194.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_195.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_198.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_201.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_204.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_205.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_207.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_209.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_210.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_214.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_215.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_220.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_221.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_229.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_234.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_236.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_238.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_240.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_241.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_242.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_243.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_244.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_249.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_251.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_264.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_265.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_268.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_269.service",
+      "status": "succeeded",
+      "jobs": 2
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_270.service",
+      "status": "succeeded",
+      "jobs": 1
+    },
+    {
+      "source_key": "legacy:constellation-public-market_source_272.service",
+      "status": "succeeded",
+      "jobs": 1
+    }
+  ],
+  "daily_state_sources": [
+    "market_source_162",
+    "market_source_163",
+    "market_source_169",
+    "market_source_170",
+    "market_source_171",
+    "market_source_176",
+    "market_source_177",
+    "market_source_178",
+    "market_source_182",
+    "market_source_183",
+    "market_source_187",
+    "market_source_190",
+    "market_source_194",
+    "market_source_195",
+    "market_source_198",
+    "market_source_201",
+    "market_source_204",
+    "market_source_205",
+    "market_source_207",
+    "market_source_210",
+    "market_source_229",
+    "market_source_238",
+    "market_source_240",
+    "market_source_241",
+    "market_source_242",
+    "market_source_243",
+    "market_source_249",
+    "market_source_264",
+    "market_source_265",
+    "market_source_268",
+    "market_source_269",
+    "market_source_270"
+  ],
+  "deployed": true
+}

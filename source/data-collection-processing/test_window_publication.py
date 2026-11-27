@@ -104,3 +104,35 @@ class WindowTests(unittest.TestCase):
         self.assertEqual(result['results'][0]['reason'],'duplicate_queue_alias_requires_review')
 
 if __name__=='__main__':unittest.main()
+
+class RegulatoryScanTests(unittest.TestCase):
+    def test_archive_scan_is_bounded_rotates_and_wraps(self):
+        from research_contract import digest
+        from collection_storage import LocalStore,write_checked
+        import hashlib
+        with tempfile.TemporaryDirectory() as root:
+            settings=StorageSettings(local_root=root);store=settings.store();config={}
+            verification=b'verified';write_checked(store,'verified.json',verification)
+            for n in range(130):
+                wid=f'{n:064x}';manifests=['m'+str(n)]
+                write_json(store,'operations/regulatory/publication-queue/'+wid+'.json',{'window_id':wid,'manifests':manifests})
+                write_json(store,'operations/regulatory/publication-receipts/'+wid+'.json',{'source_hash':digest({'manifests':manifests,'config':config,'curation_version':'window-publication-1.0'}),'verification_key':'verified.json','verification_sha256':hashlib.sha256(verification).hexdigest()})
+            with patch('window_publication.load_stored',wraps=__import__('window_publication').load_stored)as reads:
+                publish_pending(store,settings,'regulatory',config,Mock(),root,2)
+                queues=[c.args[1]for c in reads.call_args_list if '/publication-queue/'in c.args[1]]
+                self.assertEqual(len(queues),128)
+                self.assertEqual(json.loads(store.get('operations/regulatory/publication-retries/_scan-cursor.json').body)['last_key'],queues[-1])
+                reads.reset_mock();publish_pending(store,settings,'regulatory',config,Mock(),root,2)
+                queues=[c.args[1]for c in reads.call_args_list if '/publication-queue/'in c.args[1]]
+                self.assertEqual(queues[:2],['operations/regulatory/publication-queue/'+f'{n:064x}'+'.json'for n in (128,129)])
+                self.assertEqual(len(queues),128)
+    def test_next_unpublished_window_is_not_skipped_at_batch_limit(self):
+        from collection_storage import write_checked
+        with tempfile.TemporaryDirectory()as root:
+            settings=StorageSettings(local_root=root);store=settings.store()
+            for n in range(3):
+                wid=f'{n:064x}';write_json(store,'operations/regulatory/publication-queue/'+wid+'.json',{'window_id':wid,'manifests':['m'+str(n)]})
+            with patch('window_publication.release.publish'),patch('window_publication.deploy_window',return_value={'release_id':'r'}):
+                publish_pending(store,settings,'regulatory',{},Mock(return_value=root),root,1)
+            state=json.loads(store.get('operations/regulatory/publication-retries/_scan-cursor.json').body)
+            self.assertEqual(state['last_key'],'operations/regulatory/publication-queue/'+'0'*64+'.json')

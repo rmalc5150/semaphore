@@ -1,0 +1,9 @@
+[Unit]
+Description=Continue oversized OpenDART filings
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=15s
+AccuracySec=1s
+Unit=optima-metadata-streaming-opendart.service
+[Install]
+WantedBy=timers.target

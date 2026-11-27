@@ -35,7 +35,9 @@ def main():
         for _,identity,job in sorted(jobs,key=lambda r:(r[0],r[1]))[:8]:
             prior=state['jobs'].get(identity,{})
             execution_job=json.loads(json.dumps(job))
-            if prior.get('attempts',0)>=2:execution_job['parameters']['allow_partial']=True
+            # Keep retrying missing originals. A body-only capture is retained
+            # as evidence by the collector, but cannot finish the document job.
+            execution_job['parameters'].pop('allow_partial',None)
             result=collect(execution_job,store,settings,universe,taxonomy,1)
             entry={**result,'last_attempt':now(),'attempts':prior.get('attempts',0)+1}
             if result['status']!='complete':entry['retry_after']=(datetime.now(timezone.utc)+timedelta(minutes=30)).isoformat().replace('+00:00','Z')

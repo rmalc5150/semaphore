@@ -236,6 +236,21 @@ class Tests(unittest.TestCase):
         self.assertEqual(caught.exception.diagnostics,{'host':'api.uspto.gov',
             'path':p.OA_PATH+'/records','http_status':403,'operation':'metadata'})
 
+    def test_denied_redirect_identifies_public_document_without_signed_query(self):
+        calls=[]
+        def denied(req,timeout):
+            calls.append(req)
+            if len(calls)==1:
+                raise HTTPError(req.full_url,302,'redirect',{'Location':'https://data-documents.uspto.gov/file.pdf?signature=private'},io.BytesIO())
+            raise HTTPError(req.full_url,403,'denied',{},io.BytesIO(b'private response'))
+        c=p.Client(self.store,key_loader=lambda:'fixture-secret',opener=denied,gate=lambda:None)
+        with self.assertRaises(p.SourceIssue) as caught:
+            c.request(p.BASE+'/api/v1/download/applications/15123456/doc.pdf',pdf=True)
+        self.assertEqual(caught.exception.diagnostics['path'],'/api/v1/download/applications/15123456/doc.pdf')
+        self.assertNotIn('private',str(caught.exception.diagnostics))
+        self.assertNotIn('fixture-secret',str(caught.exception.diagnostics))
+        self.assertIsNone(calls[1].get_header('X-api-key'))
+
     def test_pdf_redirect_strips_credentials_and_does_not_save_signed_url(self):
         calls=[]
         class Response(io.BytesIO):headers={}

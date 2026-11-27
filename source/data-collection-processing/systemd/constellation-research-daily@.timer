@@ -1,0 +1,11 @@
+[Unit]
+Description=Schedule daily research metadata collection for %i
+
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=5min
+AccuracySec=10s
+Unit=constellation-research-daily@%i.service
+
+[Install]
+WantedBy=timers.target

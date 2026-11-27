@@ -1,0 +1,90 @@
+{
+  "assertions": [
+    {
+      "assertion_id": "assertion_fe1a398b2d514cbd4a7cd045c13d5d8da42099f6093b73c46bdac826697334e0",
+      "end": 56,
+      "entity_id": "ent_665cf40e-4af7-43f9-b260-22137bde58b7",
+      "mention_id": "mention_07fe50a8fdd356e479d9c5162a3554403e9abc4728430d7715b3b4b40b1396bc",
+      "namespace": "NCT",
+      "observation_id": "fixture_obs_1",
+      "page": 1,
+      "quote": "NCT01234567",
+      "raw_s3_uri": "s3://fixture-only/document",
+      "raw_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "start": 45,
+      "value": "NCT01234567"
+    },
+    {
+      "assertion_id": "assertion_987001e0a0c1e1bb947c6c934900dde2573eca080ca2079fd9d68b1ed9dc9e11",
+      "end": 27,
+      "entity_id": "ent_12fc722f-2cde-4aec-9166-20b35f32482c",
+      "mention_id": "mention_89612b5a381123b17f892178bf7b9ed8f823fc77efb4d4974213d46889d5130f",
+      "namespace": "CIK",
+      "observation_id": "fixture_obs_1",
+      "page": 1,
+      "quote": "12345",
+      "raw_s3_uri": "s3://fixture-only/document",
+      "raw_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "start": 22,
+      "value": "0000012345"
+    }
+  ],
+  "decisions": [
+    {
+      "action": "create_provisional",
+      "actor": "synthetic-demo",
+      "at": "2026-11-18T10:00:00Z",
+      "decision_id": "decision_cbc54bf810fa682e08a7252c6f82cf007e39f901e1f96edc15114032757bdac8",
+      "entity_id": "ent_665cf40e-4af7-43f9-b260-22137bde58b7",
+      "evidence_ids": [
+        "mention_07fe50a8fdd356e479d9c5162a3554403e9abc4728430d7715b3b4b40b1396bc"
+      ],
+      "reason": "Synthetic fixture demonstration only; no real-world verification"
+    },
+    {
+      "action": "create_provisional",
+      "actor": "synthetic-demo",
+      "at": "2026-11-18T10:00:00Z",
+      "decision_id": "decision_252b2671cf876bd9f2c883cbbc88407ee9973cc17117faccc5668ee9b9394b41",
+      "entity_id": "ent_12fc722f-2cde-4aec-9166-20b35f32482c",
+      "evidence_ids": [
+        "mention_89612b5a381123b17f892178bf7b9ed8f823fc77efb4d4974213d46889d5130f"
+      ],
+      "reason": "Synthetic fixture demonstration only; no real-world verification"
+    }
+  ],
+  "entities": [
+    {
+      "canonical_name": null,
+      "created_at": "2026-11-18T10:00:00Z",
+      "entity_id": "ent_665cf40e-4af7-43f9-b260-22137bde58b7",
+      "entity_type": "trial",
+      "lifecycle_status": "provisional"
+    },
+    {
+      "canonical_name": null,
+      "created_at": "2026-11-18T10:00:00Z",
+      "entity_id": "ent_12fc722f-2cde-4aec-9166-20b35f32482c",
+      "entity_type": "organization",
+      "lifecycle_status": "provisional"
+    }
+  ],
+  "environment": "sandbox",
+  "identifiers": [
+    {
+      "entity_id": "ent_665cf40e-4af7-43f9-b260-22137bde58b7",
+      "namespace": "NCT",
+      "review_status": "candidate",
+      "value": "NCT01234567"
+    },
+    {
+      "entity_id": "ent_12fc722f-2cde-4aec-9166-20b35f32482c",
+      "namespace": "CIK",
+      "review_status": "candidate",
+      "value": "0000012345"
+    }
+  ],
+  "parent_snapshot_id": "registry_00a1a7fdc0528f927a74bf03d527c57bb0254497832a81edcb0d7c1b659fdf3f",
+  "schema_version": 1,
+  "snapshot_id": "registry_e937c4a9688a3a43bc3f57e8efdd69b022d1bffdc56328516ff3c2f6a35b7f8f"
+}

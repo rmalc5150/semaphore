@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 from collection_operations import load_stored
-from collection_storage import StorageSettings,now,write_json
+from collection_storage import Conflict,StorageSettings,now,write_json
 from eodhd_universe import EODHDClient
 from market_collection import collect_eodhd,enqueue
 from market_coverage_exclusions import Exclusions, SUCCESS, excluded_window, reconcile_state, unresolved, report as coverage_report
@@ -31,9 +31,17 @@ class Budget:
     def __call__(self,*args,**kwargs):
         if self.remaining<=0:raise SourceIssue('market_run_request_budget_reached',True)
         key='operations/market/budgets/'+now()[:10]+'.json'
-        state,token=load_stored(self.store,key);state=state or {'reserved':0}
-        if state['reserved']>=self.config['max_requests_per_day']:raise SourceIssue('market_daily_request_budget_reached',True)
-        state.update(reserved=state['reserved']+1,updated_at=now());write_json(self.store,key,state,token)
+        for _ in range(4):
+            state,token=load_stored(self.store,key);state=state or {'reserved':0}
+            if state['reserved']>=self.config['max_requests_per_day']:raise SourceIssue('market_daily_request_budget_reached',True)
+            state.update(reserved=state['reserved']+1,updated_at=now())
+            try:
+                write_json(self.store,key,state,token)
+                break
+            except Conflict:
+                continue
+        else:
+            raise SourceIssue('market_budget_contention',True)
         self.remaining-=1
         return self.opener(*args,**kwargs)
 
@@ -69,10 +77,10 @@ class MarketOperations:
         item['scope_floor'] = floor
         item['next_date'] = min(item['gaps'])
         return item
-    def reconcile_exclusions(self, registry=None, persist=True):
+    def reconcile_exclusions(self, registry=None, persist=True, lanes=('daily','historical')):
         registry = registry or Exclusions(self.store, self.prefix, self.symbols)
         states = {}
-        for lane in ('daily', 'historical'):
+        for lane in lanes:
             key = self.prefix + '/' + lane + '.json'
             state, token = load_stored(self.store, key)
             states[lane] = reconcile_state(state, lane, registry) if state else None
@@ -85,7 +93,7 @@ class MarketOperations:
         registry = Exclusions(self.store, self.prefix, self.symbols)
         from market_symbol_mappings import load as load_mappings
         mappings = load_mappings(self.store, self.prefix, self.symbols)
-        self.reconcile_exclusions(registry)
+        self.reconcile_exclusions(registry,lanes=lanes)
         for lane in lanes:
             if lane == 'historical':
                 daily, _ = load_stored(self.store, self.prefix+'/daily.json')
@@ -161,7 +169,7 @@ class MarketOperations:
                 item.update(last_attempt=now(),last_result=result,window_start=str(start),window_end_exclusive=str(end))
                 state['symbols'][symbol]=item;token=write_json(self.store,key,state,token)
                 outcomes.append({'symbol':symbol,'lane':lane,**result});attempted+=1
-                if result.get('reason') in {'market_run_request_budget_reached','market_daily_request_budget_reached','eodhd_authentication_denied','eodhd_endpoint_access_denied','eodhd_shared_quota_reached','eodhd_quota_refresh_required'}:
+                if result.get('reason') in {'market_run_request_budget_reached','market_daily_request_budget_reached','market_budget_contention','eodhd_authentication_denied','eodhd_endpoint_access_denied','eodhd_shared_quota_reached','eodhd_quota_refresh_required'}:
                     # Quota exhaustion is shared: don't mark every symbol failed.
                     return {'status':'partial','stream_id':self.identity,'results':outcomes}
         unresolved_counts = {}; excluded_counts = {}
@@ -176,7 +184,8 @@ class MarketOperations:
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--status',action='store_true');p.add_argument('--dry-run',action='store_true');p.add_argument('--lane',choices=['daily','historical','all'],default='all');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--status',action='store_true');p.add_argument('--dry-run',action='store_true');p.add_argument('--lane',choices=['daily','historical','all'],default='all');p.add_argument('--max-windows',type=int);a=p.parse_args()
+    if a.max_windows is not None and a.max_windows<1:p.error('--max-windows must be positive')
     config=load_json(ROOT/'config/market-operations.json');u=load_json(ROOT/config['universe']);t=load_json(ROOT/config['taxonomy'])
     if a.dry_run:print(json.dumps({'historical_start':config['historical_start'],'daily_origin':config['daily_origin'],'symbols':len(symbols(u)),**config,'runtime_quota':load_json(ROOT/'config/eodhd-quota.json')}));return 0
     with (ROOT/'.market-collection.lock').open('a') as lock:
@@ -187,8 +196,7 @@ def main():
             registry = Exclusions(store, runner.prefix, runner.symbols)
             status = runner.reconcile_exclusions(registry, persist=False)
             print(json.dumps({'stream_id':runner.identity,'states':status,'coverage_review':coverage_report(status,registry)}));return 0
-        runner.reconcile_exclusions()
-        limits=load_json(ROOT/'config/eodhd-quota.json');runner.window_limit=limits['market_windows_per_lane']
+        limits=load_json(ROOT/'config/eodhd-quota.json');runner.window_limit=min(limits['market_windows_per_lane'],a.max_windows or limits['market_windows_per_lane'])
         source_config=load_json(ROOT/'config/eodhd-universe.json');client=EODHDClient.configured(source_config);account=client.account()
         limit,used=account.get('dailyRateLimit'),account.get('apiRequests')
         require(type(limit)==int and type(used)==int and isinstance(account.get('apiRequestsDate'),str) and account['apiRequestsDate']<=now()[:10],'market_account_quota_unverified')

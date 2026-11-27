@@ -22,7 +22,8 @@ def inspect_routes(control,rows,routes,plan):
     prefix=control.config['prefix'];keys={}
     public={r['source']:r for r in json.loads((ROOT/'config/constellation-public-sources.json').read_text())['sources']}
     for route in routes:
-        if route.get('public_capture_source'):keys[route['unit']]=prefix+'/public-capture/states/historical/'+route['public_capture_source']+'.json'
+        if route.get('public_capture_source'):
+            source=route['public_capture_source'];revision=public.get(source,{}).get('raw_content_revision');keys[route['unit']]=prefix+'/public-capture/states/historical/'+source+('/'+revision if revision else '')+'.json'
         elif route.get('specialist_source'):keys[route['unit']]=prefix+'/specialist-schedulers/'+route['unit']+'/historical.json'
     with ThreadPoolExecutor(max_workers=6) as pool:states=dict(pool.map(lambda pair:(pair[0],get_json(control,pair[1])),keys.items()))
     universe=None;universe_hash=None;proofs={}

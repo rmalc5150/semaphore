@@ -17,7 +17,7 @@ from urllib.parse import urlencode, urljoin
 import xml.etree.ElementTree as ET
 from urllib.parse import urlsplit
 
-from collection_storage import AlreadyComplete, CollectionRun, StorageSettings, now, task_spec, write_json
+from collection_storage import AlreadyComplete, CollectionRun, Conflict, StorageSettings, now, task_spec, write_json
 from research_contract import ROOT, digest, load_json, seal_record
 from regulatory_collection import EvidenceClient, SourceIssue, require, stamp
 
@@ -282,7 +282,7 @@ def fetch_page(client, job, cursor):
             url += '?' + urlencode(params)
             fallback = True
         try:
-            article = ET.fromstring(raw)
+            article = ET.fromstring(raw,parser=ET.XMLParser(target=ET.TreeBuilder(insert_pis=True)))
         except ET.ParseError:
             raise SourceIssue('epmc_invalid_article_xml')
         if fallback:
@@ -294,10 +294,13 @@ def fetch_page(client, job, cursor):
             require(bool(ids.intersection({p['pmcid'], p['pmcid'][3:]})), 'epmc_fallback_identity_mismatch')
             raw = ET.tostring(article, encoding='utf-8')
         require(article.tag == 'article', 'epmc_non_article_response')
+        from metadata_engine.epmc_fulltext import parse_original,enrichment,ProviderError
+        try:parse_original(raw,p['pmcid'])
+        except ProviderError as error:raise SourceIssue(str(error))from None
         licenses = [{'text': ' '.join(node.itertext()), 'attributes': node.attrib} for node in article.findall('.//license')]
         return [item(p['pmcid'], {'pmcid': p['pmcid'], 'license_statements': licenses,
                                  'retrieval_provider': 'NCBI PMC' if fallback else 'Europe PMC',
-                                 'article_xml': raw.decode('utf-8'), 'training_rights': 'held pending license review'}, url)], None
+                                 'article_xml': raw.decode('utf-8'), 'enrichment':enrichment(raw.decode('utf-8'),p['pmcid']), 'training_rights': 'held pending license review'}, url)], None
     if kind == 'cms':
         data = client.json(url, body={'conditions': p['conditions'], 'limit': 100, 'offset': offset})
         rows = data.get('results')
@@ -465,12 +468,32 @@ def discover_children(store, manifest_key, parent):
 
 
 def nih_refresh_required(store, spec, job):
-    if job['adapter'] != 'nih' and not job['adapter'].startswith('additional_'):return False
+    if job['adapter'] not in {'nih','sam_gov','ted'} and not job['adapter'].startswith('additional_') and not (job['adapter']=='drugsfda' and job['parameters'].get('inventory_scope')):return False
     head = store.get('checkpoints/task_' + digest(spec) + '/head.json')
     state = json.loads(head.body) if head else {}
     terminal = store.get(state['terminal_manifest']) if state.get('terminal_manifest') else None
     result = json.loads(terminal.body) if terminal else {}
+    if job['adapter'] == 'ted':
+        # Retain the failed iteration as evidence. Its old token/count cannot
+        # be repaired by requesting the same page again; restart a generation.
+        try:
+            position = json.loads(state.get('cursor') or '{}')
+        except (ValueError, TypeError):
+            return False
+        return (result.get('status') == 'failed'
+                and result.get('reason_code') in {'ted_count_mismatch', 'ted_missing_iteration_page'}
+                and isinstance(position, dict) and isinstance(position.get('seen'), int)
+                and position['seen'] > 0 and bool(position.get('token')))
+    if job['adapter'] == 'sam_gov':
+        # SAM removes archived notices from its mutable active inventory. Keep
+        # the old run as evidence and restart from page zero in a new generation.
+        # Existing quota admission and scheduler retry delays still apply.
+        return result.get('status') == 'failed' and (
+            result.get('reason_code') == 'sam_source_changed_refresh_required' or
+            (result.get('reason_code') == 'sam_count_mismatch' and
+             str(state.get('cursor', '')).isdigit() and int(state['cursor']) > 0))
     reasons={'nih_split_count_changed', 'nih_duplicate_page_refresh_required', 'nih_split_final_count_mismatch'} if job['adapter']=='nih' else {'source_changed_refresh_required'}
+    if job['adapter']=='additional_biorxiv':reasons|={'additional_duplicate_provider_ids','biorxiv_cursor_identity_upgrade_required'}
     return result.get('status') == 'failed' and result.get('reason_code') in reasons
 
 
@@ -494,12 +517,15 @@ def collect(job, store, settings, universe, taxonomy, page_budget):
         job['end'] + 'T00:00:00Z', {k: job[k] for k in ('adapter', 'parameters', 'source_id', 'coverage_note')},
         VERSION + ('-usaspending-single-recipient-1' if job['adapter'] == 'usaspending' else '')
         + ('-pubmed-evidence-context-v1' if job['adapter'] == 'pubmed' else '')
+        + ('-epmc-fulltext-jats-context-v1' if job['adapter']=='epmc_fulltext' else '')
         + ('-mlperf-evidence-v1' if job['adapter'] == 'mlperf' else '')
         + ('-usgs-minerals-evidence-v2' if job['source'] == 'usgs_minerals' else '')
         + ('-bls-labor-context-v2' if job['adapter'] == 'bls' else '')
         + ('-eia-index-retail-v1' if job['source'] in {'eia_generator_index','eia_retail_prices'} else '')
         + ('-csl-list-scoped-identity-v1' if job['adapter'] == 'csl' else '')
         + ('-doe-storage-evidence-v2' if job['adapter'] == 'doe_storage' else '')
+        + ('-original-filing-documents-v1' if job['adapter']in ('additional_dart','additional_cninfo') else '')
+        + ('-nhsbsa-snomed-catalogue-v1' if job['adapter']=='additional_nhsbsa' else '')
         + ('-caiso-market-evidence-v1' if job['adapter'] == 'caiso' else ''), universe, taxonomy)
     try:
         refresh = nih_refresh_required(store, spec, job)
@@ -514,6 +540,8 @@ def collect(job, store, settings, universe, taxonomy, page_budget):
             time.sleep(1)
             client.evidence.clear()
             rows, cursor = fetch_page(client, job, run.cursor)
+            if getattr(client,'empty_scope_evidence',None):
+                write_json(store,run.state['manifest_prefix']+f"/responses/{len(run.state['pages']):08d}-empty-scope.json",client.empty_scope_evidence)
             expected=getattr(client,'expected_records',None)
             if job['adapter'].startswith('additional_') and cursor is None and expected is not None:
                 require(run.state['record_count']+len(rows)==expected,'additional_total_count_mismatch')
@@ -528,8 +556,10 @@ def collect(job, store, settings, universe, taxonomy, page_budget):
         manifest = run.finish(status, None if run.exhausted else 'page_budget', expected_records=run.state['record_count'] if run.exhausted else None)
         return {'status': status, 'manifest': manifest, 'records': run.state['record_count'], 'pages': pages, 'reason': None if run.exhausted else 'page_budget'}
     except (Exception, KeyboardInterrupt) as exc:
-        status = 'partial' if isinstance(exc, KeyboardInterrupt) or (job['adapter'] == 'ted' and isinstance(exc, SourceIssue) and exc.code == 'ted_daily_xml_pending') or (job['adapter']=='additional_copernicus' and isinstance(exc,SourceIssue) and exc.code=='copernicus_queue_wait') else 'failed'
+        status = 'partial' if isinstance(exc, KeyboardInterrupt) or (job['adapter'] == 'ted' and isinstance(exc, SourceIssue) and exc.code == 'ted_daily_xml_pending') or (job['adapter']=='additional_copernicus' and isinstance(exc,SourceIssue) and exc.code=='copernicus_queue_wait') or (job['adapter']=='additional_nhsbsa' and isinstance(exc,SourceIssue) and exc.code=='nhsbsa_release_not_yet_published') or (job['adapter']=='additional_census' and isinstance(exc,SourceIssue) and exc.code=='census_period_not_yet_published') else 'failed'
         code = exc.code if isinstance(exc, SourceIssue) else 'interrupted' if isinstance(exc, KeyboardInterrupt) else 'collection_error'
+        if job['adapter']=='additional_biorxiv' and code=='decodo_web_data_daily_budget':status='partial'
+        if isinstance(exc,SourceIssue) and code in {'pdf_proxy_daily_budget','pdf_proxy_url_cooldown','pdf_proxy_client_budget'}:status='partial'
         if isinstance(exc, SourceIssue) and exc.diagnostics:
             write_json(store, run.state['manifest_prefix'] + '/failure.json',
                        {'reason': code, 'diagnostics': exc.diagnostics, 'evidence': client.evidence})
@@ -547,7 +577,9 @@ def main():
     parser.add_argument('--source', action='append')
     parser.add_argument('--publish', type=int, default=4)
     parser.add_argument('--lane', choices=['default', 'authenticated'], default='default')
+    parser.add_argument('--discovery-limit',type=int,default=100)
     args = parser.parse_args()
+    if not 1<=args.discovery_limit<=1000:parser.error('Discovery limit must be between 1 and 1000')
     if args.lane == 'authenticated' and args.publish:
         parser.error('Authenticated capture lane queues publication; use --publish 0')
     # Also protects manual invocations. A persistent runner serializes with all
@@ -566,7 +598,7 @@ def main():
     today = datetime.now(timezone.utc).date()
     worker_scope=os.environ.get('CONSTELLATION_SPECIALIST_SCHEDULER_PREFIX')
     if worker_scope:
-        scoped_mode='historical' if os.environ.get('CONSTELLATION_ROLE')=='worker' else 'daily'
+        scoped_mode=os.environ.get('CONSTELLATION_SPECIALIST_MODE') or ('historical' if os.environ.get('CONSTELLATION_ROLE')=='worker' else 'daily')
         if args.mode!=scoped_mode or not args.source or len(args.source)!=1 or args.publish:
             parser.error('Isolated specialist routes require one source, the host mode, and no inline publication')
     legacy_state_key='operations/specialists/scheduler/' + (args.lane + '-' if args.lane != 'default' else '') + args.mode + '.json'
@@ -598,12 +630,11 @@ def main():
     # An explicit unrelated source replay must not download the entire child queue.
     child_sources = {'ror_institutions', 'europe_pmc_fulltext', 'cms_coverage_documents', 'mlperf_results'}
     inspect_children = args.lane != 'authenticated' and (not args.source or bool(child_sources.intersection(args.source)))
-    discovery_keys=list_keys(store,settings,os.environ.get('CONSTELLATION_SPECIALIST_DISCOVERY_PREFIX','operations/specialists/discovered-jobs/')) if inspect_children else []
-    if inspect_children and worker_scope:discovery_keys=list(set(discovery_keys)|set(list_keys(store,settings,'operations/specialists/discovered-jobs/')))
-    for key in discovery_keys:
-        discovered = json.loads(store.get(key).body)
-        if discovered['mode'] == args.mode and discovered.get('execution_lane', 'default') == args.lane:
-            all_jobs.append(discovered)
+    if inspect_children:
+        from specialist_discovery_queue import discover as discover_bounded
+        prefixes=[os.environ.get('CONSTELLATION_SPECIALIST_DISCOVERY_PREFIX','operations/specialists/discovered-jobs/')]
+        if worker_scope:prefixes.append('operations/specialists/discovered-jobs/')
+        all_jobs.extend(discover_bounded(store,settings,state,prefixes,args.mode,args.lane,universe_hash,VERSION,args.discovery_limit))
     identities = {digest({'job': j, 'universe_hash': universe_hash, 'version': VERSION}) for j in all_jobs}
     for identity, prior in state['jobs'].items():
         if identity not in identities and prior.get('job') and prior.get('status') != 'complete':
@@ -639,7 +670,7 @@ def main():
     candidates.sort(key=lambda r: (r[0], r[2]['start'], r[2]['source'], r[1]))
     # Persist publication deferrals even when no capture is selected. They
     # remain incomplete and will be reconsidered against tomorrow's index.
-    if published_eia_periods is not None or eia_index_error:
+    if published_eia_periods is not None or eia_index_error or inspect_children:
         from collection_storage import Stored
         token = write_json(store, state_key, state, stored.token if stored else None)
         stored = Stored(b'', token)
@@ -657,7 +688,11 @@ def main():
         # receipt, and the preceding successful source is not the failed one.
         print(json.dumps({'stage': 'capture_started', 'source': job['source'],
                           'job_id': identity, 'start': job['start'], 'end_exclusive': job['end']}), flush=True)
-        result = collect(job, store, settings, universe, taxonomy, args.pages)
+        try:
+            result = collect(job, store, settings, universe, taxonomy, args.pages)
+        except Conflict:
+            # Keep a checkpoint conflict attached to its exact scheduled window.
+            result = {'status': 'failed', 'reason': 'collection_checkpoint_conflict'}
         row = {**result, 'job_id': identity, 'source': job['source'], 'source_id': job['source_id'],
                'start': job['start'], 'end_exclusive': job['end'], 'last_attempt': now(), 'job': job}
         if result['status'] == 'failed':
@@ -681,6 +716,12 @@ def main():
         if result.get('reason') == 'ted_daily_xml_pending':
             row['retry_after'] = (datetime.now(timezone.utc) + timedelta(minutes=30)).isoformat().replace('+00:00', 'Z')
             state['source_retries'][job['source']] = row['retry_after']
+        if job['adapter']=='additional_biorxiv' and result.get('reason','').startswith('decodo_web_data_'):
+            code=result['reason'];current=datetime.now(timezone.utc)
+            retry=((current+timedelta(days=1)).replace(hour=0,minute=5,second=0,microsecond=0)
+                   if code=='decodo_web_data_daily_budget' else current+timedelta(hours=1))
+            row['retry_after']=retry.isoformat().replace('+00:00','Z')
+            state['source_retries'][job['source']]=row['retry_after']
         if job['source']=='eia_retail_prices' and result['status']=='failed' and (result.get('reason','').startswith('source_http_5') or result.get('reason') in {'authenticated_source_request_failed','source_http_429'}):
             row['retry_after']=(datetime.now(timezone.utc)+timedelta(minutes=30)).isoformat().replace('+00:00','Z')
             state['source_retries'][job['source']]=row['retry_after']

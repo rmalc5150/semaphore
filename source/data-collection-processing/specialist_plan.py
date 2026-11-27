@@ -30,6 +30,15 @@ def jobs(plan, universe, mode, today):
         if kind.startswith('additional_'):
             from additional_source_plan import scopes as additional_scopes
             scopes=list(additional_scopes(s,historical_start,min(end,today),mode))
+            if kind == 'additional_dart' and mode == 'historical' and s.get('original_document_bridge_end_exclusive'):
+                # Keep pinned monthly scopes exactly as they were. The newer
+                # missing range has nonoverlapping daily document checkpoints.
+                bridge_end=min(today,date.fromisoformat(s['original_document_bridge_end_exclusive']))
+                start=min(end,today)
+                while start<bridge_end:
+                    stop=start+timedelta(days=1)
+                    scopes.append((start,stop,{'url':s['api'],'raw_content_revision':s['raw_content_revision']},s['coverage_note']))
+                    start=stop
             if mode=='daily':
                 scopes=[(a,b,{**p,'data_start':a.isoformat(),'data_end':b.isoformat()},note) for a,b,p,note in scopes]
         elif kind in AUTH_KINDS:

@@ -1,5 +1,5 @@
 """Small resumable CDS reanalysis downloads; credentials never enter evidence."""
-import hashlib,json,re,time
+import hashlib,json,re,time,os
 from urllib.parse import urlsplit
 import requests
 from additional_source_apis import credentials,row
@@ -23,23 +23,33 @@ def call(client,method,url,body=None):
             if asset.get('href'):asset['href']=urlsplit(asset['href'])._replace(query='',fragment='').geturl()
             safe=json.dumps(document).encode()
         client.save(safe,url,'application/json')
+        if r.status_code==404 and re.fullmatch(r'/api/retrieve/v1/jobs/[A-Za-z0-9-]+(?:/results)?',u.path):
+            raise SourceIssue('copernicus_expired_job',True)
         require(r.status_code in (200,201,202),'source_http_'+str(r.status_code))
         return r.json()
     except SourceIssue:raise
     except Exception:raise SourceIssue('copernicus_request_failed',True) from None
 
-def fetch(client,job,cursor,item):
+def request_spec(job):
     from datetime import date,timedelta
-    p=job['parameters'];start=p.get('data_start',job['start']);end=p.get('data_end',job['end']);state=json.loads(cursor) if cursor else {}
+    p=job['parameters'];start=p.get('data_start',job['start']);end=p.get('data_end',job['end'])
     days=[];day=date.fromisoformat(start)
     while day<date.fromisoformat(end):days.append(day.strftime('%d'));day+=timedelta(days=1)
     request={'variable':['2m_temperature','total_precipitation'],'year':[start[:4]],'month':[start[5:7]],'day':days,'time':[f'{h:02d}:00' for h in range(24)],'area':p['area'],'data_format':'netcdf','download_format':'unarchived'}
     if p['dataset']=='reanalysis-era5-single-levels':request['product_type']=['reanalysis']
+    return p,start,end,request
+
+
+def fetch(client,job,cursor,item):
+    p,start,end,request=request_spec(job)
+    state=json.loads(cursor) if cursor else {}
     # Persist submitted job identity independently of page commits for crash recovery.
     key='constellation-backfill/copernicus/submissions/'+digest({'dataset':p['dataset'],'request':request})+'.json'
     saved=client.store.get(key)
     if saved:state=json.loads(saved.body)
     if not state.get('job_id'):
+        if os.environ.get('CONSTELLATION_CDS_RETRIEVE_ONLY')=='1':
+            raise SourceIssue('copernicus_queue_wait',True)
         # Single source invocation per mode; shared lock bounds concurrent submissions.
         from constellation.control import Control
         control=Control()
@@ -55,26 +65,51 @@ def fetch(client,job,cursor,item):
                 require(bool(re.fullmatch(r'[A-Za-z0-9-]+',identity or '')),'copernicus_job_id_missing')
                 state={'job_id':identity}
                 from collection_storage import write_json
-                write_json(client.store,key,state)
+                write_json(client.store,key,state,saved.token if saved else None)
+                saved=client.store.get(key)
             finally:db.execute("SELECT RELEASE_LOCK('constellation:copernicus-submit')")
     identity=state['job_id'];require(bool(re.fullmatch(r'[A-Za-z0-9-]+',identity)),'copernicus_invalid_job_id')
-    status=call(client,'GET',API+'/jobs/'+identity).get('status')
+    def expired(reason):
+        # CDS can retain a successful job after its downloadable asset expires.
+        # Preserve that identity, then conditionally clear only this submission.
+        # The next bounded pass resubmits under the normal two-job admission lock.
+        from collection_storage import write_json,now
+        receipt={'previous_submission':state,'reason':reason,'request_sha256':digest(request),'expired_at':now()}
+        write_json(client.store,'constellation-backfill/copernicus/expired/'+digest(receipt)+'.json',receipt)
+        write_json(client.store,key,{'expired_job_id':identity,'reason':reason},saved.token if saved else None)
+        previous=json.loads(cursor)if cursor else{}
+        return [],json.dumps({'expired_job_id':identity,'poll':previous.get('poll',0)+1})
+    try:status=call(client,'GET',API+'/jobs/'+identity).get('status')
+    except SourceIssue as exc:
+        if exc.code=='copernicus_expired_job':return expired(exc.code)
+        raise
     if status in ('accepted','running'):
         # A changing poll counter is an operational cursor, never a data row.
         return [],json.dumps({'job_id':identity,'poll':(json.loads(cursor).get('poll',0) if cursor else 0)+1})
     require(status=='successful','copernicus_job_'+str(status))
-    result=call(client,'GET',API+'/jobs/'+identity+'/results');asset=result.get('asset',{}).get('value',{});url=asset.get('href','');u=urlsplit(url)
+    try:result=call(client,'GET',API+'/jobs/'+identity+'/results')
+    except SourceIssue as exc:
+        if exc.code=='copernicus_expired_job':return expired(exc.code)
+        raise
+    asset=result.get('asset',{}).get('value',{});url=asset.get('href','');u=urlsplit(url)
     require(u.scheme=='https' and u.hostname and (u.hostname.endswith('.ecmwf.int') or u.hostname.endswith('.climate.copernicus.eu')) and not u.username and not u.password,'copernicus_unreviewed_download')
     expected=int(asset['file:size']);require(0<expected<=16*1024**2,'copernicus_download_too_large_split_scope')
     try:
         # Signed provider URLs are used only in memory; saved provenance omits query.
         with requests.get(url,stream=True,timeout=(10,60),allow_redirects=False) as r:
+            if r.status_code==404:return expired('copernicus_successful_job_asset_expired')
             require(r.status_code==200,'source_http_'+str(r.status_code));chunks=[];size=0
             for chunk in r.iter_content(65536):size+=len(chunk);require(size<=expected,'copernicus_download_size_mismatch');chunks.append(chunk)
         body=b''.join(chunks);require(len(body)==expected,'copernicus_download_truncated')
         require(body.startswith((b'CDF',b'\x89HDF',b'PK\x03\x04')),'copernicus_not_netcdf')
+        validation=None
+        if os.environ.get('CONSTELLATION_CDS_VERIFY_NETCDF')=='1':
+            from copernicus_netcdf import verify
+            validation=verify(body,start,end,request)
         public_url=u._replace(query='',fragment='').geturl();client.save(body,public_url,asset.get('type','application/octet-stream'))
     except SourceIssue:raise
     except Exception:raise SourceIssue('copernicus_download_failed',True) from None
     payload={'dataset':p['dataset'],'reference_location':p['location'],'request':request,'request_id':identity,'artifact_sha256':hashlib.sha256(body).hexdigest(),'artifact_bytes':len(body),'data_start':start,'data_end_exclusive':end,'structured_weather_extraction':'pending; raw NetCDF captured','vintage_basis':'current reanalysis; not original historical forecasts'}
-    return [row(item,digest(payload),payload,'https://cds.climate.copernicus.eu/datasets/'+p['dataset'],None)],None
+    rid=digest(payload)
+    if validation is not None:payload['verified_netcdf_scope']=validation
+    return [row(item,rid,payload,'https://cds.climate.copernicus.eu/datasets/'+p['dataset'],None)],None

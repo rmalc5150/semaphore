@@ -314,6 +314,10 @@ def collect_uspto(store, settings, universe, taxonomy, start, end, mode, page_si
                 continue
             require(isinstance(result, dict), "invalid_response_shape")
             total, rows = result.get("count"), result.get("patentFileWrapperDataBag")
+            # ODP omits the data bag when a search has zero matches.
+            if (type(total) is int and total == 0 and set(result) == {"count", "requestIdentifier"}
+                    and isinstance(result["requestIdentifier"], str) and result["requestIdentifier"]):
+                rows = []
             require(type(total) is int and total >= 0 and isinstance(rows, list), "invalid_search_response")
             if state["total"] is not None and total != state["total"]:
                 raise SourceIssue("source_changed_refresh_required", True)
@@ -381,7 +385,7 @@ def collect_uspto_partitioned(store, settings, universe, taxonomy, start, end,
             prior = json.loads(saved.body) if saved else {}
             lower, upper = map(datetime.fromisoformat, bounds)
             split = prior.get('split') or (prior.get('reason') == 'source_changed_refresh_required' and
-                                           upper - lower > timedelta(minutes=5))
+                                           upper - lower > timedelta(seconds=1))
             if split:
                 # Persist the plan before collecting children so interruption
                 # cannot revert to the invalid larger offset scan.
@@ -405,7 +409,7 @@ def collect_uspto_partitioned(store, settings, universe, taxonomy, start, end,
             write_json(store, key, child, saved.token if saved else None)
             remaining -= child['pages_requested']
             if (eager_split and child.get('reason') == 'source_changed_refresh_required'
-                    and remaining > 0 and upper - lower > timedelta(minutes=5)):
+                    and remaining > 0 and upper - lower > timedelta(seconds=1)):
                 return scan(bounds, label)
             return {**child, 'manifests': [child['manifest']]}
 

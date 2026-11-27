@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS engine_jobs (
  report_uri varchar(2048), output_uri varchar(2048), output_rows int NOT NULL DEFAULT 0, reason varchar(512),
  INDEX work_queue(state,available_after,priority,created_at), INDEX source_jobs(source_key,state),
  INDEX source_ready_order(source_key,priority DESC,created_at,job_id,state,available_after,lease_until),
+ INDEX source_state_priority(source_key,state,priority DESC,created_at,job_id,available_after,lease_until),
  INDEX publication_ready_order(state,finished_at,job_id),
  INDEX source_publication_order(source_key,state,finished_at,job_id),
  FOREIGN KEY(source_key) REFERENCES engine_sources(source_key)

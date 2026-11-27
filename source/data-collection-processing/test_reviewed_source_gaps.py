@@ -9,6 +9,12 @@ from additional_source_apis import get_json
 from additional_source_apis import fetch as additional_fetch
 
 class GapTests(unittest.TestCase):
+ def test_alfred_exclusion_retains_other_series_and_later_vintages(self):
+  job={'source':'fred_alfred_series_and_vintages','adapter':'additional_fred','start':'2018-01-01','end':'2019-01-01','parameters':{'series_id':'DTWEXBGS','realtime_start':'2016-01-01','realtime_end':'2018-12-31','url':'https://api.stlouisfed.org/fred/series/observations'}}
+  self.assertEqual(reviewed_gap(job)['first_available_vintage'],'2019-02-04')
+  self.assertIsNone(reviewed_gap({**job,'parameters':{**job['parameters'],'realtime_end':'2020-12-31'}}))
+  self.assertIsNone(reviewed_gap({**job,'parameters':{**job['parameters'],'series_id':'GDP'}}))
+  self.assertIsNone(reviewed_gap({**job,'parameters':{**job['parameters'],'data_start':'2019-01-01'}}))
  def job(self):return {'source':'biorxiv_medrxiv_preprints','adapter':'additional_biorxiv','parameters':{'repository':'medrxiv'},'start':'2016-01-01','end':'2016-02-01'}
  def test_scope_and_boundary(self):
   j=self.job();self.assertIsNotNone(reviewed_gap(j))
@@ -49,3 +55,45 @@ class GapTests(unittest.TestCase):
   other={**row,'job':{**j,'parameters':{'repository':'biorxiv'}}}
   r=build(FakeControl([{'outcomes':[row,other]}]))
   self.assertEqual(r['flagged_gaps'],1);self.assertEqual(len(r['accepted_unavailable']),1)
+
+class EdinetArchiveExpiry(unittest.TestCase):
+    def job(self,start='2016-01-04'):
+        from datetime import date,timedelta
+        return {'source':'edinet_filings','adapter':'edinet','mode':'historical','start':start,
+                'end':str(date.fromisoformat(start)+timedelta(days=1)),
+                'parameters':{'date':start,'url':'https://api.edinet-fsa.go.jp/api/v2/documents.json'}}
+    def test_only_expired_provider_404_is_accepted(self):
+        from reviewed_source_gaps import reviewed_edinet_expiry
+        self.assertIsNotNone(reviewed_edinet_expiry(self.job(),404,'2026-11-16'))
+        for status in (200,400,401,403,429,500):self.assertIsNone(reviewed_edinet_expiry(self.job(),status,'2026-11-16'))
+    def test_recent_and_retention_boundary_not_excluded(self):
+        from reviewed_source_gaps import reviewed_edinet_expiry
+        for day in ('2026-11-13','2016-11-15','2016-11-09'):
+            self.assertIsNone(reviewed_edinet_expiry(self.job(day),404,'2026-11-16'))
+    def test_scope_and_date_mismatch_cannot_be_excluded(self):
+        from reviewed_source_gaps import reviewed_edinet_expiry
+        j=self.job();j['parameters']['date']='2016-01-05'
+        self.assertIsNone(reviewed_edinet_expiry(j,404,'2026-11-16'))
+        j=self.job();j['end']='2016-02-01'
+        self.assertIsNone(reviewed_edinet_expiry(j,404,'2026-11-16'))
+
+class PeriodlessWtoHistory(unittest.TestCase):
+    def test_year_specific_exclusion_does_not_disable_snapshot(self):
+        from reviewed_source_gaps import reviewed_gap
+        j={'source':'wto_timeseries_api','adapter':'additional_wto_timeseries','start':'2016-01-01','end':'2017-01-01','parameters':{'indicator':'TP_B_0380','year':2016,'url':'https://api.wto.org/timeseries/v1/data'}}
+        self.assertIsNotNone(reviewed_gap(j))
+        j['parameters'].pop('year');j['parameters']['no_time_dimension']=True
+        self.assertIsNone(reviewed_gap(j))
+
+class OwnerEdinetScope(unittest.TestCase):
+ def job(self,start='2016-12-31',end='2017-01-01'):
+  return {'source':'edinet_filings','adapter':'edinet','mode':'historical','start':start,'end':end,'parameters':{'url':'https://api.edinet-fsa.go.jp/api/v2/documents.json','date':start}}
+ def test_entire_2016_period_excluded_without_affecting_other_collection(self):
+  self.assertEqual(reviewed_gap(self.job())['decision_type'],'owner_scope_exclusion')
+  for job in (self.job('2017-01-01','2017-01-02'),self.job('2015-12-31','2016-01-02'),self.job('2016-12-31','2017-01-02'),{**self.job(),'mode':'daily'},{**self.job(),'source':'other'}):
+   self.assertIsNone(reviewed_gap(job))
+ def test_owner_exclusion_needs_no_provider_retry_and_never_claims_data_complete(self):
+  with tempfile.TemporaryDirectory() as root,patch('specialist_inputs.SpecialistClient')as client,patch('edinet_pipeline.collect')as edinet:
+   cfg=StorageSettings(local_root=root);store=cfg.store();result=collect(self.job(),store,cfg,{}, {},1)
+   self.assertEqual(result['status'],'accepted_unavailable');self.assertEqual(result['reason'],'historical_period_not_required_by_owner')
+   self.assertNotIn('manifest',result);client.assert_not_called();edinet.assert_not_called();self.assertIsNotNone(store.get(result['gap_receipt']))

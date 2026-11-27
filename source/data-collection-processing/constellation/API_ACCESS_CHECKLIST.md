@@ -1,10 +1,10 @@
 # API credentials and access checklist — October 26, 2026
 
-**Credential progress:** Your register now lists nine obtained priority groups (including Census and USDA). EPO OAuth and a legal-data request were validated at 2026-10-26 20:51 CET; EPO historical and daily collection are now active with verified S3 captures. Ten of the original 19 priority groups remain unrecorded as obtained. No credential values are included.
+**Credential progress.** Your register lists nine obtained priority groups, including Census and USDA. EPO OAuth and a legal-data request were validated on 26 October 2026 at 20:51 CET. EPO historical and daily collection are active with verified S3 captures. Nine of the 18 priority groups in scope remain unrecorded as obtained.
 
-This is a checklist for all 158 catalog entries, not a request for 158 or 90 separate API keys. Entries share credentials; many selected public download routes need none. No secret values are included.
+This checklist covers the 156 original catalogue entries still in scope. Entries share credentials and many public download routes need none. The list contains no secret values.
 
-There are **19 new priority credential/account groups**, **9 commercial or conditional groups**, and **5 optional upgrade groups**. Some priority groups require app approval or a licence, rather than a single key. WTO product subscriptions can issue separate keys. Existing credentials and intentional pauses are listed separately.
+There are **18 priority credential/account groups**, **9 commercial or conditional groups**, and **5 optional upgrade groups**. Some priority groups require app approval or a licence. WTO product subscriptions can issue separate keys.
 
 “New” means not configured in the audited integration secrets; use a credential you already own elsewhere if appropriate. Stored means a nonempty field was found, not that a new authentication or entitlement test passed. Public-route classifications do not certify a public API, historical completeness or commercial reuse rights.
 
@@ -21,7 +21,6 @@ There are **19 new priority credential/account groups**, **9 commercial or condi
 | ucdp (78) | Access token | Request API access from the maintainer using the instructions in the official documentation. Do not assume older anonymous examples still work. [Official source](https://ucdp.uu.se/apidocs/) |
 | nice (88) | Syndication API key and content licence | NICE correspondence supplied by the user: AI use requires syndication API access, a licence and NICE cybersecurity review; only final published guidance is available. Draft guidance, company submissions, assessment reports and committee papers are excluded. [Official source](https://www.nice.org.uk/reusing-our-content/nice-syndication-api) |
 | opendart (98) | Authentication key | Register at OpenDART and request an authentication key. [Official source](https://engopendart.fss.or.kr/uss/umt/EgovMberInsertView.do) |
-| kosis (99) | KOSIS OpenAPI key | Apply for the KOSIS authentication key; a different data.go.kr route can have a different service key. [Official source](https://kosis.kr/openapi/) |
 | census (118) | Census API key | Request and activate a Census key. Plan a keyed production collector; older keyless examples are not an access guarantee. [Official source](https://api.census.gov/data/key_signup.html) |
 | usda_fas (125) | FAS API key | Sign in to the FAS data portal and retrieve the PSD/Open Data API key. [Official source](https://apps.fas.usda.gov/opendataweb/home) |
 | meta_ads (131) | App credentials and access token | Complete Meta developer/identity and Ad Library access steps; obtain the token for the approved Ad Library scope. [Official source](https://www.facebook.com/ads/library/api/) |
@@ -78,7 +77,6 @@ There are **19 new priority credential/account groups**, **9 commercial or condi
 | eodhd (2, 3) | API token | Use existing EODHD secret; verify historic/delisted-security entitlement. |
 | edinet (8) | Subscription key | Use existing EDINET key. |
 | finlight (11) | API key | Use existing finlight-api-key in newKeys; archive availability is separate. |
-| marketaux (12) | API token | Already stored. Keep paused; do not renew or reactivate for this task. |
 | openfda (17, 18) | Optional API key | Existing FDA secret is configured; optional for basic requests, useful for quota. |
 | fda_dashboard (32, 33, 34, 35) | Authorization user + key | One existing FDA-Data credential pair covers these dashboard routes. |
 | fda_enforcement (36) | Authorization user + key | Existing FDA-Enforcement credential pair. |
@@ -108,7 +106,6 @@ For a public file/report route, “no key” does not promise a supported API. W
 | 9 | Disclosure candidates (internal route) | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. internal:disclosure_candidates |
 | 10 | Disclosure documents (internal route) | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. internal:disclosure_documents |
 | 11 | Finlight news | API key (stored) | Use existing finlight-api-key in newKeys; archive availability is separate. [Source](https://docs.finlight.me/) |
-| 12 | Marketaux news (paused) | API token (paused_stored) | Already stored. Keep paused; do not renew or reactivate for this task. [Source](https://www.marketaux.com/documentation) |
 | 13 | People-related RSS feeds | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. public:configured-publisher-rss |
 | 14 | Personnel announcement archives | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. internal:personnel_archive |
 | 15 | ClinicalTrials.gov | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. [Source](https://clinicaltrials.gov/data-api/api) |
@@ -195,7 +192,6 @@ For a public file/report route, “no key” does not promise a supported API. W
 | 96 | China NHSA reimbursement and procurement | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. [Source](https://www.nhsa.gov.cn/) |
 | 97 | China MOFCOM export controls | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. [Source](https://www.mofcom.gov.cn/) |
 | 98 | South Korea FSS OpenDART | Authentication key (obtain) | Register at OpenDART and request an authentication key. [Source](https://engopendart.fss.or.kr/uss/umt/EgovMberInsertView.do) |
-| 99 | South Korea KOSIS statistical OpenAPI | KOSIS OpenAPI key (obtain) | Apply for the KOSIS authentication key; a different data.go.kr route can have a different service key. [Source](https://kosis.kr/openapi/) |
 | 100 | Taiwan TWSE/MOPS issuer and revenue archives | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. [Source](https://openapi.twse.com.tw/) |
 | 101 | Taiwan customs trade statistics | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. [Source](https://www.sw.nat.gov.tw/) |
 | 102 | India IBM mineral production | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. [Source](https://ibm.gov.in/) |
@@ -256,7 +252,7 @@ For a public file/report route, “no key” does not promise a supported API. W
 | 157 | Altmetric scholarly attention (commercial) | Details Page API key; Explorer key + secret if needed (commercial_conditional) | Request commercial access appropriate to the endpoints; free academic permission is not a commercial entitlement. [Source](https://docs.altmetric.com/details-page-api/licensing/) |
 | 158 | University technology-transfer catalogs and reports | No API key for the selected public route (public_route_no_key) | Use public metadata, files, reports or approved web retrieval. This is not a claim that an undocumented/private API is available. multiple:university-technology-transfer-offices |
 
-Store acquired values in AWS Secrets Manager; do not paste keys into this document or commit them to source files. Request only needed read access. Key acquisition does not authorize restarting Marketaux, Reddit, Bluesky or GitHub.
+Store acquired values in AWS Secrets Manager; do not paste keys into this document or commit them to source files. Request only needed read access. Key acquisition does not authorize restarting Reddit, Bluesky or GitHub.
 
 ## Important current access details
 

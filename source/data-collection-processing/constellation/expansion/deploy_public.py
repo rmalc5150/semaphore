@@ -26,7 +26,7 @@ def main():
             created+=1
     bundle=ROOT/'constellation/expansion/public-deploy.tar.gz'
     with tarfile.open(bundle,'w:gz') as archive:
-        for name in ('public_source_capture.py','specialist_inputs.py','additional_source_apis.py','additional_source_plan.py'):
+        for name in ('provider_publication.py','public_source_capture.py','constellation/s3_integrity.py','specialist_inputs.py','additional_source_apis.py','additional_source_plan.py'):
             archive.add(ROOT/name,arcname='source/'+name,recursive=False)
         for name in ('constellation-public-sources.json','constellation-specialist-historical.json','specialist-inputs.json'):
             archive.add(ROOT/'config'/name,arcname='source/config/'+name,recursive=False)
@@ -46,7 +46,7 @@ selected=[r for r in rows if r.get('public_capture_source') or (r.get('catalog_e
 for row in selected:
  root=base/'legacy'/row['unit'];new=not root.exists();root.mkdir(parents=True,exist_ok=True)
  ram=Path('/dev/shm/constellation-legacy')/row['unit'];(ram/'locks').mkdir(parents=True,exist_ok=True)
- names=list((base/'source').rglob('*')) if new else [base/'source'/n for n in ('public_source_capture.py','specialist_inputs.py','additional_source_apis.py','additional_source_plan.py','config/constellation-public-sources.json','config/constellation-specialist-historical.json','config/specialist-inputs.json')]
+ names=list((base/'source').rglob('*')) if new else [base/'source'/n for n in ('provider_publication.py','public_source_capture.py','constellation/s3_integrity.py','specialist_inputs.py','additional_source_apis.py','additional_source_plan.py','config/constellation-public-sources.json','config/constellation-specialist-historical.json','config/specialist-inputs.json')]
  for source in names:
   if not source.is_file():continue
   target=root/source.relative_to(base/'source');target.parent.mkdir(parents=True,exist_ok=True)

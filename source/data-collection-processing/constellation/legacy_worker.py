@@ -17,6 +17,7 @@ from constellation.worker import emit, put_verified
 from constellation.coverage_scope import specialist_scope
 
 STOP=threading.Event()
+BATCH_PAUSED = Path('/opt/constellation/batch-paused')
 
 
 def checkpoint_events(body,unit):
@@ -52,6 +53,7 @@ def execute(control,job):
         str(root/'.venv/bin/python'),'-B',str(root/row['argv'][0]),*row['argv'][1:]]
     log=Path('/opt/constellation/tmp')/(identity+'.log')
     stopped=False;lost=threading.Event();done=threading.Event()
+    batch_interruption = False
     def renew():
         while not done.wait(30):
             try:control.renew(identity,token)
@@ -71,6 +73,7 @@ def execute(control,job):
                     next_pause_check=time.monotonic()+5
                 if STOP.is_set() or lost.is_set() or time.monotonic()>deadline or paused:
                     if interrupted is None:
+                        batch_interruption = STOP.is_set() and BATCH_PAUSED.exists()
                         os.killpg(process.pid,signal.SIGINT);interrupted=time.monotonic();stopped=True
                     elif time.monotonic()-interrupted>150:
                         os.killpg(process.pid,signal.SIGKILL)
@@ -120,7 +123,9 @@ def execute(control,job):
             'checkpoint_verified':checkpointed,'report_uri':saved['uri'],'exit_code':process.returncode,
             'legacy_unit':row['unit'],'runtime_prefix':prefix,
             'coverage_note':'A checkpointed bounded invocation is not complete historical source coverage.'}
-        if not lost.is_set():
+        if not lost.is_set() and batch_interruption and checkpointed and process.returncode in (0, 2, 130, -signal.SIGINT):
+            control.defer(identity, token, int(time.time()), 'm7_batch_paused', evidence=result)
+        elif not lost.is_set():
             control.finish(identity,token,'succeeded' if success else 'blocked' if job['attempts']>=3 else 'retryable_failed',result)
         emit('legacy_invocation_finished',job_id=identity,**result)
     finally:

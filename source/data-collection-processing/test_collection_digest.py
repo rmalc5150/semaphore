@@ -1,4 +1,5 @@
 import unittest,copy
+from unittest.mock import patch
 from test_collection_alerts import FakeS3,FakeSNS,CONFIG,NOW,UNIT,health
 from collection_alerts import Watchdog,stamp,evaluate
 
@@ -34,8 +35,24 @@ class DigestTests(unittest.TestCase):
     def test_healthy_period_still_sends_daily_report(self):
         self.check(NOW);self.check(NOW+86400)
         self.assertEqual(len(self.sns.messages),1)
-        self.assertIn('COLLECTION STATUS',self.sns.messages[0]['Message'])
+        self.assertIn('No unresolved action items',self.sns.messages[0]['Message'])
         self.check(NOW+88200);self.assertEqual(len(self.sns.messages),1)
+    def test_daily_email_and_overview_share_one_cached_count_read(self):
+        self.w.put('health/metadata-publication-counts.json',{
+            'schema_version':1,'report_uri':'s3://test/counts.json',
+            'receipts':{'as_of':stamp(NOW),'totals':{'rows':3000,'releases':85}},
+            'athena':{'as_of':stamp(NOW),'totals':{'rows':3010,'releases':88}},
+        })
+        self.check(NOW)
+        with patch.object(self.w,'get',wraps=self.w.get) as reads:
+            self.check(NOW+86400)
+            self.assertEqual(sum(c.args[0]=='health/metadata-publication-counts.json' for c in reads.call_args_list),1)
+        overview=self.w.get('overview/latest.json')['body']
+        digest=self.sns.messages[0]['Message']
+        for body in (overview,digest):
+            self.assertIn('3,000 rows in 85 verified releases',body)
+            self.assertIn('3,010 rows in 88 job partitions',body)
+            self.assertIn('s3://test/counts.json',body)
     def test_healthy_email_failure_retries(self):
         self.check(NOW);self.sns.fail='email-topic';self.check(NOW+86400)
         self.assertEqual(self.sns.messages,[])

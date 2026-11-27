@@ -1,0 +1,60 @@
+{
+  "checked_at": "2026-11-13T10:46:13.203469+00:00",
+  "configured_remote": "git@github.com:rmalc5150/semaphore.git",
+  "branch": "ec2-code-backup",
+  "worker": "ec2-code-backup.service",
+  "timer": "ec2-code-backup.timer",
+  "timer_enabled": true,
+  "timer_active": true,
+  "next_run_utc": "2026-11-14T02:00:00Z",
+  "local_schedule": "03:00 Europe/Madrid",
+  "ssh_key_fingerprint": "SHA256:G9ixQupbhkXbA6G8C4xSAhQZFcsYgZwaJWalGqdmJBk",
+  "ssh_authentication": "successful as rmalc5150/semaphore",
+  "repository_read": "git ls-remote rejected: Repository not found (exit 128)",
+  "repository_write": "git-receive-pack reference advertisement rejected: Repository not found; no update transmitted",
+  "restored": false,
+  "actual_push_verified": false,
+  "production_service_state": "failed from scheduled November 13 run; failure intentionally retained, timer remains enabled",
+  "source_selection_dry_run": {
+    "files": 4013,
+    "bytes": 49553194,
+    "credential_scan": "passed"
+  },
+  "next_step": "Repository owner must resolve GitHub repository access. Repo URL and deploy key were already confirmed November 12; do not rotate again without new evidence. If owner can open the repository and required account recovery is complete, ask GitHub Support to investigate the authenticated Git read/write denial. The precise GitHub-side cause is not established.",
+  "support_request_draft": "SSH authenticates successfully as rmalc5150/semaphore with deploy-key fingerprint SHA256:G9ixQupbhkXbA6G8C4xSAhQZFcsYgZwaJWalGqdmJBk. On November 13, 2026, both git ls-remote git@github.com:rmalc5150/semaphore.git and the git-receive-pack write endpoint return Repository not found. The URL and deploy key were confirmed and the key was re-added November 12 after a required password reset. Please investigate any remaining repository/account restriction or advise the required recovery step. No private key is included.",
+  "github_data_collection": "Owner-paused data-source collectors remain paused; this check concerns code backup only.",
+  "preserved_snapshot": {
+    "checked_at": "2026-11-13T10:46:00.297349+00:00",
+    "archive": "/home/ec2-user/code-backup/.pending/source-2026-11-13T104600297349Z.tar.gz",
+    "archive_sha256": "ae7d58511eddf5de91a21ebc9b2fb8cb82c059c4e2509d8ac9e80357fc3bd45a",
+    "archive_bytes": 10612273,
+    "files": 4014,
+    "source_bytes": 49556328,
+    "credential_scan": "passed",
+    "all_members_verified": true,
+    "remote": "git@github.com:rmalc5150/semaphore.git",
+    "branch": "ec2-code-backup",
+    "uploaded": false
+  },
+  "replacement_deploy_key": {
+    "generated_at": "2026-11-13T10:48:02.876968+00:00",
+    "public_key_path": "/home/ec2-user/.ssh/semaphore_backup_20261113.pub",
+    "fingerprint": "SHA256:7+2QgysKC1rPfLXh6V7k9cC00EBN1kOAYKuXxNI4zqk",
+    "status": "registered and authenticating; repository read/write denied",
+    "active_backup_key_changed": false,
+    "tested_at": "2026-11-13T10:49:43.533068+00:00",
+    "ssh_identity": "rmalc5150/semaphore",
+    "repository_read": "Repository not found",
+    "repository_write": "git-receive-pack denied: Repository not found; no update transmitted",
+    "ssh_over_443": "Repository not found",
+    "reason_not_switched": "Owner authorized switching only if the replacement works; read and write access both failed"
+  },
+  "terminal_failure_followup": {
+    "checked_at": "2026-11-13T10:53:46.450429+00:00",
+    "script_default_key": "semaphore_backup",
+    "old_key_current_authentication": "Permission denied (publickey)",
+    "replacement_key_authentication": "successful as rmalc5150/semaphore",
+    "replacement_key_repository_access": "Repository not found",
+    "explanation": "The old key is now rejected, causing the owner terminal error. Replacement authentication works, but repository access remains separately denied. Switching the production default still awaits the owner condition of a working replacement."
+  }
+}

@@ -12,6 +12,9 @@ from uuid import uuid4
 DAY = 86400
 NON_ALERTING = {"document_requires_ocr_or_page_review"}
 EXPECTED = {
+    'decodo_web_data_daily_budget',
+    'pdf_proxy_daily_budget', 'pdf_proxy_url_cooldown', 'pdf_proxy_client_budget',
+    'census_period_not_yet_published',
     'daily_quota_reserve', 'shared_eodhd_quota_reserve',
     'daily_request_budget_reached', 'run_request_budget_reached',
     'market_daily_request_budget_reached', 'market_run_request_budget_reached',
@@ -54,7 +57,7 @@ def outcome_issues(value):
         # These collectors commit their cursor before ending a bounded run.
         # Outstanding work is monitored separately by progress_stalled; a local
         # batch allowance is not an upstream result cap or collection failure.
-        bounded_partial = status == 'partial' and reason in {'record_limit', 'page_budget'}
+        bounded_partial = status == 'partial' and reason in {'record_limit', 'page_budget', 'request_limit'}
         if reason and not bounded_partial and reason not in EXPECTED | NON_ALERTING and status in {'failed', 'partial', 'blocked'}:
             found.add((reason, 'high' if any(x in (reason+' '+message).lower() for x in CRITICAL) else 'low'))
         if value.get('exit_code', 0) not in (0, 2):
@@ -128,7 +131,7 @@ def evaluate(snapshot, prior, config, now):
         if job.get('result') not in ('success', None, '') and state == 'idle':
             add(unit, 'service_failed', 'high' if job['result'] == 'oom-kill' else 'low',
                 'systemd result: '+job['result'])
-        if job.get('exit_status') == 75 and state == 'idle':
+        if job.get('exit_status') == 75 and state == 'idle' and job.get('resource_wait') != 'worker_pool_memory_busy':
             add(unit, 'queue_timeout', 'low', 'The shared collection lock timed out; accepted systemd exit 75 is not completion.')
         for event in job.get('failure_events', []):
             add(unit, event['code'], event['severity'], event['detail'], event['at'])
@@ -143,7 +146,8 @@ def evaluate(snapshot, prior, config, now):
         observations[unit] = {'token': token or old.get('token'), 'last_change': last_change,
                               'last_verified_at': verified}
         stall_limit = max(policy['stale_progress_seconds'], 36*3600) if job.get('quota_wait') else policy['stale_progress_seconds']
-        if progress.get('pending') and now - max(last_change, epoch(verified)) > stall_limit:
+        if (progress.get('pending') and not job.get('scheduled_batch_wait')
+                and now - max(last_change, epoch(verified)) > stall_limit):
             add(unit, 'progress_stalled', 'low', 'Outstanding work with no committed progress beyond the job-specific threshold.')
         # A restart or an empty successful invocation does not prove recovery.
         for key, incident in prior.get('active', {}).items():
@@ -217,7 +221,7 @@ class Watchdog:
                     deleted += len(expired)
         return deleted
 
-    def email_digest(self, prior, active, pending, now, notifications):
+    def email_digest(self, prior, active, pending, now, notifications, snapshot=None):
         interval = self.config['email_digest_seconds']
         digest = prior.get('email_digest') or {'period_started_at': stamp(now), 'incidents': {}}
         entries = {k: v for k, v in digest.get('incidents', {}).items() if v['incident']['code'] not in NON_ALERTING}
@@ -240,9 +244,8 @@ class Watchdog:
         if not notifications or not topic:
             return digest, errors
         from monitoring_overview import overview
-        snapshot=self.get('health/latest.json') or {}
-        snapshot['historical_gaps']=self.get('health/constellation-gaps.json')
-        snapshot['historical_autostop']=self.get('health/historical-autostop.json')
+        if snapshot is None:
+            snapshot = self.overview_snapshot(self.get('health/latest.json'))
         subject, body = overview(active, now, digest['period_started_at'], snapshot)
         # SNS subjects must be shorter than 100 characters and contain no controls.
         # Keep the full overview title in the durable receipt and message body.
@@ -263,6 +266,17 @@ class Watchdog:
             errors.append('email: '+str(exc)[:500])
         self.put(history, notice)
         return digest, errors
+
+    def overview_snapshot(self, snapshot):
+        snapshot = dict(snapshot or {})
+        snapshot['historical_gaps'] = self.get('health/constellation-gaps.json')
+        snapshot['historical_autostop'] = self.get('health/historical-autostop.json')
+        try:
+            snapshot['metadata_publication_counts'] = self.get('health/metadata-publication-counts.json')
+        except Exception as exc:
+            # An unavailable optional rollup must not block incident detection or delivery.
+            print(json.dumps({'stage': 'metadata_publication_counts', 'error': type(exc).__name__}))
+        return snapshot
 
     def run(self, now=None, notifications=True):
         now = now if now is not None else datetime.now(timezone.utc).timestamp()
@@ -312,15 +326,13 @@ class Watchdog:
             if entry['key'] not in current:
                 pending.append((entry['key'], entry['incident'], 'email', 'recovered'))
         from monitoring_overview import overview
-        snapshot=dict(snapshot or {})
-        snapshot['historical_gaps']=self.get('health/constellation-gaps.json')
-        snapshot['historical_autostop']=self.get('health/historical-autostop.json')
+        snapshot = self.overview_snapshot(snapshot)
         overview_subject, overview_body = overview(active, now, stamp(now), snapshot)
         self.put('overview/latest.json', {'checked_at': stamp(now), 'subject': overview_subject, 'body': overview_body})
         errors, recoveries = [], []
         digest = None
         if self.config.get('email_digest_seconds'):
-            digest, errors = self.email_digest(prior, active, pending, now, notifications)
+            digest, errors = self.email_digest(prior, active, pending, now, notifications, snapshot)
             pending = [entry for entry in pending if entry[2] != 'email']
         for key, item, route, transition in pending:
             topic = self.config.get(route+'_topic_arn')

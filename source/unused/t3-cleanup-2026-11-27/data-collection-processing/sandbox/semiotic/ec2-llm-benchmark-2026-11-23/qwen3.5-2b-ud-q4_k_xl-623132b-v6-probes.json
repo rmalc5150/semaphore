@@ -1,0 +1,296 @@
+{
+  "model": "qwen3.5-2b-ud-q4_k_xl-623132b",
+  "prompt_version": "semiotic-language-v6",
+  "input_graph_sha256": "825653ad9c7e242f18ce53e913d02ce42ab8b0ae75c6cf40a4174495503fbdf7",
+  "finished_at": "2026-11-23T15:53:11.689496+00:00",
+  "request_timeout_seconds": 90,
+  "cases": [
+    {
+      "chunk_id": "factory",
+      "expected": {
+        "region": "Germany",
+        "sector": "isic_C"
+      },
+      "result": {
+        "chunk_id": "factory",
+        "observation_id": "factory",
+        "model": "qwen3.5-2b-ud-q4_k_xl-623132b",
+        "prompt_version": "semiotic-language-v6",
+        "status": "candidate",
+        "word_count": 5,
+        "original_language": "und",
+        "english_text": "Acme manufactures batteries in Germany.",
+        "extraction_confidence": "high",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "neutral",
+        "tone_evidence": {
+          "quote": "manufactures",
+          "page": 1,
+          "start": 5,
+          "end": 17
+        },
+        "triples": [
+          {
+            "subject": "Acme",
+            "verb": "manufactures",
+            "object": "batteries",
+            "subject_en": "Acme",
+            "verb_en": "manufactures",
+            "object_en": "batteries",
+            "evidence": {
+              "quote": "manufactures batteries",
+              "page": 1,
+              "start": 5,
+              "end": 27
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "isic_E",
+            "subsector_id": "isic_36",
+            "evidence": {
+              "quote": "manufactures batteries",
+              "page": 1,
+              "start": 5,
+              "end": 27
+            }
+          }
+        ],
+        "geographic_coverage": [
+          {
+            "label": "Germany",
+            "evidence": {
+              "quote": "in Germany",
+              "page": 1,
+              "start": 28,
+              "end": 38
+            }
+          }
+        ],
+        "population_coverage": [],
+        "id": "language_511d90e4aef678ed54f178b9442b5ae046cfd556d722f9ba80e2fcf7ebc78439"
+      },
+      "region_match": true,
+      "sector_match": false,
+      "seconds": 32.01
+    },
+    {
+      "chunk_id": "insurance",
+      "expected": {
+        "region": "German",
+        "sector": "isic_L"
+      },
+      "result": {
+        "chunk_id": "insurance",
+        "observation_id": "insurance",
+        "model": "qwen3.5-2b-ud-q4_k_xl-623132b",
+        "prompt_version": "semiotic-language-v6",
+        "status": "candidate",
+        "word_count": 8,
+        "original_language": "und",
+        "english_text": "Atlas insures a German battery factory against fire.",
+        "extraction_confidence": "high",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "neutral",
+        "tone_evidence": {
+          "quote": "Atlas insures",
+          "page": 1,
+          "start": 0,
+          "end": 13
+        },
+        "triples": [
+          {
+            "subject": "Atlas",
+            "verb": "insures",
+            "object": "battery factory",
+            "subject_en": "Atlas",
+            "verb_en": "insures",
+            "object_en": "battery factory",
+            "evidence": {
+              "quote": "a German battery factory",
+              "page": 1,
+              "start": 14,
+              "end": 38
+            }
+          },
+          {
+            "subject": "Atlas",
+            "verb": "insures",
+            "object": "fire",
+            "subject_en": "Atlas",
+            "verb_en": "insures",
+            "object_en": "fire",
+            "evidence": {
+              "quote": "against fire",
+              "page": 1,
+              "start": 39,
+              "end": 51
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "isic_I",
+            "subsector_id": "isic_56",
+            "evidence": {
+              "quote": "battery factory",
+              "page": 1,
+              "start": 23,
+              "end": 38
+            }
+          }
+        ],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "geographic_coverage",
+            "reason": "label_absent_from_quote"
+          }
+        ],
+        "id": "language_6cdf6fe6f1cefab18a749b6fe805e55065ee97ca0f9546c690391829c47fa541"
+      },
+      "region_match": false,
+      "sector_match": false,
+      "seconds": 26.544
+    },
+    {
+      "chunk_id": "spanish",
+      "expected": {
+        "region": "España",
+        "sector": "isic_C"
+      },
+      "result": {
+        "chunk_id": "spanish",
+        "observation_id": "spanish",
+        "model": "qwen3.5-2b-ud-q4_k_xl-623132b",
+        "prompt_version": "semiotic-language-v6",
+        "status": "candidate",
+        "word_count": 5,
+        "original_language": "es",
+        "english_text": "Acme fabrica baterías en España.",
+        "extraction_confidence": "high",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "neutral",
+        "tone_evidence": {
+          "quote": "fabrica",
+          "page": 1,
+          "start": 5,
+          "end": 12
+        },
+        "triples": [
+          {
+            "subject": "Acme",
+            "verb": "fabrica",
+            "object": "baterías",
+            "subject_en": "Acme",
+            "verb_en": "manufactures",
+            "object_en": "batteries",
+            "evidence": {
+              "quote": "fabrica baterías",
+              "page": 1,
+              "start": 5,
+              "end": 21
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "isic_I",
+            "subsector_id": "isic_56",
+            "evidence": {
+              "quote": "fabrica baterías",
+              "page": 1,
+              "start": 5,
+              "end": 21
+            }
+          }
+        ],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "validation_issues": [
+          {
+            "field": "geographic_coverage",
+            "reason": "label_absent_from_quote"
+          }
+        ],
+        "id": "language_fb4958ad9cd5e99a4c8240cd5db2466c7de8ea9db499bef4a221d2266fb87008"
+      },
+      "region_match": false,
+      "sector_match": false,
+      "seconds": 21.409
+    },
+    {
+      "chunk_id": "no_geography",
+      "expected": {
+        "region": null,
+        "sector": "isic_L"
+      },
+      "result": {
+        "chunk_id": "no_geography",
+        "observation_id": "no_geography",
+        "model": "qwen3.5-2b-ud-q4_k_xl-623132b",
+        "prompt_version": "semiotic-language-v6",
+        "status": "candidate",
+        "word_count": 4,
+        "original_language": "und",
+        "english_text": "Atlas provides insurance services.",
+        "extraction_confidence": "high",
+        "confidence_basis": "model_self_report_uncalibrated",
+        "tone": "neutral",
+        "tone_evidence": {
+          "quote": "Atlas provides insurance services.",
+          "page": 1,
+          "start": 0,
+          "end": 34
+        },
+        "triples": [
+          {
+            "subject": "Atlas",
+            "verb": "provides",
+            "object": "insurance services",
+            "subject_en": "Atlas",
+            "verb_en": "provides",
+            "object_en": "insurance services",
+            "evidence": {
+              "quote": "Atlas provides insurance services.",
+              "page": 1,
+              "start": 0,
+              "end": 34
+            }
+          }
+        ],
+        "sector_classifications": [
+          {
+            "sector_id": "isic_L",
+            "subsector_id": "isic_65",
+            "evidence": {
+              "quote": "Atlas provides insurance services.",
+              "page": 1,
+              "start": 0,
+              "end": 34
+            }
+          }
+        ],
+        "geographic_coverage": [],
+        "population_coverage": [],
+        "id": "language_c4c069836e542b576910e887fc77ee84092ea832f4b8b2cacf4e31e1a2b21062"
+      },
+      "region_match": true,
+      "sector_match": true,
+      "seconds": 18.658
+    }
+  ],
+  "summary": {
+    "attempted": 4,
+    "returned": 4,
+    "with_evidence_linked_triples": 4,
+    "with_evidence_linked_tone": 4,
+    "rejected_annotations": 2,
+    "gold_region_matches": 2,
+    "gold_sector_matches": 1,
+    "gold_cases": 4,
+    "median_seconds": 23.977
+  }
+}

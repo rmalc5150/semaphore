@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh metadata counts daily without an Athena table scan
+
+[Timer]
+OnCalendar=*-*-* 05:30:00 UTC
+Persistent=true
+Unit=optima-metadata-publication-counts.service
+
+[Install]
+WantedBy=timers.target

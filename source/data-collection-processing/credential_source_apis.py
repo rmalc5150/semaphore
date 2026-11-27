@@ -1,8 +1,8 @@
 """Credential-backed official APIs; bounded requests and explicit coverage scopes."""
 import json
-from datetime import date,timedelta
+from datetime import date,timedelta,datetime,timezone
 from additional_source_apis import get_json,row,unique
-from regulatory_collection import require
+from regulatory_collection import require,SourceIssue
 from research_contract import digest
 
 _CONTROL=None
@@ -82,7 +82,26 @@ def fetch(client,job,cursor,item):
         # Census defines '-' as the all-commodity total; 'TOTAL' returns 204.
         # Keep the saved scope label, but send the documented provider code.
         provider_commodity = '-' if p['commodity'] == 'TOTAL' else p['commodity']
-        d,_=get_json(client,url,{'get':f'CTY_CODE,CTY_NAME,{commodity},{value}',commodity:provider_commodity,'CTY_CODE':'*','YEAR':start[:4],'MONTH':start[5:7]},'US-census','key')
+        query={'get':f'CTY_CODE,CTY_NAME,{commodity},{value}',commodity:provider_commodity,'CTY_CODE':'*','YEAR':start[:4],'MONTH':start[5:7]}
+        d,_=get_json(client,url,query,'US-census','key',allow_empty=True)
+        if d is None:
+            # A 204 is not a zero-valued observation. Establish that the same
+            # period is available before accepting an empty commodity query.
+            control=None
+            if provider_commodity!='-':
+                require(provider_commodity in {'260400','250410','282520','850760'},'census_empty_commodity_requires_review')
+                control,_=get_json(client,url,{**query,commodity:'-'},'US-census','key',allow_empty=True)
+            if control is None:
+                today=datetime.now(timezone.utc).date();month=date.fromisoformat(start[:7]+'-01')
+                recent=(today.year-month.year)*12+today.month-month.month in (0,1)
+                raise SourceIssue('census_period_not_yet_published' if recent else 'census_unavailable_period_requires_review',recent)
+            require(isinstance(control,list)and len(control)>1 and commodity in control[0],'census_empty_control_invalid')
+            client.expected_records=0
+            client.empty_scope_evidence={'basis':'provider_http_204_no_reported_rows; same-period total query returned data',
+                'direction':direction,'period':start[:7],'commodity':p['commodity'],
+                'interpretation':'No rows reported for this query; not a zero trade-value measurement.',
+                'source_evidence':list(client.evidence)}
+            return [],None
         require(isinstance(d,list) and d and isinstance(d[0],list),'census_response_shape');require(len(d)<50000,'census_row_cap_split_required')
         for values in d[1:]:
             require(len(values)==len(d[0]),'census_row_length');r=dict(zip(d[0],values));require(r.get('YEAR',start[:4])==start[:4] and r.get('MONTH',start[5:7])==start[5:7],'census_date_outside_scope')
